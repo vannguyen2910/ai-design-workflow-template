@@ -581,6 +581,21 @@ a.chip:hover{filter:brightness(1.1)}
 .warnlist{list-style:none;margin:0;padding:0}
 .warnlist li{padding:10px 14px;margin:8px 0;border-radius:var(--r);background:var(--tint);border-left:4px solid var(--purple)}
 .ok{padding:10px 14px;border-radius:var(--r);background:var(--tint)}
+.wsum{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.wpill{font:inherit;cursor:pointer;font-size:.82rem;padding:5px 10px;border:1px solid var(--line);border-radius:99px;color:var(--ink);text-decoration:none;background:var(--surface)}
+.wpill b{color:var(--purple)}
+.wpill:hover{border-color:var(--purple)}
+.wgroup{border:1px solid var(--line);border-radius:var(--r);margin:0 0 10px;background:var(--surface)}
+.wgroup>summary{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;list-style:none;font-weight:600}
+.wgroup>summary::-webkit-details-marker{display:none}
+.wgroup>summary::before{content:"▸";color:var(--muted);font-size:.8rem}
+.wgroup[open]>summary::before{content:"▾"}
+.wcount{margin-left:auto;font-size:.8rem;font-weight:700;padding:2px 9px;border-radius:99px;background:var(--tint)}
+.whint{margin:0;padding:0 14px 8px;font-size:.88rem;color:var(--muted)}
+.wgrid{list-style:none;margin:0;padding:0 14px 12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:6px 14px}
+.wgrid li{display:flex;align-items:center;gap:8px;min-width:0;font-size:.9rem}
+.wt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.wn{margin-left:auto;font-size:.8rem;color:var(--muted);white-space:nowrap}
 /* journey */
 .jcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
 .jcard{display:block;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;text-decoration:none;color:var(--ink)}
@@ -637,6 +652,15 @@ a.chip:hover{filter:brightness(1.1)}
 .backlinks h2{margin:0 0 8px;font-size:.95rem}
 .backlinks .row{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin:6px 0}
 .backlinks .lbl{font-size:.8rem;color:var(--muted);min-width:7em}
+.dlist{display:flex;flex-direction:column}
+.dlink{display:flex;align-items:center;gap:12px;padding:9px 4px;border-top:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:.92rem}
+.dlink:first-child{border-top:0}
+.dlink:hover{background:var(--tint)}
+.dlink:hover .darr{color:var(--purple);transform:translateX(2px)}
+.dtype{flex:0 0 14em;font-size:.72rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dtitle{flex:1;min-width:0}
+.darr{color:var(--muted);transition:transform .15s}
+@media (max-width:600px){.dtype{flex-basis:6.5em}}
 .back-tree{display:none}
 .acards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:6px}
 .acard{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:0 0 14px;text-decoration:none;color:var(--ink);overflow:hidden}
@@ -653,7 +677,8 @@ a.chip:hover{filter:brightness(1.1)}
 .st-simulated,.st-planned,.st-draft{background:var(--ink);color:var(--bg)}
 .ahead .sum{font-size:1.05rem;color:var(--muted);margin:6px 0 10px}
 .ahead .kind{margin:0;color:var(--muted);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.supports{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 14px}
+.supports{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin:6px 0 14px}
+.backlinks .row{align-items:baseline}
 .supports .lbl{font-size:.8rem;color:var(--muted)}
 .figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin:8px 0}
 .fig{margin:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff}
@@ -898,9 +923,25 @@ html[data-theme] th{background:none}
 """
 CSS += MIN_CSS
 
+# Item references (H1, D2, T1...) are plain underlined links, not badges.
+# The extra .chip repeats make this win over the per-theme badge colours.
+CSS += r"""
+body .chip.chip.chip{display:inline;background:none;border:0;border-radius:0;padding:0;font-size:inherit;font-weight:400;letter-spacing:0;color:var(--link);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+a.chip:hover{filter:none;text-decoration-thickness:2px}
+span.chip.chip.chip{color:inherit;text-decoration:none}
+.chips{gap:4px 14px}
+.irefs{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+a.iref{display:inline;color:var(--link);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px;font-size:.92rem;line-height:1.5}
+a.iref:hover{text-decoration-thickness:2px}
+.irefs a.iref{display:block}
+.idn{flex:none;font-size:.72rem;color:var(--muted);margin-right:8px;white-space:nowrap}
+.icard .itype{font-size:.74rem;color:var(--muted);letter-spacing:.02em}
+"""
+
 JS = r"""
 (function(){
   var root=document.documentElement; root.classList.add('js');
+  document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.wpill');if(!b)return;var g=document.getElementById(b.getAttribute('data-wg'));if(g){g.open=true;g.scrollIntoView({block:'nearest'})}});
   var VIEWS=['overview','journey','docs','trace','reference'];
   function $(s,c){return (c||document).querySelector(s)}
   function $$(s,c){return [].slice.call((c||document).querySelectorAll(s))}
@@ -1374,15 +1415,37 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                 if t not in G.items and t not in principles:
                     problems.append("%s trỏ tới %s nhưng không có file hoặc dòng principle tương ứng" % (i, t))
 
+    def item_name(i):
+        """Reader-facing name for an item ID: 'Decision 4' instead of 'D4'. The ID stays the key in files and links."""
+        n = re.search(r"\d+", i)
+        if i in G.items and n:
+            return "%s %s" % (VI_SHORT[G.items[i].letter], n.group())
+        if i in principles and n:
+            return "Principle %s" % n.group()
+        return i
+
+    _title_count = {}
+    for _p in G.items.values():
+        _title_count[_p.title] = _title_count.get(_p.title, 0) + 1
+
     def chip(i, cls="chip"):
         if i in A:
             return '<a class="%s t-A" href="#/%s" title="%s">%s</a>' % (cls, i, esc(A[i].title), esc(A[i].title if len(A[i].title) < 28 else A[i].title[:26] + "…"))
         if i in G.items:
             p = G.items[i]
-            return '<a class="%s t-%s" href="#/%s" title="%s">%s</a>' % (cls, p.letter, i, esc(p.title), i)
+            return '<a class="%s t-%s" href="#/%s" title="%s">%s</a>' % (cls, p.letter, i, esc(p.title), esc(item_name(i)))
         if i in principles:
-            return '<a class="%s t-P" href="#/principles" title="%s">%s</a>' % (cls, esc(principles[i][0]), i)
+            return '<a class="%s t-P" href="#/principles" title="%s">%s</a>' % (cls, esc(principles[i][0]), esc(item_name(i)))
         return '<span class="%s">%s</span>' % (cls, esc(i))
+
+    def iref(i):
+        """Where there is room: the item's full title as the link. Two items with the same title get their name appended."""
+        if i in G.items:
+            t = G.items[i].title
+            if _title_count.get(t, 0) > 1:
+                t = "%s (%s)" % (t, item_name(i))
+            return '<a class="iref" href="#/%s"><span class="irt">%s</span></a>' % (i, esc(t))
+        return chip(i)
 
     def val_html(x, r):
         def link(m):
@@ -1471,22 +1534,55 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                 if t_ not in ts:
                     ts.append(t_)
         rows += "<tr><td>%s %s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>" % (
-            chip(d), esc(G.items[d].title), chips(hs), chips(os_), chips(ts),
+            "", '<a class="iref" href="#/%s"><span class="irt">%s</span></a>' % (d, esc(G.items[d].title)), chips(hs), chips(os_), chips(ts),
             chips(G.follows.get(d, [])) if G.follows.get(d) else "—",
             chips(G.strains.get(d, [])) if G.strains.get(d) else "—")
     align = ('<div class="table-wrap"><table><thead><tr><th>Decision</th><th>Hypothesis</th><th>Opportunity</th><th>Test</th><th>Follows</th><th>Pulls against</th></tr></thead><tbody>%s</tbody></table></div>' % rows) if rows else '<p class="ok">Chưa có decision nào.</p>'
     if G.warnings:
-        merged = []  # warnings with the same wording become one line that lists every item it applies to
-        for _, ids, text in G.warnings:
-            for m_ in merged:
-                if m_[1] == text:
-                    m_[0].extend(i for i in ids if i not in m_[0])
-                    break
-            else:
-                merged.append([list(ids), text])
-        wl = "".join('<li>%s <span class="chips" style="display:inline-flex;vertical-align:middle">%s</span> <strong>%s</strong></li>' % (
-            "⚠", "".join(chip(i) for i in ids), esc(text)) for ids, text in merged)
-        warn_html = '<ul class="warnlist">%s</ul>' % wl
+        # One group per kind of problem, so the section stays scannable however many items are added.
+        # Each group says what is wrong once, then lists the items in a compact grid.
+        W_KINDS = [
+            ("no-need", "Decision chưa nối về opportunity", "Nối decision với một hypothesis phục vụ một opportunity, hoặc cắt nó."),
+            ("strain", "Decision đi ngược principle", "Sửa decision, hoặc ghi lại vì sao chấp nhận trade-off."),
+            ("unserved", "Opportunity chưa có decision phục vụ", "Thêm decision cho opportunity này, hoặc hạ thứ hạng nó."),
+            ("untested", "Hypothesis chưa có test", "Lên kế hoạch một test cho hypothesis này."),
+            ("nometric", "Hypothesis chưa có metric", "Gắn một metric để biết hypothesis đúng hay sai."),
+            ("planned", "Test mới ở dạng kế hoạch", "Chạy test, rồi ghi kết quả."),
+            ("simulated", "Test dùng người mô phỏng", "Chưa tính là evidence. Chạy lại với người dùng thật."),
+            ("no-real-evidence", "Hypothesis chưa có evidence từ người dùng thật", "Cần ít nhất một test với người dùng thật."),
+            ("art-orphan", "Document chưa nối với item nào", "Điền property supports trong document."),
+            ("principles", "Principle chưa có câu hỏi kiểm tra", "Viết câu hỏi có/không cho từng principle."),
+        ]
+        by_kind = {}
+        for kd, ids, text in G.warnings:
+            by_kind.setdefault(kd, []).append((ids, text))
+        ordered = [k for k, _, _ in W_KINDS if k in by_kind] + [k for k in by_kind if k not in {k2 for k2, _, _ in W_KINDS}]
+        meta_ = {k: (t, h) for k, t, h in W_KINDS}
+        groups, pills = "", ""
+        for kd in ordered:
+            seen_, rows_ = set(), []
+            for ids, text in by_kind[kd]:
+                for i in ids:
+                    note = ""
+                    if kd == "strain":
+                        m_ = re.search(r"principle (P\d+)", text)
+                        note = m_.group(1) if m_ else ""
+                    if (i, note) in seen_:
+                        continue
+                    seen_.add((i, note))
+                    title = G.items[i].title if i in G.items else ""
+                    rows_.append('<li>%s%s%s</li>' % (
+                        chip(i),
+                        ('<span class="wt">%s</span>' % esc(title)) if title else "",
+                        ('<span class="wn">đi ngược %s</span>' % chip(note)) if note else ""))
+            ttl, hint = meta_.get(kd, (by_kind[kd][0][1], ""))
+            gid = "wg-" + kd
+            pills += '<button type="button" class="wpill" data-wg="%s"><b>%d</b> %s</button>' % (gid, len(rows_), esc(ttl))
+            groups += ('<details class="wgroup" id="%s"%s><summary><span class="wtitle">%s</span><span class="wcount">%d</span></summary>'
+                       '%s<ul class="wgrid">%s</ul></details>') % (
+                gid, " open" if len(rows_) <= 12 else "", esc(ttl), len(rows_),
+                ('<p class="whint">%s</p>' % esc(hint)) if hint else "", "".join(rows_))
+        warn_html = '<div class="wsum">%s</div><div class="wgroups">%s</div>' % (pills, groups)
     else:
         warn_html = '<p class="ok">Không có warning nào: mọi decision đều lần ngược được về một opportunity, và mọi hypothesis đều có test và metric.</p>'
     banner = ""
@@ -1618,7 +1714,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             warn = '<p class="warnbox">⚠ Document này ở trạng thái <strong>%s</strong>: %s</p>' % (esc(ART_STATUS.get(a.status, a.status)),
                 {"simulated": "kết quả đến từ người mô phỏng, không phải người dùng thật.", "draft": "nội dung chưa được kiểm tra.", "planned": "mới ở dạng kế hoạch, chưa thực hiện."}[a.status])
         take = ("<h2>Key takeaways</h2><ul>%s</ul>" % "".join("<li>%s</li>" % Renderer(a.path, resolver, problems).inline(x) for x in a.takeaways)) if a.takeaways else ""
-        sup = ('<div class="supports"><span class="lbl">Supports</span><span class="chips">%s</span></div>' % "".join(chip(s) for s in a.supports)) if a.supports else ""
+        sup = ('<div class="supports"><span class="lbl">Supports</span><span class="irefs">%s</span></div>' % "".join(iref(s) for s in a.supports)) if a.supports else ""
         med = media_html(a)
         med = ("<h2>Media</h2>%s" % med) if med else ""
         src_note = ('<p class="srcnote">Source: <code>%s</code></p>' % esc(a.source)) if a.source else ""
@@ -1661,8 +1757,8 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     def tnode(i, kids="", cnt="", leaf=True, opened=False):
         p = G.items[i]
         w = i in G.warn
-        a = '<a class="node" href="#/%s" data-id="%s"><span class="idc t-%s">%s</span><span class="nt">%s%s</span>%s</a>' % (
-            i, i, p.letter, i, esc(p.title), ('<span class="cnt">%s</span>' % cnt) if cnt else "",
+        a = '<a class="node" href="#/%s" data-id="%s"><span class="idn">%s</span><span class="nt">%s%s</span>%s</a>' % (
+            i, i, esc(item_name(i)), esc(p.title), ('<span class="cnt">%s</span>' % cnt) if cnt else "",
             ('<span class="wb" title="%s" aria-label="có warning">⚠</span>' % esc("; ".join(G.warn[i]))) if w else "")
         attrs = 'class="n%s" data-type="%s" data-warn="%s" data-text="%s"' % (" leaf" if not kids else "", p.letter, "1" if w else "0", esc((i + " " + p.title).lower()))
         if kids:
@@ -1714,14 +1810,20 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             groups = {}
             for src, label in G.back[i]:
                 groups.setdefault(label, []).append(src)
-            rows_ = "".join('<div class="row"><span class="lbl">%s</span><span class="chips">%s</span></div>' % (
-                esc(BACK_LABEL.get(lb, lb.replace("_", " "))), "".join(chip(s) for s in sorted(srcs, key=_natkey))) for lb, srcs in groups.items())
+            rows_ = "".join('<div class="row"><span class="lbl">%s</span><span class="irefs">%s</span></div>' % (
+                esc(BACK_LABEL.get(lb, lb.replace("_", " "))), "".join(iref(s) for s in sorted(srcs, key=_natkey))) for lb, srcs in groups.items())
             bl = '<aside class="backlinks"><h2>Linked from</h2>%s</aside>' % rows_
         if art_for.get(i):
-            bl += '<aside class="backlinks"><h2>Related documents</h2><div class="row"><span class="chips">%s</span></div></aside>' % "".join(chip(x) for x in art_for[i])
+            dl = ""
+            for x in art_for[i]:
+                a_ = A[x]
+                dl += ('<a class="dlink" href="#/%s"><span class="dtype">%s</span><span class="dtitle">%s</span>%s<span class="darr" aria-hidden="true">→</span></a>') % (
+                    esc(x), esc(ART_TYPES.get(a_.type, a_.type.replace("-", " ").capitalize())), esc(a_.title),
+                    ('<span class="st st-%s">%s</span>' % (a_.status, esc(ART_STATUS.get(a_.status, a_.status)))) if a_.status else "")
+            bl += '<aside class="backlinks"><h2>Related documents</h2><div class="dlist">%s</div></aside>' % dl
         idocs += ('<section class="doc" id="%s" data-title="%s"><a class="back back-tree" href="#/trace">← Insights</a>'
-                  '<header class="ihead"><span class="idtag t-%s">%s</span><div><p class="kind">%s</p><h1>%s</h1></div></header>%s%s<div class="reading">%s</div>%s</section>') % (
-            i, esc(i + " " + p.title), p.letter, i, VI_NAME[p.letter][0], esc(p.title), warn, path, body, bl)
+                  '<header class="ihead"><div><p class="kind">%s · %s</p><h1>%s</h1></div></header>%s%s<div class="reading">%s</div>%s</section>') % (
+            i, esc(i + " " + p.title), esc(VI_NAME[p.letter][0]), esc(i), esc(p.title), warn, path, body, bl)
     def icard(i):
         p = G.items[i]
         w = i in G.warn
@@ -1740,9 +1842,9 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                     break
         if w:
             meta = G.warn[i][0]
-        return ('<a class="icard" href="#/%s" data-type="%s" data-warn="%s" data-text="%s"><span class="top"><span class="idc t-%s">%s</span>'
+        return ('<a class="icard" href="#/%s" data-type="%s" data-warn="%s" data-text="%s"><span class="top">'
                 '<span class="itype">%s</span>%s</span><h3>%s</h3><p>%s</p></a>') % (
-            i, p.letter, "1" if w else "0", esc((i + " " + p.title).lower()), p.letter, i, esc(VI_SHORT[p.letter]),
+            i, p.letter, "1" if w else "0", esc((i + " " + p.title).lower()), esc(item_name(i)),
             '<span class="w" title="có warning">⚠</span>' if w else "", esc(p.title), esc(meta))
     icards = "".join(icard(i) for L, _, _, _pl in TYPES for i in sorted(getattr(G, L), key=_natkey))
     v_trace = (
