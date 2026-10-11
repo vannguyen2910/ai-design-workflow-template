@@ -77,6 +77,25 @@ Cách thêm artifact, các loại tệp được nhận diện, và template cho
 
 Quy tắc: **artifact trỏ về working file bằng `source:` chứ không chép nội dung**, để một thông tin chỉ nằm ở một chỗ.
 
+## Read the hub in the report
+
+`index.html` là cách xem hub trong trình duyệt. Mỗi mục ở menu bên trái đọc từ một phần của hub:
+
+| Mục | Hiển thị | Đọc từ |
+|---|---|---|
+| **Overview** | Số lượng item, gates, warnings, bảng alignment | `README.md`, `gates.md` và các file item |
+| **Journey** | Mỗi trang giai đoạn là một thẻ | `01-scope.md` đến `07-handoff.md` |
+| **Documents** | Mỗi artifact là một thẻ, có tab theo giai đoạn | `artifacts/` |
+| **Insights** | Mỗi item là một thẻ, có tab theo loại và nút chuyển Cards hoặc Tree | `O1.md`, `H1.md`, `M1.md`, `D1.md`, `T1.md`… |
+| **Reference** | Gates, principle checks, case log | `gates.md`, `../learnings/context-principle-checks.md`, `../case-log.md` |
+
+Vài điều cần biết khi đọc:
+
+- **Warnings do script tính** từ các dòng quan hệ trong file item, không lấy từ các khối `generated` trong `README.md`. Nếu hai nơi khác nhau thì báo cáo là bản đúng.
+- **Thẻ có dấu ⚠** là item đang có warning. Bấm vào thẻ để thấy lý do.
+- **Chế độ Tree** ở Insights cho thấy chuỗi opportunity, hypothesis, decision, test và metric, để lần ngược một decision về user need.
+- **Muốn đổi nội dung**, sửa file gốc rồi chạy lại `python3 tools/export-hub.py`. Muốn xem thay đổi ngay khi lưu file, chạy `python3 tools/serve-hub.py`. Chi tiết nằm ở `tools/step-export-hub.md`.
+
 ## Each time you update
 
 1. Tạo hoặc sửa các file item của giai đoạn bạn đang làm (copy một file có sẵn, đổi ID và nội dung).
