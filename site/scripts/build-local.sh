@@ -3,10 +3,11 @@
 #   scripts/build-local.sh            build
 #   scripts/build-local.sh preview    build, then serve the result
 #   HUB_TEAM=1 scripts/build-local.sh   include AI-draft sections (folded)
+#   HUB_CASE=onboarding-redesign scripts/build-local.sh   pick the project folder (default: the only project made with new-case.py, else my-case)
 set -euo pipefail
 SRC="$(cd "$(dirname "$0")/.." && pwd)"
 WORK="${HUB_SITE_WORK:-$HOME/.cache/hub-site}"
-export HUB_CASE_DIR="${HUB_CASE_DIR:-$(cd "$SRC/../my-case" && pwd)}"
+export HUB_CASE_DIR="$(bash "$SRC/scripts/find-case.sh")"
 mkdir -p "$WORK"
 rsync -a --delete --exclude node_modules --exclude dist --exclude .astro --exclude public/hub-assets "$SRC/" "$WORK/"
 cd "$WORK"

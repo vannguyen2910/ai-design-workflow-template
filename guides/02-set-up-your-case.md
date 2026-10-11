@@ -4,11 +4,19 @@ Guide này giúp bạn đặt tên dự án, hiểu từng folder dùng để l�
 
 ## Step 1: Name your case
 
-1. Đổi tên folder `my-case` theo case của bạn.
-2. Dùng chữ thường, nối bằng dấu gạch ngang, không có dấu cách. Ví dụ: `onboarding-redesign`, `checkout-flow`.
-3. Chọn tên mà nhìn vào là biết case nói về gì, vì bạn sẽ thấy nó ở đầu mọi đường dẫn.
+1. Mở Terminal tại folder gốc của workspace và chạy:
 
-Có hai case thì nhân đôi folder `my-case` và đặt tên cho từng bản.
+   ```
+   python3 tools/new-case.py onboarding-redesign
+   ```
+
+   Thêm `--title "Onboarding redesign"` nếu muốn tên hiển thị khác với tên folder.
+2. Tên folder dùng chữ thường, nối bằng dấu gạch ngang, không có dấu cách. Ví dụ: `onboarding-redesign`, `checkout-flow`. Chọn tên mà nhìn vào là biết case nói về gì, vì bạn sẽ thấy nó ở đầu mọi đường dẫn.
+3. Lệnh tạo một folder mới cạnh `my-case`, đã xoá sẵn các item `[EXAMPLE]`. `my-case` được giữ nguyên làm template.
+
+Có hai case thì chạy lệnh hai lần với hai tên khác nhau.
+
+**Không dùng được Terminal?** Đổi tên folder `my-case` theo case của bạn rồi tự xoá các item `[EXAMPLE]` trong `hub/`. Cách này làm mất template gốc, nên hãy giữ một bản ZIP sạch để lấy lại khi cần.
 
 ## Step 2: Understand the folders
 

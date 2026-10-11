@@ -5,9 +5,14 @@ name: Update index.html
 on:
   push:
     branches: [main]
+    # Any case folder: my-case, demo-case and every project made with tools/new-case.py.
     paths:
-      - 'my-case/**'
-      - 'demo-case/**'
+      - '*/hub/**'
+      - '*/learnings/**'
+      - '*/tools/**'
+      - '*/case-log.md'
+      - '*/README.md'
+      - '*/AGENTS.md'
       - '!**/index.html'
   workflow_dispatch:
 

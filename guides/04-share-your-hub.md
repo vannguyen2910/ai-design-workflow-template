@@ -85,7 +85,7 @@ Mỗi lần bạn push, GitHub dựng hub thành một website có menu bên tr�
 
 Website chỉ gồm hub và các tài liệu đã khai báo trong hub, giống bundle ở Option 1. Working file thô, `_personal/` và `AGENTS.md` không được đăng.
 
-Mặc định workflow đăng `my-case/`. Muốn đăng dự án mẫu, thêm repo variable `HUB_CASE` với giá trị `demo-case`. Muốn tắt, xoá `PUBLISH_HUB` hoặc đổi thành `false`; website đã đăng vẫn còn cho tới khi bạn gỡ Pages ở Settings.
+Mặc định workflow đăng folder dự án bạn tạo bằng `tools/new-case.py` (nếu có đúng một folder), nếu không thì đăng `my-case/`. Muốn chọn folder khác, thêm repo variable `HUB_CASE` với tên folder, ví dụ `onboarding-redesign` hoặc `demo-case`. Muốn tắt, xoá `PUBLISH_HUB` hoặc đổi thành `false`; website đã đăng vẫn còn cho tới khi bạn gỡ Pages ở Settings.
 
 ## Before you share anything
 

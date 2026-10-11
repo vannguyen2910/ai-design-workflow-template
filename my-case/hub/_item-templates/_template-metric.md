@@ -1,0 +1,8 @@
+---
+type: "metric"
+title: ""
+status: "assumed"
+baseline: "unknown"
+measured_by: "usability test / analytics"
+---
+*Cách dùng: copy file này ra `hub/`, đặt tên theo mã tiếp theo (ví dụ `M1.md`), điền title, rồi xoá dòng này. Giữ `assumed` cho tới khi người phụ trách sản phẩm xác nhận.*

@@ -7,7 +7,13 @@ Bạn không cần biết GitHub hay lập trình để bắt đầu.
 ## Start a project in 3 steps
 
 1. **Lấy workspace về máy.** Mở trang GitHub của repo này, bấm nút xanh **Code**, chọn **Download ZIP**. Giải nén và đặt folder vào `Documents`.
-2. **Đặt tên cho dự án.** Đổi tên folder `my-case` theo dự án của bạn: chữ thường, nối bằng dấu gạch ngang, ví dụ `onboarding-redesign`.
+2. **Tạo folder cho dự án.** Mở Terminal tại folder workspace và chạy lệnh dưới đây (Python 3 có sẵn trên Mac). Tên dự án viết chữ thường, nối bằng dấu gạch ngang. Lệnh tạo một folder sạch, đã xoá sẵn dữ liệu mẫu, và `my-case` được giữ nguyên làm template.
+
+   ```
+   python3 tools/new-case.py onboarding-redesign
+   ```
+
+   Không dùng được Terminal? Đổi tên folder `my-case` theo dự án của bạn, rồi tự xoá các item `[EXAMPLE]` trong `hub/`.
 3. **Xem hub.** Bấm đúp file `index.html` trong folder dự án: nó mở bằng trình duyệt và không cần cài gì. Khi làm việc, mở **cả folder dự án** bằng công cụ bạn quen (AI coding tool, VS Code hay Obsidian).
 
 Xong ba bước này là dự án đã có chỗ ở. Các bước sau làm dần theo tiến độ thật của dự án.
@@ -78,10 +84,9 @@ Khi dự án kết thúc: đặt status các gate, viết ba dòng rút kinh ngh
 
 Giữ một bản template sạch để dùng lại:
 
-1. **Đừng điền vào bản template gốc nếu bạn định làm nhiều dự án.** Lấy template mới (tải ZIP, hoặc **Use this template** lần nữa) cho mỗi dự án.
-2. Đổi tên folder `my-case` trong bản mới theo dự án.
-3. Xoá dữ liệu mẫu: các item `[EXAMPLE]` trong `hub/` và tên case trong `hub/README.md`. `index.html` có thanh đen nhắc bạn khi còn dữ liệu mẫu.
-4. Điền các file `context-*` trong `learnings/` đầu tiên, rồi làm theo giai đoạn.
+1. **Chạy lại `python3 tools/new-case.py <tên-dự-án>`** cho mỗi dự án. Mỗi lần ra một folder sạch cạnh `my-case`; không cần tải template mới.
+2. **Đừng điền vào `my-case`.** Hãy để nó là template gốc. Nếu lỡ điền vào, lấy lại bản sạch bằng cách tải ZIP hoặc **Use this template** lần nữa.
+3. Điền các file `context-*` trong `learnings/` đầu tiên, rồi làm theo giai đoạn. `index.html` có thanh đen nhắc bạn khi còn nội dung mẫu hoặc chỗ chưa điền.
 
 ## Use it for real work
 

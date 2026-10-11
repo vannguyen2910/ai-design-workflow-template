@@ -7,7 +7,14 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['my-case/**', 'demo-case/**', 'site/**', '.github/workflows/publish-hub.yml']
+    paths:
+      - '*/hub/**'
+      - '*/learnings/**'
+      - '*/tools/**'
+      - '*/case-log.md'
+      - '*/README.md'
+      - 'site/**'
+      - '.github/workflows/publish-hub.yml'
 
 permissions:
   contents: read
@@ -27,11 +34,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Pick the case to publish
+        env:
+          # Tên folder case để đăng. Để trống thì dùng folder dự án duy nhất tạo bằng tools/new-case.py, nếu không có thì my-case.
+          HUB_CASE: ${{ vars.HUB_CASE }}
+        run: echo "HUB_CASE_DIR=$(bash site/scripts/find-case.sh)" >> "$GITHUB_ENV"
       - name: Build site
         working-directory: site
         env:
-          # Folder case để đăng. Đặt repo variable HUB_CASE = demo-case để đăng dự án mẫu.
-          HUB_CASE_DIR: ${{ github.workspace }}/${{ vars.HUB_CASE || 'my-case' }}
           HUB_BASE: /${{ github.event.repository.name }}/
           HUB_SITE: https://${{ github.repository_owner }}.github.io
         run: |

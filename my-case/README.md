@@ -19,9 +19,10 @@ File này là trang đầu của dự án. Điền **Project card** trước, v�
 ## Where to start
 
 1. Bấm đúp `index.html` để xem hub trong trình duyệt. Khi làm việc, mở **cả folder này** bằng công cụ bạn quen (AI coding tool, VS Code hoặc Obsidian).
-2. **Dọn dữ liệu mẫu:** hub đang chứa các item `[EXAMPLE]` để bạn thấy nó chạy ra sao. Xoá chúng và thay bằng item của dự án khi bạn có item đầu tiên.
+2. **Dùng folder sạch, đừng điền thẳng vào `my-case`:** chạy `python3 tools/new-case.py <tên-dự-án>` ở folder gốc của workspace để tạo folder dự án đã xoá sẵn các item `[EXAMPLE]`. Nếu bạn đang ở trong `my-case`, hub của nó còn dữ liệu mẫu để bạn thấy hub chạy ra sao; xoá chúng khi bạn có item đầu tiên.
 3. Mở `learnings/context-product-and-users.md` và điền file đầu tiên.
 4. Viết `learnings/context-data-rules.md` trước khi đưa bất kỳ tài liệu thật nào cho AI.
+5. Khi có item đầu tiên (opportunity, hypothesis, decision...), copy một file trong `hub/_item-templates/` ra `hub/` và đặt tên theo mã (ví dụ `O1.md`).
 
 ## Folders
 

@@ -16,6 +16,7 @@ Case folder của một người làm sản phẩm (designer, researcher, PM...)
 | `learnings/discover-*.md` … `deliver-*.md` | Working file theo giai đoạn | Chỉ ghi vào đúng section được yêu cầu |
 | `learnings/sources/anonymised/` | Dữ liệu đã ẩn danh, có ID | Đọc. Nguồn duy nhất cho quote và số liệu |
 | `hub/O1.md`, `H1.md`, `M1.md`, `D1.md`, `T1.md`… | **Nguồn duy nhất** của mỗi item (O, H, M, D, T) | Đọc. Chỉ sửa khi được yêu cầu sửa đúng item đó |
+| `hub/_item-templates/` | Mẫu rỗng cho từng loại item | Đọc. Copy ra `hub/` khi được yêu cầu tạo item mới, không sửa file mẫu |
 | `hub/artifacts/` | Tài liệu của dự án: một file `.md`, hoặc một folder có `index.md` cùng các tệp ảnh, PDF, HTML | Đọc. Tạo hoặc sửa khi được yêu cầu đúng tài liệu đó. Không chép nội dung working file vào đây: dùng `source:` |
 | `hub/README.md` và các trang `hub/*.md` | Tổng hợp và narrative | Chỉ ghi vào các khối `generated` khi chạy `tools/step-refresh-hub.md` |
 | `learnings/prototype/` | Code prototype | Làm việc ở đây khi dựng prototype, theo `project-rules.md` trong folder đó |
