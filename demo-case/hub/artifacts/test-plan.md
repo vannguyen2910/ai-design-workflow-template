@@ -8,9 +8,9 @@ takeaways:
   - "Task không dùng nhãn giao diện, để không dẫn đường."
   - "Ngưỡng: từ 80% là tốt; dưới 60% là ưu tiên thiết kế lại."
 supports:
-  - "[[T2]]"
+  - "[[E2]]"
   - "[[M1]]"
   - "[[M2]]"
   - "[[M3]]"
-source: "../../learnings/reference/12_Unmoderated_Usability_Test_Plan.md"
+source: "../../work/original-docs/12_Unmoderated_Usability_Test_Plan.md"
 ---

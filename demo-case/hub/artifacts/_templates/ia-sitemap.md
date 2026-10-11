@@ -7,7 +7,7 @@ summary: ""
 takeaways:
   - ""
 supports: []
-# source: "../../learnings/discover-ia-sitemap.md"
+# source: "../../work/discover/ia-sitemap.md"
 # media: []
 # links: []
 # embed: false

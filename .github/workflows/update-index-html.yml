@@ -7,12 +7,7 @@ on:
     branches: [main]
     # Any case folder: my-case, demo-case and every project made with tools/new-case.py.
     paths:
-      - '*/hub/**'
-      - '*/learnings/**'
-      - '*/tools/**'
-      - '*/case-log.md'
-      - '*/README.md'
-      - '*/AGENTS.md'
+      - '*/**'
       - '!**/index.html'
   workflow_dispatch:
 
@@ -30,7 +25,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Export hub of every case
         run: |
-          for exporter in */tools/export-hub.py; do
+          for exporter in */_scripts/export-hub.py; do
             case_dir="$(dirname "$(dirname "$exporter")")"
             echo "Exporting $case_dir"
             python3 "$exporter"

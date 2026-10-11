@@ -2,7 +2,7 @@
 
 *Business question, outcome mà nó cần thúc đẩy, và agreement với business.*
 
-> **Cách điền:** copy từ bản đã kiểm tra của [`learnings/discover-scope.md`](../learnings/discover-scope.md). Ghi **assumed** cho mọi metric bạn chưa xác nhận.
+> **Cách điền:** copy từ bản đã kiểm tra của [`work/discover/scope.md`](../work/discover/scope.md). Ghi **assumed** cho mọi metric bạn chưa xác nhận.
 
 ## Business question
 
@@ -22,7 +22,7 @@ Du khách 18 đến 45 tuổi, đã đi chơi trong 12 tháng, dùng điện tho
 - RH3: du khách phải xoay sở nhiều app
 - RH9: du khách lập kế hoạch lỏng và linh hoạt khi tới nơi
 - RH10: chi phí chuyển đổi là rào cản chính khi thử app mới
-- *(RH2, RH4 đến RH8: xem `learnings/discover-scope.md`)*
+- *(RH2, RH4 đến RH8: xem `work/discover/scope.md`)*
 
 ## Agreement
 

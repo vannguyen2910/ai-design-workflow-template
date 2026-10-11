@@ -2,7 +2,7 @@
 
 *Business question, outcome mà nó cần thúc đẩy, và agreement với business.*
 
-> **Cách điền:** copy từ bản đã kiểm tra của [`learnings/discover-scope.md`](../learnings/discover-scope.md). Ghi **assumed** cho mọi metric bạn chưa xác nhận.
+> **Cách điền:** copy từ bản đã kiểm tra của [`work/discover/scope.md`](../work/discover/scope.md). Ghi **assumed** cho mọi metric bạn chưa xác nhận.
 
 ## Business question
 

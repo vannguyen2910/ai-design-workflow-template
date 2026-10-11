@@ -13,5 +13,5 @@ supports:
   - "[[O3]]"
   - "[[O4]]"
   - "[[O5]]"
-source: "../../learnings/reference/07_Solution_Pool.md"
+source: "../../work/original-docs/07_Solution_Pool.md"
 ---

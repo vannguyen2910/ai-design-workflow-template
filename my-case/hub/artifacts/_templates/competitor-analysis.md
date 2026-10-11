@@ -7,7 +7,7 @@ summary: ""
 takeaways:
   - ""
 supports: []
-# source: "../../learnings/discover-competitor-analysis.md"
+# source: "../../work/discover/competitor-analysis.md"
 # media: []
 # links: []
 # embed: false

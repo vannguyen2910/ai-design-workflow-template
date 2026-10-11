@@ -7,7 +7,7 @@ summary: ""
 takeaways:
   - ""
 supports: []
-# source: "../../learnings/discover-generic.md"
+# source: "../../work/discover/generic.md"
 # media: []
 # links: []
 # embed: false

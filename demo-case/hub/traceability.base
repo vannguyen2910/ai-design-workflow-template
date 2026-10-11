@@ -1,6 +1,8 @@
 filters:
   and:
     - file.inFolder("hub")
+    - '!file.inFolder("hub/_item-templates")'
+    - '!file.inFolder("hub/artifacts")'
 views:
   - type: table
     name: "Opportunities"

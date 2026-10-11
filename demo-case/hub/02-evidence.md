@@ -2,7 +2,7 @@
 
 *Điều đã học từ các nguồn, mỗi claim có một nguồn. Competitor analysis là ví dụ đầu tiên.*
 
-> **Cách điền:** copy từ các section **verified** của [`user-voice-synthesis.md`](../learnings/discover-user-voice-synthesis.md) và [`competitor-analysis.md`](../learnings/discover-competitor-analysis.md). Đưa bản đã kiểm tra, không đưa bản nháp của AI. Link mỗi insight tới opportunity mà nó hỗ trợ bằng ID (ví dụ O1).
+> **Cách điền:** copy từ các section **verified** của [`user-voice-synthesis.md`](../work/discover/user-voice-synthesis.md) và [`competitor-analysis.md`](../work/discover/competitor-analysis.md). Đưa bản đã kiểm tra, không đưa bản nháp của AI. Link mỗi insight tới opportunity mà nó hỗ trợ bằng mã (ví dụ O1).
 
 ## Decision this informs
 
@@ -10,7 +10,7 @@ Travel Buddy nên đứng ở đâu so với các nền tảng đang có, và n�
 
 ## Our answer
 
-Đứng ở chỗ chưa ai phủ: tip từ người thật có danh tính, kết nối phi giao dịch, lập kế hoạch và nhật ký trong một nơi, miễn phí. Ưu tiên lập kế hoạch ([O1](O1.md)) và khám phá bản địa ([O2](O2.md)). **Mức chắc chắn:** vừa phải; mẫu nhỏ (13 khảo sát, 1 phỏng vấn).
+Đứng ở chỗ chưa ai phủ: tip từ người thật có danh tính, kết nối phi giao dịch, lập kế hoạch và nhật ký trong một nơi, miễn phí. Ưu tiên lập kế hoạch ([O1](opportunities/O1.md)) và khám phá bản địa ([O2](opportunities/O2.md)). **Mức chắc chắn:** vừa phải; mẫu nhỏ (13 khảo sát, 1 phỏng vấn).
 
 ## What users said
 
@@ -38,7 +38,7 @@ Năm đối thủ theo vai trò trong hành trình của du khách (TripAdvisor,
 | Nhật ký chuyến đi | không | không | có | không |
 | Miễn phí | có | có | có | không |
 
-*Bản đầy đủ gồm Foursquare và AI chat tool, mười tiêu chí: `learnings/discover-competitor-analysis.md`.*
+*Bản đầy đủ gồm Foursquare và AI chat tool, mười tiêu chí: `work/discover/competitor-analysis.md`.*
 
 ## Beliefs we tested
 
@@ -53,7 +53,7 @@ Năm đối thủ theo vai trò trong hành trình của du khách (TripAdvisor,
 
 ### Insight 1: lập kế hoạch ở một nơi là hook, khám phá bản địa là cửa vào
 
-Hỗ trợ [O1](O1.md) và [O2](O2.md). Phản biện mạnh nhất: thứ hạng này thay đổi khi mẫu tăng từ 8 lên 13, nên có thể còn đổi nữa.
+Hỗ trợ [O1](opportunities/O1.md) và [O2](opportunities/O2.md). Phản biện mạnh nhất: thứ hạng này thay đổi khi mẫu tăng từ 8 lên 13, nên có thể còn đổi nữa.
 
 ## What this cannot tell us
 
@@ -61,8 +61,8 @@ Nhu cầu ghi nhật ký là hành vi hay mong muốn; phía người địa ph�
 
 ## Sources and method
 
-1. Khảo sát trực tuyến, 13 phản hồi hợp lệ (tháng 6/2026): `learnings/sources/anonymised/04_User_Survey.md`
-2. Phỏng vấn P1 (tháng 6/2026): `learnings/sources/anonymised/05_User_Interview_Guide.md`
-3. Phân tích đối thủ từ nguồn công khai: `learnings/sources/anonymised/03_Competitor_Research_SWOT.md`
+1. Khảo sát trực tuyến, 13 phản hồi hợp lệ (tháng 6/2026): `work/sources/anonymised/04_User_Survey.md`
+2. Phỏng vấn P1 (tháng 6/2026): `work/sources/anonymised/05_User_Interview_Guide.md`
+3. Phân tích đối thủ từ nguồn công khai: `work/sources/anonymised/03_Competitor_Research_SWOT.md`
 
 Phương pháp: tổng hợp thủ công, không dùng AI để code dữ liệu; không có bản nháp của AI để tính tỷ lệ lỗi.

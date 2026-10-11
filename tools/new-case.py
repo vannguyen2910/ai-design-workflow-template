@@ -19,8 +19,8 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE = os.path.join(ROOT, "my-case")
 IGNORE = shutil.ignore_patterns(".DS_Store", "__pycache__", "_export", "index.html")
-ITEM_RE = re.compile(r"^[OHMDT]\d+\.md$")
-ITEM_LINK_RE = re.compile(r"\]\([OHMDT]\d+\.md\)")
+ITEM_RE = re.compile(r"^[OHMDE]\d+\.md$")
+ITEM_LINK_RE = re.compile(r"\]\((?:[a-z]+/)?[OHMDE]\d+\.md\)")
 
 
 def read(path):
@@ -84,16 +84,23 @@ def main():
     hub = os.path.join(dest, "hub")
 
     removed = 0
-    for name in sorted(os.listdir(hub)):
-        p = os.path.join(hub, name)
-        if ITEM_RE.match(name) and "[EXAMPLE]" in read(p):
-            os.remove(p)
-            removed += 1
+    for dirpath, dirnames, filenames in os.walk(hub):
+        dirnames[:] = [d for d in dirnames if d != "artifacts" and not d.startswith("_")]
+        for name in sorted(filenames):
+            p = os.path.join(dirpath, name)
+            if ITEM_RE.match(name) and "[EXAMPLE]" in read(p):
+                os.remove(p)
+                removed += 1
     for name in sorted(os.listdir(hub)):
         p = os.path.join(hub, name)
         if name.endswith(".md") and not ITEM_RE.match(name) and name != "how-the-hub-works.md":
             write(p, clean_hub_page(read(p), name == "README.md"))
 
+    for folder in ("opportunities", "hypotheses", "metrics", "decisions", "evidence"):
+        d = os.path.join(hub, folder)
+        os.makedirs(d, exist_ok=True)
+        if not os.listdir(d):
+            write(os.path.join(d, ".gitkeep"), "")  # keeps the empty folder in Git
     p = os.path.join(hub, "README.md")
     write(p, read(p).replace("[CASE NAME]", title))
     p = os.path.join(hub, "how-the-hub-works.md")
@@ -103,23 +110,22 @@ def main():
     p = os.path.join(dest, "README.md")
     t = read(p).replace("# Project: [tên dự án]", "# Project: %s" % title)
     t = re.sub(r"^\| Tên dự án \| \|$", "| Tên dự án | %s |" % title, t, flags=re.M)
-    t = re.sub(r"^2\. \*\*Dọn dữ liệu mẫu:\*\*.*$",
-               "2. **Tạo item đầu tiên** bằng cách copy một file trong `hub/_item-templates/` ra `hub/` (xem `hub/how-the-hub-works.md`). Item mẫu đã được dọn sẵn.",
-               t, flags=re.M)
+    t = re.sub(r"<!-- template-only -->.*?<!-- /template-only -->\n\n?", "", t, flags=re.S)  # note that only makes sense in my-case
+    t = t.replace("# my-case", "# %s" % a.name).replace("my-case/\n", "%s/\n" % a.name)
     write(p, t)
 
     print("Đã tạo: %s" % dest)
     print("  - Đã xoá %d item [EXAMPLE] và dọn các dòng mẫu trong hub/" % removed)
-    tool = os.path.join(dest, "tools", "export-hub.py")
+    tool = os.path.join(dest, "_scripts", "export-hub.py")
     if os.path.isfile(tool):
         r = subprocess.run([sys.executable, tool], cwd=dest, capture_output=True, text=True)
-        print("  - index.html: %s" % ("đã tạo" if r.returncode == 0 else "lỗi, chạy lại: python3 tools/export-hub.py"))
+        print("  - index.html: %s" % ("đã tạo" if r.returncode == 0 else "lỗi, chạy lại: python3 _scripts/export-hub.py"))
         if r.returncode != 0:
             print(r.stderr.strip()[-400:])
     print("\nViệc đầu tiên:")
     print("  1. Mở folder %s bằng công cụ bạn quen (AI coding tool, VS Code hoặc Obsidian)." % a.name)
-    print("  2. Điền learnings/context-product-and-users.md và learnings/context-data-rules.md.")
-    print("  3. Khi có item đầu tiên, copy một file trong hub/_item-templates/ ra hub/.")
+    print("  2. Mở README.md trong folder, điền Project card, rồi điền context/product-and-users.md và context/data-rules.md.")
+    print("  3. Khi có item đầu tiên, copy một file trong hub/_item-templates/ vào folder loại tương ứng, ví dụ hub/decisions/.")
 
 
 if __name__ == "__main__":

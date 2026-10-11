@@ -7,7 +7,7 @@ summary: ""
 takeaways:
   - ""
 supports: []
-# source: "../../learnings/discover-survey-results.md"
+# source: "../../work/discover/survey-results.md"
 # media: []
 # links: []
 # embed: false

@@ -12,5 +12,5 @@ supports:
   - "[[D2]]"
   - "[[D3]]"
   - "[[D4]]"
-source: "../../learnings/reference/11_Explore_Requirements.md"
+source: "../../work/original-docs/11_Explore_Requirements.md"
 ---

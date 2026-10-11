@@ -6,22 +6,24 @@ Dự án gốc được làm trước khi có quy trình AI-assisted của works
 
 ## Start here
 
-1. Bấm đúp `index.html` để xem hub trong trình duyệt. Bắt đầu ở tab **Tổng quan**, rồi mở tab **Truy vết** để đi từ một decision ngược về user need.
-2. Đọc `learnings/context-product-and-users.md` để biết dự án là gì.
-3. Mở `hub/gates.md` để thấy gate nào đạt, gate nào chưa, và vì sao.
+1. Bấm đúp `index.html` để xem hub trong trình duyệt. Bắt đầu ở mục **Overview**, rồi mở **Insights** (chế độ Cây) để đi từ một decision ngược về nhu cầu của người dùng.
+2. Đọc `context/product-and-users.md` để biết dự án là gì.
+3. Mở `reference/gates.md` để thấy gate nào đạt, gate nào chưa, và vì sao.
 
 ## What is in here
 
 | Phần | Nội dung | Dùng cho giai đoạn |
 |---|---|---|
-| `learnings/context-*.md` | Tổng quan dự án, người dùng, design system, câu hỏi mở | Setup |
-| `learnings/discover-*.md` | Scope, tổng hợp tiếng nói người dùng, phân tích đối thủ | Discover |
-| `learnings/sources/anonymised/` | Tài liệu nghiên cứu gốc: hypothesis, khảo sát, hướng dẫn phỏng vấn, tổng hợp, đối thủ | Discover |
-| `learnings/define-*.md` | Problem brief | Define |
-| `learnings/develop-*.md`, `learnings/prototype/` | Các hướng, alignment, wireframe | Develop |
-| `learnings/deliver-*.md` | Kế hoạch test, findings, handoff, kế hoạch đo | Deliver |
-| `hub/` | 5 nhu cầu, 6 hypothesis, 7 decision, 2 test, 5 metric, 4 gate | Mọi giai đoạn |
-| `learnings/reference/` | Tài liệu gốc của giai đoạn Define đến Test (personas, solution pool, flow, IA, PRD, test plan, findings) | Tham khảo |
+| `context/*.md` | Tổng quan dự án, người dùng, design system, câu hỏi mở | Setup |
+| `work/discover/*.md` | Scope, tổng hợp tiếng nói người dùng, phân tích đối thủ | Discover |
+| `work/sources/anonymised/` | Tài liệu nghiên cứu gốc: hypothesis, khảo sát, hướng dẫn phỏng vấn, tổng hợp, đối thủ | Discover |
+| `work/define/*.md` | Problem brief | Define |
+| `work/develop/*.md`, `work/prototype/` | Các hướng, alignment, wireframe | Develop |
+| `work/deliver/*.md` | Kế hoạch test, findings, handoff, kế hoạch đo | Deliver |
+| `hub/` | 5 nhu cầu, 6 hypothesis, 7 decision, 2 evidence, 5 metric | Mọi giai đoạn |
+| `reference/` | Gates, principle checks, severity levels, case log | Mọi giai đoạn |
+| `steps/` | Các bước làm việc với AI (step card) | Mọi giai đoạn |
+| `work/original-docs/` | Tài liệu gốc của giai đoạn Define đến Test (personas, solution pool, flow, IA, PRD, test plan, findings) | Tham khảo |
 
 ## What this project teaches (including by example of what is missing)
 
@@ -33,13 +35,13 @@ Dự án gốc được làm trước khi có quy trình AI-assisted của works
 ## Conventions in this demo
 
 - `RH1`..`RH10`: research hypothesis của dự án gốc (`H1`..`H10` trong `01_Research_Hypotheses.md`).
-- `SP-D1`, `SP-P3`...: ID trong Solution Pool gốc (`learnings/reference/07_Solution_Pool.md`).
-- `O`, `H`, `D`, `T`, `M` trong `hub/`: item của workspace.
+- `SP-D1`, `SP-P3`...: ID trong Solution Pool gốc (`work/original-docs/07_Solution_Pool.md`).
+- `O`, `H`, `D`, `E`, `M` trong `hub/`: item của workspace (Opportunity, Hypothesis, Decision, Evidence, Metric).
 - Tài liệu gốc viết bằng tiếng Anh và giữ nguyên; phần tổng hợp trong working file viết bằng tiếng Việt.
-- Tên công cụ AI, tên chủ dự án, thành phố của người phỏng vấn và liên kết prototype riêng tư đã được gỡ khỏi bản sao trong `learnings/reference/` và `sources/`.
+- Tên công cụ AI, tên chủ dự án, thành phố của người phỏng vấn và liên kết prototype riêng tư đã được gỡ khỏi bản sao trong `work/original-docs/` và `sources/`.
 
 ## Rules
 
 1. **Đừng chép nội dung của dự án mẫu vào dự án thật của bạn.**
 2. **Chỉ coi số liệu khảo sát là định hướng:** mẫu nhỏ (13), lệch về châu Á và người trẻ.
-3. **Đừng coi kết quả test mô phỏng là bằng chứng.** Xem `learnings/deliver-findings.md`.
+3. **Đừng coi kết quả test mô phỏng là bằng chứng.** Xem `work/deliver/findings.md`.

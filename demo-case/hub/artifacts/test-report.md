@@ -9,8 +9,8 @@ takeaways:
   - "Thiếu mẫu 'tìm một người cụ thể và mời' làm hỏng cả Connect và chia sẻ nhật ký."
   - "Phải chạy lại với người thật trước khi dùng kết quả để quyết định."
 supports:
-  - "[[T1]]"
+  - "[[E1]]"
   - "[[M2]]"
   - "[[M3]]"
-source: "../../learnings/reference/13_Simulated_Usability_Findings.md"
+source: "../../work/original-docs/13_Simulated_Usability_Findings.md"
 ---

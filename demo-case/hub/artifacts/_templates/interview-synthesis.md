@@ -7,7 +7,7 @@ summary: ""
 takeaways:
   - ""
 supports: []
-# source: "../../learnings/discover-interview-synthesis.md"
+# source: "../../work/discover/interview-synthesis.md"
 # media: []
 # links: []
 # embed: false

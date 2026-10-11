@@ -4,6 +4,15 @@
 
 Bạn không cần biết GitHub hay lập trình để bắt đầu.
 
+## Bắt đầu từ đâu
+
+| Tôi muốn... | Làm gì |
+|---|---|
+| Xem một dự án hoàn chỉnh trước khi làm của mình | Bấm đúp `demo-case/index.html` |
+| Bắt đầu một dự án của tôi | Làm theo "Start a project in 3 steps" ngay bên dưới |
+| Làm việc trong một dự án đã có | Mở folder dự án, đọc `README.md` ở đó: nó có bảng "Tôi muốn... mở..." cho từng việc |
+| Cần hướng dẫn từng bước (GitHub, chia sẻ, Obsidian) | Mở folder [`guides/`](guides/) |
+
 ## Start a project in 3 steps
 
 1. **Lấy workspace về máy.** Mở trang GitHub của repo này, bấm nút xanh **Code**, chọn **Download ZIP**. Giải nén và đặt folder vào `Documents`.
@@ -20,7 +29,17 @@ Xong ba bước này là dự án đã có chỗ ở. Các bước sau làm dầ
 
 ## One project, one folder
 
-Mỗi dự án là **một case folder độc lập và tự chứa**: nó mang theo luật cho AI (`AGENTS.md`), các bước làm việc và script tạo trang chủ (`tools/`), và hub. Bạn copy nguyên folder ra khỏi workspace này, ví dụ vào folder dự án của công ty, và nó vẫn chạy.
+Mỗi dự án là **một case folder độc lập và tự chứa**: nó mang theo luật cho AI (`AGENTS.md`), các bước làm việc (`steps/`), script tạo báo cáo và hub. Bạn copy nguyên folder ra khỏi workspace này, ví dụ vào folder dự án của công ty, và nó vẫn chạy.
+
+```
+workspace/
+├── README.md            file này
+├── guides/              hướng dẫn từng bước
+├── tools/new-case.py    lệnh tạo một dự án mới
+├── my-case/             template sạch (đừng điền vào)
+├── demo-case/           dự án mẫu hoàn chỉnh
+└── <tên-dự-án>/         dự án của bạn, tạo bằng new-case.py
+```
 
 (Trong tài liệu này, "case" nghĩa là "một dự án sản phẩm".)
 
@@ -31,54 +50,58 @@ Mỗi dự án là **một case folder độc lập và tự chứa**: nó mang 
 | **AI tool** | Công cụ AI bạn dùng: chat để hỏi đáp, hoặc coding tool để đọc và ghi file trong folder |
 | **Ẩn danh** | Thay tên người, tên công ty và số liệu thật bằng tên và số giả trước khi đưa cho AI |
 | **Hub** | Folder `hub/`, nơi ghi lại các design decision và lý do đứng sau chúng. File `index.html` là trang chủ để xem nó |
-| **Item** | Một nhu cầu, hypothesis, decision, test hoặc metric. Mỗi item là một file |
-| **Step card** | File `step-*.md` trong `tools/` hướng dẫn một bước làm việc với AI |
+| **Item** | Một nhu cầu (opportunity), hypothesis, decision, evidence hoặc metric. Mỗi item là một file |
+| **Step card** | File trong `steps/` hướng dẫn một bước làm việc với AI |
 | **assumed** | Nhãn bạn ghi cạnh con số chưa được ai xác nhận |
 
 ## Inside a project folder
 
 ```
 my-case/
-├── index.html       trang chủ của hub: bấm đúp để xem bằng trình duyệt
-├── AGENTS.md        "luật chơi" cho AI tool; tool tự đọc file này khi bạn mở folder
-├── case-log.md      nhật ký decision, mỗi decision một dòng
-├── learnings/       mọi file làm việc, để phẳng; tên file bắt đầu bằng giai đoạn
-│   │                context-* (thông tin nền: đưa cho AI đọc trước tiên), discover-*, define-*, develop-*, deliver-*
-│   ├── sources/     dữ liệu gốc: anonymised/ (đã ẩn danh, AI được đọc)
-│   │                và _raw-private/ (chưa ẩn danh, AI không được đọc)
-│   └── prototype/   code prototype
-├── hub/             Knowledge Hub: nơi mọi decision được nối về nhu cầu của người dùng
-├── tools/           script tạo trang chủ `index.html` và các bước làm việc với AI (step card)
-└── _personal/       ghi chú riêng của bạn, không đưa cho AI
+├── README.md        trang đầu: bảng "Tôi muốn... mở..." cho từng việc
+├── index.html       báo cáo hub: bấm đúp để xem bằng trình duyệt
+├── AGENTS.md        luật cho AI tool; tool tự đọc file này khi bạn mở folder
+│
+├── context/         THÔNG TIN NỀN: sản phẩm, người dùng, quy tắc (đưa cho AI đọc trước tiên)
+├── work/            LÀM VIỆC theo giai đoạn: discover/, define/, develop/, deliver/,
+│                    cùng sources/ (dữ liệu nghiên cứu) và prototype/
+├── hub/             BẢN GHI QUYẾT ĐỊNH: opportunities/, hypotheses/, decisions/, evidence/, metrics/,
+│                    các trang giai đoạn, và artifacts/ (tài liệu)
+├── reference/       TRA CỨU: gates, principle checks, severity levels, case log, và trang bạn thêm
+│
+├── steps/           CÁC BƯỚC LÀM VIỆC VỚI AI (step card)
+├── _scripts/        script tạo báo cáo (hiếm khi cần mở)
+└── _personal/       ghi chú riêng, không đưa cho AI
 ```
 
-Bên ngoài `my-case/` còn `guides/` (hướng dẫn từng bước cho người chưa dùng GitHub) và `demo-case/` (một dự án mẫu hoàn chỉnh để xem hoặc luyện tập).
+Bốn folder đầu là bốn việc: **hiểu bối cảnh, làm việc, ghi quyết định, tra cứu**. Folder bắt đầu bằng `_` là phần kỹ thuật hoặc riêng tư.
+
 
 ## The life of a project
 
 Một dự án đi qua năm giai đoạn. Bạn không cần làm hết một lượt: điền các file khi dự án thực sự tới giai đoạn đó.
 
-| Giai đoạn | Câu hỏi cần trả lời | File chính (trong `learnings/`) |
+| Giai đoạn | Câu hỏi cần trả lời | File chính |
 |---|---|---|
-| **Setup** | Dự án là gì, ai dùng, được đưa gì cho AI? | `context-product-and-users.md`, `context-accessibility-rules.md`, `context-data-rules.md`, `context-open-questions.md` |
-| **Discover** | Chúng ta chưa biết gì, và bằng chứng nào có thể tin? | `discover-scope.md`, `discover-user-voice-synthesis.md`, `discover-competitor-analysis.md` |
-| **Define** | Vấn đề nào đáng giải, và thành công trông thế nào? | `define-problem-brief.md`, `context-principle-checks.md` |
-| **Develop** | Giải bằng cách nào, và vì sao chọn cách đó? | `develop-options.md`, `prototype/`, `develop-alignment.md`, `context-design-system-notes.md` |
-| **Deliver** | Nó có hiệu quả không, và bàn giao gì? | `deliver-test-plan.md`, `deliver-findings.md`, `deliver-handoff.md`, `deliver-measurement-plan.md` |
-| **Mọi giai đoạn** | Chúng ta đã quyết định gì, và vì sao? | `case-log.md` và các trang của `hub/` |
+| **Setup** | Dự án là gì, ai dùng, được đưa gì cho AI? | `context/product-and-users.md`, `accessibility-rules.md`, `data-rules.md`, `open-questions.md` |
+| **Discover** | Chúng ta chưa biết gì, và bằng chứng nào có thể tin? | `work/discover/scope.md`, `user-voice-synthesis.md`, `competitor-analysis.md` |
+| **Define** | Vấn đề nào đáng giải, và thành công trông thế nào? | `work/define/problem-brief.md`, `reference/principle-checks.md` |
+| **Develop** | Giải bằng cách nào, và vì sao chọn cách đó? | `work/develop/options.md`, `work/prototype/`, `work/develop/alignment.md`, `context/design-system-notes.md` |
+| **Deliver** | Nó có hiệu quả không, và bàn giao gì? | `work/deliver/test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md`; chấm mức độ bằng `reference/severity-levels.md` |
+| **Mọi giai đoạn** | Chúng ta đã quyết định gì, và vì sao? | `reference/case-log.md` và các trang của `hub/` |
 
-Dự án thật không đi một chiều. Khi có thông tin mới, bạn quay lại giai đoạn trước: cập nhật file ở giai đoạn đó, rồi tạo lại hub (xem `tools/step-refresh-hub.md`).
+Dự án thật không đi một chiều. Khi có thông tin mới, bạn quay lại giai đoạn trước: cập nhật file ở giai đoạn đó, rồi tạo lại hub (xem `steps/refresh-hub.md`).
 
 ## Keep a project alive
 
 Workspace chỉ có giá trị khi nó phản ánh dự án hôm nay. Bốn thói quen giữ nó sống:
 
-1. **Ghi decision ngay khi quyết định.** Một dòng vào `case-log.md`: quyết định gì, vì sao, AI đã giúp ở đâu.
+1. **Ghi decision ngay khi quyết định.** Một dòng vào `reference/case-log.md`: quyết định gì, vì sao, AI đã giúp ở đâu.
 2. **Mỗi thông tin mới đi vào một chỗ.** Sửa file item hoặc working file, không copy sang nơi khác. Rồi tạo lại hub và `index.html`.
 3. **Lưu một mốc trước thay đổi lớn.** Dùng GitHub Desktop (commit) hoặc copy folder thành bản `-backup`.
 4. **Gửi trang chủ, không gửi folder.** Cho stakeholder xem bằng `index.html` đã đổi tên (xem [`guides/04-share-your-hub.md`](guides/04-share-your-hub.md)).
 
-Khi dự án kết thúc: đặt status các gate, viết ba dòng rút kinh nghiệm vào `case-log.md`, tạo lại `index.html` lần cuối rồi lưu trữ folder.
+Khi dự án kết thúc: đặt status các gate, viết ba dòng rút kinh nghiệm vào `reference/case-log.md`, tạo lại `index.html` lần cuối rồi lưu trữ folder.
 
 ## Start another project
 
@@ -86,20 +109,20 @@ Giữ một bản template sạch để dùng lại:
 
 1. **Chạy lại `python3 tools/new-case.py <tên-dự-án>`** cho mỗi dự án. Mỗi lần ra một folder sạch cạnh `my-case`; không cần tải template mới.
 2. **Đừng điền vào `my-case`.** Hãy để nó là template gốc. Nếu lỡ điền vào, lấy lại bản sạch bằng cách tải ZIP hoặc **Use this template** lần nữa.
-3. Điền các file `context-*` trong `learnings/` đầu tiên, rồi làm theo giai đoạn. `index.html` có thanh đen nhắc bạn khi còn nội dung mẫu hoặc chỗ chưa điền.
+3. Điền các file trong `context/` đầu tiên, rồi làm theo giai đoạn. `index.html` có thanh đen nhắc bạn khi còn nội dung mẫu hoặc chỗ chưa điền.
 
 ## Use it for real work
 
 Khi dùng cho dự án thật của công ty:
 
-- **Kiểm tra chính sách AI của công ty trước.** Viết `learnings/context-data-rules.md` bằng lời của bạn.
-- **Ẩn danh trước khi đưa cho AI.** Dữ liệu gốc để ở `learnings/sources/_raw-private/`: nó không lên GitHub và AI không đọc.
+- **Kiểm tra chính sách AI của công ty trước.** Viết `context/data-rules.md` bằng lời của bạn.
+- **Ẩn danh trước khi đưa cho AI.** Dữ liệu gốc để ở `work/sources/_raw-private/`: nó không lên GitHub và AI không đọc.
 - **Để repo ở chế độ Private.** Chỉ công khai khi toàn bộ dự án được phép chia sẻ.
 - **Hub giúp bạn giải thích decision,** nhưng `assumed` và `unknown` phải được giữ đúng: đừng biến một con số chưa xác nhận thành một sự thật trong báo cáo gửi đi.
 
 ## Four rules
 
-1. **Ẩn danh trước khi đưa cho AI.** Dữ liệu gốc để ở `learnings/sources/_raw-private/`, bạn tự thay tên rồi mới lưu bản sạch vào `anonymised/`.
+1. **Ẩn danh trước khi đưa cho AI.** Dữ liệu gốc để ở `work/sources/_raw-private/`, bạn tự thay tên rồi mới lưu bản sạch vào `anonymised/`.
 2. **Mỗi lần chỉ nhờ AI viết một phần.** Bạn đọc kết quả rồi tự dán vào file, để AI không viết đè phần bạn đã chốt.
 3. **Giữ bản nháp của AI và bản bạn đã sửa ở hai chỗ riêng.** Chênh lệch giữa hai bản cho bạn thấy AI sai nhiều hay ít.
 4. **Con số nào chưa xác nhận được thì ghi `assumed`.**
@@ -108,13 +131,13 @@ Khi dùng cho dự án thật của công ty:
 
 Bạn đổi được hầu hết mọi thứ:
 
-- Đổi tên folder dự án, nhân đôi nó, hoặc thêm folder riêng như `05-notes/`.
-- Xoá file bạn không dùng, ví dụ `context-glossary.md` hay `discover-competitor-analysis.md`.
+- Đổi tên folder dự án, nhân đôi nó, hoặc thêm folder riêng như `notes/`. Muốn thêm một trang tra cứu, chỉ cần thả file `.md` vào `reference/`.
+- Xoá file bạn không dùng, ví dụ `context/glossary.md` hay `work/discover/competitor-analysis.md`.
 - Sửa nội dung các file mẫu cho hợp cách làm của team bạn.
 
 Có hai thứ nên giữ nguyên để AI tool và hub đọc đúng:
 
-- **Tên folder `learnings/`, `hub/`, `tools/`, tiền tố tên file (`context-`, `discover-`...) và file `AGENTS.md`.** Các step card gọi file theo đúng đường dẫn này.
+- **Tên các folder `context/`, `work/`, `hub/`, `reference/`, `steps/`, `_scripts/` và file `AGENTS.md`.** Các step card gọi file theo đúng đường dẫn này.
 - **Tên file trong `hub/` và mã của item** (`O1`, `H1`, `D1`...). Các item nối với nhau qua mã, nên đổi tên là làm đứt liên kết.
 
 ## Which folder do I use?

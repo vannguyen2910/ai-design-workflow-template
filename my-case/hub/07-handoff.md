@@ -2,12 +2,12 @@
 
 *Những gì developer cần để dựng mà không phải hỏi lại, và những gì cần theo dõi sau khi launch.*
 
-> **Cách điền:** link prototype và decision log. Viết measurement plan cho PO ngay cả khi bạn không xem được data. Copy từ [`handoff.md`](../learnings/deliver-handoff.md) và [`measurement-plan.md`](../learnings/deliver-measurement-plan.md).
+> **Cách điền:** link prototype và decision log. Viết measurement plan cho product owner ngay cả khi bạn không xem được data. Copy từ [`handoff.md`](../work/deliver/handoff.md) và [`measurement-plan.md`](../work/deliver/measurement-plan.md).
 
 ## Handoff pack
 
-- Prototype: [link tới `learnings/prototype/`]
-- Decisions and reasons: [Case log](../case-log.md)
+- Prototype: [link tới `work/prototype/`]
+- Decisions and reasons: [Case log](../reference/case-log.md)
 - Acceptance notes: [điều gì phải đúng khi dựng xong]
 - Open questions: [danh sách]
 
@@ -15,8 +15,8 @@
 
 | Metric | Where to track it | Who owns it | Review date |
 |---|---|---|---|
-| M1 | [analytics / survey] | [PO / team] | [date] |
+| M1 | [analytics / survey] | [product owner / team] | [date] |
 
-## How the AI-assisted workflow performed
+## How working with AI went
 
-[Thời gian mỗi step, tỷ lệ lỗi bắt được ở các gate, số lần làm lại. Dùng số đếm, không dùng cảm nhận.]
+[Thời gian mỗi bước, số lỗi bắt được trước khi gửi đi, số lần phải làm lại. Dùng số đếm, không dùng cảm nhận.]
