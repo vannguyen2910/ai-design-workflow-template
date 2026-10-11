@@ -7,7 +7,7 @@ summary: ""
 takeaways:
   - ""
 supports: []
-# source: "../../01-discover/ia-sitemap.md"
+# source: "../../learnings/discover-ia-sitemap.md"
 # media: []
 # links: []
 # embed: false
@@ -19,4 +19,4 @@ Chèn sitemap: thả ảnh vào folder này.
 Cách đặt tên và nhóm, và vì sao.
 
 ## Evidence
-Card sort, tree test hoặc nghiên cứu nào đứng sau cấu trúc này. Ghi nếu đây vẫn là giả thuyết.
+Card sort, tree test hoặc nghiên cứu nào đứng sau cấu trúc này. Ghi nếu đây vẫn là hypothesis.

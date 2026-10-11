@@ -5,7 +5,7 @@ import { CASE, isPrivate } from '../src/lib/hubindex.mjs';
 
 const OUT = path.resolve('public/hub-assets');
 fs.rmSync(OUT, { recursive: true, force: true });
-const roots = ['hub/artifacts', 'reference', '03-develop', '01-discover/sources/anonymised', '04-deliver'];
+const roots = ['hub/artifacts', 'learnings'];
 const ok = /\.(png|jpe?g|gif|webp|svg|html?|pdf|mp4|webm|mov|csv)$/i;
 let n = 0;
 const walk = (dir) => {

@@ -2,15 +2,15 @@
 import { scan, refs, ART_STATUS } from './hubindex.mjs';
 
 const MSG = {
-  noNeed: 'Quyết định này chưa nối được về nhu cầu nào của người dùng',
-  strain: (p) => `Quyết định này đi ngược nguyên tắc ${p}: cân nhắc sửa, hoặc ghi lại vì sao chấp nhận`,
-  unserved: 'Nhu cầu này chưa có quyết định thiết kế nào phục vụ',
-  untested: 'Giả thuyết này chưa có bài kiểm tra',
-  noMetric: 'Giả thuyết này chưa có chỉ số để biết đúng hay sai',
-  planned: 'Bài kiểm tra này mới ở dạng kế hoạch, chưa chạy',
-  simulated: 'Bài kiểm tra này dùng người mô phỏng, không phải người dùng thật: chưa tính là bằng chứng',
-  noReal: 'Giả thuyết này chưa có bằng chứng từ người dùng thật',
-  principle: 'Nguyên tắc chưa có câu hỏi có/không để kiểm tra',
+  noNeed: 'Decision này chưa nối được về nhu cầu nào của người dùng',
+  strain: (p) => `Decision này đi ngược nguyên tắc ${p}: cân nhắc sửa, hoặc ghi lại vì sao chấp nhận`,
+  unserved: 'Nhu cầu này chưa có design decision nào phục vụ',
+  untested: 'Hypothesis này chưa có test',
+  noMetric: 'Hypothesis này chưa có metric để biết đúng hay sai',
+  planned: 'Test này mới ở dạng kế hoạch, chưa chạy',
+  simulated: 'Test này dùng người mô phỏng, không phải người dùng thật: chưa tính là bằng chứng',
+  noReal: 'Hypothesis này chưa có bằng chứng từ người dùng thật',
+  principle: 'Principle chưa có câu hỏi có/không để kiểm tra',
   orphan: 'Tài liệu này chưa nối với item nào (property supports đang trống)',
 };
 

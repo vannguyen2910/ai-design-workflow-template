@@ -45,6 +45,6 @@ Trạng thái do người dựng demo đặt dựa trên tài liệu gốc; ch�
 
 - **1a, 2b `passed`:** không có PO thật, nhưng agreement status (`not available`) và các số được ghi là `assumed`.
 - **1c `open`:** không có bản nháp AI để so sánh, nên không tính được tỷ lệ lỗi.
-- **2d, 3c `open`:** chưa viết câu hỏi có/không cho 10 nguyên tắc.
+- **2d, 3c `open`:** chưa viết câu hỏi có/không cho 10 principle.
 - **3a `open`:** dự án có 26 giải pháp trong Solution Pool nhưng chưa có bước chọn giữa ba hướng.
 - **4a `failed`:** vòng test duy nhất dùng người mô phỏng, không thoả "người dùng thật đã kiểm tra các hypothesis". Chạy T2 với người thật để chuyển trạng thái này.

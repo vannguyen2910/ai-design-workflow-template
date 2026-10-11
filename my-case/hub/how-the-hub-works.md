@@ -2,17 +2,17 @@
 
 Hub là một folder markdown nằm trong case folder của bạn. Nó lưu các output đã kiểm tra của dự án và cho thấy chúng liên kết với nhau thế nào. Hub hoàn chỉnh là báo cáo cuối của khoá.
 
-Công cụ nào mở được cả folder đều dùng được: AI coding tool, VS Code hay Obsidian. Obsidian thêm Graph view, Backlinks và file `traceability.base` (bảng theo loại item); hướng dẫn nằm ở `guides/05-obsidian.md`. Muốn gửi cho người khác, xuất báo cáo HTML bằng `workflow/export-hub.md`.
+Công cụ nào mở được cả folder đều dùng được: AI coding tool, VS Code hay Obsidian. Obsidian thêm Graph view, Backlinks và file `traceability.base` (bảng theo loại item); hướng dẫn nằm ở `guides/05-obsidian.md`. Muốn gửi cho người khác, xuất báo cáo HTML bằng `tools/step-export-hub.md`.
 
 ## One source of truth
 
-**Mỗi item (opportunity, hypothesis, metric, decision, test) là một file riêng, và file đó là nguồn duy nhất.** Mọi bảng tổng hợp trong hub (alignment, warnings, danh sách opportunity, hypothesis, decision, test, trạng thái gate) đều do AI dựng lại từ các file item và từ `gates.md`. Bạn không điền tay và không copy item sang nơi khác.
+**Mỗi item (opportunity, hypothesis, metric, decision, test) là một file riêng, và file đó là nguồn duy nhất.** Mọi bảng tổng hợp trong hub đều do AI dựng lại từ các file item và từ `gates.md`: alignment, warnings, danh sách item và trạng thái gate. Bạn không điền tay và không copy item sang nơi khác.
 
-Nhờ vậy một thông tin chỉ tồn tại ở một chỗ. Sửa một decision thì sửa `decisions/D2.md`, rồi nhờ AI dựng lại các bảng.
+Nhờ vậy một thông tin chỉ tồn tại ở một chỗ. Sửa một decision thì sửa `D2.md`, rồi nhờ AI dựng lại các bảng.
 
 | Bạn tự viết | AI dựng lại (không sửa tay) |
 |---|---|
-| File item trong `opportunities/`, `hypotheses/`, `metrics/`, `decisions/`, `tests/` | Các khối giữa `<!-- generated:... -->` và `<!-- /generated -->` |
+| File item `O*.md`, `H*.md`, `M*.md`, `D*.md`, `T*.md` trong `hub/` | Các khối giữa `<!-- generated:... -->` và `<!-- /generated -->` |
 | Trạng thái từng check trong `gates.md` | Bảng Gates ở `README.md` |
 | Phần narrative ở các trang giai đoạn (scope, evidence, directions, verdict) | Bảng alignment và Warnings ở `README.md` |
 | Verdict của bạn ở `05-alignment.md` | Danh sách item ở các trang giai đoạn |
@@ -26,19 +26,15 @@ hub/
 ├── gates.md               bốn gate và các check 1a đến 4d (bạn đặt status)
 ├── traceability.base      Obsidian Bases: bảng theo loại item (Opportunities, Hypotheses, Decisions...)
 ├── 01-scope.md … 07-handoff.md   mỗi giai đoạn một trang (phần narrative do bạn viết)
-├── opportunities/         O1.md, O2.md ...   mỗi item một file
-├── hypotheses/            H1.md ...
-├── metrics/               M1.md ...
-├── decisions/             D1.md ...
-├── tests/                 T1.md ...
+├── O1.md, H1.md, M1.md, D1.md, T1.md ...   mỗi item một file; chữ cái đầu của ID cho biết loại
 └── artifacts/             tài liệu của dự án (competitor analysis, persona, flow, prototype...)
 ```
 
-Case log nằm ở `../case-log.md`, và các principle (P1 đến P10) ở `../00-context/principle-checks.md`.
+Case log nằm ở `../case-log.md`, và các principle (P1 đến P10) ở `../learnings/context-principle-checks.md`.
 
 ## Item files
 
-Tên file là ID (`D4` thì file là `decisions/D4.md`). Đầu mỗi file có khối **properties** (giữa hai dòng `---`). Khối này là nơi duy nhất khai báo quan hệ, và **quan hệ chỉ khai báo một chiều**, từ item phía sau tới item phía trước:
+Tên file là ID (`D4` thì file là `D4.md`). Đầu mỗi file có khối **properties** (giữa hai dòng `---`). Khối này là nơi duy nhất khai báo quan hệ, và **quan hệ chỉ khai báo một chiều**, từ item phía sau tới item phía trước:
 
 | Item | Properties bạn điền | Trỏ tới |
 |---|---|---|
@@ -75,7 +71,7 @@ Quy tắc:
 
 ## Artifacts
 
-Item cho biết **điều gì đã quyết định và vì sao**. Artifact là **tài liệu làm ra** đứng sau các quyết định đó: phân tích đối thủ, persona, kết quả khảo sát, user flow, prototype, báo cáo test. Mỗi artifact có trang riêng ở tab Tài liệu và nối với các item nó hỗ trợ (property `supports`).
+Item cho biết **điều gì đã quyết định và vì sao**. Artifact là **tài liệu làm ra** đứng sau các decision đó: phân tích đối thủ, persona, kết quả khảo sát, user flow, prototype, báo cáo test. Mỗi artifact có trang riêng ở mục Tài liệu và nối với các item nó hỗ trợ (property `supports`).
 
 Cách thêm artifact, các loại tệp được nhận diện, và template cho từng loại nằm ở `artifacts/README.md`. Loại tài liệu (`type`) là chuỗi tự do, nên bạn thêm loại riêng thoải mái.
 
@@ -86,7 +82,7 @@ Quy tắc: **artifact trỏ về working file bằng `source:` chứ không ché
 1. Tạo hoặc sửa các file item của giai đoạn bạn đang làm (copy một file có sẵn, đổi ID và nội dung).
 2. Viết phần narrative ở trang giai đoạn, từ bản đã kiểm tra trong working file. Không đưa bản nháp của AI lên hub.
 3. Cập nhật status trong `gates.md`.
-4. Chạy bước `workflow/refresh-hub.md` để AI dựng lại các bảng và warnings.
+4. Chạy bước `tools/step-refresh-hub.md` để AI dựng lại các bảng và warnings.
 5. Đọc warnings, quyết định từng cái, và ghi verdict ở `05-alignment.md`.
 6. Thêm một dòng vào `../case-log.md`.
 
@@ -94,7 +90,7 @@ Quy tắc: **artifact trỏ về working file bằng `source:` chứ không ché
 
 Commit trước (để có thể quay lại), rồi nói với AI tool:
 
-> Chạy `workflow/refresh-hub.md`.
+> Chạy `tools/step-refresh-hub.md`.
 
 Bước này chỉ ghi vào các khối `generated` và trả về danh sách vấn đề tìm thấy. Nó không sửa file item, `gates.md` hay phần narrative của bạn.
 
@@ -120,5 +116,5 @@ Bốn gate và các check 1a đến 4d nằm ở [`gates.md`](gates.md). Với m
 ## Notes
 
 - Các item `[EXAMPLE]` ở đây để bạn thấy hub chạy. Xoá và thay bằng dữ liệu của bạn, rồi chạy refresh.
-- P1 đến P10 là 10 usability heuristics của Nielsen. Thêm principle riêng của tổ chức từ P11 trở đi trong `00-context/principle-checks.md`.
+- P1 đến P10 là 10 usability heuristics của Nielsen. Thêm principle riêng của tổ chức từ P11 trở đi trong `learnings/context-principle-checks.md`.
 - Hub mặc định là private. Cách cho người khác xem nằm ở `guides/04-share-your-hub.md` ở folder gốc của workspace.

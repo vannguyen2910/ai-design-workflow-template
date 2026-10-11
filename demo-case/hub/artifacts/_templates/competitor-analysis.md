@@ -7,13 +7,13 @@ summary: ""
 takeaways:
   - ""
 supports: []
-# source: "../../01-discover/competitor-analysis.md"
+# source: "../../learnings/discover-competitor-analysis.md"
 # media: []
 # links: []
 # embed: false
 ---
 ## Scope
-Quyết định mà phân tích này phục vụ, và các tiêu chí so sánh (tối đa 6).
+Decision mà phân tích này phục vụ, và các tiêu chí so sánh (tối đa 6).
 
 ## Competitors
 | Đối thủ | Vai trò trong hành trình | Vì sao đưa vào |
@@ -26,10 +26,10 @@ Quyết định mà phân tích này phục vụ, và các tiêu chí so sánh (
 | | | | |
 
 ## Patterns
-Các pattern, khoảng trống và khác biệt quan trọng với quyết định ở Scope.
+Các pattern, khoảng trống và khác biệt quan trọng với decision ở Scope.
 
 ## Insights + decision
-Ba đến năm insight kèm bằng chứng, và câu trả lời cho quyết định ở Scope.
+Ba đến năm insight kèm bằng chứng, và câu trả lời cho decision ở Scope.
 
 ## What this cannot tell us
 Điều phân tích này không cho biết.

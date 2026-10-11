@@ -7,7 +7,7 @@ summary: ""
 takeaways:
   - ""
 supports: []
-# source: "../../01-discover/user-flow.md"
+# source: "../../learnings/discover-user-flow.md"
 # media: []
 # links: []
 # embed: false

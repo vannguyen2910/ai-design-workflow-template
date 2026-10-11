@@ -2,7 +2,7 @@
 
 Artifact là một tài liệu hoặc sản phẩm làm ra trong dự án và cần có **trang riêng** để người khác đọc sâu: phân tích đối thủ, persona, kết quả khảo sát, user flow, sitemap, prototype, báo cáo test.
 
-Mỗi artifact hiện trong tab **Tài liệu** của `index.html`, và nối với các item nó hỗ trợ (O, H, D, T, M). Từ một quyết định, người đọc bấm sang tài liệu làm bằng chứng cho nó, và ngược lại.
+Mỗi artifact hiện trong tab **Tài liệu** của `index.html`, và nối với các item nó hỗ trợ (O, H, D, T, M). Từ một decision, người đọc bấm sang tài liệu làm bằng chứng cho nó, và ngược lại.
 
 ## Ba cách thêm một artifact
 
@@ -10,7 +10,7 @@ Mỗi artifact hiện trong tab **Tài liệu** của `index.html`, và nối v�
 |---|---|
 | Một file markdown | Đặt file vào `hub/artifacts/` (ví dụ `competitor-analysis.md`) |
 | Một nhóm file (ảnh, PDF, HTML, video) | Tạo folder `hub/artifacts/<tên>/`, thêm `index.md` rồi **thả các file vào folder đó** |
-| Một working file đã có (ví dụ `01-discover/competitor-analysis.md`) | Tạo artifact và trỏ `source:` về working file đó, để nội dung không bị chép hai lần |
+| Một working file đã có (ví dụ `learnings/discover-competitor-analysis.md`) | Tạo artifact và trỏ `source:` về working file đó, để nội dung không bị chép hai lần |
 
 Bắt đầu từ một template trong `_templates/` (copy ra ngoài, đổi tên). Loại tài liệu (`type`) là **chuỗi tự do**: bạn đặt `type: journey-map` hoặc `type: brand-guidelines` thì nó vẫn hiện bình thường.
 
@@ -28,9 +28,9 @@ takeaways:                       # 2 đến 4 điểm chính
 supports:                        # item mà tài liệu này làm bằng chứng cho
   - "[[O1]]"
   - "[[D3]]"
-source: "../../01-discover/competitor-analysis.md"   # tuỳ chọn: lấy nội dung từ working file
+source: "../../learnings/discover-competitor-analysis.md"   # tuỳ chọn: lấy nội dung từ working file
 media:                           # tuỳ chọn: tệp nằm ở nơi khác trong dự án
-  - "../../03-develop/prototype/index.html"
+  - "../../learnings/prototype/index.html"
 links:                           # tuỳ chọn: link ngoài, dạng "Nhãn | URL"
   - "Prototype trên Figma | https://www.figma.com/..."
 embed: true                      # tuỳ chọn: nhúng tệp HTML hoặc PDF ngay trong trang

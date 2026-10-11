@@ -1,6 +1,6 @@
 # Obsidian
 
-Guide này **không bắt buộc**. Hub dùng được trong mọi công cụ mở được folder (xem [`02-set-up-your-case.md`](02-set-up-your-case.md)). Obsidian là một lựa chọn thêm khi bạn muốn nhìn quan hệ giữa quyết định, giả thuyết và bài kiểm tra bằng hình, và có bảng theo loại mà không cần chạy script.
+Guide này **không bắt buộc**. Hub dùng được trong mọi công cụ mở được folder (xem [`02-set-up-your-case.md`](02-set-up-your-case.md)). Obsidian là một lựa chọn thêm khi bạn muốn nhìn quan hệ giữa decision, hypothesis và test bằng hình, và có bảng theo loại mà không cần chạy script.
 
 ## Setup
 
@@ -16,11 +16,11 @@ Obsidian có thể hỏi bạn có muốn bật "community plugins". Bạn khôn
 
 | Tính năng | Dùng để | Làm thế nào |
 |---|---|---|
-| **Bảng theo loại** | Xem mọi quyết định, giả thuyết, bài kiểm tra cùng lúc | Mở `hub/traceability.base`, rồi chuyển giữa các tab: Opportunities, Hypotheses, Decisions, Tests, Metrics |
+| **Bảng theo loại** | Xem mọi decision, hypothesis, test cùng lúc | Mở `hub/traceability.base`, rồi chuyển giữa các tab: Opportunities, Hypotheses, Decisions, Tests, Metrics |
 | **Properties** | Nối một item với item khác mà không phải gõ mã | Mở một file item, bấm vào dòng `tests`, gõ `[[`, rồi chọn file trong danh sách |
 | **Backlinks** | Thấy những item nào đang nối tới item này | Mở khung Backlinks ở thanh bên phải khi đang mở một item |
 | **Graph view** | Nhìn cả mạng quan hệ trong một hình | `Cmd+G` (Mac) hoặc `Ctrl+G` (Windows) |
-| **Search** | Tìm theo mã hoặc từ khoá | `Cmd+Shift+F` hoặc `Ctrl+Shift+F`, ví dụ `path:hub/decisions P8` |
+| **Search** | Tìm theo mã hoặc từ khoá | `Cmd+Shift+F` hoặc `Ctrl+Shift+F`, ví dụ `file:/^D\d+/ P8` (chỉ các file decision) |
 
 ## Make the graph readable
 
@@ -28,17 +28,17 @@ Mặc định Graph view hiện cả các file làm việc. Để chỉ thấy h
 
 1. Trong Graph view, mở khung **Filters** và gõ `path:hub` vào ô tìm kiếm.
 2. Mở **Groups** và thêm một group cho mỗi loại, mỗi cái một màu:
-   - `path:hub/opportunities`
-   - `path:hub/hypotheses`
-   - `path:hub/decisions`
-   - `path:hub/tests`
-   - `path:hub/metrics`
-3. Một item đứng riêng, không có đường nối, là item chưa được nối vào nhu cầu nào. Đó chính là một "điểm cần xem lại" của hub.
+   - `file:/^O\d+/`
+   - `file:/^H\d+/`
+   - `file:/^D\d+/`
+   - `file:/^T\d+/`
+   - `file:/^M\d+/`
+3. Một item đứng riêng, không có đường nối, là item chưa được nối vào nhu cầu nào. Đó chính là một "warnings" của hub.
 
 ## Rules that keep it working
 
 - **Giá trị nối item là mã đặt trong hai cặp ngoặc vuông và dấu nháy**, ví dụ `"[[H1]]"`. Nếu bạn nhập bằng khung Properties của Obsidian, dấu nháy được thêm tự động.
-- **Chỉ khai báo một chiều.** Quyết định nói nó kiểm chứng giả thuyết nào; Obsidian tự hiện chiều ngược lại ở Backlinks.
+- **Chỉ khai báo một chiều.** Decision nói nó kiểm chứng hypothesis nào; Obsidian tự hiện chiều ngược lại ở Backlinks.
 - **Giữ nguyên tên file item.** Tên file chính là mã của item.
 - **Ẩn danh trước khi bỏ dữ liệu vào folder này.** Obsidian mở cả folder `_raw-private/` và `_personal/`.
 

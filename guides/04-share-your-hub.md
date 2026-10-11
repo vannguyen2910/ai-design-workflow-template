@@ -38,7 +38,7 @@ Một file HTML tự chứa, có menu, bấm đúp là mở bằng trình duyệ
 
 Nếu bạn dùng GitHub, file `index.html` còn được **tự tạo lại** sau mỗi lần push (workflow `Update index.html`). Bạn chỉ cần tải repo về hoặc chọn **Fetch origin** rồi **Pull** trong GitHub Desktop để có bản mới nhất, không cần chạy lệnh nào.
 
-Báo cáo chỉ gồm hub, nhật ký quyết định và các nguyên tắc. Nó không có file làm việc hay bản nháp của AI.
+Báo cáo chỉ gồm hub, nhật ký decision và các principle. Nó không có file làm việc hay bản nháp của AI.
 
 Muốn gửi gọn (ảnh, prototype đi kèm, không lộ working file thô): chạy `python3 tools/export-hub.py --bundle ten-folder --zip` rồi gửi file ZIP. Người nhận giải nén và bấm đúp `index.html`.
 
@@ -51,7 +51,7 @@ Muốn gửi gọn (ảnh, prototype đi kèm, không lộ working file thô): c
 
 ## Option 3: File ZIP
 
-1. Nén **cả folder case**, không chỉ `hub/`, vì các trang hub nối tới `00-context/`, `case-log.md` và các file làm việc.
+1. Nén **cả folder case**, không chỉ `hub/`, vì các trang hub nối tới `learnings/`, `case-log.md` và các file làm việc.
 2. Gửi file ZIP. Người nhận giải nén và mở cả folder bằng Obsidian hoặc VS Code.
 3. Thử mở trên một máy khác trước khi gửi.
 

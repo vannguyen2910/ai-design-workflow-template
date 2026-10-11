@@ -2,11 +2,11 @@
 
 *Những gì developer cần để dựng mà không phải hỏi lại, và những gì cần theo dõi sau khi launch.*
 
-> **Cách điền:** link prototype và decision log. Viết measurement plan cho PO ngay cả khi bạn không xem được data. Copy từ [`handoff.md`](../04-deliver/handoff.md) và [`measurement-plan.md`](../04-deliver/measurement-plan.md).
+> **Cách điền:** link prototype và decision log. Viết measurement plan cho PO ngay cả khi bạn không xem được data. Copy từ [`handoff.md`](../learnings/deliver-handoff.md) và [`measurement-plan.md`](../learnings/deliver-measurement-plan.md).
 
 ## Handoff pack
 
-- Prototype: [link tới `03-develop/prototype/`]
+- Prototype: [link tới `learnings/prototype/`]
 - Decisions and reasons: [Case log](../case-log.md)
 - Acceptance notes: [điều gì phải đúng khi dựng xong]
 - Open questions: [danh sách]

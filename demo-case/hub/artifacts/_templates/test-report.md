@@ -7,7 +7,7 @@ summary: ""
 takeaways:
   - ""
 supports: []
-# source: "../../01-discover/test-report.md"
+# source: "../../learnings/discover-test-report.md"
 # media: []
 # links: []
 # embed: false

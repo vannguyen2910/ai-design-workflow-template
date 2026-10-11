@@ -8,13 +8,13 @@ const mark = (...ids) => ids.flat().forEach((i) => placed.add(i));
 const loose = () => [...g.O, ...g.H, ...g.D, ...g.T, ...g.M].filter((i) => !placed.has(i));
 g.O.forEach((o) => { mark(o); g.hypsOf(o).forEach((h) => { mark(h, g.decisionsOf(h), g.testsOf(h), g.metric[h]); }); });
 ---
-<StarlightPage frontmatter={{ title: 'Cây truy vết', description: 'Từ nhu cầu đến giả thuyết, quyết định, bài kiểm tra và chỉ số', tableOfContents: false }}>
-  <p class="muted">Đọc từ trên xuống: nhu cầu, rồi giả thuyết, rồi quyết định, bài kiểm tra và chỉ số.</p>
+<StarlightPage frontmatter={{ title: 'Cây truy vết', description: 'Từ nhu cầu đến hypothesis, decision, test và metric', tableOfContents: false }}>
+  <p class="muted">Đọc từ trên xuống: nhu cầu, rồi hypothesis, rồi decision, test và metric.</p>
   <div class="tree">
     <ul>
       {g.O.map((o) => (
         <li><Chip id={o} /> {g.byId[o].title}
-          {g.hypsOf(o).length === 0 && <span class="muted"> (chưa có giả thuyết)</span>}
+          {g.hypsOf(o).length === 0 && <span class="muted"> (chưa có hypothesis)</span>}
           <ul>
             {g.hypsOf(o).map((h) => (
               <li><Chip id={h} /> {g.byId[h].title}

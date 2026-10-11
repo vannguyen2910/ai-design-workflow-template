@@ -2,7 +2,7 @@
 
 *Điều đã học từ các nguồn, mỗi claim có một nguồn. Competitor analysis là ví dụ đầu tiên.*
 
-> **Cách điền:** copy từ các section **verified** của [`user-voice-synthesis.md`](../01-discover/user-voice-synthesis.md) và [`competitor-analysis.md`](../01-discover/competitor-analysis.md). Đưa bản đã kiểm tra, không đưa bản nháp của AI. Link mỗi insight tới opportunity mà nó hỗ trợ bằng ID (ví dụ O1).
+> **Cách điền:** copy từ các section **verified** của [`user-voice-synthesis.md`](../learnings/discover-user-voice-synthesis.md) và [`competitor-analysis.md`](../learnings/discover-competitor-analysis.md). Đưa bản đã kiểm tra, không đưa bản nháp của AI. Link mỗi insight tới opportunity mà nó hỗ trợ bằng ID (ví dụ O1).
 
 ## Decision this informs
 
@@ -44,7 +44,7 @@
 
 ### Insight 1: [MỘT CÂU]
 
-[Vì sao nó quan trọng. Hỗ trợ opportunity [O1](opportunities/O1.md).] Phản biện mạnh nhất: [MỘT DÒNG].
+[Vì sao nó quan trọng. Hỗ trợ opportunity [O1](O1.md).] Phản biện mạnh nhất: [MỘT DÒNG].
 
 ## What this cannot tell us
 

@@ -1,6 +1,6 @@
 # AI Design Workflow: Project Workspace
 
-Đây là workspace cho một **dự án thiết kế có AI hỗ trợ**: nơi giữ bối cảnh, bằng chứng, quyết định và prototype của dự án, và nối mọi quyết định về nhu cầu của người dùng đứng sau nó.
+Đây là workspace cho một **dự án thiết kế có AI hỗ trợ**. Nó giữ context, evidence, decision và prototype của dự án, và nối mỗi decision về user need đứng sau nó.
 
 Bạn học cách làm việc này trong khoá AI Design Workflow, rồi **dùng tiếp cho các dự án thật**. Bạn không cần biết GitHub hay lập trình để bắt đầu.
 
@@ -14,7 +14,7 @@ Xong ba bước này là dự án đã có chỗ ở. Các bước sau làm dầ
 
 ## One project, one folder
 
-Mỗi dự án là **một case folder độc lập và tự chứa**: nó mang theo luật cho AI (`AGENTS.md`), các bước làm việc (`workflow/`), script tạo trang chủ (`tools/`) và hub. Bạn copy nguyên folder ra khỏi workspace này, ví dụ vào folder dự án của công ty, và nó vẫn chạy.
+Mỗi dự án là **một case folder độc lập và tự chứa**: nó mang theo luật cho AI (`AGENTS.md`), các bước làm việc và script tạo trang chủ (`tools/`), và hub. Bạn copy nguyên folder ra khỏi workspace này, ví dụ vào folder dự án của công ty, và nó vẫn chạy.
 
 (Trong tài liệu này, "case" nghĩa là "một dự án thiết kế".)
 
@@ -24,9 +24,9 @@ Mỗi dự án là **một case folder độc lập và tự chứa**: nó mang 
 |---|---|
 | **AI tool** | Công cụ AI bạn dùng: chat để hỏi đáp, hoặc coding tool để đọc và ghi file trong folder |
 | **Ẩn danh** | Thay tên người, tên công ty và số liệu thật bằng tên và số giả trước khi đưa cho AI |
-| **Hub** | Folder `hub/`, nơi ghi lại các quyết định thiết kế và lý do đứng sau chúng. File `index.html` là trang chủ để xem nó |
-| **Item** | Một nhu cầu, giả thuyết, quyết định, bài kiểm tra hoặc chỉ số. Mỗi item là một file |
-| **Step card** | File trong `workflow/` hướng dẫn một bước làm việc với AI |
+| **Hub** | Folder `hub/`, nơi ghi lại các design decision và lý do đứng sau chúng. File `index.html` là trang chủ để xem nó |
+| **Item** | Một nhu cầu, hypothesis, decision, test hoặc metric. Mỗi item là một file |
+| **Step card** | File `step-*.md` trong `tools/` hướng dẫn một bước làm việc với AI |
 | **assumed** | Nhãn bạn ghi cạnh con số chưa được ai xác nhận |
 
 ## Inside a project folder
@@ -35,18 +35,15 @@ Mỗi dự án là **một case folder độc lập và tự chứa**: nó mang 
 my-case/
 ├── index.html       trang chủ của hub: bấm đúp để xem bằng trình duyệt
 ├── AGENTS.md        "luật chơi" cho AI tool; tool tự đọc file này khi bạn mở folder
-├── 00-context/      thông tin nền về sản phẩm và người dùng; đưa cho AI đọc trước tiên
-├── 01-discover/     tìm hiểu vấn đề: scope, tiếng nói của người dùng, đối thủ
-│   └── sources/     dữ liệu gốc: anonymised/ (đã ẩn danh, AI được đọc)
-│                    và _raw-private/ (chưa ẩn danh, AI không được đọc)
-├── 02-define/       problem brief: vấn đề đáng giải
-├── 03-develop/      các hướng giải quyết, alignment check, prototype
-├── 04-deliver/      kế hoạch test, kết quả test, handoff, kế hoạch đo
-├── hub/             Knowledge Hub: nơi mọi quyết định được nối về nhu cầu của người dùng
-├── workflow/        các bước làm việc với AI, mỗi bước một file hướng dẫn
-├── tools/           script tạo trang chủ `index.html` từ hub
-├── _personal/       ghi chú riêng của bạn, không đưa cho AI
-└── case-log.md      nhật ký quyết định, mỗi quyết định một dòng
+├── case-log.md      nhật ký decision, mỗi decision một dòng
+├── learnings/       mọi file làm việc, để phẳng; tên file bắt đầu bằng giai đoạn
+│   │                context-* (thông tin nền: đưa cho AI đọc trước tiên), discover-*, define-*, develop-*, deliver-*
+│   ├── sources/     dữ liệu gốc: anonymised/ (đã ẩn danh, AI được đọc)
+│   │                và _raw-private/ (chưa ẩn danh, AI không được đọc)
+│   └── prototype/   code prototype
+├── hub/             Knowledge Hub: nơi mọi decision được nối về nhu cầu của người dùng
+├── tools/           script tạo trang chủ `index.html` và các bước làm việc với AI (step card)
+└── _personal/       ghi chú riêng của bạn, không đưa cho AI
 ```
 
 Bên ngoài `my-case/` còn `guides/` (hướng dẫn từng bước cho người chưa dùng GitHub) và `demo-case/` (một dự án mẫu hoàn chỉnh để xem hoặc luyện tập).
@@ -70,7 +67,7 @@ Dự án thật không đi một chiều. Khi có thông tin mới, bạn quay l
 
 Workspace chỉ có giá trị khi nó phản ánh dự án hôm nay. Bốn thói quen giữ nó sống:
 
-1. **Ghi quyết định ngay khi quyết định.** Một dòng vào `case-log.md`: quyết định gì, vì sao, AI đã giúp ở đâu.
+1. **Ghi decision ngay khi quyết định.** Một dòng vào `case-log.md`: quyết định gì, vì sao, AI đã giúp ở đâu.
 2. **Mỗi thông tin mới đi vào một chỗ.** Sửa file item hoặc working file, không copy sang nơi khác. Rồi tạo lại hub và `index.html`.
 3. **Lưu một mốc trước thay đổi lớn.** Dùng GitHub Desktop (commit) hoặc copy folder thành bản `-backup`.
 4. **Gửi trang chủ, không gửi folder.** Cho stakeholder xem bằng `index.html` đã đổi tên (xem [`guides/04-share-your-hub.md`](guides/04-share-your-hub.md)).
@@ -93,7 +90,7 @@ Khi dùng cho dự án thật của công ty:
 - **Kiểm tra chính sách AI của công ty trước.** Viết `00-context/data-rules.md` bằng lời của bạn.
 - **Ẩn danh trước khi đưa cho AI.** Dữ liệu gốc để ở `01-discover/sources/_raw-private/`: nó không lên GitHub và AI không đọc.
 - **Để repo ở chế độ Private.** Chỉ công khai khi toàn bộ dự án được phép chia sẻ.
-- **Hub giúp bạn giải thích quyết định,** nhưng `assumed` và `unknown` phải được giữ đúng: đừng biến một con số chưa xác nhận thành một sự thật trong báo cáo gửi đi.
+- **Hub giúp bạn giải thích decision,** nhưng `assumed` và `unknown` phải được giữ đúng: đừng biến một con số chưa xác nhận thành một sự thật trong báo cáo gửi đi.
 
 ## Four rules
 
@@ -138,4 +135,4 @@ Chụp màn hình chỗ bạn đang kẹt và gửi vào nhóm lớp, kèm một
 | [`02-set-up-your-case.md`](guides/02-set-up-your-case.md) | Khi bắt đầu: đặt tên, hiểu từng folder, làm việc với AI tool, chọn công cụ để mở folder |
 | [`03-github-basics.md`](guides/03-github-basics.md) | Khi bạn muốn lưu bản làm việc lên GitHub và chưa từng dùng |
 | [`04-share-your-hub.md`](guides/04-share-your-hub.md) | Khi bạn cần cho stakeholder hoặc người khác xem hub |
-| [`05-obsidian.md`](guides/05-obsidian.md) | Tuỳ chọn: xem quan hệ giữa các quyết định bằng Obsidian |
+| [`05-obsidian.md`](guides/05-obsidian.md) | Tuỳ chọn: xem quan hệ giữa các decision bằng Obsidian |

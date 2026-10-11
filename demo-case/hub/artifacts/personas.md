@@ -12,5 +12,5 @@ supports:
   - "[[O1]]"
   - "[[O3]]"
   - "[[O4]]"
-source: "../../reference/06_User_Personas.md"
+source: "../../learnings/reference/06_User_Personas.md"
 ---

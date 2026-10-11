@@ -12,8 +12,8 @@ supports:
   - "[[D4]]"
   - "[[D6]]"
   - "[[D7]]"
-source: "../../reference/08_E2E_User_Flow.md"
+source: "../../learnings/reference/08_E2E_User_Flow.md"
 media:
-  - "../../reference/08_E2E_User_Flow.html"
+  - "../../learnings/reference/08_E2E_User_Flow.html"
 embed: true
 ---

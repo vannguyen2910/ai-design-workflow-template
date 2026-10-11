@@ -12,5 +12,5 @@ supports:
   - "[[M1]]"
   - "[[M2]]"
   - "[[M3]]"
-source: "../../reference/12_Unmoderated_Usability_Test_Plan.md"
+source: "../../learnings/reference/12_Unmoderated_Usability_Test_Plan.md"
 ---

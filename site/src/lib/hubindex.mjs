@@ -13,11 +13,11 @@ const read = (p) => fs.readFileSync(p, 'utf8');
 const exists = (p) => fs.existsSync(p);
 
 export const TYPES = [
-  { letter: 'O', folder: 'opportunities', one: 'Nhu cầu của người dùng', en: 'Opportunity', many: 'Nhu cầu' },
-  { letter: 'H', folder: 'hypotheses', one: 'Giả thuyết', en: 'Hypothesis', many: 'Giả thuyết' },
-  { letter: 'M', folder: 'metrics', one: 'Chỉ số', en: 'Metric', many: 'Chỉ số' },
-  { letter: 'D', folder: 'decisions', one: 'Quyết định thiết kế', en: 'Decision', many: 'Quyết định' },
-  { letter: 'T', folder: 'tests', one: 'Bài kiểm tra', en: 'Test', many: 'Kiểm tra' },
+  { letter: 'O', folder: 'opportunities', one: 'Opportunity', en: 'Opportunity', many: 'Opportunities' },
+  { letter: 'H', folder: 'hypotheses', one: 'Hypothesis', en: 'Hypothesis', many: 'Hypotheses' },
+  { letter: 'M', folder: 'metrics', one: 'Metric', en: 'Metric', many: 'Metrics' },
+  { letter: 'D', folder: 'decisions', one: 'Decision', en: 'Decision', many: 'Decisions' },
+  { letter: 'T', folder: 'tests', one: 'Test', en: 'Test', many: 'Tests' },
 ];
 export const STAGES = ['Setup', 'Discover', 'Define', 'Develop', 'Deliver'];
 export const ART_TYPES = {
@@ -47,16 +47,15 @@ let cache;
 export function scan() {
   if (cache) return cache;
   const items = [];
-  for (const t of TYPES) {
-    const dir = path.join(HUB, t.folder);
-    if (!exists(dir)) continue;
-    for (const f of fs.readdirSync(dir).sort(natSort)) {
-      if (!f.endsWith('.md') || f.toLowerCase() === 'readme.md') continue;
-      const abs = path.join(dir, f);
-      const { data, body } = front(read(abs));
-      const id = f.replace(/\.md$/, '');
-      items.push({ id, letter: t.letter, type: t, abs, meta: data, body, title: String(data.title || h1(body) || id) });
-    }
+  // Items are files named by their ID (O1.md, H1.md, D1.md...) directly in hub/; the first letter is the type.
+  for (const f of exists(HUB) ? fs.readdirSync(HUB).sort(natSort) : []) {
+    const m = f.match(/^([OHMDT])\d+\.md$/);
+    const t = m && TYPES.find((x) => x.letter === m[1]);
+    if (!t) continue;
+    const abs = path.join(HUB, f);
+    const { data, body } = front(read(abs));
+    const id = f.replace(/\.md$/, '');
+    items.push({ id, letter: t.letter, type: t, abs, meta: data, body, title: String(data.title || h1(body) || id) });
   }
   const artifacts = [];
   const adir = path.join(HUB, 'artifacts');
@@ -94,7 +93,7 @@ export function scan() {
     if (/^\d\d-.*\.md$/.test(f)) addPage(path.join(HUB, f), f.replace(/\.md$/, ''), 'week');
   }
   addPage(path.join(HUB, 'gates.md'), 'gates', 'ref', 'Gates');
-  addPage(path.join(CASE, '00-context', 'principle-checks.md'), 'principles', 'ref', 'Principle checks');
+  addPage(path.join(CASE, 'learnings', 'context-principle-checks.md'), 'principles', 'ref', 'Principle checks');
   addPage(path.join(CASE, 'case-log.md'), 'case-log', 'ref', 'Case log');
 
   const overviewMd = exists(path.join(HUB, 'README.md')) ? read(path.join(HUB, 'README.md')) : '';

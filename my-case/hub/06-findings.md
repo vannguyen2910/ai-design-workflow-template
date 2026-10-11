@@ -2,14 +2,14 @@
 
 *Người dùng thật đã làm gì: task success, thời gian, lỗi và mức hài lòng, đặt cạnh baseline.*
 
-> **Cách điền:** mỗi test là một file trong `tests/` (T1...), có dòng `Tests` và `Measures`; bảng bên dưới do AI dựng từ các file đó. Báo cáo kết quả so với baseline. Kiểm tra mọi phân tích có AI hỗ trợ với ghi chú hoặc bản ghi gốc. Copy từ [`04-deliver/findings.md`](../04-deliver/findings.md).
+> **Cách điền:** mỗi test là một file trong `hub/` (T1.md...), có dòng `Tests` và `Measures`; bảng bên dưới do AI dựng từ các file đó. Báo cáo kết quả so với baseline. Kiểm tra mọi phân tích có AI hỗ trợ với ghi chú hoặc bản ghi gốc. Copy từ [`learnings/deliver-findings.md`](../learnings/deliver-findings.md).
 
 ## Tests
 
-<!-- generated:tests (không sửa tay; dựng lại bằng workflow/refresh-hub.md) -->
+<!-- generated:tests (không sửa tay; dựng lại bằng tools/step-refresh-hub.md) -->
 | ID | Test | Tests | Measures |
 |---|---|---|---|
-| [T1](tests/T1.md) | [EXAMPLE] Test task với 5 người: hoàn tất setup không cần trợ giúp | H1 | M1 |
+| [T1](T1.md) | [EXAMPLE] Test task với 5 người: hoàn tất setup không cần trợ giúp | H1 | M1 |
 <!-- /generated -->
 
 ## Results against the baseline

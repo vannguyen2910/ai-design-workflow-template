@@ -6,7 +6,7 @@ views:
     name: "Opportunities"
     filters:
       and:
-        - file.inFolder("hub/opportunities")
+        - type == "opportunity"
     order:
       - file.name
       - title
@@ -16,7 +16,7 @@ views:
     name: "Hypotheses"
     filters:
       and:
-        - file.inFolder("hub/hypotheses")
+        - type == "hypothesis"
     order:
       - file.name
       - title
@@ -26,7 +26,7 @@ views:
     name: "Decisions"
     filters:
       and:
-        - file.inFolder("hub/decisions")
+        - type == "decision"
     order:
       - file.name
       - title
@@ -37,7 +37,7 @@ views:
     name: "Tests"
     filters:
       and:
-        - file.inFolder("hub/tests")
+        - type == "test"
     order:
       - file.name
       - title
@@ -49,7 +49,7 @@ views:
     name: "Metrics"
     filters:
       and:
-        - file.inFolder("hub/metrics")
+        - type == "metric"
     order:
       - file.name
       - title

@@ -14,7 +14,7 @@ supports:
   - "[[O4]]"
   - "[[D3]]"
   - "[[D5]]"
-source: "../../01-discover/competitor-analysis.md"
+source: "../../learnings/discover-competitor-analysis.md"
 media:
-  - "../../01-discover/sources/anonymised/03_Competitor_Research_SWOT.md"
+  - "../../learnings/sources/anonymised/03_Competitor_Research_SWOT.md"
 ---

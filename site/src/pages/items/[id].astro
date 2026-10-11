@@ -13,11 +13,11 @@ const g = graph();
 const id = entry.id;
 const it = g.byId[id];
 const { Content } = await render(entry);
-const LABEL = { type: 'Loại', rank: 'Thứ hạng', evidence: 'Bằng chứng', serves: 'Phục vụ nhu cầu', metric: 'Chỉ số', tests: 'Kiểm chứng giả thuyết',
-  follows: 'Theo nguyên tắc', pulls_against: 'Đi ngược nguyên tắc', measures: 'Đo chỉ số', status: 'Trạng thái', baseline: 'Mức hiện tại (baseline)',
+const LABEL = { type: 'Loại', rank: 'Thứ hạng', evidence: 'Bằng chứng', serves: 'Phục vụ nhu cầu', metric: 'Metric', tests: 'Kiểm chứng hypothesis',
+  follows: 'Theo principle', pulls_against: 'Đi ngược principle', measures: 'Đo metric', status: 'Trạng thái', baseline: 'Mức hiện tại (baseline)',
   measured_by: 'Đo bằng', participants: 'Số người tham gia', participants_type: 'Loại người tham gia', result: 'Kết quả' };
-const BACK = { serves: 'Được phục vụ bởi giả thuyết', metric: 'Được dùng làm chỉ số của', tests: 'Được kiểm chứng bởi', measures: 'Được đo bởi',
-  follows: 'Được theo bởi quyết định', pulls_against: 'Bị đi ngược bởi quyết định' };
+const BACK = { serves: 'Được phục vụ bởi hypothesis', metric: 'Được dùng làm metric của', tests: 'Được kiểm chứng bởi', measures: 'Được đo bởi',
+  follows: 'Được theo bởi decision', pulls_against: 'Bị đi ngược bởi decision' };
 const REL = ['serves', 'metric', 'tests', 'measures', 'follows', 'pulls_against'];
 const rows = Object.entries(entry.data).filter(([k]) => k !== 'title');
 const back = {};

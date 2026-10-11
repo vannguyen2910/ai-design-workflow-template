@@ -12,7 +12,7 @@ supports:
   - "[[O1]]"
   - "[[O2]]"
   - "[[O3]]"
-source: "../../01-discover/user-voice-synthesis.md"
+source: "../../learnings/discover-user-voice-synthesis.md"
 media:
-  - "../../01-discover/sources/anonymised/05_User_Interview_Guide.md"
+  - "../../learnings/sources/anonymised/05_User_Interview_Guide.md"
 ---

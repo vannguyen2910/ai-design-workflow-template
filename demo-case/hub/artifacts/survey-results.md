@@ -14,8 +14,8 @@ supports:
   - "[[O3]]"
   - "[[O4]]"
   - "[[O5]]"
-source: "../../01-discover/sources/anonymised/05_Research_Synthesis.md"
+source: "../../learnings/sources/anonymised/05_Research_Synthesis.md"
 media:
-  - "../../01-discover/sources/anonymised/04_User_Survey.md"
+  - "../../learnings/sources/anonymised/04_User_Survey.md"
 ---
 > **Giới hạn:** mẫu nhỏ và lệch về châu Á và người trẻ. Mọi tỷ lệ chỉ mang tính định hướng.

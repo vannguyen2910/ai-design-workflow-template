@@ -18,7 +18,7 @@ export const collections = {
   // O, H, M, D, T items. A wrong `type` or a missing `title` fails the build instead of showing up later.
   items: defineCollection({
     loader: glob({
-      pattern: '{opportunities,hypotheses,metrics,decisions,tests}/*.md',
+      pattern: '[OHMDT][0-9]*.md',
       base: HUB,
       generateId: ({ entry }) => stem(entry),
     }),
@@ -60,9 +60,9 @@ export const collections = {
   // Stage pages, gates, case log, principle checks
   pages: defineCollection({
     loader: glob({
-      pattern: ['hub/0*.md', 'hub/gates.md', 'case-log.md', '00-context/principle-checks.md'],
+      pattern: ['hub/0*.md', 'hub/gates.md', 'case-log.md', 'learnings/context-principle-checks.md'],
       base: CASE,
-      generateId: ({ entry }) => (entry.endsWith('principle-checks.md') ? 'principles' : stem(entry)),
+      generateId: ({ entry }) => (entry.endsWith('context-principle-checks.md') ? 'principles' : stem(entry)),
     }),
     schema: z.object({ title: z.string().optional() }).passthrough(),
   }),
@@ -71,7 +71,7 @@ export const collections = {
   sources: defineCollection({
     loader: glob({
       pattern: [
-        '00-context/**/*.md', '01-discover/**/*.md', '02-define/**/*.md', '03-develop/**/*.md', '04-deliver/**/*.md', 'reference/**/*.md',
+        'learnings/**/*.md',
         '!**/_raw-private/**', '!**/prototype/**',
       ],
       base: CASE,

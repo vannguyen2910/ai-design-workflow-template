@@ -7,7 +7,7 @@ summary: ""
 takeaways:
   - ""
 supports: []
-# source: "../../01-discover/prototype.md"
+# source: "../../learnings/discover-prototype.md"
 # media: []
 # links: []
 # embed: false

@@ -12,5 +12,5 @@ supports:
   - "[[T1]]"
   - "[[M2]]"
   - "[[M3]]"
-source: "../../reference/13_Simulated_Usability_Findings.md"
+source: "../../learnings/reference/13_Simulated_Usability_Findings.md"
 ---

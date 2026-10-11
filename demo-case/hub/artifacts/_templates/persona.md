@@ -7,7 +7,7 @@ summary: ""
 takeaways:
   - ""
 supports: []
-# source: "../../01-discover/persona.md"
+# source: "../../learnings/discover-persona.md"
 # media: []
 # links: []
 # embed: false

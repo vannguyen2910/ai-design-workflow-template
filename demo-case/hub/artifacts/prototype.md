@@ -16,6 +16,6 @@ supports:
   - "[[D6]]"
   - "[[D7]]"
 media:
-  - "../../03-develop/prototype/Travel_Buddy_Wireframe.html"
+  - "../../learnings/prototype/Travel_Buddy_Wireframe.html"
 embed: true
 ---

@@ -2,7 +2,7 @@
 
 *Mỗi decision có lần ngược được về brief và đạt các principle không? Sửa, chấp nhận như một trade-off đã ghi lại, hoặc cắt.*
 
-> **Cách điền:** bảng alignment nằm ở [Overview](README.md). Trang này dành cho principle audit và verdict của bạn cho từng warning. AI soạn nháp audit và lập luận chỗ nào thiết kế vi phạm principle; bạn quyết định. Làm đầy đủ ở [`03-develop/alignment.md`](../03-develop/alignment.md).
+> **Cách điền:** bảng alignment nằm ở [Overview](README.md). Trang này dành cho principle audit và verdict của bạn cho từng warning. AI soạn nháp audit và lập luận chỗ nào thiết kế vi phạm principle; bạn quyết định. Làm đầy đủ ở [`learnings/develop-alignment.md`](../learnings/develop-alignment.md).
 
 ## Principle audit
 
