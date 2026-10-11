@@ -861,6 +861,12 @@ table.props td{padding:7px 0}
 .vmode button{border:0;background:none;font:inherit;font-size:.82rem;font-weight:600;color:var(--muted);padding:4px 12px;border-radius:calc(var(--r) - 2px);cursor:pointer}
 .vmode button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
 #v-trace .tree{display:none}
+.tabs2{display:flex;gap:2px;border-bottom:1px solid var(--line);margin:0 0 14px;overflow-x:auto}
+.tabs2 button{border:0;background:none;font:inherit;font-weight:600;font-size:.9rem;color:var(--muted);padding:10px 14px;margin-bottom:-1px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+.tabs2 button:hover{color:var(--ink)}
+.tabs2 button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--purple)}
+.tabs2 .n{margin-left:7px;font-size:.72rem;font-weight:700;padding:1px 7px;border-radius:99px;background:rgba(145,158,171,.16);color:var(--muted)}
+.tabs2 button[aria-selected=true] .n{background:var(--tint2);color:var(--link)}
 #v-trace.mode-tree .tree{display:block}
 #v-trace.mode-tree .icards{display:none}
 /* reference and journey pages */
@@ -997,11 +1003,21 @@ JS = r"""
   $$('#v-docs .filters button').forEach(function(b){
     b.addEventListener('click',function(){
       var on=b.getAttribute('aria-pressed')!=='true'; b.setAttribute('aria-pressed',on?'true':'false');
-      var k=b.getAttribute('data-ftype'), s=b.getAttribute('data-fstage');
-      if(k){if(on){ft[k]=true}else{delete ft[k]}} if(s){if(on){fs[s]=true}else{delete fs[s]}}
+      var k=b.getAttribute('data-ftype');
+      if(k){if(on){ft[k]=true}else{delete ft[k]}}
       applyDocs();
     });
   });
+  function tabGroup(sel,onPick){
+    $$(sel+' button').forEach(function(b){
+      b.addEventListener('click',function(){
+        $$(sel+' button').forEach(function(x){x.setAttribute('aria-selected',x===b?'true':'false')});
+        onPick(b);
+      });
+    });
+  }
+  tabGroup('#v-docs .tabs2',function(b){fs={}; var s=b.getAttribute('data-fstage'); if(s){fs[s]=true} applyDocs()});
+  tabGroup('#v-trace .tabs2',function(b){types={}; var t=b.getAttribute('data-type'); if(t){types[t]=true} apply()});
   var sel=$('#themeselect');
   if(sel){
     try{var saved=localStorage.getItem('hub-theme'); if(saved){sel.value=saved; root.setAttribute('data-theme',saved)}}catch(e){}
@@ -1066,6 +1082,7 @@ THEME_CSS = r"""
 [data-theme=minimal] .filters button{border:1px solid rgba(145,158,171,.32);border-radius:8px;background:#fff;color:#454f5b;font-weight:600;padding:5px 12px}
 [data-theme=minimal] .filters button:hover{background:rgba(145,158,171,.08)}
 [data-theme=minimal] .filters button[aria-pressed=true]{background:#1c252e;border-color:#1c252e;color:#fff}
+[data-theme=minimal] .tabs2 button[aria-selected=true]{color:#007867;border-bottom-color:#00a76f}
 [data-theme=minimal] .vmode{border:1px solid rgba(145,158,171,.32);border-radius:8px;padding:3px}
 [data-theme=minimal] .vmode button{border-radius:6px;font-weight:700}
 [data-theme=minimal] .vmode button[aria-pressed=true]{background:#1c252e;color:#fff}
@@ -1267,6 +1284,10 @@ def render_md(md, src, resolver, problems, team=False):
                 html.escape(re.sub(r"^#+\s*", "", head), quote=False), h)
         out.append(h)
     return "\n".join(out)
+
+
+def plural(n, one, many):
+    return "%d %s" % (n, one if n == 1 else many)
 
 
 def esc(s):
@@ -1623,7 +1644,9 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     types_present = sorted({a.type for a in arts})
     stages_present = [s for s in STAGES if any(a.stage == s for a in arts)]
     dfilters = "".join('<button type="button" aria-pressed="false" data-ftype="%s">%s</button>' % (esc(x), esc(ART_TYPES.get(x, x.replace("-", " ").capitalize()))) for x in types_present)
-    sfilters = "".join('<button type="button" aria-pressed="false" data-fstage="%s">%s</button>' % (esc(s), esc(s)) for s in stages_present)
+    sfilters = '<button type="button" role="tab" aria-selected="true" data-fstage="">All<span class="n">%d</span></button>' % len(arts)
+    sfilters += "".join('<button type="button" role="tab" aria-selected="false" data-fstage="%s">%s<span class="n">%d</span></button>' % (
+        esc(s), esc(s), sum(1 for a in arts if a.stage == s)) for s in stages_present)
     if arts_sorted:
         grid = '<div class="acards" id="acards">%s</div>' % "".join(art_card(a) for a in arts_sorted)
     else:
@@ -1631,8 +1654,8 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     v_docs = ('<section class="view docs" id="v-docs"><div class="wrap"><div class="jlist"><h1>Documents</h1>'
               '<p class="lede">Các output làm ra trong dự án: phân tích, persona, survey, flow, prototype. Mỗi document nối với các decision mà nó hỗ trợ.</p>'
               '<input id="dsearch" class="tsearch" type="search" placeholder="Tìm tài liệu" aria-label="Tìm tài liệu">'
-              '<div class="filters" role="group" aria-label="Lọc theo giai đoạn">%s</div><div class="filters" role="group" aria-label="Lọc theo loại">%s</div>'
-              '<p class="tcount" id="dcount" aria-live="polite"></p>%s</div>%s</div></section>') % (sfilters, dfilters, grid, adocs)
+              '<div class="tabs2" role="tablist" aria-label="Lọc theo giai đoạn">%s</div>'
+              '<p class="tcount" id="dcount" aria-live="polite"></p>%s</div>%s</div></section>') % (sfilters, grid, adocs)
 
     # --- trace: tree
     def tnode(i, kids="", cnt="", leaf=True, opened=False):
@@ -1659,16 +1682,18 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             for x in ds + ts + ms:
                 placed.add(x)
                 kids += tnode(x)
-            cnt = " · ".join(s for s in ["%d decisions" % len(ds) if ds else "", "%d tests" % len(ts) if ts else "", "%d metrics" % len(ms) if ms else ""] if s) or "chưa có decision hay test"
+            cnt = " · ".join(s for s in [plural(len(ds), "decision", "decisions") if ds else "", plural(len(ts), "test", "tests") if ts else "", plural(len(ms), "metric", "metrics") if ms else ""] if s) or "chưa có decision hay test"
             hk += tnode(h, kids, cnt)
         n_h = len(G.hyps_of(o))
-        top += tnode(o, hk, ("%d hypotheses" % n_h) if n_h else "chưa có hypothesis", opened=(k == first_open))
+        top += tnode(o, hk, plural(n_h, "hypothesis", "hypotheses") if n_h else "chưa có hypothesis", opened=(k == first_open))
     loose = [i for i in sorted(G.items, key=_natkey) if i not in placed]
     if loose:
         lk = "".join(tnode(i) for i in loose)
         top += '<li class="n" data-type="" data-warn="0" data-text=""><details open><summary><span class="gh">Chưa nối vào opportunity nào (%d)</span></summary><ul>%s</ul></details></li>' % (len(loose), lk)
-    filters = "".join('<button type="button" aria-pressed="false" data-type="%s">%s</button>' % (L, pl) for L, _, _, pl in TYPES)
-    filters += '<button type="button" aria-pressed="false" data-warn="1">⚠ Warnings only</button>'
+    ttabs = '<button type="button" role="tab" aria-selected="true" data-type="">All<span class="n">%d</span></button>' % len(G.items)
+    ttabs += "".join('<button type="button" role="tab" aria-selected="false" data-type="%s">%s<span class="n">%d</span></button>' % (
+        L, pl, len(getattr(G, L))) for L, _, _, pl in TYPES)
+    filters = '<button type="button" aria-pressed="false" data-warn="1">⚠ Warnings only</button>'
 
     # --- trace: item docs
     idocs = ""
@@ -1703,10 +1728,10 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         meta = ""
         if p.letter == "O":
             n_h = len(G.hyps_of(i))
-            meta = ("%d hypotheses" % n_h) if n_h else "chưa có hypothesis"
+            meta = plural(n_h, "hypothesis", "hypotheses") if n_h else "chưa có hypothesis"
         elif p.letter == "H":
             ds_, ts_, ms_ = G.decisions_of(i), G.tests_of(i), G.metric.get(i, [])
-            meta = " · ".join(x for x in ["%d decisions" % len(ds_) if ds_ else "", "%d tests" % len(ts_) if ts_ else "", "%d metrics" % len(ms_) if ms_ else ""] if x) or "chưa có decision hay test"
+            meta = " · ".join(x for x in [plural(len(ds_), "decision", "decisions") if ds_ else "", plural(len(ts_), "test", "tests") if ts_ else "", plural(len(ms_), "metric", "metrics") if ms_ else ""] if x) or "chưa có decision hay test"
         else:
             for k_ in REL_KEYS:
                 ids_ = _ids(p.meta.get(k_, ""))
@@ -1724,14 +1749,14 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         '<section class="view" id="v-trace"><div class="wrap"><div class="trace">'
         '<div class="pane-tree"><h1>Insights</h1><p class="lede">Opportunity, hypothesis, decision, test và metric, nối với nhau. Lọc theo loại, hoặc xem dạng cây để thấy chuỗi lý do.</p>'
         '<input id="tsearch" class="tsearch" type="search" placeholder="Tìm theo mã hoặc tên" aria-label="Tìm insight">'
-        '<div class="filters" role="group" aria-label="Lọc theo loại">%s</div>'
+        '<div class="tabs2" role="tablist" aria-label="Lọc theo loại">%s</div>'
         '<div class="vmode" role="group" aria-label="Cách xem"><button type="button" data-vmode="cards" aria-pressed="true">Cards</button><button type="button" data-vmode="tree" aria-pressed="false">Tree</button></div>'
         '<p class="tcount" id="tcount" aria-live="polite"></p>'
         '<div class="icards">%s</div>'
         '<ul class="tree" id="tree">%s</ul></div>'
         '<div class="pane-detail">%s</div>'
         '</div></div></section>'
-    ) % (filters, icards or '<div class="empty"><p><strong>Chưa có mục nào.</strong></p></div>', top or '<li class="n"><span class="nt">Chưa có mục nào.</span></li>', idocs)
+    ) % (ttabs, icards or '<div class="empty"><p><strong>Chưa có mục nào.</strong></p></div>', top or '<li class="n"><span class="nt">Chưa có mục nào.</span></li>', idocs)
 
     # --- sidebar (same structure as the website: Overview, Journey, Documents by stage, Trace by type, Reference)
     def nlink(target, inner, cls=""):
