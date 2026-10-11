@@ -975,7 +975,7 @@ JS = r"""
     if(!/^#\/(trace|[OHMDT]\d+)$/.test(location.hash)){location.hash='#/trace'}
     apply();
   })}
-  $$('.filters button').forEach(function(b){
+  $$('#v-trace .filters button').forEach(function(b){
     b.addEventListener('click',function(){
       var on=b.getAttribute('aria-pressed')!=='true';
       b.setAttribute('aria-pressed',on?'true':'false');
