@@ -2,7 +2,7 @@
 
 Case ở một cái nhìn: mỗi gate đang ở đâu, và mỗi decision lần ngược về brief như thế nào.
 
-> **Cách điền:** bạn chỉ sửa tên case, agreement status và phần narrative ở các trang tuần. Bảng Gates, bảng alignment và Warnings do AI dựng từ các file item và `gates.md` (xem [`how-the-hub-works.md`](how-the-hub-works.md)). Dữ liệu `[EXAMPLE]` ở đây để bạn thấy hub chạy ra sao. Xoá và thay bằng dữ liệu của bạn.
+> **Cách điền:** bạn chỉ sửa tên case, agreement status và phần narrative ở các trang giai đoạn. Bảng Gates, bảng alignment và Warnings do AI dựng từ các file item và `gates.md` (xem [`how-the-hub-works.md`](how-the-hub-works.md)). Dữ liệu `[EXAMPLE]` ở đây để bạn thấy hub chạy ra sao. Xoá và thay bằng dữ liệu của bạn.
 
 ## Case
 

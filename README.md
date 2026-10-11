@@ -1,8 +1,8 @@
-# AI Design Workflow: Project Workspace
+# Product Workspace with AI
 
-Đây là workspace cho một **dự án thiết kế có AI hỗ trợ**. Nó giữ context, evidence, decision và prototype của dự án, và nối mỗi decision về user need đứng sau nó.
+Đây là workspace cho một **dự án sản phẩm có AI hỗ trợ**. Nó dành cho bất kỳ ai làm sản phẩm: product manager, designer, researcher, hay người làm một mình. Workspace giữ context, evidence, decision và prototype của dự án, và nối mỗi decision về user need đứng sau nó.
 
-Bạn học cách làm việc này trong khoá AI Design Workflow, rồi **dùng tiếp cho các dự án thật**. Bạn không cần biết GitHub hay lập trình để bắt đầu.
+Bạn không cần biết GitHub hay lập trình để bắt đầu.
 
 ## Start a project in 3 steps
 
@@ -16,7 +16,7 @@ Xong ba bước này là dự án đã có chỗ ở. Các bước sau làm dầ
 
 Mỗi dự án là **một case folder độc lập và tự chứa**: nó mang theo luật cho AI (`AGENTS.md`), các bước làm việc và script tạo trang chủ (`tools/`), và hub. Bạn copy nguyên folder ra khỏi workspace này, ví dụ vào folder dự án của công ty, và nó vẫn chạy.
 
-(Trong tài liệu này, "case" nghĩa là "một dự án thiết kế".)
+(Trong tài liệu này, "case" nghĩa là "một dự án sản phẩm".)
 
 ## Words you will see
 
@@ -52,16 +52,16 @@ Bên ngoài `my-case/` còn `guides/` (hướng dẫn từng bước cho ngườ
 
 Một dự án đi qua năm giai đoạn. Bạn không cần làm hết một lượt: điền các file khi dự án thực sự tới giai đoạn đó.
 
-| Giai đoạn | Câu hỏi cần trả lời | File chính | Trong khoá |
-|---|---|---|---|
-| **Setup** | Dự án là gì, ai dùng, được đưa gì cho AI? | `00-context/`: `product-and-users.md`, `accessibility-rules.md`, `data-rules.md`, `open-questions.md` | Tuần 1 |
-| **Discover** | Chúng ta chưa biết gì, và bằng chứng nào có thể tin? | `01-discover/scope.md`, `user-voice-synthesis.md`, `competitor-analysis.md` | Tuần 2 |
-| **Define** | Vấn đề nào đáng giải, và thành công trông thế nào? | `02-define/problem-brief.md`, `00-context/principle-checks.md` | Tuần 3 |
-| **Develop** | Giải bằng cách nào, và vì sao chọn cách đó? | `03-develop/options.md`, `prototype/`, `alignment.md`, `00-context/design-system-notes.md` | Tuần 4 đến 6 |
-| **Deliver** | Nó có hiệu quả không, và bàn giao gì? | `04-deliver/test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md` | Tuần 6 và 7 |
-| **Mọi giai đoạn** | Chúng ta đã quyết định gì, và vì sao? | `case-log.md` và các trang của `hub/` | Mỗi tuần |
+| Giai đoạn | Câu hỏi cần trả lời | File chính (trong `learnings/`) |
+|---|---|---|
+| **Setup** | Dự án là gì, ai dùng, được đưa gì cho AI? | `context-product-and-users.md`, `context-accessibility-rules.md`, `context-data-rules.md`, `context-open-questions.md` |
+| **Discover** | Chúng ta chưa biết gì, và bằng chứng nào có thể tin? | `discover-scope.md`, `discover-user-voice-synthesis.md`, `discover-competitor-analysis.md` |
+| **Define** | Vấn đề nào đáng giải, và thành công trông thế nào? | `define-problem-brief.md`, `context-principle-checks.md` |
+| **Develop** | Giải bằng cách nào, và vì sao chọn cách đó? | `develop-options.md`, `prototype/`, `develop-alignment.md`, `context-design-system-notes.md` |
+| **Deliver** | Nó có hiệu quả không, và bàn giao gì? | `deliver-test-plan.md`, `deliver-findings.md`, `deliver-handoff.md`, `deliver-measurement-plan.md` |
+| **Mọi giai đoạn** | Chúng ta đã quyết định gì, và vì sao? | `case-log.md` và các trang của `hub/` |
 
-Dự án thật không đi một chiều. Khi có thông tin mới, bạn quay lại giai đoạn trước: cập nhật file ở giai đoạn đó, rồi tạo lại hub (xem `workflow/refresh-hub.md`).
+Dự án thật không đi một chiều. Khi có thông tin mới, bạn quay lại giai đoạn trước: cập nhật file ở giai đoạn đó, rồi tạo lại hub (xem `tools/step-refresh-hub.md`).
 
 ## Keep a project alive
 
@@ -81,20 +81,20 @@ Giữ một bản template sạch để dùng lại:
 1. **Đừng điền vào bản template gốc nếu bạn định làm nhiều dự án.** Lấy template mới (tải ZIP, hoặc **Use this template** lần nữa) cho mỗi dự án.
 2. Đổi tên folder `my-case` trong bản mới theo dự án.
 3. Xoá dữ liệu mẫu: các item `[EXAMPLE]` trong `hub/` và tên case trong `hub/README.md`. `index.html` có thanh đen nhắc bạn khi còn dữ liệu mẫu.
-4. Điền `00-context/` đầu tiên, rồi làm theo giai đoạn.
+4. Điền các file `context-*` trong `learnings/` đầu tiên, rồi làm theo giai đoạn.
 
 ## Use it for real work
 
 Khi dùng cho dự án thật của công ty:
 
-- **Kiểm tra chính sách AI của công ty trước.** Viết `00-context/data-rules.md` bằng lời của bạn.
-- **Ẩn danh trước khi đưa cho AI.** Dữ liệu gốc để ở `01-discover/sources/_raw-private/`: nó không lên GitHub và AI không đọc.
+- **Kiểm tra chính sách AI của công ty trước.** Viết `learnings/context-data-rules.md` bằng lời của bạn.
+- **Ẩn danh trước khi đưa cho AI.** Dữ liệu gốc để ở `learnings/sources/_raw-private/`: nó không lên GitHub và AI không đọc.
 - **Để repo ở chế độ Private.** Chỉ công khai khi toàn bộ dự án được phép chia sẻ.
 - **Hub giúp bạn giải thích decision,** nhưng `assumed` và `unknown` phải được giữ đúng: đừng biến một con số chưa xác nhận thành một sự thật trong báo cáo gửi đi.
 
 ## Four rules
 
-1. **Ẩn danh trước khi đưa cho AI.** Dữ liệu gốc để ở `01-discover/sources/_raw-private/`, bạn tự thay tên rồi mới lưu bản sạch vào `anonymised/`.
+1. **Ẩn danh trước khi đưa cho AI.** Dữ liệu gốc để ở `learnings/sources/_raw-private/`, bạn tự thay tên rồi mới lưu bản sạch vào `anonymised/`.
 2. **Mỗi lần chỉ nhờ AI viết một phần.** Bạn đọc kết quả rồi tự dán vào file, để AI không viết đè phần bạn đã chốt.
 3. **Giữ bản nháp của AI và bản bạn đã sửa ở hai chỗ riêng.** Chênh lệch giữa hai bản cho bạn thấy AI sai nhiều hay ít.
 4. **Con số nào chưa xác nhận được thì ghi `assumed`.**
@@ -104,12 +104,12 @@ Khi dùng cho dự án thật của công ty:
 Bạn đổi được hầu hết mọi thứ:
 
 - Đổi tên folder dự án, nhân đôi nó, hoặc thêm folder riêng như `05-notes/`.
-- Xoá file bạn không dùng, ví dụ `glossary.md` hay `competitor-analysis.md`.
+- Xoá file bạn không dùng, ví dụ `context-glossary.md` hay `discover-competitor-analysis.md`.
 - Sửa nội dung các file mẫu cho hợp cách làm của team bạn.
 
 Có hai thứ nên giữ nguyên để AI tool và hub đọc đúng:
 
-- **Tên folder `00-context` đến `04-deliver`, folder `workflow/` và file `AGENTS.md`.** Các step card gọi file theo đúng đường dẫn này.
+- **Tên folder `learnings/`, `hub/`, `tools/`, tiền tố tên file (`context-`, `discover-`...) và file `AGENTS.md`.** Các step card gọi file theo đúng đường dẫn này.
 - **Tên file trong `hub/` và mã của item** (`O1`, `H1`, `D1`...). Các item nối với nhau qua mã, nên đổi tên là làm đứt liên kết.
 
 ## Which folder do I use?
@@ -117,7 +117,7 @@ Có hai thứ nên giữ nguyên để AI tool và hub đọc đúng:
 | Tình huống | Dùng |
 |---|---|
 | Bạn có một dự án thật hoặc một case của riêng bạn | `my-case` |
-| Công ty cấm AI tool, hoặc dự án quá nhạy cảm để đưa vào lớp | `demo-case` |
+| Công ty cấm AI tool, hoặc dự án quá nhạy cảm để đưa cho AI | `demo-case` |
 | Bạn muốn xem một dự án chạy hết quy trình trước khi làm của mình | `demo-case` |
 | Bạn kẹt ở một giai đoạn và cần một ví dụ đã làm xong | `demo-case` |
 
@@ -125,7 +125,7 @@ Có hai thứ nên giữ nguyên để AI tool và hub đọc đúng:
 
 ## Stuck?
 
-Chụp màn hình chỗ bạn đang kẹt và gửi vào nhóm lớp, kèm một câu cho biết bạn đang làm bước nào. Trong lúc chờ, bạn vẫn làm tiếp phần khác được.
+Chụp màn hình chỗ bạn đang kẹt và hỏi người chia sẻ template hoặc đồng nghiệp, kèm một câu cho biết bạn đang làm bước nào. Trong lúc chờ, bạn vẫn làm tiếp phần khác được.
 
 ## Guides
 

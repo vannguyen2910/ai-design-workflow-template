@@ -99,6 +99,6 @@ Hãy mở **cả folder**, không mở từng file lẻ: các link giữa các t
 
 ## Keep it safe
 
-- **Ẩn danh trước khi đưa cho AI tool hoặc mang vào lớp.**
+- **Ẩn danh trước khi đưa cho AI tool hoặc chia sẻ ra ngoài.**
 - **Không để mật khẩu, dữ liệu cá nhân của người dùng hay số liệu tài chính chưa công bố trong folder này**, kể cả khi repo ở chế độ Private.
 - Hub mặc định là riêng tư. Cách cho người khác xem nằm ở [`04-share-your-hub.md`](04-share-your-hub.md).

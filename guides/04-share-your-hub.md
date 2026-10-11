@@ -67,7 +67,7 @@ Bạn thu hồi quyền bất cứ lúc nào ở cùng màn hình.
 
 GitHub hiển thị Markdown trực tiếp, nên không cần dựng website: link tới repo chính là hub.
 
-Chỉ làm khi **toàn bộ case folder** được phép chia sẻ, ví dụ case của khoá, hoặc một bản đã làm sạch từ công việc thật. Hub nối tới các file ngoài `hub/`, nên công khai riêng `hub/` sẽ làm các liên kết đó hỏng.
+Chỉ làm khi **toàn bộ case folder** được phép chia sẻ, ví dụ dự án mẫu, hoặc một bản đã làm sạch từ công việc thật. Hub nối tới các file ngoài `hub/`, nên công khai riêng `hub/` sẽ làm các liên kết đó hỏng.
 
 1. Tạo một repo **mới** trên GitHub và chọn **Public**. Đừng đổi repo Private đang dùng thành Public, vì lịch sử cũ vẫn còn trong đó.
 2. Copy folder case đã làm sạch vào repo mới.

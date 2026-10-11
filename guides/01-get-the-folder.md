@@ -2,7 +2,7 @@
 
 Guide này giúp bạn đưa workspace về máy. Có hai cách, và bạn chỉ cần chọn một.
 
-**Chưa dùng GitHub bao giờ? Chọn cách A.** Bạn làm hết khoá được mà không cần tài khoản.
+**Chưa dùng GitHub bao giờ? Chọn cách A.** Bạn dùng được workspace này mà không cần tài khoản.
 
 | | Cách | Cần tài khoản GitHub | Có bản sao lưu | Hợp khi |
 |---|---|---|---|---|
@@ -17,7 +17,7 @@ Guide này giúp bạn đưa workspace về máy. Có hai cách, và bạn chỉ
 
 ## Option A: Download ZIP
 
-1. Mở trang GitHub của repo (đường dẫn do người chia sẻ template gửi: giảng viên hoặc đồng nghiệp).
+1. Mở trang GitHub của repo (đường dẫn do người chia sẻ template gửi).
 2. Bấm nút xanh **Code**, rồi chọn **Download ZIP**.
 3. Giải nén file ZIP vừa tải:
    - Mac: bấm đúp vào file.
@@ -25,7 +25,7 @@ Guide này giúp bạn đưa workspace về máy. Có hai cách, và bạn chỉ
 4. Kéo folder vừa giải nén vào `Documents`.
 5. Mở folder. Bạn sẽ thấy `README.md`, `guides`, `my-case` và `demo-case`.
 
-**Sao lưu:** thỉnh thoảng nén `my-case` thành một file ZIP và cất đi, hoặc chép sang ổ khác. Làm việc xong một tuần là thời điểm tốt.
+**Sao lưu:** thỉnh thoảng nén `my-case` thành một file ZIP và cất đi, hoặc chép sang ổ khác. Cuối mỗi đợt làm việc là thời điểm tốt.
 
 ## Option B: Use this template, rồi GitHub Desktop
 
@@ -42,7 +42,7 @@ Cách này tạo cho bạn một **repo** riêng (repo là một folder được
 
 Không thấy nút **Use this template**? Dùng cách A, hoặc nhắn người chia sẻ template.
 
-> **Đừng tải thẳng repo của giảng viên về để lưu bài.** Bạn không có quyền ghi vào repo đó, nên các thay đổi của bạn không lưu lên được. Hãy tạo repo riêng bằng **Use this template** trước.
+> **Đừng tải thẳng repo gốc về để lưu công việc.** Bạn không có quyền ghi vào repo đó, nên các thay đổi của bạn không lưu lên được. Hãy tạo repo riêng bằng **Use this template** trước.
 
 ### Part 2: Đưa repo về máy
 

@@ -1,6 +1,6 @@
 # GitHub Basics
 
-Guide này dành cho người chưa từng dùng GitHub. Bạn không cần đọc nó để học khoá này: cách A trong [`01-get-the-folder.md`](01-get-the-folder.md) không cần tài khoản. Đọc nó khi bạn muốn lưu bản làm việc lên GitHub.
+Guide này dành cho người chưa từng dùng GitHub. Bạn không cần đọc nó để bắt đầu: cách A trong [`01-get-the-folder.md`](01-get-the-folder.md) không cần tài khoản. Đọc nó khi bạn muốn lưu bản làm việc lên GitHub.
 
 ## Seven words
 
@@ -40,8 +40,8 @@ Quy tắc đơn giản: **repo chứa case của bạn để Private.** Chỉ kh
 | Bạn lo | Thực tế |
 |---|---|
 | "Tôi bấm sai thì mất file" | Mỗi commit là một mốc. Bạn luôn quay lại được bản trước đó |
-| "Có ai thấy bài của tôi không" | Repo Private thì chỉ bạn thấy. Người khác (kể cả giảng viên) chỉ thấy khi bạn mời hoặc gửi link |
-| "Tôi gặp một thông báo lạ" | Chụp màn hình và gửi vào nhóm lớp. Trong lúc chờ, bạn vẫn làm việc bình thường: Git không chặn việc bạn sửa file |
+| "Có ai thấy bài của tôi không" | Repo Private thì chỉ bạn thấy. Người khác chỉ thấy khi bạn mời hoặc gửi link |
+| "Tôi gặp một thông báo lạ" | Chụp màn hình và hỏi người chia sẻ template hoặc đồng nghiệp. Trong lúc chờ, bạn vẫn làm việc bình thường: Git không chặn việc bạn sửa file |
 | "Mọi thứ rối hết cả lên" | Tải lại một bản ZIP mới, rồi chép các file bạn đã sửa sang folder mới |
 
 ## Do not commit

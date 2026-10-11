@@ -1,6 +1,6 @@
 # How the Hub Works
 
-Hub là một folder markdown nằm trong case folder của bạn. Nó lưu các output đã kiểm tra của dự án và cho thấy chúng liên kết với nhau thế nào. Hub hoàn chỉnh là báo cáo cuối của khoá.
+Hub là một folder markdown nằm trong case folder của bạn. Nó lưu các output đã kiểm tra của dự án và cho thấy chúng liên kết với nhau thế nào. Hub hoàn chỉnh là báo cáo cuối của dự án.
 
 Công cụ nào mở được cả folder đều dùng được: AI coding tool, VS Code hay Obsidian. Obsidian thêm Graph view, Backlinks và file `traceability.base` (bảng theo loại item); hướng dẫn nằm ở `guides/05-obsidian.md`. Muốn gửi cho người khác, xuất báo cáo HTML bằng `tools/step-export-hub.md`.
 
