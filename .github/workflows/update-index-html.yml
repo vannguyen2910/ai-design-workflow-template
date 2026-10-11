@@ -8,8 +8,7 @@ on:
     paths:
       - 'my-case/**'
       - 'demo-case/**'
-    paths-ignore:
-      - '**/index.html'
+      - '!**/index.html'
   workflow_dispatch:
 
 permissions:
