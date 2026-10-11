@@ -8,7 +8,8 @@ Bạn không cần biết GitHub hay lập trình để bắt đầu.
 
 | Tôi muốn... | Làm gì |
 |---|---|
-| Xem một dự án hoàn chỉnh trước khi làm của mình | Bấm đúp `demo-case/index.html` |
+| Xem một dự án hoàn chỉnh trước khi làm của mình | Mở báo cáo mẫu: [`demo-case/index.html`](demo-case/index.html) (trên máy: bấm đúp file) |
+| Xem báo cáo của template trống | Mở [`my-case/index.html`](my-case/index.html) (trên máy: bấm đúp file) |
 | Bắt đầu một dự án của tôi | Làm theo "Start a project in 3 steps" ngay bên dưới |
 | Làm việc trong một dự án đã có | Mở folder dự án, đọc `README.md` ở đó: nó có bảng "Tôi muốn... mở..." cho từng việc |
 | Cần hướng dẫn từng bước (GitHub, chia sẻ, Obsidian) | Mở folder [`guides/`](guides/) |
@@ -23,7 +24,7 @@ Bạn không cần biết GitHub hay lập trình để bắt đầu.
    ```
 
    Không dùng được Terminal? Đổi tên folder `my-case` theo dự án của bạn, rồi tự xoá các item `[EXAMPLE]` trong `insights/`.
-3. **Xem hub.** Bấm đúp file `index.html` trong folder dự án: nó mở bằng trình duyệt và không cần cài gì. Khi làm việc, mở **cả folder dự án** bằng công cụ bạn quen (AI coding tool, VS Code hay Obsidian).
+3. **Xem hub.** Bấm đúp file `index.html` trong folder dự án (ví dụ [`my-case/index.html`](my-case/index.html)): nó mở bằng trình duyệt và không cần cài gì. Khi làm việc, mở **cả folder dự án** bằng công cụ bạn quen (AI coding tool, VS Code hay Obsidian).
 
 Xong ba bước này là dự án đã có chỗ ở. Các bước sau làm dần theo tiến độ thật của dự án.
 
