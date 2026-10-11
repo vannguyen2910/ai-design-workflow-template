@@ -4,6 +4,8 @@
 
 Bạn không cần biết GitHub hay lập trình để bắt đầu.
 
+> Trang web của repo này mở thẳng báo cáo của template ([`my-case/index.html`](my-case/index.html)). Bản đọc này nằm ở trang repo trên GitHub.
+
 ## Bắt đầu từ đâu
 
 | Tôi muốn... | Làm gì |
