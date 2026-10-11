@@ -37,7 +37,9 @@ Bốn gate (cổng kiểm tra) mà dự án đi qua. Mỗi check có một trạ
 | 4c | Developer có thể dựng mà không phải hỏi lại (handoff pack và decision log đầy đủ) | open |
 | 4d | Measurement plan đã được đưa cho product owner | open |
 
-Sau khi đổi trạng thái ở đây, nhờ AI tool cập nhật bảng Gates ở trang Overview ([`README.md`](../hub/README.md)).
+Cột **Kiểm tra tự động** (ở báo cáo) cho biết dữ liệu hiện có đã đạt check đó chưa. Nó không thay đổi trạng thái bạn đặt; nếu bạn đặt `passed` mà dữ liệu chưa đạt, báo cáo hiện một warning.
+
+Sau khi đổi trạng thái ở đây, nhờ AI tool cập nhật bảng Gates ở trang Overview ([`README.md`](../README.md)).
 
 ## Ghi chú về trạng thái (bản demo)
 

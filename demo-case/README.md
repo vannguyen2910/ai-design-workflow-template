@@ -1,5 +1,10 @@
 # Demo project: Travel Buddy
 
+| | |
+|---|---|
+| Tên dự án | Travel Buddy |
+| Agreement status | not available |
+
 Đây là một dự án thật, đã chạy qua các giai đoạn từ Discover tới Test: **Travel Buddy**, một app đồng hành du lịch. Nó được dùng làm dự án mẫu để bạn thấy một workspace đầy đủ trông như thế nào, và thấy **chỗ nào còn khoảng trống**.
 
 Dự án gốc được làm trước khi có quy trình AI-assisted của workspace này. Vì vậy một số file ghi rõ "không áp dụng", và một số gate ở trạng thái `open` hoặc `failed`. Đó là chủ ý: một dự án mẫu trung thực hữu ích hơn một dự án được dọn cho đẹp.
@@ -15,14 +20,15 @@ Dự án gốc được làm trước khi có quy trình AI-assisted của works
 | Phần | Nội dung | Dùng cho giai đoạn |
 |---|---|---|
 | `context/*.md` | Tổng quan dự án, người dùng, design system, câu hỏi mở | Setup |
-| `work/discover/*.md` | Scope, tổng hợp tiếng nói người dùng, phân tích đối thủ | Discover |
+| `work/scope.md`, `user-voice-synthesis.md`, `competitor-analysis.md` | Scope, tổng hợp tiếng nói người dùng, phân tích đối thủ | Discover |
 | `work/sources/anonymised/` | Tài liệu nghiên cứu gốc: hypothesis, khảo sát, hướng dẫn phỏng vấn, tổng hợp, đối thủ | Discover |
-| `work/define/*.md` | Problem brief | Define |
-| `work/develop/*.md`, `work/prototype/` | Các hướng, alignment, wireframe | Develop |
-| `work/deliver/*.md` | Kế hoạch test, findings, handoff, kế hoạch đo | Deliver |
-| `hub/` | 5 nhu cầu, 6 hypothesis, 7 decision, 2 evidence, 5 metric | Mọi giai đoạn |
+| `work/problem-brief.md` | Problem brief | Define |
+| `work/options.md`, `alignment.md`, `work/prototype/` | Các hướng, alignment, wireframe | Develop |
+| `work/test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md` | Kế hoạch test, findings, handoff, kế hoạch đo | Deliver |
+| `insights/` | 5 nhu cầu, 6 hypothesis, 7 decision, 2 evidence, 7 finding, 5 metric | Mọi giai đoạn |
+| `stages/` | Bảy trang giai đoạn: scope, evidence, problem brief, develop, alignment, findings, handoff | Mọi giai đoạn |
 | `reference/` | Gates, principle checks, severity levels, case log | Mọi giai đoạn |
-| `steps/` | Các bước làm việc với AI (step card) | Mọi giai đoạn |
+| `_ai/` | Các bước làm việc với AI (step card) | Mọi giai đoạn |
 | `work/original-docs/` | Tài liệu gốc của giai đoạn Define đến Test (personas, solution pool, flow, IA, PRD, test plan, findings) | Tham khảo |
 
 ## What this project teaches (including by example of what is missing)
@@ -36,7 +42,7 @@ Dự án gốc được làm trước khi có quy trình AI-assisted của works
 
 - `RH1`..`RH10`: research hypothesis của dự án gốc (`H1`..`H10` trong `01_Research_Hypotheses.md`).
 - `SP-D1`, `SP-P3`...: ID trong Solution Pool gốc (`work/original-docs/07_Solution_Pool.md`).
-- `O`, `H`, `D`, `E`, `M` trong `hub/`: item của workspace (Opportunity, Hypothesis, Decision, Evidence, Metric).
+- `O`, `H`, `D`, `E`, `M` trong `insights/`: item của workspace (Opportunity, Hypothesis, Decision, Evidence, Metric).
 - Tài liệu gốc viết bằng tiếng Anh và giữ nguyên; phần tổng hợp trong working file viết bằng tiếng Việt.
 - Tên công cụ AI, tên chủ dự án, thành phố của người phỏng vấn và liên kết prototype riêng tư đã được gỡ khỏi bản sao trong `work/original-docs/` và `sources/`.
 
@@ -44,4 +50,4 @@ Dự án gốc được làm trước khi có quy trình AI-assisted của works
 
 1. **Đừng chép nội dung của dự án mẫu vào dự án thật của bạn.**
 2. **Chỉ coi số liệu khảo sát là định hướng:** mẫu nhỏ (13), lệch về châu Á và người trẻ.
-3. **Đừng coi kết quả test mô phỏng là bằng chứng.** Xem `work/deliver/findings.md`.
+3. **Đừng coi kết quả test mô phỏng là bằng chứng.** Xem `work/findings.md`.

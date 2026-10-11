@@ -19,8 +19,8 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE = os.path.join(ROOT, "my-case")
 IGNORE = shutil.ignore_patterns(".DS_Store", "__pycache__", "_export", "index.html")
-ITEM_RE = re.compile(r"^[OHMDE]\d+\.md$")
-ITEM_LINK_RE = re.compile(r"\]\((?:[a-z]+/)?[OHMDE]\d+\.md\)")
+ITEM_RE = re.compile(r"^[OHMDEF]\d+\.md$")
+ITEM_LINK_RE = re.compile(r"\]\((?:\.\./)?(?:[a-z]+/)?[OHMDEF]\d+\.md\)")
 
 
 def read(path):
@@ -46,7 +46,7 @@ def clean_hub_page(text, is_readme):
                 line = line.replace("| %s |" % first, "| [metric] |", 1)
         out.append(line)
     text = "\n".join(out)
-    text = text.replace("[O1](O1.md)", "[opportunity ID]")
+    text = re.sub(r"\[O1\]\([^)]*O1\.md\)", "[opportunity ID]", text)
     if is_readme:
         empty = {
             "alignment": "_Chưa có decision nào. Bảng này được dựng khi bạn thêm item._",
@@ -81,29 +81,29 @@ def main():
     title = a.title or a.name.replace("-", " ").capitalize()
 
     shutil.copytree(TEMPLATE, dest, ignore=IGNORE)
-    hub = os.path.join(dest, "hub")
+    insights = os.path.join(dest, "insights")
 
     removed = 0
-    for dirpath, dirnames, filenames in os.walk(hub):
-        dirnames[:] = [d for d in dirnames if d != "artifacts" and not d.startswith("_")]
+    for dirpath, dirnames, filenames in os.walk(insights):
+        dirnames[:] = [d for d in dirnames if not d.startswith("_")]
         for name in sorted(filenames):
             p = os.path.join(dirpath, name)
             if ITEM_RE.match(name) and "[EXAMPLE]" in read(p):
                 os.remove(p)
                 removed += 1
-    for name in sorted(os.listdir(hub)):
-        p = os.path.join(hub, name)
-        if name.endswith(".md") and not ITEM_RE.match(name) and name != "how-the-hub-works.md":
-            write(p, clean_hub_page(read(p), name == "README.md"))
+    # example rows in the stage pages and reference pages
+    for folder in (os.path.join(dest, "stages"), os.path.join(dest, "reference")):
+        for name in sorted(os.listdir(folder)) if os.path.isdir(folder) else []:
+            p = os.path.join(folder, name)
+            if os.path.isfile(p) and name.endswith(".md") and name != "how-the-hub-works.md":
+                write(p, clean_hub_page(read(p), False))
 
-    for folder in ("opportunities", "hypotheses", "metrics", "decisions", "evidence"):
-        d = os.path.join(hub, folder)
+    for folder in ("opportunities", "hypotheses", "metrics", "decisions", "evidence", "findings"):
+        d = os.path.join(insights, folder)
         os.makedirs(d, exist_ok=True)
         if not os.listdir(d):
             write(os.path.join(d, ".gitkeep"), "")  # keeps the empty folder in Git
-    p = os.path.join(hub, "README.md")
-    write(p, read(p).replace("[CASE NAME]", title))
-    p = os.path.join(hub, "how-the-hub-works.md")
+    p = os.path.join(dest, "reference", "how-the-hub-works.md")
     if os.path.isfile(p):
         write(p, re.sub(r"^- Các item `\[EXAMPLE\]`.*\n", "", read(p), flags=re.M))
 
@@ -115,17 +115,17 @@ def main():
     write(p, t)
 
     print("Đã tạo: %s" % dest)
-    print("  - Đã xoá %d item [EXAMPLE] và dọn các dòng mẫu trong hub/" % removed)
-    tool = os.path.join(dest, "_scripts", "export-hub.py")
+    print("  - Đã xoá %d item [EXAMPLE] và dọn các dòng mẫu trong stages/ và reference/" % removed)
+    tool = os.path.join(dest, "_ai", "export-hub.py")
     if os.path.isfile(tool):
         r = subprocess.run([sys.executable, tool], cwd=dest, capture_output=True, text=True)
-        print("  - index.html: %s" % ("đã tạo" if r.returncode == 0 else "lỗi, chạy lại: python3 _scripts/export-hub.py"))
+        print("  - index.html: %s" % ("đã tạo" if r.returncode == 0 else "lỗi, chạy lại: python3 _ai/export-hub.py"))
         if r.returncode != 0:
             print(r.stderr.strip()[-400:])
     print("\nViệc đầu tiên:")
     print("  1. Mở folder %s bằng công cụ bạn quen (AI coding tool, VS Code hoặc Obsidian)." % a.name)
     print("  2. Mở README.md trong folder, điền Project card, rồi điền context/product-and-users.md và context/data-rules.md.")
-    print("  3. Khi có item đầu tiên, copy một file trong hub/_item-templates/ vào folder loại tương ứng, ví dụ hub/decisions/.")
+    print("  3. Khi có item đầu tiên, copy một file trong insights/_templates/ vào folder loại tương ứng, ví dụ insights/decisions/.")
 
 
 if __name__ == "__main__":

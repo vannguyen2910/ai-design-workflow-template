@@ -4,27 +4,52 @@ File này dành cho AI tool. Đọc nó trước khi làm bất cứ việc gì 
 
 ## What this folder is
 
-Case folder của một người làm sản phẩm (designer, researcher, PM...) làm việc theo quy trình AI-assisted: AI soạn nháp, chủ dự án kiểm tra và quyết định. Folder chia theo việc bạn làm: `context/` (thông tin nền), `work/` (file làm việc theo giai đoạn), `hub/` (bản ghi quyết định), `reference/` (trang tra cứu), `steps/` (các bước làm việc với AI). Mỗi bước được định nghĩa bằng một step card trong `steps/`.
+Case folder của một người làm sản phẩm (designer, researcher, PM...) làm việc theo quy trình AI-assisted: AI soạn nháp, chủ dự án kiểm tra và quyết định. Folder chia theo việc bạn làm: `context/` (thông tin nền), `stages/` (trang kể lại từng giai đoạn), `work/` (mọi thứ làm ra), `insights/` (các item nối với nhau), `reference/` (trang tra cứu), và `_ai/` (step card và script cho AI). Mỗi bước làm việc với AI được định nghĩa bằng một step card trong `_ai/`.
 
 ## Map
+
+Mỗi folder không có `_` ở gốc là một mục trong menu của báo cáo `index.html`, cùng tên.
 
 | Đường dẫn | Là gì | Bạn được làm gì |
 |---|---|---|
 | `AGENTS.md` | Luật cho AI tool (file này) | Đọc |
-| `context/*.md` | Context pack: thông tin nền của case (sản phẩm, người dùng, quy tắc dữ liệu) | Đọc đầu tiên ở mọi bước. Không sửa trừ khi được yêu cầu |
-| `steps/*.md` | Định nghĩa từng bước làm việc với AI (step card) | Đọc card của bước đang chạy |
-| `work/discover/`, `work/define/`, `work/develop/`, `work/deliver/` | Working file theo giai đoạn | Chỉ ghi vào đúng section được yêu cầu |
+| `README.md` | Overview: project card và bảng "Tôi muốn... mở..." | Đọc. Chỉ sửa khi được yêu cầu |
+| `context/*.md` | Context pack: thông tin nền (sản phẩm, người dùng, quy tắc dữ liệu, design system) | Đọc đầu tiên ở mọi bước. Không sửa trừ khi được yêu cầu |
+| `_ai/*.md` | Định nghĩa từng bước làm việc với AI (step card) | Đọc card của bước đang chạy |
+| `stages/*.md` | Một trang kể lại cho mỗi giai đoạn, và bảng Pages ở `stages/README.md` | Chỉ ghi vào các khối `generated` khi chạy `_ai/refresh-hub.md`. Phần kể chuyện do chủ dự án viết |
+| `work/*.md`, `work/<tên>/index.md` | Mọi thứ làm ra: file làm việc theo giai đoạn (`scope`, `problem-brief`, `findings`...) và tài liệu (wireframe, persona, flow). Có thể kèm ảnh, PDF, HTML trong folder | Chỉ ghi vào đúng section được yêu cầu. Không chép nội dung vào `stages/`: trang đó dẫn về file làm việc |
 | `work/sources/anonymised/` | Dữ liệu đã ẩn danh, có ID | Đọc. Nguồn duy nhất cho quote và số liệu |
-| `hub/opportunities/O1.md`, `hypotheses/H1.md`, `metrics/M1.md`, `decisions/D1.md`, `evidence/E1.md`… | **Nguồn duy nhất** của mỗi item (O, H, M, D, E). Mỗi loại một folder; tên file là mã của item | Đọc. Chỉ sửa khi được yêu cầu sửa đúng item đó |
-| `hub/artifacts/` | Tài liệu của dự án: một file `.md`, hoặc một folder có `index.md` cùng các tệp ảnh, PDF, HTML | Đọc. Tạo hoặc sửa khi được yêu cầu đúng tài liệu đó. Không chép nội dung working file vào đây: dùng `source:` |
-| `hub/README.md` và các trang `hub/*.md` | Tổng hợp và narrative | Chỉ ghi vào các khối `generated` khi chạy `steps/refresh-hub.md` |
 | `work/prototype/` | Code prototype | Làm việc ở đây khi dựng prototype, theo `project-rules.md` trong folder đó |
-| `work/original-docs/` | Tài liệu gốc của dự án mẫu (chỉ có ở demo-case) | Đọc để đối chiếu. Không sửa |
+| `insights/opportunities/O1.md`, `hypotheses/H1.md`, `metrics/M1.md`, `decisions/D1.md`, `evidence/E1.md`, `findings/F1.md`… | **Nguồn duy nhất** của mỗi item (O, H, M, D, E, F). Mỗi loại một folder; tên file là mã của item | Đọc. Chỉ sửa khi được yêu cầu sửa đúng item đó. Không tự đặt `resolution: fixed` hay `accepted` cho finding |
+| `insights/_templates/` | Mẫu rỗng cho từng loại item | Đọc. Copy vào đúng folder loại (ví dụ `insights/decisions/`) khi được yêu cầu tạo item mới, không sửa file mẫu |
 | `reference/*.md` | Trang tra cứu: gates, principle checks, severity levels, case log, và mọi trang chủ dự án thêm vào | Đọc. Chỉ sửa khi được yêu cầu đúng trang đó. `reference/case-log.md`: thêm dòng khi được yêu cầu |
-| `_scripts/export-hub.py` | Script xuất hub ra một file HTML | Chạy khi được yêu cầu (`python3 _scripts/export-hub.py`). Không sửa, và không tự viết HTML thay cho script |
-| `index.html` | Trang chủ của hub, xuất ra từ Markdown để xem bằng trình duyệt | Không đọc, không sửa tay. Muốn cập nhật thì chạy `_scripts/export-hub.py` |
+| `_ai/export-hub.py` | Script xuất báo cáo ra một file HTML | Chạy khi được yêu cầu (`python3 _ai/export-hub.py`). Không sửa, và không tự viết HTML thay cho script |
+| `index.html` | Báo cáo, xuất ra từ Markdown để xem bằng trình duyệt | Không đọc, không sửa tay. Muốn cập nhật thì chạy `_ai/export-hub.py` |
 | `_personal/` | Ghi chú riêng của chủ dự án | **Không đọc, không ghi** |
 | `work/sources/_raw-private/` | Dữ liệu gốc chưa ẩn danh | **Không đọc, không ghi** |
+| `work/original-docs/` | Tài liệu gốc của dự án mẫu (chỉ có ở demo-case) | Đọc để đối chiếu. Không sửa |
+
+## Where things go
+
+Khi chủ dự án nhờ bạn làm hoặc thêm một thứ gì đó mà không nói đặt ở đâu, bạn tự chọn chỗ theo bảng này. Nếu chủ dự án đã nói rõ chỗ thì làm theo họ.
+
+| Chủ dự án đưa hoặc nhờ | Đặt ở | Ghi chú |
+|---|---|---|
+| Ảnh, PDF, video, prototype HTML, flow, hoặc tài liệu để người khác xem | `work/<tên-ngắn>/` kèm `index.md` (bắt đầu từ mẫu trong `work/_templates/`); tệp lẻ thì `work/<tên>.md`. Làm theo `_ai/add-media.md` | Điền `supports` bằng mã item nó làm bằng chứng cho nếu biết. Không biết thì để `[]`, đừng đoán |
+| Bản nháp hoặc tổng hợp của một giai đoạn | `work/<tên>.md` đúng file của giai đoạn (`scope`, `user-voice-synthesis`, `competitor-analysis`, `problem-brief`, `options`, `alignment`, `test-plan`, `findings`, `handoff`, `measurement-plan`) | Chỉ ghi vào đúng section được yêu cầu |
+| Một quyết định thiết kế | `insights/decisions/D<số>.md` và một dòng ở `reference/case-log.md` | |
+| Một nhu cầu, hypothesis, metric, evidence hoặc finding | Folder loại tương ứng trong `insights/`, copy từ `insights/_templates/` | |
+| Một trang tra cứu mới (glossary, brand voice...) | `reference/<tên>.md` | Tự hiện ở mục Reference của báo cáo |
+| Dữ liệu nghiên cứu thô (phỏng vấn, khảo sát) | **Không** tự đặt vào `work/sources/anonymised/`. Nhắc chủ dự án ẩn danh trước; bản gốc để ở `work/sources/_raw-private/`, bạn không đọc | |
+| Ghi chú riêng của chủ dự án | `_personal/` | Bạn không đọc, không ghi |
+| Không rõ thuộc loại nào | Hỏi lại một câu | Đừng đoán và đừng đặt ở gốc folder |
+
+Khi đặt file:
+
+1. **Mã kế tiếp:** liệt kê folder loại và dùng số lớn nhất cộng một. Không bao giờ ghi đè file đã có.
+2. **Tên file ngắn, chữ thường, nối bằng dấu gạch ngang** cho tài liệu; mã item cho item.
+3. **Nói lại chỗ bạn đã đặt:** nêu đường dẫn đầy đủ, và những gì bạn không chắc (ví dụ `supports` còn trống).
+4. **Nhắc chủ dự án** nhờ cập nhật hub (`_ai/refresh-hub.md`) và tạo lại `index.html` khi cần.
 
 ## Hard rules
 
@@ -35,21 +60,21 @@ Case folder của một người làm sản phẩm (designer, researcher, PM...)
 5. **Con số nào chưa được xác nhận thì ghi `assumed`.** Suy luận không có trong nguồn thì ghi `inferred`.
 6. **Dừng và báo** nếu bạn thấy dữ liệu có vẻ chưa ẩn danh (tên người, email, username, tên công ty) trong folder bạn được phép đọc.
 7. **Nói rõ điều bạn không chắc.** Liệt kê item bạn không chắc thay vì đoán link hay quan hệ.
-8. **Không tạo bản sao của một item.** Item chỉ tồn tại trong file của nó (`hub/decisions/D2.md`...). Quan hệ nằm trong properties (khối `---` ở đầu file) dưới dạng wikilink trong dấu nháy, và chỉ khai báo một chiều. Các bảng ở nơi khác là khối `generated`, không điền tay.
+8. **Không tạo bản sao của một item.** Item chỉ tồn tại trong file của nó (`insights/decisions/D2.md`...). Quan hệ nằm trong properties (khối `---` ở đầu file) dưới dạng wikilink trong dấu nháy, và chỉ khai báo một chiều. Các bảng ở nơi khác là khối `generated`, không điền tay.
 9. **Nếu folder là git repo và có thay đổi chưa commit,** nhắc chủ dự án commit trước khi bạn ghi file.
 
 ## Reading order
 
 1. `AGENTS.md`
 2. `context/*.md` (toàn bộ, trừ khi card nói khác)
-3. Card của bước đang chạy trong `steps/`
+3. Card của bước đang chạy trong `_ai/`
 4. Đúng các file input mà card liệt kê, không hơn
 
 Không đọc cả folder để "lấy thêm ngữ cảnh": thêm file không liên quan làm kết quả tệ đi.
 
 ## Running a step
 
-Khi chủ dự án nói "chạy step N của `steps/<tên>.md`":
+Khi chủ dự án nói "chạy step N của `_ai/<tên>.md`":
 
 1. Đọc card, tìm step N.
 2. Chỉ đọc các file ở dòng `Input` của step đó.

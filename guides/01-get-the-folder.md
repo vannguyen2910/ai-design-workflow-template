@@ -68,6 +68,6 @@ Bốn thao tác này là toàn bộ những gì bạn cần biết về Git. Cá
 
 - [ ] Folder nằm trong `Documents`, không nằm trong folder đồng bộ cloud.
 - [ ] Bạn thấy `my-case` và `demo-case` trong folder.
-- [ ] Bạn mở được file `my-case/hub/README.md` và đọc được nội dung.
+- [ ] Bạn mở được file `my-case/README.md` và đọc được nội dung.
 
 Mở được nhưng bảng và link hiển thị thô? Bình thường: file Markdown cần một trình xem. Xem phần "View markdown files" trong [`02-set-up-your-case.md`](02-set-up-your-case.md).

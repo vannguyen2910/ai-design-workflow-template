@@ -14,6 +14,7 @@ File này là trang đầu của dự án. Điền **Project card** trước, r�
 | Bắt đầu | |
 | Cập nhật lần cuối | |
 | Công cụ AI được phép dùng cho dự án này | |
+| Agreement status | pending *(agreed / pending / not available)* |
 | Quy tắc dữ liệu | Xem `context/data-rules.md` |
 
 <!-- template-only -->
@@ -27,41 +28,53 @@ Chọn việc bạn muốn làm, rồi mở đúng chỗ trong cột giữa.
 | Tôi muốn... | Mở | Nhờ AI chạy |
 |---|---|---|
 | **Bắt đầu dự án:** ghi sản phẩm, người dùng, quy tắc dữ liệu | `context/product-and-users.md`, rồi `context/data-rules.md` | |
-| **Hiểu người dùng và thị trường** (Discover) | `work/discover/` | `steps/user-voice-synthesis.md`, `steps/competitor-analysis.md` |
-| **Chốt vấn đề đáng giải** (Define) | `work/define/problem-brief.md` | |
-| **Khám phá hướng giải, dựng prototype** (Develop) | `work/develop/`, `work/prototype/` | |
-| **Test và bàn giao** (Deliver) | `work/deliver/` | |
-| **Ghi lại một quyết định** | `hub/decisions/` (một file mỗi decision) và `reference/case-log.md` (một dòng) | `steps/refresh-hub.md` |
-| **Thêm một tài liệu vào báo cáo** (persona, flow, ảnh, prototype) | `hub/artifacts/` | |
+| **Hiểu người dùng và thị trường** (Discover) | `work/scope.md`, `work/user-voice-synthesis.md`, `work/competitor-analysis.md` | `_ai/user-voice-synthesis.md`, `_ai/competitor-analysis.md` |
+| **Chốt vấn đề đáng giải** (Define) | `work/problem-brief.md` | |
+| **Khám phá hướng giải, dựng prototype** (Develop) | `work/options.md`, `work/alignment.md`, `work/prototype/` | |
+| **Test và bàn giao** (Deliver) | `work/test-plan.md`, `work/findings.md`, `work/handoff.md`, `work/measurement-plan.md` | |
+| **Ghi lại một quyết định** | `insights/decisions/` (một file mỗi decision) và `reference/case-log.md` (một dòng) | `_ai/refresh-hub.md` |
+| **Thêm ảnh, video, PDF hoặc tài liệu vào báo cáo** (wireframe, screenshot, persona, flow, prototype) | Thả vào một folder trong `work/` (xem mục "Thêm ảnh, video, PDF" ở `work/README.md`) | `_ai/add-media.md` |
 | **Đánh giá thiết kế theo heuristics, chấm severity** | `reference/principle-checks.md`, `reference/severity-levels.md` | |
-| **Kiểm tra gate** | `reference/gates.md` | `steps/refresh-hub.md` |
+| **Ghi một vấn đề usability tìm thấy (finding)** | `insights/findings/` (một file mỗi finding; chấm severity theo `reference/severity-levels.md`) | `_ai/refresh-hub.md` |
+| **Kiểm tra gate** | `reference/gates.md` | `_ai/refresh-hub.md` |
 | **Xem tiến độ và những chỗ cần xem lại** | `index.html`, mục Overview | |
-| **Gửi báo cáo cho người khác** | `index.html` (đổi tên rồi gửi) | `steps/export-hub.md` |
+| **Gửi báo cáo cho người khác** | `index.html` (đổi tên rồi gửi) | `_ai/export-hub.md` |
 | **Thêm một trang tra cứu của riêng bạn** (glossary, brand voice...) | Thả một file `.md` vào `reference/` | |
+
+**Nhờ AI đặt đúng chỗ.** Bạn không cần nhớ folder: đưa ảnh, tài liệu hoặc một quyết định cho AI tool và nói "thêm vào dự án". `AGENTS.md` có bảng "Where things go" để AI chọn chỗ (ảnh và tài liệu vào `work/`, quyết định vào `insights/decisions/`...) và nói lại chỗ nó đã đặt. Nếu không chắc nó sẽ hỏi bạn một câu.
 
 ## Sơ đồ folder
 
 ```
 my-case/
-├── README.md        trang này: bắt đầu từ đâu
-├── index.html       báo cáo hub: bấm đúp để xem bằng trình duyệt
+├── README.md        OVERVIEW: project card và bảng "Tôi muốn... mở..."
+├── index.html       báo cáo: bấm đúp để xem bằng trình duyệt
 ├── AGENTS.md        luật cho AI tool (tool tự đọc file này khi bạn mở folder)
 │
-├── context/         THÔNG TIN NỀN: sản phẩm, người dùng, quy tắc. Đưa cho AI đọc trước
-├── work/            LÀM VIỆC theo giai đoạn
-│   ├── discover/    define/    develop/    deliver/
-│   ├── sources/     dữ liệu nghiên cứu: anonymised/ (đã ẩn danh) và _raw-private/ (gốc, không đưa cho AI)
-│   └── prototype/   code prototype
-├── hub/             BẢN GHI QUYẾT ĐỊNH: opportunities/, hypotheses/, decisions/, evidence/, metrics/,
-│                    các trang giai đoạn 01 đến 07, và artifacts/ (tài liệu)
-├── reference/       TRA CỨU: gates, principle checks, severity levels, case log, và trang bạn thêm
+├── context/         CONTEXT    thông tin nền: sản phẩm, người dùng, quy tắc, design system
+├── stages/          STAGES     mỗi giai đoạn một trang kể lại điều đã được kiểm tra
+├── work/            WORK       mọi thứ làm ra: file làm việc, wireframe, prototype, persona, nguồn nghiên cứu
+├── insights/        INSIGHTS   nhu cầu, hypothesis, decision, evidence, finding, metric (mỗi loại một folder)
+├── reference/       REFERENCE  gates, principle checks, severity levels, case log
 │
-├── steps/           CÁC BƯỚC LÀM VIỆC VỚI AI (step card): nói với AI "chạy steps/<tên>.md"
-├── _scripts/        script tạo báo cáo (bạn hiếm khi cần mở)
+├── _ai/             step card và script cho AI (hiếm khi cần mở tay)
 └── _personal/       ghi chú riêng, không đưa cho AI
 ```
 
-Bốn folder đầu là bốn việc: **hiểu bối cảnh → làm việc → ghi quyết định → tra cứu**. Hai folder bắt đầu bằng `_` là phần kỹ thuật: bạn không cần mở chúng để làm việc.
+**Một quy tắc để nhớ: mỗi folder không có `_` là một mục trong menu báo cáo, cùng tên.** Folder có `_` không nằm trong báo cáo.
+
+### Menu của báo cáo ↔ folder
+
+Báo cáo `index.html` ghi sẵn dòng "Folder" và "Thêm mới" ở đầu mỗi mục, và "File gốc" ở cuối mỗi trang, nên từ báo cáo bạn luôn biết file nằm ở đâu.
+
+| Mục trong báo cáo | Folder | Có gì | Muốn thêm mới thì |
+|---|---|---|---|
+| **Overview** | `README.md` | Project card, tiến độ, những chỗ cần xem lại (tự tính) | Sửa `README.md` và các file nguồn, rồi tạo lại báo cáo |
+| **Context** | `context/` | Sản phẩm, người dùng, quy tắc dữ liệu, design system | Thả một file `.md` vào folder |
+| **Stages** | `stages/` | Một trang cho mỗi giai đoạn: scope, evidence, problem brief, develop, alignment, findings, handoff | Thêm một file `.md` vào folder và một dòng vào bảng Pages ở `stages/README.md` |
+| **Work** | `work/` | Mọi thứ làm ra: file làm việc, wireframe, prototype, persona, flow | Thả file vào folder, hoặc tạo folder con (kèm `index.md`) rồi thả ảnh, PDF, video vào đó |
+| **Insights** | `insights/` (`opportunities/`, `hypotheses/`, `decisions/`, `evidence/`, `findings/`, `metrics/`) | Các item nối với nhau | Copy một mẫu trong `insights/_templates/` vào folder loại tương ứng |
+| **Reference** | `reference/` | Gates, principle checks, severity levels, case log | Thả một file `.md` vào folder |
 
 ## Rules
 
@@ -72,7 +85,7 @@ Bốn folder đầu là bốn việc: **hiểu bối cảnh → làm việc → 
 
 ## Giữ cho dự án luôn mới
 
-- **Quyết định mới:** một file ở `hub/decisions/` và một dòng ở `reference/case-log.md`.
-- **Thông tin mới:** sửa file item hoặc file làm việc, nhờ AI chạy `steps/refresh-hub.md`, rồi tạo lại `index.html` (nhờ AI chạy `python3 _scripts/export-hub.py`).
+- **Quyết định mới:** một file ở `insights/decisions/` và một dòng ở `reference/case-log.md`.
+- **Thông tin mới:** sửa file item hoặc file làm việc, nhờ AI chạy `_ai/refresh-hub.md`, rồi tạo lại `index.html` (nhờ AI chạy `python3 _ai/export-hub.py`).
 - **Trước thay đổi lớn:** lưu một mốc (commit) hoặc copy folder thành bản `-backup`.
 - **Gửi cho người khác:** copy `index.html` ra ngoài và đổi tên (ví dụ `onboarding-redesign-report.html`).

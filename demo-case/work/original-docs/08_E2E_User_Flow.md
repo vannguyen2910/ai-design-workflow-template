@@ -101,7 +101,7 @@ flowchart LR
 
 Where Section 3 shows what the user *does* over time (a flow), a sitemap shows how the product's screens are *organised and named* (Dippner, 2022, p. 112) — the two are complementary views of the same product, not duplicates of each other. The sitemap below is built by folding this flow's phases and the cross-phase connections already in the diagram above (Section 3) into a Tier 1 → Tier 2 → Tier 3 hierarchy: **Tier 1** is the app root; **Tier 2** is the seven primary sections a user would navigate between (five content pillars plus Onboarding and a Dashboard hub); **Tier 3** is the key screens or actions inside each section, each traceable back to a Solution Pool ID.
 
-![Information Architecture Sitemap — Travel Buddy, Tier 1 to Tier 3](../../hub/artifacts/ia-sitemap/IA_Sitemap.png)
+![Information Architecture Sitemap — Travel Buddy, Tier 1 to Tier 3](../../work/ia-sitemap/IA_Sitemap.png)
 
 **Figure 1.** Hypothesised sitemap, pending validation. Two structural decisions are worth flagging explicitly:
 

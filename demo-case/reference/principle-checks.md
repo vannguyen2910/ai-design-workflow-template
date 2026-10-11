@@ -8,7 +8,7 @@
 2. **Đánh giá thiết kế:** với mỗi decision hoặc màn hình, đi qua từng câu hỏi. Câu trả lời "không" là một vi phạm.
 3. **Ghi mỗi vi phạm kèm mức độ nghiêm trọng** (0 đến 4), theo [Severity levels](severity-levels.md).
 4. **Đánh giá độc lập, rồi gộp lại:** một người thường chỉ tìm được một phần vấn đề. Nếu có thể, nhờ 3 đến 5 người đánh giá riêng, sau đó gộp kết quả.
-5. **Nối về hub:** decision đạt thì ghi `follows` tới principle, decision vi phạm mà bạn chấp nhận thì ghi `pulls_against` và lý do (xem `hub/how-the-hub-works.md`).
+5. **Nối về hub:** decision đạt thì ghi `follows` tới principle, decision vi phạm mà bạn chấp nhận thì ghi `pulls_against` và lý do (xem `reference/how-the-hub-works.md`).
 
 ## Bảng principle
 

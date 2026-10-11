@@ -22,14 +22,14 @@ Bạn không cần biết GitHub hay lập trình để bắt đầu.
    python3 tools/new-case.py onboarding-redesign
    ```
 
-   Không dùng được Terminal? Đổi tên folder `my-case` theo dự án của bạn, rồi tự xoá các item `[EXAMPLE]` trong `hub/`.
+   Không dùng được Terminal? Đổi tên folder `my-case` theo dự án của bạn, rồi tự xoá các item `[EXAMPLE]` trong `insights/`.
 3. **Xem hub.** Bấm đúp file `index.html` trong folder dự án: nó mở bằng trình duyệt và không cần cài gì. Khi làm việc, mở **cả folder dự án** bằng công cụ bạn quen (AI coding tool, VS Code hay Obsidian).
 
 Xong ba bước này là dự án đã có chỗ ở. Các bước sau làm dần theo tiến độ thật của dự án.
 
 ## One project, one folder
 
-Mỗi dự án là **một case folder độc lập và tự chứa**: nó mang theo luật cho AI (`AGENTS.md`), các bước làm việc (`steps/`), script tạo báo cáo và hub. Bạn copy nguyên folder ra khỏi workspace này, ví dụ vào folder dự án của công ty, và nó vẫn chạy.
+Mỗi dự án là **một case folder độc lập và tự chứa**: nó mang theo luật cho AI (`AGENTS.md`), các bước làm việc (`_ai/`), script tạo báo cáo và hub. Bạn copy nguyên folder ra khỏi workspace này, ví dụ vào folder dự án của công ty, và nó vẫn chạy.
 
 ```
 workspace/
@@ -49,33 +49,43 @@ workspace/
 |---|---|
 | **AI tool** | Công cụ AI bạn dùng: chat để hỏi đáp, hoặc coding tool để đọc và ghi file trong folder |
 | **Ẩn danh** | Thay tên người, tên công ty và số liệu thật bằng tên và số giả trước khi đưa cho AI |
-| **Hub** | Folder `hub/`, nơi ghi lại các design decision và lý do đứng sau chúng. File `index.html` là trang chủ để xem nó |
+| **Hub** | Tên gọi chung cho cả bộ nội dung của dự án (các folder `stages/`, `work/`, `insights/`...) và báo cáo `index.html` hiển thị nó |
 | **Item** | Một nhu cầu (opportunity), hypothesis, decision, evidence hoặc metric. Mỗi item là một file |
-| **Step card** | File trong `steps/` hướng dẫn một bước làm việc với AI |
+| **Step card** | File trong `_ai/` hướng dẫn một bước làm việc với AI |
 | **assumed** | Nhãn bạn ghi cạnh con số chưa được ai xác nhận |
 
 ## Inside a project folder
 
 ```
 my-case/
-├── README.md        trang đầu: bảng "Tôi muốn... mở..." cho từng việc
-├── index.html       báo cáo hub: bấm đúp để xem bằng trình duyệt
-├── AGENTS.md        luật cho AI tool; tool tự đọc file này khi bạn mở folder
+├── README.md        OVERVIEW: project card và bảng "Tôi muốn... mở..."
+├── index.html       báo cáo: bấm đúp để xem bằng trình duyệt
+├── AGENTS.md        luật cho AI tool (tool tự đọc file này khi bạn mở folder)
 │
-├── context/         THÔNG TIN NỀN: sản phẩm, người dùng, quy tắc (đưa cho AI đọc trước tiên)
-├── work/            LÀM VIỆC theo giai đoạn: discover/, define/, develop/, deliver/,
-│                    cùng sources/ (dữ liệu nghiên cứu) và prototype/
-├── hub/             BẢN GHI QUYẾT ĐỊNH: opportunities/, hypotheses/, decisions/, evidence/, metrics/,
-│                    các trang giai đoạn, và artifacts/ (tài liệu)
-├── reference/       TRA CỨU: gates, principle checks, severity levels, case log, và trang bạn thêm
+├── context/         CONTEXT    thông tin nền: sản phẩm, người dùng, quy tắc, design system
+├── stages/          STAGES     mỗi giai đoạn một trang kể lại điều đã được kiểm tra
+├── work/            WORK       mọi thứ làm ra: file làm việc, wireframe, prototype, persona, nguồn nghiên cứu
+├── insights/        INSIGHTS   nhu cầu, hypothesis, decision, evidence, finding, metric (mỗi loại một folder)
+├── reference/       REFERENCE  gates, principle checks, severity levels, case log
 │
-├── steps/           CÁC BƯỚC LÀM VIỆC VỚI AI (step card)
-├── _scripts/        script tạo báo cáo (hiếm khi cần mở)
+├── _ai/             step card và script cho AI (hiếm khi cần mở tay)
 └── _personal/       ghi chú riêng, không đưa cho AI
 ```
 
-Bốn folder đầu là bốn việc: **hiểu bối cảnh, làm việc, ghi quyết định, tra cứu**. Folder bắt đầu bằng `_` là phần kỹ thuật hoặc riêng tư.
+**Một quy tắc để nhớ: mỗi folder không có `_` là một mục trong menu báo cáo, cùng tên.** Folder có `_` không nằm trong báo cáo.
 
+### Menu của báo cáo ↔ folder
+
+Báo cáo `index.html` ghi sẵn dòng "Folder" và "Thêm mới" ở đầu mỗi mục, và "File gốc" ở cuối mỗi trang, nên từ báo cáo bạn luôn biết file nằm ở đâu.
+
+| Mục trong báo cáo | Folder | Có gì | Muốn thêm mới thì |
+|---|---|---|---|
+| **Overview** | `README.md` | Project card, tiến độ, những chỗ cần xem lại (tự tính) | Sửa `README.md` và các file nguồn, rồi tạo lại báo cáo |
+| **Context** | `context/` | Sản phẩm, người dùng, quy tắc dữ liệu, design system | Thả một file `.md` vào folder |
+| **Stages** | `stages/` | Một trang cho mỗi giai đoạn: scope, evidence, problem brief, develop, alignment, findings, handoff | Thêm một file `.md` vào folder và một dòng vào bảng Pages ở `stages/README.md` |
+| **Work** | `work/` | Mọi thứ làm ra: file làm việc, wireframe, prototype, persona, flow | Thả file vào folder, hoặc tạo folder con (kèm `index.md`) rồi thả ảnh, PDF, video vào đó |
+| **Insights** | `insights/` (`opportunities/`, `hypotheses/`, `decisions/`, `evidence/`, `findings/`, `metrics/`) | Các item nối với nhau | Copy một mẫu trong `insights/_templates/` vào folder loại tương ứng |
+| **Reference** | `reference/` | Gates, principle checks, severity levels, case log | Thả một file `.md` vào folder |
 
 ## The life of a project
 
@@ -84,13 +94,13 @@ Một dự án đi qua năm giai đoạn. Bạn không cần làm hết một l�
 | Giai đoạn | Câu hỏi cần trả lời | File chính |
 |---|---|---|
 | **Setup** | Dự án là gì, ai dùng, được đưa gì cho AI? | `context/product-and-users.md`, `accessibility-rules.md`, `data-rules.md`, `open-questions.md` |
-| **Discover** | Chúng ta chưa biết gì, và bằng chứng nào có thể tin? | `work/discover/scope.md`, `user-voice-synthesis.md`, `competitor-analysis.md` |
-| **Define** | Vấn đề nào đáng giải, và thành công trông thế nào? | `work/define/problem-brief.md`, `reference/principle-checks.md` |
-| **Develop** | Giải bằng cách nào, và vì sao chọn cách đó? | `work/develop/options.md`, `work/prototype/`, `work/develop/alignment.md`, `context/design-system-notes.md` |
-| **Deliver** | Nó có hiệu quả không, và bàn giao gì? | `work/deliver/test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md`; chấm mức độ bằng `reference/severity-levels.md` |
-| **Mọi giai đoạn** | Chúng ta đã quyết định gì, và vì sao? | `reference/case-log.md` và các trang của `hub/` |
+| **Discover** | Chúng ta chưa biết gì, và bằng chứng nào có thể tin? | `work/scope.md`, `work/user-voice-synthesis.md`, `work/competitor-analysis.md` |
+| **Define** | Vấn đề nào đáng giải, và thành công trông thế nào? | `work/problem-brief.md`, `reference/principle-checks.md` |
+| **Develop** | Giải bằng cách nào, và vì sao chọn cách đó? | `work/options.md`, `work/prototype/`, `work/alignment.md`, `context/design-system-notes.md` |
+| **Deliver** | Nó có hiệu quả không, và bàn giao gì? | `work/test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md`; chấm mức độ bằng `reference/severity-levels.md` |
+| **Mọi giai đoạn** | Chúng ta đã quyết định gì, và vì sao? | `reference/case-log.md`, các trang ở `stages/` và các item ở `insights/` |
 
-Dự án thật không đi một chiều. Khi có thông tin mới, bạn quay lại giai đoạn trước: cập nhật file ở giai đoạn đó, rồi tạo lại hub (xem `steps/refresh-hub.md`).
+Dự án thật không đi một chiều. Khi có thông tin mới, bạn quay lại giai đoạn trước: cập nhật file ở giai đoạn đó, rồi tạo lại hub (xem `_ai/refresh-hub.md`).
 
 ## Keep a project alive
 
@@ -132,13 +142,13 @@ Khi dùng cho dự án thật của công ty:
 Bạn đổi được hầu hết mọi thứ:
 
 - Đổi tên folder dự án, nhân đôi nó, hoặc thêm folder riêng như `notes/`. Muốn thêm một trang tra cứu, chỉ cần thả file `.md` vào `reference/`.
-- Xoá file bạn không dùng, ví dụ `context/glossary.md` hay `work/discover/competitor-analysis.md`.
+- Xoá file bạn không dùng, ví dụ `context/glossary.md` hay `work/competitor-analysis.md`.
 - Sửa nội dung các file mẫu cho hợp cách làm của team bạn.
 
 Có hai thứ nên giữ nguyên để AI tool và hub đọc đúng:
 
-- **Tên các folder `context/`, `work/`, `hub/`, `reference/`, `steps/`, `_scripts/` và file `AGENTS.md`.** Các step card gọi file theo đúng đường dẫn này.
-- **Tên file trong `hub/` và mã của item** (`O1`, `H1`, `D1`...). Các item nối với nhau qua mã, nên đổi tên là làm đứt liên kết.
+- **Tên các folder `context/`, `stages/`, `work/`, `insights/`, `reference/`, `_ai/` và file `AGENTS.md`.** Các step card gọi file theo đúng đường dẫn này.
+- **Tên file trong `insights/` và mã của item** (`O1`, `H1`, `D1`...). Các item nối với nhau qua mã, nên đổi tên là làm đứt liên kết.
 
 ## Which folder do I use?
 

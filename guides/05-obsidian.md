@@ -16,7 +16,7 @@ Obsidian có thể hỏi bạn có muốn bật "community plugins". Bạn khôn
 
 | Tính năng | Dùng để | Làm thế nào |
 |---|---|---|
-| **Bảng theo loại** | Xem mọi decision, hypothesis, test cùng lúc | Mở `hub/traceability.base`, rồi chuyển giữa các tab: Opportunities, Hypotheses, Decisions, Tests, Metrics |
+| **Bảng theo loại** | Xem mọi decision, hypothesis, test cùng lúc | Mở `insights/traceability.base`, rồi chuyển giữa các tab: Opportunities, Hypotheses, Decisions, Tests, Metrics |
 | **Properties** | Nối một item với item khác mà không phải gõ mã | Mở một file item, bấm vào dòng `tests`, gõ `[[`, rồi chọn file trong danh sách |
 | **Backlinks** | Thấy những item nào đang nối tới item này | Mở khung Backlinks ở thanh bên phải khi đang mở một item |
 | **Graph view** | Nhìn cả mạng quan hệ trong một hình | `Cmd+G` (Mac) hoặc `Ctrl+G` (Windows) |
@@ -26,7 +26,7 @@ Obsidian có thể hỏi bạn có muốn bật "community plugins". Bạn khôn
 
 Mặc định Graph view hiện cả các file làm việc. Để chỉ thấy hub:
 
-1. Trong Graph view, mở khung **Filters** và gõ `path:hub` vào ô tìm kiếm.
+1. Trong Graph view, mở khung **Filters** và gõ `path:insights` vào ô tìm kiếm.
 2. Mở **Groups** và thêm một group cho mỗi loại, mỗi cái một màu:
    - `file:/^O\d+/`
    - `file:/^H\d+/`

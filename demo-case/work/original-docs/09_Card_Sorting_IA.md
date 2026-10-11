@@ -166,7 +166,7 @@ Collect all group names participants used. Look for:
 
 Before running the sort, the E2E flow suggests these natural groupings. The card sort will confirm, challenge, or reframe them. **Figure 1** visualizes all 26 cards laid out exactly as a participant would see them mid-sort in OptimalSort — five hypothesised groups, each card carrying its Solution Pool ID so the mapping stays traceable back to `07_Solution_Pool.md`.
 
-![Open Card Sort — Hypothesised Pre-Sort Structure, Travel Buddy, 26 cards across 5 groups](../../hub/artifacts/ia-sitemap/Card_Sort_Board.png)
+![Open Card Sort — Hypothesised Pre-Sort Structure, Travel Buddy, 26 cards across 5 groups](../../work/ia-sitemap/Card_Sort_Board.png)
 
 **Figure 1.** Pre-sort hypothesis — this is the structure the real 5–8 participant open sort is designed to test, not a result. If participants group cards differently (e.g., merging Discover and Plan/Trip into one "Trip Planning" section, per the open question below), this figure gets redrawn from their actual data, not adjusted to match this hypothesis.
 
