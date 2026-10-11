@@ -20,7 +20,7 @@ Bạn chỉ làm bốn việc, và đều bằng cách bấm nút trong **GitHub
 
 1. **Clone** repo của bạn về máy. Làm một lần.
 2. Làm việc trong folder như bình thường.
-3. **Commit** khi xong một buổi, kèm một dòng ghi chú.
+3. **Commit** khi xong một phần việc, kèm một dòng ghi chú.
 4. **Push** để bản của bạn lên GitHub.
 
 Các bước bấm chi tiết nằm ở phần "Option B" trong [`01-get-the-folder.md`](01-get-the-folder.md).
@@ -40,7 +40,7 @@ Quy tắc đơn giản: **repo chứa case của bạn để Private.** Chỉ kh
 | Bạn lo | Thực tế |
 |---|---|
 | "Tôi bấm sai thì mất file" | Mỗi commit là một mốc. Bạn luôn quay lại được bản trước đó |
-| "Có ai thấy bài của tôi không" | Repo Private thì chỉ bạn thấy. Giảng viên chỉ thấy khi bạn mời hoặc gửi link |
+| "Có ai thấy bài của tôi không" | Repo Private thì chỉ bạn thấy. Người khác (kể cả giảng viên) chỉ thấy khi bạn mời hoặc gửi link |
 | "Tôi gặp một thông báo lạ" | Chụp màn hình và gửi vào nhóm lớp. Trong lúc chờ, bạn vẫn làm việc bình thường: Git không chặn việc bạn sửa file |
 | "Mọi thứ rối hết cả lên" | Tải lại một bản ZIP mới, rồi chép các file bạn đã sửa sang folder mới |
 

@@ -6,52 +6,63 @@
 
 ## Decision this informs
 
-[MỘT CÂU lấy từ trang Scope]
+Travel Buddy nên đứng ở đâu so với các nền tảng đang có, và nên ưu tiên nhu cầu nào trước.
 
 ## Our answer
 
-[MỘT CÂU: "Chúng ta nên / không nên X, vì Y", hoặc "Chưa đủ evidence: còn cần Z"]
+Đứng ở chỗ chưa ai phủ: tip từ người thật có danh tính, kết nối phi giao dịch, lập kế hoạch và nhật ký trong một nơi, miễn phí. Ưu tiên lập kế hoạch ([O1](opportunities/O1.md)) và khám phá bản địa ([O2](opportunities/O2.md)). **Mức chắc chắn:** vừa phải; mẫu nhỏ (13 khảo sát, 1 phỏng vấn).
 
 ## What users said
 
-*Từ user-voice synthesis của bạn. Quote ID nối mỗi theme với lời nói đứng sau nó.*
+*Từ phỏng vấn P1 và khảo sát. Mẫu rất nhỏ, chỉ mang tính gợi ý.*
 
 | Theme | Quotes | Sources or people | Example quote ID | Counter-quote |
 |---|---|---|---|---|
-| [THEME 1] | [N] | [N] | [R01] | [R14 hoặc none] |
-| [THEME 2] | [N] | [N] | [I02-03] | [none] |
+| Phân mảnh là nỗi đau chính | 2 | 1 người (P1) | P1 | chưa có |
+| Đối chiếu chéo nguồn để tin | 1 | 1 người (P1) | P1 | chưa có |
+| Muốn tri thức địa phương, chưa biết hỏi ai | 1 | 1 người (P1) | P1 | chưa có |
+| Ghi nhật ký: mong muốn lớn hơn thực hiện | 1 | 1 người (P1) | P1 | chưa có |
 
-[Giới hạn của mẫu: thiếu ai, review và bạn bè làm lệch về hướng nào, tổng số quote và số người.]
+Giới hạn: một người phỏng vấn; khảo sát 13 phản hồi, lệch về châu Á và người trẻ. Chưa nghe phía cung (người địa phương).
 
 ## Who we compared, and why
 
-[Cách chọn đối thủ; ai bị loại và vì sao.]
+Năm đối thủ theo vai trò trong hành trình của du khách (TripAdvisor, Google Maps, Foursquare, Polarsteps, Airbnb Experiences) và AI chat tool, được thêm sau phỏng vấn P1.
 
 ## Comparison (verified)
 
-| Criterion | [COMPETITOR 1] | [COMPETITOR 2] | [COMPETITOR 3] |
-|---|---|---|---|
-| [CRITERION 1] | [Finding] [1] | [Finding] [2] | *unknown* |
-| [CRITERION 2] | [Finding] [3] | **inferred:** [Finding] | [Finding] [4] |
+| Criterion | TripAdvisor | Google Maps | Polarsteps | Airbnb Exp. |
+|---|---|---|---|---|
+| Khám phá địa phương | có | có | không | một phần |
+| Kết nối với người địa phương | không | không | không | có |
+| Nhật ký chuyến đi | không | không | có | không |
+| Miễn phí | có | có | có | không |
+
+*Bản đầy đủ gồm Foursquare và AI chat tool, mười tiêu chí: `01-discover/competitor-analysis.md`.*
 
 ## Beliefs we tested
 
 | What we believed | Verdict | Evidence |
 |---|---|---|
-| [BELIEF 1] | [Supported / Contradicted / Not addressed] | [Dòng hoặc nguồn] |
+| RH1: du khách không tin review thương mại | Supported | Mẹo người địa phương 4,46/5 so với 3,31/5; 10/13 từng thất vọng; P1 |
+| RH3: du khách dùng nhiều app | Supported (mạnh hơn trong phỏng vấn) | 5/13 nêu phân mảnh; P1 dùng 8 đến 10 app |
+| RH6: du khách sẵn lòng làm guide | Not addressed | Chưa phỏng vấn người địa phương |
+| RH10: chi phí chuyển đổi là rào cản chính | Contradicted một phần | Giá (7/13) là số 1; mạng lưới bạn bè chỉ 2/13 |
 
 ## Insights
 
-### Insight 1: [MỘT CÂU]
+### Insight 1: lập kế hoạch ở một nơi là hook, khám phá bản địa là cửa vào
 
-[Vì sao nó quan trọng. Hỗ trợ opportunity [O1](opportunities/O1.md).] Phản biện mạnh nhất: [MỘT DÒNG].
+Hỗ trợ [O1](opportunities/O1.md) và [O2](opportunities/O2.md). Phản biện mạnh nhất: thứ hạng này thay đổi khi mẫu tăng từ 8 lên 13, nên có thể còn đổi nữa.
 
 ## What this cannot tell us
 
-[Điều dữ liệu đối thủ không cho thấy; câu hỏi dành cho người dùng thật.]
+Nhu cầu ghi nhật ký là hành vi hay mong muốn; phía người địa phương có tham gia không; người dùng thật phản ứng ra sao với prototype.
 
 ## Sources and method
 
-1. [Nguồn, URL hoặc file, ngày thu thập]
+1. Khảo sát trực tuyến, 13 phản hồi hợp lệ (tháng 6/2026): `01-discover/sources/anonymised/04_User_Survey.md`
+2. Phỏng vấn P1 (tháng 6/2026): `01-discover/sources/anonymised/05_User_Interview_Guide.md`
+3. Phân tích đối thủ từ nguồn công khai: `01-discover/sources/anonymised/03_Competitor_Research_SWOT.md`
 
-[Phương pháp: AI chỉ trích xuất từ các nguồn trên. Tôi đã kiểm tra mọi ô của các tiêu chí hàng đầu và khoảng N% phần còn lại; tỷ lệ lỗi X%. "Inferred" nghĩa là nguồn không nói thẳng.]
+Phương pháp: tổng hợp thủ công, không dùng AI để code dữ liệu; không có bản nháp của AI để tính tỷ lệ lỗi.

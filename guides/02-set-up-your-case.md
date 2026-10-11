@@ -1,6 +1,6 @@
 # Set Up Your Case
 
-Guide này giúp bạn đặt tên case, hiểu từng folder dùng để làm gì, và biết cách làm việc với AI tool trong folder này.
+Guide này giúp bạn đặt tên dự án, hiểu từng folder dùng để làm gì, và biết cách làm việc với AI tool trong folder này.
 
 ## Step 1: Name your case
 
@@ -12,21 +12,21 @@ Có hai case thì nhân đôi folder `my-case` và đặt tên cho từng bản.
 
 ## Step 2: Understand the folders
 
-| Folder hoặc file | Dùng để | Khi nào |
+| Folder hoặc file | Dùng để | Khi nào dùng |
 |---|---|---|
-| `00-context/` | Thông tin nền về sản phẩm và người dùng. Bạn đưa nó cho AI đọc trước tiên ở mọi bước | Từ tuần 1, bổ sung dần |
-| `01-discover/` | Tìm hiểu vấn đề. Mỗi hoạt động một file. `sources/anonymised/` chứa dữ liệu đã ẩn danh, `sources/_raw-private/` chứa dữ liệu gốc | Tuần 2 |
-| `02-define/` | `problem-brief.md`: vấn đề đáng giải, thống nhất với product và business | Tuần 3 |
-| `03-develop/` | Các hướng giải quyết, alignment check, và `prototype/` | Tuần 4 đến 6 |
-| `04-deliver/` | Kế hoạch test, kết quả test, handoff và kế hoạch đo | Tuần 6 và 7 |
-| `hub/` | Knowledge Hub: một folder Markdown nối mọi quyết định về nhu cầu của người dùng | Cập nhật mỗi tuần |
-| `case-log.md` | Mỗi quyết định một dòng, kèm lý do và chỗ AI đã giúp | Mỗi tuần |
+| `00-context/` | Thông tin nền về sản phẩm và người dùng. Bạn đưa nó cho AI đọc trước tiên ở mọi bước | Khi khởi động dự án, bổ sung dần |
+| `01-discover/` | Tìm hiểu vấn đề. Mỗi hoạt động một file. `sources/anonymised/` chứa dữ liệu đã ẩn danh, `sources/_raw-private/` chứa dữ liệu gốc | Giai đoạn Discover |
+| `02-define/` | `problem-brief.md`: vấn đề đáng giải, thống nhất với product và business | Giai đoạn Define |
+| `03-develop/` | Các hướng giải quyết, alignment check, và `prototype/` | Giai đoạn Develop |
+| `04-deliver/` | Kế hoạch test, kết quả test, handoff và kế hoạch đo | Giai đoạn Deliver |
+| `hub/` | Knowledge Hub: một folder Markdown nối mọi quyết định về nhu cầu của người dùng | Cập nhật khi có thay đổi |
+| `case-log.md` | Mỗi quyết định một dòng, kèm lý do và chỗ AI đã giúp | Mỗi khi có quyết định |
 
 Folder được đánh số để giữ đúng thứ tự, và mỗi hoạt động có một file riêng để AI nhận đúng thứ nó cần.
 
 ## Step 3: Fill in the first files
 
-Tuần 1 bạn điền bốn file trong `00-context/` và một file riêng:
+Khi khởi động dự án, bạn điền bốn file trong `00-context/` và một file riêng:
 
 1. `product-and-users.md`: sản phẩm là gì, người dùng là ai, bạn biết gì và chưa biết gì.
 2. `accessibility-rules.md`: các yêu cầu về accessibility mà thiết kế phải đạt.
@@ -61,22 +61,25 @@ Hub là nơi bạn trả lời câu hỏi: "Quyết định này dựa trên nhu
 
 - **Mỗi quyết định thiết kế là một file riêng.** Ví dụ quyết định `D2` nằm ở `hub/decisions/D2.md`.
 - **Bạn chỉ viết mỗi điều một chỗ.** Quyết định `D2` nói nó kiểm chứng giả thuyết nào; hub tự suy ra chiều ngược lại.
-- **Cuối mỗi tuần,** nhờ AI tool chạy `workflow/refresh-hub.md` để dựng lại bảng tổng hợp và danh sách điểm cần xem lại.
+- **Sau mỗi lần cập nhật,** nhờ AI tool chạy `workflow/refresh-hub.md` để dựng lại bảng tổng hợp và danh sách điểm cần xem lại.
 
 Cách hub vận hành nằm ở `hub/how-the-hub-works.md` trong folder case của bạn.
 
 ## View markdown files
 
-File `.md` là text thuần, nên mọi trình soạn thảo đều mở được. Để thấy bảng và link hiển thị đẹp, chọn một cách:
+File `.md` là text thuần, nên **công cụ nào mở được folder đều dùng được**. Chọn theo việc bạn cần:
 
-| Cách | Làm gì |
+| Công cụ | Làm gì |
 |---|---|
-| **Obsidian** (miễn phí, khuyên dùng) | Mở cả folder case làm vault. Xem [`05-obsidian.md`](05-obsidian.md) |
+| **AI coding tool** | Mở cả folder case làm project. Tool đọc `AGENTS.md`, đọc và sửa file trực tiếp, và chạy các step card. Đây là cách bạn làm việc với AI |
+| **Obsidian** (miễn phí) | Mở cả folder case làm vault. Thêm Graph view, Backlinks và bảng theo loại item. Xem [`05-obsidian.md`](05-obsidian.md) |
 | **VS Code** (miễn phí) | Cài từ [code.visualstudio.com](https://code.visualstudio.com), mở cả folder case, bấm vào file `.md`, rồi nhấn `Cmd+Shift+V` (Mac) hoặc `Ctrl+Shift+V` (Windows) để xem bản hiển thị |
 | **GitHub** | Nếu bạn đã lưu folder lên repo Private, mở repo trên github.com; Markdown được hiển thị sẵn |
-| **Trình duyệt** | Tạo một file báo cáo HTML rồi bấm đúp để mở. Xem [`04-share-your-hub.md`](04-share-your-hub.md) |
+| **Trình duyệt** (không cài gì) | Bấm đúp file `index.html` ở gốc case folder: đó là trang chủ của hub. Sau khi sửa hub, nhờ AI tool chạy `python3 tools/export-hub.py` để tạo lại. Xem [`04-share-your-hub.md`](04-share-your-hub.md) |
 
 Hãy mở **cả folder**, không mở từng file lẻ: các link giữa các trang chỉ bấm được khi cả folder đang mở.
+
+**Lưu ý về liên kết:** các item nối với nhau bằng dấu `[[ ]]` trong khối properties ở đầu file. Chỉ Obsidian biến chúng thành link bấm được. Các công cụ khác vẫn đọc và sửa được vì đó chỉ là text, và AI coding tool hiểu chúng bình thường.
 
 ## Make it your own
 
@@ -85,6 +88,7 @@ Hãy mở **cả folder**, không mở từng file lẻ: các link giữa các t
 | Thêm folder riêng (ghi chú, ảnh, bản ghi âm) | Tạo folder mới cùng cấp với `00-context`, ví dụ `05-notes/` |
 | Bỏ một file không dùng | Xoá file đó. Nếu là trang hub, xoá luôn dòng của nó trong bảng Pages ở `hub/README.md`. Nếu là item, nhờ AI chạy lại `workflow/refresh-hub.md` |
 | Thêm một trang hub | Copy một trang có sẵn, đổi tên, rồi thêm một dòng vào bảng Pages ở `hub/README.md` |
+| Thêm một tài liệu (phân tích đối thủ, persona, flow, prototype...) | Copy một template trong `hub/artifacts/_templates/` ra `hub/artifacts/`, hoặc tạo folder và thả ảnh, PDF, HTML vào. Xem `hub/artifacts/README.md` |
 | Thêm một quyết định hoặc bài kiểm tra | Copy một file trong folder cùng loại, đặt tên theo mã mới (ví dụ `decisions/D4.md`), rồi nhờ AI chạy `workflow/refresh-hub.md` |
 | Dùng design system của công ty | Viết `00-context/design-system-notes.md` của bạn và dùng `03-develop/prototype/` làm mẫu |
 | Viết file bằng tiếng Việt | Được. Chỉ giữ tên file và tên folder bằng tiếng Anh |

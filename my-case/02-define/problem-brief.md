@@ -1,6 +1,6 @@
 # Problem brief
 
-*Tuần 3. Yêu cầu chung. Đồng ký với product và business, hoặc ghi lại agreement status.*
+*Giai đoạn Define. Yêu cầu chung. Đồng ký với product và business, hoặc ghi lại agreement status.*
 
 ## Outcome and success metrics
 *Goal, signal, metric. Ghi **assumed** cho mọi thứ PO chưa xác nhận. Mỗi metric là một file trong `hub/metrics/` (M1, M2 ...) và file đó là nguồn duy nhất.*

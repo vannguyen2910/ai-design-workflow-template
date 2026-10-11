@@ -1,6 +1,6 @@
 # Obsidian
 
-Obsidian là cách tốt nhất để đọc và làm việc với hub trên máy của bạn. Nó mở folder Markdown như một thư viện ghi chú, vẽ các mối nối giữa quyết định, giả thuyết và bài kiểm tra, và cho bạn bảng theo loại mà không cần chạy script.
+Guide này **không bắt buộc**. Hub dùng được trong mọi công cụ mở được folder (xem [`02-set-up-your-case.md`](02-set-up-your-case.md)). Obsidian là một lựa chọn thêm khi bạn muốn nhìn quan hệ giữa quyết định, giả thuyết và bài kiểm tra bằng hình, và có bảng theo loại mà không cần chạy script.
 
 ## Setup
 

@@ -9,7 +9,7 @@ Xuất hub thành **một file HTML tự chứa** để xem trong trình duyệt
 | Khi nào | Khi bạn cần xem hub trong trình duyệt, hoặc gửi cho người khác |
 | Làm trước | Chạy `workflow/refresh-hub.md` để các bảng không cũ |
 | Lệnh | `python3 tools/export-hub.py` |
-| Output | `hub/_export/<tên-folder-case>-report.html` |
+| Output | `index.html` ở gốc case folder |
 
 ## Vì sao là một script, không phải AI
 
@@ -19,7 +19,7 @@ Biến Markdown thành HTML là phép biến đổi xác định. Script cho cù
 
 | Có | Không |
 |---|---|
-| `hub/README.md`, các trang tuần, `gates.md` | Working file có bản nháp của AI (`01-discover/` đến `04-deliver/`) |
+| `hub/README.md`, các trang giai đoạn, `gates.md` | Working file có bản nháp của AI (`01-discover/` đến `04-deliver/`) |
 | Mọi file item (O, H, M, D, T) | `_personal/`, `sources/`, `AGENTS.md`, `workflow/` |
 | `case-log.md`, `00-context/principle-checks.md` | `hub/how-the-hub-works.md` (hướng dẫn cho người viết) |
 
@@ -30,7 +30,8 @@ Các khối "Cách điền" bị bỏ khỏi báo cáo. Link tới file ngoài b
 | Tab | Chứa |
 |---|---|
 | **Tổng quan** | Số item theo loại, trạng thái bốn gate, bảng alignment, danh sách cảnh báo |
-| **Hành trình** | Bảy trang theo tuần (phần narrative), mỗi trang một thẻ |
+| **Hành trình** | Các trang theo giai đoạn (phần narrative), mỗi trang một thẻ |
+| **Tài liệu** | Mỗi artifact một trang: tóm tắt, điểm chính, hình, prototype chạy được, link ngoài, và các item nó hỗ trợ. Lọc theo giai đoạn và loại |
 | **Truy vết** | Cây **Opportunity > Hypothesis > Decision / Test / Metric**, có tìm kiếm và lọc theo loại; chọn một item để xem chi tiết |
 | **Tham chiếu** | Gates, principle checks, case log |
 
@@ -40,11 +41,31 @@ Item không nằm trong menu, nên báo cáo vẫn dùng được khi có hàng 
 
 Mỗi item tự có đường truy vết (ví dụ O1 › H1 › D2) và phần **"Được tham chiếu bởi"**, vì các file item chỉ khai báo quan hệ một chiều.
 
+## Gửi cho người khác: bundle gọn
+
+Báo cáo là một folder: `index.html` cùng các tệp nó dùng (ảnh, prototype HTML...). Để gửi, tạo bản gọn:
+
+```
+python3 tools/export-hub.py --bundle gui-stakeholder --zip
+```
+
+Bundle chỉ chứa `index.html` và **đúng các tệp mà các tài liệu khai báo** (`media:` hoặc thả trong folder artifact). Nó không chứa working file thô, `_raw-private/` hay `_personal/`. Ảnh được tham chiếu, không nhúng vào HTML, nên `index.html` nhẹ.
+
+## Bản team: xem cả bản nháp AI
+
+Working file giữ hai section: `(AI draft)` và `(verified)`. Báo cáo mặc định **ẩn** mọi section có `AI draft` ở tiêu đề. Khi cần xem lại chúng (ví dụ để đo tỷ lệ lỗi của AI):
+
+```
+python3 tools/export-hub.py --team
+```
+
+Bản này gấp bản nháp lại và ghi "chưa kiểm tra". **Không gửi bản `--team` ra ngoài.**
+
 ## Step 1: Export
 
 **Who:** YOU (hoặc AI tool, chỉ để chạy lệnh)
 **Input:** folder `hub/`, `case-log.md`, `00-context/principle-checks.md`
-**Output:** `hub/_export/<tên-folder-case>-report.html`
+**Output:** `index.html` ở gốc case folder
 
 ```
 python3 tools/export-hub.py
@@ -72,6 +93,6 @@ Mở file bằng trình duyệt và kiểm tra:
 
 ## Naming
 
-Tên file lấy từ tên folder case, nên đặt tên folder rõ nghĩa (ví dụ `onboarding-redesign` cho ra `onboarding-redesign-report.html`). Khi gửi, có thể thêm ngày vào tên bản sao (`onboarding-redesign-report-2026-10-11.html`) để người nhận biết đây là bản nào. Báo cáo cũng ghi ngày dựng ở đầu trang.
+File luôn tên `index.html` và nằm ở gốc case folder, là **trang chủ của hub**: bấm đúp là mở. Template đã có sẵn một bản tạo từ dữ liệu mẫu, nên bạn xem được hub ngay từ ngày đầu. Mỗi lần bạn sửa hub, tạo lại để trang chủ khớp với nội dung mới.
 
-Đừng đặt tên `index.html`: tên đó dành cho trang chủ của một website, còn đây là file gửi đi.
+**Khi gửi cho người khác,** copy file ra ngoài và đổi tên cho dễ nhận ra, ví dụ `onboarding-redesign-report-2026-10-11.html`. Tên `index.html` đứng một mình trong hộp thư của người nhận không nói gì về nội dung. Bạn cũng có thể tạo thẳng bản gửi đi bằng `python3 tools/export-hub.py --out ten-file.html`.

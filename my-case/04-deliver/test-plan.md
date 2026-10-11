@@ -1,6 +1,6 @@
 # Test plan
 
-*Tuần 6.*
+*Giai đoạn Deliver, trước khi test.*
 
 ## What we are testing
 Hypothesis (ID) và điều gì sẽ làm tôi đổi ý:

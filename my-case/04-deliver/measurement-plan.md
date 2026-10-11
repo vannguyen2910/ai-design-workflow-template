@@ -1,6 +1,6 @@
 # Measurement plan
 
-*Tuần 7. Theo dõi gì sau khi launch, và ai chịu trách nhiệm. Đưa nó cho PO ngay cả khi bạn không xem được data.*
+*Giai đoạn Deliver, khi bàn giao. Theo dõi gì sau khi launch, và ai chịu trách nhiệm. Đưa nó cho PO ngay cả khi bạn không xem được data.*
 
 | Metric | Where to track it | Who owns it | Review date |
 |---|---|---|---|

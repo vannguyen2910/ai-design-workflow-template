@@ -4,14 +4,14 @@ Folder này định nghĩa quy trình AI-assisted dưới dạng file, để AI 
 
 ## Cards
 
-| Workflow | Stage | Khi nào | Trạng thái |
+| Workflow | Giai đoạn | Khi nào dùng | Trạng thái |
 |---|---|---|---|
-| [`competitor-analysis.md`](competitor-analysis.md) | Discover | Tuần 2 (phần demo) | Bản nháp, chưa chạy với lớp thật |
-| [`user-voice-synthesis.md`](user-voice-synthesis.md) | Discover | Tuần 2, session B | Bản nháp, chưa chạy với lớp thật |
-| [`refresh-hub.md`](refresh-hub.md) | Mọi stage | Cuối mỗi tuần | Bản nháp |
+| [`competitor-analysis.md`](competitor-analysis.md) | Discover | Khi cần biết đối thủ đang làm gì | Bản nháp, chưa được thử nhiều |
+| [`user-voice-synthesis.md`](user-voice-synthesis.md) | Discover | Khi có quote hoặc phỏng vấn người dùng để tổng hợp | Bản nháp, chưa được thử nhiều |
+| [`refresh-hub.md`](refresh-hub.md) | Mọi giai đoạn | Sau mỗi lần bạn cập nhật hub | Bản nháp |
 | [`export-hub.md`](export-hub.md) | Mọi stage | Khi cần xem hub trong trình duyệt hoặc gửi cho người khác | Bản nháp |
 
-Các card cho Frame, Explore, Prototype và Test được thêm theo từng tuần.
+Các card cho Frame, Explore, Prototype và Test sẽ được bổ sung. Bạn tự thêm card riêng theo hướng dẫn bên dưới.
 
 ## How to run a step
 

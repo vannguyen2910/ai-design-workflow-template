@@ -6,17 +6,16 @@
 
 ## Principle audit
 
-| Decision | Principle | Passes? (yes / no) | Evidence or reason |
-|---|---|---|---|
-| D2 | P8 | No | [Cái gì vỡ, và ở đâu.] |
+Chưa làm. Cần viết `00-context/principle-checks.md` cho Travel Buddy trước, rồi chấm lại ba decision quan trọng nhất (D2, D6, D7).
 
 ## Verdict on each warning
 
 | Warning | Verdict | Reason |
 |---|---|---|
-| D3 không có user need | Cut | [Không có user need phía sau.] |
-| D2 kéo ngược P8 | Accept as trade-off | [Vì sao progress bar đáng đổi lấy sự rối mắt.] |
+| Mười nguyên tắc chưa có câu hỏi có/không | Fix | Cần để chạy principle audit; làm trước khi bàn giao |
+| Mọi hypothesis chưa có bằng chứng từ người dùng thật | Accept for now | Đã có kế hoạch test không điều phối (T2); chạy với người thật trước khi coi gate 4a là đạt |
+| T1 dùng người mô phỏng | Accept as trade-off | Dùng như pilot để tìm vấn đề sớm, không dùng làm bằng chứng |
 
 ## Gate
 
-Bạn có bảo vệ được mọi decision bằng cách chỉ vào brief không? [Có / không, và bạn đã đổi gì.]
+Bạn có bảo vệ được mọi decision bằng cách chỉ vào brief không? **Về truy vết: có**, mọi decision nối được về một hypothesis và một nhu cầu. **Về bằng chứng: chưa**, vì các hypothesis chưa được kiểm tra với người thật.

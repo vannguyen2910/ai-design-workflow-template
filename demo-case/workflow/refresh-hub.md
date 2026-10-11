@@ -6,7 +6,7 @@ Dựng lại các bảng tổng hợp của hub từ các file item. **Các file
 
 | | |
 |---|---|
-| Khi nào | Cuối mỗi tuần, sau khi bạn tạo hoặc sửa item hoặc `gates.md` |
+| Khi nào | Sau mỗi lần bạn tạo hoặc sửa item hoặc `gates.md` |
 | Làm trước | Commit, để quay lại được |
 | Working file | Không có. Kết quả ghi vào các khối `generated` |
 
@@ -27,9 +27,9 @@ Dựng lại các bảng tổng hợp của hub từ các file item. **Các file
 > Dựng lại các khối `generated` của hub chỉ từ các file input. Quan hệ nằm trong properties ở đầu mỗi file item (wikilink) và chỉ được khai báo một chiều: H có `serves` (O) và `metric` (M); D có `tests` (H), `follows` và `pulls_against` (P); T có `tests` (H) và `measures` (M). Hướng ngược lại bạn suy ra.
 >
 > - Bảng alignment: mỗi D một dòng gồm Tests (H), Serves (O của H đó), Test (các T có `tests` là H đó), Follows, Pulls against. Ô không có thì ghi **missing**.
-> - Warnings, mỗi loại một dòng, liệt kê ID và viết bằng lời thường: quyết định chưa nối được về nhu cầu nào của người dùng (`tests` rỗng); quyết định đi ngược một nguyên tắc (`pulls_against`); nhu cầu chưa có quyết định thiết kế nào phục vụ; giả thuyết chưa có bài kiểm tra; giả thuyết chưa có chỉ số (`metric` rỗng); nguyên tắc trong `principle-checks.md` chưa có câu hỏi có/không.
+> - Warnings, mỗi loại một dòng, liệt kê ID và viết bằng lời thường: quyết định chưa nối được về nhu cầu nào của người dùng (`tests` rỗng); quyết định đi ngược một nguyên tắc (`pulls_against`); nhu cầu chưa có quyết định thiết kế nào phục vụ; giả thuyết chưa có bài kiểm tra; giả thuyết chưa có chỉ số (`metric` rỗng); bài kiểm tra có `status: planned` (chưa chạy) hoặc `participants_type: simulated` (người mô phỏng); giả thuyết mà mọi bài kiểm tra đều là planned hoặc simulated (chưa có bằng chứng từ người thật); nguyên tắc trong `principle-checks.md` chưa có câu hỏi có/không.
 > - Gates: mỗi gate một dòng gồm status (`passed` khi mọi check `passed`, `failed` khi có check `failed`, còn lại `open`) và số check đã passed.
-> - Các bảng danh sách ở trang tuần: sắp theo rank (O) hoặc theo ID.
+> - Các bảng danh sách ở trang giai đoạn: sắp theo rank (O) hoặc theo ID.
 >
 > Chỉ ghi vào các khối `generated`. Không sửa file item, `gates.md`, phần narrative hay bất kỳ phần nào ngoài khối. Không đoán: nếu một link trỏ tới file không tồn tại, hoặc ID không khớp tên file, hoặc có ID trùng, liệt kê vào cuối câu trả lời thay vì tự sửa.
 

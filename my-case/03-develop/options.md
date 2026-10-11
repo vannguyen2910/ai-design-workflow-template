@@ -1,6 +1,6 @@
 # Options and decisions
 
-*Tuần 4.*
+*Giai đoạn Develop.*
 
 ## Three directions
 *Ít nhất ba hướng thực sự khác nhau. Nếu hai hướng chỉ là biến thể của một ý tưởng thì chỉ tính là một.*

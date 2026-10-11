@@ -1,6 +1,6 @@
 # Handoff
 
-*Tuần 7. Những gì developer cần để dựng được mà không phải hỏi lại.*
+*Giai đoạn Deliver, khi bàn giao. Những gì developer cần để dựng được mà không phải hỏi lại.*
 
 ## The prototype
 Link hoặc folder. Đây là tài liệu tham chiếu, không phải production code.

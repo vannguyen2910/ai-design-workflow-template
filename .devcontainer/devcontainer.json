@@ -1,0 +1,16 @@
+{
+  "name": "Hub workspace",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "remoteEnv": {
+    "HUB_CASE_DIR": "${containerWorkspaceFolder}/my-case"
+  },
+  "forwardPorts": [4321],
+  "portsAttributes": {
+    "4321": { "label": "Hub", "onAutoForward": "openBrowser" }
+  },
+  "postCreateCommand": "cd site && npm install --no-audit --no-fund --loglevel=error",
+  "postAttachCommand": "cd site && (pgrep -f 'astro dev' >/dev/null || nohup npm run dev -- --host 0.0.0.0 --port 4321 > /tmp/hub-dev.log 2>&1 &)",
+  "customizations": {
+    "vscode": { "extensions": ["yzhang.markdown-all-in-one"] }
+  }
+}

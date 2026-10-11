@@ -4,19 +4,22 @@
 
 > **Cách điền:** link prototype và decision log. Viết measurement plan cho PO ngay cả khi bạn không xem được data. Copy từ [`handoff.md`](../04-deliver/handoff.md) và [`measurement-plan.md`](../04-deliver/measurement-plan.md).
 
+**Trạng thái: chưa sẵn sàng bàn giao.** Mới có PRD cho một tab (Explore).
+
 ## Handoff pack
 
-- Prototype: [link tới `03-develop/prototype/`]
+- Prototype: [`03-develop/prototype/`](../03-develop/prototype/)
 - Decisions and reasons: [Case log](../case-log.md)
-- Acceptance notes: [điều gì phải đúng khi dựng xong]
-- Open questions: [danh sách]
+- Acceptance notes: xem PRD tab Explore, mục 8 ([`reference/11_Explore_Requirements.md`](../reference/11_Explore_Requirements.md))
+- Open questions: crowd signal lấy dữ liệu từ đâu; video do ai tải; Map mode mặc định ở đâu; số tip tối thiểu cho một điểm đến
 
 ## Measurement plan (after launch)
 
 | Metric | Where to track it | Who owns it | Review date |
 |---|---|---|---|
-| M1 | [analytics / survey] | [PO / team] | [date] |
+| M4: thời gian tới tương tác đầu tiên | Analytics của app | chưa có | chưa đặt |
+| M5: khách chuyển thành người dùng đã đăng ký | Analytics của app | chưa có | chưa đặt |
 
 ## How the AI-assisted workflow performed
 
-[Thời gian mỗi step, tỷ lệ lỗi bắt được ở các gate, số lần làm lại. Dùng số đếm, không dùng cảm nhận.]
+Không áp dụng: dự án gốc được làm trước khi có quy trình AI-assisted, nên không có số đếm nào (thời gian mỗi step, tỷ lệ lỗi, số lần làm lại).

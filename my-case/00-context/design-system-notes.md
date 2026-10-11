@@ -1,6 +1,6 @@
 # Design system notes
 
-*Viết ở tuần 5 và 6, theo dạng AI coding tool đọc được. Ngắn, cụ thể, không có đoạn văn nào cần suy diễn.*
+*Viết khi bắt đầu dựng prototype, theo dạng AI coding tool đọc được. Ngắn, cụ thể, không có đoạn văn nào cần suy diễn.*
 
 ## Where the source of truth lives
 (file, link hoặc folder)

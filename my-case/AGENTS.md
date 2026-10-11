@@ -16,11 +16,12 @@ Case folder của một designer làm việc theo quy trình AI-assisted: AI so�
 | `01-discover/` … `04-deliver/` | Working file theo stage | Chỉ ghi vào đúng section được yêu cầu |
 | `01-discover/sources/anonymised/` | Dữ liệu đã ẩn danh, có ID | Đọc. Nguồn duy nhất cho quote và số liệu |
 | `hub/opportunities/ hypotheses/ metrics/ decisions/ tests/` | **Nguồn duy nhất** của mỗi item (O, H, M, D, T) | Đọc. Chỉ sửa khi được yêu cầu sửa đúng item đó |
+| `hub/artifacts/` | Tài liệu của dự án: một file `.md`, hoặc một folder có `index.md` cùng các tệp ảnh, PDF, HTML | Đọc. Tạo hoặc sửa khi được yêu cầu đúng tài liệu đó. Không chép nội dung working file vào đây: dùng `source:` |
 | `hub/README.md` và các trang `hub/*.md` | Tổng hợp và narrative | Chỉ ghi vào các khối `generated` khi chạy `workflow/refresh-hub.md` |
 | `03-develop/prototype/` | Code prototype | Làm việc ở đây khi dựng prototype, theo `project-rules.md` trong folder đó |
 | `case-log.md` | Nhật ký quyết định | Thêm dòng khi được yêu cầu |
 | `tools/export-hub.py` | Script xuất hub ra một file HTML | Chạy khi được yêu cầu (`python3 tools/export-hub.py`). Không sửa, và không tự viết HTML thay cho script |
-| `hub/_export/` | Báo cáo HTML đã xuất | Không đọc, không sửa. Đây là sản phẩm xuất ra từ Markdown |
+| `index.html` | Trang chủ của hub, xuất ra từ Markdown để xem bằng trình duyệt | Không đọc, không sửa tay. Muốn cập nhật thì chạy `tools/export-hub.py` |
 | `_personal/` | Ghi chú riêng của designer | **Không đọc, không ghi** |
 | `01-discover/sources/_raw-private/` | Dữ liệu gốc chưa ẩn danh | **Không đọc, không ghi** |
 

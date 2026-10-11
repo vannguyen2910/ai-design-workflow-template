@@ -10,8 +10,19 @@ Hub của bạn mặc định là riêng tư: nó nằm trong folder case trên 
 | Gửi cả folder cho đồng nghiệp | **File ZIP** (Option 3) | Obsidian hoặc VS Code để xem đẹp |
 | Một người xem trực tiếp trên GitHub | **Mời vào repo Private** (Option 4) | Tài khoản GitHub miễn phí |
 | Ai có link cũng xem được | **Repo Public** (Option 5), chỉ khi case được phép chia sẻ | Không cần gì |
+| Một website có menu và tìm kiếm, tự cập nhật | **GitHub Pages** (Option 6), chỉ khi case được phép công khai | Không cần gì |
 
 **Với công việc thật của công ty, hãy dùng Option 1 hoặc 2.**
+
+## Xem hub như một website, không cài gì
+
+Bạn không cần cài Node hay bất kỳ công cụ nào. Template có sẵn cấu hình để GitHub mở một máy làm việc trên trình duyệt (GitHub Codespaces), đã cài đủ mọi thứ.
+
+1. Trên trang repo của bạn, bấm nút xanh **Code**, chọn tab **Codespaces**, rồi bấm **Create codespace on main**.
+2. Đợi 2 đến 3 phút ở lần đầu. Một trình soạn thảo mở ra ngay trong trình duyệt.
+3. Khi hộp thoại về cổng **4321** hiện lên, bấm **Open in Browser**. Hub hiện ra như một website, và tự cập nhật mỗi khi bạn lưu file.
+
+Gói GitHub miễn phí có khoảng 60 giờ Codespaces mỗi tháng. Khi xong việc, đóng tab; codespace tự dừng sau một thời gian.
 
 ## Option 1: Báo cáo HTML
 
@@ -21,11 +32,15 @@ Một file HTML tự chứa, có menu, bấm đúp là mở bằng trình duyệ
    - Tự chạy trên Mac: bấm chuột phải vào folder case, chọn **New Terminal at Folder**, rồi gõ lệnh trên.
    - Tự chạy trên Windows: mở folder case, bấm vào thanh địa chỉ, gõ `cmd`, nhấn Enter, rồi gõ lệnh trên.
    - Máy cần có Python 3. Mac có thể hỏi bạn cài một bộ công cụ ở lần chạy đầu; Windows cần cài Python từ [python.org](https://www.python.org).
-2. **Mở file** `hub/_export/<tên-case>-report.html` bằng trình duyệt.
+2. **Mở file** `index.html` ở gốc case folder bằng trình duyệt (bấm đúp).
 3. **Kiểm tra trước khi gửi.** Nếu đầu trang có thanh đen "còn nội dung mẫu hoặc chỗ chưa điền", hub vẫn còn mục `[EXAMPLE]` hoặc chỗ trống. Điền hoặc xoá chúng rồi tạo lại.
-4. **Gửi file.** Người nhận chỉ cần trình duyệt.
+4. **Gửi file.** Copy `index.html` ra ngoài và đổi tên cho dễ nhận ra, ví dụ `onboarding-redesign-report.html`. Người nhận chỉ cần trình duyệt.
+
+Nếu bạn dùng GitHub, file `index.html` còn được **tự tạo lại** sau mỗi lần push (workflow `Update index.html`). Bạn chỉ cần tải repo về hoặc chọn **Fetch origin** rồi **Pull** trong GitHub Desktop để có bản mới nhất, không cần chạy lệnh nào.
 
 Báo cáo chỉ gồm hub, nhật ký quyết định và các nguyên tắc. Nó không có file làm việc hay bản nháp của AI.
+
+Muốn gửi gọn (ảnh, prototype đi kèm, không lộ working file thô): chạy `python3 tools/export-hub.py --bundle ten-folder --zip` rồi gửi file ZIP. Người nhận giải nén và bấm đúp `index.html`.
 
 ## Option 2: PDF
 
@@ -58,10 +73,24 @@ Chỉ làm khi **toàn bộ case folder** được phép chia sẻ, ví dụ cas
 2. Copy folder case đã làm sạch vào repo mới.
 3. Mở link repo trong **cửa sổ ẩn danh** để thấy đúng những gì người khác thấy.
 
+## Option 6: Website GitHub Pages
+
+Mỗi lần bạn push, GitHub dựng hub thành một website có menu bên trái và ô tìm kiếm, ở địa chỉ `https://<tên-tài-khoản>.github.io/<tên-repo>/`. Folder `site/` và file `.github/workflows/publish-hub.yml` đã có sẵn trong template; mặc định workflow **tắt**.
+
+**Website này công khai với bất kỳ ai có link,** kể cả khi repo là Private (gói GitHub miễn phí chỉ cho Pages trên repo Public). Chỉ bật khi toàn bộ nội dung hub được phép công khai.
+
+1. Trên GitHub, mở repo, chọn **Settings**, rồi **Pages**. Ở mục **Source**, chọn **GitHub Actions**.
+2. Chọn **Settings**, **Secrets and variables**, **Actions**, tab **Variables**, rồi **New repository variable**. Tên `PUBLISH_HUB`, giá trị `true`.
+3. Chọn tab **Actions**, workflow **Publish hub**, bấm **Run workflow**. Sau 1 đến 2 phút, địa chỉ website hiện ở bước **deploy**.
+
+Website chỉ gồm hub và các tài liệu đã khai báo trong hub, giống bundle ở Option 1. Working file thô, `_personal/` và `AGENTS.md` không được đăng.
+
+Mặc định workflow đăng `my-case/`. Muốn đăng dự án mẫu, thêm repo variable `HUB_CASE` với giá trị `demo-case`. Muốn tắt, xoá `PUBLISH_HUB` hoặc đổi thành `false`; website đã đăng vẫn còn cho tới khi bạn gỡ Pages ở Settings.
+
 ## Before you share anything
 
 - **Không đưa lên số liệu mật của công ty,** chi tiết sản phẩm chưa phát hành, dữ liệu cá nhân của người dùng, hay mật khẩu. Kiểm tra chính sách của công ty trước.
 - **Link công khai có thể bị chuyển tiếp** cho bất kỳ ai.
 - **Tên tài khoản GitHub nằm trong địa chỉ repo.** Chọn một tên bạn thấy thoải mái khi nó hiện ra.
-- **Bạn là người chia sẻ và chịu trách nhiệm** về link và nội dung. Giảng viên không đăng thay bạn.
+- **Bạn là người chia sẻ và chịu trách nhiệm** về link và nội dung. Không ai đăng thay bạn.
 - **Dùng dữ liệu đã ẩn danh hoặc dữ liệu giả** cho mọi thứ công khai.

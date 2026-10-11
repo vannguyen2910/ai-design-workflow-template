@@ -1,6 +1,6 @@
 # Scope
 
-*Tuần 2. Cùng xác định với PO và business, hoặc viết thành assumptions nếu bạn không liên hệ được họ.*
+*Giai đoạn Discover. Cùng xác định với PO và business, hoặc viết thành assumptions nếu bạn không liên hệ được họ.*
 
 ## Business question (in their words)
 

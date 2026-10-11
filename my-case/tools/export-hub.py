@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Export the markdown hub of a case folder to ONE self-contained HTML file.
 
-    python3 tools/export-hub.py                 # case = the folder that contains tools/
+    python3 tools/export-hub.py                 # case = the folder that contains tools/ -> <case>/index.html
     python3 tools/export-hub.py --case PATH     # another case folder
-    python3 tools/export-hub.py --out FILE.html # custom output path
+    python3 tools/export-hub.py --out FILE.html # custom output path (e.g. a copy to send)
 
 Why a script and not an AI tool: turning markdown into HTML and tracing links between items is
 deterministic. A script gives the same output every time, invents nothing and sends no data anywhere.
@@ -26,6 +26,9 @@ import mimetypes
 import os
 import re
 import sys
+import csv
+import shutil
+import urllib.parse
 
 TYPES = [
     # letter, folder, singular, plural
@@ -43,7 +46,8 @@ VI_SHORT = {"O": "Nhu cầu", "H": "Giả thuyết", "M": "Chỉ số", "D": "Qu
 PROP_LABEL = {"type": "Loại", "rank": "Thứ hạng", "evidence": "Bằng chứng", "serves": "Phục vụ nhu cầu", "metric": "Chỉ số",
               "tests": "Kiểm chứng giả thuyết", "follows": "Theo nguyên tắc", "pulls_against": "Đi ngược nguyên tắc",
               "measures": "Đo chỉ số", "status": "Trạng thái", "baseline": "Mức hiện tại (baseline)", "measured_by": "Đo bằng",
-              "participants": "Số người tham gia", "result": "Kết quả"}
+              "participants": "Số người tham gia", "result": "Kết quả",
+              "participants_type": "Loại người tham gia", "status": "Trạng thái"}
 BACK_LABEL = {"serves": "Được phục vụ bởi giả thuyết", "metric": "Được dùng làm chỉ số của", "tests": "Được kiểm chứng bởi",
               "measures": "Được đo bởi", "follows": "Được theo bởi quyết định", "pulls_against": "Bị đi ngược bởi quyết định"}
 STATUS_VI = {"open": "Đang mở", "passed": "Đạt", "failed": "Chưa đạt"}
@@ -104,8 +108,14 @@ class Renderer(object):
             kind, val = self.resolve(self.src, url, is_img)
             inner = self._emph(label)
             if is_img:
-                out = ('<img src="%s" alt="%s">' % (val, html.escape(label, quote=True))) if kind == "data" \
-                    else '<span class="ext">[hình: %s]</span>' % (label or url)
+                if kind == "file":
+                    out = '<a href="%s" target="_blank" rel="noopener"><img loading="lazy" src="%s" alt="%s"></a>' % (val, val, html.escape(label, quote=True))
+                elif kind == "data":
+                    out = '<img src="%s" alt="%s">' % (val, html.escape(label, quote=True))
+                else:
+                    out = '<span class="ext">[hình: %s]</span>' % (label or url)
+            elif kind == "file":
+                out = '<a href="%s" target="_blank" rel="noopener">%s</a>' % (val, inner)
             elif kind == "page":
                 out = '<a href="#/%s">%s</a>' % (val, inner)
             elif kind == "web":
@@ -460,6 +470,24 @@ class Graph(object):
                 flag("untested", [h], "Giả thuyết này chưa có bài kiểm tra")
             if not self.metric.get(h):
                 flag("nometric", [h], "Giả thuyết này chưa có chỉ số để biết đúng hay sai")
+        # Evidence quality: a test can be planned (not run) or run with simulated participants. Neither counts as evidence.
+        def kind(t):
+            m = self.items[t].meta
+            if str(m.get("status", "")).lower() == "planned":
+                return "planned"
+            if str(m.get("participants_type", "")).lower() == "simulated":
+                return "simulated"
+            return "real"
+        for t in self.T:
+            k = kind(t)
+            if k == "planned":
+                flag("planned", [t], "Bài kiểm tra này mới ở dạng kế hoạch, chưa chạy")
+            elif k == "simulated":
+                flag("simulated", [t], "Bài kiểm tra này dùng người mô phỏng, không phải người dùng thật: chưa tính là bằng chứng")
+        for h in self.H:
+            ts = self.tests_of(h)
+            if ts and not any(kind(t) == "real" for t in ts):
+                flag("no-real-evidence", [h], "Giả thuyết này chưa có bằng chứng từ người dùng thật")
         empty = [p for p, (nm, chk) in principles.items() if not chk.strip() and not nm.startswith("(")]
         if empty:
             self.warnings.append(("principles", empty, "Nguyên tắc chưa có câu hỏi có/không để kiểm tra"))
@@ -510,6 +538,8 @@ header.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1
 .tabs a{padding:8px 14px;border-radius:999px;text-decoration:none;color:var(--ink);font-weight:600;font-size:.92rem;white-space:nowrap}
 .tabs a:hover{background:var(--tint)}
 .tabs a[aria-current=page]{background:var(--purple);color:var(--on-purple)}
+.themepick{font-size:.8rem;color:var(--muted);display:flex;gap:6px;align-items:center}
+.themepick select{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
 .gsearch{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;font:inherit;font-size:.9rem;width:220px}
 .view{display:none}
 .view.on{display:block}
@@ -603,12 +633,53 @@ a.chip:hover{filter:brightness(1.1)}
 .ihead .kind{margin:0;color:var(--muted);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 .ihead h1{margin:2px 0 0;font-size:1.5rem}
 .warnbox{margin:0 0 14px;padding:10px 14px;border-radius:var(--r);background:var(--tint);border-left:4px solid var(--purple);font-size:.92rem}
-.path{font-size:.88rem;color:var(--muted);margin:0 0 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.path{font-size:.88rem;color:var(--muted);margin:0 0 14px}
+.path .chain{margin:6px 0 0;align-items:center}
+.path .more{display:block;margin-top:6px}
 .backlinks{margin-top:30px;padding:14px 18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
 .backlinks h2{margin:0 0 8px;font-size:.95rem}
 .backlinks .row{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin:6px 0}
 .backlinks .lbl{font-size:.8rem;color:var(--muted);min-width:7em}
 .back-tree{display:none}
+.acards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:6px}
+.acard{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:0 0 14px;text-decoration:none;color:var(--ink);overflow:hidden}
+.acard[hidden]{display:none}
+.acard:hover{border-color:var(--purple);box-shadow:0 2px 0 var(--purple)}
+.acard .thumb{width:100%;height:150px;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);background:var(--tint)}
+.acard>*:not(.thumb){margin-left:16px;margin-right:16px}
+.acard:not(:has(.thumb))>.atype{margin-top:14px}
+.atype{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--link)}
+.acard h3{margin:0;font-size:1.02rem}
+.acard p{margin:0;color:var(--muted);font-size:.88rem}
+.ameta{font-size:.78rem;color:var(--muted)}
+.st{display:inline-block;padding:1px 8px;border-radius:999px;font-weight:700;font-size:.72rem;background:var(--tint2);color:var(--ink)}
+.st-simulated,.st-planned,.st-draft{background:var(--ink);color:var(--bg)}
+.ahead .sum{font-size:1.05rem;color:var(--muted);margin:6px 0 10px}
+.ahead .kind{margin:0;color:var(--muted);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.supports{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 14px}
+.supports .lbl{font-size:.8rem;color:var(--muted)}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin:8px 0}
+.fig{margin:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff}
+.fig img{display:block;width:100%;height:auto}
+.fig figcaption,.mcard .cap{font-size:.8rem;color:var(--muted);padding:6px 12px}
+.mcard{border:1px solid var(--line);border-radius:var(--r);margin:12px 0;overflow:hidden;background:var(--surface)}
+.mhead{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 14px}
+.mtag{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.btn{margin-left:auto;padding:5px 12px;border-radius:999px;background:var(--purple);color:var(--on-purple);text-decoration:none;font-size:.82rem;font-weight:700}
+.mcard iframe{display:block;width:100%;height:560px;border:0;border-top:1px solid var(--line);background:#fff}
+.mcard video{display:block;width:100%}
+.achip{display:inline-flex;gap:8px;align-items:baseline;padding:6px 12px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--ink);background:var(--surface);font-size:.9rem}
+.achip:hover{border-color:var(--purple)}
+.achip .atype{font-size:.66rem}
+.sgroup{margin:10px 0}
+.sgroup h3{margin:0 0 6px;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.t-A{background:var(--tint2);color:var(--ink);border-color:transparent}
+details.draft{margin:14px 0;border:1px dashed var(--muted);border-radius:var(--r);padding:10px 14px;background:var(--surface)}
+details.draft>summary{cursor:pointer;font-weight:700;color:var(--muted)}
+.srcnote{margin-top:24px;font-size:.82rem;color:var(--muted)}
+.docs .doc{display:none}
+.docs .doc.on{display:block}
+.has-doc .jlist{display:none}
 blockquote{margin:16px 0;padding:10px 16px;background:var(--tint);border-left:4px solid var(--purple);border-radius:0 10px 10px 0}
 blockquote p{margin:6px 0}
 code{font:.88em ui-monospace,Menlo,Consolas,monospace;background:var(--tint);padding:1px 5px;border-radius:5px}
@@ -631,8 +702,8 @@ footer.foot{margin-top:56px;color:var(--muted);font-size:.85rem;border-top:1px s
   .wrap{padding:20px 16px 60px}
 }
 @media print{
-  header.top,.skip,.pane-tree,.back,.pn,.subtabs,.back-tree{display:none!important}
-  .view,.journey .doc,.reference .doc,.pane-detail .doc{display:block!important}
+  header.top,.skip,.pane-tree,.back,.pn,.subtabs,.back-tree,.themepick,.filters,.tsearch{display:none!important}
+  .view,.journey .doc,.reference .doc,.docs .doc,.pane-detail .doc{display:block!important}
   .jlist{display:none}
   .doc{break-before:page}
   .wrap{padding:0;max-width:none}
@@ -646,7 +717,7 @@ footer.foot{margin-top:56px;color:var(--muted);font-size:.85rem;border-top:1px s
 JS = r"""
 (function(){
   var root=document.documentElement; root.classList.add('js');
-  var VIEWS=['overview','journey','trace','reference'];
+  var VIEWS=['overview','journey','docs','trace','reference'];
   function $(s,c){return (c||document).querySelector(s)}
   function $$(s,c){return [].slice.call((c||document).querySelectorAll(s))}
   var docs={}; $$('.doc').forEach(function(d){docs[d.id]=d});
@@ -665,6 +736,7 @@ JS = r"""
     if(doc){doc.classList.add('on')}
     var j=$('#v-journey'); if(j){j.classList.toggle('has-doc',view==='journey'&&!!doc)}
     var t=$('#v-trace'); if(t){t.classList.toggle('has-item',view==='trace'&&!!doc)}
+    var dv=$('#v-docs'); if(dv){dv.classList.toggle('has-doc',view==='docs'&&!!doc)}
     $$('.subtabs a').forEach(function(a){
       if(doc&&a.getAttribute('href')==='#/'+doc.id){a.setAttribute('aria-current','page')}else{a.removeAttribute('aria-current')}
     });
@@ -719,20 +791,235 @@ JS = r"""
       apply();
     });
   });
+  var cards=$$('#acards .acard'), fs={}, ft={};
+  function applyDocs(){
+    var q=(($('#dsearch')||{}).value||'').trim().toLowerCase(), n=0;
+    cards.forEach(function(c){
+      var ok=(!q||c.getAttribute('data-text').indexOf(q)>-1)&&(!Object.keys(ft).length||ft[c.getAttribute('data-type')])&&(!Object.keys(fs).length||fs[c.getAttribute('data-stage')]);
+      c.hidden=!ok; if(ok){n++}
+    });
+    var c=$('#dcount'); if(c){c.textContent=(q||Object.keys(ft).length||Object.keys(fs).length)?(n+' tài liệu khớp'):''}
+  }
+  var ds=$('#dsearch'); if(ds){ds.addEventListener('input',applyDocs)}
+  $$('#v-docs .filters button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var on=b.getAttribute('aria-pressed')!=='true'; b.setAttribute('aria-pressed',on?'true':'false');
+      var k=b.getAttribute('data-ftype'), s=b.getAttribute('data-fstage');
+      if(k){if(on){ft[k]=true}else{delete ft[k]}} if(s){if(on){fs[s]=true}else{delete fs[s]}}
+      applyDocs();
+    });
+  });
+  var sel=$('#themeselect');
+  if(sel){
+    try{var saved=localStorage.getItem('hub-theme'); if(saved){sel.value=saved; root.setAttribute('data-theme',saved)}}catch(e){}
+    sel.addEventListener('change',function(){
+      root.setAttribute('data-theme',sel.value);
+      try{localStorage.setItem('hub-theme',sel.value)}catch(e){}
+    });
+  }
   route();
 })();
 """
 
+
+THEMES = [("notion", "Notion (xanh, gọn)"), ("classic", "Classic (tím)"), ("editorial", "Editorial (chữ có chân, giấy kem)"),
+          ("swiss", "Swiss (đen trắng, khung rõ)"), ("calm", "Calm (xanh lá dịu)")]
+
+# Each theme only overrides the colour tokens and a few details; layout is shared.
+THEME_CSS = r"""
+/* notion: neutral grey, one blue accent, small radius, almost no fill */
+[data-theme=notion]{--ink:#37352f;--bg:#fff;--surface:#f7f6f3;--muted:rgba(55,53,47,.65);--line:rgba(55,53,47,.13);--purple:#2383e2;--link:#0b6bcb;--tint:rgba(35,131,226,.08);--tint2:rgba(35,131,226,.15);--r:6px}
+[data-theme=notion] h1{font-size:2.1rem;font-weight:700}
+[data-theme=notion] .tabs a{border-radius:6px;font-weight:500}
+[data-theme=notion] .card,[data-theme=notion] .jcard,[data-theme=notion] details.help{background:transparent}
+[data-theme=notion] .gate{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+[data-theme=notion] .gate .bar{background:var(--line)}
+[data-theme=notion] .gate .bar i{background:var(--purple)}
+[data-theme=notion] .banner{background:var(--tint2);color:var(--ink)}
+[data-theme=notion] th{background:var(--surface);font-weight:600}
+[data-theme=notion] .chip,[data-theme=notion] .idc,[data-theme=notion] .idtag{border-radius:4px}
+
+/* editorial: serif text on warm paper, terracotta accent, thin rules */
+[data-theme=editorial]{--ink:#201c17;--bg:#fbf8f3;--surface:#f3eee5;--muted:rgba(32,28,23,.68);--line:rgba(32,28,23,.18);--purple:#9a3412;--link:#9a3412;--tint:rgba(154,52,18,.08);--tint2:rgba(154,52,18,.15);--r:2px}
+[data-theme=editorial] body{font-family:Georgia,"Times New Roman",serif;font-size:17px}
+[data-theme=editorial] h1,[data-theme=editorial] h2,[data-theme=editorial] h3{font-family:Georgia,"Times New Roman",serif;font-weight:700;letter-spacing:-.01em}
+[data-theme=editorial] header.top{border-bottom:2px solid var(--ink)}
+[data-theme=editorial] .tabs a{border-radius:0;text-transform:uppercase;letter-spacing:.08em;font-size:.78rem;font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+[data-theme=editorial] .card,[data-theme=editorial] .jcard,[data-theme=editorial] details.help,[data-theme=editorial] .pane-tree{background:transparent;border-color:var(--ink)}
+[data-theme=editorial] .gate{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+[data-theme=editorial] .gate .bar{background:var(--line)}
+[data-theme=editorial] .gate .bar i{background:var(--purple)}
+[data-theme=editorial] .banner{background:var(--ink);color:var(--bg)}
+[data-theme=editorial] .chip,[data-theme=editorial] .idc,[data-theme=editorial] .idtag,[data-theme=editorial] .filters button,[data-theme=editorial] .tsearch,[data-theme=editorial] .gsearch,[data-theme=editorial] table,[data-theme=editorial] .tree a.node,[data-theme=editorial] .card .lbl,[data-theme=editorial] .ihead .kind,[data-theme=editorial] .jcard .wk{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+[data-theme=editorial] th{background:transparent;border-bottom:2px solid var(--ink)}
+[data-theme=editorial] .gsearch{border-radius:0}
+
+/* swiss: black on white, hard 1px frames, one signal colour, no rounding */
+[data-theme=swiss]{--ink:#000;--bg:#fff;--surface:#fff;--muted:rgba(0,0,0,.62);--line:#000;--purple:#ff3b00;--link:#000;--tint:#f1f1f1;--tint2:#e3e3e3;--r:0}
+[data-theme=swiss] body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+[data-theme=swiss] h1{font-size:2.3rem;font-weight:800;letter-spacing:-.03em}
+[data-theme=swiss] h2{text-transform:uppercase;font-size:.85rem;letter-spacing:.1em;border-top:2px solid #000;padding-top:10px}
+[data-theme=swiss] header.top{border-bottom:2px solid #000}
+[data-theme=swiss] .tabs a{border-radius:0;text-transform:uppercase;font-size:.78rem;letter-spacing:.06em}
+[data-theme=swiss] .tabs a[aria-current=page]{background:#000;color:#fff}
+[data-theme=swiss] .gsearch,[data-theme=swiss] .tsearch,[data-theme=swiss] .filters button{border-radius:0;border-color:#000}
+[data-theme=swiss] .filters button[aria-pressed=true]{background:#000;border-color:#000}
+[data-theme=swiss] .card,[data-theme=swiss] .jcard,[data-theme=swiss] details.help,[data-theme=swiss] .pane-tree,[data-theme=swiss] .backlinks{border:1px solid #000}
+[data-theme=swiss] .jcard:hover{border-color:var(--purple);box-shadow:4px 4px 0 var(--purple)}
+[data-theme=swiss] .gate{background:#000;color:#fff}
+[data-theme=swiss] .gate .bar{background:rgba(255,255,255,.3)}
+[data-theme=swiss] .gate .bar i{background:var(--purple)}
+[data-theme=swiss] .banner{background:var(--purple);color:#000;font-weight:700}
+[data-theme=swiss] th{background:transparent;border-bottom:2px solid #000;text-transform:uppercase;font-size:.75rem;letter-spacing:.06em}
+[data-theme=swiss] td{border-bottom:1px solid #000}
+[data-theme=swiss] .warnlist li,[data-theme=swiss] blockquote{background:#f1f1f1;border-left:6px solid var(--purple)}
+[data-theme=swiss] .t-H{color:#000;border-color:#000}
+[data-theme=swiss] .t-T{border-color:#000}
+
+/* calm: soft sage green, generous radius, quiet shadows */
+[data-theme=calm]{--ink:#1f2a24;--bg:#fbfcfa;--surface:#f1f5f0;--muted:rgba(31,42,36,.66);--line:rgba(31,42,36,.12);--purple:#2f7d5b;--link:#256a4b;--tint:rgba(47,125,91,.10);--tint2:rgba(47,125,91,.18);--r:16px}
+[data-theme=calm] h1{font-weight:700;letter-spacing:-.02em}
+[data-theme=calm] .card,[data-theme=calm] .jcard,[data-theme=calm] details.help{box-shadow:0 1px 2px rgba(31,42,36,.06),0 4px 14px rgba(31,42,36,.04);border-color:transparent;background:#fff}
+[data-theme=calm] .pane-tree{border-color:transparent;box-shadow:0 1px 2px rgba(31,42,36,.06),0 4px 14px rgba(31,42,36,.04);background:#fff}
+[data-theme=calm] .gate{background:var(--purple);color:#fff}
+[data-theme=calm] .banner{background:#fff;color:var(--ink);border:1px solid var(--line);border-left:6px solid var(--purple)}
+[data-theme=calm] th{background:var(--surface)}
+[data-theme=calm] .tabs a[aria-current=page]{box-shadow:0 2px 8px rgba(47,125,91,.35)}
+"""
+
+
+def theme_rules(theme, all_themes=False):
+    """CSS overrides for one theme (or every theme when previewing with the switcher)."""
+    keep = []
+    for line in THEME_CSS.split("\n"):
+        m = re.match(r"\[data-theme=(\w+)\]", line)
+        if m and (all_themes or m.group(1) == theme):
+            keep.append(line)
+    return "\n" + "\n".join(keep) + "\n"
+
+
 PLACEHOLDER_RE = re.compile(r"\[(?:EXAMPLE\]|[A-Z][A-Z0-9 ]{2,}[^\]]*\])")
+
+
+
+# --------------------------------------------------------------------------- artifacts
+ART_TYPES = {
+    "competitor-analysis": "Phân tích đối thủ", "persona": "Persona", "survey-results": "Kết quả khảo sát",
+    "interview-synthesis": "Tổng hợp phỏng vấn", "user-flow": "User flow", "ia-sitemap": "Information architecture",
+    "prototype": "Prototype", "test-plan": "Kế hoạch test", "test-report": "Báo cáo test",
+    "requirements": "Yêu cầu (PRD)", "solution-pool": "Solution pool", "generic": "Tài liệu",
+}
+STAGES = ["Setup", "Discover", "Define", "Develop", "Deliver"]
+ART_STATUS = {"verified": "Đã kiểm tra", "draft": "Bản nháp", "simulated": "Mô phỏng", "planned": "Kế hoạch"}
+IMG_EXT = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"}
+VIDEO_EXT = {".mp4", ".webm", ".mov"}
+PRIVATE_PARTS = ("_raw-private", "_personal", "/.git/", "_templates")
+DRAFT_RE = re.compile(r"\bAI draft\b", re.I)
+
+
+def _is_private(abs_path):
+    n = abs_path.replace(os.sep, "/")
+    return any(x in n for x in PRIVATE_PARTS) or os.path.basename(n) in ("AGENTS.md", ".DS_Store")
+
+
+def _aslist(v):
+    if v is None or v == "":
+        return []
+    return list(v) if isinstance(v, list) else [v]
+
+
+class Artifact(object):
+    def __init__(self, slug, md_path, folder):
+        self.id, self.path, self.folder = slug, md_path, folder
+        raw = open(md_path, encoding="utf-8").read()
+        self.meta, self.body = _front(raw)
+        hm = re.search(r"^#\s+(.+)$", self.body, flags=re.M)
+        self.title = str(self.meta.get("title") or (hm.group(1) if hm else slug)).strip()
+        self.type = str(self.meta.get("type") or "generic").strip().lower()
+        self.stage = str(self.meta.get("stage") or "").strip()
+        self.status = str(self.meta.get("status") or "").strip().lower()
+        self.summary = str(self.meta.get("summary") or "").strip()
+        self.takeaways = [str(x) for x in _aslist(self.meta.get("takeaways"))]
+        self.supports = _ids(_aslist(self.meta.get("supports")))
+        self.source = str(self.meta.get("source") or "").strip()
+        self.links = [str(x) for x in _aslist(self.meta.get("links"))]
+        self.media = [str(x) for x in _aslist(self.meta.get("media"))]
+        self.embed = str(self.meta.get("embed") or "").lower() in ("true", "yes", "1")
+        self.embed_url = str(self.meta.get("embed_url") or "").strip()
+
+
+def collect_artifacts(case):
+    base = os.path.join(case, "hub", "artifacts")
+    out = []
+    if not os.path.isdir(base):
+        return out
+    for name in sorted(os.listdir(base), key=_natkey):
+        if name.startswith(("_", ".")) or name.lower() == "readme.md":
+            continue
+        full = os.path.join(base, name)
+        if os.path.isfile(full) and name.endswith(".md"):
+            out.append(Artifact(name[:-3], full, None))
+        elif os.path.isdir(full):
+            for cand in ("index.md", "README.md", name + ".md"):
+                if os.path.isfile(os.path.join(full, cand)):
+                    out.append(Artifact(name, os.path.join(full, cand), full))
+                    break
+    return out
+
+
+def media_kind(path):
+    ext = os.path.splitext(path)[1].lower()
+    if ext in IMG_EXT:
+        return "image"
+    if ext in VIDEO_EXT:
+        return "video"
+    if ext == ".pdf":
+        return "pdf"
+    if ext in (".html", ".htm"):
+        return "html"
+    if ext == ".csv":
+        return "csv"
+    if ext == ".md":
+        return "doc"
+    return "file"
+
+
+def render_md(md, src, resolver, problems, team=False):
+    """Render markdown; sections whose H2 mentions 'AI draft' are dropped (default) or folded (team mode)."""
+    segs, cur = [], []
+    for line in md.replace("\r\n", "\n").split("\n"):
+        if re.match(r"##\s+\S", line):
+            segs.append(cur)
+            cur = [line]
+        else:
+            cur.append(line)
+    segs.append(cur)
+    out = []
+    for seg in segs:
+        if not any(l.strip() for l in seg):
+            continue
+        head = seg[0] if re.match(r"##\s+\S", seg[0]) else ""
+        draft = bool(head and DRAFT_RE.search(head))
+        if draft and not team:
+            continue
+        h = Renderer(src, resolver, problems).render("\n".join(seg))
+        if draft:
+            h = '<details class="draft"><summary>Bản nháp AI, chưa kiểm tra: %s</summary>%s</details>' % (
+                html.escape(re.sub(r"^#+\s*", "", head), quote=False), h)
+        out.append(h)
+    return "\n".join(out)
 
 
 def esc(s):
     return html.escape(s, quote=True)
 
 
-def build(case, out_path):
+def build(case, out_path, theme="notion", switcher=False, team=False, bundle=False):
     problems = []
     overview, weekly, items, ref = collect(case)
+    arts = collect_artifacts(case)
+    A = {a.id: a for a in arts}
+    used_media = set()
     name, agreement = case_info(overview.md, case)
     winfo = week_info(overview.md)
     pr_md = next((p.md for p in ref if p.id == "principles"), "")
@@ -745,6 +1032,23 @@ def build(case, out_path):
     by_path = {os.path.normcase(os.path.abspath(p.path)): p.id for p in pages}
     by_path[os.path.normcase(os.path.abspath(overview.path))] = "overview"
     case_abs = os.path.abspath(case)
+    out_dir = os.path.dirname(os.path.abspath(out_path))
+    for a in arts:
+        by_path[os.path.normcase(os.path.abspath(a.path))] = a.id
+    for a in arts:  # a link to a working file that backs an artifact opens that artifact
+        if a.source:
+            sp = os.path.normcase(os.path.abspath(os.path.join(os.path.dirname(a.path), a.source)))
+            by_path.setdefault(sp, a.id)
+
+    media_abs = set()
+    for a in arts:
+        for m in a.media:
+            media_abs.add(os.path.abspath(os.path.normpath(os.path.join(os.path.dirname(a.path), m))))
+
+    def href_for(abs_path):
+        used_media.add(abs_path)
+        base = case_abs if bundle else out_dir
+        return urllib.parse.quote(os.path.relpath(abs_path, base).replace(os.sep, "/"), safe="/")
 
     def resolver(src, url, is_img):
         if re.match(r"(https?:|mailto:)", url):
@@ -756,11 +1060,14 @@ def build(case, out_path):
         if key in by_path:
             return "page", by_path[key]
         if os.path.isfile(target):
-            if is_img and os.path.getsize(target) < 1500000:
-                mime = mimetypes.guess_type(target)[0] or "application/octet-stream"
-                with open(target, "rb") as f:
-                    return "data", "data:%s;base64,%s" % (mime, base64.b64encode(f.read()).decode())
-            return "outside", os.path.relpath(target, case_abs)
+            if _is_private(target):
+                return "outside", os.path.relpath(target, case_abs)
+            if target.lower().endswith(".md") and os.path.abspath(target) not in media_abs:
+                # raw working files are not published unless an artifact lists them in `media`
+                return "outside", os.path.relpath(target, case_abs)
+            if not os.path.abspath(target).startswith(case_abs + os.sep):
+                return "outside", os.path.basename(target)
+            return "file", href_for(os.path.abspath(target))
         if os.path.isdir(target):
             return "outside", os.path.relpath(target, case_abs) + "/"
         return "broken", url
@@ -790,6 +1097,8 @@ def build(case, out_path):
                     problems.append("%s trỏ tới %s nhưng không có file hoặc dòng principle tương ứng" % (i, t))
 
     def chip(i, cls="chip"):
+        if i in A:
+            return '<a class="%s t-A" href="#/%s" title="%s">%s</a>' % (cls, i, esc(A[i].title), esc(A[i].title if len(A[i].title) < 28 else A[i].title[:26] + "…"))
         if i in G.items:
             p = G.items[i]
             return '<a class="%s t-%s" href="#/%s" title="%s">%s</a>' % (cls, p.letter, i, esc(p.title), i)
@@ -821,6 +1130,42 @@ def build(case, out_path):
         return '<span class="chips">%s</span>' % "".join(chip(i) for i in ids) if ids else '<span class="missing">chưa có</span>'
 
     placeholders = sum(len(PLACEHOLDER_RE.findall(p.md)) for p in [overview] + pages)
+
+    art_for = {}
+    for a in arts:
+        for s in a.supports:
+            if s in G.items:
+                art_for.setdefault(s, []).append(a.id)
+            elif s not in principles:
+                problems.append("Tài liệu %s trỏ tới %s nhưng không có item đó" % (a.id, s))
+        if a.id in seen:
+            problems.append("ID trùng: %s (tài liệu và trang)" % a.id)
+        if not a.supports:
+            G.warnings.append(("art-orphan", [a.id], "Tài liệu này chưa nối với item nào (property supports đang trống)"))
+
+    def media_of(a):
+        """(kind, abs, name) in a stable order: explicit `media` first, then files dropped in the artifact folder."""
+        seen_, out = set(), []
+        base = os.path.dirname(a.path)
+        for m in a.media:
+            ab = os.path.abspath(os.path.normpath(os.path.join(base, m)))
+            if not os.path.isfile(ab):
+                problems.append("Tài liệu %s: không tìm thấy tệp media %s" % (a.id, m))
+                continue
+            if _is_private(ab):
+                problems.append("Tài liệu %s: bỏ qua tệp nằm trong vùng riêng tư (%s)" % (a.id, m))
+                continue
+            if ab not in seen_:
+                seen_.add(ab)
+                out.append((media_kind(ab), ab, os.path.basename(ab)))
+        if a.folder:
+            for fn in sorted(os.listdir(a.folder), key=_natkey):
+                ab = os.path.abspath(os.path.join(a.folder, fn))
+                if os.path.isfile(ab) and ab != os.path.abspath(a.path) and not fn.startswith(".") and ab not in seen_ and not _is_private(ab):
+                    seen_.add(ab)
+                    out.append((media_kind(ab), ab, fn))
+        order = {"image": 0, "html": 1, "video": 2, "pdf": 3, "csv": 4, "doc": 5, "file": 6}
+        return sorted(out, key=lambda x: order.get(x[0], 9))
 
     # --- overview
     counts = "".join('<div class="card"><div class="num">%d</div><div class="lbl">%s<small>%s</small></div></div>' % (
@@ -865,7 +1210,8 @@ def build(case, out_path):
         '<p>Báo cáo ghi lại một dự án thiết kế, từ câu hỏi của business đến prototype đã được kiểm tra. '
         'Điểm chính: <strong>mỗi quyết định thiết kế đều lần ngược được về nhu cầu của người dùng đứng sau nó</strong>.</p>'
         '<ul><li><strong>Tổng quan</strong> (trang này): tình trạng chung, các quyết định và những chỗ cần xem lại.</li>'
-        '<li><strong>Hành trình</strong>: bảy trang theo tuần, kể lại từng giai đoạn của dự án.</li>'
+        '<li><strong>Hành trình</strong>: các trang theo giai đoạn, kể lại dự án từ câu hỏi ban đầu đến bàn giao.</li>'
+        '<li><strong>Tài liệu</strong>: phân tích đối thủ, persona, khảo sát, flow, prototype... mỗi tài liệu có trang riêng, kèm hình và link.</li>'
         '<li><strong>Truy vết</strong>: chọn một nhu cầu hoặc một quyết định, rồi đi theo các liên kết để thấy lý do và bằng chứng. Có ô tìm kiếm và bộ lọc.</li>'
         '<li><strong>Tham chiếu</strong>: các cổng chất lượng, nguyên tắc thiết kế và nhật ký quyết định.</li></ul>'
         '<p>Chỉ có năm phút? Đọc bảng bên dưới, rồi mở các mục có dấu ⚠ trong tab Truy vết.</p></details>')
@@ -880,36 +1226,156 @@ def build(case, out_path):
         '<dt>Cổng chất lượng (Gate)</dt><dd>Bước kiểm tra trước khi sang giai đoạn sau. Mỗi cổng gồm vài mục nhỏ.</dd>'
         '<dt>Alignment</dt><dd>Mức độ mỗi quyết định nối được về nhu cầu của người dùng và đạt các nguyên tắc.</dd>'
         '</dl></details>')
+    stage_docs = ""
+    for s in STAGES + [""]:
+        grp = [a for a in arts if a.stage == s]
+        if grp:
+            stage_docs += '<div class="sgroup"><h3>%s</h3><div class="chips">%s</div></div>' % (
+                esc(s or "Khác"), "".join('<a class="achip" href="#/%s"><span class="atype">%s</span>%s</a>' % (
+                    a.id, esc(ART_TYPES.get(a.type, a.type)), esc(a.title)) for a in grp))
+    docs_section = ('<h2>Tài liệu theo giai đoạn</h2><p class="lede">Bấm vào một tài liệu để xem đầy đủ.</p>%s' % stage_docs) if stage_docs else ""
     v_overview = (
         '<section class="view" id="v-overview"><div class="wrap">%s<h1>%s</h1><p class="lede">Trạng thái thống nhất với product và business: <strong>%s</strong></p>'
         '%s<div class="cards">%s</div>'
         '<h2>Cổng chất lượng (Gates)</h2><p class="lede">Mỗi giai đoạn có một cổng kiểm tra trước khi sang giai đoạn sau.</p><div class="gatecards">%s</div>'
+        '%s'
         '<h2>Mỗi quyết định dựa trên nhu cầu nào? (Alignment)</h2><p class="lede">Mỗi dòng là một quyết định thiết kế. Ô ghi <em>chưa có</em> là chỗ chưa nối được về giả thuyết, nhu cầu hoặc bài kiểm tra.</p>%s'
         '<h2>Điểm cần xem lại</h2><p class="lede">Đây không phải lỗi. Mỗi điểm dưới đây là chỗ cần một quyết định rõ ràng: sửa, giữ lại có chủ đích, hoặc bỏ đi.</p>%s'
         '%s</div></section>'
-    ) % (banner, esc(name), esc(AGREE_VI.get((agreement or "").lower(), agreement or "chưa ghi")), howto, counts, gate_html, align, warn_html, glossary)
+    ) % (banner, esc(name), esc(AGREE_VI.get((agreement or "").lower(), agreement or "chưa ghi")), howto, counts, gate_html, docs_section, align, warn_html, glossary)
 
     # --- journey
     def doc_html(p, extra_pre="", extra_post="", reading=True):
-        r = Renderer(p.path, resolver, problems)
-        body = r.render(p.md)
-        return body
+        return render_md(p.md, p.path, resolver, problems, team)
 
     jcards, jdocs = "", ""
     for k, p in enumerate(weekly):
         wk, desc, label = winfo.get(p.id, ("", "", p.heading))
         jcards += '<a class="jcard" href="#/%s"><span class="wk">%s</span><h3>%s</h3><p>%s</p></a>' % (
-            p.id, esc("Tuần " + wk if wk else "Trang"), esc(p.heading), esc(desc))
+            p.id, esc(wk if wk else "Trang"), esc(p.heading), esc(desc))
         prev = '<a href="#/%s">← %s</a>' % (weekly[k - 1].id, esc(weekly[k - 1].heading)) if k else "<span></span>"
         nxt = '<a href="#/%s">%s →</a>' % (weekly[k + 1].id, esc(weekly[k + 1].heading)) if k + 1 < len(weekly) else "<span></span>"
         jdocs += '<section class="doc" id="%s" data-title="%s"><a class="back" href="#/journey">← Hành trình</a><div class="reading">%s</div><nav class="pn" aria-label="Trang trước và sau">%s%s</nav></section>' % (
             p.id, esc(p.heading), doc_html(p), prev, nxt)
-    v_journey = '<section class="view journey" id="v-journey"><div class="wrap"><div class="jlist"><h1>Hành trình</h1><p class="lede">Bảy trang theo tuần, mỗi trang kể lại một giai đoạn của dự án.</p><div class="jcards">%s</div></div>%s</div></section>' % (jcards, jdocs)
+    v_journey = '<section class="view journey" id="v-journey"><div class="wrap"><div class="jlist"><h1>Hành trình</h1><p class="lede">Các trang theo giai đoạn, mỗi trang kể lại một phần của dự án.</p><div class="jcards">%s</div></div>%s</div></section>' % (jcards, jdocs)
 
     # --- reference
     subtabs = "".join('<a href="#/%s">%s</a>' % (p.id, esc(p.label)) for p in ref)
     rdocs = "".join('<section class="doc" id="%s" data-title="%s"><div class="reading">%s</div></section>' % (p.id, esc(p.label), doc_html(p)) for p in ref)
     v_reference = '<section class="view reference" id="v-reference"><div class="wrap"><h1>Tham chiếu</h1><p class="lede">Các tài liệu để tra cứu: cổng chất lượng, nguyên tắc thiết kế và nhật ký quyết định.</p><div class="subtabs" role="navigation" aria-label="Tài liệu tham chiếu">%s</div>%s</div></section>' % (subtabs, rdocs)
+
+
+    # --- documents (artifacts)
+    def domain_label(url):
+        host = urllib.parse.urlparse(url).netloc.lower().replace("www.", "")
+        names = {"figma.com": "Figma", "miro.com": "Miro", "notion.so": "Notion", "docs.google.com": "Google Docs",
+                 "drive.google.com": "Google Drive", "github.com": "GitHub", "loom.com": "Loom", "youtube.com": "YouTube"}
+        for k, v in names.items():
+            if host.endswith(k):
+                return v
+        return host or "Link"
+
+    def media_html(a):
+        parts = []
+        figs = []
+        for kind, ab, nm in media_of(a):
+            href = href_for(ab)
+            label = esc(nm)
+            if kind == "image":
+                figs.append('<figure class="fig"><a href="%s" target="_blank" rel="noopener"><img loading="lazy" src="%s" alt="%s"></a><figcaption>%s</figcaption></figure>' % (href, href, label, label))
+            elif kind == "html":
+                emb = ('<iframe loading="lazy" src="%s" title="%s"></iframe>' % (href, label)) if a.embed else ""
+                parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><span class="mtag">Prototype / trang HTML</span>'
+                             '<a class="btn" href="%s" target="_blank" rel="noopener">Mở ở tab mới ↗</a></div>%s</div>' % (label, href, emb))
+            elif kind == "video":
+                parts.append('<div class="mcard"><video controls preload="metadata" src="%s"></video><p class="cap">%s</p></div>' % (href, label))
+            elif kind == "pdf":
+                emb = ('<iframe loading="lazy" src="%s" title="%s"></iframe>' % (href, label)) if a.embed else ""
+                parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><span class="mtag">PDF</span>'
+                             '<a class="btn" href="%s" target="_blank" rel="noopener">Mở PDF ↗</a></div>%s</div>' % (label, href, emb))
+            elif kind == "csv":
+                try:
+                    with open(ab, encoding="utf-8", newline="") as f:
+                        rows_ = list(csv.reader(f))[:41]
+                    th = "".join("<th>%s</th>" % esc(c) for c in rows_[0]) if rows_ else ""
+                    tb = "".join("<tr>%s</tr>" % "".join("<td>%s</td>" % esc(c) for c in r) for r in rows_[1:])
+                    parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><span class="mtag">Bảng CSV</span><a class="btn" href="%s" target="_blank" rel="noopener">Tải về ↗</a></div><div class="table-wrap"><table><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div></div>' % (label, href, th, tb))
+                except Exception:
+                    parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><a class="btn" href="%s" target="_blank" rel="noopener">Tải về ↗</a></div></div>' % (label, href))
+            else:
+                tag = "Tài liệu gốc" if kind == "doc" else "Tệp đính kèm"
+                parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><span class="mtag">%s</span><a class="btn" href="%s" target="_blank" rel="noopener">Mở ↗</a></div></div>' % (label, tag, href))
+        for ln in a.links:
+            lab, _, url = ln.partition("|")
+            url = (url or lab).strip(); lab = lab.strip() if "|" in ln else domain_label(url)
+            parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><span class="mtag">%s</span>'
+                         '<a class="btn" href="%s" target="_blank" rel="noopener">Mở link ↗</a></div></div>' % (esc(lab), esc(domain_label(url)), esc(url)))
+        if a.embed_url:
+            parts.append('<div class="mcard"><iframe loading="lazy" src="%s" title="%s" allowfullscreen></iframe></div>' % (esc(a.embed_url), esc(a.title)))
+        out = ""
+        if figs:
+            out += '<div class="figs">%s</div>' % "".join(figs)
+        return out + "".join(parts)
+
+    def art_card(a):
+        thumb = ""
+        for kind, ab, nm in media_of(a):
+            if kind == "image":
+                thumb = '<img class="thumb" loading="lazy" src="%s" alt="">' % href_for(ab)
+                break
+        n_media = len(media_of(a)) + len(a.links)
+        badge = ('<span class="st st-%s">%s</span>' % (a.status, esc(ART_STATUS.get(a.status, a.status)))) if a.status else ""
+        return ('<a class="acard" href="#/%s" data-type="%s" data-stage="%s" data-text="%s">%s<span class="atype">%s</span><h3>%s</h3><p>%s</p>'
+                '<span class="ameta">%s%s%s</span></a>') % (
+            a.id, esc(a.type), esc(a.stage), esc((a.title + " " + a.summary + " " + a.type).lower()), thumb,
+            esc(ART_TYPES.get(a.type, a.type.replace("-", " ").capitalize())), esc(a.title), esc(a.summary),
+            esc(a.stage) if a.stage else "", (" · " + badge) if badge else "", (" · %d tệp/link" % n_media) if n_media else "")
+
+    adocs = ""
+    for a in arts:
+        label = ART_TYPES.get(a.type, a.type.replace("-", " ").capitalize())
+        badge = ('<span class="st st-%s">%s</span>' % (a.status, esc(ART_STATUS.get(a.status, a.status)))) if a.status else ""
+        warn = ""
+        if a.status in ("simulated", "draft", "planned"):
+            warn = '<p class="warnbox">⚠ Tài liệu này ở trạng thái <strong>%s</strong>: %s</p>' % (esc(ART_STATUS.get(a.status, a.status)),
+                {"simulated": "kết quả đến từ người mô phỏng, không phải người dùng thật.", "draft": "nội dung chưa được kiểm tra.", "planned": "mới ở dạng kế hoạch, chưa thực hiện."}[a.status])
+        take = ("<h2>Điểm chính</h2><ul>%s</ul>" % "".join("<li>%s</li>" % Renderer(a.path, resolver, problems).inline(x) for x in a.takeaways)) if a.takeaways else ""
+        sup = ('<div class="supports"><span class="lbl">Hỗ trợ</span><span class="chips">%s</span></div>' % "".join(chip(s) for s in a.supports)) if a.supports else ""
+        med = media_html(a)
+        med = ("<h2>Hình ảnh và tệp</h2>%s" % med) if med else ""
+        src_note = ('<p class="srcnote">Nguồn: <code>%s</code></p>' % esc(a.source)) if a.source else ""
+        own = re.sub(r"^\s*#\s+.*\n", "", a.body, count=1)
+        body_html = render_md(own, a.path, resolver, problems, team) if own.strip() else ""
+        if a.source:
+            sp = os.path.abspath(os.path.join(os.path.dirname(a.path), a.source))
+            if os.path.isfile(sp):
+                sraw = open(sp, encoding="utf-8").read()
+                _, sbody = _front(sraw)
+                sbody = re.sub(r"^\s*#\s+.*\n", "", sbody, count=1)
+                body_html += ("<h2>Nội dung đầy đủ</h2>" if body_html else "") + render_md(sbody, sp, resolver, problems, team)
+            else:
+                problems.append("Tài liệu %s: không tìm thấy source %s" % (a.id, a.source))
+        adocs += ('<section class="doc" id="%s" data-title="%s"><a class="back" href="#/docs">← Tất cả tài liệu</a>'
+                  '<header class="ahead"><p class="kind">%s%s</p><h1>%s</h1>%s</header>%s%s%s%s<div class="reading">%s</div>%s</section>') % (
+            esc(a.id), esc(a.title), esc(label), (" · " + esc(a.stage)) if a.stage else "", esc(a.title),
+            ('<p class="sum">%s</p>' % esc(a.summary)) if a.summary else "", badge and '<p>%s</p>' % badge, warn, sup,
+            take + med, body_html, src_note)
+
+    stage_order = {s: i for i, s in enumerate(STAGES)}
+    arts_sorted = sorted(arts, key=lambda a: (stage_order.get(a.stage, 99), a.title.lower()))
+    types_present = sorted({a.type for a in arts})
+    stages_present = [s for s in STAGES if any(a.stage == s for a in arts)]
+    dfilters = "".join('<button type="button" aria-pressed="false" data-ftype="%s">%s</button>' % (esc(x), esc(ART_TYPES.get(x, x.replace("-", " ").capitalize()))) for x in types_present)
+    sfilters = "".join('<button type="button" aria-pressed="false" data-fstage="%s">%s</button>' % (esc(s), esc(s)) for s in stages_present)
+    if arts_sorted:
+        grid = '<div class="acards" id="acards">%s</div>' % "".join(art_card(a) for a in arts_sorted)
+    else:
+        grid = '<div class="empty"><p><strong>Chưa có tài liệu nào.</strong></p><p>Thêm một file vào <code>hub/artifacts/</code> (xem <code>hub/artifacts/README.md</code>).</p></div>'
+    v_docs = ('<section class="view docs" id="v-docs"><div class="wrap"><div class="jlist"><h1>Tài liệu</h1>'
+              '<p class="lede">Các sản phẩm làm ra trong dự án: phân tích, persona, khảo sát, flow, prototype. Mỗi tài liệu nối với các quyết định mà nó hỗ trợ.</p>'
+              '<input id="dsearch" class="tsearch" type="search" placeholder="Tìm tài liệu" aria-label="Tìm tài liệu">'
+              '<div class="filters" role="group" aria-label="Lọc theo giai đoạn">%s</div><div class="filters" role="group" aria-label="Lọc theo loại">%s</div>'
+              '<p class="tcount" id="dcount" aria-live="polite"></p>%s</div>%s</div></section>') % (sfilters, dfilters, grid, adocs)
 
     # --- trace: tree
     def tnode(i, kids="", cnt="", leaf=True, opened=False):
@@ -958,8 +1424,9 @@ def build(case, out_path):
         chains = G.paths(i)
         path = ""
         if chains and p.letter != "O":
-            path = '<p class="path"><span>Từ nhu cầu đến mục này:</span>%s</p>' % " ".join(
-                '<span class="chips">%s</span>' % " › ".join(chip(x) for x in c) for c in chains[:3])
+            more = ('<span class="more">và %d đường khác</span>' % (len(chains) - 3)) if len(chains) > 3 else ""
+            path = '<div class="path"><span>Từ nhu cầu đến mục này:</span>%s%s</div>' % ("".join(
+                '<span class="chips chain">%s</span>' % " › ".join(chip(x) for x in c) for c in chains[:3]), more)
         bl = ""
         if G.back.get(i):
             groups = {}
@@ -968,6 +1435,8 @@ def build(case, out_path):
             rows_ = "".join('<div class="row"><span class="lbl">%s</span><span class="chips">%s</span></div>' % (
                 esc(BACK_LABEL.get(lb, lb.replace("_", " "))), "".join(chip(s) for s in sorted(srcs, key=_natkey))) for lb, srcs in groups.items())
             bl = '<aside class="backlinks"><h2>Những mục nối tới mục này</h2>%s</aside>' % rows_
+        if art_for.get(i):
+            bl += '<aside class="backlinks"><h2>Tài liệu liên quan</h2><div class="row"><span class="chips">%s</span></div></aside>' % "".join(chip(x) for x in art_for[i])
         idocs += ('<section class="doc" id="%s" data-title="%s"><a class="back back-tree" href="#/trace">← Về cây truy vết</a>'
                   '<header class="ihead"><span class="idtag t-%s">%s</span><div><p class="kind">%s · %s</p><h1>%s</h1></div></header>%s%s<div class="reading">%s</div>%s</section>') % (
             i, esc(i + " " + p.title), p.letter, i, VI_NAME[p.letter][0], VI_NAME[p.letter][1], esc(p.title), warn, path, body, bl)
@@ -982,8 +1451,12 @@ def build(case, out_path):
     ) % (filters, top or '<li class="n"><span class="nt">Chưa có mục nào.</span></li>', idocs)
 
     now = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
+    theme_select = ""
+    if switcher:
+        theme_select = '<label class="themepick">Giao diện <select id="themeselect" aria-label="Chọn giao diện">%s</select></label>' % "".join(
+            '<option value="%s"%s>%s</option>' % (k, " selected" if k == theme else "", esc(v)) for k, v in THEMES)
     doc = ("""<!doctype html>
-<html lang="vi">
+<html lang="vi" data-theme="{{THEME}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -994,41 +1467,68 @@ def build(case, out_path):
 <body data-case="{{NAME}}">
 <a class="skip" href="#main">Bỏ qua menu</a>
 <header class="top"><div class="top-in">
-<div class="brand">{{NAME}}<small>Báo cáo case · tạo ngày {{NOW}}</small></div>
-<nav class="tabs" aria-label="Các phần của báo cáo"><a href="#/overview">Tổng quan</a><a href="#/journey">Hành trình</a><a href="#/trace">Truy vết</a><a href="#/reference">Tham chiếu</a></nav>
+<div class="brand">{{NAME}}<small>Báo cáo case · tạo ngày {{NOW}}{{MODE}}</small></div>
+<nav class="tabs" aria-label="Các phần của báo cáo"><a href="#/overview">Tổng quan</a><a href="#/journey">Hành trình</a><a href="#/docs">Tài liệu</a><a href="#/trace">Truy vết</a><a href="#/reference">Tham chiếu</a></nav>
 <input id="gsearch" class="gsearch" type="search" placeholder="Tìm theo mã hoặc từ khoá (ví dụ D2)" aria-label="Tìm trong báo cáo">
+{{THEME_SELECT}}
 </div></header>
 <main id="main">
 {{V_OVERVIEW}}
 {{V_JOURNEY}}
+{{V_DOCS}}
 {{V_TRACE}}
 {{V_REFERENCE}}
-<div class="wrap" style="padding-top:0"><footer class="foot">Báo cáo này được tạo tự động từ các file Markdown của case. Muốn đổi nội dung, hãy sửa file gốc rồi tạo lại báo cáo.</footer></div>
+<div class="wrap" style="padding-top:0"><footer class="foot">Trang này được tạo tự động từ các file Markdown của case. Muốn đổi nội dung, hãy sửa file gốc rồi tạo lại trang (nhờ AI tool chạy python3 tools/export-hub.py).</footer></div>
 </main>
 <script>{{JS}}</script>
 </body>
 </html>
-""").replace("{{NAME}}", esc(name)).replace("{{NOW}}", now).replace("{{V_OVERVIEW}}", v_overview) \
-        .replace("{{V_JOURNEY}}", v_journey).replace("{{V_TRACE}}", v_trace).replace("{{V_REFERENCE}}", v_reference) \
-        .replace("{{CSS}}", CSS).replace("{{JS}}", JS)
+""").replace("{{NAME}}", esc(name)).replace("{{NOW}}", now).replace("{{MODE}}", " · bản dành cho team (có bản nháp AI)" if team else "").replace("{{V_OVERVIEW}}", v_overview) \
+        .replace("{{V_JOURNEY}}", v_journey).replace("{{V_DOCS}}", v_docs).replace("{{V_TRACE}}", v_trace).replace("{{V_REFERENCE}}", v_reference) \
+        .replace("{{CSS}}", CSS + theme_rules(theme, switcher)).replace("{{JS}}", JS).replace("{{THEME}}", theme).replace("{{THEME_SELECT}}", theme_select)
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(doc)
-    return G, weekly, ref, problems, placeholders, name
+    return G, weekly, ref, problems, placeholders, name, arts, used_media
 
 
 def main():
     ap = argparse.ArgumentParser(description="Export the markdown hub to one self-contained HTML file.")
     ap.add_argument("--case", default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     ap.add_argument("--out", default=None)
+    ap.add_argument("--theme", default="notion", choices=[k for k, _ in THEMES], help="visual theme of the report")
+    ap.add_argument("--preview-themes", action="store_true", help="add a theme switcher to the report (for choosing a theme)")
+    ap.add_argument("--team", action="store_true", help="team version: show AI-draft sections, folded and labelled")
+    ap.add_argument("--bundle", default=None, metavar="DIR", help="write a clean folder (index.html + only the files it uses) to send to others")
+    ap.add_argument("--zip", action="store_true", help="with --bundle: also make DIR.zip")
     a = ap.parse_args()
     case = os.path.abspath(a.case)
-    out = a.out or os.path.join(case, "hub", "_export", "%s-report.html" % os.path.basename(case))
-    G, weekly, ref, problems, placeholders, name = build(case, out)
+    bundle_dir = os.path.abspath(a.bundle) if a.bundle else None
+    if bundle_dir:
+        os.makedirs(bundle_dir, exist_ok=True)
+        out = os.path.join(bundle_dir, "index.html")
+    else:
+        out = a.out or os.path.join(case, "index.html")
+    G, weekly, ref, problems, placeholders, name, arts, used = build(case, out, a.theme, a.preview_themes, a.team, bool(bundle_dir))
+    if bundle_dir:
+        total = os.path.getsize(out)
+        for ab in sorted(used):
+            if not os.path.isfile(ab):
+                continue
+            dest = os.path.join(bundle_dir, os.path.relpath(ab, case))
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            shutil.copy2(ab, dest)
+            total += os.path.getsize(ab)
+        print("Bundle: %s (%d tệp, %.1f MB)" % (bundle_dir, len(used) + 1, total / 1048576.0))
+        if a.zip:
+            z = shutil.make_archive(bundle_dir, "zip", bundle_dir)
+            print("Zip: %s (%.1f MB)" % (z, os.path.getsize(z) / 1048576.0))
     print("Case: %s" % name)
-    print("Đã đưa vào báo cáo: %d trang theo tuần, %d tài liệu tham chiếu, %d item (O %d, H %d, M %d, D %d, T %d)" % (
-        len(weekly), len(ref), len(G.items), len(G.O), len(G.H), len(G.M), len(G.D), len(G.T)))
+    print("Đã đưa vào báo cáo: %d trang giai đoạn, %d tài liệu tham chiếu, %d tài liệu (artifact), %d item (O %d, H %d, M %d, D %d, T %d)" % (
+        len(weekly), len(ref), len(arts), len(G.items), len(G.O), len(G.H), len(G.M), len(G.D), len(G.T)))
+    if a.team:
+        print("  Bản dành cho team: có hiện các section AI draft (gấp lại). Đừng gửi bản này cho stakeholder.")
     if G.warnings:
         print("Điểm cần xem lại (%d):" % len(G.warnings))
         for _, ids, text in G.warnings:
@@ -1038,7 +1538,7 @@ def main():
     if placeholders:
         print("  ! Còn ít nhất %d chỗ dữ liệu mẫu hoặc chưa điền" % placeholders)
     print("Đã ghi: %s" % out)
-    print("Mở file này bằng trình duyệt (bấm đúp).")
+    print("Mở file index.html bằng trình duyệt (bấm đúp) để xem hub.")
 
 
 if __name__ == "__main__":

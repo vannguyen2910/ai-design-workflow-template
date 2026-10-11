@@ -1,6 +1,6 @@
 # Findings
 
-*Tuần 6. Người dùng thật đã làm gì. AI có thể giúp phân tích; kiểm tra từng finding với ghi chú hoặc bản ghi.*
+*Giai đoạn Deliver, sau khi test. Người dùng thật đã làm gì. AI có thể giúp phân tích; kiểm tra từng finding với ghi chú hoặc bản ghi.*
 
 ## Results against the baseline
 | Metric | Baseline | Result | Met? |

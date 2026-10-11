@@ -1,6 +1,6 @@
 # Get the Folder
 
-Guide này giúp bạn đưa folder làm việc về máy. Có hai cách, và bạn chỉ cần chọn một.
+Guide này giúp bạn đưa workspace về máy. Có hai cách, và bạn chỉ cần chọn một.
 
 **Chưa dùng GitHub bao giờ? Chọn cách A.** Bạn làm hết khoá được mà không cần tài khoản.
 
@@ -17,7 +17,7 @@ Guide này giúp bạn đưa folder làm việc về máy. Có hai cách, và b�
 
 ## Option A: Download ZIP
 
-1. Mở trang GitHub của repo (đường dẫn giảng viên gửi).
+1. Mở trang GitHub của repo (đường dẫn do người chia sẻ template gửi: giảng viên hoặc đồng nghiệp).
 2. Bấm nút xanh **Code**, rồi chọn **Download ZIP**.
 3. Giải nén file ZIP vừa tải:
    - Mac: bấm đúp vào file.
@@ -34,13 +34,13 @@ Cách này tạo cho bạn một **repo** riêng (repo là một folder được
 ### Part 1: Tạo repo của bạn
 
 1. Vào [github.com](https://github.com) và đăng nhập. Chưa có tài khoản thì bấm **Sign up** (miễn phí).
-2. Mở trang GitHub của repo mà giảng viên gửi.
+2. Mở trang GitHub của repo mà người chia sẻ template gửi.
 3. Bấm nút xanh **Use this template**, rồi chọn **Create a new repository**.
 4. Ở ô **Repository name**, đặt một cái tên, ví dụ `my-design-workflow`.
 5. Chọn **Private**.
 6. Bấm **Create repository**.
 
-Không thấy nút **Use this template**? Dùng cách A, hoặc nhắn giảng viên.
+Không thấy nút **Use this template**? Dùng cách A, hoặc nhắn người chia sẻ template.
 
 > **Đừng tải thẳng repo của giảng viên về để lưu bài.** Bạn không có quyền ghi vào repo đó, nên các thay đổi của bạn không lưu lên được. Hãy tạo repo riêng bằng **Use this template** trước.
 
@@ -55,10 +55,10 @@ Không thấy nút **Use this template**? Dùng cách A, hoặc nhắn giảng v
 
 ### Part 3: Lưu bản làm việc
 
-Làm sau mỗi buổi làm việc:
+Làm sau mỗi lần làm việc xong một phần:
 
 1. Mở GitHub Desktop. Cột bên trái liệt kê các file bạn đã sửa.
-2. Ở góc dưới bên trái, gõ một dòng tóm tắt, ví dụ `Tuần 2: scope và user-voice synthesis`.
+2. Ở góc dưới bên trái, gõ một dòng tóm tắt, ví dụ `Discover: scope và user-voice synthesis`.
 3. Bấm **Commit to main**. (Commit là lưu một mốc thay đổi, kèm lời nhắn. `main` là nhánh chính, bạn cứ để nguyên.)
 4. Bấm **Push origin** ở thanh trên. (Push là gửi các mốc đó lên GitHub.)
 
@@ -70,4 +70,4 @@ Bốn thao tác này là toàn bộ những gì bạn cần biết về Git. Cá
 - [ ] Bạn thấy `my-case` và `demo-case` trong folder.
 - [ ] Bạn mở được file `my-case/hub/README.md` và đọc được nội dung.
 
-Mở được nhưng bảng và link hiển thị thô? Bình thường: file Markdown cần một trình xem. Xem [`05-obsidian.md`](05-obsidian.md).
+Mở được nhưng bảng và link hiển thị thô? Bình thường: file Markdown cần một trình xem. Xem phần "View markdown files" trong [`02-set-up-your-case.md`](02-set-up-your-case.md).

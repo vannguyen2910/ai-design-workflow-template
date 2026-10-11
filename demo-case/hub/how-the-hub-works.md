@@ -2,7 +2,7 @@
 
 Hub là một folder markdown nằm trong case folder của bạn. Nó lưu các output đã kiểm tra của dự án và cho thấy chúng liên kết với nhau thế nào. Hub hoàn chỉnh là báo cáo cuối của khoá.
 
-Cách xem tốt nhất là **Obsidian**: mở folder case làm vault, rồi dùng Graph view, Backlinks và file `traceability.base` (bảng theo loại item). Hướng dẫn nằm ở `guides/05-obsidian.md`. Muốn gửi cho người khác, xuất báo cáo HTML bằng `workflow/export-hub.md`.
+Công cụ nào mở được cả folder đều dùng được: AI coding tool, VS Code hay Obsidian. Obsidian thêm Graph view, Backlinks và file `traceability.base` (bảng theo loại item); hướng dẫn nằm ở `guides/05-obsidian.md`. Muốn gửi cho người khác, xuất báo cáo HTML bằng `workflow/export-hub.md`.
 
 ## One source of truth
 
@@ -14,8 +14,8 @@ Nhờ vậy một thông tin chỉ tồn tại ở một chỗ. Sửa một deci
 |---|---|
 | File item trong `opportunities/`, `hypotheses/`, `metrics/`, `decisions/`, `tests/` | Các khối giữa `<!-- generated:... -->` và `<!-- /generated -->` |
 | Trạng thái từng check trong `gates.md` | Bảng Gates ở `README.md` |
-| Phần narrative ở các trang tuần (scope, evidence, directions, verdict) | Bảng alignment và Warnings ở `README.md` |
-| Verdict của bạn ở `05-alignment.md` | Danh sách item ở các trang tuần |
+| Phần narrative ở các trang giai đoạn (scope, evidence, directions, verdict) | Bảng alignment và Warnings ở `README.md` |
+| Verdict của bạn ở `05-alignment.md` | Danh sách item ở các trang giai đoạn |
 
 ## Structure
 
@@ -25,12 +25,13 @@ hub/
 ├── how-the-hub-works.md   file này
 ├── gates.md               bốn gate và các check 1a đến 4d (bạn đặt status)
 ├── traceability.base      Obsidian Bases: bảng theo loại item (Opportunities, Hypotheses, Decisions...)
-├── 01-scope.md … 07-handoff.md   mỗi tuần một trang (phần narrative do bạn viết)
+├── 01-scope.md … 07-handoff.md   mỗi giai đoạn một trang (phần narrative do bạn viết)
 ├── opportunities/         O1.md, O2.md ...   mỗi item một file
 ├── hypotheses/            H1.md ...
 ├── metrics/               M1.md ...
 ├── decisions/             D1.md ...
-└── tests/                 T1.md ...
+├── tests/                 T1.md ...
+└── artifacts/             tài liệu của dự án (competitor analysis, persona, flow, prototype...)
 ```
 
 Case log nằm ở `../case-log.md`, và các principle (P1 đến P10) ở `../00-context/principle-checks.md`.
@@ -45,7 +46,7 @@ Tên file là ID (`D4` thì file là `decisions/D4.md`). Đầu mỗi file có k
 | H Hypothesis | `title`, `serves`, `metric` | O, M |
 | M Metric | `title`, `status`, `baseline`, `measured_by` | giá trị |
 | D Design decision | `title`, `tests`, `follows`, `pulls_against` | H, P |
-| T Test | `title`, `tests`, `measures`, `participants`, `result` | H, M |
+| T Test | `title`, `tests`, `measures`, `participants`, `result`; tuỳ chọn: `status` (`planned` nếu chưa chạy), `participants_type` (`simulated` nếu không phải người thật) | H, M |
 
 Hướng ngược lại (opportunity này được hypothesis nào phục vụ, hypothesis này có test nào) **không ghi vào file**. Obsidian hiện nó ở khung Backlinks, và báo cáo HTML hiện nó ở phần "Được tham chiếu bởi".
 
@@ -72,10 +73,18 @@ Quy tắc:
 4. Decision kéo ngược một principle thì điền `pulls_against`, và ghi trade-off ở phần thân của file.
 5. Chưa xác nhận được thì ghi `assumed` (trong `status` hoặc trong phần thân).
 
-## Each week
+## Artifacts
 
-1. Tạo hoặc sửa các file item của tuần đó (copy một file có sẵn, đổi ID và nội dung).
-2. Viết phần narrative ở trang tuần, từ bản đã kiểm tra trong working file. Không đưa bản nháp của AI lên hub.
+Item cho biết **điều gì đã quyết định và vì sao**. Artifact là **tài liệu làm ra** đứng sau các quyết định đó: phân tích đối thủ, persona, kết quả khảo sát, user flow, prototype, báo cáo test. Mỗi artifact có trang riêng ở tab Tài liệu và nối với các item nó hỗ trợ (property `supports`).
+
+Cách thêm artifact, các loại tệp được nhận diện, và template cho từng loại nằm ở `artifacts/README.md`. Loại tài liệu (`type`) là chuỗi tự do, nên bạn thêm loại riêng thoải mái.
+
+Quy tắc: **artifact trỏ về working file bằng `source:` chứ không chép nội dung**, để một thông tin chỉ nằm ở một chỗ.
+
+## Each time you update
+
+1. Tạo hoặc sửa các file item của giai đoạn bạn đang làm (copy một file có sẵn, đổi ID và nội dung).
+2. Viết phần narrative ở trang giai đoạn, từ bản đã kiểm tra trong working file. Không đưa bản nháp của AI lên hub.
 3. Cập nhật status trong `gates.md`.
 4. Chạy bước `workflow/refresh-hub.md` để AI dựng lại các bảng và warnings.
 5. Đọc warnings, quyết định từng cái, và ghi verdict ở `05-alignment.md`.
@@ -100,7 +109,7 @@ Bốn gate và các check 1a đến 4d nằm ở [`gates.md`](gates.md). Với m
 | Lỗi | Cách sửa |
 |---|---|
 | Sửa tay một bảng trong khối `generated` | Lần dựng lại sau sẽ ghi đè. Sửa ở file item rồi chạy lại refresh |
-| Copy một item sang trang tuần hoặc working file | Chỉ link tới file item, đừng copy nội dung |
+| Copy một item sang trang giai đoạn hoặc working file | Chỉ link tới file item, đừng copy nội dung |
 | Hai item dùng chung một ID | Đổi một item sang số mới, và đổi cả tên file |
 | ID trong file không khớp tên file | Đổi cho khớp |
 | Property trỏ tới file không tồn tại | Tạo file item còn thiếu, hoặc sửa ID |

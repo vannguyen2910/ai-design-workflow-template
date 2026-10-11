@@ -53,13 +53,13 @@ Verdict của bạn cho từng warning (sửa, chấp nhận như trade-off, ho�
 
 ## Pages
 
-| Page | Tuần | Nội dung | Copy từ |
+| Page | Giai đoạn | Nội dung | Copy từ |
 |---|---|---|---|
-| [Scope](01-scope.md) | 2 | Business question, outcome, agreement | `01-discover/scope.md` |
-| [Evidence](02-evidence.md) | 2 | Điều đã học từ nguồn, mỗi claim một nguồn | `01-discover/user-voice-synthesis.md`, `competitor-analysis.md` |
-| [Problem brief](03-problem-brief.md) | 3 | Opportunity, hypothesis, metric, principle | `02-define/problem-brief.md` |
-| [Options, flows, prototype](04-develop.md) | 4 và 5 | Các hướng đã khám phá, decision | `03-develop/options.md`, `prototype/` |
-| [Alignment check](05-alignment.md) | 6 | Principle audit, verdict | `03-develop/alignment.md` |
-| [Findings](06-findings.md) | 6 | Kết quả test với người dùng | `04-deliver/findings.md` |
-| [Handoff and measurement](07-handoff.md) | 7 | Handoff pack, measurement plan | `04-deliver/handoff.md`, `measurement-plan.md` |
-| [Case log](../case-log.md) | mỗi tuần | Mỗi quyết định một dòng | `case-log.md` ở folder gốc của case |
+| [Scope](01-scope.md) | Discover | Business question, outcome, agreement | `01-discover/scope.md` |
+| [Evidence](02-evidence.md) | Discover | Điều đã học từ nguồn, mỗi claim một nguồn | `01-discover/user-voice-synthesis.md`, `competitor-analysis.md` |
+| [Problem brief](03-problem-brief.md) | Define | Opportunity, hypothesis, metric, principle | `02-define/problem-brief.md` |
+| [Options, flows, prototype](04-develop.md) | Develop | Các hướng đã khám phá, decision | `03-develop/options.md`, `prototype/` |
+| [Alignment check](05-alignment.md) | Develop | Principle audit, verdict | `03-develop/alignment.md` |
+| [Findings](06-findings.md) | Deliver | Kết quả test với người dùng | `04-deliver/findings.md` |
+| [Handoff and measurement](07-handoff.md) | Deliver | Handoff pack, measurement plan | `04-deliver/handoff.md`, `measurement-plan.md` |
+| [Case log](../case-log.md) | mọi giai đoạn | Mỗi quyết định một dòng | `case-log.md` ở folder gốc của case |

@@ -1,18 +1,13 @@
-# Prototype starter (week 5)
+# Prototype: Travel Buddy
 
-A small design system, a rules file and an empty page, so you can build your first version without setting anything up. **If you have your own design system, use it instead:** write your own `design-system-notes.md` and rules file, and use this starter only as a pattern.
+Prototype của dự án là một app mobile high-fidelity (390 × 844 px), 32 màn hình, 4 flow (Discover, Plan, Connect, Journal). Kế hoạch dựng và danh sách màn hình nằm ở [`../../reference/10_Prototype_Plan.md`](../../reference/10_Prototype_Plan.md).
 
-| File | What it is |
+| File | Là gì |
 |---|---|
-| `design-system/tokens.css` | The variables: colour, type, spacing, radius, touch target |
-| `design-system/components.css` | Button, field, radio card, card, badge, alert, step indicator |
-| `design-system/components.html` | Every component and state, on one page |
-| `design-system/README.md` | The design system notes, written for an AI coding tool |
-| `project-rules.md` | The rules file: give it to your AI coding tool |
-| `index.html` | An empty page to build on |
+| `Travel_Buddy_Wireframe.html` | Wireframe của các màn hình chính, mở bằng trình duyệt (bấm đúp) |
+| [`../../reference/08_E2E_User_Flow.html`](../../reference/08_E2E_User_Flow.html) | Sơ đồ E2E flow (cần internet để tải thư viện vẽ sơ đồ) |
+| [`../../hub/artifacts/ia-sitemap/IA_Sitemap.png`](../../hub/artifacts/ia-sitemap/IA_Sitemap.png) | Sơ đồ information architecture (giả thuyết trước khi card sort) |
 
-## Steps
-1. This folder is already at `03-develop/prototype/` in your case folder. Start here.
-2. Open `design-system/components.html` in a browser and look at what exists.
-3. Give the AI coding tool `project-rules.md`, your flow and content notes, and one screen to build. Check the files it changed.
-4. Save a working copy after each screen you are happy with.
+**Không có trong bản demo:** bản prototype tương tác đầy đủ (file HTML hơn 6 MB) vì quá nặng cho một template. Bản gốc nằm trong repo của dự án.
+
+**Cách dựng:** prototype được dựng bằng AI coding tool từ file rules và design system (xem `00-context/design-system-notes.md`). Đây đúng là quy trình mà `workflow/` hướng tới: designer viết luật và nội dung, AI dựng, designer kiểm tra.

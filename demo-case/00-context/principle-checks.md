@@ -1,6 +1,6 @@
 # Principle checks
 
-*Viết ở tuần 3. 10 usability heuristics của Nielsen là mức nền. Biến mỗi nguyên tắc thành một câu hỏi có/không cho sản phẩm của bạn. Thêm principle riêng của tổ chức ở dưới, đánh số từ P11.*
+*Viết khi bắt đầu giai đoạn Define. 10 usability heuristics của Nielsen là mức nền. Biến mỗi nguyên tắc thành một câu hỏi có/không cho sản phẩm của bạn. Thêm principle riêng của tổ chức ở dưới, đánh số từ P11.*
 
 | ID | Principle | Yes/no check for my product |
 |---|---|---|
