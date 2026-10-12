@@ -7,7 +7,7 @@ Xuất hub thành **một file HTML tự chứa** để xem trong trình duyệt
 | | |
 |---|---|
 | Khi nào | Khi bạn cần xem hub trong trình duyệt, hoặc gửi cho người khác |
-| Làm trước | Chạy `_ai/refresh-hub.md` để các bảng không cũ |
+| Làm trước | Lưu các file bạn vừa sửa. Các bảng tự dựng lại mỗi lần chạy, không cần bước nào khác |
 | Lệnh | `python3 _ai/export-hub.py` |
 | Output | `index.html` ở gốc case folder |
 
@@ -37,7 +37,7 @@ Các khối "Cách điền" bị bỏ khỏi báo cáo. Link tới file ngoài b
 
 Item không nằm trong menu bên trái mà nằm trong mục Insights, nên báo cáo vẫn dùng được khi có hàng chục item. Item chưa nối vào opportunity nào được gom riêng ở cuối cây.
 
-**Bảng alignment và warning trong báo cáo do script tính** từ các dòng quan hệ trong file item (properties `serves`, `metric`, `tests`, `measures`, `follows`, `pulls_against`), không lấy từ các khối `generated` trong `hub/README.md`. Nếu hai nơi khác nhau, báo cáo là bản đúng; chạy lại `_ai/refresh-hub.md` để README khớp.
+**Bảng alignment và warning trong báo cáo do script tính** từ các dòng quan hệ trong file item (properties `serves`, `metric`, `tests`, `measures`, `follows`, `pulls_against`), không lấy từ nơi nào khác, nên luôn khớp với các file item.
 
 Mỗi item tự có đường truy vết (ví dụ O1 › H1 › D2) và phần **"Được tham chiếu bởi"**, vì các file item chỉ khai báo quan hệ một chiều.
 

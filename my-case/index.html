@@ -893,8 +893,8 @@ a.iref:hover{text-decoration-thickness:2px}
 └── _personal/             ghi chú riêng</code></pre>
 <p>Nhật ký quyết định nằm ở <code>reference/case-log.md</code>, và các principle (P1 đến P10) ở <code>reference/principle-checks.md</code>.</p>
 <h2>Nguyên tắc: mỗi thông tin chỉ ghi một chỗ</h2>
-<p><strong>Mỗi item là một file riêng, và file đó là nguồn duy nhất.</strong> Mọi bảng tổng hợp trong hub (đối chiếu, warnings, danh sách item, trạng thái gate) do AI dựng lại từ các file item và từ <code>gates.md</code>. Bạn không điền tay và không copy item sang nơi khác. Sửa một decision thì sửa file của decision đó, rồi nhờ AI cập nhật các bảng.</p>
-<div class="table-wrap"><table><thead><tr><th scope="col">Bạn tự viết</th><th scope="col">AI cập nhật (đừng sửa tay)</th></tr></thead><tbody><tr><td>File item (<code>O*.md</code>, <code>H*.md</code>, <code>M*.md</code>, <code>D*.md</code>, <code>E*.md</code>)</td><td>Các bảng nằm giữa <code>&lt;!-- generated:... --&gt;</code> và <code>&lt;!-- /generated --&gt;</code></td></tr><tr><td>Trạng thái từng check trong <code>reference/gates.md</code></td><td>Bảng Gates trong các trang kể chuyện</td></tr><tr><td>Phần kể chuyện ở các trang giai đoạn (scope, evidence, các hướng giải, verdict)</td><td>Bảng đối chiếu và Warnings (báo cáo tự tính)</td></tr><tr><td>Verdict của bạn ở <code>alignment.md</code></td><td>Danh sách item ở các trang giai đoạn</td></tr></tbody></table></div>
+<p><strong>Mỗi item là một file riêng, và file đó là nguồn duy nhất.</strong> Mọi bảng tổng hợp trong hub (đối chiếu, warnings, danh sách item, trạng thái gate, các bảng ở trang giai đoạn) do <code>export-hub.py</code> tự dựng từ các file item, <code>gates.md</code> và file ở <code>work/</code>. Bạn không điền tay và không copy item sang nơi khác. Sửa một decision thì sửa file của decision đó, rồi nhờ AI cập nhật các bảng.</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">Bạn tự viết</th><th scope="col">Báo cáo tự dựng (đừng sửa tay)</th></tr></thead><tbody><tr><td>File item (<code>O*.md</code>, <code>H*.md</code>, <code>M*.md</code>, <code>D*.md</code>, <code>E*.md</code>, <code>F*.md</code>)</td><td>Bảng đối chiếu, Warnings và danh sách item</td></tr><tr><td>File làm việc ở <code>work/</code> (scope, problem brief, options, findings, learning...)</td><td>Các trang giai đoạn ở mục Stages</td></tr><tr><td>Trạng thái từng check trong <code>reference/gates.md</code></td><td>Bảng Gates và dòng gate ở mỗi giai đoạn</td></tr><tr><td>Verdict của bạn ở <code>work/alignment.md</code></td><td>Bảng Outcomes ở trang Learning</td></tr></tbody></table></div>
 <h2>Tạo một item</h2>
 <ol><li>Copy một file trong <code>insights/_templates/</code> vào folder loại tương ứng (ví dụ <code>insights/decisions/</code>).</li><li>Đặt tên file theo mã tiếp theo (ví dụ <code>D4.md</code>). Mã là duy nhất trong cả hub; chữ cái đầu cho biết loại: O, H, M, D, E.</li><li>Điền phần thông tin ở đầu file và vài dòng mô tả.</li></ol>
 <p>Phần thông tin đầu file (giữa hai dòng <code>---</code>) là nơi duy nhất ghi <strong>quan hệ giữa các item</strong>. Quan hệ chỉ ghi một chiều, từ item phía sau về item phía trước:</p>
@@ -923,10 +923,10 @@ pulls_against:
 <p>Thả ảnh, video hoặc PDF vào một folder trong <code>work/</code>, hoặc chèn ảnh giữa trang bằng <code>![mô tả](đường-dẫn)</code>. Báo cáo tự nhận ra định dạng; chi tiết và các cảnh báo nằm ở <code>work/README.md</code>.</p>
 <h2>Mỗi lần cập nhật</h2>
 <ol><li>Tạo hoặc sửa các file item của giai đoạn bạn đang làm.</li><li>Viết phần kể chuyện ở trang giai đoạn, từ bản đã kiểm tra. Không đưa bản nháp của AI lên hub.</li><li>Cập nhật status trong <code>gates.md</code>.</li><li>Nhờ AI tool cập nhật hub (xem bên dưới) để dựng lại các bảng và warnings.</li><li>Đọc warnings, quyết định từng cái, và ghi verdict ở <code>alignment.md</code>.</li><li>Thêm một dòng vào <code>../reference/case-log.md</code>.</li><li>Tạo lại <code>index.html</code> để người khác xem bản mới.</li></ol>
-<h2>Nhờ AI cập nhật hub</h2>
+<h2>Nhờ AI rà soát hub</h2>
 <p>Lưu một mốc trước (commit trong GitHub Desktop, hoặc copy folder thành bản <code>-backup</code>), rồi nói với AI tool:</p>
-<blockquote><p>Chạy <code>_ai/refresh-hub.md</code>.</p></blockquote>
-<p>Bước này chỉ ghi vào các bảng tự động và trả về danh sách vấn đề tìm thấy. Nó không sửa file item, <code>gates.md</code> hay phần kể chuyện của bạn. Sau khi chạy, đối chiếu vài dòng trong bảng với file item để chắc AI không suy ra sai quan hệ.</p>
+<blockquote><p>Chạy <code>_ai/refresh-hub.md</code> (rà soát những chỗ item chưa nối hoặc còn thiếu).</p></blockquote>
+<p>Bước này chỉ trả về danh sách vấn đề tìm thấy; nó không ghi vào file nào. Sau khi chạy, đối chiếu vài dòng trong bảng với file item để chắc AI không suy ra sai quan hệ.</p>
 <p>Để tạo lại <code>index.html</code>, nhờ AI tool chạy <code>python3 _ai/export-hub.py</code>. Muốn xem thay đổi ngay khi lưu file, chạy <code>python3 _ai/serve-hub.py</code> (chi tiết ở <code>_ai/export-hub.md</code>).</p>
 <h2>Quyết định, thứ hạng và vòng outcome</h2>
 <p>Ba nhóm thông tin giúp hub trả lời "vì sao" và "kết quả ra sao". Tất cả đều tuỳ chọn, nhưng báo cáo sẽ nhắc khi thiếu:</p>
@@ -944,7 +944,7 @@ pulls_against:
 <p><em>Mỗi decision một dòng, kèm lý do. Ghi cả những thứ đã cắt và các trade-off đã chấp nhận. Ghi rõ chỗ nào AI được dùng.</em></p>
 <p><em>Báo cáo kiểm tra cột Items: mã phải tồn tại (ví dụ D2, E1), và mỗi decision nên có ít nhất một dòng ở đây. Mã trong cột Items trở thành link.</em></p>
 <div class="table-wrap"><table><thead><tr><th scope="col">Date</th><th scope="col">Decision</th><th scope="col">Reason</th><th scope="col">Items (IDs)</th></tr></thead><tbody><tr><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr></tbody></table></div></div><p class="srcfile">File gốc: <code>reference/case-log.md</code></p></section></div></section>
-<div class="wrap" style="padding-top:0"><footer class="foot">Báo cáo này được tạo tự động từ các file của dự án, ngày 12/10/2026 07:59.<details class="foot-tech"><summary>Dành cho người cập nhật báo cáo</summary><p>Sửa file gốc của dự án, rồi nhờ AI tool tạo lại báo cáo, hoặc chạy lệnh <code>python3 _ai/export-hub.py</code>.</p></details></footer></div>
+<div class="wrap" style="padding-top:0"><footer class="foot">Báo cáo này được tạo tự động từ các file của dự án, ngày 12/10/2026 08:07.<details class="foot-tech"><summary>Dành cho người cập nhật báo cáo</summary><p>Sửa file gốc của dự án, rồi nhờ AI tool tạo lại báo cáo, hoặc chạy lệnh <code>python3 _ai/export-hub.py</code>.</p></details></footer></div>
 </main>
 </div>
 <script>

@@ -32,11 +32,11 @@ Chọn việc bạn muốn làm, rồi mở đúng chỗ trong cột giữa.
 | **Chốt vấn đề đáng giải** (Define) | `work/problem-brief.md` | |
 | **Khám phá hướng giải, dựng prototype** (Develop) | `work/options.md`, `work/alignment.md`, `work/prototype/` | |
 | **Test và bàn giao** (Deliver) | `work/test-plan.md`, `work/findings.md`, `work/handoff.md`, `work/measurement-plan.md` | |
-| **Ghi lại một quyết định** | `insights/decisions/` (một file mỗi decision) và `reference/case-log.md` (một dòng) | `_ai/refresh-hub.md` |
+| **Ghi lại một quyết định** | `insights/decisions/` (một file mỗi decision) và `reference/case-log.md` (một dòng) | `python3 _ai/new-item.py D` |
 | **Thêm ảnh, video, PDF hoặc tài liệu vào báo cáo** (wireframe, screenshot, persona, flow, prototype) | Thả vào một folder trong `work/` (xem mục "Thêm ảnh, video, PDF" ở `work/README.md`) | `_ai/add-media.md` |
 | **Đánh giá thiết kế theo heuristics, chấm severity** | `reference/principle-checks.md`, `reference/severity-levels.md` | |
-| **Ghi một vấn đề usability tìm thấy (finding)** | `insights/findings/` (một file mỗi finding; chấm severity theo `reference/severity-levels.md`) | `_ai/refresh-hub.md` |
-| **Kiểm tra gate** | `reference/gates.md` | `_ai/refresh-hub.md` |
+| **Ghi một vấn đề usability tìm thấy (finding)** | `insights/findings/` (một file mỗi finding; chấm severity theo `reference/severity-levels.md`) | `python3 _ai/new-item.py F` |
+| **Kiểm tra gate** | `reference/gates.md` | `python3 _ai/export-hub.py` (cột Kiểm tra tự động) |
 | **Xem tiến độ và những chỗ cần xem lại** | `index.html`, mục Overview | |
 | **Gửi báo cáo cho người khác** | `index.html` (đổi tên rồi gửi) | `_ai/export-hub.md` |
 | **Thêm một trang tra cứu của riêng bạn** (glossary, brand voice...) | Thả một file `.md` vào `reference/` | |
@@ -86,6 +86,6 @@ Báo cáo `index.html` ghi sẵn dòng "Folder" và "Thêm mới" ở đầu m�
 ## Giữ cho dự án luôn mới
 
 - **Quyết định mới:** chạy `python3 _ai/new-item.py D` (lệnh tạo file ở `insights/decisions/` và ghi một dòng vào `reference/case-log.md`).
-- **Thông tin mới:** sửa file item hoặc file làm việc, nhờ AI chạy `_ai/refresh-hub.md`, rồi tạo lại `index.html` (nhờ AI chạy `python3 _ai/export-hub.py`; lệnh này cũng tự cập nhật các bảng item trong `stages/`).
+- **Thông tin mới:** sửa file item hoặc file làm việc, rồi tạo lại `index.html` (nhờ AI chạy `python3 _ai/export-hub.py`; lệnh này cũng tự cập nhật các bảng item trong `stages/`).
 - **Trước thay đổi lớn:** lưu một mốc (commit) hoặc copy folder thành bản `-backup`.
 - **Gửi cho người khác:** copy `index.html` ra ngoài và đổi tên (ví dụ `onboarding-redesign-report.html`).

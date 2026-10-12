@@ -74,14 +74,14 @@ Nhật ký quyết định nằm ở `reference/case-log.md`, và các principle
 
 ## Nguyên tắc: mỗi thông tin chỉ ghi một chỗ
 
-**Mỗi item là một file riêng, và file đó là nguồn duy nhất.** Mọi bảng tổng hợp trong hub (đối chiếu, warnings, danh sách item, trạng thái gate) do AI dựng lại từ các file item và từ `gates.md`. Bạn không điền tay và không copy item sang nơi khác. Sửa một decision thì sửa file của decision đó, rồi nhờ AI cập nhật các bảng.
+**Mỗi item là một file riêng, và file đó là nguồn duy nhất.** Mọi bảng tổng hợp trong hub (đối chiếu, warnings, danh sách item, trạng thái gate, các bảng ở trang giai đoạn) do `export-hub.py` tự dựng từ các file item, `gates.md` và file ở `work/`. Bạn không điền tay và không copy item sang nơi khác. Sửa một decision thì sửa file của decision đó, rồi nhờ AI cập nhật các bảng.
 
-| Bạn tự viết | AI cập nhật (đừng sửa tay) |
+| Bạn tự viết | Báo cáo tự dựng (đừng sửa tay) |
 |---|---|
-| File item (`O*.md`, `H*.md`, `M*.md`, `D*.md`, `E*.md`) | Các bảng nằm giữa `<!-- generated:... -->` và `<!-- /generated -->` |
-| Trạng thái từng check trong `reference/gates.md` | Bảng Gates trong các trang kể chuyện |
-| Phần kể chuyện ở các trang giai đoạn (scope, evidence, các hướng giải, verdict) | Bảng đối chiếu và Warnings (báo cáo tự tính) |
-| Verdict của bạn ở `alignment.md` | Danh sách item ở các trang giai đoạn |
+| File item (`O*.md`, `H*.md`, `M*.md`, `D*.md`, `E*.md`, `F*.md`) | Bảng đối chiếu, Warnings và danh sách item |
+| File làm việc ở `work/` (scope, problem brief, options, findings, learning...) | Các trang giai đoạn ở mục Stages |
+| Trạng thái từng check trong `reference/gates.md` | Bảng Gates và dòng gate ở mỗi giai đoạn |
+| Verdict của bạn ở `work/alignment.md` | Bảng Outcomes ở trang Learning |
 
 ## Tạo một item
 
@@ -154,13 +154,13 @@ Thả ảnh, video hoặc PDF vào một folder trong `work/`, hoặc chèn ản
 6. Thêm một dòng vào `../reference/case-log.md`.
 7. Tạo lại `index.html` để người khác xem bản mới.
 
-## Nhờ AI cập nhật hub
+## Nhờ AI rà soát hub
 
 Lưu một mốc trước (commit trong GitHub Desktop, hoặc copy folder thành bản `-backup`), rồi nói với AI tool:
 
-> Chạy `_ai/refresh-hub.md`.
+> Chạy `_ai/refresh-hub.md` (rà soát những chỗ item chưa nối hoặc còn thiếu).
 
-Bước này chỉ ghi vào các bảng tự động và trả về danh sách vấn đề tìm thấy. Nó không sửa file item, `gates.md` hay phần kể chuyện của bạn. Sau khi chạy, đối chiếu vài dòng trong bảng với file item để chắc AI không suy ra sai quan hệ.
+Bước này chỉ trả về danh sách vấn đề tìm thấy; nó không ghi vào file nào. Sau khi chạy, đối chiếu vài dòng trong bảng với file item để chắc AI không suy ra sai quan hệ.
 
 Để tạo lại `index.html`, nhờ AI tool chạy `python3 _ai/export-hub.py`. Muốn xem thay đổi ngay khi lưu file, chạy `python3 _ai/serve-hub.py` (chi tiết ở `_ai/export-hub.md`).
 

@@ -465,6 +465,29 @@ def stage_specs(md):
     return out
 
 
+def stage_table_issues(md):
+    """Rows of the Pages table that stage_specs skips, so a mistake or an old-format table is never silent."""
+    out = []
+    in_pages = False
+    for line in md.split("\n"):
+        if line.startswith("## "):
+            in_pages = line.strip().lower() == "## pages"
+            continue
+        if not in_pages or not line.strip().startswith("|") or _is_sep(line):
+            continue
+        c = _split_row(line)
+        sid = c[0].strip("` ") if c else ""
+        if sid.lower() in ("id", "page", "") and not re.fullmatch(r"[a-z][a-z0-9-]*", sid or "-"):
+            continue
+        if sid.lower() == "id":
+            continue
+        if len(c) < 6:
+            out.append("Stages: dòng \"%s\" trong bảng Pages có %d cột, cần 6 (Id, Page, Giai đoạn, Nội dung, Từ work, Bảng item)" % (sid[:40], len(c)))
+        elif not re.fullmatch(r"[a-z][a-z0-9-]*", sid):
+            out.append("Stages: Id \"%s\" không hợp lệ (chữ thường, không dấu, nối bằng dấu gạch ngang)" % sid[:40])
+    return out
+
+
 def week_info(overview_md):
     """slug -> (stage, description, label) from the Pages table in stages/README.md"""
     return {sp["id"]: (sp["stage"], sp["desc"], sp["label"]) for sp in stage_specs(overview_md)}
@@ -1660,6 +1683,11 @@ def esc(s):
 def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=False):
     problems = []
     overview, weekly, items, ref, ctx = collect(case)
+    _sidx0 = os.path.join(case, "stages", "README.md")
+    _smd0 = open(_sidx0, encoding="utf-8").read() if os.path.isfile(_sidx0) else ""
+    problems.extend(stage_table_issues(_smd0))
+    if not weekly:
+        problems.append("Stages: bảng Pages trong stages/README.md chưa có trang nào, nên mục Stages đang trống")
     for p_ in weekly:  # a stage page and a Work file can share a file name (scope.md): the stage id gets a prefix
         p_.slug, p_.id = p_.id, "stage-" + p_.id
     arts = collect_artifacts(case)

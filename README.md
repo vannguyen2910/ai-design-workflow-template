@@ -103,7 +103,7 @@ Một dự án đi qua năm giai đoạn. Bạn không cần làm hết một l�
 | **Deliver** | Nó có hiệu quả không, và bàn giao gì? | `work/test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md`; chấm mức độ bằng `reference/severity-levels.md` |
 | **Mọi giai đoạn** | Chúng ta đã quyết định gì, và vì sao? | `reference/case-log.md`, các trang ở `stages/` và các item ở `insights/` |
 
-Dự án thật không đi một chiều. Khi có thông tin mới, bạn quay lại giai đoạn trước: cập nhật file ở giai đoạn đó, rồi tạo lại hub (xem `_ai/refresh-hub.md`).
+Dự án thật không đi một chiều. Khi có thông tin mới, bạn quay lại giai đoạn trước: cập nhật file ở giai đoạn đó, rồi tạo lại hub (`python3 _ai/export-hub.py`; muốn rà soát thì xem `_ai/refresh-hub.md`).
 
 ## Keep a project alive
 

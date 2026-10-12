@@ -73,7 +73,7 @@ Hub là nơi bạn trả lời câu hỏi: "Decision này dựa trên nhu cầu 
 
 - **Mỗi design decision là một file riêng.** Ví dụ decision `D2` nằm ở `insights/decisions/D2.md`.
 - **Bạn chỉ viết mỗi điều một chỗ.** Decision `D2` nói nó kiểm chứng hypothesis nào; hub tự suy ra chiều ngược lại.
-- **Sau mỗi lần cập nhật,** nhờ AI tool chạy `_ai/refresh-hub.md` để dựng lại bảng tổng hợp và danh sách warnings.
+- **Sau mỗi lần cập nhật,** chạy `python3 _ai/export-hub.py` (hoặc nhờ AI tool chạy) để báo cáo dựng lại bảng tổng hợp và warnings.
 
 Cách hub vận hành nằm ở `reference/how-the-hub-works.md` trong folder case của bạn.
 
@@ -102,7 +102,7 @@ Hãy mở **cả folder**, không mở từng file lẻ: các link giữa các t
 | Thêm một trang giai đoạn | Thêm một dòng vào bảng Pages ở `stages/README.md`: đặt Id, chọn file ở cột Từ work và bảng item muốn hiện. Không cần viết file mới |
 | Thêm một item (nhu cầu, hypothesis, decision...) | Chạy `python3 _ai/new-item.py` trong folder dự án: lệnh hỏi từng câu, chọn mã tiếp theo và nối quan hệ giúp bạn |
 | Thêm một tài liệu (phân tích đối thủ, persona, flow, prototype...) | Copy một template trong `work/_templates/` ra `work/`, hoặc tạo folder và thả ảnh, PDF, HTML vào. Xem `work/README.md` |
-| Thêm một decision hoặc test | Copy một file cùng loại trong `insights/`, đặt tên theo mã mới (ví dụ `D4.md`), rồi nhờ AI chạy `_ai/refresh-hub.md` |
+| Thêm một decision hoặc test | Chạy `python3 _ai/new-item.py D` (hoặc `E`): lệnh chọn mã mới và nối quan hệ giúp bạn |
 | Dùng design system của công ty | Viết `context/design-system-notes.md` của bạn và dùng `work/prototype/` làm mẫu |
 | Viết file bằng tiếng Việt | Được. Chỉ giữ tên file và tên folder bằng tiếng Anh |
 
