@@ -2,8 +2,8 @@
 type: "problem-brief"
 title: "Problem brief"
 stage: "Define"
-status: "draft"
-summary: ""
+status: "planned"
+summary: "The problem worth solving: ranked opportunities, hypotheses and success metrics."
 supports: []
 ---
 *Giai đoạn Define. Yêu cầu chung. Đồng ký với product và business, hoặc ghi lại agreement status.*

@@ -2,8 +2,8 @@
 type: "handoff"
 title: "Handoff"
 stage: "Deliver"
-status: "draft"
-summary: ""
+status: "planned"
+summary: "Everything a developer needs to build it without asking again."
 supports: []
 ---
 *Giai đoạn Deliver, khi bàn giao. Những gì developer cần để dựng được mà không phải hỏi lại.*

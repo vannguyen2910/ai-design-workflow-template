@@ -2,8 +2,8 @@
 type: "measurement-plan"
 title: "Measurement plan"
 stage: "Deliver"
-status: "draft"
-summary: ""
+status: "planned"
+summary: "How you will know it worked: metrics, targets, where the data comes from."
 supports: []
 ---
 *Giai đoạn Deliver, khi bàn giao. Theo dõi gì sau khi launch, và ai chịu trách nhiệm. Đưa nó cho PO ngay cả khi bạn không xem được data.*

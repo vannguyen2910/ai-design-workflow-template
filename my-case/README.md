@@ -18,7 +18,7 @@ File này là trang đầu của dự án. Điền **Project card** trước, r�
 | Quy tắc dữ liệu | Xem `context/data-rules.md` |
 
 <!-- template-only -->
-> **Đang ở trong `my-case`, folder template.** Hub của nó còn dữ liệu mẫu `[EXAMPLE]` để bạn thấy hub chạy ra sao. Để bắt đầu một dự án thật, chạy `python3 tools/new-case.py <tên-dự-án>` ở folder gốc của workspace: lệnh tạo một folder sạch cạnh `my-case`. Đừng điền thẳng vào `my-case`.
+> **Đang ở trong `my-case`, folder template.** Nó là một workspace trống, không có dữ liệu mẫu (muốn xem một dự án hoàn chỉnh, mở `demo-case`). Để bắt đầu một dự án thật, chạy `python3 tools/new-case.py <tên-dự-án>` ở folder gốc của workspace: lệnh tạo một folder sạch cạnh `my-case`. Đừng điền thẳng vào `my-case`.
 <!-- /template-only -->
 
 ## Bắt đầu từ đâu

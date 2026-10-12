@@ -25,7 +25,7 @@ Bạn không cần biết GitHub hay lập trình để bắt đầu.
    python3 tools/new-case.py onboarding-redesign
    ```
 
-   Không dùng được Terminal? Đổi tên folder `my-case` theo dự án của bạn, rồi tự xoá các item `[EXAMPLE]` trong `insights/`.
+   Không dùng được Terminal? Đổi tên folder `my-case` theo dự án của bạn, rồi điền vào đó.
 3. **Xem hub.** Bấm đúp file `index.html` trong folder dự án (ví dụ [`my-case/index.html`](my-case/index.html)): nó mở bằng trình duyệt và không cần cài gì. Khi làm việc, mở **cả folder dự án** bằng công cụ bạn quen (AI coding tool, VS Code hay Obsidian).
 
 Xong ba bước này là dự án đã có chỗ ở. Các bước sau làm dần theo tiến độ thật của dự án.

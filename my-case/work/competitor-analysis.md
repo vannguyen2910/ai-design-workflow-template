@@ -2,8 +2,8 @@
 type: "competitor-analysis"
 title: "Competitor analysis"
 stage: "Discover"
-status: "draft"
-summary: ""
+status: "planned"
+summary: "How alternatives solve the same problem, and where the gaps and opportunities are."
 supports: []
 ---
 *Working file cho competitor flow. Các nguồn bạn đã lưu nằm trong `sources/anonymised/`.*

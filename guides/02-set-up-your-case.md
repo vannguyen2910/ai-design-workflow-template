@@ -12,11 +12,11 @@ Guide này giúp bạn đặt tên dự án, hiểu từng folder dùng để l�
 
    Thêm `--title "Onboarding redesign"` nếu muốn tên hiển thị khác với tên folder.
 2. Tên folder dùng chữ thường, nối bằng dấu gạch ngang, không có dấu cách. Ví dụ: `onboarding-redesign`, `checkout-flow`. Chọn tên mà nhìn vào là biết case nói về gì, vì bạn sẽ thấy nó ở đầu mọi đường dẫn.
-3. Lệnh tạo một folder mới cạnh `my-case`, đã xoá sẵn các item `[EXAMPLE]`. `my-case` được giữ nguyên làm template.
+3. Lệnh tạo một folder mới cạnh `my-case`, sạch và sẵn để điền. `my-case` được giữ nguyên làm template.
 
 Có hai case thì chạy lệnh hai lần với hai tên khác nhau.
 
-**Không dùng được Terminal?** Đổi tên folder `my-case` theo case của bạn rồi tự xoá các item `[EXAMPLE]` trong `insights/`. Cách này làm mất template gốc, nên hãy giữ một bản ZIP sạch để lấy lại khi cần.
+**Không dùng được Terminal?** Đổi tên folder `my-case` theo case của bạn rồi điền vào đó. Cách này làm mất template gốc, nên hãy giữ một bản ZIP sạch để lấy lại khi cần.
 
 ## Step 2: Understand the folders
 

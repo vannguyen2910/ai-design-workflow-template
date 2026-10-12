@@ -1594,7 +1594,7 @@ ART_TYPES = {
     "prototype": "Prototype", "test-plan": "Test plan", "test-report": "Test report",
     "requirements": "Requirements (PRD)", "solution-pool": "Solution pool", "generic": "Document",
 }
-STAGES = ["Setup", "Discover", "Define", "Develop", "Deliver"]
+STAGES = ["Setup", "Discover", "Define", "Develop", "Deliver", "Learn"]
 ART_STATUS = {"verified": "Verified", "draft": "Draft", "simulated": "Simulated", "planned": "Planned"}
 IMG_EXT = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".avif", ".bmp"}
 HEAVY_BYTES = 2500 * 1024  # an image above this makes the report slow to open and to send
@@ -1635,6 +1635,21 @@ class Artifact(object):
         self.embed_url = str(self.meta.get("embed_url") or "").strip()
 
 
+METHOD_ORDER = [
+    # Discover
+    "scope", "stakeholder-map", "assumptions-map", "evaluate-current-experience", "analytics-review", "field-observation",
+    "survey-results", "user-voice-synthesis", "competitor-analysis",
+    # Define
+    "affinity-map", "personas", "journey-map", "frame-opportunity", "prioritization", "design-principles", "problem-brief",
+    # Develop
+    "ideation", "options", "user-flow", "information-architecture", "wireframes", "prototype", "concept-test", "alignment",
+    # Deliver
+    "test-plan", "usability-test-report", "findings", "design-qa", "handoff", "measurement-plan", "rollout-plan",
+    # Learn
+    "learning",
+]
+
+
 def collect_artifacts(case):
     base = os.path.join(case, "work")
     out = []
@@ -1649,6 +1664,10 @@ def collect_artifacts(case):
         elif os.path.isdir(full) and os.path.isfile(os.path.join(full, "index.md")):
             # a folder is a document only when it has an index.md (sources/, original-docs/ stay plain folders)
             out.append(Artifact(name, os.path.join(full, "index.md"), full))
+    # Cards follow the double diamond: Discover, Define, Develop, Deliver, Learn; inside a stage, the usual order of the methods.
+    stage_rank = {"setup": 0, "discover": 1, "define": 2, "develop": 3, "deliver": 4, "learn": 5}
+    seq = {k: n for n, k in enumerate(METHOD_ORDER)}
+    out.sort(key=lambda a: (stage_rank.get(a.stage.strip().lower(), 9), seq.get(a.id, 999), _natkey(a.id)))
     return out
 
 
@@ -1904,7 +1923,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                 problems.append("Document %s points to %s but that item does not exist" % (a.id, s))
         if a.id in seen:
             problems.append("Duplicate ID: %s (document and page)" % a.id)
-        if not a.supports:
+        if not a.supports and a.status != "planned":  # a method card not started yet is not an orphan
             G.warnings.append(("art-orphan", [a.id], "This document is not linked to any item (supports is empty)"))
 
     _media_cache, media_notes = {}, {}
@@ -2321,7 +2340,8 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             take + med, body_html, src_note + srcfile(a.path))
 
     stage_order = {s: i for i, s in enumerate(STAGES)}
-    arts_sorted = sorted(arts, key=lambda a: (stage_order.get(a.stage, 99), a.title.lower()))
+    _seq = {k: n for n, k in enumerate(METHOD_ORDER)}
+    arts_sorted = sorted(arts, key=lambda a: (stage_order.get(a.stage, 99), _seq.get(a.id, 999), a.title.lower()))
     types_present = sorted({a.type for a in arts})
     stages_present = [s for s in STAGES if any(a.stage == s for a in arts)]
     dfilters = "".join('<button type="button" aria-pressed="false" data-ftype="%s">%s</button>' % (esc(x), esc(ART_TYPES.get(x, x.replace("-", " ").capitalize()))) for x in types_present)

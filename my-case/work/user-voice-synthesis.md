@@ -1,9 +1,9 @@
 ---
 type: "interview-synthesis"
-title: "User-voice synthesis"
+title: "User interview insights"
 stage: "Discover"
-status: "draft"
-summary: ""
+status: "planned"
+summary: "What users said in interviews, grouped into insights with the source of each claim."
 supports: []
 ---
 *Working file cho user-voice flow. AI chỉ trả về section của nó, và bạn tự dán vào. Quote đã ẩn danh nằm trong `sources/anonymised/` kèm ID (R01, I01-01 ...).*

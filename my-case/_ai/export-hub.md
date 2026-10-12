@@ -84,7 +84,7 @@ Script in ra số trang, số item, và các vấn đề (link hỏng, ID không
 Mở file bằng trình duyệt và kiểm tra:
 
 - [ ] Không còn thanh đen "dữ liệu mẫu hoặc chỗ chưa điền" ở đầu Tổng quan
-- [ ] Không còn item `[EXAMPLE]`
+- [ ] Không còn nội dung mẫu hoặc chỗ trống
 - [ ] Agreement status đúng
 - [ ] Không có thông tin confidential hay dữ liệu cá nhân (đọc từng trang; báo cáo chỉ gồm hub, nhưng bạn là người viết hub)
 - [ ] Mở thử trên một thiết bị khác

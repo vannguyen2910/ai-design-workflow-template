@@ -2,8 +2,8 @@
 type: "prototype"
 title: "Prototype"
 stage: "Develop"
-status: "draft"
-summary: "Prototype của dự án: file, design system và quy tắc để AI dựng."
+status: "planned"
+summary: "Where the prototype lives: a starter design system and the rules file for the AI coding tool."
 supports: []
 ---
 # Prototype starter

@@ -1,9 +1,9 @@
 ---
 type: "options"
-title: "Options and decisions"
+title: "Solutions"
 stage: "Develop"
-status: "draft"
-summary: ""
+status: "planned"
+summary: "The solution directions explored, the one chosen, and why the others were parked."
 supports: []
 ---
 *Giai đoạn Develop.*

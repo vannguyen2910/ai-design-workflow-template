@@ -1,6 +1,6 @@
 ---
 type: "options"
-title: "Options and decisions"
+title: "Solutions"
 stage: "Develop"
 status: "draft"
 summary: ""
