@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Travel Buddy: Between Trips</title>
+<style>
+:root{--bg:#f6f7f9;--panel:#fff;--ink:#1c252e;--muted:#637381;--line:#b8c0ca;--card:#fff;--cardline:#d9dee5;--dots:#d8dde4}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1419;--panel:#161d25;--ink:#f1f3f5;--muted:#a7b0ba;--line:#5d6875;--card:#1d262f;--cardline:#34404c;--dots:#26303b}}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:100%;margin:0;padding:18px 20px}
+header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:0 4px 8px}
+h1{margin:0;font-size:1.2rem;letter-spacing:-.01em}
+.sum{color:var(--muted);font-size:.85rem}
+.leg{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:center;margin:0 4px 12px;font-size:.78rem;color:var(--muted)}
+.lgroup{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px}
+.lgroup b{font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);opacity:.85;margin-right:2px}
+.lgroup span{display:inline-flex;align-items:center;gap:6px;color:var(--ink)}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:50%}
+.lg{fill:none;stroke:var(--muted);stroke-width:1.4}.lg.dash{stroke-dasharray:3 3}
+.panel{background:var(--panel);border:1px solid var(--cardline);border-radius:14px;overflow:hidden}
+.scroll{overflow-x:auto;overflow-y:hidden;background-image:radial-gradient(var(--dots) 1px,transparent 1px);background-size:18px 18px;scrollbar-width:thin}
+svg{display:block}
+.e{fill:none;stroke:var(--line);stroke-width:1.6}
+.e.main{stroke:var(--muted);stroke-width:2}
+.e.back{stroke-dasharray:6 5}
+.e.hi{stroke:var(--ink);stroke-width:2.4}
+.el{font-size:11px;fill:var(--muted);paint-order:stroke;stroke:var(--panel);stroke-width:4px;stroke-linejoin:round}
+.card{fill:var(--card);stroke:var(--cardline);stroke-width:1.3}
+.inner{fill:none;stroke:var(--cardline);stroke-width:1.3}
+.card.dec{stroke:var(--c);stroke-width:1.5}
+.card.pill{fill:none;stroke:var(--line);stroke-dasharray:3 4}
+.nl{font-size:14px;font-weight:600;fill:var(--ink)}
+.nl.dl{font-size:13px}
+.nl.pl{font-weight:500;fill:var(--muted)}
+.ns{font-size:12px;fill:var(--muted)}
+.n:hover .card{stroke:var(--ink)}
+.hint{padding:10px 6px 0;font-size:.78rem;color:var(--muted)}
+</style></head><body><div class="wrap">
+<header><h1>Travel Buddy: Between Trips</h1><span class="sum">1 steps</span></header>
+<div class="leg"><div class="lgroup"><b>Shapes</b><span><svg width="24" height="14" viewBox="0 0 24 14"><rect x="1" y="1" width="20" height="12" rx="3" class="lg"/></svg>Action or screen</span><span><svg width="24" height="14" viewBox="0 0 24 14"><rect x="1" y="2" width="22" height="10" rx="5" class="lg dash"/></svg>Link to another phase</span></div><div class="lgroup"><b>Colour = solution group</b><span><i style="background:#2f9e5f"></i>Discover</span></div></div>
+<div class="panel"><div class="scroll"><svg xmlns="http://www.w3.org/2000/svg" width="792" height="222" viewBox="0 0 792 222" role="img" aria-label="Travel Buddy: Between Trips">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#8a96a3"/></marker></defs>
+<path class="e main" data-a="n35" data-b="to_next" d="M496.0 114.0 L560.0 114.0" marker-end="url(#ah)"/>
+<path class="e main" data-a="from_prev" data-b="n35" d="M232.0 114.0 L296.0 114.0" marker-end="url(#ah)"/>
+
+<g class="n" data-id="from_prev" style="--c:#7b8494"><rect class="card pill" x="32" y="84" width="200" height="60" rx="30"/><text class="nl pl" x="132" y="119" text-anchor="middle">From Post-Trip</text></g>
+<g class="n" data-id="n35" style="--c:#2f9e5f"><title>SP-D1 (no decision yet)</title><rect class="card" x="296" y="70" width="200" height="88" rx="8"/><text class="nl" x="396" y="112" text-anchor="middle">Browse for next</text><text class="ns" x="396" y="131" text-anchor="middle">destination</text></g>
+<g class="n" data-id="to_next" style="--c:#7b8494"><rect class="card pill" x="560" y="84" width="200" height="60" rx="30"/><text class="nl pl" x="660" y="119" text-anchor="middle">Continues Pre-Trip</text></g>
+</svg></div></div>
+<p class="hint">Scroll sideways to follow the flow. Hover a step to light up its connections; the solution code and decision are in its tooltip.</p>
+</div>
+<script>
+document.querySelectorAll('.n').forEach(function(g){var id=g.getAttribute('data-id');
+g.addEventListener('mouseenter',function(){document.querySelectorAll('.e').forEach(function(e){if(e.getAttribute('data-a')===id||e.getAttribute('data-b')===id)e.classList.add('hi')})});
+g.addEventListener('mouseleave',function(){document.querySelectorAll('.e.hi').forEach(function(e){e.classList.remove('hi')})});});
+</script>
+</body></html>
