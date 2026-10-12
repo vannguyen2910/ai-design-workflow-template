@@ -9,7 +9,7 @@ Biến những gì người dùng thật nói (review, forum, phỏng vấn ng�
 | Working file | `work/user-voice-synthesis.md` (mỗi step điền một section) |
 | Nguồn | `work/sources/anonymised/` (quote có ID: R01..., I01-01...) |
 | Dữ liệu gốc | `work/sources/_raw-private/` (AI không đọc) |
-| Output cuối | `stages/evidence.md` (phần What users said, Insights) và các file `insights/opportunities/O*.md` |
+| Output cuối | `work/user-voice-synthesis.md` (trang Evidence trong Stages tự dựng từ file này) và các file `insights/opportunities/O*.md` |
 
 ## Cái gì được tính là user voice
 
@@ -129,7 +129,7 @@ Tốt hơn, làm một lần: tự code 20 quote trước, rồi so với cách 
 
 **Who:** YOU
 **Input:** `## Themes`, `## Scope`
-**Output:** `## Opportunities + limits`, các file `insights/opportunities/O*.md`, và `stages/evidence.md`
+**Output:** `## Opportunities + limits`, các file `insights/opportunities/O*.md`, và trang Evidence trong Stages (tự dựng từ working file)
 
 Cân từng theme theo **mức độ nghiêm trọng** (tệ đến đâu khi xảy ra), **bối cảnh** (ai, khi nào) và **phạm vi** (bao nhiêu người khác nhau), không chỉ theo số quote nhắc đến. Viết 3 đến 5 opportunity thành user need, không phải feature, mỗi cái kèm ID quote. Mỗi opportunity là một file riêng trong `hub/`. Nêu giới hạn của mẫu.
 

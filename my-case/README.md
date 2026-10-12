@@ -52,7 +52,7 @@ my-case/
 ├── AGENTS.md        luật cho AI tool (tool tự đọc file này khi bạn mở folder)
 │
 ├── context/         CONTEXT    thông tin nền: sản phẩm, người dùng, quy tắc, design system
-├── stages/          STAGES     mỗi giai đoạn một trang kể lại điều đã được kiểm tra
+├── stages/          STAGES     mỗi giai đoạn một trang, tự dựng từ work/ và insights/
 ├── work/            WORK       mọi thứ làm ra: file làm việc, wireframe, prototype, persona, nguồn nghiên cứu
 ├── insights/        INSIGHTS   nhu cầu, hypothesis, decision, evidence, finding, metric (mỗi loại một folder)
 ├── reference/       REFERENCE  gates, principle checks, severity levels, case log
@@ -71,9 +71,9 @@ Báo cáo `index.html` ghi sẵn dòng "Folder" và "Thêm mới" ở đầu m�
 |---|---|---|---|
 | **Overview** | `README.md` | Project card, tiến độ, những chỗ cần xem lại (tự tính) | Sửa `README.md` và các file nguồn, rồi tạo lại báo cáo |
 | **Context** | `context/` | Sản phẩm, người dùng, quy tắc dữ liệu, design system | Thả một file `.md` vào folder |
-| **Stages** | `stages/` | Một trang cho mỗi giai đoạn: scope, evidence, problem brief, develop, alignment, findings, handoff | Thêm một file `.md` vào folder và một dòng vào bảng Pages ở `stages/README.md` |
+| **Stages** | `stages/` | Một trang cho mỗi giai đoạn, tự dựng từ `work/` và `insights/` (bạn không viết ở đây) | Thêm một dòng vào bảng Pages ở `stages/README.md`: chọn file ở `work/` và bảng item muốn hiện |
 | **Work** | `work/` | Mọi thứ làm ra: file làm việc, wireframe, prototype, persona, flow | Thả file vào folder, hoặc tạo folder con (kèm `index.md`) rồi thả ảnh, PDF, video vào đó |
-| **Insights** | `insights/` (`opportunities/`, `hypotheses/`, `decisions/`, `evidence/`, `findings/`, `metrics/`) | Các item nối với nhau | Copy một mẫu trong `insights/_templates/` vào folder loại tương ứng |
+| **Insights** | `insights/` (`opportunities/`, `hypotheses/`, `decisions/`, `evidence/`, `findings/`, `metrics/`) | Các item nối với nhau | Chạy `python3 _ai/new-item.py`: lệnh hỏi từng câu, chọn mã tiếp theo và nối quan hệ giúp bạn |
 | **Reference** | `reference/` | Gates, principle checks, severity levels, case log | Thả một file `.md` vào folder |
 
 ## Rules
@@ -85,7 +85,7 @@ Báo cáo `index.html` ghi sẵn dòng "Folder" và "Thêm mới" ở đầu m�
 
 ## Giữ cho dự án luôn mới
 
-- **Quyết định mới:** một file ở `insights/decisions/` và một dòng ở `reference/case-log.md`.
-- **Thông tin mới:** sửa file item hoặc file làm việc, nhờ AI chạy `_ai/refresh-hub.md`, rồi tạo lại `index.html` (nhờ AI chạy `python3 _ai/export-hub.py`).
+- **Quyết định mới:** chạy `python3 _ai/new-item.py D` (lệnh tạo file ở `insights/decisions/` và ghi một dòng vào `reference/case-log.md`).
+- **Thông tin mới:** sửa file item hoặc file làm việc, nhờ AI chạy `_ai/refresh-hub.md`, rồi tạo lại `index.html` (nhờ AI chạy `python3 _ai/export-hub.py`; lệnh này cũng tự cập nhật các bảng item trong `stages/`).
 - **Trước thay đổi lớn:** lưu một mốc (commit) hoặc copy folder thành bản `-backup`.
 - **Gửi cho người khác:** copy `index.html` ra ngoài và đổi tên (ví dụ `onboarding-redesign-report.html`).

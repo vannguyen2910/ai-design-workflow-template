@@ -47,18 +47,23 @@ CLOSED_STATES = {"shipped", "superseded", "dropped"}
 SEVERITY_LABEL = {"0": "0 · Không phải vấn đề", "1": "1 · Cosmetic", "2": "2 · Minor", "3": "3 · Major", "4": "4 · Catastrophe"}
 RESOLUTION_LABEL = {"open": "Open", "fixed": "Fixed", "accepted": "Accepted", "deferred": "Deferred"}
 RESOLVED = {"fixed", "accepted", "deferred"}
-STATE_LABEL = {"active": "Active", "shipped": "Shipped", "superseded": "Superseded", "dropped": "Dropped"}
+STATE_LABEL = {"proposed": "Proposed", "accepted": "Accepted", "active": "Active", "shipped": "Shipped", "superseded": "Superseded", "dropped": "Dropped"}
+VERDICT_LABEL = {"pending": "Chưa đo", "met": "Đạt target", "missed": "Chưa đạt target", "inconclusive": "Chưa kết luận"}
+LEVEL_LABEL = {"high": "High", "medium": "Medium", "low": "Low"}
 VI_SHORT = {"O": "Opportunity", "H": "Hypothesis", "M": "Metric", "D": "Decision", "E": "Evidence", "F": "Finding"}
 PROP_LABEL = {"type": "Loại", "rank": "Thứ hạng", "evidence": "Nguồn bằng chứng", "serves": "Phục vụ nhu cầu", "metric": "Metric",
               "tests": "Kiểm chứng hypothesis", "follows": "Theo principle", "pulls_against": "Đi ngược principle",
               "measures": "Đo bằng metric", "status": "Trạng thái", "baseline": "Mốc hiện tại", "measured_by": "Cách đo",
               "participants": "Số người tham gia", "result": "Kết quả", "participants_type": "Loại người tham gia",
-              "area": "Chủ đề", "state": "Tình trạng",
+              "area": "Chủ đề", "state": "Tình trạng", "owner": "Người quyết định", "decided_on": "Ngày quyết định",
+              "impact": "Tác động", "confidence": "Độ chắc chắn", "rank_reason": "Lý do xếp hạng",
+              "target": "Target", "measured_on": "Ngày đo", "verdict": "Kết luận",
               "severity": "Mức độ nghiêm trọng", "found_in": "Phát hiện trong", "affects": "Ảnh hưởng tới decision",
               "principle": "Principle bị vi phạm", "resolution": "Cách xử lý"}
 VALUE_LABEL = {"status": {"assumed": "Assumed", "planned": "Planned", "run": "Run"},
                "participants_type": {"simulated": "Simulated", "real": "Real users"},
                "state": STATE_LABEL,
+               "verdict": VERDICT_LABEL, "impact": LEVEL_LABEL, "confidence": LEVEL_LABEL,
                "severity": SEVERITY_LABEL,
                "resolution": RESOLUTION_LABEL}
 BACK_LABEL = {"serves": "Được phục vụ bởi", "metric": "Là metric của", "tests": "Được kiểm chứng bởi",
@@ -277,6 +282,32 @@ class Page(object):
         self.rank = 999
 
 
+class StagePage(object):
+    """A stage of the project, assembled from work files and item tables (see stage_specs)."""
+    kind = "week"
+    letter = None
+
+    def __init__(self, spec, case):
+        self.spec = spec
+        self.id = self.slug = spec["id"]
+        self.path = os.path.join(case, "stages", "README.md")
+        self.heading = self.label = self.title = spec["label"]
+        self.meta, self.rank = {}, 999
+        self.parts, self.missing = [], []
+        work = os.path.join(case, "work")
+        for ref in spec["work"]:
+            cand = os.path.join(work, ref)
+            if os.path.isdir(cand):
+                cand = os.path.join(cand, "index.md")
+            if os.path.isfile(cand):
+                meta, body = _front(open(cand, encoding="utf-8").read())
+                body = re.sub(r"^\s*#\s+.*\n", "", body, count=1)
+                self.parts.append((cand, meta, body))
+            else:
+                self.missing.append(ref)
+        self.md = "\n\n".join(b for _, _, b in self.parts)
+
+
 def _unq(s):
     s = s.strip()
     if len(s) >= 2 and s[0] == s[-1] and s[0] in "\"'":
@@ -357,14 +388,11 @@ def collect(case):
         sys.exit("Không tìm thấy README.md trong %s" % case)
     overview = Page("overview", ov, "overview")
     weekly, items, ref, ctx = [], [], [], []
-    # Stage pages: every .md in stages/. Their order is the order of the rows in the Pages table of stages/README.md;
-    # pages that are not in the table follow alphabetically. No numbers in file names: reorder by moving a row.
-    pages_dir = os.path.join(case, "stages")
-    idx_ = os.path.join(pages_dir, "README.md")
-    order_ = {k: n for n, k in enumerate(week_info(open(idx_, encoding="utf-8").read() if os.path.isfile(idx_) else ""))}
-    names_ = sorted(f for f in os.listdir(pages_dir) if f.endswith(".md") and f.lower() != "readme.md") if os.path.isdir(pages_dir) else []
-    for name in sorted(names_, key=lambda f: (order_.get(f[:-3], 10 ** 6), f)):
-        weekly.append(Page(name[:-3], os.path.join(pages_dir, name), "week"))
+    # Stage pages: one per row of the Pages table in stages/README.md, in that order. Nothing to write per stage:
+    # each page is built from the work files named in the row and the item tables chosen there.
+    idx_ = os.path.join(case, "stages", "README.md")
+    for spec in stage_specs(open(idx_, encoding="utf-8").read() if os.path.isfile(idx_) else ""):
+        weekly.append(StagePage(spec, case))
     # Reference pages: every .md file in reference/ (README.md excluded). Drop a new file there and it appears.
     # Known pages keep their ids and come first; the rest follow alphabetically, and the case log goes last.
     ref_dir = os.path.join(case, "reference")
@@ -404,6 +432,8 @@ def collect(case):
 
 def case_info(overview_md, case):
     name = os.path.basename(os.path.abspath(case))
+    if name == "my-case":  # the blank template has no project yet
+        name = "Product Name"
     m = re.search(r"^\|\s*Tên (?:dự án|case)\s*\|\s*([^|\s][^|]*?)\s*\|\s*$", overview_md, flags=re.M)
     if m and not m.group(1).startswith("["):
         name = re.sub(r"[*`]", "", m.group(1))
@@ -414,14 +444,30 @@ def case_info(overview_md, case):
     return name, status
 
 
+def stage_specs(md):
+    """Rows of the Pages table in stages/README.md: Id | Page | Giai đoạn | Nội dung | Từ work | Bảng item.
+    A stage page is built from these rows alone: there is no file to write per stage."""
+    out = []
+    for line in md.split("\n"):
+        if not line.strip().startswith("|"):
+            continue
+        c = _split_row(line)
+        if len(c) < 6:
+            continue
+        sid = c[0].strip("` ")
+        if not re.fullmatch(r"[a-z][a-z0-9-]*", sid) or sid == "id":
+            continue
+        out.append({
+            "id": sid, "label": re.sub(r"[*`]", "", c[1]).strip() or sid, "stage": c[2].strip(), "desc": c[3].strip(),
+            "work": [re.sub(r"^work/", "", t.strip()) for t in re.findall(r"`([^`]+)`", c[4]) if t.strip()],
+            "tables": [t.strip().lower() for t in re.split(r"[,\s]+", c[5].replace("`", "")) if t.strip()],
+        })
+    return out
+
+
 def week_info(overview_md):
     """slug -> (stage, description, label) from the Pages table in stages/README.md"""
-    info = {}
-    for line in overview_md.split("\n"):
-        m = re.match(r"\|\s*\[([^\]]+)\]\((?:journey/)?([^)/]+)\.md\)\s*\|\s*([^|]*)\|\s*([^|]*)\|", line)
-        if m:
-            info[m.group(2)] = (m.group(3).strip(), m.group(4).strip(), m.group(1).strip())
-    return info
+    return {sp["id"]: (sp["stage"], sp["desc"], sp["label"]) for sp in stage_specs(overview_md)}
 
 
 def parse_gates(md):
@@ -512,6 +558,80 @@ def auto_checks(G, principles):
 
 
 # --------------------------------------------------------------------------- graph
+def _gen_tables(G, page_dir):
+    """The six tables of the stage pages, built from the item files (the single source of truth)."""
+    def link(i):
+        p = G.items[i]
+        folder = {"O": "opportunities", "H": "hypotheses", "M": "metrics", "D": "decisions", "E": "evidence", "F": "findings"}[p.letter]
+        rel = os.path.relpath(p.path, page_dir).replace(os.sep, "/")
+        return "[%s](%s)" % (i, rel)
+
+    def ids(xs):
+        return ", ".join(xs) if xs else "—"
+
+    def row(cells):
+        return "| " + " | ".join(str(c).replace("|", "\\|").replace("\n", " ") for c in cells) + " |"
+
+    def table(head, rows):
+        return "\n".join([row(head), "|" + "---|" * len(head)] + rows)
+
+    T = {}
+    def lvl(o, k):
+        v = str(G.items[o].meta.get(k) or "").strip().lower()
+        return LEVEL_LABEL.get(v, v) or "\u2014"
+
+    def met(m, k, dash="\u2014"):
+        return str(G.items[m].meta.get(k) or "").strip() or dash
+
+    T["opportunities"] = table(["Thứ hạng", "Mã", "Opportunity", "Tác động", "Độ chắc chắn", "Lý do xếp hạng"], [
+        row([n + 1, link(o), G.items[o].title, lvl(o, "impact"), lvl(o, "confidence"), met(o, "rank_reason")]) for n, o in enumerate(G.O)])
+    T["hypotheses"] = table(["Mã", "Hypothesis", "Phục vụ", "Evidence"], [
+        row([link(h), G.items[h].title, ids(G.serves.get(h, [])), ", ".join(G.tests_of(h)) or "chưa có"]) for h in G.H])
+    T["metrics"] = table(["Mã", "Metric", "Mốc hiện tại", "Target", "Kết quả", "Kết luận"], [
+        row([link(m), G.items[m].title, met(m, "baseline", "unknown"), met(m, "target"), met(m, "result"),
+             VERDICT_LABEL.get(met(m, "verdict", "pending").lower(), met(m, "verdict", "pending"))]) for m in G.M])
+    T["decisions"] = table(["Mã", "Decision", "Kiểm chứng", "Theo principle", "Đi ngược principle", "Owner", "Ngày", "Trạng thái"], [
+        row([link(d), G.items[d].title, ids(G.tests.get(d, [])), ids(G.follows.get(d, [])), ids(G.strains.get(d, [])),
+             met(d, "owner"), met(d, "decided_on"), STATE_LABEL.get(G.state.get(d, ""), G.state.get(d) or "\u2014")]) for d in G.D])
+    T["evidence"] = table(["Mã", "Evidence", "Kiểm chứng", "Đo bằng"], [
+        row([link(e), G.items[e].title, ids(G.tests.get(e, [])), ids(G.measures.get(e, []))]) for e in G.E])
+
+    def opps_of_metric(m):
+        hs = [h for h in G.H if m in G.metric.get(h, [])]
+        return hs, sorted({o for h in hs for o in G.serves.get(h, [])}, key=_natkey)
+
+    def outcome_row(m):
+        hs, os_ = opps_of_metric(m)
+        vd = met(m, "verdict", "pending").lower()
+        back = ids(os_) + (" (xem lại)" if vd == "missed" and os_ else "")
+        return row([link(m), G.items[m].title, met(m, "target"), met(m, "result"), met(m, "measured_on"),
+                    VERDICT_LABEL.get(vd, vd), ids(hs), back])
+    T["outcomes"] = table(["Mã", "Metric", "Target", "Kết quả", "Ngày đo", "Kết luận", "Hypothesis", "Opportunity phía sau"],
+                          [outcome_row(m) for m in G.M])
+    fo = sorted(G.F, key=lambda f: (-(G.severity[f] if G.severity[f] is not None else -1), _natkey(f)))
+    T["findings"] = table(["Mã", "Finding", "Severity", "Principle", "Phát hiện trong", "Ảnh hưởng", "Cách xử lý"], [
+        row([link(f), G.items[f].title,
+             SEVERITY_LABEL.get(str(G.severity[f]), "chưa chấm").replace(" · ", " ") if G.severity[f] is not None else "chưa chấm",
+             ids(G.principle_of.get(f, [])), ids(G.found_in.get(f, [])), ids(G.affects.get(f, [])),
+             G.resolution.get(f, "open").capitalize()]) for f in fo])
+    return T
+
+
+# How much a warning matters. "block": the case's conclusions are not safe to hand off yet.
+# "review": worth a look, the owner decides. "info": housekeeping; listed, never counted, no badge on items.
+WARN_TIER = {
+    "no-need": "block", "d-no-owner": "review", "o-no-reason": "review", "m-no-target": "review", "m-no-result": "review", "m-missed": "review", "f-sev4": "block", "d-open-finding": "block", "gate-mismatch": "block", "log-unknown-id": "block",
+    "strain": "review", "unserved": "review", "untested": "review", "nometric": "review", "no-real-evidence": "review",
+    "f-sev3": "review", "f-noevidence": "review", "f-nosev": "review", "simulated": "review", "no-log": "review",
+    "planned": "info", "art-orphan": "info", "principles": "info",
+}
+TIER_LABEL = {"block": "Cần xử lý trước khi handoff", "review": "Nên xem", "info": "Gợi ý dọn dẹp"}
+
+
+def warn_tier(kind):
+    return WARN_TIER.get(kind, "review")
+
+
 class Graph(object):
     def __init__(self, items, principles):
         self.items = {p.id: p for p in items}
@@ -558,6 +678,8 @@ class Graph(object):
             if not ids:
                 return
             self.warnings.append((kind, ids, text))
+            if warn_tier(kind) == "info":
+                return
             for i in ids:
                 self.warn.setdefault(i, []).append(text)
         self.flag = flag
@@ -596,6 +718,25 @@ class Graph(object):
             ts = self.tests_of(h)
             if ts and not any(kind(t) == "real" for t in ts):
                 flag("no-real-evidence", [h], "Hypothesis này chưa có evidence từ người dùng thật")
+        # Decisions: an accepted decision has an owner. Opportunities: a rank has a reason. Metrics: a target, then a verdict.
+        for d in self.D:
+            m_ = self.items[d].meta
+            if self.state.get(d) == "accepted" and not str(m_.get("owner") or "").strip():
+                flag("d-no-owner", [d], "Decision đã được chấp nhận nhưng chưa ghi ai chịu trách nhiệm (owner)")
+        if len(self.O) > 1:
+            for o in self.O:
+                m_ = self.items[o].meta
+                if not str(m_.get("rank_reason") or "").strip():
+                    flag("o-no-reason", [o], "Opportunity này có thứ hạng nhưng chưa ghi lý do (tác động, độ chắc chắn)")
+        for m in self.M:
+            m_ = self.items[m].meta
+            vd = str(m_.get("verdict") or "pending").strip().lower()
+            if not str(m_.get("target") or "").strip():
+                flag("m-no-target", [m], "Metric này chưa có target: chưa biết thế nào là đạt")
+            if vd in ("met", "missed") and not str(m_.get("result") or "").strip():
+                flag("m-no-result", [m], "Metric đã có kết luận nhưng chưa ghi kết quả đo")
+            if vd == "missed":
+                flag("m-missed", [m], "Metric chưa đạt target: xem lại hypothesis và opportunity phía sau")
         # Findings
         for f in self.F:
             if self.severity[f] is None:
@@ -662,7 +803,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
 .skip:focus{left:8px;top:8px}
 header.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
 .top-in{max-width:1280px;margin:0 auto;padding:10px 24px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-.brand{font-weight:800;letter-spacing:-.01em;margin-right:auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em;margin-right:auto}
+.brand .logo{height:22px;width:auto;flex:none;color:var(--ink)}
 .brand small{display:block;font-weight:500;color:var(--muted);font-size:.74rem;letter-spacing:0}
 .tabs{display:flex;gap:4px;overflow-x:auto}
 .tabs a{padding:8px 14px;border-radius:999px;text-decoration:none;color:var(--ink);font-weight:600;font-size:.92rem;white-space:nowrap}
@@ -670,7 +812,6 @@ header.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1
 .tabs a[aria-current=page]{background:var(--purple);color:var(--on-purple)}
 .themepick{font-size:.8rem;color:var(--muted);display:flex;gap:6px;align-items:center}
 .themepick select{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
-.gsearch{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;font:inherit;font-size:.9rem;width:220px}
 .view{display:none}
 .view.on{display:block}
 .wrap{max-width:1280px;margin:0 auto;padding:28px 24px 80px}
@@ -715,10 +856,6 @@ a.chip:hover{filter:brightness(1.1)}
 .warnlist{list-style:none;margin:0;padding:0}
 .warnlist li{padding:10px 14px;margin:8px 0;border-radius:var(--r);background:var(--tint);border-left:4px solid var(--purple)}
 .ok{padding:10px 14px;border-radius:var(--r);background:var(--tint)}
-.wsum{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
-.wpill{font:inherit;cursor:pointer;font-size:.82rem;padding:5px 10px;border:1px solid var(--line);border-radius:99px;color:var(--ink);text-decoration:none;background:var(--surface)}
-.wpill b{color:var(--purple)}
-.wpill:hover{border-color:var(--purple)}
 .wgroup{border:1px solid var(--line);border-radius:var(--r);margin:0 0 10px;background:var(--surface)}
 .wgroup>summary{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;list-style:none;font-weight:600}
 .wgroup>summary::-webkit-details-marker{display:none}
@@ -854,7 +991,6 @@ footer.foot{margin-top:56px;color:var(--muted);font-size:.85rem;border-top:1px s
   .pane-tree{position:static;max-height:none}
   .has-item .pane-tree{display:none}
   .has-item .back-tree{display:inline-block}
-  .gsearch{width:100%;order:3}
   .wrap{padding:20px 16px 60px}
 }
 @media print{
@@ -922,10 +1058,20 @@ header.top{border-bottom:1px solid var(--line)}
 h1{font-size:1.75rem;font-weight:700}
 h2{font-size:.8rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:44px 0 12px}
 .lede{margin:0 0 26px}
-.stats{display:flex;flex-wrap:wrap;gap:6px 28px;margin:6px 0 4px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.stats span{color:var(--muted);font-size:.92rem}
-.stats b{display:inline-block;margin-right:6px;font-size:1.35rem;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.stats{display:flex;flex-wrap:wrap;margin:14px 0 6px;padding:0}
+.stats span{flex:1 1 0;min-width:84px;display:flex;flex-direction:column;gap:2px;padding:2px 18px;border-left:1px solid var(--line);color:var(--muted);font-size:.8rem;text-transform:capitalize}
+.stats span:first-child{border-left:0;padding-left:0}
+.stats b{display:block;margin:0;font-size:1.7rem;line-height:1.15;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+.stats .w b{color:#b76e00}
 .stats .w b::after{content:" ⚠";font-size:.9rem}
+.stats .w.bad b{color:#b71d18}
+.stats .w.ok b{color:#118d57}
+.stats .w.ok b::after{content:" ✓"}
+.wtier{margin:18px 0 8px;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.wtier-block{color:#b71d18}
+.winfo{margin:18px 0 0}
+.winfo>summary{cursor:pointer;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:6px 0}
+@media(max-width:560px){.stats span{flex:1 1 33%;padding:8px 14px}.stats span:nth-child(3n+1){border-left:0;padding-left:0}}
 .glist{margin:0;border-top:1px solid var(--line)}
 .grow{display:grid;grid-template-columns:minmax(0,1.4fr) 110px minmax(80px,1fr) 70px;gap:16px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
 .grow .gn small{display:block;color:var(--muted);font-size:.78rem}
@@ -1016,11 +1162,16 @@ table.props td{padding:7px 0}
 .mcard iframe{height:520px}
 .fig{border-radius:var(--r)}
 .srcnote{margin-top:32px;font-size:.8rem}
+.trow{display:flex;gap:28px;align-items:center;margin:0 0 10px}
+.trow .tsearch{flex:0 1 320px;min-width:0;width:auto;margin:0}
+#v-trace .tsearch,#v-docs .tsearch{padding-left:38px;background-repeat:no-repeat;background-position:12px center;background-size:16px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23919eab' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E")}
+.trow .vmode{flex:none;margin:0 0 0 auto}
 .vmode{display:inline-flex;gap:2px;margin:0 0 14px;border:1px solid var(--line);border-radius:var(--r);padding:2px}
 .vmode button{border:0;background:none;font:inherit;font-size:.82rem;font-weight:600;color:var(--muted);padding:4px 12px;border-radius:calc(var(--r) - 2px);cursor:pointer}
 .vmode button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
 #v-trace .tree{display:none}
-.tabs2{display:flex;gap:2px;border-bottom:1px solid var(--line);margin:0 0 14px;overflow-x:auto}
+.tabs2{display:flex;gap:2px;border-bottom:1px solid var(--line);margin:0 0 14px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+.tabs2::-webkit-scrollbar{display:none}
 .tabs2 button{border:0;background:none;font:inherit;font-weight:600;font-size:.9rem;color:var(--muted);padding:10px 14px;margin-bottom:-1px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
 .tabs2 button:hover{color:var(--ink)}
 .tabs2 button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--purple)}
@@ -1038,6 +1189,14 @@ table.props td{padding:7px 0}
 .astat{padding:12px 14px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
 .astat b{display:block;font-size:1.5rem;font-weight:600;line-height:1.2}
 .astat span{font-size:.84rem;color:var(--muted)}
+.stgate{margin:0 0 18px;font-size:.88rem;color:var(--muted)}
+.stsrc{margin:0 0 26px}
+.sthead{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 10px;padding:6px 0;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
+.sthead a{margin-left:auto;font-weight:600}
+.ststatus{padding:1px 8px;border-radius:99px;font-size:.72rem;font-weight:700;background:rgba(145,158,171,.16)}
+.ststatus.ok{background:rgba(34,197,94,.16);color:#118d57}
+.ststatus.w{background:rgba(255,171,0,.16);color:#b76e00}
+.stale{margin:0 0 18px;padding:10px 14px;border-left:3px solid #ffab00;background:rgba(255,171,0,.1);border-radius:var(--r);font-size:.88rem;color:var(--ink)}
 .where{margin:10px 0 18px;padding:8px 12px;border-left:3px solid var(--line);background:var(--surface);font-size:.86rem;color:var(--muted);line-height:1.7}
 .where .wl{display:inline-block;min-width:5.5em;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
 .where code{font-size:.84rem}
@@ -1092,7 +1251,6 @@ a.iref:hover{text-decoration-thickness:2px}
 JS = r"""
 (function(){
   var root=document.documentElement; root.classList.add('js');
-  document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.wpill');if(!b)return;var g=document.getElementById(b.getAttribute('data-wg'));if(g){g.open=true;g.scrollIntoView({block:'nearest'})}});
   var VIEWS=['overview','context','journey','docs','trace','reference'];
   function $(s,c){return (c||document).querySelector(s)}
   function $$(s,c){return [].slice.call((c||document).querySelectorAll(s))}
@@ -1130,7 +1288,7 @@ JS = r"""
   }
   window.addEventListener('hashchange',route);
   // tree filtering
-  var tree=$('#tree'), q=$('#tsearch'), gs=$('#gsearch'), types={}, warnOnly=false, area='', showClosed=false;
+  var tree=$('#tree'), q=$('#tsearch'), types={}, warnOnly=false, area='', showClosed=false;
   function scoped(el){
     if(!showClosed&&el.getAttribute('data-closed')==='1') return false;
     var a=el.getAttribute('data-area'); if(area&&a&&a!==area) return false;
@@ -1187,12 +1345,7 @@ JS = r"""
     walk(tree);
     var c=$('#tcount'); if(c&&$('#v-trace').classList.contains('mode-tree')){c.textContent=any?(shown+' mục khớp'):''}
   }
-  if(q){q.addEventListener('input',function(){if(gs){gs.value=q.value} apply()})}
-  if(gs){gs.addEventListener('input',function(){
-    if(q){q.value=gs.value}
-    if(!/^#\/(trace|[OHMDEF]\d+)$/.test(location.hash)){location.hash='#/trace'}
-    apply();
-  })}
+  if(q){q.addEventListener('input',function(){apply()})}
   $$('#v-trace .filters button').forEach(function(b){
     b.addEventListener('click',function(){
       var on=b.getAttribute('aria-pressed')!=='true';
@@ -1256,9 +1409,8 @@ THEME_CSS = r"""
 [data-theme=minimal] h2{font-weight:700;color:#637381}
 [data-theme=minimal] header.top{background:rgba(255,255,255,.86);backdrop-filter:blur(6px);border-bottom:1px dashed var(--line)}
 [data-theme=minimal] .brand{font-weight:800;letter-spacing:-.01em}
-[data-theme=minimal] .brand::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;background:#00a76f;margin-right:10px}
-[data-theme=minimal] .gsearch,[data-theme=minimal] .tsearch{background:#fff;border:1px solid rgba(145,158,171,.32);border-radius:8px;padding:9px 14px;color:var(--ink)}
-[data-theme=minimal] .gsearch:focus,[data-theme=minimal] .tsearch:focus{outline:0;border-color:#1c252e;box-shadow:0 0 0 1px #1c252e}
+[data-theme=minimal] .tsearch{background:#fff;border:1px solid rgba(145,158,171,.32);border-radius:8px;padding:9px 14px;color:var(--ink)}
+[data-theme=minimal] .tsearch:focus{outline:0;border-color:#1c252e;box-shadow:0 0 0 1px #1c252e}
 [data-theme=minimal] .side{border-right:1px dashed var(--line)}
 [data-theme=minimal] .nav2 a{border-radius:8px;min-height:44px;font-weight:500;font-size:.9rem;color:#637381}
 [data-theme=minimal] .nav2 a:hover{background:rgba(145,158,171,.08)}
@@ -1269,7 +1421,6 @@ THEME_CSS = r"""
 [data-theme=minimal] .acard .thumb{border-radius:0}
 [data-theme=minimal] .acard .atype,[data-theme=minimal] .jcard .wk,[data-theme=minimal] .icard .itype{color:#919eab}
 [data-theme=minimal] .acard h3,[data-theme=minimal] .jcard h3,[data-theme=minimal] .icard h3{font-weight:700}
-[data-theme=minimal] .stats{border:0;background:#f4f6f8;border-radius:16px;padding:18px 24px}
 [data-theme=minimal] .stats b{font-weight:800;color:#1c252e}
 [data-theme=minimal] .glist{border-top:0}
 [data-theme=minimal] .grow{border-bottom:1px dashed var(--line)}
@@ -1339,9 +1490,8 @@ THEME_CSS = r"""
 [data-theme=editorial] .gate .bar{background:var(--line)}
 [data-theme=editorial] .gate .bar i{background:var(--purple)}
 [data-theme=editorial] .banner{background:var(--ink);color:var(--bg)}
-[data-theme=editorial] .chip,[data-theme=editorial] .idc,[data-theme=editorial] .idtag,[data-theme=editorial] .filters button,[data-theme=editorial] .tsearch,[data-theme=editorial] .gsearch,[data-theme=editorial] table,[data-theme=editorial] .tree a.node,[data-theme=editorial] .card .lbl,[data-theme=editorial] .ihead .kind,[data-theme=editorial] .jcard .wk{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+[data-theme=editorial] .chip,[data-theme=editorial] .idc,[data-theme=editorial] .idtag,[data-theme=editorial] .filters button,[data-theme=editorial] .tsearch,[data-theme=editorial] table,[data-theme=editorial] .tree a.node,[data-theme=editorial] .card .lbl,[data-theme=editorial] .ihead .kind,[data-theme=editorial] .jcard .wk{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
 [data-theme=editorial] th{background:transparent;border-bottom:2px solid var(--ink)}
-[data-theme=editorial] .gsearch{border-radius:0}
 
 /* swiss: black on white, hard 1px frames, one signal colour, no rounding */
 [data-theme=swiss]{--ink:#000;--bg:#fff;--surface:#fff;--muted:rgba(0,0,0,.62);--line:#000;--purple:#ff3b00;--link:#000;--tint:#f1f1f1;--tint2:#e3e3e3;--r:0}
@@ -1351,7 +1501,7 @@ THEME_CSS = r"""
 [data-theme=swiss] header.top{border-bottom:2px solid #000}
 [data-theme=swiss] .tabs a{border-radius:0;text-transform:uppercase;font-size:.78rem;letter-spacing:.06em}
 [data-theme=swiss] .tabs a[aria-current=page]{background:#000;color:#fff}
-[data-theme=swiss] .gsearch,[data-theme=swiss] .tsearch,[data-theme=swiss] .filters button{border-radius:0;border-color:#000}
+[data-theme=swiss] .tsearch,[data-theme=swiss] .filters button{border-radius:0;border-color:#000}
 [data-theme=swiss] .filters button[aria-pressed=true]{background:#000;border-color:#000}
 [data-theme=swiss] .card,[data-theme=swiss] .jcard,[data-theme=swiss] details.help,[data-theme=swiss] .pane-tree,[data-theme=swiss] .backlinks{border:1px solid #000}
 [data-theme=swiss] .jcard:hover{border-color:var(--purple);box-shadow:4px 4px 0 var(--purple)}
@@ -1510,6 +1660,8 @@ def esc(s):
 def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=False):
     problems = []
     overview, weekly, items, ref, ctx = collect(case)
+    for p_ in weekly:  # a stage page and a Work file can share a file name (scope.md): the stage id gets a prefix
+        p_.slug, p_.id = p_.id, "stage-" + p_.id
     arts = collect_artifacts(case)
     A = {a.id: a for a in arts}
     used_media = set()
@@ -1751,9 +1903,20 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         return '<p class="srcfile">File gốc: <code>%s</code></p>' % esc(rel_)
 
     # --- overview
-    nwarn = len(G.warnings)
+    w_rows = {"block": set(), "review": set(), "info": set()}
+    for kd_, ids_, _t in G.warnings:
+        for i_ in ids_:
+            w_rows[warn_tier(kd_)].add((kd_, i_))
+    n_block, n_review = len(w_rows["block"]), len(w_rows["review"])
     stats = "".join('<span><b>%d</b>%s</span>' % (len(getattr(G, L)), pl.lower()) for L, _, _, pl in TYPES)
-    stats += '<span class="w"><b>%d</b>warnings</span>' % nwarn
+    measured_ = [m for m in G.M if str(G.items[m].meta.get("verdict") or "pending").strip().lower() in ("met", "missed", "inconclusive")]
+    if measured_:
+        hit_ = sum(1 for m in measured_ if str(G.items[m].meta.get("verdict")).strip().lower() == "met")
+        stats += '<span><b>%d/%d</b>metric đạt target</span>' % (hit_, len(measured_))
+    if n_block:
+        stats += '<span class="w bad"><b>%d</b>cần xử lý</span>' % n_block
+    if n_review or not n_block:
+        stats += '<span class="w%s"><b>%d</b>nên xem</span>' % ("" if n_review else " ok", n_review)
     gate_html = ""
     for g in gates:
         pct = int(100 * g["passed"] / g["total"]) if g["total"] else 0
@@ -1813,6 +1976,11 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             ("d-open-finding", "Decision còn finding nghiêm trọng chưa xử lý", "Xem finding ở trang decision, rồi sửa hoặc ghi lý do chấp nhận."),
             ("f-nosev", "Finding chưa có severity hợp lệ", "Điền severity từ 0 đến 4 (xem Severity levels)."),
             ("f-noevidence", "Finding chưa nối về evidence", "Điền found_in trỏ tới evidence mà finding được phát hiện."),
+            ("m-missed", "Metric chưa đạt target", "Mở trang Learning: ghi điều đã học và opportunity cần xem lại."),
+            ("m-no-result", "Metric có kết luận nhưng chưa có kết quả", "Điền result (và measured_on) trong file metric."),
+            ("m-no-target", "Metric chưa có target", "Điền target: ngưỡng để biết hypothesis đúng hay sai."),
+            ("d-no-owner", "Decision đã chấp nhận nhưng chưa có owner", "Điền owner (người chịu trách nhiệm) và decided_on."),
+            ("o-no-reason", "Opportunity chưa có lý do xếp hạng", "Điền impact, confidence và rank_reason để người khác hiểu vì sao thứ hạng này."),
             ("no-log", "Decision chưa có trong case log", "Thêm một dòng vào reference/case-log.md và ghi mã decision ở cột Items."),
             ("log-unknown-id", "Case log nhắc tới mã không tồn tại", "Sửa mã ở cột Items hoặc tạo file item còn thiếu."),
             ("gate-mismatch", "Gate đặt tay khác với dữ liệu", "Xem cột Kiểm tra tự động ở trang Gates; sửa dữ liệu hoặc đổi trạng thái check."),
@@ -1822,11 +1990,11 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         by_kind = {}
         for kd, ids, text in G.warnings:
             by_kind.setdefault(kd, []).append((ids, text))
-        ordered = [k for k, _, _ in W_KINDS if k in by_kind] + [k for k in by_kind if k not in {k2 for k2, _, _ in W_KINDS}]
+        known_ = {k2 for k2, _, _ in W_KINDS}
+        ordered = [k for k, _, _ in W_KINDS if k in by_kind] + [k for k in by_kind if k not in known_]
         meta_ = {k: (t, h) for k, t, h in W_KINDS}
-        groups, pills = "", ""
-        total_w = sum(len(set(i for ids, _ in by_kind[k] for i in ids)) for k in ordered)
-        for kd in ordered:
+
+        def group_html(kd, open_):
             seen_, rows_ = set(), []
             for ids, text in by_kind[kd]:
                 for i in ids:
@@ -1843,15 +2011,28 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                         ('<span class="wt">%s</span>' % esc(title)) if title else "",
                         ('<span class="wn">đi ngược %s</span>' % chip(note)) if note else ""))
             ttl, hint = meta_.get(kd, (by_kind[kd][0][1], ""))
-            gid = "wg-" + kd
-            pills += '<button type="button" class="wpill" data-wg="%s"><b>%d</b> %s</button>' % (gid, len(rows_), esc(ttl))
-            groups += ('<details class="wgroup" id="%s"%s><summary><span class="wtitle">%s</span><span class="wcount">%d</span></summary>'
-                       '%s<ul class="wgrid">%s</ul></details>') % (
-                gid, " open" if total_w <= 12 else "", esc(ttl), len(rows_),
+            return ('<details class="wgroup" id="wg-%s"%s><summary><span class="wtitle">%s</span><span class="wcount">%d</span></summary>'
+                    '%s<ul class="wgrid">%s</ul></details>') % (
+                kd, " open" if open_ else "", esc(ttl), len(rows_),
                 ('<p class="whint">%s</p>' % esc(hint)) if hint else "", "".join(rows_))
-        warn_html = '<div class="wsum">%s</div><div class="wgroups">%s</div>' % (pills, groups)
+
+        warn_html = ""
+        if not (n_block or n_review):
+            warn_html += '<p class="ok">Không có vấn đề cần xử lý: mọi decision lần ngược được về một opportunity, và các finding nghiêm trọng đã có hướng xử lý.</p>'
+        for tr in ("block", "review", "info"):
+            kinds_ = [k for k in ordered if warn_tier(k) == tr]
+            if not kinds_:
+                continue
+            cnt = len(w_rows[tr]) if tr != "info" else sum(len({i for ids, _ in by_kind[k] for i in ids}) for k in kinds_)
+            open_ = tr == "block" or (tr == "review" and cnt <= 12)
+            inner = "".join(group_html(k, open_) for k in kinds_)
+            if tr == "info":
+                warn_html += ('<details class="winfo"><summary>%s <span class="wcount">%d</span></summary><div class="wgroups">%s</div></details>'
+                              % (esc(TIER_LABEL[tr]), cnt, inner))
+            else:
+                warn_html += '<h3 class="wtier wtier-%s">%s <span class="wcount">%d</span></h3><div class="wgroups">%s</div>' % (tr, esc(TIER_LABEL[tr]), cnt, inner)
     else:
-        warn_html = '<p class="ok">Không có warning nào: mọi decision đều lần ngược được về một opportunity, và mọi hypothesis đều có test và metric.</p>'
+        warn_html = '<p class="ok">Không có vấn đề cần xử lý: mọi decision đều lần ngược được về một opportunity, và mọi hypothesis đều có test và metric.</p>'
     banner = ""
     if placeholders:
         banner = '<div class="banner" role="note"><strong>Báo cáo này còn nội dung mẫu hoặc chỗ chưa điền</strong> (khoảng %d chỗ, kể cả các mục có nhãn [EXAMPLE]). Hãy điền hoặc xoá trước khi gửi cho người khác.</div>' % placeholders
@@ -1882,17 +2063,62 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     def doc_html(p, extra_pre="", extra_post="", reading=True):
         return render_md(p.md, p.path, resolver, problems, team)
 
+    STAGE_TABLE_TITLE = {"opportunities": "Opportunities (xếp hạng)", "hypotheses": "Hypotheses", "metrics": "Success metrics",
+                         "decisions": "Design decisions", "evidence": "Evidence", "outcomes": "Outcomes: metric, kết quả và nhu cầu phía sau",
+                         "findings": "Findings (xếp theo severity)"}
+    stage_tables = _gen_tables(G, os.path.dirname(os.path.join(case_abs, "stages", "README.md")))
+    SRC_STATUS = {"verified": ("Đã kiểm tra", "ok"), "draft": ("Bản nháp, chưa kiểm tra", "w"),
+                  "simulated": ("Người mô phỏng", "w"), "planned": ("Mới là kế hoạch", "w")}
+
+    def stage_html(p):
+        out = ""
+        want = p.spec["stage"].lower()
+        gate = next((g for g in gates if want and g["name"].lower().startswith(want)), None)
+        if gate:
+            out += '<p class="stgate"><a href="#/gates">Gate %s</a>: %d/%d check đạt · %s</p>' % (
+                esc(gate["name"]), gate["passed"], gate["total"], esc(STATUS_VI.get(gate["status"], gate["status"])))
+        for ref in p.missing:
+            problems.append("Stages · %s: không tìm thấy work/%s (kiểm tra cột Từ work trong stages/README.md)" % (p.id, ref))
+        for path, meta, body in p.parts:
+            rel = os.path.relpath(path, case_abs).replace(os.sep, "/")
+            wid = by_path.get(os.path.normcase(os.path.abspath(path)))
+            lab, cls = SRC_STATUS.get(str(meta.get("status", "")).strip().lower(), ("", ""))
+            head = '<code>%s</code>' % esc(rel)
+            if lab:
+                head += '<span class="ststatus %s">%s</span>' % (cls, esc(lab))
+            if wid:
+                head += '<a href="#/%s">Mở trong Work →</a>' % esc(wid)
+            out += '<section class="stsrc"><div class="sthead">%s</div>%s</section>' % (
+                head, render_md(body, path, resolver, problems, team))
+        for key in p.spec["tables"]:
+            if key not in stage_tables:
+                problems.append("Stages · %s: không có bảng item tên '%s' (dùng: %s)" % (p.id, key, ", ".join(STAGE_TABLE_TITLE)))
+                continue
+            out += "<h2>%s</h2>%s" % (esc(STAGE_TABLE_TITLE[key]), render_md(stage_tables[key], p.path, resolver, problems, team))
+        if not p.parts and not p.spec["tables"]:
+            out += '<p class="empty">Trang này chưa có nguồn: thêm file vào cột Từ work, hoặc chọn bảng ở cột Bảng item, trong <code>stages/README.md</code>.</p>'
+        return out
+
+    def stage_src(p):
+        bits = ["<code>work/%s</code>" % esc(os.path.relpath(path, os.path.join(case_abs, "work")).replace(os.sep, "/")) for path, _m, _b in p.parts]
+        if p.spec["tables"]:
+            bits.append("các bảng item trong <code>insights/</code>")
+        return '<p class="srcfile">Trang này tự dựng từ: %s</p>' % (", ".join(bits) if bits else "chưa có nguồn")
+
     jcards, jdocs = "", ""
     for k, p in enumerate(weekly):
-        wk, desc, label = winfo.get(p.id, ("", "", p.heading))
+        wk, desc, label = winfo.get(p.slug, ("", "", p.heading))
         jcards += '<a class="jcard" href="#/%s"><span class="wk">%s</span><h3>%s</h3><p>%s</p></a>' % (
             p.id, "%02d · %s" % (k + 1, esc(wk if wk else "Trang")), esc(p.heading), esc(desc))
         prev = '<a href="#/%s">← %s</a>' % (weekly[k - 1].id, esc(weekly[k - 1].heading)) if k else "<span></span>"
         nxt = '<a href="#/%s">%s →</a>' % (weekly[k + 1].id, esc(weekly[k + 1].heading)) if k + 1 < len(weekly) else "<span></span>"
-        jdocs += '<section class="doc" id="%s" data-title="%s"><a class="back" href="#/journey">← Stages</a><div class="reading">%s</div>%s<nav class="pn" aria-label="Trang trước và sau">%s%s</nav></section>' % (
-            p.id, esc(p.heading), doc_html(p), srcfile(p.path), prev, nxt)
+        jdocs += '<section class="doc" id="%s" data-title="%s"><a class="back" href="#/journey">← Stages</a><div class="reading"><h1>%s</h1>%s</div>%s<nav class="pn" aria-label="Trang trước và sau">%s%s</nav></section>' % (
+            p.id, esc(p.heading), esc(p.heading),
+            ('<p class="lede">%s</p>' % esc(desc)) + stage_html(p), stage_src(p), prev, nxt)
     v_journey = '<section class="view journey" id="v-journey"><div class="wrap"><div class="jlist"><h1>Stages</h1><p class="lede">Mỗi giai đoạn của dự án một trang: điều đã được kiểm tra, kể ngắn gọn cho người đọc.</p>%s<div class="jcards">%s</div></div>%s</div></section>' % (
-        where(["stages/"], "thêm một file <code>.md</code> vào folder này, rồi thêm một dòng vào bảng Pages ở <code>stages/README.md</code> để chọn vị trí trang."), jcards, jdocs)
+        where(["stages/"], "thêm một dòng vào bảng Pages trong <code>stages/README.md</code>: chọn file ở <code>work/</code> và bảng item muốn hiện. Không cần viết file mới.")
+        + '<div class="where"><span class="wl">Cách dựng</span> mỗi trang tự ghép từ file trong <code>work/</code> và các bảng item trong <code>insights/</code>. Bạn không viết ở đây: sửa ở <code>work/</code> hoặc <code>insights/</code> rồi tạo lại báo cáo.</div>',
+        jcards, jdocs)
 
     # --- reference
     ref_desc = {"gates": "Bốn gate và các check của từng gate", "principles": "10 usability heuristics (Heuristic Evaluation): nguyên tắc mà mọi decision cần đạt", "severity": "Thang mức độ nghiêm trọng của vấn đề usability, từ 0 đến 4", "case-log": "Mỗi decision một dòng, kèm lý do"}
@@ -1918,7 +2144,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     rdocs = "".join('<section class="doc" id="%s" data-title="%s"><a class="back" href="#/reference">← Reference</a><div class="reading">%s</div>%s</section>' % (p.id, esc(p.label), ref_html(p), srcfile(p.path)) for p in ref)
     v_reference = ('<section class="view reference" id="v-reference"><div class="wrap"><div class="jlist"><h1>Reference</h1>'
                    '<p class="lede">Các tài liệu để tra cứu: gates, principle checks, severity levels, case log và mọi trang bạn thêm vào folder reference/.</p>%s<div class="jcards">%s</div></div>%s</div></section>') % (
-        where(["reference/"], "thả một file <code>.md</code> vào folder này, nó tự hiện ở đây."), rcards, rdocs)
+        where(["reference/"], "thả một file <code>.md</code> vào folder, trang tự hiện ở đây."), rcards, rdocs)
 
     # --- context: product, users and rules (context/)
     ccards = "".join('<a class="jcard" href="#/%s"><span class="wk">Context</span><h3>%s</h3><p>%s</p></a>' % (
@@ -1927,7 +2153,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         p.id, esc(p.label), ref_html(p), srcfile(p.path)) for p in ctx)
     v_context = ('<section class="view reference" id="v-context"><div class="wrap"><div class="jlist"><h1>Context</h1>'
                  '<p class="lede">Thông tin nền của dự án: sản phẩm và người dùng, quy tắc, design system, câu hỏi còn mở.</p>%s<div class="jcards">%s</div></div>%s</div></section>') % (
-        where(["context/"], "thả một file <code>.md</code> vào folder này, nó tự hiện ở đây. AI tool đọc folder này trước tiên ở mọi bước."), ccards, cdocs) if ctx else ""
+        where(["context/"], "thả một file <code>.md</code> vào folder, trang tự hiện ở đây. AI tool đọc folder này trước tiên."), ccards, cdocs) if ctx else ""
 
     # --- documents (artifacts)
     def domain_label(url):
@@ -2048,7 +2274,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
               '<input id="dsearch" class="tsearch" type="search" placeholder="Tìm tài liệu" aria-label="Tìm tài liệu">'
               '<div class="tabs2" role="tablist" aria-label="Lọc theo giai đoạn">%s</div>'
               '<p class="tcount" id="dcount" aria-live="polite"></p>%s</div>%s</div></section>') % (
-        where(["work/"], "thả một file <code>.md</code> vào folder này, hoặc tạo một folder con (kèm <code>index.md</code>) rồi thả ảnh, PDF, video vào đó. Có thể nhờ AI tool \"thêm tài liệu này vào dự án\". Xem <code>work/README.md</code>."), sfilters, grid, adocs)
+        where(["work/"], "một file <code>.md</code> thả thẳng vào folder; nhiều file (ảnh, PDF, video) thì tạo folder con kèm <code>index.md</code>. Hoặc nhờ AI tool: \"thêm tài liệu này vào dự án\"."), sfilters, grid, adocs)
 
     # --- trace: tree
     def tnode(i, kids="", cnt="", leaf=True, opened=False):
@@ -2148,6 +2374,11 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                 ("Mức %d" % sv) if sv is not None else "chưa có severity",
                 ", ".join(item_name(x) for x in G.principle_of[i]),
                 RESOLUTION_LABEL.get(G.resolution[i], G.resolution[i])] if x)
+        elif p.letter == "M":
+            vd_ = str(p.meta.get("verdict") or "pending").strip().lower()
+            meta = " · ".join(x for x in [VERDICT_LABEL.get(vd_, vd_), ("target " + str(p.meta.get("target")).strip()) if str(p.meta.get("target") or "").strip() else ""] if x)
+        elif p.letter == "D" and (str(p.meta.get("owner") or "").strip() or G.state.get(i)):
+            meta = " · ".join(x for x in [STATE_LABEL.get(G.state.get(i, ""), G.state.get(i, "")), str(p.meta.get("owner") or "").strip()] if x)
         elif p.letter == "H":
             ds_, ts_, ms_ = G.decisions_of(i), G.tests_of(i), G.metric.get(i, [])
             meta = " · ".join(x for x in [plural(len(ds_), "decision", "decisions") if ds_ else "", plural(len(ts_), "evidence", "evidence") if ts_ else "", plural(len(ms_), "metric", "metrics") if ms_ else ""] if x) or "chưa có decision hay test"
@@ -2171,18 +2402,18 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     icards = "".join(icard(i) for L, _, _, _pl in TYPES for i in _card_order(L))
     v_trace = (
         '<section class="view" id="v-trace"><div class="wrap"><div class="trace">'
-        '<div class="pane-tree"><h1>Insights</h1><p class="lede">Opportunity, hypothesis, decision, evidence, finding và metric, nối với nhau. Lọc theo loại, hoặc chuyển sang dạng Cây để thấy chuỗi lý do từ nhu cầu tới decision.</p>'
+        '<div class="pane-tree"><h1>Insights</h1><p class="lede">Opportunity, hypothesis, decision, evidence, finding và metric, nối với nhau. Lọc theo loại, hoặc chuyển sang Tree để thấy chuỗi lý do từ nhu cầu tới decision.</p>'
         '%s'
-        '<input id="tsearch" class="tsearch" type="search" placeholder="Tìm theo mã hoặc tên" aria-label="Tìm insight">'
+        '<div class="trow"><input id="tsearch" class="tsearch" type="search" placeholder="Tìm theo mã hoặc tên" aria-label="Tìm insight">'
+        '<div class="vmode" role="group" aria-label="View"><button type="button" data-vmode="cards" aria-pressed="true">Cards</button><button type="button" data-vmode="tree" aria-pressed="false">Tree</button><button type="button" data-vmode="table" aria-pressed="false">Matrix</button></div></div>'
         '<div class="tabs2" role="tablist" aria-label="Lọc theo loại">%s</div>'
         '%s'
-        '<div class="vmode" role="group" aria-label="Cách xem"><button type="button" data-vmode="cards" aria-pressed="true">Thẻ</button><button type="button" data-vmode="tree" aria-pressed="false">Cây</button><button type="button" data-vmode="table" aria-pressed="false">Bảng đối chiếu</button></div>'
         '<p class="tcount" id="tcount" aria-live="polite"></p>'
         '<div class="icards">%s</div>%s'
         '<ul class="tree" id="tree">%s</ul></div>'
         '<div class="pane-detail">%s</div>'
         '</div></div></section>'
-    ) % (where(["insights/opportunities/", "insights/hypotheses/", "insights/decisions/", "insights/evidence/", "insights/findings/", "insights/metrics/"], "mỗi thẻ là một file. Copy một mẫu trong <code>insights/_templates/</code> vào folder loại tương ứng."), ttabs, tbar, icards or '<div class="empty"><p><strong>Chưa có mục nào.</strong></p></div>', align_table, top or '<li class="n"><span class="nt">Chưa có mục nào.</span></li>', idocs)
+    ) % (where(["insights/"], "copy một mẫu trong <code>insights/_templates/</code> vào folder loại tương ứng (mỗi thẻ là một file)."), ttabs, tbar, icards or '<div class="empty"><p><strong>Chưa có mục nào.</strong></p></div>', align_table, top or '<li class="n"><span class="nt">Chưa có mục nào.</span></li>', idocs)
 
     # --- sidebar (same structure as the website: Overview, Journey, Documents by stage, Trace by type, Reference)
     def nlink(target, inner, cls=""):
@@ -2211,8 +2442,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
 <body data-case="{{NAME}}">
 <a class="skip" href="#main">Bỏ qua menu</a>
 <header class="top"><div class="top-in">
-<div class="brand">{{NAME}}</div>
-<input id="gsearch" class="gsearch" type="search" placeholder="Tìm theo mã hoặc từ khoá (ví dụ D2)" aria-label="Tìm trong báo cáo">
+<div class="brand"><svg class="logo" viewBox="18 50 214 150" fill="currentColor" aria-hidden="true"><path d="M80.5165 60.4055C76.2827 67.7288 75.4817 70.1317 74.9096 77.2261C74.5663 81.8032 74.7952 87.5244 75.4817 90.0418C76.8548 94.7332 76.0921 95.8546 74.4519 95.191C72.8194 94.5455 67.7008 93.4746 47.4474 93.0169C33.1442 92.6736 21.244 92.5592 21.0151 92.5592C20.7862 92.6736 23.1892 96.1064 26.1643 100.226C29.1393 104.345 45.8455 127.573 63.1238 151.832L94.4764 196L96.4216 192.338C97.4515 190.279 101.228 183.184 104.889 176.548C108.436 169.911 112.899 161.215 114.844 157.21C117.705 151.26 118.62 150.23 119.65 151.603C120.337 152.518 128.575 162.931 138.073 174.602L155.236 196L157.296 193.483C158.44 191.995 161.415 186.732 163.933 181.811C169.311 170.941 169.769 163.732 165.992 154.807L163.59 149.2L188.077 112.24C201.579 91.8726 215.081 71.3904 218.171 66.699C221.26 62.0075 224.693 56.9728 225.837 55.7141L228.126 53.1967H207.071C180.296 53.0823 173.316 54.4554 163.475 62.0075C155.122 68.1865 150.888 74.3655 140.247 94.9621L132.351 110.295L130.292 107.663C129.033 106.176 126.63 103.201 124.914 101.027C108.78 81.0022 87.9541 54.4554 87.4964 53.1967C86.4666 50.6794 85.5512 51.7092 80.5165 60.4055ZM213.365 62.0075C212.22 62.8085 184.758 103.544 169.54 127.116C160.958 140.389 157.91 142.982 156.953 141.076C156.601 140.364 155.292 138.4 154.092 136.727C152.49 135.011 149.286 131.006 146.883 127.688C142.65 121.738 141.547 122.036 140.933 122.996C140.292 124 139.583 125.309 138.988 126.429C137.845 128.582 137.272 128.718 140.59 132.265C147.456 139.588 156.953 152.289 158.669 156.294C161.072 162.244 160.843 171.055 157.983 177.806C156.61 180.896 155.236 183.413 154.779 183.299C154.435 183.299 148.485 175.976 141.505 167.165C134.64 158.24 127.431 149.314 125.715 147.255L122.396 143.364L125.829 137.414C127.66 134.096 131.894 126.2 135.212 119.907C158.669 75.2809 162.445 69.7885 171.599 65.5547C174.574 64.1816 178.007 62.5796 179.266 62.0075C181.44 60.9777 211.419 59.9478 213.479 60.8633C213.937 61.0921 213.937 61.5498 213.365 62.0075ZM98.7102 79.8579C104.66 87.41 113.7 98.8526 118.849 105.26L128.346 117.046L123.541 126.658C120.794 132.036 118.277 136.384 117.819 136.384C117.133 136.499 110.954 128.832 90.9292 103.315C83.0338 93.2457 80.9742 87.5244 81.6607 78.7137C82.3473 72.077 85.6656 63.495 87.0387 65.097C87.4964 65.6691 92.76 72.3058 98.7102 79.8579ZM77.3125 103.315C83.4915 106.405 88.5263 111.668 100.999 127.917C105.69 133.981 110.382 140.046 111.64 141.533C113.7 144.165 113.7 144.28 108.78 153.205C106.148 158.24 101.571 166.821 98.7102 172.428C94.362 180.896 93.3322 182.269 92.3023 180.553C91.7302 179.408 89.3273 176.09 87.1532 173C84.9791 169.911 80.6309 163.732 77.427 159.269C74.3375 154.692 67.2431 144.852 61.7507 137.185C56.2582 129.519 50.0792 121.051 48.0196 118.191C46.0743 115.33 42.4127 110.41 40.0098 107.206C37.6068 104.002 35.6616 101.027 35.6616 100.569C35.6616 99.9968 43.7858 99.8824 53.7409 100.111C70.1037 100.455 72.1634 100.798 77.3125 103.315Z"/></svg><span>{{NAME}}</span></div>
 {{THEME_SELECT}}
 </div></header>
 <div class="shell">
@@ -2278,8 +2508,12 @@ def main():
         print("  Bản dành cho team: có hiện các section AI draft (gấp lại). Đừng gửi bản này cho stakeholder.")
     if G.warnings:
         print("Warnings (%d):" % len(G.warnings))
-        for _, ids, text in G.warnings:
-            print("  - %s: %s" % (", ".join(ids), text))
+        for tr in ("block", "review", "info"):
+            rows = [(kd, ids, text) for kd, ids, text in G.warnings if warn_tier(kd) == tr]
+            if rows:
+                print("  [%s]" % TIER_LABEL[tr])
+                for _, ids, text in rows:
+                    print("  - %s: %s" % (", ".join(ids), text))
     for p in problems:
         print("  ! %s" % p)
     if placeholders:

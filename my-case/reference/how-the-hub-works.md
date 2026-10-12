@@ -16,7 +16,7 @@ Bấm đúp file `index.html` ở folder dự án: nó mở bằng trình duyệ
 |---|---|---|
 | **Overview** | `README.md` | Dự án đang ở đâu: số lượng từng loại item, các gate, những chỗ cần xem lại (warnings), và mức nối decision về nhu cầu |
 | **Context** | `context/` | Sản phẩm là gì, người dùng là ai, quy tắc dữ liệu, design system |
-| **Stages** | `stages/` | Câu chuyện của dự án theo từng giai đoạn: scope, evidence, problem brief, các hướng giải, findings, handoff |
+| **Stages** | `stages/` | Câu chuyện của dự án theo từng giai đoạn: scope, evidence, problem brief, các hướng giải, findings, handoff. Tự ghép từ file ở `work/` và item ở `insights/`, không viết riêng |
 | **Work** | `work/` | Mọi thứ làm ra trong dự án: file làm việc, phân tích đối thủ, persona, khảo sát, wireframe, prototype |
 | **Insights** | `insights/` (`opportunities/`, `hypotheses/`, `decisions/`, `evidence/`, `findings/`, `metrics/`) | Mọi item nối với nhau. Có thể lọc, tìm kiếm, và xem dạng Thẻ, Cây hoặc Bảng đối chiếu |
 | **Reference** | `reference/` | Gates, principle checks, severity levels, nhật ký quyết định |
@@ -54,8 +54,8 @@ Phần này dành cho người giữ hub.
 (thư mục gốc của dự án)
 ├── README.md              Overview: project card, và nguồn của trang Overview trong báo cáo
 ├── context/               thông tin nền: sản phẩm, người dùng, quy tắc, design system
-├── stages/                mỗi giai đoạn một trang kể chuyện (scope, evidence, problem-brief...);
-│   └── README.md          bảng Pages: thứ tự các trang trong báo cáo lấy theo bảng này
+├── stages/                các trang giai đoạn tự dựng từ work/ và insights/
+│   └── README.md          bảng Pages: mỗi dòng là một trang, theo thứ tự trong báo cáo
 ├── work/                  mọi thứ làm ra: file làm việc, wireframe, prototype, persona...
 │   ├── README.md          cách thêm tài liệu, ảnh, video, PDF
 │   ├── sources/           dữ liệu nghiên cứu (anonymised/ và _raw-private/)
@@ -132,7 +132,7 @@ Khi hub có nhiều item, hai mục này giúp lọc. Dùng được cho mọi l
 | Thông tin | Giá trị | Tác dụng |
 |---|---|---|
 | `area` | một từ tự đặt, ví dụ `onboarding`, `pricing` | Lọc theo chủ đề ở Insights. Item không có `area` luôn hiện, kể cả khi bạn lọc |
-| `state` | `active` (mặc định), `shipped`, `superseded`, `dropped` | Item `shipped`, `superseded`, `dropped` bị ẩn mặc định ở Insights và không còn tạo warning |
+| `state` | `active` (mặc định), `proposed`, `accepted`, `shipped`, `superseded`, `dropped` | `shipped`, `superseded`, `dropped` bị ẩn mặc định ở Insights và không còn tạo warning. `proposed` và `accepted` dùng cho decision: đề xuất, rồi đã được chấp nhận |
 
 ## Tài liệu (artifact)
 
@@ -163,6 +163,18 @@ Lưu một mốc trước (commit trong GitHub Desktop, hoặc copy folder thàn
 Bước này chỉ ghi vào các bảng tự động và trả về danh sách vấn đề tìm thấy. Nó không sửa file item, `gates.md` hay phần kể chuyện của bạn. Sau khi chạy, đối chiếu vài dòng trong bảng với file item để chắc AI không suy ra sai quan hệ.
 
 Để tạo lại `index.html`, nhờ AI tool chạy `python3 _ai/export-hub.py`. Muốn xem thay đổi ngay khi lưu file, chạy `python3 _ai/serve-hub.py` (chi tiết ở `_ai/export-hub.md`).
+
+## Quyết định, thứ hạng và vòng outcome
+
+Ba nhóm thông tin giúp hub trả lời "vì sao" và "kết quả ra sao". Tất cả đều tuỳ chọn, nhưng báo cáo sẽ nhắc khi thiếu:
+
+| Item | Property | Ý nghĩa |
+|---|---|---|
+| Decision | `owner`, `decided_on`, `state` | Ai chịu trách nhiệm, ngày quyết định, và đang ở `proposed` hay `accepted`. Decision đã `accepted` mà thiếu `owner` sẽ bị nhắc |
+| Opportunity | `rank`, `impact`, `confidence`, `rank_reason` | Thứ hạng kèm lý do: tác động (`high`/`medium`/`low`), độ chắc chắn của evidence, và một hai câu giải thích |
+| Metric | `target`, `result`, `measured_on`, `verdict` | Ngưỡng đạt, kết quả đo, ngày đo, và kết luận: `pending`, `met`, `missed`, `inconclusive` |
+
+Sau launch, điền `result` và `verdict` vào file metric, rồi mở trang **Learning** trong Stages: bảng Outcomes tự nối mỗi metric về hypothesis và opportunity phía sau, và metric `missed` đánh dấu opportunity "xem lại". Phần chữ (điều đã học, opportunity cần mở lại) bạn viết ở `work/learning.md`.
 
 ## Báo cáo tự kiểm tra gì
 

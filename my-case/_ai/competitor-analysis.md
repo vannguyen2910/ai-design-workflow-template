@@ -8,7 +8,7 @@ Cho thấy **đối thủ làm gì**, không cho thấy vì sao người dùng c
 |---|---|
 | Working file | `work/competitor-analysis.md` (mỗi step điền một section) |
 | Nguồn | `work/sources/anonymised/` |
-| Output cuối | `stages/evidence.md` (phần Comparison, Insights) |
+| Output cuối | `work/competitor-analysis.md` (trang Evidence trong Stages tự dựng từ file này) |
 
 ## Sections của working file
 
@@ -117,7 +117,7 @@ Copy bảng nháp sang `## Evidence (verified)`. Kiểm tra **mọi ô của 2 �
 
 **Who:** YOU
 **Input:** `## Patterns`, `## Scope`, `reference/principle-checks.md`
-**Output:** `## Insights + decision`, rồi `stages/evidence.md`
+**Output:** `## Insights + decision`, rồi trang Evidence trong Stages (tự dựng từ working file)
 
 Cân từng pattern theo người dùng của mình và các principle. Pattern xuất hiện ở nhiều đối thủ chưa chắc đã quan trọng. Viết 3 đến 5 insight kèm link evidence, **câu trả lời cho decision ở step 1** trong một câu ("Nên / không nên X, vì Y", hoặc "chưa đủ evidence" kèm điều còn thiếu), và các câu hỏi mở cần hỏi người dùng thật. Đưa bản đã kiểm tra lên trang Evidence của hub.
 

@@ -4,6 +4,8 @@ Dựng lại các bảng tổng hợp của hub từ các file item. **Các file
 
 *Trạng thái: bản nháp.*
 
+> **Lưu ý:** các bảng trong `stages/` giờ tự dựng lại từ file item mỗi khi chạy `python3 _ai/export-hub.py`, nên bạn không cần nhờ AI cập nhật chúng nữa. Dùng workflow này khi muốn AI **giải thích** warnings và gợi ý cách xử lý (Step 2).
+
 | | |
 |---|---|
 | Khi nào | Sau mỗi lần bạn tạo hoặc sửa item hoặc `gates.md` |
@@ -14,13 +16,7 @@ Dựng lại các bảng tổng hợp của hub từ các file item. **Các file
 
 **Who:** AI
 **Input:** `insights/opportunities/*.md`, `insights/hypotheses/*.md`, `insights/metrics/*.md`, `insights/decisions/*.md`, `insights/evidence/*.md`, `insights/findings/*.md`, `reference/gates.md`, `reference/principle-checks.md`
-**Output:** Các khối giữa `<!-- generated:... -->` và `<!-- /generated -->` trong:
-
-| File | Khối |
-|---|---|
-| `stages/problem-brief.md` | `opportunities`, `hypotheses`, `metrics` |
-| `stages/develop.md` | `decisions` |
-| `stages/findings.md` | `evidence`, `findings` |
+**Output:** Danh sách warnings và các quan hệ còn thiếu, trả lời ngay trong chat. Không ghi vào file nào.
 
 **Instruction:**
 > Dựng lại các khối `generated` của hub chỉ từ các file input. Quan hệ nằm trong properties ở đầu mỗi file item (wikilink) và chỉ được khai báo một chiều: H có `serves` (O) và `metric` (M); D có `tests` (H), `follows` và `pulls_against` (P); E có `tests` (H) và `measures` (M); F có `found_in` (E), `affects` (D), `principle` (P), `severity` (0 đến 4) và `resolution`. Hướng ngược lại bạn suy ra.
@@ -38,7 +34,7 @@ Dựng lại các bảng tổng hợp của hub từ các file item. **Các file
 
 **Who:** YOU
 **Input:** Warnings vừa được dựng, và câu trả lời của AI ở step 1
-**Output:** `stages/alignment.md` (verdict cho từng warning), `reference/case-log.md`
+**Output:** `work/alignment.md` (verdict cho từng warning), `reference/case-log.md`
 
 Với mỗi warning, chọn một: sửa file item, chấp nhận như một trade-off có lý do, hoặc cắt. Item bị cắt thì xoá file và chạy lại workflow này.
 

@@ -16,7 +16,7 @@ supports: []
 | | | | |
 
 ## Opportunities (ranked)
-*Là nhu cầu người dùng có evidence, không phải feature. Mỗi opportunity là một file trong `insights/opportunities/` (O1, O2 ...) và file đó là nguồn duy nhất: viết trực tiếp ở đó, không giữ bảng trùng ở đây. Bảng tổng hợp có ở `stages/problem-brief.md`, do AI dựng.*
+*Là nhu cầu người dùng có evidence, không phải feature. Mỗi opportunity là một file trong `insights/opportunities/` (O1, O2 ...) và file đó là nguồn duy nhất: viết trực tiếp ở đó, không giữ bảng trùng ở đây. Bảng tổng hợp hiện ở trang Problem brief trong Stages, tự dựng từ các file đó.*
 
 ## Hypotheses
 *Chúng tôi tin rằng [decision] dành cho [users] sẽ [thay đổi gì], và chúng tôi sẽ biết nhờ [test và metric]. Mỗi hypothesis là một file trong `insights/hypotheses/` (H1, H2 ...), có dòng `Serves` trỏ tới opportunity và dòng `Metric`.*

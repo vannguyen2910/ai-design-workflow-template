@@ -1,16 +1,31 @@
 # Stages
 
-Mỗi giai đoạn của dự án có một trang kể lại phần đã được kiểm tra. Báo cáo hiện các trang này ở mục **Stages**, theo **thứ tự các dòng trong bảng dưới đây**: muốn đổi thứ tự thì dời một dòng, muốn thêm trang thì thêm một file `.md` vào folder này và một dòng vào bảng.
+Mỗi giai đoạn của dự án có một trang trong báo cáo, ở mục **Stages**. **Bạn không viết trang giai đoạn.** Mỗi trang được báo cáo tự ghép từ hai nguồn:
+
+- các file làm việc trong `work/` (cột **Từ work**), kèm trạng thái `status` của file đó (verified, draft...);
+- các bảng item lấy từ `insights/` (cột **Bảng item**): opportunities, hypotheses, metrics, decisions, evidence, findings.
+
+Muốn đổi nội dung: sửa file ở `work/` hoặc item ở `insights/`, rồi tạo lại `index.html`. Muốn đổi thứ tự hay thêm một giai đoạn: sửa bảng dưới đây (thứ tự các dòng là thứ tự trong báo cáo).
 
 ## Pages
 
-| Page | Giai đoạn | Nội dung | Copy từ |
-|---|---|---|---|
-| [Scope](scope.md) | Discover | Business question, outcome, agreement | `work/scope.md` |
-| [Evidence](evidence.md) | Discover | Điều đã học từ nguồn, mỗi claim một nguồn | `work/user-voice-synthesis.md`, `competitor-analysis.md` |
-| [Problem brief](problem-brief.md) | Define | Opportunity, hypothesis, metric, principle | `work/problem-brief.md` |
-| [Options, flows, prototype](develop.md) | Develop | Các hướng đã khám phá, decision | `work/options.md`, `prototype/` |
-| [Alignment check](alignment.md) | Develop | Principle audit, verdict | `work/alignment.md` |
-| [Findings](findings.md) | Deliver | Kết quả test với người dùng | `work/findings.md` |
-| [Handoff and measurement](handoff.md) | Deliver | Handoff pack, measurement plan | `work/handoff.md`, `measurement-plan.md` |
-| [Case log](../reference/case-log.md) | mọi giai đoạn | Mỗi decision một dòng | `reference/case-log.md` ở folder gốc của case |
+| Id | Page | Giai đoạn | Nội dung | Từ work | Bảng item |
+|---|---|---|---|---|---|
+| `scope` | Scope | Discover | Business question, outcome, agreement | `scope.md` | |
+| `evidence` | Evidence | Discover | Điều đã học từ nguồn, mỗi claim một nguồn | `user-voice-synthesis.md`, `competitor-analysis.md` | |
+| `problem-brief` | Problem brief | Define | Opportunity, hypothesis, metric, principle | `problem-brief.md` | opportunities, hypotheses, metrics |
+| `develop` | Options, flows, prototype | Develop | Các hướng đã khám phá, decision | `options.md`, `prototype/` | decisions |
+| `alignment` | Alignment check | Develop | Principle audit, verdict | `alignment.md` | |
+| `findings` | Findings | Deliver | Kết quả test với người dùng | `findings.md` | evidence, findings |
+| `handoff` | Handoff and measurement | Deliver | Handoff pack, measurement plan | `handoff.md`, `measurement-plan.md` | |
+| `learning` | Learning | Learn | Điều đã học sau launch: metric so với target, dẫn ngược về opportunity | `learning.md` | outcomes |
+
+## Cách đọc bảng
+
+| Cột | Ý nghĩa |
+|---|---|
+| **Id** | Tên ngắn, chữ thường, không dấu. Dùng làm địa chỉ trang. |
+| **Từ work** | File trong `work/` (viết tên file, ví dụ `scope.md`) hoặc folder có `index.md` (ví dụ `prototype/`). Có thể nhiều file, ngăn bằng dấu phẩy. |
+| **Bảng item** | Bảng nào hiện ở trang này: `opportunities`, `hypotheses`, `metrics`, `decisions`, `evidence`, `findings`, hoặc `outcomes` (metric, kết quả đo và opportunity phía sau). Để trống nếu không cần. |
+
+Mỗi file nguồn hiện kèm trạng thái của nó. Một file còn `draft` vẫn hiện, nhưng được gắn nhãn "Bản nháp, chưa kiểm tra" để người đọc biết đó chưa phải điều đã kiểm tra: đổi `status` thành `verified` khi bạn đã kiểm tra xong.
