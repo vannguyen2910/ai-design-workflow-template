@@ -234,7 +234,21 @@ class Renderer(object):
                 for r in rows:
                     r = (r + [""] * len(head))[: len(head)]
                     body += "<tr>%s</tr>" % "".join("<td>%s</td>" % self.inline(c) for c in r)
-                out.append('<div class="table-wrap"><table>%s<tbody>%s</tbody></table></div>' % (thead, body))
+                cols, cls = "", ""
+                if len(head) >= 3:
+                    # balance the columns: width follows the typical text length, softened and clamped
+                    ws = []
+                    for k in range(len(head)):
+                        cells = [re.sub(r"[`*_\[\]()]", "", (r[k] if k < len(r) else "")) for r in rows]
+                        lens = [len(c.strip()) for c in cells if c.strip()]
+                        avg = sum(lens) / len(lens) if lens else 0
+                        ws.append(max(avg, len(head[k].strip()), 6) ** 0.6)
+                    tot = sum(ws) or 1
+                    pct = [max(13.0, 100.0 * w / tot) for w in ws]
+                    tp = sum(pct)
+                    cols = "<colgroup>%s</colgroup>" % "".join('<col style="width:%.1f%%">' % (100.0 * x / tp) for x in pct)
+                    cls = ' class="bal"'
+                out.append('<div class="table-wrap"><table%s>%s%s<tbody>%s</tbody></table></div>' % (cls, cols, thead, body))
                 continue
             if re.match(r"([-*]|\d+\.)\s+", s):
                 block, i = self._list(lines, i)
@@ -877,6 +891,8 @@ h3{font-size:1rem;margin:22px 0 6px}
 .gate .bar i{display:block;height:100%;background:#fff}
 .table-wrap{overflow-x:auto;margin:12px 0}
 table{border-collapse:collapse;width:100%;font-size:.92rem}
+table.bal{table-layout:fixed}
+table.bal th,table.bal td{overflow-wrap:break-word;word-break:normal}
 th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
 th{background:var(--tint);font-weight:700}
 table.props th{background:none;color:var(--muted);font-weight:600;width:11em}
@@ -1276,6 +1292,7 @@ html[data-theme] th{background:none}
 .pn a{text-decoration:none;font-weight:600}
 .pn a:hover{text-decoration:underline}
 .reference td:first-child{white-space:nowrap;color:var(--muted);font-weight:600;width:1%}
+.reference table.bal td:first-child{white-space:normal;width:auto}
 .gst{font-size:.82rem;font-weight:600;white-space:nowrap}
 .gst::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;background:var(--muted);vertical-align:middle}
 .gst-passed::before{background:#1a7f4b}
@@ -1614,6 +1631,9 @@ ART_TYPES = {
     "interview-synthesis": "Interview synthesis", "user-flow": "User flow", "ia-sitemap": "Information architecture",
     "prototype": "Prototype", "test-plan": "Test plan", "test-report": "Test report",
     "requirements": "Requirements (PRD)", "solution-pool": "Solution pool", "generic": "Document",
+    "pestel-analysis": "PESTEL analysis", "research-plan": "Research plan", "interview-guide": "Interview guide",
+    "problem-brief": "Problem brief", "prioritization": "Prioritization",
+    "assumptions-map": "Assumptions map", "heuristic-evaluation": "Heuristic evaluation", "opportunity-solution-tree": "Opportunity solution tree",
 }
 STAGES = ["Setup", "Discover", "Define", "Develop", "Deliver", "Learn"]
 ART_STATUS = {"verified": "Verified", "draft": "Draft", "simulated": "Simulated", "planned": "Planned"}

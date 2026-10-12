@@ -25,8 +25,8 @@ Mỗi folder không có `_` ở gốc là một mục trong menu của báo cáo
 | `insights/_templates/` | Mẫu rỗng cho từng loại item | Đọc. Copy vào đúng folder loại (ví dụ `insights/decisions/`) khi được yêu cầu tạo item mới, không sửa file mẫu |
 | `standards/*.md` | Thước đo để kiểm tra công việc: gates, principle checks, severity levels, và mọi tiêu chí chủ dự án thêm vào | Đọc. Chỉ sửa khi được yêu cầu đúng trang đó. `insights/case-log.md`: thêm dòng khi được yêu cầu |
 | `_skills/new-item.py` | Lệnh tạo một item mới và nối quan hệ | Chạy khi được yêu cầu tạo item (xem mục Where things go). Không sửa |
-| `_skills/export-hub.py` | Script xuất báo cáo ra một file HTML | Chạy khi được yêu cầu (`python3 _skills/export-hub.py`). Không sửa, và không tự viết HTML thay cho script |
-| `index.html` | Báo cáo, xuất ra từ Markdown để xem bằng trình duyệt | Không đọc, không sửa tay. Muốn cập nhật thì chạy `_skills/export-hub.py` |
+| `_skills/export-hub.py` | Script xuất báo cáo ra một file HTML | Chạy sau mỗi lần bạn thay đổi file của case, và khi được yêu cầu (`python3 _skills/export-hub.py`). Không sửa, và không tự viết HTML thay cho script |
+| `index.html` | Báo cáo, xuất ra từ Markdown để xem bằng trình duyệt | Không đọc, không sửa tay. Muốn cập nhật thì chạy `_skills/export-hub.py` (bạn tự chạy sau mỗi lần thay đổi file) |
 | `_personal/` | Ghi chú riêng của chủ dự án | **Không đọc, không ghi** |
 | `work/sources/_raw-private/` | Dữ liệu gốc chưa ẩn danh | **Không đọc, không ghi** |
 
@@ -55,7 +55,7 @@ Khi đặt file:
 1. **Mã kế tiếp:** liệt kê folder loại và dùng số lớn nhất cộng một. Không bao giờ ghi đè file đã có.
 2. **Tên file ngắn, chữ thường, nối bằng dấu gạch ngang** cho tài liệu; mã item cho item.
 3. **Nói lại chỗ bạn đã đặt:** nêu đường dẫn đầy đủ, và những gì bạn không chắc (ví dụ `supports` còn trống).
-4. **Nhắc chủ dự án** tạo lại `index.html` (`python3 _skills/export-hub.py`) khi cần; muốn rà soát thì dùng `_skills/refresh-hub.md`.
+4. **Tự tạo lại báo cáo** sau khi bạn thêm hoặc sửa file của case: chạy `python3 _skills/export-hub.py`, rồi nói kết quả (số warning và những cái cần xử lý trước khi bàn giao). Muốn rà soát sâu hơn thì dùng `_skills/refresh-hub.md`.
 
 ## Hard rules
 
