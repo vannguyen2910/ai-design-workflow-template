@@ -59,7 +59,7 @@ Phần này dành cho người giữ hub.
 ├── work/                  mọi thứ làm ra: file làm việc, wireframe, prototype, persona...
 │   ├── README.md          cách thêm tài liệu, ảnh, video, PDF
 │   ├── sources/           dữ liệu nghiên cứu (anonymised/ và _raw-private/)
-│   └── prototype/
+│   └── wireframes/
 ├── insights/
 │   ├── opportunities/     O1.md, O2.md ...   mỗi item một file, mỗi loại một folder
 │   ├── hypotheses/  metrics/  decisions/  evidence/  findings/

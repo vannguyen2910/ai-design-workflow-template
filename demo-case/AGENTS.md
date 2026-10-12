@@ -19,7 +19,7 @@ Mỗi folder không có `_` ở gốc là một mục trong menu của báo cáo
 | `stages/README.md` | Bảng Pages: mỗi dòng là một trang giai đoạn, tự ghép từ file ở `work/` và bảng item ở `insights/` | Chỉ sửa bảng khi được yêu cầu. Không tạo file `.md` nào khác ở đây: trang giai đoạn không có nội dung riêng |
 | `work/*.md`, `work/<tên>/index.md` | Mọi thứ làm ra: file làm việc theo giai đoạn (`scope`, `problem-brief`, `findings`...) và tài liệu (wireframe, persona, flow). Có thể kèm ảnh, PDF, HTML trong folder | Chỉ ghi vào đúng section được yêu cầu. Không chép nội dung vào `stages/`: trang đó dẫn về file làm việc |
 | `work/sources/anonymised/` | Dữ liệu đã ẩn danh, có ID | Đọc. Nguồn duy nhất cho quote và số liệu |
-| `work/prototype/` | Code prototype | Làm việc ở đây khi dựng prototype, theo `project-rules.md` trong folder đó |
+| `work/wireframes/` | Wireframe: ảnh lo-fi và bản HTML các màn hình chính | Đọc. Thêm ảnh hoặc file vào đây khi được yêu cầu |
 | `insights/opportunities/O1.md`, `hypotheses/H1.md`, `metrics/M1.md`, `decisions/D1.md`, `evidence/E1.md`, `findings/F1.md`… | **Nguồn duy nhất** của mỗi item (O, H, M, D, E, F). Mỗi loại một folder; tên file là mã của item | Đọc. Chỉ sửa khi được yêu cầu sửa đúng item đó. Không tự đặt `resolution: fixed` hay `accepted` cho finding |
 | `insights/_templates/` | Mẫu rỗng cho từng loại item | Đọc. Copy vào đúng folder loại (ví dụ `insights/decisions/`) khi được yêu cầu tạo item mới, không sửa file mẫu |
 | `reference/*.md` | Trang tra cứu: gates, principle checks, severity levels, case log, và mọi trang chủ dự án thêm vào | Đọc. Chỉ sửa khi được yêu cầu đúng trang đó. `reference/case-log.md`: thêm dòng khi được yêu cầu |

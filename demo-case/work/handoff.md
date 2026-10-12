@@ -13,7 +13,8 @@ supports: []
 ## The prototype
 Link hoặc folder. Đây là tài liệu tham chiếu, không phải production code.
 
-- Wireframe: `work/prototype/Travel_Buddy_Wireframe.html`
+- Wireframe: `work/wireframes/Travel_Buddy_Wireframe.html`
+- Prototype cuối: `work/final-prototype/travel-buddy-final-prototype.html`
 - Kế hoạch dựng, danh sách 32 màn hình, 4 flow: `work/original-docs/10_Prototype_Plan.md`
 - E2E flow: `work/original-docs/08_E2E_User_Flow.md`
 

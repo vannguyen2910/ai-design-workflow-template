@@ -23,7 +23,7 @@ Dự án gốc được làm trước khi có quy trình AI-assisted của works
 | `work/scope.md`, `user-voice-synthesis.md`, `competitor-analysis.md` | Scope, tổng hợp tiếng nói người dùng, phân tích đối thủ | Discover |
 | `work/sources/anonymised/` | Tài liệu nghiên cứu gốc: hypothesis, khảo sát, hướng dẫn phỏng vấn, tổng hợp, đối thủ | Discover |
 | `work/problem-brief.md` | Problem brief | Define |
-| `work/options.md`, `alignment.md`, `work/prototype/` | Các hướng, alignment, wireframe | Develop |
+| `work/options.md`, `alignment.md`, `work/wireframes/` | Các hướng, alignment, wireframe | Develop |
 | `work/test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md` | Kế hoạch test, findings, handoff, kế hoạch đo | Deliver |
 | `insights/` | 5 nhu cầu, 6 hypothesis, 7 decision, 2 evidence, 7 finding, 5 metric | Mọi giai đoạn |
 | `stages/README.md` | Bảng bảy trang giai đoạn (scope, evidence, problem brief, develop, alignment, findings, handoff); mỗi trang tự dựng từ `work/` và `insights/` | Mọi giai đoạn |
