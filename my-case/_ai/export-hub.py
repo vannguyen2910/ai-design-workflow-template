@@ -821,7 +821,7 @@ CSS = r"""
 :root{--ink:#14121c;--bg:#fff;--surface:#faf9ff;--muted:rgba(20,18,28,.66);--line:rgba(20,18,28,.13);--purple:#6B3FEE;--link:#5530d4;--tint:rgba(107,63,238,.10);--tint2:rgba(107,63,238,.18);--on-purple:#fff;--r:12px;color-scheme:light}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 a{color:var(--link)}
 a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--purple);outline-offset:2px;border-radius:6px}
 .skip{position:absolute;left:-999px;top:0;background:var(--purple);color:var(--on-purple);padding:8px 14px;z-index:30}
@@ -1034,7 +1034,7 @@ footer.foot{margin-top:56px;color:var(--muted);font-size:.85rem;border-top:1px s
 NAV_CSS = r"""
 /* sidebar layout (mirrors the website structure: one page per document, nested menu on the left) */
 .shell{display:grid;grid-template-columns:300px minmax(0,1fr);max-width:1480px;margin:0 auto;align-items:start}
-.side{position:sticky;top:61px;height:calc(100vh - 61px);overflow:auto;border-right:1px solid var(--line);padding:16px 12px 48px;font-size:.9rem;background:var(--bg)}
+.side{position:sticky;top:51px;height:calc(100vh - 51px);overflow:auto;border-right:1px solid var(--line);padding:16px 12px 48px;font-size:.9rem;background:var(--bg)}
 .side nav{display:block}
 .side a{display:block;text-decoration:none;color:var(--ink);padding:5px 10px;border-radius:8px;overflow-wrap:anywhere}
 .side a:hover{background:var(--tint)}
@@ -1223,7 +1223,7 @@ table.props td{padding:7px 0}
 .ststatus{padding:1px 8px;border-radius:99px;font-size:.72rem;font-weight:700;background:rgba(145,158,171,.16)}
 .ststatus.ok{background:rgba(34,197,94,.16);color:#118d57}
 .ststatus.w{background:rgba(255,171,0,.16);color:#b76e00}
-html{overflow-y:scroll;scrollbar-gutter:stable}
+html{overflow-x:hidden;overflow-y:scroll;scrollbar-gutter:stable}
 .top-in{max-width:1480px;padding-left:24px;padding-right:24px}
 .nav2 a[data-nav=guide]{margin-top:10px;border-top:1px dashed var(--line);border-radius:0 0 var(--r) var(--r);padding-top:12px}
 .guide pre{position:relative;padding-right:84px}
