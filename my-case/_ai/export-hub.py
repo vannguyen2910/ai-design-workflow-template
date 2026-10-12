@@ -44,31 +44,31 @@ EXCLUDE_HUB_FILES = {"how-the-hub-works.md"}
 VI_NAME = {"O": ("Opportunity", "Opportunity"), "H": ("Hypothesis", "Hypothesis"), "M": ("Metric", "Metric"),
            "D": ("Decision", "Design decision"), "E": ("Evidence", "Evidence"), "F": ("Finding", "Finding")}
 CLOSED_STATES = {"shipped", "superseded", "dropped"}
-SEVERITY_LABEL = {"0": "0 · Không phải vấn đề", "1": "1 · Cosmetic", "2": "2 · Minor", "3": "3 · Major", "4": "4 · Catastrophe"}
+SEVERITY_LABEL = {"0": "0 · Not a problem", "1": "1 · Cosmetic", "2": "2 · Minor", "3": "3 · Major", "4": "4 · Catastrophe"}
 RESOLUTION_LABEL = {"open": "Open", "fixed": "Fixed", "accepted": "Accepted", "deferred": "Deferred"}
 RESOLVED = {"fixed", "accepted", "deferred"}
 STATE_LABEL = {"proposed": "Proposed", "accepted": "Accepted", "active": "Active", "shipped": "Shipped", "superseded": "Superseded", "dropped": "Dropped"}
-VERDICT_LABEL = {"pending": "Chưa đo", "met": "Đạt target", "missed": "Chưa đạt target", "inconclusive": "Chưa kết luận"}
+VERDICT_LABEL = {"pending": "Not measured", "met": "Target met", "missed": "Target missed", "inconclusive": "Inconclusive"}
 LEVEL_LABEL = {"high": "High", "medium": "Medium", "low": "Low"}
 VI_SHORT = {"O": "Opportunity", "H": "Hypothesis", "M": "Metric", "D": "Decision", "E": "Evidence", "F": "Finding"}
-PROP_LABEL = {"type": "Loại", "rank": "Thứ hạng", "evidence": "Nguồn bằng chứng", "serves": "Phục vụ nhu cầu", "metric": "Metric",
-              "tests": "Kiểm chứng hypothesis", "follows": "Theo principle", "pulls_against": "Đi ngược principle",
-              "measures": "Đo bằng metric", "status": "Trạng thái", "baseline": "Mốc hiện tại", "measured_by": "Cách đo",
-              "participants": "Số người tham gia", "result": "Kết quả", "participants_type": "Loại người tham gia",
-              "area": "Chủ đề", "state": "Tình trạng", "owner": "Người quyết định", "decided_on": "Ngày quyết định",
-              "impact": "Tác động", "confidence": "Độ chắc chắn", "rank_reason": "Lý do xếp hạng",
-              "target": "Target", "measured_on": "Ngày đo", "verdict": "Kết luận",
-              "severity": "Mức độ nghiêm trọng", "found_in": "Phát hiện trong", "affects": "Ảnh hưởng tới decision",
-              "principle": "Principle bị vi phạm", "resolution": "Cách xử lý"}
+PROP_LABEL = {"type": "Type", "rank": "Rank", "evidence": "Evidence source", "serves": "Serves need", "metric": "Metric",
+              "tests": "Tests hypothesis", "follows": "Follows principle", "pulls_against": "Pulls against principle",
+              "measures": "Measures metric", "status": "Status", "baseline": "Baseline", "measured_by": "Measured by",
+              "participants": "Participants", "result": "Result", "participants_type": "Participant type",
+              "area": "Area", "state": "State", "owner": "Owner", "decided_on": "Decided on",
+              "impact": "Impact", "confidence": "Confidence", "rank_reason": "Rank reason",
+              "target": "Target", "measured_on": "Measured on", "verdict": "Verdict",
+              "severity": "Severity", "found_in": "Found in", "affects": "Affects decision",
+              "principle": "Principle violated", "resolution": "Resolution"}
 VALUE_LABEL = {"status": {"assumed": "Assumed", "planned": "Planned", "run": "Run"},
                "participants_type": {"simulated": "Simulated", "real": "Real users"},
                "state": STATE_LABEL,
                "verdict": VERDICT_LABEL, "impact": LEVEL_LABEL, "confidence": LEVEL_LABEL,
                "severity": SEVERITY_LABEL,
                "resolution": RESOLUTION_LABEL}
-BACK_LABEL = {"serves": "Được phục vụ bởi", "metric": "Là metric của", "tests": "Được kiểm chứng bởi",
-              "measures": "Được đo bởi", "follows": "Được theo bởi", "pulls_against": "Bị đi ngược bởi",
-              "found_in": "Có finding", "affects": "Bị ảnh hưởng bởi finding"}
+BACK_LABEL = {"serves": "Served by", "metric": "Metric of", "tests": "Tested by",
+              "measures": "Measured by", "follows": "Followed by", "pulls_against": "Pulled against by",
+              "found_in": "Has finding", "affects": "Affected by finding"}
 STATUS_VI = {"open": "Open", "passed": "Passed", "failed": "Failed"}
 AGREE_VI = {"agreed": "Agreed", "pending": "Pending", "not available": "Not available"}
 
@@ -134,7 +134,7 @@ class Renderer(object):
                 elif kind == "data":
                     out = '<img src="%s" alt="%s">' % (val, html.escape(label, quote=True))
                 else:
-                    out = '<span class="ext">[hình: %s]</span>' % (label or url)
+                    out = '<span class="ext">[image: %s]</span>' % (label or url)
             elif kind == "file":
                 out = '<a href="%s" target="_blank" rel="noopener">%s</a>' % (val, inner)
             elif kind == "page":
@@ -144,10 +144,10 @@ class Renderer(object):
             elif kind == "anchor":
                 out = '<span class="ext">%s</span>' % inner
             elif kind == "outside":
-                out = '<span class="ext" title="Nằm ngoài báo cáo: %s">%s</span>' % (html.escape(val, quote=True), inner)
+                out = '<span class="ext" title="Outside the report: %s">%s</span>' % (html.escape(val, quote=True), inner)
             else:
-                self.problems.append("Link hỏng trong %s: %s" % (os.path.basename(self.src), url))
-                out = '<span class="broken" title="Link hỏng: %s">%s</span>' % (html.escape(url, quote=True), inner)
+                self.problems.append("Broken link in %s: %s" % (os.path.basename(self.src), url))
+                out = '<span class="broken" title="Broken link: %s">%s</span>' % (html.escape(url, quote=True), inner)
             links.append(out)
             return "\x00L%d\x00" % (len(links) - 1)
 
@@ -197,7 +197,7 @@ class Renderer(object):
                 while i < n and lines[i].strip().startswith(">"):
                     buf.append(re.sub(r"^\s*>\s?", "", lines[i]))
                     i += 1
-                if re.match(r"\s*\*\*Cách điền", "\n".join(buf)):
+                if re.match(r"\s*\*\*(?:Cách điền|How to fill)", "\n".join(buf)):
                     continue  # authoring hint for the writer, not for the reader of the report
                 out.append("<blockquote>%s</blockquote>" % self.render("\n".join(buf)))
                 continue
@@ -385,7 +385,7 @@ def collect(case):
     stages/, work/ (see collect_artifacts), insights/, standards/ and context/; README.md is the Overview."""
     ov = os.path.join(case, "README.md")
     if not os.path.isfile(ov):
-        sys.exit("Không tìm thấy README.md trong %s" % case)
+        sys.exit("README.md not found in %s" % case)
     overview = Page("overview", ov, "overview")
     weekly, items, ref, ctx = [], [], [], []
     # Stage pages: one per row of the Pages table in stages/README.md, in that order. Nothing to write per stage:
@@ -436,7 +436,7 @@ def case_info(overview_md, case):
     name = os.path.basename(os.path.abspath(case))
     if name == "my-case":  # the blank template has no project yet
         name = "Product Name"
-    m = re.search(r"^\|\s*Tên (?:dự án|case)\s*\|\s*([^|\s][^|]*?)\s*\|\s*$", overview_md, flags=re.M)
+    m = re.search(r"^\|\s*(?:Tên (?:dự án|case)|Project name|Project)\s*\|\s*([^|\s][^|]*?)\s*\|\s*$", overview_md, flags=re.M)
     if m and not m.group(1).startswith("["):
         name = re.sub(r"[*`]", "", m.group(1))
     status = ""
@@ -447,7 +447,7 @@ def case_info(overview_md, case):
 
 
 def stage_specs(md):
-    """Rows of the Pages table in stages/README.md: Id | Page | Giai đoạn | Nội dung | Từ work | Bảng item.
+    """Rows of the Pages table in stages/README.md: Id | Page | Stage | Content | From work | Item tables.
     A stage page is built from these rows alone: there is no file to write per stage."""
     out = []
     for line in md.split("\n"):
@@ -484,9 +484,9 @@ def stage_table_issues(md):
         if sid.lower() == "id":
             continue
         if len(c) < 6:
-            out.append("Stages: dòng \"%s\" trong bảng Pages có %d cột, cần 6 (Id, Page, Giai đoạn, Nội dung, Từ work, Bảng item)" % (sid[:40], len(c)))
+            out.append("Stages: row \"%s\" in the Pages table has %d columns, needs 6 (Id, Page, Stage, Content, From work, Item tables)" % (sid[:40], len(c)))
         elif not re.fullmatch(r"[a-z][a-z0-9-]*", sid):
-            out.append("Stages: Id \"%s\" không hợp lệ (chữ thường, không dấu, nối bằng dấu gạch ngang)" % sid[:40])
+            out.append("Stages: Id \"%s\" is not valid (lowercase, no accents, joined by hyphens)" % sid[:40])
     return out
 
 
@@ -532,7 +532,7 @@ def parse_case_log(md):
         if not line.strip().startswith("|"):
             continue
         c = _split_row(line)
-        if len(c) < 4 or set(c[0]) <= set("-: ") or c[0].lower() in ("date", "ngày"):
+        if len(c) < 4 or set(c[0]) <= set("-: ") or c[0].lower() in ("date", "ngày", "ngay"):
             continue
         if not any(x.strip() for x in c):
             continue
@@ -556,29 +556,29 @@ def auto_checks(G, principles):
     if O:
         n = sum(1 for o in O if has_src(o))
         for cid in ("1b", "2a"):
-            out[cid] = (n == len(O), "%d trên %d opportunity có nguồn bằng chứng" % (n, len(O)))
+            out[cid] = (n == len(O), "%d of %d opportunities have an evidence source" % (n, len(O)))
     if H:
         n = sum(1 for h in H if G.tests_of(h) and G.metric.get(h))
-        out["2c"] = (n == len(H), "%d trên %d hypothesis có evidence và metric" % (n, len(H)))
+        out["2c"] = (n == len(H), "%d of %d hypotheses have evidence and a metric" % (n, len(H)))
     real = [(k, nm, chk) for k, (nm, chk) in principles.items() if not nm.startswith("(")]
     if real:
         n = sum(1 for _, _, chk in real if chk.strip())
-        out["2d"] = (n == len(real), "%d trên %d principle có câu hỏi có/không" % (n, len(real)))
+        out["2d"] = (n == len(real), "%d of %d principles have a yes/no question" % (n, len(real)))
     if D:
         unlinked = sum(1 for d in D if not any(G.serves.get(h) for h in G.tests.get(d, [])))
         unserved = sum(1 for o in O if not any(G.decisions_of(h) for h in G.hyps_of(o)))
-        out["3b"] = (unlinked == 0 and unserved == 0, "%d decision chưa nối về nhu cầu, %d opportunity chưa có decision" % (unlinked, unserved))
+        out["3b"] = (unlinked == 0 and unserved == 0, "%d decisions not traced to a need, %d opportunities without a decision" % (unlinked, unserved))
         n = sum(1 for d in D if G.follows.get(d) or G.strains.get(d))
-        out["3c"] = (n == len(D), "%d trên %d decision đã được đánh giá theo principle" % (n, len(D)))
+        out["3c"] = (n == len(D), "%d of %d decisions checked against principles" % (n, len(D)))
     if H:
         def kind(t):
             m = G.items[t].meta
             return not (str(m.get("status", "")).lower() == "planned" or str(m.get("participants_type", "")).lower() == "simulated")
         n = sum(1 for h in H if any(kind(t) for t in G.tests_of(h)))
-        out["4a"] = (n == len(H), "%d trên %d hypothesis có evidence từ người dùng thật" % (n, len(H)))
+        out["4a"] = (n == len(H), "%d of %d hypotheses have evidence from real users" % (n, len(H)))
     if G.F:
         bad = [f for f in G.F if G.severity[f] is None or not G.found_in[f]]
-        out["4b"] = (not bad, "%d finding, %d thiếu severity hoặc nguồn" % (len(G.F), len(bad)))
+        out["4b"] = (not bad, "%d findings, %d missing severity or source" % (len(G.F), len(bad)))
     return out
 
 
@@ -608,17 +608,17 @@ def _gen_tables(G, page_dir):
     def met(m, k, dash="\u2014"):
         return str(G.items[m].meta.get(k) or "").strip() or dash
 
-    T["opportunities"] = table(["Thứ hạng", "Mã", "Opportunity", "Tác động", "Độ chắc chắn", "Lý do xếp hạng"], [
+    T["opportunities"] = table(["Rank", "ID", "Opportunity", "Impact", "Confidence", "Rank reason"], [
         row([n + 1, link(o), G.items[o].title, lvl(o, "impact"), lvl(o, "confidence"), met(o, "rank_reason")]) for n, o in enumerate(G.O)])
-    T["hypotheses"] = table(["Mã", "Hypothesis", "Phục vụ", "Evidence"], [
-        row([link(h), G.items[h].title, ids(G.serves.get(h, [])), ", ".join(G.tests_of(h)) or "chưa có"]) for h in G.H])
-    T["metrics"] = table(["Mã", "Metric", "Mốc hiện tại", "Target", "Kết quả", "Kết luận"], [
+    T["hypotheses"] = table(["ID", "Hypothesis", "Serves", "Evidence"], [
+        row([link(h), G.items[h].title, ids(G.serves.get(h, [])), ", ".join(G.tests_of(h)) or "none yet"]) for h in G.H])
+    T["metrics"] = table(["ID", "Metric", "Baseline", "Target", "Result", "Verdict"], [
         row([link(m), G.items[m].title, met(m, "baseline", "unknown"), met(m, "target"), met(m, "result"),
              VERDICT_LABEL.get(met(m, "verdict", "pending").lower(), met(m, "verdict", "pending"))]) for m in G.M])
-    T["decisions"] = table(["Mã", "Decision", "Kiểm chứng", "Theo principle", "Đi ngược principle", "Owner", "Ngày", "Trạng thái"], [
+    T["decisions"] = table(["ID", "Decision", "Tests", "Follows principle", "Pulls against principle", "Owner", "Date", "State"], [
         row([link(d), G.items[d].title, ids(G.tests.get(d, [])), ids(G.follows.get(d, [])), ids(G.strains.get(d, [])),
              met(d, "owner"), met(d, "decided_on"), STATE_LABEL.get(G.state.get(d, ""), G.state.get(d) or "\u2014")]) for d in G.D])
-    T["evidence"] = table(["Mã", "Evidence", "Kiểm chứng", "Đo bằng"], [
+    T["evidence"] = table(["ID", "Evidence", "Tests", "Measures"], [
         row([link(e), G.items[e].title, ids(G.tests.get(e, [])), ids(G.measures.get(e, []))]) for e in G.E])
 
     def opps_of_metric(m):
@@ -628,15 +628,15 @@ def _gen_tables(G, page_dir):
     def outcome_row(m):
         hs, os_ = opps_of_metric(m)
         vd = met(m, "verdict", "pending").lower()
-        back = ids(os_) + (" (xem lại)" if vd == "missed" and os_ else "")
+        back = ids(os_) + (" (revisit)" if vd == "missed" and os_ else "")
         return row([link(m), G.items[m].title, met(m, "target"), met(m, "result"), met(m, "measured_on"),
                     VERDICT_LABEL.get(vd, vd), ids(hs), back])
-    T["outcomes"] = table(["Mã", "Metric", "Target", "Kết quả", "Ngày đo", "Kết luận", "Hypothesis", "Opportunity phía sau"],
+    T["outcomes"] = table(["ID", "Metric", "Target", "Result", "Measured on", "Verdict", "Hypothesis", "Opportunity behind it"],
                           [outcome_row(m) for m in G.M])
     fo = sorted(G.F, key=lambda f: (-(G.severity[f] if G.severity[f] is not None else -1), _natkey(f)))
-    T["findings"] = table(["Mã", "Finding", "Severity", "Principle", "Phát hiện trong", "Ảnh hưởng", "Cách xử lý"], [
+    T["findings"] = table(["ID", "Finding", "Severity", "Principle", "Found in", "Affects", "Resolution"], [
         row([link(f), G.items[f].title,
-             SEVERITY_LABEL.get(str(G.severity[f]), "chưa chấm").replace(" · ", " ") if G.severity[f] is not None else "chưa chấm",
+             SEVERITY_LABEL.get(str(G.severity[f]), "not rated").replace(" · ", " ") if G.severity[f] is not None else "not rated",
              ids(G.principle_of.get(f, [])), ids(G.found_in.get(f, [])), ids(G.affects.get(f, [])),
              G.resolution.get(f, "open").capitalize()]) for f in fo])
     return T
@@ -650,7 +650,7 @@ WARN_TIER = {
     "f-sev3": "review", "f-noevidence": "review", "f-nosev": "review", "simulated": "review", "no-log": "review",
     "planned": "info", "art-orphan": "info", "principles": "info",
 }
-TIER_LABEL = {"block": "Cần xử lý trước khi handoff", "review": "Nên xem", "info": "Gợi ý dọn dẹp"}
+TIER_LABEL = {"block": "Fix before handoff", "review": "Worth a look", "info": "Housekeeping"}
 
 
 def warn_tier(kind):
@@ -712,19 +712,19 @@ class Graph(object):
         for d in self.D:
             hs = self.tests.get(d, [])
             if not hs or all(not self.serves.get(h) for h in hs):
-                flag("no-need", [d], "Decision này chưa nối được về opportunity nào")
+                flag("no-need", [d], "This decision is not traced to any opportunity")
         for d in self.D:
             for p in self.strains.get(d, []):
-                flag("strain", [d], "Decision này đi ngược principle %s: cân nhắc sửa, hoặc ghi lại vì sao chấp nhận" % p)
+                flag("strain", [d], "This decision pulls against principle %s: consider changing it, or record why you accept it" % p)
         for o in self.O:
             hs = [h for h in self.H if o in self.serves.get(h, [])]
             if not hs or not any(self.decisions_of(h) for h in hs):
-                flag("unserved", [o], "Opportunity này chưa có decision nào phục vụ")
+                flag("unserved", [o], "No decision serves this opportunity yet")
         for h in self.H:
             if not self.tests_of(h):
-                flag("untested", [h], "Hypothesis này chưa có test")
+                flag("untested", [h], "This hypothesis has no test yet")
             if not self.metric.get(h):
-                flag("nometric", [h], "Hypothesis này chưa có metric để biết đúng hay sai")
+                flag("nometric", [h], "This hypothesis has no metric to tell if it is right")
         # Evidence quality: a test can be planned (not run) or run with simulated participants. Neither counts as evidence.
         def kind(t):
             m = self.items[t].meta
@@ -736,49 +736,49 @@ class Graph(object):
         for t in self.E:
             k = kind(t)
             if k == "planned":
-                flag("planned", [t], "Evidence này mới ở dạng kế hoạch, chưa chạy")
+                flag("planned", [t], "This evidence is only planned, not run yet")
             elif k == "simulated":
-                flag("simulated", [t], "Evidence này dùng người mô phỏng, không phải người dùng thật: chưa tính là bằng chứng thật")
+                flag("simulated", [t], "This evidence uses simulated people, not real users: it does not count as real evidence")
         for h in self.H:
             ts = self.tests_of(h)
             if ts and not any(kind(t) == "real" for t in ts):
-                flag("no-real-evidence", [h], "Hypothesis này chưa có evidence từ người dùng thật")
+                flag("no-real-evidence", [h], "This hypothesis has no evidence from real users yet")
         # Decisions: an accepted decision has an owner. Opportunities: a rank has a reason. Metrics: a target, then a verdict.
         for d in self.D:
             m_ = self.items[d].meta
             if self.state.get(d) == "accepted" and not str(m_.get("owner") or "").strip():
-                flag("d-no-owner", [d], "Decision đã được chấp nhận nhưng chưa ghi ai chịu trách nhiệm (owner)")
+                flag("d-no-owner", [d], "This decision is accepted but has no owner")
         if len(self.O) > 1:
             for o in self.O:
                 m_ = self.items[o].meta
                 if not str(m_.get("rank_reason") or "").strip():
-                    flag("o-no-reason", [o], "Opportunity này có thứ hạng nhưng chưa ghi lý do (tác động, độ chắc chắn)")
+                    flag("o-no-reason", [o], "This opportunity has a rank but no reason (impact, confidence)")
         for m in self.M:
             m_ = self.items[m].meta
             vd = str(m_.get("verdict") or "pending").strip().lower()
             if not str(m_.get("target") or "").strip():
-                flag("m-no-target", [m], "Metric này chưa có target: chưa biết thế nào là đạt")
+                flag("m-no-target", [m], "This metric has no target: success is not defined")
             if vd in ("met", "missed") and not str(m_.get("result") or "").strip():
-                flag("m-no-result", [m], "Metric đã có kết luận nhưng chưa ghi kết quả đo")
+                flag("m-no-result", [m], "This metric has a verdict but no measured result")
             if vd == "missed":
-                flag("m-missed", [m], "Metric chưa đạt target: xem lại hypothesis và opportunity phía sau")
+                flag("m-missed", [m], "This metric missed its target: revisit the hypothesis and opportunity behind it")
         # Findings
         for f in self.F:
             if self.severity[f] is None:
-                flag("f-nosev", [f], "Finding này chưa có mức severity hợp lệ (số từ 0 đến 4)")
+                flag("f-nosev", [f], "This finding has no valid severity (a number from 0 to 4)")
             if not self.found_in[f]:
-                flag("f-noevidence", [f], "Finding này chưa nối về evidence nào (found_in đang trống)")
+                flag("f-noevidence", [f], "This finding is not linked to any evidence (found_in is empty)")
             if self.is_open_finding(f) and self.severity[f] == 4:
-                flag("f-sev4", [f], "Finding mức 4 chưa được xử lý: chặn handoff")
+                flag("f-sev4", [f], "Severity 4 finding is unresolved: blocks handoff")
             elif self.is_open_finding(f) and self.severity[f] == 3:
-                flag("f-sev3", [f], "Finding mức 3 chưa được xử lý: sửa, hoặc chấp nhận và ghi lý do")
+                flag("f-sev3", [f], "Severity 3 finding is unresolved: fix it, or accept it and record why")
         for d in self.D:
             bad = [f for f in self.F if d in self.affects.get(f, []) and self.is_open_finding(f) and (self.severity[f] or 0) >= 3]
             if bad:
-                flag("d-open-finding", [d], "Decision này còn finding nghiêm trọng chưa xử lý: %s" % ", ".join(bad))
+                flag("d-open-finding", [d], "This decision still has serious unresolved findings: %s" % ", ".join(bad))
         empty = [p for p, (nm, chk) in principles.items() if not chk.strip() and not nm.startswith("(")]
         if empty:
-            self.warnings.append(("principles", empty, "Principle chưa có câu hỏi có/không để kiểm tra"))
+            self.warnings.append(("principles", empty, "Principle has no yes/no question to check against"))
 
     def is_open_finding(self, f):
         return f not in self.closed and self.resolution.get(f, "open") not in RESOLVED
@@ -1133,9 +1133,9 @@ footer.foot{margin-top:48px}
 /* item page */
 .ihead{display:block;margin:0 0 6px}
 .ihead .idtag{display:inline-block;font-size:.78rem;padding:3px 8px;margin:0 0 10px}
-.ihead .kind{display:inline-block;margin:0 0 0 8px;font-size:.74rem;font-weight:600;letter-spacing:.06em;color:var(--muted);vertical-align:middle}
+.ihead .kind{display:block;margin:0 0 6px;font-size:.74rem;font-weight:600;letter-spacing:.06em;color:var(--muted)}
 .ihead h1{font-size:1.6rem;margin:0;line-height:1.3}
-.ihead>div{display:inline}
+.ihead>div{display:block}
 .path{margin:14px 0 18px;font-size:.84rem}
 .path>span:first-child{display:block;margin-bottom:4px}
 .warnbox{background:none;border:0;border-left:2px solid var(--purple);border-radius:0;padding:2px 0 2px 12px;margin:0 0 10px;font-size:.88rem}
@@ -1323,7 +1323,7 @@ JS = r"""
     var b=document.createElement('button'); b.type='button'; b.className='copybtn'; b.textContent='Copy';
     b.addEventListener('click',function(){
       var txt=pre.innerText.replace(/\s*Copy\s*$/,'');
-      function done(){b.textContent='Đã copy'; setTimeout(function(){b.textContent='Copy'},1500)}
+      function done(){b.textContent='Copied'; setTimeout(function(){b.textContent='Copy'},1500)}
       try{ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fallback)}else{fallback()} }catch(e){fallback()}
       function fallback(){
         var t=document.createElement('textarea'); t.value=txt; t.style.position='fixed'; t.style.opacity='0'; document.body.appendChild(t); t.select();
@@ -1354,7 +1354,7 @@ JS = r"""
       var ok=scoped(r)&&(!s||r.getAttribute('data-text').indexOf(s)>-1)&&(Object.keys(types).length===0||types['D'])&&(!warnOnly||r.getAttribute('data-warn')==='1');
       r.hidden=!ok; if(ok){tr++}
     });
-    var t=$('#tcount'); if(t){t.textContent=any?((($('#v-trace')||{classList:{contains:function(){return false}}}).classList.contains('mode-table')?tr:n)+' mục khớp'):''}
+    var t=$('#tcount'); if(t){t.textContent=any?((($('#v-trace')||{classList:{contains:function(){return false}}}).classList.contains('mode-table')?tr:n)+' matches'):''}
   }
   document.addEventListener('click',function(e){
     var b=e.target.closest&&e.target.closest('[data-open-table]'); if(!b) return;
@@ -1389,7 +1389,7 @@ JS = r"""
       return vis;
     }
     walk(tree);
-    var c=$('#tcount'); if(c&&$('#v-trace').classList.contains('mode-tree')){c.textContent=any?(shown+' mục khớp'):''}
+    var c=$('#tcount'); if(c&&$('#v-trace').classList.contains('mode-tree')){c.textContent=any?(shown+' matches'):''}
   }
   if(q){q.addEventListener('input',function(){apply()})}
   $$('#v-trace .filters button').forEach(function(b){
@@ -1409,7 +1409,7 @@ JS = r"""
       var ok=(!q||c.getAttribute('data-text').indexOf(q)>-1)&&(!Object.keys(ft).length||ft[c.getAttribute('data-type')])&&(!Object.keys(fs).length||fs[c.getAttribute('data-stage')]);
       c.hidden=!ok; if(ok){n++}
     });
-    var c=$('#dcount'); if(c){c.textContent=(q||Object.keys(ft).length||Object.keys(fs).length)?(n+' tài liệu khớp'):''}
+    var c=$('#dcount'); if(c){c.textContent=(q||Object.keys(ft).length||Object.keys(fs).length)?(n+' documents match'):''}
   }
   var ds=$('#dsearch'); if(ds){ds.addEventListener('input',applyDocs)}
   $$('#v-docs .filters button').forEach(function(b){
@@ -1443,8 +1443,8 @@ JS = r"""
 """
 
 
-THEMES = [("minimal", "Minimal (MUI, xanh lá)"), ("notion", "Notion (xanh, gọn)"), ("classic", "Classic (tím)"), ("editorial", "Editorial (chữ có chân, giấy kem)"),
-          ("swiss", "Swiss (đen trắng, khung rõ)"), ("calm", "Calm (xanh lá dịu)")]
+THEMES = [("minimal", "Minimal (MUI, green)"), ("notion", "Notion (blue, compact)"), ("classic", "Classic (purple)"), ("editorial", "Editorial (serif, cream paper)"),
+          ("swiss", "Swiss (black and white, strong grid)"), ("calm", "Calm (soft green)")]
 
 # Each theme only overrides the colour tokens and a few details; layout is shared.
 THEME_CSS = r"""
@@ -1689,7 +1689,7 @@ def render_md(md, src, resolver, problems, team=False):
             continue
         h = Renderer(src, resolver, problems).render("\n".join(seg))
         if draft:
-            h = '<details class="draft"><summary>Bản nháp AI, chưa kiểm tra: %s</summary>%s</details>' % (
+            h = '<details class="draft"><summary>AI draft, not verified: %s</summary>%s</details>' % (
                 html.escape(re.sub(r"^#+\s*", "", head), quote=False), h)
         out.append(h)
     return "\n".join(out)
@@ -1710,7 +1710,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     _smd0 = open(_sidx0, encoding="utf-8").read() if os.path.isfile(_sidx0) else ""
     problems.extend(stage_table_issues(_smd0))
     if not weekly:
-        problems.append("Stages: bảng Pages trong stages/README.md chưa có trang nào, nên mục Stages đang trống")
+        problems.append("Stages: the Pages table in stages/README.md has no pages, so Stages is empty")
     for p_ in weekly:  # a stage page and a Work file can share a file name (scope.md): the stage id gets a prefix
         p_.slug, p_.id = p_.id, "stage-" + p_.id
     arts = collect_artifacts(case)
@@ -1732,15 +1732,15 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     logged = {i for r in log_rows for i in r[3]}
     unknown_ids = sorted({i for i in logged if i not in G.items and i not in principles}, key=_natkey)
     if unknown_ids:
-        G.warnings.append(("log-unknown-id", unknown_ids, "Case log nhắc tới mã không có file tương ứng"))
-    G.flag("no-log", [d for d in G.D if d not in logged], "Decision này chưa có dòng nào trong case log")
+        G.warnings.append(("log-unknown-id", unknown_ids, "The case log mentions IDs that have no file"))
+    G.flag("no-log", [d for d in G.D if d not in logged], "This decision has no line in the case log")
 
     # Gates: what the data says, next to what a person set. A gate marked passed while the data disagrees is a warning.
     auto = auto_checks(G, principles)
     for g_ in gates:
         for cid, _, status in g_["checks"]:
             if status == "passed" and cid in auto and auto[cid][0] is False:
-                G.warnings.append(("gate-mismatch", [cid], "Check %s được đặt passed nhưng dữ liệu cho thấy: %s" % (cid, auto[cid][1])))
+                G.warnings.append(("gate-mismatch", [cid], "Check %s is marked passed but the data shows: %s" % (cid, auto[cid][1])))
     gp = next((p for p in ref if p.id == "gates"), None)
     if gp:
         lines = []
@@ -1751,7 +1751,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                 cell = ("Met: " if a[0] else "Not met: ") + a[1] if a and a[0] is not None else "Manual check"
                 ln = ln.rstrip() + " %s |" % cell
             elif c and len(c) >= 3 and c[0].lower() == "check":
-                ln = ln.rstrip() + " Kiểm tra tự động |"
+                ln = ln.rstrip() + " Auto check |"
             elif c and len(c) >= 3 and set(c[0]) <= set("-: "):
                 ln = ln.rstrip() + "---|"
             lines.append(ln)
@@ -1811,23 +1811,23 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     for p in items:
         parent = os.path.basename(os.path.dirname(p.path))
         if parent != "insights" and folder_of.get(p.letter) and parent != folder_of[p.letter]:
-            problems.append("%s nằm trong folder %s/, nên nằm trong %s/" % (os.path.basename(p.path), parent, folder_of[p.letter]))
+            problems.append("%s is in folder %s/, should be in %s/" % (os.path.basename(p.path), parent, folder_of[p.letter]))
         if not p.meta:
-            problems.append("%s: thiếu khối properties (--- ... ---) ở đầu file" % os.path.basename(p.path))
+            problems.append("%s: missing the properties block (--- ... ---) at the top of the file" % os.path.basename(p.path))
         elif not p.meta.get("title"):
-            problems.append("%s: thiếu property title" % os.path.basename(p.path))
+            problems.append("%s: missing the title property" % os.path.basename(p.path))
         tp = str(p.meta.get("type", "")).lower()
         if p.meta and tp and tp != TYPE_WORD[p.letter]:
-            problems.append("%s: property type là '%s' nhưng mã %s thuộc loại %s" % (p.id, tp, p.id, TYPE_WORD[p.letter]))
+            problems.append("%s: type property is '%s' but ID %s is a %s" % (p.id, tp, p.id, TYPE_WORD[p.letter]))
     for f in G.F:
         if G.severity[f] is None:
-            problems.append("%s: severity cần là một số từ 0 đến 4" % f)
+            problems.append("%s: severity must be a number from 0 to 4" % f)
         if G.resolution[f] not in ("open", "fixed", "accepted", "deferred"):
-            problems.append("%s: resolution là '%s', cần là open, fixed, accepted hoặc deferred" % (f, G.resolution[f]))
+            problems.append("%s: resolution is '%s', must be open, fixed, accepted or deferred" % (f, G.resolution[f]))
     seen = {}
     for p in pages:
         if p.id in seen:
-            problems.append("ID trùng: %s" % p.id)
+            problems.append("Duplicate ID: %s" % p.id)
         seen[p.id] = 1
     for i, p in G.items.items():
         for label, val in p.meta.items():
@@ -1835,7 +1835,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                 continue
             for t in _ids(val):
                 if t not in G.items and t not in principles:
-                    problems.append("%s trỏ tới %s nhưng không có file hoặc dòng principle tương ứng" % (i, t))
+                    problems.append("%s points to %s but there is no matching file or principle row" % (i, t))
 
     def item_name(i):
         """Reader-facing name for an item ID: 'Decision 4' instead of 'D4'. The ID stays the key in files and links."""
@@ -1891,7 +1891,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         return ('<div class="table-wrap"><table class="props"><tbody>%s</tbody></table></div>' % rows_) if rows_ else ""
 
     def chips(ids):
-        return '<span class="chips">%s</span>' % "".join(chip(i) for i in ids) if ids else '<span class="missing">chưa có</span>'
+        return '<span class="chips">%s</span>' % "".join(chip(i) for i in ids) if ids else '<span class="missing">none yet</span>'
 
     placeholders = sum(len(PLACEHOLDER_RE.findall(p.md)) for p in [overview] + weekly + ctx)
 
@@ -1901,11 +1901,11 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             if s in G.items:
                 art_for.setdefault(s, []).append(a.id)
             elif s not in principles:
-                problems.append("Tài liệu %s trỏ tới %s nhưng không có item đó" % (a.id, s))
+                problems.append("Document %s points to %s but that item does not exist" % (a.id, s))
         if a.id in seen:
-            problems.append("ID trùng: %s (tài liệu và trang)" % a.id)
+            problems.append("Duplicate ID: %s (document and page)" % a.id)
         if not a.supports:
-            G.warnings.append(("art-orphan", [a.id], "Document này chưa nối với item nào (property supports đang trống)"))
+            G.warnings.append(("art-orphan", [a.id], "This document is not linked to any item (supports is empty)"))
 
     _media_cache, media_notes = {}, {}
 
@@ -1920,14 +1920,14 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         def note(msg):
             if msg not in notes:
                 notes.append(msg)
-                problems.append("Tài liệu %s: %s" % (a.id, msg))
+                problems.append("Document %s: %s" % (a.id, msg))
         for m in a.media:
             ab = os.path.abspath(os.path.normpath(os.path.join(base, m)))
             if not os.path.isfile(ab):
-                note("không tìm thấy tệp %s (kiểm tra đường dẫn trong media)" % m)
+                note("file %s not found (check the path in media)" % m)
                 continue
             if _is_private(ab):
-                note("bỏ qua %s vì nằm trong vùng riêng tư" % m)
+                note("skipped %s because it is in a private area" % m)
                 continue
             if ab not in seen_:
                 seen_.add(ab)
@@ -1941,23 +1941,23 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         for kind_, ab, nm in out:
             ext_ = os.path.splitext(nm)[1].lower()
             if ext_ in NOT_IN_BROWSERS:
-                note("%s: trình duyệt thường không hiển thị định dạng %s; hãy xuất sang PNG hoặc JPG (ảnh) hoặc PDF (tài liệu)" % (nm, ext_))
+                note("%s: browsers usually cannot show %s; export to PNG or JPG (images) or PDF (documents)" % (nm, ext_))
             elif kind_ == "image" and os.path.getsize(ab) > HEAVY_BYTES:
-                note("%s nặng %.1f MB; nên nén (dưới 2 MB) để báo cáo mở nhanh và gửi được qua email" % (nm, os.path.getsize(ab) / 1048576.0))
+                note("%s is %.1f MB; compress it (under 2 MB) so the report opens fast and can be emailed" % (nm, os.path.getsize(ab) / 1048576.0))
             elif ext_ == ".mov":
-                note("%s: định dạng .mov không phải trình duyệt nào cũng phát được; nên xuất sang .mp4" % nm)
+                note("%s: .mov does not play in every browser; export to .mp4" % nm)
         order = {"image": 0, "html": 1, "video": 2, "pdf": 3, "csv": 4, "doc": 5, "file": 6}
         _media_cache[a.id] = sorted(out, key=lambda x: order.get(x[0], 9))
         return _media_cache[a.id]
 
     def where(folders, how):
         """One quiet line under a section title: which folder it shows, and how to add something to it."""
-        return ('<div class="where"><span class="wl">Folder</span> %s<br><span class="wl">Thêm mới</span> %s</div>'
+        return ('<div class="where"><span class="wl">Folder</span> %s<br><span class="wl">Add new</span> %s</div>'
                 % (" ".join("<code>%s</code>" % esc(f) for f in folders), how))
 
     def srcfile(path):
         rel_ = os.path.relpath(os.path.abspath(path), case_abs).replace(os.sep, "/")
-        return '<p class="srcfile">File gốc: <code>%s</code></p>' % esc(rel_)
+        return '<p class="srcfile">Source file: <code>%s</code></p>' % esc(rel_)
 
     # --- overview
     w_rows = {"block": set(), "review": set(), "info": set()}
@@ -1969,11 +1969,11 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     measured_ = [m for m in G.M if str(G.items[m].meta.get("verdict") or "pending").strip().lower() in ("met", "missed", "inconclusive")]
     if measured_:
         hit_ = sum(1 for m in measured_ if str(G.items[m].meta.get("verdict")).strip().lower() == "met")
-        stats += '<span><b>%d/%d</b>metric đạt target</span>' % (hit_, len(measured_))
+        stats += '<span><b>%d/%d</b>metrics on target</span>' % (hit_, len(measured_))
     if n_block:
-        stats += '<span class="w bad"><b>%d</b>cần xử lý</span>' % n_block
+        stats += '<span class="w bad"><b>%d</b>to fix</span>' % n_block
     if n_review or not n_block:
-        stats += '<span class="w%s"><b>%d</b>nên xem</span>' % ("" if n_review else " ok", n_review)
+        stats += '<span class="w%s"><b>%d</b>to review</span>' % ("" if n_review else " ok", n_review)
     gate_html = ""
     for g in gates:
         pct = int(100 * g["passed"] / g["total"]) if g["total"] else 0
@@ -2000,7 +2000,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             '<a class="iref" href="#/%s"><span class="irt">%s</span></a>' % (d, esc(G.items[d].title)), chips(hs), chips(os_), chips(ts),
             chips(G.follows.get(d, [])) if G.follows.get(d) else "—",
             chips(G.strains.get(d, [])) if G.strains.get(d) else "—")
-    align_table = ('<div class="table-wrap atable"><table><thead><tr><th>Decision</th><th>Hypothesis</th><th>Opportunity</th><th>Evidence</th><th>Theo principle</th><th>Đi ngược principle</th></tr></thead><tbody>%s</tbody></table></div>' % rows) if rows else '<p class="ok">Chưa có decision nào.</p>'
+    align_table = ('<div class="table-wrap atable"><table><thead><tr><th>Decision</th><th>Hypothesis</th><th>Opportunity</th><th>Evidence</th><th>Follows principle</th><th>Pulls against principle</th></tr></thead><tbody>%s</tbody></table></div>' % rows) if rows else '<p class="ok">No decisions yet.</p>'
     n_dec = len(G.D)
     n_traced = sum(1 for d in G.D if any(G.serves.get(h) for h in G.tests.get(d, [])))
     n_tested = sum(1 for d in G.D if any(G.tests_of(h) for h in G.tests.get(d, [])))
@@ -2010,39 +2010,39 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         def stat(n, label):
             return '<div class="astat"><b>%d</b><span>%s</span></div>' % (n, label)
         align = ('<div class="astats">%s%s%s%s%s</div>'
-                 '<p><button type="button" class="linkbtn" data-open-table="1">Mở bảng đối chiếu đầy đủ trong Insights</button></p>') % (
-            stat(n_dec, "decision"), stat(n_traced, "nối được về một opportunity"),
-            stat(n_tested, "có evidence"), stat(n_strain, "đi ngược một principle"),
-            stat(n_bad_f, "finding mức 3 hoặc 4 chưa xử lý"))
+                 '<p><button type="button" class="linkbtn" data-open-table="1">Open the full alignment table in Insights</button></p>') % (
+            stat(n_dec, "decisions"), stat(n_traced, "traced to an opportunity"),
+            stat(n_tested, "have evidence"), stat(n_strain, "pull against a principle"),
+            stat(n_bad_f, "severity 3 or 4 findings unresolved"))
     else:
-        align = '<p class="ok">Chưa có decision nào.</p>'
+        align = '<p class="ok">No decisions yet.</p>'
     if G.warnings:
         # One group per kind of problem, so the section stays scannable however many items are added.
         # Each group says what is wrong once, then lists the items in a compact grid.
         W_KINDS = [
-            ("no-need", "Decision chưa nối về opportunity", "Nối decision với một hypothesis phục vụ một opportunity, hoặc cắt nó."),
-            ("strain", "Decision đi ngược principle", "Sửa decision, hoặc ghi lại vì sao chấp nhận trade-off."),
-            ("unserved", "Opportunity chưa có decision phục vụ", "Thêm decision cho opportunity này, hoặc hạ thứ hạng nó."),
-            ("untested", "Hypothesis chưa có test", "Lên kế hoạch một test cho hypothesis này."),
-            ("nometric", "Hypothesis chưa có metric", "Gắn một metric để biết hypothesis đúng hay sai."),
-            ("planned", "Evidence mới ở dạng kế hoạch", "Chạy test hoặc nghiên cứu, rồi ghi kết quả."),
-            ("simulated", "Evidence dùng người mô phỏng", "Chưa tính là bằng chứng thật. Chạy lại với người dùng thật."),
-            ("no-real-evidence", "Hypothesis chưa có evidence từ người dùng thật", "Cần ít nhất một test với người dùng thật."),
-            ("f-sev4", "Finding mức 4 chưa xử lý", "Chặn handoff. Sửa, hoặc chấp nhận và ghi lý do vào case log."),
-            ("f-sev3", "Finding mức 3 chưa xử lý", "Cần một quyết định: sửa, hoặc chấp nhận như trade-off và ghi vào case log."),
-            ("d-open-finding", "Decision còn finding nghiêm trọng chưa xử lý", "Xem finding ở trang decision, rồi sửa hoặc ghi lý do chấp nhận."),
-            ("f-nosev", "Finding chưa có severity hợp lệ", "Điền severity từ 0 đến 4 (xem Severity levels)."),
-            ("f-noevidence", "Finding chưa nối về evidence", "Điền found_in trỏ tới evidence mà finding được phát hiện."),
-            ("m-missed", "Metric chưa đạt target", "Mở trang Learning: ghi điều đã học và opportunity cần xem lại."),
-            ("m-no-result", "Metric có kết luận nhưng chưa có kết quả", "Điền result (và measured_on) trong file metric."),
-            ("m-no-target", "Metric chưa có target", "Điền target: ngưỡng để biết hypothesis đúng hay sai."),
-            ("d-no-owner", "Decision đã chấp nhận nhưng chưa có owner", "Điền owner (người chịu trách nhiệm) và decided_on."),
-            ("o-no-reason", "Opportunity chưa có lý do xếp hạng", "Điền impact, confidence và rank_reason để người khác hiểu vì sao thứ hạng này."),
-            ("no-log", "Decision chưa có trong case log", "Thêm một dòng vào insights/case-log.md và ghi mã decision ở cột Items."),
-            ("log-unknown-id", "Case log nhắc tới mã không tồn tại", "Sửa mã ở cột Items hoặc tạo file item còn thiếu."),
-            ("gate-mismatch", "Gate đặt tay khác với dữ liệu", "Xem cột Kiểm tra tự động ở trang Gates; sửa dữ liệu hoặc đổi trạng thái check."),
-            ("art-orphan", "Document chưa nối với item nào", "Điền property supports trong document."),
-            ("principles", "Principle chưa có câu hỏi kiểm tra", "Viết câu hỏi có/không cho từng principle."),
+            ("no-need", "Decision not traced to an opportunity", "Link the decision to a hypothesis that serves an opportunity, or cut it."),
+            ("strain", "Decision pulls against a principle", "Change the decision, or record why you accept the trade-off."),
+            ("unserved", "Opportunity without a decision", "Add a decision for this opportunity, or lower its rank."),
+            ("untested", "Hypothesis without a test", "Plan a test for this hypothesis."),
+            ("nometric", "Hypothesis without a metric", "Attach a metric to tell if the hypothesis is right."),
+            ("planned", "Evidence only planned", "Run the test or study, then record the result."),
+            ("simulated", "Evidence uses simulated people", "Does not count as real evidence. Run it again with real users."),
+            ("no-real-evidence", "Hypothesis without real-user evidence", "Needs at least one test with real users."),
+            ("f-sev4", "Severity 4 finding unresolved", "Blocks handoff. Fix it, or accept it and record why in the case log."),
+            ("f-sev3", "Severity 3 finding unresolved", "Needs a decision: fix it, or accept it as a trade-off and record it in the case log."),
+            ("d-open-finding", "Decision has serious unresolved findings", "See the findings on the decision page, then fix or record why you accept them."),
+            ("f-nosev", "Finding without a valid severity", "Set severity from 0 to 4 (see Severity levels)."),
+            ("f-noevidence", "Finding not linked to evidence", "Set found_in to the evidence where it was found."),
+            ("m-missed", "Metric missed its target", "Open the Learning page: record what you learned and which opportunity to revisit."),
+            ("m-no-result", "Metric has a verdict but no result", "Fill in result (and measured_on) in the metric file."),
+            ("m-no-target", "Metric without a target", "Fill in target: the threshold that shows the hypothesis is right."),
+            ("d-no-owner", "Accepted decision without an owner", "Fill in owner (who is responsible) and decided_on."),
+            ("o-no-reason", "Opportunity without a rank reason", "Fill in impact, confidence and rank_reason so others understand the rank."),
+            ("no-log", "Decision not in the case log", "Add a line to insights/case-log.md and put the decision ID in the Items column."),
+            ("log-unknown-id", "Case log mentions an ID that does not exist", "Fix the ID in the Items column or create the missing item file."),
+            ("gate-mismatch", "Gate set by hand differs from the data", "See the Auto check column on the Gates page; fix the data or change the check status."),
+            ("art-orphan", "Document not linked to any item", "Fill in the supports property in the document."),
+            ("principles", "Principle without a check question", "Write a yes/no question for each principle."),
         ]
         by_kind = {}
         for kd, ids, text in G.warnings:
@@ -2066,7 +2066,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                     rows_.append('<li>%s%s%s</li>' % (
                         chip(i),
                         ('<span class="wt">%s</span>' % esc(title)) if title else "",
-                        ('<span class="wn">đi ngược %s</span>' % chip(note)) if note else ""))
+                        ('<span class="wn">pulls against %s</span>' % chip(note)) if note else ""))
             ttl, hint = meta_.get(kd, (by_kind[kd][0][1], ""))
             return ('<details class="wgroup" id="wg-%s"%s><summary><span class="wtitle">%s</span><span class="wcount">%d</span></summary>'
                     '%s<ul class="wgrid">%s</ul></details>') % (
@@ -2075,7 +2075,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
 
         warn_html = ""
         if not (n_block or n_review):
-            warn_html += '<p class="ok">Không có vấn đề cần xử lý: mọi decision lần ngược được về một opportunity, và các finding nghiêm trọng đã có hướng xử lý.</p>'
+            warn_html += '<p class="ok">Nothing to fix: every decision traces back to an opportunity, and serious findings have a way forward.</p>'
         for tr in ("block", "review", "info"):
             kinds_ = [k for k in ordered if warn_tier(k) == tr]
             if not kinds_:
@@ -2089,53 +2089,53 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             else:
                 warn_html += '<h3 class="wtier wtier-%s">%s <span class="wcount">%d</span></h3><div class="wgroups">%s</div>' % (tr, esc(TIER_LABEL[tr]), cnt, inner)
     else:
-        warn_html = '<p class="ok">Không có vấn đề cần xử lý: mọi decision đều lần ngược được về một opportunity, và mọi hypothesis đều có test và metric.</p>'
+        warn_html = '<p class="ok">Nothing to fix: every decision traces back to an opportunity, and every hypothesis has a test and a metric.</p>'
     banner = ""
     if placeholders:
-        banner = '<div class="banner" role="note"><strong>Báo cáo này còn nội dung mẫu hoặc chỗ chưa điền</strong> (khoảng %d chỗ, kể cả các mục có nhãn [EXAMPLE]). Hãy điền hoặc xoá trước khi gửi cho người khác.</div>' % placeholders
+        banner = '<div class="banner" role="note"><strong>This report still has sample content or blanks</strong> (about %d, including items labelled [EXAMPLE]). Fill them in or delete them before sharing.</div>' % placeholders
     howto = (
-        '<details class="help"><summary>Cách đọc báo cáo và các từ khoá</summary>'
-        '<p>Điểm chính: <strong>mỗi decision đều lần ngược được về user need đứng sau nó.</strong> '
-        'Dùng menu bên trái để đi tới từng trang. Mở các mục có dấu ⚠ trong Insights để thấy chỗ cần xem lại.</p>'
-        '<dl><dt>Opportunity</dt><dd>Điều người dùng cần hoặc đang gặp khó, có evidence. Không phải một feature.</dd>'
-        '<dt>Hypothesis</dt><dd>Điều nhóm tin là đúng, kèm cách sẽ biết nó đúng hay sai.</dd>'
-        '<dt>Decision</dt><dd>Một lựa chọn thiết kế cụ thể, kèm lý do.</dd>'
-        '<dt>Evidence</dt><dd>Một test hoặc nghiên cứu kiểm chứng hypothesis, kèm kết quả. Nhãn <em>planned</em> hoặc <em>simulated</em> nghĩa là chưa phải bằng chứng từ người dùng thật.</dd>'
-        '<dt>Metric</dt><dd>Con số cho biết hypothesis đúng hay sai. Nhãn <em>assumed</em> nghĩa là chưa được người phụ trách sản phẩm xác nhận.</dd>'
-        '<dt>Principle</dt><dd>Quy tắc thiết kế mà mọi decision cần đạt, ví dụ 10 usability heuristics của Nielsen (P1 đến P10).</dd>'
-        '<dt>Gate</dt><dd>Bước kiểm tra trước khi sang giai đoạn sau.</dd>'
-        '<dt>Đối chiếu (alignment)</dt><dd>Mức độ mỗi decision nối được về nhu cầu của người dùng và đạt các principle.</dd></dl></details>')
+        '<details class="help"><summary>How to read the report, and key terms</summary>'
+        '<p>Key idea: <strong>every decision traces back to the user need behind it.</strong> '
+        'Use the left menu to move between pages. Open the items marked ⚠ in Insights to see what needs a look.</p>'
+        '<dl><dt>Opportunity</dt><dd>What users need or struggle with, backed by evidence. Not a feature.</dd>'
+        '<dt>Hypothesis</dt><dd>What the team believes, with how it will know if it is right.</dd>'
+        '<dt>Decision</dt><dd>A specific design choice, with the reason.</dd>'
+        '<dt>Evidence</dt><dd>A test or study that checks a hypothesis, with its result. A <em>planned</em> or <em>simulated</em> label means it is not evidence from real users yet.</dd>'
+        '<dt>Metric</dt><dd>The number that tells if a hypothesis is right. An <em>assumed</em> label means the product owner has not confirmed it.</dd>'
+        '<dt>Principle</dt><dd>A design rule every decision should meet, for example the 10 usability heuristics by Nielsen (P1 to P10).</dd>'
+        '<dt>Gate</dt><dd>A check before moving to the next stage.</dd>'
+        '<dt>Alignment</dt><dd>How well each decision traces to a user need and meets the principles.</dd></dl></details>')
     docs_section = ""
     v_overview = (
-        '<section class="view" id="v-overview"><div class="wrap">%s<h1>%s</h1><p class="lede">Agreement với product và business: <strong>%s</strong></p>'
-        '<p class="where"><span class="wl">Nguồn</span> <code>README.md</code> (project card), cùng các item trong <code>insights/</code> và <code>standards/gates.md</code>. Muốn đổi nội dung, sửa file nguồn rồi tạo lại báo cáo.</p>'
+        '<section class="view" id="v-overview"><div class="wrap">%s<h1>%s</h1><p class="lede">Agreement with product and business: <strong>%s</strong></p>'
+        '<p class="where"><span class="wl">Source</span> <code>README.md</code> (project card), the items in <code>insights/</code> and <code>standards/gates.md</code>. To change content, edit the source file and rebuild the report.</p>'
         '<div class="stats">%s</div>'
         '<h2>Gates</h2><div class="glist">%s</div>'
         '<h2>Warnings</h2>%s'
-        '<h2>Đối chiếu decision</h2>%s'
+        '<h2>Decision alignment</h2>%s'
         '%s</div></section>'
-    ) % (banner, esc(name), esc(AGREE_VI.get((agreement or "").lower(), agreement or "chưa ghi")), stats, gate_html, warn_html, align, howto)
+    ) % (banner, esc(name), esc(AGREE_VI.get((agreement or "").lower(), agreement or "not recorded")), stats, gate_html, warn_html, align, howto)
 
     # --- journey
     def doc_html(p, extra_pre="", extra_post="", reading=True):
         return render_md(p.md, p.path, resolver, problems, team)
 
-    STAGE_TABLE_TITLE = {"opportunities": "Opportunities (xếp hạng)", "hypotheses": "Hypotheses", "metrics": "Success metrics",
-                         "decisions": "Design decisions", "evidence": "Evidence", "outcomes": "Outcomes: metric, kết quả và nhu cầu phía sau",
-                         "findings": "Findings (xếp theo severity)"}
+    STAGE_TABLE_TITLE = {"opportunities": "Opportunities (ranked)", "hypotheses": "Hypotheses", "metrics": "Success metrics",
+                         "decisions": "Design decisions", "evidence": "Evidence", "outcomes": "Outcomes: metric, result and the need behind it",
+                         "findings": "Findings (by severity)"}
     stage_tables = _gen_tables(G, os.path.dirname(os.path.join(case_abs, "stages", "README.md")))
-    SRC_STATUS = {"verified": ("Đã kiểm tra", "ok"), "draft": ("Bản nháp, chưa kiểm tra", "w"),
-                  "simulated": ("Người mô phỏng", "w"), "planned": ("Mới là kế hoạch", "w")}
+    SRC_STATUS = {"verified": ("Verified", "ok"), "draft": ("Draft, not verified", "w"),
+                  "simulated": ("Simulated people", "w"), "planned": ("Planned only", "w")}
 
     def stage_html(p):
         out = ""
         want = p.spec["stage"].lower()
         gate = next((g for g in gates if want and g["name"].lower().startswith(want)), None)
         if gate:
-            out += '<p class="stgate"><a href="#/gates">Gate %s</a>: %d/%d check đạt · %s</p>' % (
+            out += '<p class="stgate"><a href="#/gates">Gate %s</a>: %d/%d checks passed · %s</p>' % (
                 esc(gate["name"]), gate["passed"], gate["total"], esc(STATUS_VI.get(gate["status"], gate["status"])))
         for ref in p.missing:
-            problems.append("Stages · %s: không tìm thấy work/%s (kiểm tra cột Từ work trong stages/README.md)" % (p.id, ref))
+            problems.append("Stages · %s: work/%s not found (check the From work column in stages/README.md)" % (p.id, ref))
         def link_log_ids(h):
             def one(m):
                 inner = re.sub(r"\b([OHMDEFP]\d+)\b", lambda t: chip(t.group(1)) if (t.group(1) in G.items or t.group(1) in principles) else t.group(1), m.group(2))
@@ -2150,25 +2150,25 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             if lab:
                 head += '<span class="ststatus %s">%s</span>' % (cls, esc(lab))
             if wid:
-                head += '<a href="#/%s">Mở trong Work →</a>' % esc(wid)
+                head += '<a href="#/%s">Open in Work →</a>' % esc(wid)
             body_html = render_md(body, path, resolver, problems, team)
             if os.path.basename(path) == "case-log.md":
                 body_html = link_log_ids(body_html)
             out += '<section class="stsrc"><div class="sthead">%s</div>%s</section>' % (head, body_html)
         for key in p.spec["tables"]:
             if key not in stage_tables:
-                problems.append("Stages · %s: không có bảng item tên '%s' (dùng: %s)" % (p.id, key, ", ".join(STAGE_TABLE_TITLE)))
+                problems.append("Stages · %s: no item table named '%s' (use: %s)" % (p.id, key, ", ".join(STAGE_TABLE_TITLE)))
                 continue
             out += "<h2>%s</h2>%s" % (esc(STAGE_TABLE_TITLE[key]), render_md(stage_tables[key], p.path, resolver, problems, team))
         if not p.parts and not p.spec["tables"]:
-            out += '<p class="empty">Trang này chưa có nguồn: thêm file vào cột Từ work, hoặc chọn bảng ở cột Bảng item, trong <code>stages/README.md</code>.</p>'
+            out += '<p class="empty">This page has no sources yet: add a file to the From work column, or pick a table in the Item tables column, in <code>stages/README.md</code>.</p>'
         return out
 
     def stage_src(p):
         bits = ["<code>work/%s</code>" % esc(os.path.relpath(path, os.path.join(case_abs, "work")).replace(os.sep, "/")) for path, _m, _b in p.parts]
         if p.spec["tables"]:
-            bits.append("các bảng item trong <code>insights/</code>")
-        return '<p class="srcfile">Trang này tự dựng từ: %s</p>' % (", ".join(bits) if bits else "chưa có nguồn")
+            bits.append("item tables from <code>insights/</code>")
+        return '<p class="srcfile">This page is built from: %s</p>' % (", ".join(bits) if bits else "no sources yet")
 
     jcards, jdocs = "", ""
     for k, p in enumerate(weekly):
@@ -2177,15 +2177,15 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             p.id, "%02d · %s" % (k + 1, esc(wk if wk else "Trang")), esc(p.heading), esc(desc))
         prev = '<a href="#/%s">← %s</a>' % (weekly[k - 1].id, esc(weekly[k - 1].heading)) if k else "<span></span>"
         nxt = '<a href="#/%s">%s →</a>' % (weekly[k + 1].id, esc(weekly[k + 1].heading)) if k + 1 < len(weekly) else "<span></span>"
-        jdocs += '<section class="doc" id="%s" data-title="%s"><a class="back" href="#/journey">← Stages</a><div class="reading"><h1>%s</h1>%s</div>%s<nav class="pn" aria-label="Trang trước và sau">%s%s</nav></section>' % (
+        jdocs += '<section class="doc" id="%s" data-title="%s"><a class="back" href="#/journey">← Stages</a><div class="reading"><h1>%s</h1>%s</div>%s<nav class="pn" aria-label="Previous and next page">%s%s</nav></section>' % (
             p.id, esc(p.heading), esc(p.heading),
             ('<p class="lede">%s</p>' % esc(desc)) + stage_html(p), stage_src(p), prev, nxt)
-    v_journey = '<section class="view journey" id="v-journey"><div class="wrap"><div class="jlist"><h1>Stages</h1><p class="lede">Tự động chọn lọc và cập nhật từ <code>work/</code> và <code>insights/</code>.</p>%s<div class="jcards">%s</div></div>%s</div></section>' % (
+    v_journey = '<section class="view journey" id="v-journey"><div class="wrap"><div class="jlist"><h1>Stages</h1><p class="lede">Selected and kept up to date automatically from <code>work/</code> and <code>insights/</code>.</p>%s<div class="jcards">%s</div></div>%s</div></section>' % (
         "",
         jcards, jdocs)
 
     # --- reference
-    ref_desc = {"gates": "Bốn gate và các check của từng gate", "principles": "10 usability heuristics (Heuristic Evaluation): nguyên tắc mà mọi decision cần đạt", "severity": "Thang mức độ nghiêm trọng của vấn đề usability, từ 0 đến 4", "case-log": "Mỗi decision một dòng, kèm lý do"}
+    ref_desc = {"gates": "The four gates and the checks in each", "principles": "10 usability heuristics (Heuristic Evaluation): principles every decision should meet", "severity": "Severity scale for usability problems, 0 to 4", "case-log": "One line per decision, with the reason"}
     def ref_blurb(p):
         # pages that are not built in: use the first plain or italic line under the title
         for ln in p.md.split("\n")[1:]:
@@ -2193,7 +2193,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             if ln and not ln.startswith(("#", "|", ">", "-", "<", "```")):
                 return re.sub(r"[*_`]", "", ln)[:130]
         return ""
-    rcards = "".join('<a class="jcard" href="#/%s"><span class="wk">Standards</span><h3>%s</h3><p>%s</p></a>' % (
+    rcards = "".join('<a class="jcard" href="#/%s"><h3>%s</h3><p>%s</p></a>' % (
         p.id, esc(p.label), esc(ref_desc.get(p.id) or ref_blurb(p))) for p in ref)
     def ref_html(p):
         h = doc_html(p)
@@ -2207,17 +2207,17 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         return h.replace("<td></td>", '<td class="dash">—</td>')
     rdocs = "".join('<section class="doc" id="%s" data-title="%s"><a class="back" href="#/reference">← Standards</a><div class="reading">%s</div>%s</section>' % (p.id, esc(p.label), ref_html(p), srcfile(p.path)) for p in ref)
     v_reference = ('<section class="view reference" id="v-reference"><div class="wrap"><div class="jlist"><h1>Standards</h1>'
-                   '<p class="lede">Thước đo để kiểm tra công việc: gates, principle checks, severity levels.</p>%s<div class="jcards">%s</div></div>%s</div></section>') % (
-        where(["standards/"], "thả một file <code>.md</code> vào folder, trang tự hiện ở đây."), rcards, rdocs)
+                   '<p class="lede">Yardsticks to check the work against: gates, principle checks, severity levels.</p>%s<div class="jcards">%s</div></div>%s</div></section>') % (
+        where(["standards/"], "drop a <code>.md</code> file into the folder and the page appears here."), rcards, rdocs)
 
     # --- context: product, users and rules (context/)
-    ccards = "".join('<a class="jcard" href="#/%s"><span class="wk">Context</span><h3>%s</h3><p>%s</p></a>' % (
+    ccards = "".join('<a class="jcard" href="#/%s"><h3>%s</h3><p>%s</p></a>' % (
         p.id, esc(p.label), esc(ref_blurb(p))) for p in ctx)
     cdocs = "".join('<section class="doc" id="%s" data-title="%s"><a class="back" href="#/context">← Context</a><div class="reading">%s</div>%s</section>' % (
         p.id, esc(p.label), ref_html(p), srcfile(p.path)) for p in ctx)
     v_context = ('<section class="view reference" id="v-context"><div class="wrap"><div class="jlist"><h1>Context</h1>'
-                 '<p class="lede">Thông tin nền của dự án: sản phẩm và người dùng, quy tắc, design system, câu hỏi còn mở.</p>%s<div class="jcards">%s</div></div>%s</div></section>') % (
-        where(["context/"], "thả một file <code>.md</code> vào folder, trang tự hiện ở đây. AI tool đọc folder này trước tiên."), ccards, cdocs) if ctx else ""
+                 '<p class="lede">Background for the project: product and users, rules, design system, open questions.</p>%s<div class="jcards">%s</div></div>%s</div></section>') % (
+        where(["context/"], "drop a <code>.md</code> file into the folder and the page appears here. The AI tool reads this folder first."), ccards, cdocs) if ctx else ""
 
     # --- documents (artifacts)
     def domain_label(url):
@@ -2245,30 +2245,30 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             elif kind == "html":
                 emb = ('<iframe loading="lazy" src="%s" title="%s"></iframe>' % (href, label)) if a.embed else ""
                 parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><span class="mtag">Prototype / trang HTML</span>'
-                             '<a class="btn" href="%s" target="_blank" rel="noopener">Mở ở tab mới ↗</a></div>%s</div>' % (label, href, emb))
+                             '<a class="btn" href="%s" target="_blank" rel="noopener">Open in new tab ↗</a></div>%s</div>' % (label, href, emb))
             elif kind == "video":
                 parts.append('<div class="mcard"><video controls preload="metadata" src="%s"></video><p class="cap">%s</p></div>' % (href, label))
             elif kind == "pdf":
                 emb = ('<iframe loading="lazy" src="%s" title="%s"></iframe>' % (href, label)) if a.embed else ""
                 parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><span class="mtag">PDF</span>'
-                             '<a class="btn" href="%s" target="_blank" rel="noopener">Mở PDF ↗</a></div>%s</div>' % (label, href, emb))
+                             '<a class="btn" href="%s" target="_blank" rel="noopener">Open PDF ↗</a></div>%s</div>' % (label, href, emb))
             elif kind == "csv":
                 try:
                     with open(ab, encoding="utf-8", newline="") as f:
                         rows_ = list(csv.reader(f))[:41]
                     th = "".join("<th>%s</th>" % esc(c) for c in rows_[0]) if rows_ else ""
                     tb = "".join("<tr>%s</tr>" % "".join("<td>%s</td>" % esc(c) for c in r) for r in rows_[1:])
-                    parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><span class="mtag">CSV table</span><a class="btn" href="%s" target="_blank" rel="noopener">Tải về ↗</a></div><div class="table-wrap"><table><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div></div>' % (label, href, th, tb))
+                    parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><span class="mtag">CSV table</span><a class="btn" href="%s" target="_blank" rel="noopener">Download ↗</a></div><div class="table-wrap"><table><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div></div>' % (label, href, th, tb))
                 except Exception:
-                    parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><a class="btn" href="%s" target="_blank" rel="noopener">Tải về ↗</a></div></div>' % (label, href))
+                    parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><a class="btn" href="%s" target="_blank" rel="noopener">Download ↗</a></div></div>' % (label, href))
             else:
                 tag = "Source document" if kind == "doc" else "Attachment"
-                parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><span class="mtag">%s</span><a class="btn" href="%s" target="_blank" rel="noopener">Mở ↗</a></div></div>' % (label, tag, href))
+                parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><span class="mtag">%s</span><a class="btn" href="%s" target="_blank" rel="noopener">Open ↗</a></div></div>' % (label, tag, href))
         for ln in a.links:
             lab, _, url = ln.partition("|")
             url = (url or lab).strip(); lab = lab.strip() if "|" in ln else domain_label(url)
             parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><span class="mtag">%s</span>'
-                         '<a class="btn" href="%s" target="_blank" rel="noopener">Mở link ↗</a></div></div>' % (esc(lab), esc(domain_label(url)), esc(url)))
+                         '<a class="btn" href="%s" target="_blank" rel="noopener">Open link ↗</a></div></div>' % (esc(lab), esc(domain_label(url)), esc(url)))
         if a.embed_url:
             parts.append('<div class="mcard"><iframe loading="lazy" src="%s" title="%s" allowfullscreen></iframe></div>' % (esc(a.embed_url), esc(a.title)))
         out = ""
@@ -2284,11 +2284,11 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                 break
         n_media = len(media_of(a)) + len(a.links)
         badge = ('<span class="st st-%s">%s</span>' % (a.status, esc(ART_STATUS.get(a.status, a.status)))) if a.status else ""
-        return ('<a class="acard" href="#/%s" data-type="%s" data-stage="%s" data-text="%s">%s<span class="atype">%s</span><h3>%s</h3><p>%s</p>'
+        return ('<a class="acard" href="#/%s" data-type="%s" data-stage="%s" data-text="%s">%s<h3>%s</h3><p>%s</p>'
                 '<span class="ameta">%s%s%s</span></a>') % (
             a.id, esc(a.type), esc(a.stage), esc((a.title + " " + a.summary + " " + a.type).lower()), thumb,
-            esc(ART_TYPES.get(a.type, a.type.replace("-", " ").capitalize())), esc(a.title), esc(a.summary),
-            esc(a.stage) if a.stage else "", (" · " + badge) if badge else "", (" · %d tệp/link" % n_media) if n_media else "")
+            esc(a.title), esc(a.summary),
+            esc(a.stage) if a.stage else "", (" · " + badge) if badge else "", (" · %d files/links" % n_media) if n_media else "")
 
     adocs = ""
     for a in arts:
@@ -2296,10 +2296,10 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         badge = ('<span class="st st-%s">%s</span>' % (a.status, esc(ART_STATUS.get(a.status, a.status)))) if a.status else ""
         warn = ""
         if a.status in ("simulated", "draft", "planned"):
-            warn = '<p class="warnbox">⚠ Document này ở trạng thái <strong>%s</strong>: %s</p>' % (esc(ART_STATUS.get(a.status, a.status)),
-                {"simulated": "kết quả đến từ người mô phỏng, không phải người dùng thật.", "draft": "nội dung chưa được kiểm tra.", "planned": "mới ở dạng kế hoạch, chưa thực hiện."}[a.status])
+            warn = '<p class="warnbox">⚠ This document is <strong>%s</strong>: %s</p>' % (esc(ART_STATUS.get(a.status, a.status)),
+                {"simulated": "results come from simulated people, not real users.", "draft": "content has not been verified.", "planned": "only planned, not carried out yet."}[a.status])
         take = ("<h2>Key takeaways</h2><ul>%s</ul>" % "".join("<li>%s</li>" % Renderer(a.path, resolver, problems).inline(x) for x in a.takeaways)) if a.takeaways else ""
-        sup = ('<div class="supports"><span class="lbl">Hỗ trợ cho</span><span class="irefs">%s</span></div>' % "".join(iref(s) for s in a.supports)) if a.supports else ""
+        sup = ('<div class="supports"><span class="lbl">Supports</span><span class="irefs">%s</span></div>' % "".join(iref(s) for s in a.supports)) if a.supports else ""
         med = media_html(a)
         med = ("<h2>Media</h2>%s" % med) if med else ""
         src_note = ('<p class="srcnote">Source: <code>%s</code></p>' % esc(a.source)) if a.source else ""
@@ -2313,7 +2313,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                 sbody = re.sub(r"^\s*#\s+.*\n", "", sbody, count=1)
                 body_html += ("<h2>Full content</h2>" if body_html else "") + render_md(sbody, sp, resolver, problems, team)
             else:
-                problems.append("Tài liệu %s: không tìm thấy source %s" % (a.id, a.source))
+                problems.append("Document %s: source %s not found" % (a.id, a.source))
         adocs += ('<section class="doc" id="%s" data-title="%s"><a class="back" href="#/docs">← Work</a>'
                   '<header class="ahead"><p class="kind">%s%s</p><h1>%s</h1>%s</header>%s%s%s%s<div class="reading">%s</div>%s</section>') % (
             esc(a.id), esc(a.title), esc(label), (" · " + esc(a.stage)) if a.stage else "", esc(a.title),
@@ -2331,14 +2331,14 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     if arts_sorted:
         grid = '<div class="acards" id="acards">%s</div>' % "".join(art_card(a) for a in arts_sorted)
     else:
-        grid = '<div class="empty"><p><strong>Chưa có tài liệu nào.</strong></p><p>Thả ảnh, PDF hoặc một file <code>.md</code> vào <code>work/</code>, hoặc nhờ AI tool "thêm tài liệu này vào dự án" (xem <code>work/README.md</code>).</p></div>'
+        grid = '<div class="empty"><p><strong>No documents yet.</strong></p><p>Drop images, PDFs or a <code>.md</code> file into <code>work/</code>, or ask the AI tool to "add this document to the project" (see <code>work/README.md</code>).</p></div>'
     v_docs = ('<section class="view docs" id="v-docs"><div class="wrap"><div class="jlist"><h1>Work</h1>'
-              '<p class="lede">Mọi thứ làm ra trong dự án: phân tích, persona, survey, flow, wireframe, prototype. Mỗi tài liệu nối với các decision mà nó hỗ trợ.</p>'
+              '<p class="lede">Everything made in the project: analysis, personas, surveys, flows, wireframes, prototypes. Each document links to the decisions it supports.</p>'
               '%s'
-              '<input id="dsearch" class="tsearch" type="search" placeholder="Tìm tài liệu" aria-label="Tìm tài liệu">'
-              '<div class="tabs2" role="tablist" aria-label="Lọc theo giai đoạn">%s</div>'
+              '<input id="dsearch" class="tsearch" type="search" placeholder="Search documents" aria-label="Search documents">'
+              '<div class="tabs2" role="tablist" aria-label="Filter by stage">%s</div>'
               '<p class="tcount" id="dcount" aria-live="polite"></p>%s</div>%s</div></section>') % (
-        where(["work/"], "một file <code>.md</code> thả thẳng vào folder; nhiều file (ảnh, PDF, video) thì tạo folder con kèm <code>index.md</code>. Hoặc nhờ AI tool: \"thêm tài liệu này vào dự án\"."), sfilters, grid, adocs)
+        where(["work/"], "drop a single <code>.md</code> file into the folder; for several files (images, PDFs, video) create a subfolder with an <code>index.md</code>. Or ask the AI tool: \"add this document to the project\"."), sfilters, grid, adocs)
 
     # --- trace: tree
     def tnode(i, kids="", cnt="", leaf=True, opened=False):
@@ -2346,7 +2346,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         w = i in G.warn
         a = '<a class="node" href="#/%s" data-id="%s"><span class="idn">%s</span><span class="nt">%s%s</span>%s</a>' % (
             i, i, esc(item_name(i)), esc(p.title), ('<span class="cnt">%s</span>' % cnt) if cnt else "",
-            ('<span class="wb" title="%s" aria-label="có warning">⚠</span>' % esc("; ".join(G.warn[i]))) if w else "")
+            ('<span class="wb" title="%s" aria-label="has a warning">⚠</span>' % esc("; ".join(G.warn[i]))) if w else "")
         attrs = 'class="n%s" data-type="%s" data-warn="%s" data-closed="%s" data-area="%s" data-text="%s"' % (" leaf" if not kids else "", p.letter, "1" if w else "0", "1" if i in G.closed else "0", esc(G.area[i]), esc((i + " " + p.title).lower()))
         if kids:
             return '<li %s><details%s><summary>%s</summary><ul>%s</ul></details></li>' % (attrs, " open" if opened else "", a, kids)
@@ -2369,14 +2369,14 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                     placed.add(f)
                     fk += tnode(f)
                 kids += tnode(x, fk, plural(len(G.findings_of(x)), "finding", "findings") if fk else "")
-            cnt = " · ".join(s for s in [plural(len(ds), "decision", "decisions") if ds else "", plural(len(ts), "evidence", "evidence") if ts else "", plural(len(ms), "metric", "metrics") if ms else ""] if s) or "chưa có decision hay test"
+            cnt = " · ".join(s for s in [plural(len(ds), "decision", "decisions") if ds else "", plural(len(ts), "evidence", "evidence") if ts else "", plural(len(ms), "metric", "metrics") if ms else ""] if s) or "no decisions or tests yet"
             hk += tnode(h, kids, cnt)
         n_h = len(G.hyps_of(o))
-        top += tnode(o, hk, plural(n_h, "hypothesis", "hypotheses") if n_h else "chưa có hypothesis", opened=(k == first_open))
+        top += tnode(o, hk, plural(n_h, "hypothesis", "hypotheses") if n_h else "no hypothesis yet", opened=(k == first_open))
     loose = [i for i in sorted(G.items, key=_natkey) if i not in placed]
     if loose:
         lk = "".join(tnode(i) for i in loose)
-        top += '<li class="n" data-type="" data-warn="0" data-text=""><details open><summary><span class="gh">Chưa nối vào opportunity nào (%d)</span></summary><ul>%s</ul></details></li>' % (len(loose), lk)
+        top += '<li class="n" data-type="" data-warn="0" data-text=""><details open><summary><span class="gh">Not linked to any opportunity (%d)</span></summary><ul>%s</ul></details></li>' % (len(loose), lk)
     ttabs = '<button type="button" role="tab" aria-selected="true" data-type="">All<span class="n">%d</span></button>' % len(G.items)
     ttabs += "".join('<button type="button" role="tab" aria-selected="false" data-type="%s">%s<span class="n">%d</span></button>' % (
         L, pl, len(getattr(G, L))) for L, _, _, pl in TYPES)
@@ -2386,10 +2386,10 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     if areas_ or G.closed:
         tbar = '<div class="tbar">'
         if areas_:
-            tbar += '<label>Area <select id="tarea"><option value="">Tất cả</option>%s</select></label>' % "".join(
+            tbar += '<label>Area <select id="tarea"><option value="">All</option>%s</select></label>' % "".join(
                 '<option value="%s">%s</option>' % (esc(a), esc(a)) for a in areas_)
         if G.closed:
-            tbar += '<label><input type="checkbox" id="tclosed"> Hiện cả mục đã đóng (%d)</label>' % len(G.closed)
+            tbar += '<label><input type="checkbox" id="tclosed"> Show closed items (%d)</label>' % len(G.closed)
         tbar += "</div>"
 
     # --- trace: item docs
@@ -2403,8 +2403,8 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         chains = G.paths(i)
         path = ""
         if chains and p.letter != "O":
-            more = ('<span class="more">và %d đường khác</span>' % (len(chains) - 3)) if len(chains) > 3 else ""
-            path = '<div class="path"><span>Từ nhu cầu của người dùng:</span>%s%s</div>' % ("".join(
+            more = ('<span class="more">and %d more paths</span>' % (len(chains) - 3)) if len(chains) > 3 else ""
+            path = '<div class="path"><span>From the user need:</span>%s%s</div>' % ("".join(
                 '<span class="chips chain">%s</span>' % " › ".join(chip(x) for x in c) for c in chains[:3]), more)
         bl = ""
         if G.back.get(i):
@@ -2413,7 +2413,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                 groups.setdefault(label, []).append(src)
             rows_ = "".join('<div class="row"><span class="lbl">%s</span><span class="irefs">%s</span></div>' % (
                 esc(BACK_LABEL.get(lb, lb.replace("_", " "))), "".join(iref(s) for s in sorted(srcs, key=_natkey))) for lb, srcs in groups.items())
-            bl = '<aside class="backlinks"><h2>Được nối từ</h2>%s</aside>' % rows_
+            bl = '<aside class="backlinks"><h2>Linked from</h2>%s</aside>' % rows_
         if art_for.get(i):
             dl = ""
             for x in art_for[i]:
@@ -2421,7 +2421,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                 dl += ('<a class="dlink" href="#/%s"><span class="dtype">%s</span><span class="dtitle">%s</span>%s<span class="darr" aria-hidden="true">→</span></a>') % (
                     esc(x), esc(ART_TYPES.get(a_.type, a_.type.replace("-", " ").capitalize())), esc(a_.title),
                     ('<span class="st st-%s">%s</span>' % (a_.status, esc(ART_STATUS.get(a_.status, a_.status)))) if a_.status else "")
-            bl += '<aside class="backlinks"><h2>Tài liệu liên quan</h2><div class="dlist">%s</div></aside>' % dl
+            bl += '<aside class="backlinks"><h2>Related documents</h2><div class="dlist">%s</div></aside>' % dl
         idocs += ('<section class="doc" id="%s" data-title="%s"><a class="back back-tree" href="#/trace">← Insights</a>'
                   '<header class="ihead"><div><p class="kind">%s · %s</p><h1>%s</h1></div></header>%s%s<div class="reading">%s</div>%s%s</section>') % (
             i, esc(i + " " + p.title), esc(VI_NAME[p.letter][0]), esc(i), esc(p.title), warn, path, body, bl, srcfile(p.path))
@@ -2431,11 +2431,11 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         meta = ""
         if p.letter == "O":
             n_h = len(G.hyps_of(i))
-            meta = plural(n_h, "hypothesis", "hypotheses") if n_h else "chưa có hypothesis"
+            meta = plural(n_h, "hypothesis", "hypotheses") if n_h else "no hypothesis yet"
         elif p.letter == "F":
             sv = G.severity[i]
             meta = " · ".join(x for x in [
-                ("Mức %d" % sv) if sv is not None else "chưa có severity",
+                ("Level %d" % sv) if sv is not None else "no severity",
                 ", ".join(item_name(x) for x in G.principle_of[i]),
                 RESOLUTION_LABEL.get(G.resolution[i], G.resolution[i])] if x)
         elif p.letter == "M":
@@ -2445,7 +2445,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             meta = " · ".join(x for x in [STATE_LABEL.get(G.state.get(i, ""), G.state.get(i, "")), str(p.meta.get("owner") or "").strip()] if x)
         elif p.letter == "H":
             ds_, ts_, ms_ = G.decisions_of(i), G.tests_of(i), G.metric.get(i, [])
-            meta = " · ".join(x for x in [plural(len(ds_), "decision", "decisions") if ds_ else "", plural(len(ts_), "evidence", "evidence") if ts_ else "", plural(len(ms_), "metric", "metrics") if ms_ else ""] if x) or "chưa có decision hay test"
+            meta = " · ".join(x for x in [plural(len(ds_), "decision", "decisions") if ds_ else "", plural(len(ts_), "evidence", "evidence") if ts_ else "", plural(len(ms_), "metric", "metrics") if ms_ else ""] if x) or "no decisions or tests yet"
         else:
             for k_ in REL_KEYS:
                 ids_ = _ids(p.meta.get(k_, ""))
@@ -2458,7 +2458,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                 '<span class="itype">%s</span>%s</span><h3>%s</h3><p>%s</p></a>') % (
             i, p.letter, "1" if w else "0", "1" if i in G.closed else "0", esc(G.area[i]), esc((i + " " + p.title).lower()),
             esc(item_name(i) + ((" · " + G.area[i]) if G.area[i] else "") + ((" · " + STATE_LABEL.get(G.state[i], G.state[i])) if i in G.closed else "")),
-            '<span class="w" title="có warning">⚠</span>' if w else "", esc(p.title), esc(meta))
+            '<span class="w" title="has a warning">⚠</span>' if w else "", esc(p.title), esc(meta))
     def _card_order(L):
         if L == "F":  # worst findings first
             return sorted(G.F, key=lambda f: (-(G.severity[f] if G.severity[f] is not None else -1), _natkey(f)))
@@ -2466,18 +2466,18 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     icards = "".join(icard(i) for L, _, _, _pl in TYPES for i in _card_order(L))
     v_trace = (
         '<section class="view" id="v-trace"><div class="wrap"><div class="trace">'
-        '<div class="pane-tree"><h1>Insights</h1><p class="lede">Opportunity, hypothesis, decision, evidence, finding và metric, nối với nhau. Lọc theo loại, hoặc chuyển sang Tree để thấy chuỗi lý do từ nhu cầu tới decision.</p>'
+        '<div class="pane-tree"><h1>Insights</h1><p class="lede">Opportunities, hypotheses, decisions, evidence, findings and metrics, linked to each other. Filter by type, or switch to Tree to see the chain of reasons from need to decision.</p>'
         '%s'
-        '<div class="trow"><input id="tsearch" class="tsearch" type="search" placeholder="Tìm theo mã hoặc tên" aria-label="Tìm insight">'
+        '<div class="trow"><input id="tsearch" class="tsearch" type="search" placeholder="Search by ID or name" aria-label="Search insights">'
         '<div class="vmode" role="group" aria-label="View"><button type="button" data-vmode="cards" aria-pressed="true">Cards</button><button type="button" data-vmode="tree" aria-pressed="false">Tree</button><button type="button" data-vmode="table" aria-pressed="false">Matrix</button></div></div>'
-        '<div class="tabs2" role="tablist" aria-label="Lọc theo loại">%s</div>'
+        '<div class="tabs2" role="tablist" aria-label="Filter by type">%s</div>'
         '%s'
         '<p class="tcount" id="tcount" aria-live="polite"></p>'
         '<div class="icards">%s</div>%s'
         '<ul class="tree" id="tree">%s</ul></div>'
         '<div class="pane-detail">%s</div>'
         '</div></div></section>'
-    ) % (where(["insights/"], "copy một mẫu trong <code>insights/_templates/</code> vào folder loại tương ứng (mỗi thẻ là một file)."), ttabs, tbar, icards or '<div class="empty"><p><strong>Chưa có mục nào.</strong></p></div>', align_table, top or '<li class="n"><span class="nt">Chưa có mục nào.</span></li>', idocs)
+    ) % (where(["insights/"], "copy a template from <code>insights/_templates/</code> into the matching type folder (one file per card)."), ttabs, tbar, icards or '<div class="empty"><p><strong>Nothing here yet.</strong></p></div>', align_table, top or '<li class="n"><span class="nt">Nothing here yet.</span></li>', idocs)
 
     # --- guide: how to use this report (guide.md at the case root; optional)
     v_guide = ""
@@ -2494,25 +2494,25 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     sec_counts = {"context": len(ctx), "journey": len(weekly), "docs": len(arts), "trace": len(items), "reference": len(ref)}
     nav = "".join('<a href="#/%s" data-nav="%s">%s%s</a>' % (
         k, k, t, ('<span class="nm">%d</span>' % sec_counts[k]) if k in sec_counts else "")
-        for k, t in [("overview", "Overview")] + ([("context", "Context")] if ctx else []) + [("journey", "Stages"), ("docs", "Work"), ("trace", "Insights"), ("reference", "Standards")] + ([("guide", "Hướng dẫn")] if v_guide else []))
-    sidebar = '<details class="menu" open><summary>Menu</summary><nav class="nav2" aria-label="Các phần của báo cáo">%s</nav></details>' % nav
+        for k, t in [("overview", "Overview")] + ([("context", "Context")] if ctx else []) + [("journey", "Stages"), ("docs", "Work"), ("trace", "Insights"), ("reference", "Standards")] + ([("guide", "Guide")] if v_guide else []))
+    sidebar = '<details class="menu" open><summary>Menu</summary><nav class="nav2" aria-label="Report sections">%s</nav></details>' % nav
 
     now = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
     theme_select = ""
     if switcher:
-        theme_select = '<label class="themepick">Giao diện <select id="themeselect" aria-label="Chọn giao diện">%s</select></label>' % "".join(
+        theme_select = '<label class="themepick">Theme <select id="themeselect" aria-label="Choose a theme">%s</select></label>' % "".join(
             '<option value="%s"%s>%s</option>' % (k, " selected" if k == theme else "", esc(v)) for k, v in THEMES)
     doc = ("""<!doctype html>
-<html lang="vi" data-theme="{{THEME}}">
+<html lang="en" data-theme="{{THEME}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>{{NAME}} · Báo cáo case</title>
+<title>{{NAME}} · Case report</title>
 <style>{{CSS}}</style>
 </head>
 <body data-case="{{NAME}}">
-<a class="skip" href="#main">Bỏ qua menu</a>
+<a class="skip" href="#main">Skip the menu</a>
 <header class="top"><div class="top-in">
 <div class="brand"><svg class="logo" viewBox="18 50 214 150" fill="currentColor" aria-hidden="true"><path d="M80.5165 60.4055C76.2827 67.7288 75.4817 70.1317 74.9096 77.2261C74.5663 81.8032 74.7952 87.5244 75.4817 90.0418C76.8548 94.7332 76.0921 95.8546 74.4519 95.191C72.8194 94.5455 67.7008 93.4746 47.4474 93.0169C33.1442 92.6736 21.244 92.5592 21.0151 92.5592C20.7862 92.6736 23.1892 96.1064 26.1643 100.226C29.1393 104.345 45.8455 127.573 63.1238 151.832L94.4764 196L96.4216 192.338C97.4515 190.279 101.228 183.184 104.889 176.548C108.436 169.911 112.899 161.215 114.844 157.21C117.705 151.26 118.62 150.23 119.65 151.603C120.337 152.518 128.575 162.931 138.073 174.602L155.236 196L157.296 193.483C158.44 191.995 161.415 186.732 163.933 181.811C169.311 170.941 169.769 163.732 165.992 154.807L163.59 149.2L188.077 112.24C201.579 91.8726 215.081 71.3904 218.171 66.699C221.26 62.0075 224.693 56.9728 225.837 55.7141L228.126 53.1967H207.071C180.296 53.0823 173.316 54.4554 163.475 62.0075C155.122 68.1865 150.888 74.3655 140.247 94.9621L132.351 110.295L130.292 107.663C129.033 106.176 126.63 103.201 124.914 101.027C108.78 81.0022 87.9541 54.4554 87.4964 53.1967C86.4666 50.6794 85.5512 51.7092 80.5165 60.4055ZM213.365 62.0075C212.22 62.8085 184.758 103.544 169.54 127.116C160.958 140.389 157.91 142.982 156.953 141.076C156.601 140.364 155.292 138.4 154.092 136.727C152.49 135.011 149.286 131.006 146.883 127.688C142.65 121.738 141.547 122.036 140.933 122.996C140.292 124 139.583 125.309 138.988 126.429C137.845 128.582 137.272 128.718 140.59 132.265C147.456 139.588 156.953 152.289 158.669 156.294C161.072 162.244 160.843 171.055 157.983 177.806C156.61 180.896 155.236 183.413 154.779 183.299C154.435 183.299 148.485 175.976 141.505 167.165C134.64 158.24 127.431 149.314 125.715 147.255L122.396 143.364L125.829 137.414C127.66 134.096 131.894 126.2 135.212 119.907C158.669 75.2809 162.445 69.7885 171.599 65.5547C174.574 64.1816 178.007 62.5796 179.266 62.0075C181.44 60.9777 211.419 59.9478 213.479 60.8633C213.937 61.0921 213.937 61.5498 213.365 62.0075ZM98.7102 79.8579C104.66 87.41 113.7 98.8526 118.849 105.26L128.346 117.046L123.541 126.658C120.794 132.036 118.277 136.384 117.819 136.384C117.133 136.499 110.954 128.832 90.9292 103.315C83.0338 93.2457 80.9742 87.5244 81.6607 78.7137C82.3473 72.077 85.6656 63.495 87.0387 65.097C87.4964 65.6691 92.76 72.3058 98.7102 79.8579ZM77.3125 103.315C83.4915 106.405 88.5263 111.668 100.999 127.917C105.69 133.981 110.382 140.046 111.64 141.533C113.7 144.165 113.7 144.28 108.78 153.205C106.148 158.24 101.571 166.821 98.7102 172.428C94.362 180.896 93.3322 182.269 92.3023 180.553C91.7302 179.408 89.3273 176.09 87.1532 173C84.9791 169.911 80.6309 163.732 77.427 159.269C74.3375 154.692 67.2431 144.852 61.7507 137.185C56.2582 129.519 50.0792 121.051 48.0196 118.191C46.0743 115.33 42.4127 110.41 40.0098 107.206C37.6068 104.002 35.6616 101.027 35.6616 100.569C35.6616 99.9968 43.7858 99.8824 53.7409 100.111C70.1037 100.455 72.1634 100.798 77.3125 103.315Z"/></svg><span>{{NAME}}</span></div>
 {{THEME_SELECT}}
@@ -2527,13 +2527,13 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
 {{V_TRACE}}
 {{V_REFERENCE}}
 {{V_GUIDE}}
-<div class="wrap" style="padding-top:0"><footer class="foot">Báo cáo này được tạo tự động từ các file của dự án, ngày {{NOW}}{{MODE}}.<details class="foot-tech"><summary>Dành cho người cập nhật báo cáo</summary><p>Sửa file gốc của dự án, rồi nhờ AI tool tạo lại báo cáo, hoặc chạy lệnh <code>python3 _ai/export-hub.py</code>.</p></details></footer></div>
+<div class="wrap" style="padding-top:0"><footer class="foot">This report is generated automatically from the project files, {{NOW}}{{MODE}}.<details class="foot-tech"><summary>For whoever updates the report</summary><p>Edit the project source files, then ask the AI tool to rebuild the report, or run <code>python3 _ai/export-hub.py</code>.</p></details></footer></div>
 </main>
 </div>
 <script>{{JS}}</script>
 </body>
 </html>
-""").replace("{{NAME}}", esc(name)).replace("{{NOW}}", now).replace("{{MODE}}", " · bản dành cho team (có bản nháp AI)" if team else "").replace("{{V_OVERVIEW}}", v_overview).replace("{{V_CONTEXT}}", v_context) \
+""").replace("{{NAME}}", esc(name)).replace("{{NOW}}", now).replace("{{MODE}}", " · team version (includes AI drafts)" if team else "").replace("{{V_OVERVIEW}}", v_overview).replace("{{V_CONTEXT}}", v_context) \
         .replace("{{V_JOURNEY}}", v_journey).replace("{{V_DOCS}}", v_docs).replace("{{V_TRACE}}", v_trace).replace("{{V_REFERENCE}}", v_reference).replace("{{V_GUIDE}}", v_guide) \
         .replace("{{CSS}}", CSS + theme_rules(theme, switcher)).replace("{{JS}}", JS).replace("{{THEME}}", theme).replace("{{THEME_SELECT}}", theme_select).replace("{{SIDEBAR}}", sidebar)
 
@@ -2570,15 +2570,15 @@ def main():
             os.makedirs(os.path.dirname(dest), exist_ok=True)
             shutil.copy2(ab, dest)
             total += os.path.getsize(ab)
-        print("Bundle: %s (%d tệp, %.1f MB)" % (bundle_dir, len(used) + 1, total / 1048576.0))
+        print("Bundle: %s (%d files, %.1f MB)" % (bundle_dir, len(used) + 1, total / 1048576.0))
         if a.zip:
             z = shutil.make_archive(bundle_dir, "zip", bundle_dir)
             print("Zip: %s (%.1f MB)" % (z, os.path.getsize(z) / 1048576.0))
     print("Case: %s" % name)
-    print("Đã đưa vào báo cáo: %d trang giai đoạn, %d tài liệu tham chiếu, %d tài liệu (artifact), %d item (O %d, H %d, M %d, D %d, E %d)" % (
+    print("Included in the report: %d stage pages, %d standards, %d documents (artifacts), %d items (O %d, H %d, M %d, D %d, E %d)" % (
         len(weekly), len(ref), len(arts), len(G.items), len(G.O), len(G.H), len(G.M), len(G.D), len(G.E)))
     if a.team:
-        print("  Bản dành cho team: có hiện các section AI draft (gấp lại). Đừng gửi bản này cho stakeholder.")
+        print("  Team version: AI-draft sections are shown (collapsed). Do not send this version to stakeholders.")
     if G.warnings:
         print("Warnings (%d):" % len(G.warnings))
         for tr in ("block", "review", "info"):
@@ -2590,9 +2590,9 @@ def main():
     for p in problems:
         print("  ! %s" % p)
     if placeholders:
-        print("  ! Còn ít nhất %d chỗ dữ liệu mẫu hoặc chưa điền" % placeholders)
-    print("Đã ghi: %s" % out)
-    print("Mở file index.html bằng trình duyệt (bấm đúp) để xem hub.")
+        print("  ! At least %d places still have sample or blank data" % placeholders)
+    print("Written: %s" % out)
+    print("Open index.html in a browser (double-click) to view the hub.")
 
 
 if __name__ == "__main__":
