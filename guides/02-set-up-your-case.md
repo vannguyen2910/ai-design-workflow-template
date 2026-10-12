@@ -25,10 +25,10 @@ Folder được đặt tên theo **việc bạn làm** ở đó:
 | Folder | Dùng để | Khi nào dùng |
 |---|---|---|
 | `context/` | **Thông tin nền:** sản phẩm, người dùng, quy tắc dữ liệu, design system. Bạn đưa nó cho AI đọc trước tiên ở mọi bước | Khi khởi động dự án, bổ sung dần |
-| `work/` | **File làm việc của từng giai đoạn:** `scope.md`, `user-voice-synthesis.md`, `competitor-analysis.md` (Discover), `problem-brief.md` (Define), `options.md`, `alignment.md` (Develop), `test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md` (Deliver). File cùng tên với một trang ở `stages/` thì đi với trang đó | Suốt dự án |
+| `work/` | **File làm việc của từng giai đoạn:** `scope.md`, `user-voice-synthesis.md`, `competitor-analysis.md` (Discover), `problem-brief.md` (Define), `options.md`, `alignment.md` (Develop), `test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md` (Deliver). Trang giai đoạn ở `stages/` tự ghép từ các file này | Suốt dự án |
 | `work/sources/` | `anonymised/` chứa dữ liệu đã ẩn danh, `_raw-private/` chứa dữ liệu gốc | Discover |
 | `work/prototype/` | Code prototype | Giai đoạn Develop |
-| `stages/` | **Mỗi giai đoạn một trang** kể lại điều đã được kiểm tra; thứ tự lấy theo bảng Pages ở `stages/README.md` | Cập nhật khi có thay đổi |
+| `stages/` | **Mỗi giai đoạn một trang**, tự dựng từ `work/` và `insights/` theo bảng Pages ở `stages/README.md`; bạn không viết ở đây | Chỉ sửa bảng khi đổi thứ tự hoặc thêm giai đoạn |
 | `insights/` | **Các item nối với nhau:** nhu cầu, hypothesis, decision, evidence, finding, metric; mỗi item một file trong folder loại của nó | Cập nhật khi có thay đổi |
 | `reference/` | **Tra cứu:** gates, principle checks, severity levels, case log. Thả file `.md` mới vào đây là tự hiện ở báo cáo | Khi cần xem lại |
 | `_ai/` | Step card (các bước làm việc với AI) và script tạo báo cáo `index.html` | Khi chạy một bước; hiếm khi mở tay |
@@ -73,7 +73,7 @@ Hub là nơi bạn trả lời câu hỏi: "Decision này dựa trên nhu cầu 
 
 - **Mỗi design decision là một file riêng.** Ví dụ decision `D2` nằm ở `insights/decisions/D2.md`.
 - **Bạn chỉ viết mỗi điều một chỗ.** Decision `D2` nói nó kiểm chứng hypothesis nào; hub tự suy ra chiều ngược lại.
-- **Sau mỗi lần cập nhật,** nhờ AI tool chạy `_ai/refresh-hub.md` để dựng lại bảng tổng hợp và danh sách warnings.
+- **Sau mỗi lần cập nhật,** chạy `python3 _ai/export-hub.py` (hoặc nhờ AI tool chạy) để báo cáo dựng lại bảng tổng hợp và warnings.
 
 Cách hub vận hành nằm ở `reference/how-the-hub-works.md` trong folder case của bạn.
 
@@ -98,10 +98,11 @@ Hãy mở **cả folder**, không mở từng file lẻ: các link giữa các t
 | Bạn muốn | Cách làm |
 |---|---|
 | Thêm folder riêng (ghi chú, ảnh, bản ghi âm) | Tạo folder mới cùng cấp với `work/`, ví dụ `notes/` |
-| Bỏ một file không dùng | Xoá file đó. Nếu là trang ở `stages/`, xoá luôn dòng của nó trong bảng Pages ở `stages/README.md`. Nếu là item, nhờ AI chạy lại `_ai/refresh-hub.md` |
-| Thêm một trang giai đoạn | Copy một trang có sẵn trong `stages/`, đổi tên, rồi thêm một dòng vào bảng Pages ở `stages/README.md` |
+| Bỏ một file không dùng | Xoá file đó. Nếu file đó được một trang ở `stages/` dùng, xoá nó khỏi cột Từ work trong bảng Pages ở `stages/README.md`. Nếu là item, chạy lại `python3 _ai/export-hub.py` |
+| Thêm một trang giai đoạn | Thêm một dòng vào bảng Pages ở `stages/README.md`: đặt Id, chọn file ở cột Từ work và bảng item muốn hiện. Không cần viết file mới |
+| Thêm một item (nhu cầu, hypothesis, decision...) | Chạy `python3 _ai/new-item.py` trong folder dự án: lệnh hỏi từng câu, chọn mã tiếp theo và nối quan hệ giúp bạn |
 | Thêm một tài liệu (phân tích đối thủ, persona, flow, prototype...) | Copy một template trong `work/_templates/` ra `work/`, hoặc tạo folder và thả ảnh, PDF, HTML vào. Xem `work/README.md` |
-| Thêm một decision hoặc test | Copy một file cùng loại trong `insights/`, đặt tên theo mã mới (ví dụ `D4.md`), rồi nhờ AI chạy `_ai/refresh-hub.md` |
+| Thêm một decision hoặc test | Chạy `python3 _ai/new-item.py D` (hoặc `E`): lệnh chọn mã mới và nối quan hệ giúp bạn |
 | Dùng design system của công ty | Viết `context/design-system-notes.md` của bạn và dùng `work/prototype/` làm mẫu |
 | Viết file bằng tiếng Việt | Được. Chỉ giữ tên file và tên folder bằng tiếng Anh |
 

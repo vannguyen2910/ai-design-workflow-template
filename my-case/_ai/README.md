@@ -8,7 +8,8 @@ Folder này chứa hai thứ. **Step card** (file `.md`): định nghĩa quy tr�
 |---|---|---|---|
 | [`competitor-analysis.md`](competitor-analysis.md) | Discover | Khi cần biết đối thủ đang làm gì | Bản nháp, chưa được thử nhiều |
 | [`user-voice-synthesis.md`](user-voice-synthesis.md) | Discover | Khi có quote hoặc phỏng vấn người dùng để tổng hợp | Bản nháp, chưa được thử nhiều |
-| [`refresh-hub.md`](refresh-hub.md) | Mọi giai đoạn | Sau mỗi lần bạn cập nhật hub | Bản nháp |
+| [`add-insights.md`](add-insights.md) | Discover, Test | Khi có tài liệu nghiên cứu mới (phỏng vấn, khảo sát, kết quả test) cần biến thành item | Bản nháp |
+| [`refresh-hub.md`](refresh-hub.md) | Mọi giai đoạn | Khi muốn AI rà soát những chỗ item chưa nối hoặc còn thiếu | Bản nháp |
 | [`add-media.md`](add-media.md) | Mọi giai đoạn | Khi có ảnh, video, PDF hoặc tài liệu cần đưa vào báo cáo | Bản nháp |
 | [`export-hub.md`](export-hub.md) | Mọi stage | Khi cần xem hub trong trình duyệt hoặc gửi cho người khác | Bản nháp |
 

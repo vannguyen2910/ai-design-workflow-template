@@ -66,7 +66,7 @@ my-case/
 ├── AGENTS.md        luật cho AI tool (tool tự đọc file này khi bạn mở folder)
 │
 ├── context/         CONTEXT    thông tin nền: sản phẩm, người dùng, quy tắc, design system
-├── stages/          STAGES     mỗi giai đoạn một trang kể lại điều đã được kiểm tra
+├── stages/          STAGES     mỗi giai đoạn một trang, tự dựng từ work/ và insights/
 ├── work/            WORK       mọi thứ làm ra: file làm việc, wireframe, prototype, persona, nguồn nghiên cứu
 ├── insights/        INSIGHTS   nhu cầu, hypothesis, decision, evidence, finding, metric (mỗi loại một folder)
 ├── reference/       REFERENCE  gates, principle checks, severity levels, case log
@@ -85,9 +85,9 @@ Báo cáo `index.html` ghi sẵn dòng "Folder" và "Thêm mới" ở đầu m�
 |---|---|---|---|
 | **Overview** | `README.md` | Project card, tiến độ, những chỗ cần xem lại (tự tính) | Sửa `README.md` và các file nguồn, rồi tạo lại báo cáo |
 | **Context** | `context/` | Sản phẩm, người dùng, quy tắc dữ liệu, design system | Thả một file `.md` vào folder |
-| **Stages** | `stages/` | Một trang cho mỗi giai đoạn: scope, evidence, problem brief, develop, alignment, findings, handoff | Thêm một file `.md` vào folder và một dòng vào bảng Pages ở `stages/README.md` |
+| **Stages** | `stages/` | Một trang cho mỗi giai đoạn, tự dựng từ `work/` và `insights/` (bạn không viết ở đây) | Thêm một dòng vào bảng Pages ở `stages/README.md`: chọn file ở `work/` và bảng item muốn hiện |
 | **Work** | `work/` | Mọi thứ làm ra: file làm việc, wireframe, prototype, persona, flow | Thả file vào folder, hoặc tạo folder con (kèm `index.md`) rồi thả ảnh, PDF, video vào đó |
-| **Insights** | `insights/` (`opportunities/`, `hypotheses/`, `decisions/`, `evidence/`, `findings/`, `metrics/`) | Các item nối với nhau | Copy một mẫu trong `insights/_templates/` vào folder loại tương ứng |
+| **Insights** | `insights/` (`opportunities/`, `hypotheses/`, `decisions/`, `evidence/`, `findings/`, `metrics/`) | Các item nối với nhau | Chạy `python3 _ai/new-item.py`: lệnh hỏi từng câu, chọn mã tiếp theo và nối quan hệ giúp bạn |
 | **Reference** | `reference/` | Gates, principle checks, severity levels, case log | Thả một file `.md` vào folder |
 
 ## The life of a project
@@ -103,7 +103,7 @@ Một dự án đi qua năm giai đoạn. Bạn không cần làm hết một l�
 | **Deliver** | Nó có hiệu quả không, và bàn giao gì? | `work/test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md`; chấm mức độ bằng `reference/severity-levels.md` |
 | **Mọi giai đoạn** | Chúng ta đã quyết định gì, và vì sao? | `reference/case-log.md`, các trang ở `stages/` và các item ở `insights/` |
 
-Dự án thật không đi một chiều. Khi có thông tin mới, bạn quay lại giai đoạn trước: cập nhật file ở giai đoạn đó, rồi tạo lại hub (xem `_ai/refresh-hub.md`).
+Dự án thật không đi một chiều. Khi có thông tin mới, bạn quay lại giai đoạn trước: cập nhật file ở giai đoạn đó, rồi tạo lại hub (`python3 _ai/export-hub.py`; muốn rà soát thì xem `_ai/refresh-hub.md`).
 
 ## Keep a project alive
 

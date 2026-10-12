@@ -16,13 +16,14 @@ Mỗi folder không có `_` ở gốc là một mục trong menu của báo cáo
 | `README.md` | Overview: project card và bảng "Tôi muốn... mở..." | Đọc. Chỉ sửa khi được yêu cầu |
 | `context/*.md` | Context pack: thông tin nền (sản phẩm, người dùng, quy tắc dữ liệu, design system) | Đọc đầu tiên ở mọi bước. Không sửa trừ khi được yêu cầu |
 | `_ai/*.md` | Định nghĩa từng bước làm việc với AI (step card) | Đọc card của bước đang chạy |
-| `stages/*.md` | Một trang kể lại cho mỗi giai đoạn, và bảng Pages ở `stages/README.md` | Chỉ ghi vào các khối `generated` khi chạy `_ai/refresh-hub.md`. Phần kể chuyện do chủ dự án viết |
+| `stages/README.md` | Bảng Pages: mỗi dòng là một trang giai đoạn, tự ghép từ file ở `work/` và bảng item ở `insights/` | Chỉ sửa bảng khi được yêu cầu. Không tạo file `.md` nào khác ở đây: trang giai đoạn không có nội dung riêng |
 | `work/*.md`, `work/<tên>/index.md` | Mọi thứ làm ra: file làm việc theo giai đoạn (`scope`, `problem-brief`, `findings`...) và tài liệu (wireframe, persona, flow). Có thể kèm ảnh, PDF, HTML trong folder | Chỉ ghi vào đúng section được yêu cầu. Không chép nội dung vào `stages/`: trang đó dẫn về file làm việc |
 | `work/sources/anonymised/` | Dữ liệu đã ẩn danh, có ID | Đọc. Nguồn duy nhất cho quote và số liệu |
 | `work/prototype/` | Code prototype | Làm việc ở đây khi dựng prototype, theo `project-rules.md` trong folder đó |
 | `insights/opportunities/O1.md`, `hypotheses/H1.md`, `metrics/M1.md`, `decisions/D1.md`, `evidence/E1.md`, `findings/F1.md`… | **Nguồn duy nhất** của mỗi item (O, H, M, D, E, F). Mỗi loại một folder; tên file là mã của item | Đọc. Chỉ sửa khi được yêu cầu sửa đúng item đó. Không tự đặt `resolution: fixed` hay `accepted` cho finding |
 | `insights/_templates/` | Mẫu rỗng cho từng loại item | Đọc. Copy vào đúng folder loại (ví dụ `insights/decisions/`) khi được yêu cầu tạo item mới, không sửa file mẫu |
 | `reference/*.md` | Trang tra cứu: gates, principle checks, severity levels, case log, và mọi trang chủ dự án thêm vào | Đọc. Chỉ sửa khi được yêu cầu đúng trang đó. `reference/case-log.md`: thêm dòng khi được yêu cầu |
+| `_ai/new-item.py` | Lệnh tạo một item mới và nối quan hệ | Chạy khi được yêu cầu tạo item (xem mục Where things go). Không sửa |
 | `_ai/export-hub.py` | Script xuất báo cáo ra một file HTML | Chạy khi được yêu cầu (`python3 _ai/export-hub.py`). Không sửa, và không tự viết HTML thay cho script |
 | `index.html` | Báo cáo, xuất ra từ Markdown để xem bằng trình duyệt | Không đọc, không sửa tay. Muốn cập nhật thì chạy `_ai/export-hub.py` |
 | `_personal/` | Ghi chú riêng của chủ dự án | **Không đọc, không ghi** |
@@ -37,8 +38,10 @@ Khi chủ dự án nhờ bạn làm hoặc thêm một thứ gì đó mà không
 |---|---|---|
 | Ảnh, PDF, video, prototype HTML, flow, hoặc tài liệu để người khác xem | `work/<tên-ngắn>/` kèm `index.md` (bắt đầu từ mẫu trong `work/_templates/`); tệp lẻ thì `work/<tên>.md`. Làm theo `_ai/add-media.md` | Điền `supports` bằng mã item nó làm bằng chứng cho nếu biết. Không biết thì để `[]`, đừng đoán |
 | Bản nháp hoặc tổng hợp của một giai đoạn | `work/<tên>.md` đúng file của giai đoạn (`scope`, `user-voice-synthesis`, `competitor-analysis`, `problem-brief`, `options`, `alignment`, `test-plan`, `findings`, `handoff`, `measurement-plan`) | Chỉ ghi vào đúng section được yêu cầu |
-| Một quyết định thiết kế | `insights/decisions/D<số>.md` và một dòng ở `reference/case-log.md` | |
-| Một nhu cầu, hypothesis, metric, evidence hoặc finding | Folder loại tương ứng trong `insights/`, copy từ `insights/_templates/` | |
+| Một quyết định thiết kế | `python3 _ai/new-item.py D ...` kèm `--owner`, `--state`, `--reason` (ghi luôn case log). Không tự đặt `accepted` khi chủ dự án chưa nói | `proposed` là mặc định |
+| Một tài liệu nghiên cứu mới (phỏng vấn, khảo sát, test) cần rút insight | Làm theo `_ai/add-insights.md`: đề xuất trước, chờ chủ dự án duyệt, rồi mới tạo item bằng `new-item.py` | Không tạo item khi chưa được duyệt |
+| Kết quả đo của một metric sau launch | Điền `result`, `measured_on`, `verdict` trong `insights/metrics/M<số>.md`; điều đã học viết ở `work/learning.md` | Chỉ ghi số chủ dự án đưa, không suy đoán `verdict` |
+| Một nhu cầu, hypothesis, metric, decision, evidence hoặc finding | `python3 _ai/new-item.py <O/H/M/D/E/F> --title "..."` kèm các quan hệ (`--tests H1`, `--serves O1`, `--found-in E1`...). Lệnh chọn mã tiếp theo, tạo file đúng folder và kiểm tra mọi mã bạn nối có thật | Tự điền quan hệ từ nội dung chủ dự án đưa; nếu chưa chắc về một quan hệ thì hỏi, đừng đoán. Xem `python3 _ai/new-item.py --help` |
 | Một trang tra cứu mới (glossary, brand voice...) | `reference/<tên>.md` | Tự hiện ở mục Reference của báo cáo |
 | Dữ liệu nghiên cứu thô (phỏng vấn, khảo sát) | **Không** tự đặt vào `work/sources/anonymised/`. Nhắc chủ dự án ẩn danh trước; bản gốc để ở `work/sources/_raw-private/`, bạn không đọc | |
 | Ghi chú riêng của chủ dự án | `_personal/` | Bạn không đọc, không ghi |
@@ -49,7 +52,7 @@ Khi đặt file:
 1. **Mã kế tiếp:** liệt kê folder loại và dùng số lớn nhất cộng một. Không bao giờ ghi đè file đã có.
 2. **Tên file ngắn, chữ thường, nối bằng dấu gạch ngang** cho tài liệu; mã item cho item.
 3. **Nói lại chỗ bạn đã đặt:** nêu đường dẫn đầy đủ, và những gì bạn không chắc (ví dụ `supports` còn trống).
-4. **Nhắc chủ dự án** nhờ cập nhật hub (`_ai/refresh-hub.md`) và tạo lại `index.html` khi cần.
+4. **Nhắc chủ dự án** tạo lại `index.html` (`python3 _ai/export-hub.py`) khi cần; muốn rà soát thì dùng `_ai/refresh-hub.md`.
 
 ## Hard rules
 

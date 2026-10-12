@@ -33,7 +33,7 @@ Ví dụ: một lỗi hiếm xảy ra nhưng làm mất toàn bộ dữ liệu c
 
 ## Dùng thang này trong hub
 
-- Mỗi finding là một file trong `insights/findings/` với property `severity` (0 đến 4) và `principle` (xem [Principle checks](principle-checks.md)). Báo cáo tự xếp finding theo mức, và trang `stages/findings.md` hiện danh sách.
+- Mỗi finding là một file trong `insights/findings/` với property `severity` (0 đến 4) và `principle` (xem [Principle checks](principle-checks.md)). Báo cáo tự xếp finding theo mức, và trang Findings trong Stages hiện danh sách.
 - Ở gate Deliver, check 4b yêu cầu findings được xếp theo mức độ quan trọng: dùng thang này.
 - Mức **4** chặn handoff: báo cáo cảnh báo khi còn finding mức 4 có `resolution: open`, và đánh dấu decision bị ảnh hưởng.
 - Mức **3** cần một quyết định rõ: sửa, hoặc chấp nhận như một trade-off và ghi vào `reference/case-log.md`.

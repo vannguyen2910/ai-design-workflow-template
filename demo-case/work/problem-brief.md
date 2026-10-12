@@ -19,7 +19,7 @@ supports: []
 | Dùng thấy dễ | Điểm dễ dùng theo task và theo bộ câu hỏi chuẩn | M2: SEQ từ 5,5/7; M3: SUS từ 68 | assumed |
 
 ## Opportunities (ranked)
-*Là nhu cầu người dùng có evidence, không phải feature. Mỗi opportunity là một file trong `insights/opportunities/` (O1, O2 ...) và file đó là nguồn duy nhất: viết trực tiếp ở đó, không giữ bảng trùng ở đây. Bảng tổng hợp có ở `stages/problem-brief.md`, do AI dựng.*
+*Là nhu cầu người dùng có evidence, không phải feature. Mỗi opportunity là một file trong `insights/opportunities/` (O1, O2 ...) và file đó là nguồn duy nhất: viết trực tiếp ở đó, không giữ bảng trùng ở đây. Bảng tổng hợp hiện ở trang Problem brief trong Stages, tự dựng từ các file đó.*
 
 Thứ hạng lấy theo điểm quan trọng người dùng gán cho tính năng trong khảo sát (n=13): lập kế hoạch 4,38; khám phá 3,85; nhật ký 3,62; kết nối miễn phí 3,38.
 

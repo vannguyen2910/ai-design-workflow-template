@@ -12,6 +12,9 @@ views:
       - file.name
       - title
       - rank
+      - impact
+      - confidence
+      - rank_reason
       - evidence
   - type: table
     name: "Hypotheses"
@@ -34,11 +37,14 @@ views:
       - tests
       - follows
       - pulls_against
+      - state
+      - owner
+      - decided_on
   - type: table
-    name: "Tests"
+    name: "Evidence"
     filters:
       and:
-        - type == "test"
+        - type == "evidence"
     order:
       - file.name
       - title
@@ -56,6 +62,9 @@ views:
       - title
       - status
       - baseline
+      - target
+      - result
+      - verdict
       - measured_by
   - type: table
     name: "Findings"

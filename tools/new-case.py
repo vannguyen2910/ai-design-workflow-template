@@ -115,7 +115,7 @@ def main():
     write(p, t)
 
     print("Đã tạo: %s" % dest)
-    print("  - Đã xoá %d item [EXAMPLE] và dọn các dòng mẫu trong stages/ và reference/" % removed)
+    print("  - Đã xoá %d item [EXAMPLE] và dọn các dòng mẫu trong reference/" % removed)
     tool = os.path.join(dest, "_ai", "export-hub.py")
     if os.path.isfile(tool):
         r = subprocess.run([sys.executable, tool], cwd=dest, capture_output=True, text=True)
