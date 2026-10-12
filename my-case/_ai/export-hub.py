@@ -1223,6 +1223,8 @@ table.props td{padding:7px 0}
 .ststatus{padding:1px 8px;border-radius:99px;font-size:.72rem;font-weight:700;background:rgba(145,158,171,.16)}
 .ststatus.ok{background:rgba(34,197,94,.16);color:#118d57}
 .ststatus.w{background:rgba(255,171,0,.16);color:#b76e00}
+html{overflow-y:scroll;scrollbar-gutter:stable}
+.top-in{max-width:1480px;padding-left:24px;padding-right:24px}
 .nav2 a[data-nav=guide]{margin-top:10px;border-top:1px dashed var(--line);border-radius:0 0 var(--r) var(--r);padding-top:12px}
 .guide pre{position:relative;padding-right:84px}
 .guide .copybtn{position:absolute;top:8px;right:8px;font:inherit;font-size:.74rem;font-weight:600;padding:3px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);cursor:pointer}
