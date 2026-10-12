@@ -4,8 +4,13 @@
     {
       "name": "workspace-template",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8765"],
-      "port": 8765
+      "runtimeArgs": [
+        "-I",
+        "-c",
+        "import os,functools,http.server as h;d='/Users/winnie.nguyen/Library/CloudStorage/GoogleDrive-nguyenphuctuongvan@gmail.com/My Drive/03_Mentoring/programs/ai-design-workflow/workspace-template';h.ThreadingHTTPServer(('127.0.0.1',int(os.environ.get('PORT','8765'))),functools.partial(h.SimpleHTTPRequestHandler,directory=d)).serve_forever()"
+      ],
+      "port": 8765,
+      "autoPort": true
     }
   ]
 }
