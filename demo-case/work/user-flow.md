@@ -14,6 +14,12 @@ supports:
   - "[[D7]]"
 source: "original-docs/08_E2E_User_Flow.md"
 media:
+  - "user-flow/overview.html"
+  - "user-flow/onboarding.html"
+  - "user-flow/pre-trip.html"
+  - "user-flow/in-destination.html"
+  - "user-flow/post-trip.html"
+  - "user-flow/between-trips.html"
   - "original-docs/08_E2E_User_Flow.html"
 embed: true
 ---

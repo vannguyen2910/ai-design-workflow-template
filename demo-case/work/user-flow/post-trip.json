@@ -1,0 +1,153 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Travel Buddy: Post-Trip",
+    "locale": "en",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "messagebus": {
+          "label": "Decision"
+        },
+        "external": {
+          "label": "Start or link to another phase"
+        },
+        "security": {
+          "label": "Journal"
+        }
+      }
+    },
+    "output": "post-trip.html"
+  },
+  "lanes": [
+    {
+      "id": "r0_0",
+      "label": "Post-Trip (1/2)"
+    },
+    {
+      "id": "r1_0",
+      "label": "Post-Trip (2/2)"
+    }
+  ],
+  "mainPath": [
+    "from_prev",
+    "n30",
+    "n31",
+    "n32",
+    "n33",
+    "n34"
+  ],
+  "nodes": [
+    {
+      "id": "from_prev",
+      "lane": "r0_0",
+      "col": 0,
+      "type": "external",
+      "label": "From In-Destination",
+      "width": 174
+    },
+    {
+      "id": "n30",
+      "lane": "r0_0",
+      "col": 1,
+      "type": "security",
+      "label": "Auto-generated layout",
+      "width": 176,
+      "tag": "J2"
+    },
+    {
+      "id": "n31",
+      "lane": "r0_0",
+      "col": 2,
+      "type": "security",
+      "label": "Journal private",
+      "width": 145,
+      "sublabel": "by default",
+      "tag": "J3"
+    },
+    {
+      "id": "n32",
+      "lane": "r0_0",
+      "col": 3,
+      "type": "messagebus",
+      "label": "Share?",
+      "width": 124,
+      "icon": "flag"
+    },
+    {
+      "id": "n34",
+      "lane": "r0_0",
+      "col": 5,
+      "type": "security",
+      "label": "Contextual memory layer",
+      "width": 176,
+      "tag": "J5"
+    },
+    {
+      "id": "n33",
+      "lane": "r0_0",
+      "col": 4,
+      "type": "security",
+      "label": "Selective share",
+      "width": 145,
+      "sublabel": "with contacts",
+      "tag": "J4"
+    },
+    {
+      "id": "to_next",
+      "lane": "r1_0",
+      "col": 0,
+      "type": "external",
+      "label": "Continues Between Trips",
+      "width": 176
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n30",
+      "to": "n31",
+      "variant": "default"
+    },
+    {
+      "id": "e1",
+      "from": "n31",
+      "to": "n32",
+      "variant": "default"
+    },
+    {
+      "id": "e2",
+      "from": "n32",
+      "to": "n34",
+      "variant": "default",
+      "label": "No"
+    },
+    {
+      "id": "e3",
+      "from": "n32",
+      "to": "n33",
+      "variant": "default",
+      "label": "Yes"
+    },
+    {
+      "id": "e4",
+      "from": "n33",
+      "to": "n34",
+      "variant": "default"
+    },
+    {
+      "id": "e5",
+      "from": "n34",
+      "to": "to_next",
+      "variant": "default",
+      "role": "return"
+    },
+    {
+      "id": "e6",
+      "from": "from_prev",
+      "to": "n30",
+      "variant": "default"
+    }
+  ]
+}

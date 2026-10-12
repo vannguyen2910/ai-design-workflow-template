@@ -1,0 +1,241 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Travel Buddy: Pre-Trip",
+    "locale": "en",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "external": {
+          "label": "Start or link to another phase"
+        },
+        "backend": {
+          "label": "Discover"
+        },
+        "database": {
+          "label": "Plan"
+        }
+      }
+    },
+    "output": "pre-trip.html"
+  },
+  "lanes": [
+    {
+      "id": "r0_0",
+      "label": "Pre-Trip (1/3)"
+    },
+    {
+      "id": "r1_0",
+      "label": "Pre-Trip (2/3)"
+    },
+    {
+      "id": "r2_0",
+      "label": "Pre-Trip (3/3)"
+    }
+  ],
+  "mainPath": [
+    "from_prev",
+    "n8",
+    "n9",
+    "n10",
+    "n11",
+    "n12"
+  ],
+  "nodes": [
+    {
+      "id": "from_prev",
+      "lane": "r0_0",
+      "col": 0,
+      "type": "external",
+      "label": "From Onboarding",
+      "width": 145,
+      "sublabel": "/ Between Trips"
+    },
+    {
+      "id": "n8",
+      "lane": "r0_0",
+      "col": 1,
+      "type": "external",
+      "label": "Enter Discovery",
+      "width": 145
+    },
+    {
+      "id": "n9",
+      "lane": "r0_0",
+      "col": 2,
+      "type": "backend",
+      "label": "Peer-sourced tip feed",
+      "width": 176,
+      "tag": "D1"
+    },
+    {
+      "id": "n10",
+      "lane": "r0_0",
+      "col": 3,
+      "type": "backend",
+      "label": "Filter by travel style",
+      "width": 176,
+      "tag": "D2"
+    },
+    {
+      "id": "n11",
+      "lane": "r0_0",
+      "col": 4,
+      "type": "backend",
+      "label": "Check crowd signal",
+      "width": 167,
+      "tag": "D3"
+    },
+    {
+      "id": "n12",
+      "lane": "r0_0",
+      "col": 5,
+      "type": "backend",
+      "label": "Watch video snippet",
+      "width": 174,
+      "tag": "D4"
+    },
+    {
+      "id": "n13",
+      "lane": "r1_0",
+      "col": 0,
+      "type": "backend",
+      "label": "Review safety context",
+      "width": 176,
+      "tag": "D5"
+    },
+    {
+      "id": "n14",
+      "lane": "r1_0",
+      "col": 1,
+      "type": "database",
+      "label": "One-tap save",
+      "width": 124,
+      "sublabel": "to shortlist",
+      "tag": "P3"
+    },
+    {
+      "id": "n15",
+      "lane": "r1_0",
+      "col": 2,
+      "type": "database",
+      "label": "Import AI itinerary",
+      "width": 174,
+      "tag": "P6"
+    },
+    {
+      "id": "n16",
+      "lane": "r1_0",
+      "col": 3,
+      "type": "database",
+      "label": "Build living shortlist",
+      "width": 176,
+      "tag": "P1"
+    },
+    {
+      "id": "n17",
+      "lane": "r1_0",
+      "col": 4,
+      "type": "database",
+      "label": "Collaborate",
+      "width": 145,
+      "sublabel": "with companions",
+      "tag": "P5"
+    },
+    {
+      "id": "n18",
+      "lane": "r1_0",
+      "col": 5,
+      "type": "database",
+      "label": "Map view of saved places",
+      "width": 176,
+      "tag": "P2"
+    },
+    {
+      "id": "to_next",
+      "lane": "r2_0",
+      "col": 0,
+      "type": "external",
+      "label": "Continues In-Destination",
+      "width": 176
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n8",
+      "to": "n9",
+      "variant": "default"
+    },
+    {
+      "id": "e1",
+      "from": "n9",
+      "to": "n10",
+      "variant": "default"
+    },
+    {
+      "id": "e2",
+      "from": "n10",
+      "to": "n11",
+      "variant": "default"
+    },
+    {
+      "id": "e3",
+      "from": "n11",
+      "to": "n12",
+      "variant": "default"
+    },
+    {
+      "id": "e4",
+      "from": "n12",
+      "to": "n13",
+      "variant": "default",
+      "role": "return"
+    },
+    {
+      "id": "e5",
+      "from": "n13",
+      "to": "n14",
+      "variant": "default"
+    },
+    {
+      "id": "e6",
+      "from": "n14",
+      "to": "n15",
+      "variant": "default"
+    },
+    {
+      "id": "e7",
+      "from": "n15",
+      "to": "n16",
+      "variant": "default"
+    },
+    {
+      "id": "e8",
+      "from": "n16",
+      "to": "n17",
+      "variant": "default"
+    },
+    {
+      "id": "e9",
+      "from": "n17",
+      "to": "n18",
+      "variant": "default"
+    },
+    {
+      "id": "e10",
+      "from": "n18",
+      "to": "to_next",
+      "variant": "default",
+      "role": "return"
+    },
+    {
+      "id": "e11",
+      "from": "from_prev",
+      "to": "n8",
+      "variant": "default",
+      "label": "Later"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Travel Buddy: journey overview",
+    "locale": "en",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "Phase"
+        }
+      }
+    },
+    "output": "overview.html"
+  },
+  "lanes": [
+    {
+      "id": "phases",
+      "label": "Phases"
+    }
+  ],
+  "mainPath": [
+    "OB",
+    "PRE",
+    "DEST",
+    "POST",
+    "LOOP"
+  ],
+  "nodes": [
+    {
+      "id": "OB",
+      "lane": "phases",
+      "col": 0,
+      "type": "frontend",
+      "label": "Onboarding",
+      "width": 150
+    },
+    {
+      "id": "PRE",
+      "lane": "phases",
+      "col": 1,
+      "type": "frontend",
+      "label": "Pre-Trip",
+      "width": 150
+    },
+    {
+      "id": "DEST",
+      "lane": "phases",
+      "col": 2,
+      "type": "frontend",
+      "label": "In-Destination",
+      "width": 150
+    },
+    {
+      "id": "POST",
+      "lane": "phases",
+      "col": 3,
+      "type": "frontend",
+      "label": "Post-Trip",
+      "width": 150
+    },
+    {
+      "id": "LOOP",
+      "lane": "phases",
+      "col": 4,
+      "type": "frontend",
+      "label": "Between Trips",
+      "width": 150
+    }
+  ],
+  "edges": [
+    {
+      "id": "o0",
+      "from": "OB",
+      "to": "PRE",
+      "variant": "default",
+      "label": "Later"
+    },
+    {
+      "id": "o1",
+      "from": "PRE",
+      "to": "DEST",
+      "variant": "default"
+    },
+    {
+      "id": "o2",
+      "from": "DEST",
+      "to": "POST",
+      "variant": "default"
+    },
+    {
+      "id": "o3",
+      "from": "POST",
+      "to": "LOOP",
+      "variant": "default"
+    },
+    {
+      "id": "o4",
+      "from": "LOOP",
+      "to": "PRE",
+      "variant": "dashed",
+      "role": "return"
+    }
+  ]
+}
