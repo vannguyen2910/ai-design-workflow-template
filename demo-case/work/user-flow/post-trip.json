@@ -54,7 +54,8 @@
       "type": "security",
       "label": "Auto-generated layout",
       "width": 176,
-      "tag": "J2"
+      "sublabel": "→ D7",
+      "tag": "SP-J2 → D7"
     },
     {
       "id": "n31",
@@ -63,8 +64,8 @@
       "type": "security",
       "label": "Journal private",
       "width": 145,
-      "sublabel": "by default",
-      "tag": "J3"
+      "sublabel": "by default → D7",
+      "tag": "SP-J3 → D7"
     },
     {
       "id": "n32",
@@ -90,9 +91,9 @@
       "col": 4,
       "type": "security",
       "label": "Selective share",
-      "width": 145,
-      "sublabel": "with contacts",
-      "tag": "J4"
+      "width": 167,
+      "sublabel": "with contacts → D7",
+      "tag": "SP-J4 → D7"
     },
     {
       "id": "to_next",

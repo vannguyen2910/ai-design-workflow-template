@@ -168,7 +168,8 @@ def node_width(label, sub, tag):
     return int(min(176, max(124, n * 7.4 + 34)))
 
 
-def build_phase(g, gid, title, args, pillar_map):
+def build_phase(g, gid, title, args, pillar_map, decision_codes=None, seen_codes=None):
+    decision_codes = decision_codes or {}
     members = [n for n in g.order if g.nodes[n]["group"] == gid]
     mset = set(members)
     internal = [(a, b, l) for a, b, l in g.edges if a in mset and b in mset]
@@ -235,12 +236,29 @@ def build_phase(g, gid, title, args, pillar_map):
             icon = "person" if n in members and d[n] == 0 else None
         elif tag:
             t = pillar_map.get(re.match(r"[A-Z]", tag).group(0), "frontend")
+        codes_ = expand_codes(tag) if tag else []
+        ds_ = []
+        for c_ in codes_:
+            for dd_ in decision_codes.get(c_, []):
+                if dd_ not in ds_:
+                    ds_.append(dd_)
+        if ds_:  # show the decision on the node itself, not only in its detail panel
+            sub = (sub + " " if sub else "") + "→ " + ",".join(ds_)
         node = {"id": n, "lane": lane_of[(seg, k)], "col": col, "type": t, "label": label,
                 "width": node_width(label, sub, tag)}
         if sub:
             node["sublabel"] = sub
         if tag:
-            node["tag"] = tag
+            codes = expand_codes(tag)
+            if seen_codes is not None:
+                seen_codes.update(codes)
+            ds = []
+            for c in codes:
+                for dd in decision_codes.get(c, []):
+                    if dd not in ds:
+                        ds.append(dd)
+            node["tag"] = ("SP-" + tag + " → " + ",".join(ds)) if ds else tag  # SP- keeps solution codes apart from decision IDs
+            node["width"] = max(node["width"], int(len(node["tag"]) * 6.4 + 40))
         if icon:
             node["icon"] = icon
         jn.append(node)
@@ -320,6 +338,40 @@ def diagram(title, jn, je, lanes, main, legend, out_name):
     }
 
 
+def load_decision_codes(case_dir):
+    """solution code -> [decision IDs], from the `solutions` property of insights/decisions/*.md"""
+    out = {}
+    d = os.path.join(case_dir, "insights", "decisions")
+    if not os.path.isdir(d):
+        return out
+    for fn in sorted(os.listdir(d)):
+        m = re.match(r"([A-Z]\d+)\.md$", fn)
+        if not m:
+            continue
+        txt = open(os.path.join(d, fn), encoding="utf-8").read()
+        fm = re.match(r"^---\n(.*?)\n---", txt, re.S)
+        if not fm:
+            continue
+        sm = re.search(r"^solutions:\s*\[(.*?)\]\s*$", fm.group(1), re.M)
+        if not sm:
+            continue
+        for code in re.findall(r"[A-Z]\d+", sm.group(1)):
+            out.setdefault(code, []).append(m.group(1))
+    return out
+
+
+def expand_codes(tag):
+    """'D1–D5' -> D1..D5; 'A4' -> A4; 'C1, C2' -> C1, C2"""
+    codes = []
+    for part in re.split(r"\s*,\s*", tag):
+        r = re.match(r"^([A-Z])(\d+)\s*[–-]\s*[A-Z]?(\d+)$", part)
+        if r:
+            codes += ["%s%d" % (r.group(1), i) for i in range(int(r.group(2)), int(r.group(3)) + 1)]
+        elif re.match(r"^[A-Z]\d+$", part):
+            codes.append(part)
+    return codes
+
+
 def find_archify():
     for p in (os.environ.get("ARCHIFY_BIN"), os.path.expanduser("~/.claude/skills/archify/bin/archify.mjs")):
         if p and os.path.isfile(p):
@@ -350,6 +402,7 @@ def main():
     ap.add_argument("--out", required=True, help="folder for the .json and .html files")
     ap.add_argument("--title", default="", help="product name used in diagram titles")
     ap.add_argument("--legend", default="", help='names for solution-code letters, e.g. "A=Onboarding,D=Discover,P=Plan"')
+    ap.add_argument("--case", default="", help="case folder holding insights/decisions (default: the folder above this script)")
     ap.add_argument("--no-overview", action="store_true", help="skip the phase overview diagram")
     ap.add_argument("--no-run", action="store_true", help="write the .json files only")
     a = ap.parse_args()
@@ -392,8 +445,11 @@ def main():
         diag = diagram(prefix + "journey overview", ov_nodes, ov_edges, [{"id": "phases", "label": "Phases"}],
                        [gid for gid, _ in groups], {"entries": {"frontend": {"label": "Phase"}}}, "overview.html")
         jobs.append(("overview", diag))
+    case_dir = a.case or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    decision_codes = load_decision_codes(case_dir)
+    seen_codes = set()
     for gid, title in groups:
-        jn, je, lanes, main_path = build_phase(g, gid, short_phase(title), a, pillar_map)
+        jn, je, lanes, main_path = build_phase(g, gid, short_phase(title), a, pillar_map, decision_codes, seen_codes)
         diag = diagram(prefix + short_phase(title), jn, je, lanes, main_path, legend_for(jn, names, pillar_map), "%s.html" % slugify(short_phase(title)))
         jobs.append((slugify(short_phase(title)), diag))
 
@@ -413,6 +469,9 @@ def main():
             print("%-22s %s" % (slug, "ok" if ok else "FAILED: " + "; ".join(msgs)[:300]))
         else:
             print("%-22s json written" % slug)
+    if decision_codes or seen_codes:
+        no_decision = sorted(c for c in seen_codes if c not in decision_codes)
+        print("solution codes with no decision: %s" % (", ".join(no_decision) or "none"))
     sys.exit(0 if ok_all else 1)
 
 

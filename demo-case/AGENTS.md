@@ -38,6 +38,7 @@ Khi chủ dự án nhờ bạn làm hoặc thêm một thứ gì đó mà không
 | Chủ dự án đưa hoặc nhờ | Đặt ở | Ghi chú |
 |---|---|---|
 | Ảnh, PDF, video, prototype HTML, flow, hoặc tài liệu để người khác xem | `work/<tên-ngắn>/` kèm `index.md` (bắt đầu từ mẫu trong `work/_templates/`); tệp lẻ thì `work/<tên>.md`. Làm theo `_ai/add-media.md` | Điền `supports` bằng mã item nó làm bằng chứng cho nếu biết. Không biết thì để `[]`, đừng đoán |
+| Sơ đồ flow từ Mermaid (user flow, E2E) | `python3 _ai/flow-from-mermaid.py <file.md> --out work/<tên> --title "..."`: mỗi subgraph một hình; mã giải pháp (A4, P3) được gắn thêm mã decision lấy từ property `solutions` của decision | Cần skill archify. Nếu decision thực hiện một giải pháp, ghi mã đó vào `solutions` |
 | Chạy một phương pháp (assumptions map, journey map, ideation...) | Điền vào file method card có sẵn trong `work/` (xem tab theo giai đoạn của Work); không tạo file mới nếu đã có | Đổi `status` từ `planned` khi bắt đầu |
 | Bản nháp hoặc tổng hợp của một giai đoạn | `work/<tên>.md` đúng file của giai đoạn (`scope`, `user-voice-synthesis`, `competitor-analysis`, `problem-brief`, `options`, `alignment`, `test-plan`, `findings`, `handoff`, `measurement-plan`) | Chỉ ghi vào đúng section được yêu cầu |
 | Một quyết định thiết kế | `python3 _ai/new-item.py D ...` kèm `--owner`, `--state`, `--reason` (ghi luôn case log). Không tự đặt `accepted` khi chủ dự án chưa nói | `proposed` là mặc định |

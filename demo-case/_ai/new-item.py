@@ -148,6 +148,7 @@ def main():
     ap.add_argument("--status", help="evidence: planned hoặc run; metric: assumed hoặc confirmed")
     ap.add_argument("--baseline", help="metric: mốc hiện tại (hoặc unknown)")
     ap.add_argument("--reason", help="decision: lý do một câu, ghi luôn vào case log")
+    ap.add_argument("--solutions", help="decision: mã giải pháp mà nó thực hiện, ví dụ A4,P3 (sơ đồ flow dùng để gắn mã decision)")
     ap.add_argument("--owner", help="decision: ai chịu trách nhiệm")
     ap.add_argument("--decided-on", dest="decided_on", help="decision: ngày YYYY-MM-DD (mặc định: hôm nay khi state là accepted)")
     ap.add_argument("--state", choices=["proposed", "accepted", "shipped", "superseded", "dropped"], help="decision: mặc định proposed")
@@ -244,6 +245,8 @@ def main():
         owner = a.owner if a.owner is not None else (ask("Ai chịu trách nhiệm (owner)") if interactive else "")
         when = a.decided_on if a.decided_on is not None else (datetime.date.today().isoformat() if st_ in ("accepted", "shipped") else "")
         extra = ["state: %s" % yaml_str(st_), "owner: %s" % yaml_str(owner), "decided_on: %s" % yaml_str(when)]
+        if a.solutions:
+            extra.append("solutions: [%s]" % ", ".join(yaml_str(c) for c in ids_of(a.solutions)))
 
     # 5. write the file
     new_id = next_id(kind, by_id)

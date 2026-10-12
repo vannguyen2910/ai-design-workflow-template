@@ -8,11 +8,12 @@ state: "proposed"
 tests:
   - "[[H1]]"
 follows: []
+solutions: []
 pulls_against: []
 ---
 *Cách dùng: copy file này vào folder `insights/decisions/`, đặt tên theo mã tiếp theo (ví dụ `D1.md`), điền title, sửa `tests` về hypothesis có thật, rồi xoá dòng này. `follows` và `pulls_against` trỏ tới principle, ví dụ `"[[principle-checks|P1]]"`.*
 
-*Cách dùng thêm: `owner`: người chịu trách nhiệm về decision này. `decided_on`: ngày (YYYY-MM-DD). `state`: `proposed` (đề xuất), `accepted` (đã chấp nhận), `shipped`, `superseded` hoặc `dropped`.*
+*Cách dùng thêm: `solutions`: mã giải pháp (ví dụ A4, P3) mà decision này thực hiện; sơ đồ flow dùng nó để gắn mã decision lên node. `owner`: người chịu trách nhiệm về decision này. `decided_on`: ngày (YYYY-MM-DD). `state`: `proposed` (đề xuất), `accepted` (đã chấp nhận), `shipped`, `superseded` hoặc `dropped`.*
 
 ## Why
 [Lý do thiết kế, và nó trả lời nhu cầu nào.]

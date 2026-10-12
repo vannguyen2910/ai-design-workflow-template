@@ -95,7 +95,8 @@
       "type": "backend",
       "label": "Live discovery",
       "width": 137,
-      "tag": "D1–D5"
+      "sublabel": "→ D3",
+      "tag": "SP-D1–D5 → D3"
     },
     {
       "id": "n23",
@@ -111,9 +112,9 @@
       "col": 5,
       "type": "cloud",
       "label": "Interest &",
-      "width": 137,
-      "sublabel": "style matching",
-      "tag": "C2"
+      "width": 174,
+      "sublabel": "style matching → D6",
+      "tag": "SP-C2 → D6"
     },
     {
       "id": "n25",
@@ -122,7 +123,8 @@
       "type": "cloud",
       "label": "Verify identity",
       "width": 145,
-      "tag": "C1"
+      "sublabel": "→ D6",
+      "tag": "SP-C1 → D6"
     },
     {
       "id": "n26",
@@ -131,7 +133,8 @@
       "type": "cloud",
       "label": "Reciprocal exchange",
       "width": 174,
-      "tag": "C3"
+      "sublabel": "→ D6",
+      "tag": "SP-C3 → D6"
     },
     {
       "id": "n27",
@@ -140,7 +143,8 @@
       "type": "cloud",
       "label": "In-app message",
       "width": 137,
-      "tag": "C4"
+      "sublabel": "→ D6",
+      "tag": "SP-C4 → D6"
     },
     {
       "id": "n28",
@@ -157,9 +161,9 @@
       "col": 4,
       "type": "security",
       "label": "Auto-capture:",
-      "width": 145,
-      "sublabel": "location + time",
-      "tag": "J1"
+      "width": 176,
+      "sublabel": "location + time → D7",
+      "tag": "SP-J1 → D7"
     },
     {
       "id": "to_next",

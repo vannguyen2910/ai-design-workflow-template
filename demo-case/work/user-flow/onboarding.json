@@ -55,7 +55,8 @@
       "type": "frontend",
       "label": "Browse without account",
       "width": 176,
-      "tag": "A4"
+      "sublabel": "→ D2",
+      "tag": "SP-A4 → D2"
     },
     {
       "id": "n3",

@@ -57,7 +57,7 @@ PROP_LABEL = {"type": "Type", "rank": "Rank", "evidence": "Evidence source", "se
               "participants": "Participants", "result": "Result", "participants_type": "Participant type",
               "area": "Area", "state": "State", "owner": "Owner", "decided_on": "Decided on",
               "impact": "Impact", "confidence": "Confidence", "rank_reason": "Rank reason",
-              "target": "Target", "measured_on": "Measured on", "verdict": "Verdict",
+              "target": "Target", "measured_on": "Measured on", "verdict": "Verdict", "solutions": "Solution codes",
               "severity": "Severity", "found_in": "Found in", "affects": "Affects decision",
               "principle": "Principle violated", "resolution": "Resolution"}
 VALUE_LABEL = {"status": {"assumed": "Assumed", "planned": "Planned", "run": "Run"},
