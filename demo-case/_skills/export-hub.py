@@ -1632,6 +1632,8 @@ ART_TYPES = {
     "prototype": "Prototype", "test-plan": "Test plan", "test-report": "Test report",
     "requirements": "Requirements (PRD)", "solution-pool": "Solution pool", "generic": "Document",
     "pestel-analysis": "PESTEL analysis", "research-plan": "Research plan", "interview-guide": "Interview guide",
+    "journey-map": "Journey map", "measurement-plan": "Measurement plan", "stakeholder-map": "Stakeholder map",
+    "usability-test-script": "Usability test script", "options": "Options",
     "problem-brief": "Problem brief", "prioritization": "Prioritization",
     "assumptions-map": "Assumptions map", "heuristic-evaluation": "Heuristic evaluation", "opportunity-solution-tree": "Opportunity solution tree",
 }
