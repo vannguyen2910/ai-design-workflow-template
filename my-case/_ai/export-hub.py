@@ -2519,7 +2519,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         for k, t in [("overview", "Overview")] + ([("context", "Context")] if ctx else []) + [("journey", "Stages"), ("docs", "Work"), ("trace", "Insights"), ("reference", "Standards")] + ([("guide", "Guide")] if v_guide else []))
     sidebar = '<details class="menu" open><summary>Menu</summary><nav class="nav2" aria-label="Report sections">%s</nav></details>' % nav
 
-    now = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
+    now = ""  # no timestamp: the report is a pure function of the project files, so rebuilding never creates a diff
     theme_select = ""
     if switcher:
         theme_select = '<label class="themepick">Theme <select id="themeselect" aria-label="Choose a theme">%s</select></label>' % "".join(
@@ -2549,7 +2549,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
 {{V_TRACE}}
 {{V_REFERENCE}}
 {{V_GUIDE}}
-<div class="wrap" style="padding-top:0"><footer class="foot">This report is generated automatically from the project files, {{NOW}}{{MODE}}.<details class="foot-tech"><summary>For whoever updates the report</summary><p>Edit the project source files, then ask the AI tool to rebuild the report, or run <code>python3 _ai/export-hub.py</code>.</p></details></footer></div>
+<div class="wrap" style="padding-top:0"><footer class="foot">This report is generated automatically from the project files{{MODE}}.<details class="foot-tech"><summary>For whoever updates the report</summary><p>Edit the project source files, then ask the AI tool to rebuild the report, or run <code>python3 _ai/export-hub.py</code>.</p></details></footer></div>
 </main>
 </div>
 <script>{{JS}}</script>
