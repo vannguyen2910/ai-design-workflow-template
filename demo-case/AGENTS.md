@@ -13,7 +13,7 @@ Mỗi folder không có `_` ở gốc là một mục trong menu của báo cáo
 | Đường dẫn | Là gì | Bạn được làm gì |
 |---|---|---|
 | `AGENTS.md` | Luật cho AI tool (file này) | Đọc |
-| `README.md` | Overview: project card và bảng "Tôi muốn... mở..." | Đọc. Chỉ sửa khi được yêu cầu |
+| `README.md` | Overview: project card và bảng "Bạn muốn làm gì?" | Đọc. Chỉ sửa khi được yêu cầu |
 | `guide.md` | Trang Hướng dẫn sử dụng của báo cáo (tab "Hướng dẫn" ở menu bên trái): workspace là gì, bắt đầu dự án mới, thêm task mới, preview hub, thuật ngữ làm việc với AI; viết cho người không rành kỹ thuật | Đọc. Chỉ sửa khi được yêu cầu; giữ giọng đơn giản và các câu mẫu dán được cho AI tool |
 | `context/*.md` | Context pack: thông tin nền (sản phẩm, người dùng, quy tắc dữ liệu, design system) | Đọc đầu tiên ở mọi bước. Không sửa trừ khi được yêu cầu |
 | `_ai/*.md` | Định nghĩa từng bước làm việc với AI (step card) | Đọc card của bước đang chạy |

@@ -34,7 +34,7 @@ Folder được đặt tên theo **việc bạn làm** ở đó:
 | `_ai/` | Step card (các bước làm việc với AI) và script tạo báo cáo `index.html` | Khi chạy một bước; hiếm khi mở tay |
 | `_personal/` | Ghi chú riêng, không đưa cho AI | Khi bạn muốn |
 
-Trang `README.md` ở gốc folder dự án có bảng "Tôi muốn... mở..." cho từng việc, nên khi chưa biết bắt đầu từ đâu, hãy đọc nó.
+Trang `README.md` ở gốc folder dự án có bảng "Bạn muốn làm gì?" với câu nói mẫu cho từng việc, nên khi chưa biết bắt đầu từ đâu, hãy đọc nó.
 
 ## Step 3: Fill in the first files
 
