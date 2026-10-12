@@ -15,7 +15,7 @@ Chưa phát hành. Chỉ có prototype và một vòng usability test mô phỏn
 Chưa có kết quả đo. Các metric M1 đến M5 đều có target nhưng `verdict` là `pending`: M1 đến M3 chỉ có thể kiểm tra bằng test với người thật, M4 và M5 cần analytics sau khi launch.
 
 ## What we learned
-- Vòng test mô phỏng chỉ cho tín hiệu về khả năng dùng, không thay cho test thật (xem `reference/case-log.md`).
+- Vòng test mô phỏng chỉ cho tín hiệu về khả năng dùng, không thay cho test thật (xem `insights/case-log.md`).
 
 ## Opportunities to revisit
 - O1 (lập kế hoạch): xếp hạng 1 dựa trên khảo sát n=13; cần kiểm tra lại với người dùng thật khi có dữ liệu hành vi.

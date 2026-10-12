@@ -30,7 +30,7 @@ Folder được đặt tên theo **việc bạn làm** ở đó:
 | `work/prototype/` | Code prototype | Giai đoạn Develop |
 | `stages/` | **Mỗi giai đoạn một trang**, tự dựng từ `work/` và `insights/` theo bảng Pages ở `stages/README.md`; bạn không viết ở đây | Chỉ sửa bảng khi đổi thứ tự hoặc thêm giai đoạn |
 | `insights/` | **Các item nối với nhau:** nhu cầu, hypothesis, decision, evidence, finding, metric; mỗi item một file trong folder loại của nó | Cập nhật khi có thay đổi |
-| `reference/` | **Tra cứu:** gates, principle checks, severity levels, case log. Thả file `.md` mới vào đây là tự hiện ở báo cáo | Khi cần xem lại |
+| `standards/` | **Tra cứu:** gates, principle checks, severity levels, case log. Thả file `.md` mới vào đây là tự hiện ở báo cáo | Khi cần xem lại |
 | `_ai/` | Step card (các bước làm việc với AI) và script tạo báo cáo `index.html` | Khi chạy một bước; hiếm khi mở tay |
 | `_personal/` | Ghi chú riêng, không đưa cho AI | Khi bạn muốn |
 
@@ -65,7 +65,7 @@ Một lần làm việc với AI trông như sau:
 2. **Lưu một mốc trước khi AI ghi file.** Nếu bạn dùng GitHub Desktop, bấm Commit (xem [`03-github-basics.md`](03-github-basics.md)). Nếu không, copy folder case thành một bản `...-backup`. Nhờ vậy AI làm hỏng thì bạn quay lại được.
 3. **Nói với tool một câu**, ví dụ: *"Chạy step 5 của `_ai/user-voice-synthesis.md`."* Tool chỉ đọc đúng các file mà step card liệt kê.
 4. **Đọc kết quả và tự kiểm tra** ở step tiếp theo. Bản nháp của AI và bản bạn đã sửa nằm ở hai chỗ riêng.
-5. **Ghi một dòng vào `reference/case-log.md`:** bạn quyết định gì, vì sao, và AI đã giúp ở đâu.
+5. **Ghi một dòng vào `insights/case-log.md`:** bạn quyết định gì, vì sao, và AI đã giúp ở đâu.
 
 ## Step 5: Use the hub
 
@@ -75,7 +75,7 @@ Hub là nơi bạn trả lời câu hỏi: "Decision này dựa trên nhu cầu 
 - **Bạn chỉ viết mỗi điều một chỗ.** Decision `D2` nói nó kiểm chứng hypothesis nào; hub tự suy ra chiều ngược lại.
 - **Sau mỗi lần cập nhật,** chạy `python3 _ai/export-hub.py` (hoặc nhờ AI tool chạy) để báo cáo dựng lại bảng tổng hợp và warnings.
 
-Cách hub vận hành nằm ở `reference/how-the-hub-works.md` trong folder case của bạn.
+Cách hub vận hành nằm ở `_ai/how-the-hub-works.md` trong folder case của bạn.
 
 ## View markdown files
 

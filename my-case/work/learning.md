@@ -24,4 +24,4 @@ supports: []
 - [O?]: [vì sao mở lại]
 
 ## What changes next
-[Thay đổi cho vòng tiếp theo: decision mới, hypothesis mới. Thêm chúng vào `reference/case-log.md`.]
+[Thay đổi cho vòng tiếp theo: decision mới, hypothesis mới. Thêm chúng vào `insights/case-log.md`.]

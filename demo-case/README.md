@@ -13,7 +13,7 @@ Dự án gốc được làm trước khi có quy trình AI-assisted của works
 
 1. Bấm đúp `index.html` để xem hub trong trình duyệt. Bắt đầu ở mục **Overview**, rồi mở **Insights** (chế độ Cây) để đi từ một decision ngược về nhu cầu của người dùng.
 2. Đọc `context/product-and-users.md` để biết dự án là gì.
-3. Mở `reference/gates.md` để thấy gate nào đạt, gate nào chưa, và vì sao.
+3. Mở `standards/gates.md` để thấy gate nào đạt, gate nào chưa, và vì sao.
 
 ## What is in here
 
@@ -27,7 +27,7 @@ Dự án gốc được làm trước khi có quy trình AI-assisted của works
 | `work/test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md` | Kế hoạch test, findings, handoff, kế hoạch đo | Deliver |
 | `insights/` | 5 nhu cầu, 6 hypothesis, 7 decision, 2 evidence, 7 finding, 5 metric | Mọi giai đoạn |
 | `stages/README.md` | Bảng bảy trang giai đoạn (scope, evidence, problem brief, develop, alignment, findings, handoff); mỗi trang tự dựng từ `work/` và `insights/` | Mọi giai đoạn |
-| `reference/` | Gates, principle checks, severity levels, case log | Mọi giai đoạn |
+| `standards/` | Gates, principle checks, severity levels, case log | Mọi giai đoạn |
 | `_ai/` | Các bước làm việc với AI (step card) | Mọi giai đoạn |
 | `work/original-docs/` | Tài liệu gốc của giai đoạn Define đến Test (personas, solution pool, flow, IA, PRD, test plan, findings) | Tham khảo |
 

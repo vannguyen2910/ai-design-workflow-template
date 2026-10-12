@@ -92,18 +92,21 @@ def main():
                 os.remove(p)
                 removed += 1
     # example rows in the stage pages and reference pages
-    for folder in (os.path.join(dest, "stages"), os.path.join(dest, "reference")):
+    for folder in (os.path.join(dest, "stages"), os.path.join(dest, "standards")):
         for name in sorted(os.listdir(folder)) if os.path.isdir(folder) else []:
             p = os.path.join(folder, name)
-            if os.path.isfile(p) and name.endswith(".md") and name != "how-the-hub-works.md":
+            if os.path.isfile(p) and name.endswith(".md"):
                 write(p, clean_hub_page(read(p), False))
+    p = os.path.join(dest, "insights", "case-log.md")
+    if os.path.isfile(p):
+        write(p, clean_hub_page(read(p), False))
 
     for folder in ("opportunities", "hypotheses", "metrics", "decisions", "evidence", "findings"):
         d = os.path.join(insights, folder)
         os.makedirs(d, exist_ok=True)
         if not os.listdir(d):
             write(os.path.join(d, ".gitkeep"), "")  # keeps the empty folder in Git
-    p = os.path.join(dest, "reference", "how-the-hub-works.md")
+    p = os.path.join(dest, "_ai", "how-the-hub-works.md")
     if os.path.isfile(p):
         write(p, re.sub(r"^- Các item `\[EXAMPLE\]`.*\n", "", read(p), flags=re.M))
 
@@ -115,7 +118,7 @@ def main():
     write(p, t)
 
     print("Đã tạo: %s" % dest)
-    print("  - Đã xoá %d item [EXAMPLE] và dọn các dòng mẫu trong reference/" % removed)
+    print("  - Đã xoá %d item [EXAMPLE] và dọn các dòng mẫu trong standards/" % removed)
     tool = os.path.join(dest, "_ai", "export-hub.py")
     if os.path.isfile(tool):
         r = subprocess.run([sys.executable, tool], cwd=dest, capture_output=True, text=True)

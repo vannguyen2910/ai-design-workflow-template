@@ -19,9 +19,9 @@ Link hoặc folder. Đây là tài liệu tham chiếu, không phải production
 - E2E flow: `work/original-docs/08_E2E_User_Flow.md`
 
 ## Decisions and reasons
-(Dẫn tới decision log trong `reference/case-log.md`)
+(Dẫn tới decision log trong `insights/case-log.md`)
 
-Bảy decision và lý do nằm ở `insights/decisions/`; nhật ký thời gian nằm ở `reference/case-log.md`.
+Bảy decision và lý do nằm ở `insights/decisions/`; nhật ký thời gian nằm ở `insights/case-log.md`.
 
 ## Acceptance notes
 *Điều gì phải đúng khi sản phẩm được dựng xong. Từ PRD của tab Explore (mục 8).*

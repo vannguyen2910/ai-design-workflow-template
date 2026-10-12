@@ -11,10 +11,10 @@ Python 3.8+ standard library only.
 
 The report is an OUTPUT. Never edit it by hand: change the markdown and export again.
 
-Included : README.md, stages/, work/, insights/, reference/ and context/
+Included : README.md, stages/, work/, insights/, standards/ and context/
 Excluded : AI drafts, _personal/, work/sources/, AGENTS.md, _ai/
 
-Layout: Overview, Context, Stages, Work, Insights, Reference (one menu item per top-level folder). Items (O, H, M, D, E) are not in the menu:
+Layout: Overview, Context, Stages, Work, Insights, Standards (one menu item per top-level folder). Items (O, H, M, D, E) are not in the menu:
 they live in the Trace tab as a tree  Opportunity > Hypothesis > Decision / Evidence / Metric, with search
 and filters, so the report still works with hundreds of items.
 """
@@ -296,7 +296,7 @@ class StagePage(object):
         self.parts, self.missing = [], []
         work = os.path.join(case, "work")
         for ref in spec["work"]:
-            cand = os.path.join(work, ref)
+            cand = os.path.join(case, ref) if ref.split("/")[0] in ("insights", "standards", "context") else os.path.join(work, ref)
             if os.path.isdir(cand):
                 cand = os.path.join(cand, "index.md")
             if os.path.isfile(cand):
@@ -382,7 +382,7 @@ def _natkey(s):
 
 def collect(case):
     """Everything the report shows. A folder at the top of the case is a menu item of the report:
-    stages/, work/ (see collect_artifacts), insights/, reference/ and context/; README.md is the Overview."""
+    stages/, work/ (see collect_artifacts), insights/, standards/ and context/; README.md is the Overview."""
     ov = os.path.join(case, "README.md")
     if not os.path.isfile(ov):
         sys.exit("Không tìm thấy README.md trong %s" % case)
@@ -395,12 +395,14 @@ def collect(case):
         weekly.append(StagePage(spec, case))
     # Reference pages: every .md file in reference/ (README.md excluded). Drop a new file there and it appears.
     # Known pages keep their ids and come first; the rest follow alphabetically, and the case log goes last.
-    ref_dir = os.path.join(case, "reference")
+    ref_dir = os.path.join(case, "standards")
+    if not os.path.isdir(ref_dir) and os.path.isdir(os.path.join(case, "reference")):  # cases made before the rename
+        ref_dir = os.path.join(case, "reference")
     known = {"gates": ("gates", "Gates"), "principle-checks": ("principles", "Principle checks"),
-             "severity-levels": ("severity", "Severity levels"), "case-log": ("case-log", "Case log")}
+             "severity-levels": ("severity", "Severity levels")}
     first = ["gates", "principle-checks", "severity-levels"]
     stems = sorted(f[:-3] for f in os.listdir(ref_dir) if f.endswith(".md") and f.lower() != "readme.md") if os.path.isdir(ref_dir) else []
-    for st in [x for x in first if x in stems] + [x for x in stems if x not in first and x != "case-log"] + [x for x in stems if x == "case-log"]:
+    for st in [x for x in first if x in stems] + [x for x in stems if x not in first and x not in ("case-log", "how-the-hub-works")]:
         pid, lab = known.get(st, (st, None))
         ref.append(Page(pid, os.path.join(ref_dir, st + ".md"), "ref", lab))
     # Context pages: every .md in context/ (README.md excluded), the usual ones first.
@@ -1081,9 +1083,11 @@ header.top{border-bottom:1px solid var(--line)}
 h1{font-size:1.75rem;font-weight:700}
 h2{font-size:.8rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:44px 0 12px}
 .lede{margin:0 0 26px}
-.stats{display:flex;flex-wrap:wrap;margin:14px 0 6px;padding:0}
-.stats span{flex:1 1 0;min-width:84px;display:flex;flex-direction:column;gap:2px;padding:2px 18px;border-left:1px solid var(--line);color:var(--muted);font-size:.8rem;text-transform:capitalize}
-.stats span:first-child{border-left:0;padding-left:0}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));row-gap:18px;margin:14px 0 6px;padding:0}
+.stats span{display:flex;flex-direction:column;gap:2px;padding:2px 18px;border-left:1px solid var(--line);color:var(--muted);font-size:.8rem;text-transform:capitalize}
+.stats span:nth-child(4n+1){border-left:0;padding-left:0}
+.stats span:last-child:nth-child(4n+1){grid-column:span 4}
+.stats .w{text-transform:none}
 .stats b{display:block;margin:0;font-size:1.7rem;line-height:1.15;font-weight:700;color:var(--ink);letter-spacing:-.02em}
 .stats .w b{color:#b76e00}
 .stats .w b::after{content:" ⚠";font-size:.9rem}
@@ -1094,7 +1098,7 @@ h2{font-size:.8rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase
 .wtier-block{color:#b71d18}
 .winfo{margin:18px 0 0}
 .winfo>summary{cursor:pointer;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:6px 0}
-@media(max-width:560px){.stats span{flex:1 1 33%;padding:8px 14px}.stats span:nth-child(3n+1){border-left:0;padding-left:0}}
+@media(max-width:560px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats span:nth-child(4n+1){border-left:1px solid var(--line);padding-left:18px}.stats span:nth-child(2n+1){border-left:0;padding-left:0}.stats span:last-child:nth-child(4n+1){grid-column:auto}}
 .glist{margin:0;border-top:1px solid var(--line)}
 .grow{display:grid;grid-template-columns:minmax(0,1.4fr) 110px minmax(80px,1fr) 70px;gap:16px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
 .grow .gn small{display:block;color:var(--muted);font-size:.78rem}
@@ -1219,6 +1223,10 @@ table.props td{padding:7px 0}
 .ststatus{padding:1px 8px;border-radius:99px;font-size:.72rem;font-weight:700;background:rgba(145,158,171,.16)}
 .ststatus.ok{background:rgba(34,197,94,.16);color:#118d57}
 .ststatus.w{background:rgba(255,171,0,.16);color:#b76e00}
+.nav2 a[data-nav=guide]{margin-top:10px;border-top:1px dashed var(--line);border-radius:0 0 var(--r) var(--r);padding-top:12px}
+.guide pre{position:relative;padding-right:84px}
+.guide .copybtn{position:absolute;top:8px;right:8px;font:inherit;font-size:.74rem;font-weight:600;padding:3px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);cursor:pointer}
+.guide .copybtn:hover{border-color:var(--ink)}
 .stale{margin:0 0 18px;padding:10px 14px;border-left:3px solid #ffab00;background:rgba(255,171,0,.1);border-radius:var(--r);font-size:.88rem;color:var(--ink)}
 .where{margin:10px 0 18px;padding:8px 12px;border-left:3px solid var(--line);background:var(--surface);font-size:.86rem;color:var(--muted);line-height:1.7}
 .where .wl{display:inline-block;min-width:5.5em;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
@@ -1274,7 +1282,7 @@ a.iref:hover{text-decoration-thickness:2px}
 JS = r"""
 (function(){
   var root=document.documentElement; root.classList.add('js');
-  var VIEWS=['overview','context','journey','docs','trace','reference'];
+  var VIEWS=['overview','context','journey','docs','trace','reference','guide'];
   function $(s,c){return (c||document).querySelector(s)}
   function $$(s,c){return [].slice.call((c||document).querySelectorAll(s))}
   var docs={}; $$('.doc').forEach(function(d){docs[d.id]=d});
@@ -1310,6 +1318,21 @@ JS = r"""
     window.scrollTo(0,0);
   }
   window.addEventListener('hashchange',route);
+  // guide page: a Copy button on every prompt
+  $$('#v-guide pre').forEach(function(pre){
+    var b=document.createElement('button'); b.type='button'; b.className='copybtn'; b.textContent='Copy';
+    b.addEventListener('click',function(){
+      var txt=pre.innerText.replace(/\s*Copy\s*$/,'');
+      function done(){b.textContent='Đã copy'; setTimeout(function(){b.textContent='Copy'},1500)}
+      try{ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fallback)}else{fallback()} }catch(e){fallback()}
+      function fallback(){
+        var t=document.createElement('textarea'); t.value=txt; t.style.position='fixed'; t.style.opacity='0'; document.body.appendChild(t); t.select();
+        try{document.execCommand('copy'); done()}catch(e){} document.body.removeChild(t);
+      }
+    });
+    pre.appendChild(b);
+  });
+
   // tree filtering
   var tree=$('#tree'), q=$('#tsearch'), types={}, warnOnly=false, area='', showClosed=false;
   function scoped(el){
@@ -1703,8 +1726,9 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     G = Graph(items, principles)
 
     # Case log: every ID it mentions must exist, and every decision should have a line.
-    cl_page = next((p for p in ref if p.id == "case-log"), None)
-    log_rows = parse_case_log(cl_page.md) if cl_page else []
+    _clp = next((q for q in (os.path.join(case, "insights", "case-log.md"), os.path.join(case, "standards", "case-log.md"),
+                             os.path.join(case, "reference", "case-log.md")) if os.path.isfile(q)), None)
+    log_rows = parse_case_log(open(_clp, encoding="utf-8").read()) if _clp else []
     logged = {i for r in log_rows for i in r[3]}
     unknown_ids = sorted({i for i in logged if i not in G.items and i not in principles}, key=_natkey)
     if unknown_ids:
@@ -1740,6 +1764,9 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     out_dir = os.path.dirname(os.path.abspath(out_path))
     for a in arts:
         by_path[os.path.normcase(os.path.abspath(a.path))] = a.id
+    for p_ in weekly:  # a file only a stage page shows (e.g. insights/case-log.md) links to that stage page
+        for path_, _m, _b in p_.parts:
+            by_path.setdefault(os.path.normcase(os.path.abspath(path_)), p_.id)
     for a in arts:  # a link to a working file that backs an artifact opens that artifact
         if a.source:
             sp = os.path.normcase(os.path.abspath(os.path.join(os.path.dirname(a.path), a.source)))
@@ -1758,6 +1785,8 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     def resolver(src, url, is_img):
         if re.match(r"(https?:|mailto:)", url):
             return "web", url
+        if url.startswith("#/"):  # a link to another page of the report, e.g. [Insights](#/trace)
+            return "page", url[2:]
         if url.startswith("#"):
             return "anchor", url
         target = os.path.normpath(os.path.join(os.path.dirname(src), url.split("#")[0]))
@@ -2009,7 +2038,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             ("m-no-target", "Metric chưa có target", "Điền target: ngưỡng để biết hypothesis đúng hay sai."),
             ("d-no-owner", "Decision đã chấp nhận nhưng chưa có owner", "Điền owner (người chịu trách nhiệm) và decided_on."),
             ("o-no-reason", "Opportunity chưa có lý do xếp hạng", "Điền impact, confidence và rank_reason để người khác hiểu vì sao thứ hạng này."),
-            ("no-log", "Decision chưa có trong case log", "Thêm một dòng vào reference/case-log.md và ghi mã decision ở cột Items."),
+            ("no-log", "Decision chưa có trong case log", "Thêm một dòng vào insights/case-log.md và ghi mã decision ở cột Items."),
             ("log-unknown-id", "Case log nhắc tới mã không tồn tại", "Sửa mã ở cột Items hoặc tạo file item còn thiếu."),
             ("gate-mismatch", "Gate đặt tay khác với dữ liệu", "Xem cột Kiểm tra tự động ở trang Gates; sửa dữ liệu hoặc đổi trạng thái check."),
             ("art-orphan", "Document chưa nối với item nào", "Điền property supports trong document."),
@@ -2079,7 +2108,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     docs_section = ""
     v_overview = (
         '<section class="view" id="v-overview"><div class="wrap">%s<h1>%s</h1><p class="lede">Agreement với product và business: <strong>%s</strong></p>'
-        '<p class="where"><span class="wl">Nguồn</span> <code>README.md</code> (project card), cùng các item trong <code>insights/</code> và <code>reference/gates.md</code>. Muốn đổi nội dung, sửa file nguồn rồi tạo lại báo cáo.</p>'
+        '<p class="where"><span class="wl">Nguồn</span> <code>README.md</code> (project card), cùng các item trong <code>insights/</code> và <code>standards/gates.md</code>. Muốn đổi nội dung, sửa file nguồn rồi tạo lại báo cáo.</p>'
         '<div class="stats">%s</div>'
         '<h2>Gates</h2><div class="glist">%s</div>'
         '<h2>Warnings</h2>%s'
@@ -2107,6 +2136,12 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                 esc(gate["name"]), gate["passed"], gate["total"], esc(STATUS_VI.get(gate["status"], gate["status"])))
         for ref in p.missing:
             problems.append("Stages · %s: không tìm thấy work/%s (kiểm tra cột Từ work trong stages/README.md)" % (p.id, ref))
+        def link_log_ids(h):
+            def one(m):
+                inner = re.sub(r"\b([OHMDEFP]\d+)\b", lambda t: chip(t.group(1)) if (t.group(1) in G.items or t.group(1) in principles) else t.group(1), m.group(2))
+                return m.group(1) + inner + m.group(3)
+            return re.sub(r"(<td[^>]*>)(.*?)(</td>)", one, h, flags=re.S).replace("<td></td>", '<td class="dash">—</td>')
+
         for path, meta, body in p.parts:
             rel = os.path.relpath(path, case_abs).replace(os.sep, "/")
             wid = by_path.get(os.path.normcase(os.path.abspath(path)))
@@ -2116,8 +2151,10 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                 head += '<span class="ststatus %s">%s</span>' % (cls, esc(lab))
             if wid:
                 head += '<a href="#/%s">Mở trong Work →</a>' % esc(wid)
-            out += '<section class="stsrc"><div class="sthead">%s</div>%s</section>' % (
-                head, render_md(body, path, resolver, problems, team))
+            body_html = render_md(body, path, resolver, problems, team)
+            if os.path.basename(path) == "case-log.md":
+                body_html = link_log_ids(body_html)
+            out += '<section class="stsrc"><div class="sthead">%s</div>%s</section>' % (head, body_html)
         for key in p.spec["tables"]:
             if key not in stage_tables:
                 problems.append("Stages · %s: không có bảng item tên '%s' (dùng: %s)" % (p.id, key, ", ".join(STAGE_TABLE_TITLE)))
@@ -2143,9 +2180,8 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         jdocs += '<section class="doc" id="%s" data-title="%s"><a class="back" href="#/journey">← Stages</a><div class="reading"><h1>%s</h1>%s</div>%s<nav class="pn" aria-label="Trang trước và sau">%s%s</nav></section>' % (
             p.id, esc(p.heading), esc(p.heading),
             ('<p class="lede">%s</p>' % esc(desc)) + stage_html(p), stage_src(p), prev, nxt)
-    v_journey = '<section class="view journey" id="v-journey"><div class="wrap"><div class="jlist"><h1>Stages</h1><p class="lede">Mỗi giai đoạn của dự án một trang: điều đã được kiểm tra, kể ngắn gọn cho người đọc.</p>%s<div class="jcards">%s</div></div>%s</div></section>' % (
-        where(["stages/"], "thêm một dòng vào bảng Pages trong <code>stages/README.md</code>: chọn file ở <code>work/</code> và bảng item muốn hiện. Không cần viết file mới.")
-        + '<div class="where"><span class="wl">Cách dựng</span> mỗi trang tự ghép từ file trong <code>work/</code> và các bảng item trong <code>insights/</code>. Bạn không viết ở đây: sửa ở <code>work/</code> hoặc <code>insights/</code> rồi tạo lại báo cáo.</div>',
+    v_journey = '<section class="view journey" id="v-journey"><div class="wrap"><div class="jlist"><h1>Stages</h1><p class="lede">Tự động chọn lọc và cập nhật từ <code>work/</code> và <code>insights/</code>.</p>%s<div class="jcards">%s</div></div>%s</div></section>' % (
+        "",
         jcards, jdocs)
 
     # --- reference
@@ -2157,7 +2193,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             if ln and not ln.startswith(("#", "|", ">", "-", "<", "```")):
                 return re.sub(r"[*_`]", "", ln)[:130]
         return ""
-    rcards = "".join('<a class="jcard" href="#/%s"><span class="wk">Reference</span><h3>%s</h3><p>%s</p></a>' % (
+    rcards = "".join('<a class="jcard" href="#/%s"><span class="wk">Standards</span><h3>%s</h3><p>%s</p></a>' % (
         p.id, esc(p.label), esc(ref_desc.get(p.id) or ref_blurb(p))) for p in ref)
     def ref_html(p):
         h = doc_html(p)
@@ -2169,10 +2205,10 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                 return m.group(1) + inner + m.group(3)
             h = re.sub(r"(<td[^>]*>)(.*?)(</td>)", link_ids, h, flags=re.S)
         return h.replace("<td></td>", '<td class="dash">—</td>')
-    rdocs = "".join('<section class="doc" id="%s" data-title="%s"><a class="back" href="#/reference">← Reference</a><div class="reading">%s</div>%s</section>' % (p.id, esc(p.label), ref_html(p), srcfile(p.path)) for p in ref)
-    v_reference = ('<section class="view reference" id="v-reference"><div class="wrap"><div class="jlist"><h1>Reference</h1>'
-                   '<p class="lede">Các tài liệu để tra cứu: gates, principle checks, severity levels, case log và mọi trang bạn thêm vào folder reference/.</p>%s<div class="jcards">%s</div></div>%s</div></section>') % (
-        where(["reference/"], "thả một file <code>.md</code> vào folder, trang tự hiện ở đây."), rcards, rdocs)
+    rdocs = "".join('<section class="doc" id="%s" data-title="%s"><a class="back" href="#/reference">← Standards</a><div class="reading">%s</div>%s</section>' % (p.id, esc(p.label), ref_html(p), srcfile(p.path)) for p in ref)
+    v_reference = ('<section class="view reference" id="v-reference"><div class="wrap"><div class="jlist"><h1>Standards</h1>'
+                   '<p class="lede">Thước đo để kiểm tra công việc: gates, principle checks, severity levels.</p>%s<div class="jcards">%s</div></div>%s</div></section>') % (
+        where(["standards/"], "thả một file <code>.md</code> vào folder, trang tự hiện ở đây."), rcards, rdocs)
 
     # --- context: product, users and rules (context/)
     ccards = "".join('<a class="jcard" href="#/%s"><span class="wk">Context</span><h3>%s</h3><p>%s</p></a>' % (
@@ -2443,6 +2479,14 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         '</div></div></section>'
     ) % (where(["insights/"], "copy một mẫu trong <code>insights/_templates/</code> vào folder loại tương ứng (mỗi thẻ là một file)."), ttabs, tbar, icards or '<div class="empty"><p><strong>Chưa có mục nào.</strong></p></div>', align_table, top or '<li class="n"><span class="nt">Chưa có mục nào.</span></li>', idocs)
 
+    # --- guide: how to use this report (guide.md at the case root; optional)
+    v_guide = ""
+    _gp = os.path.join(case_abs, "guide.md")
+    if os.path.isfile(_gp):
+        _gm, _gb = _front(open(_gp, encoding="utf-8").read())
+        v_guide = ('<section class="view journey guide" id="v-guide"><div class="wrap"><div class="jlist"><div class="reading">%s</div></div></div></section>'
+                   % render_md(_gb, _gp, resolver, problems, team))
+
     # --- sidebar (same structure as the website: Overview, Journey, Documents by stage, Trace by type, Reference)
     def nlink(target, inner, cls=""):
         return '<a%s href="#/%s" data-nav="%s">%s</a>' % ((' class="%s"' % cls) if cls else "", esc(target), esc(target), inner)
@@ -2450,7 +2494,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     sec_counts = {"context": len(ctx), "journey": len(weekly), "docs": len(arts), "trace": len(items), "reference": len(ref)}
     nav = "".join('<a href="#/%s" data-nav="%s">%s%s</a>' % (
         k, k, t, ('<span class="nm">%d</span>' % sec_counts[k]) if k in sec_counts else "")
-        for k, t in [("overview", "Overview")] + ([("context", "Context")] if ctx else []) + [("journey", "Stages"), ("docs", "Work"), ("trace", "Insights"), ("reference", "Reference")])
+        for k, t in [("overview", "Overview")] + ([("context", "Context")] if ctx else []) + [("journey", "Stages"), ("docs", "Work"), ("trace", "Insights"), ("reference", "Standards")] + ([("guide", "Hướng dẫn")] if v_guide else []))
     sidebar = '<details class="menu" open><summary>Menu</summary><nav class="nav2" aria-label="Các phần của báo cáo">%s</nav></details>' % nav
 
     now = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
@@ -2482,6 +2526,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
 {{V_DOCS}}
 {{V_TRACE}}
 {{V_REFERENCE}}
+{{V_GUIDE}}
 <div class="wrap" style="padding-top:0"><footer class="foot">Báo cáo này được tạo tự động từ các file của dự án, ngày {{NOW}}{{MODE}}.<details class="foot-tech"><summary>Dành cho người cập nhật báo cáo</summary><p>Sửa file gốc của dự án, rồi nhờ AI tool tạo lại báo cáo, hoặc chạy lệnh <code>python3 _ai/export-hub.py</code>.</p></details></footer></div>
 </main>
 </div>
@@ -2489,7 +2534,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
 </body>
 </html>
 """).replace("{{NAME}}", esc(name)).replace("{{NOW}}", now).replace("{{MODE}}", " · bản dành cho team (có bản nháp AI)" if team else "").replace("{{V_OVERVIEW}}", v_overview).replace("{{V_CONTEXT}}", v_context) \
-        .replace("{{V_JOURNEY}}", v_journey).replace("{{V_DOCS}}", v_docs).replace("{{V_TRACE}}", v_trace).replace("{{V_REFERENCE}}", v_reference) \
+        .replace("{{V_JOURNEY}}", v_journey).replace("{{V_DOCS}}", v_docs).replace("{{V_TRACE}}", v_trace).replace("{{V_REFERENCE}}", v_reference).replace("{{V_GUIDE}}", v_guide) \
         .replace("{{CSS}}", CSS + theme_rules(theme, switcher)).replace("{{JS}}", JS).replace("{{THEME}}", theme).replace("{{THEME_SELECT}}", theme_select).replace("{{SIDEBAR}}", sidebar)
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)

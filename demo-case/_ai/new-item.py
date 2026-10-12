@@ -166,7 +166,9 @@ def main():
     hub = load_hub()
     _ov, _wk, items, _ref, _ctx = hub.collect(CASE)
     by_id = {p.id: p for p in items}
-    pr_path = os.path.join(CASE, "reference", "principle-checks.md")
+    pr_path = os.path.join(CASE, "standards", "principle-checks.md")
+    if not os.path.isfile(pr_path):
+        pr_path = os.path.join(CASE, "reference", "principle-checks.md")
     principles = hub.parse_principles(open(pr_path, encoding="utf-8").read()) if os.path.isfile(pr_path) else {}
 
     # 1. kind
@@ -234,7 +236,7 @@ def main():
         n = a.participants or (int(ask("Số người tham gia", "0") or 0) if interactive else 0)
         extra = ["participants: %d" % n, 'result: ""', "status: %s" % yaml_str(st)]
     elif kind == "F":
-        sev = a.severity if a.severity is not None else (int(ask("\nSeverity 0 đến 4 (xem reference/severity-levels.md)", "2")) if interactive else 2)
+        sev = a.severity if a.severity is not None else (int(ask("\nSeverity 0 đến 4 (xem standards/severity-levels.md)", "2")) if interactive else 2)
         extra = ["severity: %d" % sev, "resolution: %s" % yaml_str(a.resolution)]
 
     if kind == "D":
@@ -265,7 +267,9 @@ def main():
     # 6. case log for decisions
     if kind == "D" and not a.no_log:
         reason = a.reason if a.reason is not None else (ask("\nLý do một câu để ghi vào case log (Enter để bỏ qua)") if interactive else "")
-        log = os.path.join(CASE, "reference", "case-log.md")
+        log = os.path.join(CASE, "insights", "case-log.md")
+        if not os.path.isfile(log):
+            log = os.path.join(CASE, "reference", "case-log.md")
         if reason and os.path.isfile(log):
             row = "| %s | %s | %s | %s |\n" % (datetime.date.today().isoformat(), title.replace("|", "/"), reason.replace("|", "/"),
                                               ", ".join([new_id] + rel.get("tests", [])))
@@ -274,9 +278,9 @@ def main():
             if len(lines) > 1 and re.fullmatch(r"\|(\s*\|)+", lines[-2].strip()):  # the empty placeholder row
                 lines.pop(-2)
             open(log, "w", encoding="utf-8").write("\n".join(lines).rstrip("\n") + "\n" + row)
-            print("Đã thêm một dòng vào reference/case-log.md")
+            print("Đã thêm một dòng vào insights/case-log.md")
         elif not reason:
-            print("  Còn thiếu: chưa có dòng trong reference/case-log.md (thêm --reason \"...\" hoặc ghi tay)")
+            print("  Còn thiếu: chưa có dòng trong insights/case-log.md (thêm --reason \"...\" hoặc ghi tay)")
 
     # 7. what is still missing
     missing = []

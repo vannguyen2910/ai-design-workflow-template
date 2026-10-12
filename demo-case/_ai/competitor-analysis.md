@@ -116,7 +116,7 @@ Copy bảng nháp sang `## Evidence (verified)`. Kiểm tra **mọi ô của 2 �
 ## Step 8: Interpret + decide · Gate C
 
 **Who:** YOU
-**Input:** `## Patterns`, `## Scope`, `reference/principle-checks.md`
+**Input:** `## Patterns`, `## Scope`, `standards/principle-checks.md`
 **Output:** `## Insights + decision`, rồi trang Evidence trong Stages (tự dựng từ working file)
 
 Cân từng pattern theo người dùng của mình và các principle. Pattern xuất hiện ở nhiều đối thủ chưa chắc đã quan trọng. Viết 3 đến 5 insight kèm link evidence, **câu trả lời cho decision ở step 1** trong một câu ("Nên / không nên X, vì Y", hoặc "chưa đủ evidence" kèm điều còn thiếu), và các câu hỏi mở cần hỏi người dùng thật. Đưa bản đã kiểm tra lên trang Evidence của hub.

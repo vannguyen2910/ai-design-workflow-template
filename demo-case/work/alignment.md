@@ -21,7 +21,7 @@ Xem mục Insights (chế độ Bảng đối chiếu) trong `index.html`. Với
 
 | Decision | Principle | Passes? | Reason |
 |---|---|---|---|
-| | | | Chưa làm: cần viết `reference/principle-checks.md` trước |
+| | | | Chưa làm: cần viết `standards/principle-checks.md` trước |
 
 ## Verdicts
 | Finding | Fix / accept as a recorded trade-off / cut | Reason |

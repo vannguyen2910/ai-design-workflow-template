@@ -4,7 +4,7 @@ File này dành cho AI tool. Đọc nó trước khi làm bất cứ việc gì 
 
 ## What this folder is
 
-Case folder của một người làm sản phẩm (designer, researcher, PM...) làm việc theo quy trình AI-assisted: AI soạn nháp, chủ dự án kiểm tra và quyết định. Folder chia theo việc bạn làm: `context/` (thông tin nền), `stages/` (trang kể lại từng giai đoạn), `work/` (mọi thứ làm ra), `insights/` (các item nối với nhau), `reference/` (trang tra cứu), và `_ai/` (step card và script cho AI). Mỗi bước làm việc với AI được định nghĩa bằng một step card trong `_ai/`.
+Case folder của một người làm sản phẩm (designer, researcher, PM...) làm việc theo quy trình AI-assisted: AI soạn nháp, chủ dự án kiểm tra và quyết định. Folder chia theo việc bạn làm: `context/` (thông tin nền), `stages/` (trang kể lại từng giai đoạn), `work/` (mọi thứ làm ra), `insights/` (các item nối với nhau), `standards/` (trang tra cứu), và `_ai/` (step card và script cho AI). Mỗi bước làm việc với AI được định nghĩa bằng một step card trong `_ai/`.
 
 ## Map
 
@@ -14,6 +14,7 @@ Mỗi folder không có `_` ở gốc là một mục trong menu của báo cáo
 |---|---|---|
 | `AGENTS.md` | Luật cho AI tool (file này) | Đọc |
 | `README.md` | Overview: project card và bảng "Tôi muốn... mở..." | Đọc. Chỉ sửa khi được yêu cầu |
+| `guide.md` | Trang Hướng dẫn sử dụng của báo cáo (tab "Hướng dẫn" ở menu bên trái): workspace là gì, bắt đầu dự án mới, thêm task mới, preview hub, thuật ngữ làm việc với AI; viết cho người không rành kỹ thuật | Đọc. Chỉ sửa khi được yêu cầu; giữ giọng đơn giản và các câu mẫu dán được cho AI tool |
 | `context/*.md` | Context pack: thông tin nền (sản phẩm, người dùng, quy tắc dữ liệu, design system) | Đọc đầu tiên ở mọi bước. Không sửa trừ khi được yêu cầu |
 | `_ai/*.md` | Định nghĩa từng bước làm việc với AI (step card) | Đọc card của bước đang chạy |
 | `stages/README.md` | Bảng Pages: mỗi dòng là một trang giai đoạn, tự ghép từ file ở `work/` và bảng item ở `insights/` | Chỉ sửa bảng khi được yêu cầu. Không tạo file `.md` nào khác ở đây: trang giai đoạn không có nội dung riêng |
@@ -22,7 +23,7 @@ Mỗi folder không có `_` ở gốc là một mục trong menu của báo cáo
 | `work/prototype/` | Code prototype | Làm việc ở đây khi dựng prototype, theo `project-rules.md` trong folder đó |
 | `insights/opportunities/O1.md`, `hypotheses/H1.md`, `metrics/M1.md`, `decisions/D1.md`, `evidence/E1.md`, `findings/F1.md`… | **Nguồn duy nhất** của mỗi item (O, H, M, D, E, F). Mỗi loại một folder; tên file là mã của item | Đọc. Chỉ sửa khi được yêu cầu sửa đúng item đó. Không tự đặt `resolution: fixed` hay `accepted` cho finding |
 | `insights/_templates/` | Mẫu rỗng cho từng loại item | Đọc. Copy vào đúng folder loại (ví dụ `insights/decisions/`) khi được yêu cầu tạo item mới, không sửa file mẫu |
-| `reference/*.md` | Trang tra cứu: gates, principle checks, severity levels, case log, và mọi trang chủ dự án thêm vào | Đọc. Chỉ sửa khi được yêu cầu đúng trang đó. `reference/case-log.md`: thêm dòng khi được yêu cầu |
+| `standards/*.md` | Thước đo để kiểm tra công việc: gates, principle checks, severity levels, và mọi tiêu chí chủ dự án thêm vào | Đọc. Chỉ sửa khi được yêu cầu đúng trang đó. `insights/case-log.md`: thêm dòng khi được yêu cầu |
 | `_ai/new-item.py` | Lệnh tạo một item mới và nối quan hệ | Chạy khi được yêu cầu tạo item (xem mục Where things go). Không sửa |
 | `_ai/export-hub.py` | Script xuất báo cáo ra một file HTML | Chạy khi được yêu cầu (`python3 _ai/export-hub.py`). Không sửa, và không tự viết HTML thay cho script |
 | `index.html` | Báo cáo, xuất ra từ Markdown để xem bằng trình duyệt | Không đọc, không sửa tay. Muốn cập nhật thì chạy `_ai/export-hub.py` |
@@ -41,7 +42,8 @@ Khi chủ dự án nhờ bạn làm hoặc thêm một thứ gì đó mà không
 | Một tài liệu nghiên cứu mới (phỏng vấn, khảo sát, test) cần rút insight | Làm theo `_ai/add-insights.md`: đề xuất trước, chờ chủ dự án duyệt, rồi mới tạo item bằng `new-item.py` | Không tạo item khi chưa được duyệt |
 | Kết quả đo của một metric sau launch | Điền `result`, `measured_on`, `verdict` trong `insights/metrics/M<số>.md`; điều đã học viết ở `work/learning.md` | Chỉ ghi số chủ dự án đưa, không suy đoán `verdict` |
 | Một nhu cầu, hypothesis, metric, decision, evidence hoặc finding | `python3 _ai/new-item.py <O/H/M/D/E/F> --title "..."` kèm các quan hệ (`--tests H1`, `--serves O1`, `--found-in E1`...). Lệnh chọn mã tiếp theo, tạo file đúng folder và kiểm tra mọi mã bạn nối có thật | Tự điền quan hệ từ nội dung chủ dự án đưa; nếu chưa chắc về một quan hệ thì hỏi, đừng đoán. Xem `python3 _ai/new-item.py --help` |
-| Một trang tra cứu mới (glossary, brand voice...) | `reference/<tên>.md` | Tự hiện ở mục Reference của báo cáo |
+| Thông tin nền mới về sản phẩm (glossary, brand voice, quy tắc...) | `context/<tên>.md` | AI đọc trước tiên; tự hiện ở mục Context |
+| Một tiêu chí hoặc checklist mới để kiểm tra công việc | `standards/<tên>.md` | Tự hiện ở mục Standards |
 | Dữ liệu nghiên cứu thô (phỏng vấn, khảo sát) | **Không** tự đặt vào `work/sources/anonymised/`. Nhắc chủ dự án ẩn danh trước; bản gốc để ở `work/sources/_raw-private/`, bạn không đọc | |
 | Ghi chú riêng của chủ dự án | `_personal/` | Bạn không đọc, không ghi |
 | Không rõ thuộc loại nào | Hỏi lại một câu | Đừng đoán và đừng đặt ở gốc folder |

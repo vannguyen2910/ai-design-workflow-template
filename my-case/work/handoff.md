@@ -12,7 +12,7 @@ supports: []
 Link hoặc folder. Đây là tài liệu tham chiếu, không phải production code.
 
 ## Decisions and reasons
-(Dẫn tới decision log trong `reference/case-log.md`)
+(Dẫn tới decision log trong `insights/case-log.md`)
 
 ## Acceptance notes
 *Điều gì phải đúng khi sản phẩm được dựng xong.*

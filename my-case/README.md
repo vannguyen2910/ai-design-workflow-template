@@ -32,14 +32,14 @@ Chọn việc bạn muốn làm, rồi mở đúng chỗ trong cột giữa.
 | **Chốt vấn đề đáng giải** (Define) | `work/problem-brief.md` | |
 | **Khám phá hướng giải, dựng prototype** (Develop) | `work/options.md`, `work/alignment.md`, `work/prototype/` | |
 | **Test và bàn giao** (Deliver) | `work/test-plan.md`, `work/findings.md`, `work/handoff.md`, `work/measurement-plan.md` | |
-| **Ghi lại một quyết định** | `insights/decisions/` (một file mỗi decision) và `reference/case-log.md` (một dòng) | `python3 _ai/new-item.py D` |
+| **Ghi lại một quyết định** | `insights/decisions/` (một file mỗi decision) và `insights/case-log.md` (một dòng) | `python3 _ai/new-item.py D` |
 | **Thêm ảnh, video, PDF hoặc tài liệu vào báo cáo** (wireframe, screenshot, persona, flow, prototype) | Thả vào một folder trong `work/` (xem mục "Thêm ảnh, video, PDF" ở `work/README.md`) | `_ai/add-media.md` |
-| **Đánh giá thiết kế theo heuristics, chấm severity** | `reference/principle-checks.md`, `reference/severity-levels.md` | |
-| **Ghi một vấn đề usability tìm thấy (finding)** | `insights/findings/` (một file mỗi finding; chấm severity theo `reference/severity-levels.md`) | `python3 _ai/new-item.py F` |
-| **Kiểm tra gate** | `reference/gates.md` | `python3 _ai/export-hub.py` (cột Kiểm tra tự động) |
+| **Đánh giá thiết kế theo heuristics, chấm severity** | `standards/principle-checks.md`, `standards/severity-levels.md` | |
+| **Ghi một vấn đề usability tìm thấy (finding)** | `insights/findings/` (một file mỗi finding; chấm severity theo `standards/severity-levels.md`) | `python3 _ai/new-item.py F` |
+| **Kiểm tra gate** | `standards/gates.md` | `python3 _ai/export-hub.py` (cột Kiểm tra tự động) |
 | **Xem tiến độ và những chỗ cần xem lại** | `index.html`, mục Overview | |
 | **Gửi báo cáo cho người khác** | `index.html` (đổi tên rồi gửi) | `_ai/export-hub.md` |
-| **Thêm một trang tra cứu của riêng bạn** (glossary, brand voice...) | Thả một file `.md` vào `reference/` | |
+| **Thêm một trang tra cứu của riêng bạn** (glossary, brand voice...) | Thả một file `.md` vào `standards/` | |
 
 **Nhờ AI đặt đúng chỗ.** Bạn không cần nhớ folder: đưa ảnh, tài liệu hoặc một quyết định cho AI tool và nói "thêm vào dự án". `AGENTS.md` có bảng "Where things go" để AI chọn chỗ (ảnh và tài liệu vào `work/`, quyết định vào `insights/decisions/`...) và nói lại chỗ nó đã đặt. Nếu không chắc nó sẽ hỏi bạn một câu.
 
@@ -55,7 +55,7 @@ my-case/
 ├── stages/          STAGES     mỗi giai đoạn một trang, tự dựng từ work/ và insights/
 ├── work/            WORK       mọi thứ làm ra: file làm việc, wireframe, prototype, persona, nguồn nghiên cứu
 ├── insights/        INSIGHTS   nhu cầu, hypothesis, decision, evidence, finding, metric (mỗi loại một folder)
-├── reference/       REFERENCE  gates, principle checks, severity levels, case log
+├── standards/       REFERENCE  gates, principle checks, severity levels, case log
 │
 ├── _ai/             step card và script cho AI (hiếm khi cần mở tay)
 └── _personal/       ghi chú riêng, không đưa cho AI
@@ -74,7 +74,7 @@ Báo cáo `index.html` ghi sẵn dòng "Folder" và "Thêm mới" ở đầu m�
 | **Stages** | `stages/` | Một trang cho mỗi giai đoạn, tự dựng từ `work/` và `insights/` (bạn không viết ở đây) | Thêm một dòng vào bảng Pages ở `stages/README.md`: chọn file ở `work/` và bảng item muốn hiện |
 | **Work** | `work/` | Mọi thứ làm ra: file làm việc, wireframe, prototype, persona, flow | Thả file vào folder, hoặc tạo folder con (kèm `index.md`) rồi thả ảnh, PDF, video vào đó |
 | **Insights** | `insights/` (`opportunities/`, `hypotheses/`, `decisions/`, `evidence/`, `findings/`, `metrics/`) | Các item nối với nhau | Chạy `python3 _ai/new-item.py`: lệnh hỏi từng câu, chọn mã tiếp theo và nối quan hệ giúp bạn |
-| **Reference** | `reference/` | Gates, principle checks, severity levels, case log | Thả một file `.md` vào folder |
+| **Standards** | `standards/` | Thước đo để kiểm tra: gates, principle checks, severity levels | Thả một file `.md` vào folder |
 
 ## Rules
 
@@ -85,7 +85,7 @@ Báo cáo `index.html` ghi sẵn dòng "Folder" và "Thêm mới" ở đầu m�
 
 ## Giữ cho dự án luôn mới
 
-- **Quyết định mới:** chạy `python3 _ai/new-item.py D` (lệnh tạo file ở `insights/decisions/` và ghi một dòng vào `reference/case-log.md`).
+- **Quyết định mới:** chạy `python3 _ai/new-item.py D` (lệnh tạo file ở `insights/decisions/` và ghi một dòng vào `insights/case-log.md`).
 - **Thông tin mới:** sửa file item hoặc file làm việc, rồi tạo lại `index.html` (nhờ AI chạy `python3 _ai/export-hub.py`; lệnh này cũng tự cập nhật các bảng item trong `stages/`).
 - **Trước thay đổi lớn:** lưu một mốc (commit) hoặc copy folder thành bản `-backup`.
 - **Gửi cho người khác:** copy `index.html` ra ngoài và đổi tên (ví dụ `onboarding-redesign-report.html`).

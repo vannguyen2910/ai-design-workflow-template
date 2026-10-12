@@ -40,7 +40,7 @@ Muốn gửi gọn (ảnh, prototype đi kèm, không lộ working file thô): c
 
 ## Option 3: File ZIP
 
-1. Nén **cả folder case**, không chỉ `insights/`, vì các trang trong báo cáo nối tới `work/`, `reference/` và các file làm việc.
+1. Nén **cả folder case**, không chỉ `insights/`, vì các trang trong báo cáo nối tới `work/`, `standards/` và các file làm việc.
 2. Gửi file ZIP. Người nhận giải nén và mở cả folder bằng Obsidian hoặc VS Code.
 3. Thử mở trên một máy khác trước khi gửi.
 
