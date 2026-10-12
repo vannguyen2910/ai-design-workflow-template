@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Export the markdown hub of a case folder to ONE self-contained HTML file.
 
-    python3 _ai/export-hub.py                 # case = the folder that contains _ai/ -> <case>/index.html
-    python3 _ai/export-hub.py --case PATH     # another case folder
-    python3 _ai/export-hub.py --out FILE.html # custom output path (e.g. a copy to send)
+    python3 export-hub.py                 # case = the case folder you are in -> <case>/index.html
+    python3 export-hub.py --case PATH     # another case folder
+    python3 export-hub.py --out FILE.html # custom output path (e.g. a copy to send)
 
 Why a script and not an AI tool: turning markdown into HTML and tracing links between items is
 deterministic. A script gives the same output every time, invents nothing and sends no data anywhere.
@@ -12,7 +12,7 @@ Python 3.8+ standard library only.
 The report is an OUTPUT. Never edit it by hand: change the markdown and export again.
 
 Included : README.md, stages/, work/, insights/, standards/ and context/
-Excluded : AI drafts, _personal/, work/sources/, AGENTS.md, _ai/
+Excluded : AI drafts, _personal/, work/sources/, AGENTS.md, _skills/
 
 Layout: Overview, Context, Stages, Work, Insights, Standards (one menu item per top-level folder). Items (O, H, M, D, E) are not in the menu:
 they live in the Trace tab as a tree  Opportunity > Hypothesis > Decision / Evidence / Metric, with search
@@ -26,6 +26,25 @@ import mimetypes
 import os
 import re
 import sys
+
+def find_case(start=None):
+    """The case folder: the nearest folder, from `start` (default: the current folder) upwards,
+    that has AGENTS.md next to insights/ or work/. Falls back to the folder above this script
+    (a copy of this script that still lives in a case's _skills/ folder)."""
+    p = os.path.abspath(start or os.getcwd())
+    while True:
+        if os.path.isfile(os.path.join(p, "AGENTS.md")) and (
+                os.path.isdir(os.path.join(p, "insights")) or os.path.isdir(os.path.join(p, "work"))):
+            return p
+        parent = os.path.dirname(p)
+        if parent == p:
+            break
+        p = parent
+    legacy = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if os.path.isdir(os.path.join(legacy, "insights")):
+        return legacy
+    return None
+
 import csv
 import shutil
 import urllib.parse
@@ -2549,7 +2568,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
 {{V_TRACE}}
 {{V_REFERENCE}}
 {{V_GUIDE}}
-<div class="wrap" style="padding-top:0"><footer class="foot">This report is generated automatically from the project files{{MODE}}.<details class="foot-tech"><summary>For whoever updates the report</summary><p>Edit the project source files, then ask the AI tool to rebuild the report, or run <code>python3 _ai/export-hub.py</code>.</p></details></footer></div>
+<div class="wrap" style="padding-top:0"><footer class="foot">This report is generated automatically from the project files{{MODE}}.<details class="foot-tech"><summary>For whoever updates the report</summary><p>Edit the project source files, then ask the AI tool to rebuild the report, or run the export script of the product-workspace skill.</p></details></footer></div>
 </main>
 </div>
 <script>{{JS}}</script>
@@ -2567,7 +2586,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
 
 def main():
     ap = argparse.ArgumentParser(description="Export the markdown hub to one self-contained HTML file.")
-    ap.add_argument("--case", default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    ap.add_argument("--case", default="", help="case folder (default: the case you are standing in)")
     ap.add_argument("--out", default=None)
     ap.add_argument("--theme", default="minimal", choices=[k for k, _ in THEMES], help="visual theme of the report")
     ap.add_argument("--preview-themes", action="store_true", help="add a theme switcher to the report (for choosing a theme)")
@@ -2575,7 +2594,9 @@ def main():
     ap.add_argument("--bundle", default=None, metavar="DIR", help="write a clean folder (index.html + only the files it uses) to send to others")
     ap.add_argument("--zip", action="store_true", help="with --bundle: also make DIR.zip")
     a = ap.parse_args()
-    case = os.path.abspath(a.case)
+    case = os.path.abspath(a.case) if a.case else find_case()
+    if not case:
+        sys.exit("Không tìm thấy case folder. Chạy trong một case (có AGENTS.md và insights/), hoặc dùng --case <đường dẫn>.")
     bundle_dir = os.path.abspath(a.bundle) if a.bundle else None
     if bundle_dir:
         os.makedirs(bundle_dir, exist_ok=True)

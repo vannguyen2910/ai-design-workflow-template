@@ -9,7 +9,7 @@ Biến một tài liệu nghiên cứu mới (phỏng vấn, khảo sát, kết 
 | Khi nào | Sau khi bạn thêm một file nghiên cứu vào `work/` (hoặc `work/<tên>/index.md`) và muốn đưa điều học được vào hub |
 | Làm trước | Ẩn danh dữ liệu, lưu một mốc (commit hoặc copy folder) |
 | Working file | Không có. Kết quả ghi vào `insights/` và property `supports` của tài liệu |
-| Liên quan | `_ai/new-item.py` (tạo item), `_ai/refresh-hub.md` (kiểm tra warnings sau đó) |
+| Liên quan | `_skills/new-item.py` (tạo item), `_skills/refresh-hub.md` (kiểm tra warnings sau đó) |
 
 Hub **không tự rút insight** từ file ở `work/`. Workflow này là bước làm việc đó, và bạn là người duyệt trước khi bất cứ file nào được tạo.
 
@@ -45,7 +45,7 @@ Với mỗi dòng chọn một: giữ, sửa title hoặc quan hệ, hoặc cắ
 **Output:** Các file mới trong `insights/<loại>/`
 
 **Instruction:**
-> Với từng dòng đã duyệt, chạy `python3 _ai/new-item.py <loại> --title "..." <các quan hệ> --no-build`. Evidence của một buổi phỏng vấn hoặc test đã diễn ra: `--status run --participants <số người>`. Không ghi đè file. Sau khi tạo xong, điền phần nội dung của từng file bằng điều có trong tài liệu, kèm nguồn. Nếu lệnh báo mã không tồn tại, dừng và hỏi tôi, đừng đoán.
+> Với từng dòng đã duyệt, chạy `python3 _skills/new-item.py <loại> --title "..." <các quan hệ> --no-build`. Evidence của một buổi phỏng vấn hoặc test đã diễn ra: `--status run --participants <số người>`. Không ghi đè file. Sau khi tạo xong, điền phần nội dung của từng file bằng điều có trong tài liệu, kèm nguồn. Nếu lệnh báo mã không tồn tại, dừng và hỏi tôi, đừng đoán.
 
 **Check:** Mở hai file vừa tạo: title, quan hệ và nguồn khớp với dòng bạn đã duyệt?
 **Failure sign:** Số file tạo ra nhiều hơn số dòng được duyệt; item có `status: run` nhưng buổi test chưa từng chạy.
@@ -68,7 +68,7 @@ Với mỗi dòng chọn một: giữ, sửa title hoặc quan hệ, hoặc cắ
 **Input:** Toàn bộ hub
 **Output:** `index.html` mới
 
-Chạy `python3 _ai/export-hub.py`, mở trang **Insights** để xem item mới, rồi đọc mục warnings ở Overview: opportunity mới chưa có decision, hypothesis chưa có test, metric chưa có target là việc cần làm tiếp. Nếu muốn buổi nghiên cứu này hiện ở trang Evidence trong Stages, thêm tên file vào cột **Từ work** của dòng `evidence` trong `stages/README.md`.
+Chạy `python3 _skills/export-hub.py`, mở trang **Insights** để xem item mới, rồi đọc mục warnings ở Overview: opportunity mới chưa có decision, hypothesis chưa có test, metric chưa có target là việc cần làm tiếp. Nếu muốn buổi nghiên cứu này hiện ở trang Evidence trong Stages, thêm tên file vào cột **Từ work** của dòng `evidence` trong `stages/README.md`.
 
 **Check:** Mỗi insight bạn đã duyệt có thể tìm thấy ở Insights, và đi ngược được về tài liệu?
 **Failure sign:** Item mới không nối với gì (nằm trong nhóm "Chưa nối vào opportunity nào").

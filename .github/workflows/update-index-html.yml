@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Export hub of every case
         run: |
-          for exporter in */_ai/export-hub.py; do
+          for exporter in */_skills/export-hub.py; do
             case_dir="$(dirname "$(dirname "$exporter")")"
             echo "Exporting $case_dir"
             python3 "$exporter"

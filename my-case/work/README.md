@@ -108,7 +108,7 @@ Chỉ `title` và `type` là cần có. Các dòng còn lại làm trang đầy 
 ## Lệnh xuất gói
 
 ```
-python3 _ai/export-hub.py --bundle gui-stakeholder --zip
+python3 _skills/export-hub.py --bundle gui-stakeholder --zip
 ```
 
 Lệnh này tạo folder gọn và file zip như mô tả ở trên. Chạy với `--team` thì các phần nháp của AI hiện ra (gấp lại).

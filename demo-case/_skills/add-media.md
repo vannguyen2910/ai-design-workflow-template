@@ -41,7 +41,7 @@
 **Input:** `work/<tên-ngắn>/`
 **Output:** `index.html` mới
 
-Nhờ AI tool chạy `python3 _ai/export-hub.py`, mở `index.html`, vào mục **Work** và bấm thẻ mới.
+Nhờ AI tool chạy `python3 _skills/export-hub.py`, mở `index.html`, vào mục **Work** và bấm thẻ mới.
 
 **Check:** Ảnh hiện đủ và đúng thứ tự, chú thích dễ hiểu, và không có cảnh báo vàng (tệp nặng, định dạng không hiển thị, tệp không tìm thấy).
 **Failure sign:** Còn cảnh báo ở trang tài liệu: làm theo nội dung cảnh báo rồi tạo lại báo cáo.

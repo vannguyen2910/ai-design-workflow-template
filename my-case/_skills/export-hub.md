@@ -8,7 +8,7 @@ Xuất hub thành **một file HTML tự chứa** để xem trong trình duyệt
 |---|---|
 | Khi nào | Khi bạn cần xem hub trong trình duyệt, hoặc gửi cho người khác |
 | Làm trước | Lưu các file bạn vừa sửa. Các bảng tự dựng lại mỗi lần chạy, không cần bước nào khác |
-| Lệnh | `python3 _ai/export-hub.py` |
+| Lệnh | `python3 _skills/export-hub.py` |
 | Output | `index.html` ở gốc case folder |
 
 ## Vì sao là một script, không phải AI
@@ -20,8 +20,8 @@ Biến Markdown thành HTML là phép biến đổi xác định. Script cho cù
 | Có | Không |
 |---|---|
 | `README.md`, `context/`, `stages/`, `work/`, `insights/`, `standards/` | Các phần có chữ "(AI draft)" ở tiêu đề, `work/sources/` |
-| Mọi file item (O, H, M, D, E) | `_personal/`, `work/sources/`, `AGENTS.md`, `_ai/*.md` |
-| `insights/case-log.md`, `standards/principle-checks.md` | `_ai/how-the-hub-works.md` (hướng dẫn cho người viết) |
+| Mọi file item (O, H, M, D, E) | `_personal/`, `work/sources/`, `AGENTS.md`, `_skills/*.md` |
+| `insights/case-log.md`, `standards/principle-checks.md` | `_skills/how-the-hub-works.md` (hướng dẫn cho người viết) |
 
 Các khối "Cách điền" bị bỏ khỏi báo cáo. Link tới file ngoài báo cáo hiện thành chữ có gạch chấm, không bấm được.
 
@@ -46,7 +46,7 @@ Mỗi item tự có đường truy vết (ví dụ O1 › H1 › D2) và phần 
 Báo cáo là một folder: `index.html` cùng các tệp nó dùng (ảnh, prototype HTML...). Để gửi, tạo bản gọn:
 
 ```
-python3 _ai/export-hub.py --bundle gui-stakeholder --zip
+python3 _skills/export-hub.py --bundle gui-stakeholder --zip
 ```
 
 Bundle chỉ chứa `index.html` và **đúng các tệp mà các tài liệu khai báo** (`media:` hoặc thả trong folder artifact). Nó không chứa working file thô, `_raw-private/` hay `_personal/`. Ảnh được tham chiếu, không nhúng vào HTML, nên `index.html` nhẹ.
@@ -56,7 +56,7 @@ Bundle chỉ chứa `index.html` và **đúng các tệp mà các tài liệu kh
 Working file giữ hai section: `(AI draft)` và `(verified)`. Báo cáo mặc định **ẩn** mọi section có `AI draft` ở tiêu đề. Khi cần xem lại chúng (ví dụ để đo tỷ lệ lỗi của AI):
 
 ```
-python3 _ai/export-hub.py --team
+python3 _skills/export-hub.py --team
 ```
 
 Bản này gấp bản nháp lại và ghi "chưa kiểm tra". **Không gửi bản `--team` ra ngoài.**
@@ -68,7 +68,7 @@ Bản này gấp bản nháp lại và ghi "chưa kiểm tra". **Không gửi b�
 **Output:** `index.html` ở gốc case folder
 
 ```
-python3 _ai/export-hub.py
+python3 _skills/export-hub.py
 ```
 
 Script in ra số trang, số item, và các vấn đề (link hỏng, ID không khớp tên file, số chỗ còn dữ liệu mẫu).
@@ -84,7 +84,7 @@ Script in ra số trang, số item, và các vấn đề (link hỏng, ID không
 Mở file bằng trình duyệt và kiểm tra:
 
 - [ ] Không còn thanh đen "dữ liệu mẫu hoặc chỗ chưa điền" ở đầu Tổng quan
-- [ ] Không còn item `[EXAMPLE]`
+- [ ] Không còn nội dung mẫu hoặc chỗ trống
 - [ ] Agreement status đúng
 - [ ] Không có thông tin confidential hay dữ liệu cá nhân (đọc từng trang; báo cáo chỉ gồm hub, nhưng bạn là người viết hub)
 - [ ] Mở thử trên một thiết bị khác
@@ -95,4 +95,4 @@ Mở file bằng trình duyệt và kiểm tra:
 
 File luôn tên `index.html` và nằm ở gốc case folder, là **trang chủ của hub**: bấm đúp là mở. Template đã có sẵn một bản tạo từ dữ liệu mẫu, nên bạn xem được hub ngay từ ngày đầu. Mỗi lần bạn sửa hub, tạo lại để trang chủ khớp với nội dung mới.
 
-**Khi gửi cho người khác,** copy file ra ngoài và đổi tên cho dễ nhận ra, ví dụ `onboarding-redesign-report-2026-10-11.html`. Tên `index.html` đứng một mình trong hộp thư của người nhận không nói gì về nội dung. Bạn cũng có thể tạo thẳng bản gửi đi bằng `python3 _ai/export-hub.py --out ten-file.html`.
+**Khi gửi cho người khác,** copy file ra ngoài và đổi tên cho dễ nhận ra, ví dụ `onboarding-redesign-report-2026-10-11.html`. Tên `index.html` đứng một mình trong hộp thư của người nhận không nói gì về nội dung. Bạn cũng có thể tạo thẳng bản gửi đi bằng `python3 _skills/export-hub.py --out ten-file.html`.

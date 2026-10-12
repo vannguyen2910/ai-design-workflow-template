@@ -106,7 +106,7 @@ def main():
         os.makedirs(d, exist_ok=True)
         if not os.listdir(d):
             write(os.path.join(d, ".gitkeep"), "")  # keeps the empty folder in Git
-    p = os.path.join(dest, "_ai", "how-the-hub-works.md")
+    p = os.path.join(dest, "_skills", "how-the-hub-works.md")
     if os.path.isfile(p):
         write(p, re.sub(r"^- Các item `\[EXAMPLE\]`.*\n", "", read(p), flags=re.M))
 
@@ -119,10 +119,10 @@ def main():
 
     print("Đã tạo: %s" % dest)
     print("  - Đã xoá %d item [EXAMPLE] và dọn các dòng mẫu trong standards/" % removed)
-    tool = os.path.join(dest, "_ai", "export-hub.py")
+    tool = os.path.join(dest, "_skills", "export-hub.py")
     if os.path.isfile(tool):
         r = subprocess.run([sys.executable, tool], cwd=dest, capture_output=True, text=True)
-        print("  - index.html: %s" % ("đã tạo" if r.returncode == 0 else "lỗi, chạy lại: python3 _ai/export-hub.py"))
+        print("  - index.html: %s" % ("đã tạo" if r.returncode == 0 else "lỗi, chạy lại: python3 _skills/export-hub.py"))
         if r.returncode != 0:
             print(r.stderr.strip()[-400:])
     print("\nViệc đầu tiên:")

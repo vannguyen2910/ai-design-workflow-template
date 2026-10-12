@@ -99,7 +99,7 @@ workspace/
 └── <tên-dự-án>/     dự án của bạn
 ```
 
-Trong mỗi dự án: `context/` (thông tin nền), `work/` (mọi thứ làm ra), `insights/` (nhu cầu, quyết định, bằng chứng), `stages/`, `standards/`, `_ai/` (các bước cho AI), `AGENTS.md` (luật cho AI tool).
+Trong mỗi dự án: `context/` (thông tin nền), `work/` (mọi thứ làm ra), `insights/` (nhu cầu, quyết định, bằng chứng), `stages/`, `standards/`, `_skills/` (các bước cho AI), `AGENTS.md` (luật cho AI tool).
 
 - **Giữ nguyên** tên các folder trên và mã item (`O1`, `H1`, `D1`…).
 - **Tạo dự án bằng lệnh:** `python3 tools/new-case.py ten-du-an`

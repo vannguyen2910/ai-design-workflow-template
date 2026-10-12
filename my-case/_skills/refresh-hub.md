@@ -1,13 +1,13 @@
 # Workflow: Review the Hub
 
-Nhờ AI đọc các file item và liệt kê những chỗ chưa nối, chưa khớp hoặc còn thiếu, rồi bạn quyết định xử lý từng cái. **Workflow này không ghi vào file nào**: các bảng và warnings trong báo cáo do `python3 _ai/export-hub.py` tự tính.
+Nhờ AI đọc các file item và liệt kê những chỗ chưa nối, chưa khớp hoặc còn thiếu, rồi bạn quyết định xử lý từng cái. **Workflow này không ghi vào file nào**: các bảng và warnings trong báo cáo do `python3 _skills/export-hub.py` tự tính.
 
 *Trạng thái: bản nháp.*
 
 | | |
 |---|---|
 | Khi nào | Sau khi bạn thêm hoặc sửa nhiều item, hoặc trước khi handoff |
-| Làm trước | Chạy `python3 _ai/export-hub.py` để báo cáo cập nhật |
+| Làm trước | Chạy `python3 _skills/export-hub.py` để báo cáo cập nhật |
 | Working file | Không có. Kết quả trả lời ngay trong chat |
 
 ## Step 1: Review (AI)

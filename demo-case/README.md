@@ -28,7 +28,7 @@ Dự án gốc được làm trước khi có quy trình AI-assisted của works
 | `insights/` | 5 nhu cầu, 6 hypothesis, 7 decision, 2 evidence, 7 finding, 5 metric | Mọi giai đoạn |
 | `stages/README.md` | Bảng bảy trang giai đoạn (scope, evidence, problem brief, develop, alignment, findings, handoff); mỗi trang tự dựng từ `work/` và `insights/` | Mọi giai đoạn |
 | `standards/` | Gates, principle checks, severity levels, case log | Mọi giai đoạn |
-| `_ai/` | Các bước làm việc với AI (step card) | Mọi giai đoạn |
+| `_skills/` | Các bước làm việc với AI (step card) | Mọi giai đoạn |
 | `work/original-docs/` | Tài liệu gốc của giai đoạn Define đến Test (personas, solution pool, flow, IA, PRD, test plan, findings) | Tham khảo |
 
 ## What this project teaches (including by example of what is missing)

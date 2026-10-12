@@ -17,7 +17,7 @@ Hub của bạn mặc định là riêng tư: nó nằm trong folder case trên 
 
 Một file HTML tự chứa, có menu, bấm đúp là mở bằng trình duyệt, gửi email được.
 
-1. **Tạo báo cáo.** Cách dễ nhất: nhờ AI tool đang mở folder case chạy lệnh `python3 _ai/export-hub.py`.
+1. **Tạo báo cáo.** Cách dễ nhất: nhờ AI tool đang mở folder case chạy lệnh `python3 _skills/export-hub.py`.
    - Tự chạy trên Mac: bấm chuột phải vào folder case, chọn **New Terminal at Folder**, rồi gõ lệnh trên.
    - Tự chạy trên Windows: mở folder case, bấm vào thanh địa chỉ, gõ `cmd`, nhấn Enter, rồi gõ lệnh trên.
    - Máy cần có Python 3. Mac có thể hỏi bạn cài một bộ công cụ ở lần chạy đầu; Windows cần cài Python từ [python.org](https://www.python.org).
@@ -29,7 +29,7 @@ Nếu bạn dùng GitHub, file `index.html` còn được **tự tạo lại** s
 
 Báo cáo chỉ gồm hub, nhật ký decision và các principle. Nó không có file làm việc hay bản nháp của AI.
 
-Muốn gửi gọn (ảnh, prototype đi kèm, không lộ working file thô): chạy `python3 _ai/export-hub.py --bundle ten-folder --zip` rồi gửi file ZIP. Người nhận giải nén và bấm đúp `index.html`.
+Muốn gửi gọn (ảnh, prototype đi kèm, không lộ working file thô): chạy `python3 _skills/export-hub.py --bundle ten-folder --zip` rồi gửi file ZIP. Người nhận giải nén và bấm đúp `index.html`.
 
 ## Option 2: PDF
 

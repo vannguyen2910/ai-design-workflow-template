@@ -64,7 +64,7 @@ Báo cáo chỉ đổi khi được tạo lại. Vừa thêm file mà chưa th�
 | **Hub** | Cả folder dự án và báo cáo `index.html` hiển thị nó |
 | **Item** | Một nhu cầu, hypothesis, metric, decision, evidence hoặc finding. Mỗi item là một file trong `insights/` |
 | **Working file** | File làm việc trong `work/` (ví dụ `scope.md`) |
-| **Step card** | Một quy trình có sẵn để AI chạy (nằm trong `_ai/`). Bạn không cần gọi tên: nói việc cần làm, AI tự chọn đúng quy trình |
+| **Step card** | Một quy trình có sẵn để AI chạy (nằm trong `_skills/`). Bạn không cần gọi tên: nói việc cần làm, AI tự chọn đúng quy trình |
 | **Context** | Các file trong `context/` mà AI đọc trước tiên ở mọi bước |
 
 **Các từ bạn nói với AI**

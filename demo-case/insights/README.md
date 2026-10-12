@@ -17,6 +17,6 @@ Folder này giữ **các item nối với nhau**: nhu cầu của người dùng
 2. Đặt tên file theo mã tiếp theo (ví dụ `D4.md`). Mã là duy nhất trong cả dự án.
 3. Điền phần thông tin ở đầu file, nhất là các dòng nối về item khác (`tests`, `serves`, `found_in`...).
 
-Báo cáo hiện các item này ở mục **Insights**, nối chúng thành cây từ nhu cầu tới decision, và tự cảnh báo chỗ thiếu liên kết. Cách nối chi tiết nằm ở `_ai/how-the-hub-works.md`.
+Báo cáo hiện các item này ở mục **Insights**, nối chúng thành cây từ nhu cầu tới decision, và tự cảnh báo chỗ thiếu liên kết. Cách nối chi tiết nằm ở `_skills/how-the-hub-works.md`.
 
 File `README.md` này không hiện trong báo cáo.

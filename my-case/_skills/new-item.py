@@ -4,16 +4,16 @@ new-item.py - add an item (O, H, M, D, E, F) to insights/ and fill its relations
 
 Run it with no arguments and it asks one question at a time:
 
-    python3 _ai/new-item.py
+    python3 new-item.py
 
 An AI tool (or you) can pass everything at once:
 
-    python3 _ai/new-item.py D --title "Hiện crowd signal thay cho badge" --tests H2 --follows P1 --pulls-against P8
-    python3 _ai/new-item.py E --title "Test task với 5 người" --tests H1 --measures M1 --participants 5
-    python3 _ai/new-item.py D --title "..." --tests H1 --state accepted --owner "Lan (PM)"
-    python3 _ai/new-item.py O --title "..." --impact high --confidence medium --rank-reason "..."
-    python3 _ai/new-item.py M --title "..." --target "≥ 80% hoàn tất không cần trợ giúp"
-    python3 _ai/new-item.py F --title "..." --severity 3 --found-in E1 --affects D2 --principle P8
+    python3 new-item.py D --title "Hiện crowd signal thay cho badge" --tests H2 --follows P1 --pulls-against P8
+    python3 new-item.py E --title "Test task với 5 người" --tests H1 --measures M1 --participants 5
+    python3 new-item.py D --title "..." --tests H1 --state accepted --owner "Lan (PM)"
+    python3 new-item.py O --title "..." --impact high --confidence medium --rank-reason "..."
+    python3 new-item.py M --title "..." --target "≥ 80% hoàn tất không cần trợ giúp"
+    python3 new-item.py F --title "..." --severity 3 --found-in E1 --affects D2 --principle P8
 
 It picks the next free ID, writes the file in the right folder, checks that every ID you
 point at exists, tells you what is still missing, and rebuilds index.html (--no-build to skip).
@@ -28,7 +28,26 @@ import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CASE = os.path.dirname(HERE)
+
+def find_case(start=None):
+    """The case folder: the nearest folder, from `start` (default: the current folder) upwards,
+    that has AGENTS.md next to insights/ or work/. Falls back to the folder above this script
+    (a copy of this script that still lives in a case's _skills/ folder)."""
+    p = os.path.abspath(start or os.getcwd())
+    while True:
+        if os.path.isfile(os.path.join(p, "AGENTS.md")) and (
+                os.path.isdir(os.path.join(p, "insights")) or os.path.isdir(os.path.join(p, "work"))):
+            return p
+        parent = os.path.dirname(p)
+        if parent == p:
+            break
+        p = parent
+    legacy = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if os.path.isdir(os.path.join(legacy, "insights")):
+        return legacy
+    return None
+
+CASE = None  # set in main() from --case or the current folder
 
 KINDS = {
     "O": ("opportunity", "opportunities", "Opportunity: nhu cầu người dùng có evidence"),
@@ -161,7 +180,12 @@ def main():
     ap.add_argument("--measured-on", dest="measured_on", help="metric: ngày đo YYYY-MM-DD")
     ap.add_argument("--no-log", action="store_true", help="decision: không thêm dòng vào case log")
     ap.add_argument("--no-build", action="store_true", help="không tạo lại index.html")
+    ap.add_argument("--case", default="", help="case folder (default: the case you are standing in)")
     a = ap.parse_args()
+    global CASE
+    CASE = os.path.abspath(a.case) if a.case else find_case()
+    if not CASE:
+        sys.exit("Không tìm thấy case folder. Chạy trong một case (có AGENTS.md và insights/), hoặc dùng --case <đường dẫn>.")
     interactive = a.kind is None
 
     hub = load_hub()
@@ -309,8 +333,8 @@ def main():
 
     # 8. rebuild
     if not a.no_build:
-        r = subprocess.run([sys.executable, os.path.join(HERE, "export-hub.py")], cwd=CASE, capture_output=True, text=True)
-        print("index.html: %s" % ("đã tạo lại" if r.returncode == 0 else "lỗi, chạy lại: python3 _ai/export-hub.py"))
+        r = subprocess.run([sys.executable, os.path.join(HERE, "export-hub.py"), "--case", CASE], cwd=CASE, capture_output=True, text=True)
+        print("index.html: %s" % ("đã tạo lại" if r.returncode == 0 else "lỗi, hãy tạo lại báo cáo bằng export-hub.py"))
         if r.returncode != 0:
             print(r.stderr.strip()[-400:])
 

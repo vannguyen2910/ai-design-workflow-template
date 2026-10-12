@@ -52,5 +52,5 @@ Danh sách đầy đủ nằm ở tab **Guide** trong `index.html`.
 | `insights/` | Điều đã học và các quyết định |
 | `stages/` | Câu chuyện từng giai đoạn (tự dựng, bạn không viết ở đây) |
 | `standards/` | Thước đo để kiểm tra công việc |
-| `_ai/`, `AGENTS.md` | Các bước và luật cho AI tool, hiếm khi cần mở tay |
+| `_skills/`, `AGENTS.md` | Các bước và luật cho AI tool, hiếm khi cần mở tay |
 | `_personal/` | Ghi chú riêng, không đưa cho AI |

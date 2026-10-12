@@ -2,7 +2,7 @@
 """
 flow-from-mermaid.py - turn a Mermaid flowchart into archify diagrams, one per phase.
 
-    python3 _ai/flow-from-mermaid.py work/user-flow.md --out work/user-flow --title "My product"
+    python3 flow-from-mermaid.py work/user-flow.md --out work/user-flow --title "My product"
 
 Layouts: `--layout scroll` (default) draws each phase as one horizontal row with a sideways scroll bar and only
 drops a step to another row for a real branch. `--layout archify` writes checked archify diagrams instead
@@ -32,6 +32,25 @@ import sys
 
 COLS = 6
 PILLAR_TYPES = ["frontend", "backend", "database", "cloud", "security"]
+
+def find_case(start=None):
+    """The case folder: the nearest folder, from `start` (default: the current folder) upwards,
+    that has AGENTS.md next to insights/ or work/. Falls back to the folder above this script
+    (a copy of this script that still lives in a case's _skills/ folder)."""
+    p = os.path.abspath(start or os.getcwd())
+    while True:
+        if os.path.isfile(os.path.join(p, "AGENTS.md")) and (
+                os.path.isdir(os.path.join(p, "insights")) or os.path.isdir(os.path.join(p, "work"))):
+            return p
+        parent = os.path.dirname(p)
+        if parent == p:
+            break
+        p = parent
+    legacy = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if os.path.isdir(os.path.join(legacy, "insights")):
+        return legacy
+    return None
+
 
 
 def slugify(s):
@@ -756,7 +775,7 @@ def main():
     ap.add_argument("--out", required=True, help="folder for the .json and .html files")
     ap.add_argument("--title", default="", help="product name used in diagram titles")
     ap.add_argument("--legend", default="", help='names for solution-code letters, e.g. "A=Onboarding,D=Discover,P=Plan"')
-    ap.add_argument("--case", default="", help="case folder holding insights/decisions (default: the folder above this script)")
+    ap.add_argument("--case", default="", help="case folder holding insights/decisions (default: the case you are standing in)")
     ap.add_argument("--layout", choices=["scroll", "archify"], default="scroll",
                     help="scroll: one horizontal row per phase with a sideways scroll bar (default); "
                          "archify: checked archify diagrams, long chains wrap into rows of 6")
@@ -784,7 +803,7 @@ def main():
             n["group"] = "flow"
     prefix = (a.title + ": ") if a.title else ""
     if a.layout == "scroll":
-        case_dir = a.case or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        case_dir = a.case or find_case() or os.getcwd()
         decision_codes = load_decision_codes(case_dir)
         seen_codes = set()
         written = []
@@ -830,7 +849,7 @@ def main():
         diag = diagram(prefix + "journey overview", ov_nodes, ov_edges, [{"id": "phases", "label": "Phases"}],
                        [gid for gid, _ in groups], {"entries": {"frontend": {"label": "Phase"}}}, "overview.html")
         jobs.append(("overview", diag))
-    case_dir = a.case or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    case_dir = a.case or find_case() or os.getcwd()
     decision_codes = load_decision_codes(case_dir)
     seen_codes = set()
     for gid, title in groups:

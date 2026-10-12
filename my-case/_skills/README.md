@@ -1,4 +1,6 @@
-# _ai: step card và script cho AI
+# _skills: step card và script cho AI
+
+> **Bản sao.** Các file trong `_skills/` được chép từ skill `product-workspace`, nơi là bản chuẩn. Đừng sửa ở đây: sửa ở skill rồi chạy `sync-case.py`.
 
 Folder này chứa hai thứ. **Step card** (file `.md`): định nghĩa quy trình AI-assisted dưới dạng file, để AI tool đọc được và quy trình được lưu cùng case. Mỗi file là một workflow, gồm các step có thứ tự, và mỗi step ghi rõ ai làm (AI hay bạn), đọc file nào và ghi vào đâu.
 
@@ -21,7 +23,7 @@ Các card cho Frame, Explore, Prototype và Test sẽ được bổ sung. Bạn 
 
 1. Mở cả folder case trong AI tool. Tool tự đọc `AGENTS.md` ở gốc.
 2. Commit trước (nếu bạn dùng Git), để quay lại được.
-3. Nói với tool: *"Chạy step 5 của `_ai/user-voice-synthesis.md`."*
+3. Nói với tool: *"Chạy step 5 của `_skills/user-voice-synthesis.md`."*
 4. Đọc kết quả, rồi tự kiểm tra ở step tiếp theo. Step có nhãn **(YOU)** là phần bạn vẫn tự làm.
 
 ## Card format

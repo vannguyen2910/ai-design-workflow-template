@@ -66,7 +66,7 @@ Phần này dành cho người giữ hub.
 │   ├── _templates/        mẫu rỗng cho từng loại item (copy vào folder loại)
 │   └── traceability.base  bảng theo loại item, dùng khi mở bằng Obsidian
 ├── standards/             gates, principle checks, severity levels, case log, và trang này
-├── _ai/                   step card và script cho AI
+├── _skills/                   step card và script cho AI
 └── _personal/             ghi chú riêng
 ```
 
@@ -158,11 +158,11 @@ Thả ảnh, video hoặc PDF vào một folder trong `work/`, hoặc chèn ản
 
 Lưu một mốc trước (commit trong GitHub Desktop, hoặc copy folder thành bản `-backup`), rồi nói với AI tool:
 
-> Chạy `_ai/refresh-hub.md` (rà soát những chỗ item chưa nối hoặc còn thiếu).
+> Chạy `_skills/refresh-hub.md` (rà soát những chỗ item chưa nối hoặc còn thiếu).
 
 Bước này chỉ trả về danh sách vấn đề tìm thấy; nó không ghi vào file nào. Sau khi chạy, đối chiếu vài dòng trong bảng với file item để chắc AI không suy ra sai quan hệ.
 
-Để tạo lại `index.html`, nhờ AI tool chạy `python3 _ai/export-hub.py`. Muốn xem thay đổi ngay khi lưu file, chạy `python3 _ai/serve-hub.py` (chi tiết ở `_ai/export-hub.md`).
+Để tạo lại `index.html`, nhờ AI tool chạy `python3 _skills/export-hub.py`. Muốn xem thay đổi ngay khi lưu file, chạy `python3 _skills/serve-hub.py` (chi tiết ở `_skills/export-hub.md`).
 
 ## Quyết định, thứ hạng và vòng outcome
 
