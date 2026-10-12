@@ -2,8 +2,8 @@
 type: "learning"
 title: "Learning"
 stage: "Learn"
-status: "draft"
-summary: ""
+status: "planned"
+summary: "After launch: results against targets, what you learned, and what to revisit."
 supports: []
 ---
 *Sau launch. Metric đã đo gì so với target, điều đã học, và opportunity nào cần mở lại. Bảng kết quả bên dưới do báo cáo tự dựng từ các file metric; phần này bạn viết.*
@@ -24,4 +24,4 @@ supports: []
 - [O?]: [vì sao mở lại]
 
 ## What changes next
-[Thay đổi cho vòng tiếp theo: decision mới, hypothesis mới. Thêm chúng vào `reference/case-log.md`.]
+[Thay đổi cho vòng tiếp theo: decision mới, hypothesis mới. Thêm chúng vào `insights/case-log.md`.]

@@ -2,8 +2,8 @@
 type: "findings"
 title: "Findings"
 stage: "Deliver"
-status: "draft"
-summary: ""
+status: "planned"
+summary: "What real users did in the test: results against the baseline and the problems found."
 supports: []
 ---
 *Giai đoạn Deliver, sau khi test. Người dùng thật đã làm gì. AI có thể giúp phân tích; kiểm tra từng finding với ghi chú hoặc bản ghi.*

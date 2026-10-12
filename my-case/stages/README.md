@@ -19,6 +19,7 @@ Muốn đổi nội dung: sửa file ở `work/` hoặc item ở `insights/`, r�
 | `findings` | Findings | Deliver | Kết quả test với người dùng | `findings.md` | evidence, findings |
 | `handoff` | Handoff and measurement | Deliver | Handoff pack, measurement plan | `handoff.md`, `measurement-plan.md` | |
 | `learning` | Learning | Learn | Điều đã học sau launch: metric so với target, dẫn ngược về opportunity | `learning.md` | outcomes |
+| `decision-log` | Decision log | Mọi giai đoạn | Mỗi quyết định một dòng, kèm lý do | `insights/case-log.md` | |
 
 ## Cách đọc bảng
 

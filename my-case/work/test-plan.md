@@ -2,8 +2,8 @@
 type: "test-plan"
 title: "Test plan"
 stage: "Deliver"
-status: "draft"
-summary: ""
+status: "planned"
+summary: "What you will test, with whom, how, and what would change your mind."
 supports: []
 ---
 *Giai đoạn Deliver, trước khi test.*

@@ -2,8 +2,8 @@
 type: "scope"
 title: "Scope"
 stage: "Discover"
-status: "draft"
-summary: ""
+status: "planned"
+summary: "The business question, the outcome it should move, who you build for, and what you assume."
 supports: []
 ---
 *Giai đoạn Discover. Cùng xác định với PO và business, hoặc viết thành assumptions nếu bạn không liên hệ được họ.*

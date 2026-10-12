@@ -2,8 +2,8 @@
 type: "problem-brief"
 title: "Problem brief"
 stage: "Define"
-status: "draft"
-summary: ""
+status: "planned"
+summary: "The problem worth solving: ranked opportunities, hypotheses and success metrics."
 supports: []
 ---
 *Giai đoạn Define. Yêu cầu chung. Đồng ký với product và business, hoặc ghi lại agreement status.*
@@ -22,7 +22,7 @@ supports: []
 *Chúng tôi tin rằng [decision] dành cho [users] sẽ [thay đổi gì], và chúng tôi sẽ biết nhờ [test và metric]. Mỗi hypothesis là một file trong `insights/hypotheses/` (H1, H2 ...), có dòng `Serves` trỏ tới opportunity và dòng `Metric`.*
 
 ## Principle checks to apply
-(Dẫn tới `reference/principle-checks.md`)
+(Dẫn tới `standards/principle-checks.md`)
 
 ## Agreement
 Status: agreed / pending / not available. Ai, khi nào, và họ nói gì:

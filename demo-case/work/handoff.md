@@ -13,14 +13,15 @@ supports: []
 ## The prototype
 Link hoặc folder. Đây là tài liệu tham chiếu, không phải production code.
 
-- Wireframe: `work/prototype/Travel_Buddy_Wireframe.html`
+- Wireframe: `work/wireframes/Travel_Buddy_Wireframe.html`
+- Prototype cuối: `work/final-prototype/travel-buddy-final-prototype.html`
 - Kế hoạch dựng, danh sách 32 màn hình, 4 flow: `work/original-docs/10_Prototype_Plan.md`
 - E2E flow: `work/original-docs/08_E2E_User_Flow.md`
 
 ## Decisions and reasons
-(Dẫn tới decision log trong `reference/case-log.md`)
+(Dẫn tới decision log trong `insights/case-log.md`)
 
-Bảy decision và lý do nằm ở `insights/decisions/`; nhật ký thời gian nằm ở `reference/case-log.md`.
+Bảy decision và lý do nằm ở `insights/decisions/`; nhật ký thời gian nằm ở `insights/case-log.md`.
 
 ## Acceptance notes
 *Điều gì phải đúng khi sản phẩm được dựng xong. Từ PRD của tab Explore (mục 8).*

@@ -13,7 +13,7 @@ Nhờ AI đọc các file item và liệt kê những chỗ chưa nối, chưa k
 ## Step 1: Review (AI)
 
 **Who:** AI
-**Input:** `insights/opportunities/*.md`, `insights/hypotheses/*.md`, `insights/metrics/*.md`, `insights/decisions/*.md`, `insights/evidence/*.md`, `insights/findings/*.md`, `reference/gates.md`, `reference/principle-checks.md`
+**Input:** `insights/opportunities/*.md`, `insights/hypotheses/*.md`, `insights/metrics/*.md`, `insights/decisions/*.md`, `insights/evidence/*.md`, `insights/findings/*.md`, `standards/gates.md`, `standards/principle-checks.md`
 **Output:** Danh sách vấn đề tìm thấy, trả lời trong chat. Không ghi vào file nào.
 
 **Instruction:**
@@ -33,7 +33,7 @@ Nhờ AI đọc các file item và liệt kê những chỗ chưa nối, chưa k
 
 **Who:** YOU
 **Input:** Warnings vừa được dựng, và câu trả lời của AI ở step 1
-**Output:** `work/alignment.md` (verdict cho từng warning), `reference/case-log.md`
+**Output:** `work/alignment.md` (verdict cho từng warning), `insights/case-log.md`
 
 Với mỗi warning, chọn một: sửa file item, chấp nhận như một trade-off có lý do, hoặc cắt. Item bị cắt thì xoá file và chạy lại workflow này.
 

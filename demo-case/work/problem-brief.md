@@ -29,7 +29,7 @@ Thứ hạng lấy theo điểm quan trọng người dùng gán cho tính năng
 Sáu hypothesis thiết kế (`H1`..`H6`) được rút từ sáu câu hỏi mở của kế hoạch test (`work/original-docs/12_Unmoderated_Usability_Test_Plan.md`, mục 2.2). Chúng khác với `RH1`..`RH10` ở `scope.md`, là các hypothesis về người dùng.
 
 ## Principle checks to apply
-(Dẫn tới `reference/principle-checks.md`)
+(Dẫn tới `standards/principle-checks.md`)
 *Dự án gốc chưa viết principle checks, nên file đó còn là template. Đây là một khoảng trống thật của dự án, được ghi ở gate 2d và 3c.*
 
 ## Agreement

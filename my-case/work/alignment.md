@@ -2,8 +2,8 @@
 type: "alignment"
 title: "Alignment check"
 stage: "Develop"
-status: "draft"
-summary: ""
+status: "planned"
+summary: "Check each decision against the user need and the design principles; record the verdict."
 supports: []
 ---
 *Cuối giai đoạn Develop. Mỗi decision có lần ngược được về một user need và đạt các principle không? bảng alignment nằm ở `hub/README.md`; file này giữ phần audit và verdict của bạn.*

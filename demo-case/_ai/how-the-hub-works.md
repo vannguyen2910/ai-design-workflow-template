@@ -19,7 +19,7 @@ Bấm đúp file `index.html` ở folder dự án: nó mở bằng trình duyệ
 | **Stages** | `stages/` | Câu chuyện của dự án theo từng giai đoạn: scope, evidence, problem brief, các hướng giải, findings, handoff. Tự ghép từ file ở `work/` và item ở `insights/`, không viết riêng |
 | **Work** | `work/` | Mọi thứ làm ra trong dự án: file làm việc, phân tích đối thủ, persona, khảo sát, wireframe, prototype |
 | **Insights** | `insights/` (`opportunities/`, `hypotheses/`, `decisions/`, `evidence/`, `findings/`, `metrics/`) | Mọi item nối với nhau. Có thể lọc, tìm kiếm, và xem dạng Thẻ, Cây hoặc Bảng đối chiếu |
-| **Reference** | `reference/` | Gates, principle checks, severity levels, nhật ký quyết định |
+| **Standards** | `standards/` | Thước đo để kiểm tra: gates, principle checks, severity levels |
 
 ## Sáu loại item
 
@@ -59,18 +59,18 @@ Phần này dành cho người giữ hub.
 ├── work/                  mọi thứ làm ra: file làm việc, wireframe, prototype, persona...
 │   ├── README.md          cách thêm tài liệu, ảnh, video, PDF
 │   ├── sources/           dữ liệu nghiên cứu (anonymised/ và _raw-private/)
-│   └── prototype/
+│   └── wireframes/
 ├── insights/
 │   ├── opportunities/     O1.md, O2.md ...   mỗi item một file, mỗi loại một folder
 │   ├── hypotheses/  metrics/  decisions/  evidence/  findings/
 │   ├── _templates/        mẫu rỗng cho từng loại item (copy vào folder loại)
 │   └── traceability.base  bảng theo loại item, dùng khi mở bằng Obsidian
-├── reference/             gates, principle checks, severity levels, case log, và trang này
+├── standards/             gates, principle checks, severity levels, case log, và trang này
 ├── _ai/                   step card và script cho AI
 └── _personal/             ghi chú riêng
 ```
 
-Nhật ký quyết định nằm ở `reference/case-log.md`, và các principle (P1 đến P10) ở `reference/principle-checks.md`.
+Nhật ký quyết định nằm ở `insights/case-log.md`, và các principle (P1 đến P10) ở `standards/principle-checks.md`.
 
 ## Nguyên tắc: mỗi thông tin chỉ ghi một chỗ
 
@@ -80,7 +80,7 @@ Nhật ký quyết định nằm ở `reference/case-log.md`, và các principle
 |---|---|
 | File item (`O*.md`, `H*.md`, `M*.md`, `D*.md`, `E*.md`, `F*.md`) | Bảng đối chiếu, Warnings và danh sách item |
 | File làm việc ở `work/` (scope, problem brief, options, findings, learning...) | Các trang giai đoạn ở mục Stages |
-| Trạng thái từng check trong `reference/gates.md` | Bảng Gates và dòng gate ở mỗi giai đoạn |
+| Trạng thái từng check trong `standards/gates.md` | Bảng Gates và dòng gate ở mỗi giai đoạn |
 | Verdict của bạn ở `work/alignment.md` | Bảng Outcomes ở trang Learning |
 
 ## Tạo một item
@@ -151,7 +151,7 @@ Thả ảnh, video hoặc PDF vào một folder trong `work/`, hoặc chèn ản
 3. Cập nhật status trong `gates.md`.
 4. Nhờ AI tool cập nhật hub (xem bên dưới) để dựng lại các bảng và warnings.
 5. Đọc warnings, quyết định từng cái, và ghi verdict ở `alignment.md`.
-6. Thêm một dòng vào `../reference/case-log.md`.
+6. Thêm một dòng vào `../insights/case-log.md`.
 7. Tạo lại `index.html` để người khác xem bản mới.
 
 ## Nhờ AI rà soát hub
@@ -186,7 +186,7 @@ Báo cáo không chỉ hiển thị mà còn đối chiếu các phần với nh
 
 ## Gates
 
-Bốn gate và các check 1a đến 4d nằm ở [`gates.md`](../reference/gates.md). Với mỗi check, đặt status là `open`, `passed` hoặc `failed`. **Không đổi tên check, chỉ đổi status.** Gate `passed` khi mọi check `passed`, `failed` khi có check `failed`, còn lại là `open`.
+Bốn gate và các check 1a đến 4d nằm ở [`gates.md`](../standards/gates.md). Với mỗi check, đặt status là `open`, `passed` hoặc `failed`. **Không đổi tên check, chỉ đổi status.** Gate `passed` khi mọi check `passed`, `failed` khi có check `failed`, còn lại là `open`.
 
 ## Lỗi thường gặp
 
@@ -204,5 +204,5 @@ Bốn gate và các check 1a đến 4d nằm ở [`gates.md`](../reference/gates
 ## Ghi chú
 
 - Hub mặc định là riêng tư. Cách cho người khác xem nằm ở `guides/04-share-your-hub.md` ở folder gốc của workspace.
-- P1 đến P10 là 10 usability heuristics của Nielsen. Thêm principle riêng của tổ chức từ P11 trở đi trong `reference/principle-checks.md`.
+- P1 đến P10 là 10 usability heuristics của Nielsen. Thêm principle riêng của tổ chức từ P11 trở đi trong `standards/principle-checks.md`.
 - Hub dùng được với bất kỳ công cụ nào mở được cả folder: AI coding tool, VS Code hoặc Obsidian. Obsidian thêm Graph view và Backlinks (xem `guides/05-obsidian.md`).

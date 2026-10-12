@@ -16,7 +16,7 @@ Hub **không tự rút insight** từ file ở `work/`. Workflow này là bướ
 ## Step 1: Propose (AI)
 
 **Who:** AI
-**Input:** Tài liệu mới (một file duy nhất), danh sách item hiện có trong `insights/` (mã và title), `reference/principle-checks.md`
+**Input:** Tài liệu mới (một file duy nhất), danh sách item hiện có trong `insights/` (mã và title), `standards/principle-checks.md`
 **Output:** Một bảng đề xuất ngay trong chat. **Chưa tạo file nào.**
 
 **Instruction:**

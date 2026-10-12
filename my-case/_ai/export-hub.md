@@ -19,9 +19,9 @@ Biến Markdown thành HTML là phép biến đổi xác định. Script cho cù
 
 | Có | Không |
 |---|---|
-| `README.md`, `context/`, `stages/`, `work/`, `insights/`, `reference/` | Các phần có chữ "(AI draft)" ở tiêu đề, `work/sources/` |
+| `README.md`, `context/`, `stages/`, `work/`, `insights/`, `standards/` | Các phần có chữ "(AI draft)" ở tiêu đề, `work/sources/` |
 | Mọi file item (O, H, M, D, E) | `_personal/`, `work/sources/`, `AGENTS.md`, `_ai/*.md` |
-| `reference/case-log.md`, `reference/principle-checks.md` | `reference/how-the-hub-works.md` (hướng dẫn cho người viết) |
+| `insights/case-log.md`, `standards/principle-checks.md` | `_ai/how-the-hub-works.md` (hướng dẫn cho người viết) |
 
 Các khối "Cách điền" bị bỏ khỏi báo cáo. Link tới file ngoài báo cáo hiện thành chữ có gạch chấm, không bấm được.
 
@@ -33,7 +33,7 @@ Các khối "Cách điền" bị bỏ khỏi báo cáo. Link tới file ngoài b
 | **Hành trình** | Các trang theo giai đoạn (phần narrative); bấm một thẻ để mở trang |
 | **Tài liệu** | Mỗi artifact một thẻ, bấm để mở trang: tóm tắt, điểm chính, hình, prototype chạy được, link ngoài, và các item nó hỗ trợ. Lọc theo giai đoạn và loại |
 | **Insights** | Mỗi item (O, H, M, D, E) một thẻ, có tìm kiếm và lọc theo loại; nút **Cây** chuyển sang dạng **Opportunity > Hypothesis > Decision / Test / Metric** |
-| **Reference** | Gates, principle checks, case log |
+| **Standards** | Gates, principle checks, severity levels |
 
 Item không nằm trong menu bên trái mà nằm trong mục Insights, nên báo cáo vẫn dùng được khi có hàng chục item. Item chưa nối vào opportunity nào được gom riêng ở cuối cây.
 
@@ -64,7 +64,7 @@ Bản này gấp bản nháp lại và ghi "chưa kiểm tra". **Không gửi b�
 ## Step 1: Export
 
 **Who:** YOU (hoặc AI tool, chỉ để chạy lệnh)
-**Input:** `README.md`, `context/`, `stages/`, `work/`, `insights/`, `reference/`
+**Input:** `README.md`, `context/`, `stages/`, `work/`, `insights/`, `standards/`
 **Output:** `index.html` ở gốc case folder
 
 ```
@@ -84,7 +84,7 @@ Script in ra số trang, số item, và các vấn đề (link hỏng, ID không
 Mở file bằng trình duyệt và kiểm tra:
 
 - [ ] Không còn thanh đen "dữ liệu mẫu hoặc chỗ chưa điền" ở đầu Tổng quan
-- [ ] Không còn item `[EXAMPLE]`
+- [ ] Không còn nội dung mẫu hoặc chỗ trống
 - [ ] Agreement status đúng
 - [ ] Không có thông tin confidential hay dữ liệu cá nhân (đọc từng trang; báo cáo chỉ gồm hub, nhưng bạn là người viết hub)
 - [ ] Mở thử trên một thiết bị khác

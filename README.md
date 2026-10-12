@@ -25,7 +25,7 @@ Bạn không cần biết GitHub hay lập trình để bắt đầu.
    python3 tools/new-case.py onboarding-redesign
    ```
 
-   Không dùng được Terminal? Đổi tên folder `my-case` theo dự án của bạn, rồi tự xoá các item `[EXAMPLE]` trong `insights/`.
+   Không dùng được Terminal? Đổi tên folder `my-case` theo dự án của bạn, rồi điền vào đó.
 3. **Xem hub.** Bấm đúp file `index.html` trong folder dự án (ví dụ [`my-case/index.html`](my-case/index.html)): nó mở bằng trình duyệt và không cần cài gì. Khi làm việc, mở **cả folder dự án** bằng công cụ bạn quen (AI coding tool, VS Code hay Obsidian).
 
 Xong ba bước này là dự án đã có chỗ ở. Các bước sau làm dần theo tiến độ thật của dự án.
@@ -69,7 +69,7 @@ my-case/
 ├── stages/          STAGES     mỗi giai đoạn một trang, tự dựng từ work/ và insights/
 ├── work/            WORK       mọi thứ làm ra: file làm việc, wireframe, prototype, persona, nguồn nghiên cứu
 ├── insights/        INSIGHTS   nhu cầu, hypothesis, decision, evidence, finding, metric (mỗi loại một folder)
-├── reference/       REFERENCE  gates, principle checks, severity levels, case log
+├── standards/       REFERENCE  gates, principle checks, severity levels, case log
 │
 ├── _ai/             step card và script cho AI (hiếm khi cần mở tay)
 └── _personal/       ghi chú riêng, không đưa cho AI
@@ -88,7 +88,7 @@ Báo cáo `index.html` ghi sẵn dòng "Folder" và "Thêm mới" ở đầu m�
 | **Stages** | `stages/` | Một trang cho mỗi giai đoạn, tự dựng từ `work/` và `insights/` (bạn không viết ở đây) | Thêm một dòng vào bảng Pages ở `stages/README.md`: chọn file ở `work/` và bảng item muốn hiện |
 | **Work** | `work/` | Mọi thứ làm ra: file làm việc, wireframe, prototype, persona, flow | Thả file vào folder, hoặc tạo folder con (kèm `index.md`) rồi thả ảnh, PDF, video vào đó |
 | **Insights** | `insights/` (`opportunities/`, `hypotheses/`, `decisions/`, `evidence/`, `findings/`, `metrics/`) | Các item nối với nhau | Chạy `python3 _ai/new-item.py`: lệnh hỏi từng câu, chọn mã tiếp theo và nối quan hệ giúp bạn |
-| **Reference** | `reference/` | Gates, principle checks, severity levels, case log | Thả một file `.md` vào folder |
+| **Standards** | `standards/` | Thước đo để kiểm tra: gates, principle checks, severity levels | Thả một file `.md` vào folder |
 
 ## The life of a project
 
@@ -98,10 +98,10 @@ Một dự án đi qua năm giai đoạn. Bạn không cần làm hết một l�
 |---|---|---|
 | **Setup** | Dự án là gì, ai dùng, được đưa gì cho AI? | `context/product-and-users.md`, `accessibility-rules.md`, `data-rules.md`, `open-questions.md` |
 | **Discover** | Chúng ta chưa biết gì, và bằng chứng nào có thể tin? | `work/scope.md`, `work/user-voice-synthesis.md`, `work/competitor-analysis.md` |
-| **Define** | Vấn đề nào đáng giải, và thành công trông thế nào? | `work/problem-brief.md`, `reference/principle-checks.md` |
+| **Define** | Vấn đề nào đáng giải, và thành công trông thế nào? | `work/problem-brief.md`, `standards/principle-checks.md` |
 | **Develop** | Giải bằng cách nào, và vì sao chọn cách đó? | `work/options.md`, `work/prototype/`, `work/alignment.md`, `context/design-system-notes.md` |
-| **Deliver** | Nó có hiệu quả không, và bàn giao gì? | `work/test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md`; chấm mức độ bằng `reference/severity-levels.md` |
-| **Mọi giai đoạn** | Chúng ta đã quyết định gì, và vì sao? | `reference/case-log.md`, các trang ở `stages/` và các item ở `insights/` |
+| **Deliver** | Nó có hiệu quả không, và bàn giao gì? | `work/test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md`; chấm mức độ bằng `standards/severity-levels.md` |
+| **Mọi giai đoạn** | Chúng ta đã quyết định gì, và vì sao? | `insights/case-log.md`, các trang ở `stages/` và các item ở `insights/` |
 
 Dự án thật không đi một chiều. Khi có thông tin mới, bạn quay lại giai đoạn trước: cập nhật file ở giai đoạn đó, rồi tạo lại hub (`python3 _ai/export-hub.py`; muốn rà soát thì xem `_ai/refresh-hub.md`).
 
@@ -109,12 +109,12 @@ Dự án thật không đi một chiều. Khi có thông tin mới, bạn quay l
 
 Workspace chỉ có giá trị khi nó phản ánh dự án hôm nay. Bốn thói quen giữ nó sống:
 
-1. **Ghi decision ngay khi quyết định.** Một dòng vào `reference/case-log.md`: quyết định gì, vì sao, AI đã giúp ở đâu.
+1. **Ghi decision ngay khi quyết định.** Một dòng vào `insights/case-log.md`: quyết định gì, vì sao, AI đã giúp ở đâu.
 2. **Mỗi thông tin mới đi vào một chỗ.** Sửa file item hoặc working file, không copy sang nơi khác. Rồi tạo lại hub và `index.html`.
 3. **Lưu một mốc trước thay đổi lớn.** Dùng GitHub Desktop (commit) hoặc copy folder thành bản `-backup`.
 4. **Gửi trang chủ, không gửi folder.** Cho stakeholder xem bằng `index.html` đã đổi tên (xem [`guides/04-share-your-hub.md`](guides/04-share-your-hub.md)).
 
-Khi dự án kết thúc: đặt status các gate, viết ba dòng rút kinh nghiệm vào `reference/case-log.md`, tạo lại `index.html` lần cuối rồi lưu trữ folder.
+Khi dự án kết thúc: đặt status các gate, viết ba dòng rút kinh nghiệm vào `insights/case-log.md`, tạo lại `index.html` lần cuối rồi lưu trữ folder.
 
 ## Start another project
 
@@ -144,13 +144,13 @@ Khi dùng cho dự án thật của công ty:
 
 Bạn đổi được hầu hết mọi thứ:
 
-- Đổi tên folder dự án, nhân đôi nó, hoặc thêm folder riêng như `notes/`. Muốn thêm một trang tra cứu, chỉ cần thả file `.md` vào `reference/`.
+- Đổi tên folder dự án, nhân đôi nó, hoặc thêm folder riêng như `notes/`. Muốn thêm một trang tra cứu, chỉ cần thả file `.md` vào `standards/`.
 - Xoá file bạn không dùng, ví dụ `context/glossary.md` hay `work/competitor-analysis.md`.
 - Sửa nội dung các file mẫu cho hợp cách làm của team bạn.
 
 Có hai thứ nên giữ nguyên để AI tool và hub đọc đúng:
 
-- **Tên các folder `context/`, `stages/`, `work/`, `insights/`, `reference/`, `_ai/` và file `AGENTS.md`.** Các step card gọi file theo đúng đường dẫn này.
+- **Tên các folder `context/`, `stages/`, `work/`, `insights/`, `standards/`, `_ai/` và file `AGENTS.md`.** Các step card gọi file theo đúng đường dẫn này.
 - **Tên file trong `insights/` và mã của item** (`O1`, `H1`, `D1`...). Các item nối với nhau qua mã, nên đổi tên là làm đứt liên kết.
 
 ## Which folder do I use?

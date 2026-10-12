@@ -22,7 +22,7 @@ Một file HTML tự chứa, có menu, bấm đúp là mở bằng trình duyệ
    - Tự chạy trên Windows: mở folder case, bấm vào thanh địa chỉ, gõ `cmd`, nhấn Enter, rồi gõ lệnh trên.
    - Máy cần có Python 3. Mac có thể hỏi bạn cài một bộ công cụ ở lần chạy đầu; Windows cần cài Python từ [python.org](https://www.python.org).
 2. **Mở file** `index.html` ở gốc case folder bằng trình duyệt (bấm đúp).
-3. **Kiểm tra trước khi gửi.** Nếu đầu trang có thanh đen "còn nội dung mẫu hoặc chỗ chưa điền", hub vẫn còn mục `[EXAMPLE]` hoặc chỗ trống. Điền hoặc xoá chúng rồi tạo lại.
+3. **Kiểm tra trước khi gửi.** Nếu đầu trang có thanh đen "còn nội dung mẫu hoặc chỗ chưa điền", hub vẫn còn nội dung mẫu hoặc chỗ trống. Điền hoặc xoá chúng rồi tạo lại.
 4. **Gửi file.** Copy `index.html` ra ngoài và đổi tên cho dễ nhận ra, ví dụ `onboarding-redesign-report.html`. Người nhận chỉ cần trình duyệt.
 
 Nếu bạn dùng GitHub, file `index.html` còn được **tự tạo lại** sau mỗi lần push (workflow `Update index.html`). Bạn chỉ cần tải repo về hoặc chọn **Fetch origin** rồi **Pull** trong GitHub Desktop để có bản mới nhất, không cần chạy lệnh nào.
@@ -40,7 +40,7 @@ Muốn gửi gọn (ảnh, prototype đi kèm, không lộ working file thô): c
 
 ## Option 3: File ZIP
 
-1. Nén **cả folder case**, không chỉ `insights/`, vì các trang trong báo cáo nối tới `work/`, `reference/` và các file làm việc.
+1. Nén **cả folder case**, không chỉ `insights/`, vì các trang trong báo cáo nối tới `work/`, `standards/` và các file làm việc.
 2. Gửi file ZIP. Người nhận giải nén và mở cả folder bằng Obsidian hoặc VS Code.
 3. Thử mở trên một máy khác trước khi gửi.
 
