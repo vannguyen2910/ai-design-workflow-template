@@ -18,15 +18,16 @@ AI soạn nháp, bạn quyết định. Không cần biết lập trình hay Git
 
 ---
 
-## Cách làm: 5 bước
+## Cách làm: 6 bước
 
 | Bước | Bạn làm | Bạn nhận được |
 |---|---|---|
-| **1. Đặt nền** | Ghi ngắn: sản phẩm là gì, ai dùng, dữ liệu nào đưa cho AI. Ẩn danh tên người và số liệu thật | AI biết bối cảnh trước khi giúp |
-| **2. Gom đầu vào** | Đưa tài liệu theo giai đoạn: phỏng vấn, khảo sát, phân tích đối thủ, wireframe | Mọi thứ nằm đúng chỗ, không còn rải rác |
-| **3. Để AI đề xuất, bạn quyết** | AI đề xuất nhu cầu, giả thuyết, quyết định, **kèm nguồn**. Bạn giữ, sửa hoặc cắt | Chỉ những gì bạn đã duyệt mới được ghi |
-| **4. Xem bức tranh** | Mở báo cáo: mỗi quyết định dẫn về lý do và bằng chứng. Chỗ trống được chỉ ra | Biết còn thiếu gì trước khi bàn giao hay họp |
-| **5. Đo và học** | Sau phát hành, ghi kết quả so với mục tiêu. Chưa đạt thì quay lại nhu cầu | Quyết định tiếp theo có căn cứ từ kết quả thật |
+| **1. Tạo dự án mới** | Nói với AI tool: *"Tạo một dự án mới tên …"* | Một folder dự án sạch, và một thẻ mới trên trang chủ |
+| **2. Đặt context** | Ghi ngắn: sản phẩm là gì, ai dùng, dữ liệu nào đưa cho AI. Ẩn danh tên người và số liệu thật | AI biết bối cảnh trước khi giúp |
+| **3. Đưa tài liệu theo giai đoạn** | Thêm phỏng vấn, khảo sát, phân tích đối thủ, wireframe | Mọi thứ nằm đúng chỗ, không còn rải rác |
+| **4. Để AI đề xuất, bạn quyết định** | AI đề xuất nhu cầu, giả thuyết, quyết định theo **template có sẵn**, kèm nguồn. Bạn giữ, sửa hoặc cắt | Chỉ những gì bạn đã duyệt mới được ghi |
+| **5. Xem bức tranh tổng thể** | Mở báo cáo: mỗi quyết định dẫn về lý do và bằng chứng. Chỗ trống được chỉ ra | Biết còn thiếu gì trước khi bàn giao hay họp |
+| **6. Đo và học** | Sau phát hành, ghi kết quả so với mục tiêu. Chưa đạt thì quay lại nhu cầu | Quyết định tiếp theo có căn cứ từ kết quả thật |
 
 ---
 
@@ -34,13 +35,14 @@ AI soạn nháp, bạn quyết định. Không cần biết lập trình hay Git
 
 | Bước | Chuyện gì xảy ra |
 |---|---|
-| **1. Đặt nền** | Bạn ghi: app giúp du khách lập kế hoạch ở một nơi, người dùng 18 đến 45 tuổi. Số liệu khảo sát đã được ẩn danh |
-| **2. Gom đầu vào** | Bạn đưa vào kết quả khảo sát 13 người và ghi chú một buổi phỏng vấn |
-| **3. Để AI đề xuất, bạn quyết** | Bạn nói: *"Rút insight từ file khảo sát. Đề xuất trước, đừng tạo."* AI trả về nhu cầu **"vượt rào cản dùng thử"**, kèm nguồn: giá là rào cản số 1, 7 trên 13 người. Bạn giữ |
-| **4. Xem bức tranh** | Báo cáo nối quyết định về bằng chứng, như bên dưới |
-| **5. Đo và học** | Mục tiêu là 25% khách bấm Save sẽ đăng ký. Sau phát hành chỉ đạt 18% *(số giả định)*. Báo cáo đánh dấu chưa đạt và nhu cầu "rào cản dùng thử" cần xem lại |
+| **1. Tạo dự án mới** | Bạn nói: *"Tạo một dự án mới tên Travel Buddy."* Trang chủ có thêm một thẻ Travel Buddy |
+| **2. Đặt context** | Bạn ghi: app giúp du khách lập kế hoạch ở một nơi, người dùng 18 đến 45 tuổi |
+| **3. Đưa tài liệu theo giai đoạn** | Bạn đưa vào kết quả khảo sát 13 người và ghi chú một buổi phỏng vấn |
+| **4. Để AI đề xuất, bạn quyết định** | Bạn nói: *"Rút insight từ file khảo sát. Đề xuất trước, đừng tạo."* AI trả về nhu cầu **"vượt rào cản dùng thử"**, kèm nguồn: giá là rào cản số 1, 7 trên 13 người. Bạn giữ |
+| **5. Xem bức tranh tổng thể** | Báo cáo nối quyết định về bằng chứng, như bên dưới |
+| **6. Đo và học** | Mục tiêu là 25% khách bấm Save sẽ đăng ký. Sau phát hành chỉ đạt 18% *(số giả định)*. Báo cáo đánh dấu chưa đạt và nhu cầu "rào cản dùng thử" cần xem lại |
 
-Ở bước 4, bấm vào một quyết định là thấy chuỗi lý do đứng sau nó:
+Ở bước 5, bấm vào một quyết định là thấy chuỗi lý do đứng sau nó:
 
 ```
 Quyết định: "Khách duyệt không cần tài khoản"
@@ -49,7 +51,7 @@ Quyết định: "Khách duyệt không cần tài khoản"
       ← bằng chứng: khảo sát 13 người, giá là rào cản số 1 (7/13)
 ```
 
-Các bước 1 đến 4 lấy từ dự án mẫu `demo-case`. Bạn mở file đó để xem đủ.
+Các bước 2 đến 5 lấy từ dự án mẫu `demo-case`. Bạn mở dự án đó để xem đủ.
 
 ---
 
