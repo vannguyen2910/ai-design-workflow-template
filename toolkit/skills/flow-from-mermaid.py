@@ -377,8 +377,8 @@ def longest_path(nodes, edges):
 
 
 TYPE_COLORS = {
-    "frontend": "#3b7bd4", "backend": "#2f9e5f", "database": "#7b57d1", "cloud": "#d9822b",
-    "security": "#d0455a", "messagebus": "#c9971a", "external": "#7b8494",
+    "frontend": "#00a76f", "backend": "#00b8d9", "database": "#1c252e", "cloud": "#ffab00",
+    "security": "#ff5630", "messagebus": "#637381", "external": "#919eab",
 }
 NW, NH, GAPX, GAPY, MX, MY = 200, 88, 64, 56, 32, 70
 DEC = 64          # half of a decision's side: it is a 128 x 128 square turned 45 degrees (ratio 1:1)
@@ -594,12 +594,11 @@ def scroll_html(title, nodes, edges, legend):
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>%(title)s</title>
 <style>
-:root{--bg:#f6f7f9;--panel:#fff;--ink:#1c252e;--muted:#637381;--line:#b8c0ca;--card:#fff;--cardline:#d9dee5;--dots:#d8dde4}
-@media (prefers-color-scheme:dark){:root{--bg:#0f1419;--panel:#161d25;--ink:#f1f3f5;--muted:#a7b0ba;--line:#5d6875;--card:#1d262f;--cardline:#34404c;--dots:#26303b}}
-html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+:root{--bg:#fff;--panel:#fff;--ink:#1c252e;--muted:#637381;--line:#919eab;--card:#fff;--cardline:rgba(145,158,171,.32);--dots:rgba(145,158,171,.28)}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
 .wrap{max-width:100%%;margin:0;padding:18px 20px}
 header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:0 4px 8px}
-h1{margin:0;font-size:1.2rem;letter-spacing:-.01em}
+h1{margin:0;font-size:1.2rem;font-weight:800;letter-spacing:-.01em}
 .sum{color:var(--muted);font-size:.85rem}
 .leg{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:center;margin:0 4px 12px;font-size:.78rem;color:var(--muted)}
 .lgroup{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px}
@@ -607,7 +606,7 @@ h1{margin:0;font-size:1.2rem;letter-spacing:-.01em}
 .lgroup span{display:inline-flex;align-items:center;gap:6px;color:var(--ink)}
 .leg i{display:inline-block;width:10px;height:10px;border-radius:50%%}
 .lg{fill:none;stroke:var(--muted);stroke-width:1.4}.lg.dash{stroke-dasharray:3 3}
-.panel{background:var(--panel);border:1px solid var(--cardline);border-radius:14px;overflow:hidden}
+.panel{background:var(--panel);border:0;border-radius:16px;overflow:hidden;box-shadow:0 0 2px 0 rgba(145,158,171,.2),0 12px 24px -4px rgba(145,158,171,.12)}
 .scroll{overflow-x:auto;overflow-y:hidden;background-image:radial-gradient(var(--dots) 1px,transparent 1px);background-size:18px 18px;scrollbar-width:thin}
 svg{display:block}
 .e{fill:none;stroke:var(--line);stroke-width:1.6}
@@ -629,7 +628,7 @@ svg{display:block}
 <header><h1>%(title)s</h1><span class="sum">%(summary)s</span></header>
 <div class="leg">%(leg)s</div>
 <div class="panel"><div class="scroll"><svg xmlns="http://www.w3.org/2000/svg" width="%(w)d" height="%(h)d" viewBox="0 0 %(w)d %(h)d" role="img" aria-label="%(title)s">
-<defs><marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#8a96a3"/></marker></defs>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#919eab"/></marker></defs>
 %(paths)s
 %(texts)s
 %(nodes)s
@@ -769,10 +768,48 @@ def finalize(bin_path, json_path, html_path, cwd):
     return d.get("status") == "pass", msgs
 
 
+# What the generated pages looked like before they followed the Minimal design system.
+_RESTYLE = [
+    ('@media (prefers-color-scheme:dark){:root{--bg:#0f1419;--panel:#161d25;--ink:#f1f3f5;--muted:#a7b0ba;--line:#5d6875;--card:#1d262f;--cardline:#34404c;--dots:#26303b}}\n', ""),
+    (':root{--bg:#f6f7f9;--panel:#fff;--ink:#1c252e;--muted:#637381;--line:#b8c0ca;--card:#fff;--cardline:#d9dee5;--dots:#d8dde4}', ':root{--bg:#fff;--panel:#fff;--ink:#1c252e;--muted:#637381;--line:#919eab;--card:#fff;--cardline:rgba(145,158,171,.32);--dots:rgba(145,158,171,.28)}'),
+    ('html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}', 'html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}'),
+    ('h1{margin:0;font-size:1.2rem;letter-spacing:-.01em}', 'h1{margin:0;font-size:1.2rem;font-weight:800;letter-spacing:-.01em}'),
+    ('.panel{background:var(--panel);border:1px solid var(--cardline);border-radius:14px;overflow:hidden}', '.panel{background:var(--panel);border:0;border-radius:16px;overflow:hidden;box-shadow:0 0 2px 0 rgba(145,158,171,.2),0 12px 24px -4px rgba(145,158,171,.12)}'),
+    ('fill="#8a96a3"', 'fill="#919eab"'),
+]
+_RESTYLE_COLORS = {"#3b7bd4": "#00a76f", "#2f9e5f": "#00b8d9", "#7b57d1": "#1c252e", "#d9822b": "#ffab00",
+                   "#d0455a": "#ff5630", "#c9971a": "#637381", "#7b8494": "#919eab"}
+
+
+def restyle(paths):
+    """Rewrite generated diagram pages in place (.html files, or folders of them). Safe to run twice."""
+    import glob
+    files = []
+    for p in paths:
+        files += sorted(glob.glob(os.path.join(p, "*.html"))) if os.path.isdir(p) else [p]
+    changed = 0
+    for f in files:
+        t = open(f, encoding="utf-8").read()
+        if "flow-from-mermaid" not in t and 'class="panel"' not in t:
+            continue
+        o = t
+        for a, b in _RESTYLE:
+            t = t.replace(a, b)
+        t = re.sub(r"#[0-9a-fA-F]{6}\b", lambda m: _RESTYLE_COLORS.get(m.group(0).lower(), m.group(0)), t)
+        if t != o:
+            open(f, "w", encoding="utf-8").write(t)
+            changed += 1
+            print("restyled", f)
+    print("%d file(s) restyled, %d already up to date" % (changed, len(files) - changed))
+
+
+
 def main():
     ap = argparse.ArgumentParser(description="Mermaid flowchart -> one archify diagram per phase")
-    ap.add_argument("source", help="markdown file with a ```mermaid block, or a .mmd file")
-    ap.add_argument("--out", required=True, help="folder for the .json and .html files")
+    ap.add_argument("source", nargs="?", help="markdown file with a ```mermaid block, or a .mmd file")
+    ap.add_argument("--out", help="folder for the .json and .html files")
+    ap.add_argument("--restyle", nargs="+", metavar="PATH", help="bring already generated diagram pages (files or folders) "
+                    "to the current look; no Mermaid source needed")
     ap.add_argument("--title", default="", help="product name used in diagram titles")
     ap.add_argument("--legend", default="", help='names for solution-code letters, e.g. "A=Onboarding,D=Discover,P=Plan"')
     ap.add_argument("--case", default="", help="case folder holding insights/decisions (default: the case you are standing in)")
@@ -782,6 +819,11 @@ def main():
     ap.add_argument("--no-overview", action="store_true", help="skip the phase overview diagram")
     ap.add_argument("--no-run", action="store_true", help="write the .json files only")
     a = ap.parse_args()
+    if a.restyle:
+        restyle(a.restyle)
+        return
+    if not a.source or not a.out:
+        ap.error("source and --out are required (or use --restyle PATH)")
 
     text = open(a.source, encoding="utf-8").read()
     g = parse(text)

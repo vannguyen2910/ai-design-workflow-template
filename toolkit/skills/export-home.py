@@ -159,7 +159,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Public Sans"
 header.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.86);backdrop-filter:blur(6px);border-bottom:1px dashed var(--line)}
 .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
 .brand{display:flex;align-items:center;gap:10px;padding:14px 0;font-weight:800;letter-spacing:-.01em}
-.logo{width:34px;height:auto;color:var(--purple)}
+.logo{width:34px;height:auto;color:var(--ink)}
 h1{font-size:1.9rem;line-height:1.2;margin:40px 0 8px;font-weight:800;letter-spacing:-.01em}
 .lede{color:var(--muted);margin:0 0 28px;max-width:60ch}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;margin:0 0 56px}
@@ -257,7 +257,7 @@ def load_logo():
 def main():
     ap = argparse.ArgumentParser(description="Build the workspace home page (index.html at the workspace root).")
     ap.add_argument("--workspace", help="workspace folder (default: the one you are in)")
-    ap.add_argument("--title", default="Product Workspace with AI")
+    ap.add_argument("--title", default="Product Workspace")
     ap.add_argument("--out", help="output file (default: <workspace>/index.html)")
     a = ap.parse_args()
     ws = os.path.abspath(a.workspace) if a.workspace else find_workspace(os.getcwd())

@@ -1561,6 +1561,12 @@ THEME_CSS = r"""
 [data-theme=minimal] code{background:rgba(145,158,171,.16);border-radius:6px}
 [data-theme=minimal] footer.foot{border-top:1px dashed var(--line)}
 [data-theme=minimal] .tree ul{border-left:1px dashed var(--line)}
+[data-theme=minimal] hr{border-top:1px dashed var(--line)}
+[data-theme=minimal] .dlink,[data-theme=minimal] .sthead{border-top:1px dashed var(--line)}
+[data-theme=minimal] .dlink:first-child{border-top:0}
+[data-theme=minimal] .wgroup,[data-theme=minimal] .astat{border:0;border-radius:16px;background:#fff;box-shadow:0 0 2px 0 rgba(145,158,171,.2),0 12px 24px -4px rgba(145,158,171,.12)}
+[data-theme=minimal] pre{background:rgba(145,158,171,.12);border-radius:8px}
+[data-theme=minimal] pre code{background:none}
 
 /* notion: neutral grey, one blue accent, small radius, almost no fill */
 [data-theme=notion]{--ink:#37352f;--bg:#fff;--surface:#f7f6f3;--muted:rgba(55,53,47,.65);--line:rgba(55,53,47,.13);--purple:#2383e2;--link:#0b6bcb;--tint:rgba(35,131,226,.08);--tint2:rgba(35,131,226,.15);--r:6px}
