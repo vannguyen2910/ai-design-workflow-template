@@ -3,27 +3,27 @@
 *Write this when you start building the prototype, in a form an AI coding tool can read. Short, concrete, no paragraph that needs interpreting.*
 
 ## Where the source of truth lives
-`work/original-docs/10_Prototype_Plan.md`, mục 2 (Design Direction & Design System). Prototype: `work/prototype/`.
+`work/original-docs/10_Prototype_Plan.md`, section 2 (Design Direction & Design System). Prototype: `work/prototype/`.
 
 ## Tokens
-- Colour: `--primary` #5DB85C (CTA chính, verified badge); `--primary-lime` #C4E03A (nav đang chọn, chip nổi bật); `--primary-dark` #3A7A39 (trạng thái nhấn); `--nav-bg` #1C1C2E (thanh điều hướng dưới); `--surface` #FFFFFF; `--bg` #F7F7F7; `--text` #111111; `--text-secondary` #555555; `--border` #EBEBEB; `--warning` #F5A623 (crowd signal cao); `--danger` #E74C3C (an toàn, report/block, lỗi)
-- Type: DM Sans (dự phòng Inter, SF Pro Text). Display 32–38px/800; screen title 24px/700; section 18px/600; card title 16px/600; body 14px/400; caption 12px/500; button 15px/600
-- Spacing và radius: đơn vị gốc 4px (4, 8, 16, 24, 32, 48). Photo card 20px; card 16px; bottom sheet 24px (hai góc trên); CTA và chip dạng pill (50px); input 14px
+- Colour: `--primary` #5DB85C (main CTA, verified badge); `--primary-lime` #C4E03A (selected nav, highlighted chip); `--primary-dark` #3A7A39 (pressed state); `--nav-bg` #1C1C2E (bottom navigation bar); `--surface` #FFFFFF; `--bg` #F7F7F7; `--text` #111111; `--text-secondary` #555555; `--border` #EBEBEB; `--warning` #F5A623 (high crowd signal); `--danger` #E74C3C (safety, report/block, errors)
+- Type: DM Sans (fallback Inter, SF Pro Text). Display 32–38px/800; screen title 24px/700; section 18px/600; card title 16px/600; body 14px/400; caption 12px/500; button 15px/600
+- Spacing and radius: base unit 4px (4, 8, 16, 24, 32, 48). Photo card 20px; card 16px; bottom sheet 24px (top two corners); CTA and chips are pills (50px); input 14px
 
 ## Components
 | Component | States it has | Rules |
 |---|---|---|
-| Tip card (ảnh phủ) | mặc định, đã lưu | Có crowd signal badge; chữ trên ảnh dùng gradient để đạt tương phản |
-| Map pin | local favourite (xanh), popular (hổ phách), very touristy (đỏ) | Gom thành cụm khi gần nhau; chạm để mở peek card |
-| Bottom sheet | thu gọn (peek), mở | Dùng cho peek card, safety context, sign-up gate |
-| Filter chip | mặc định, đang chọn | Dạng pill; phải giữ nguyên khi đổi mode |
+| Tip card (full-bleed photo) | default, saved | Has a crowd signal badge; text over the photo uses a gradient to reach contrast |
+| Map pin | local favourite (green), popular (amber), very touristy (red) | Clusters when close together; tap to open the peek card |
+| Bottom sheet | collapsed (peek), open | Used for the peek card, safety context, the sign-up gate |
+| Filter chip | default, selected | A pill; must be kept as it is when the mode changes |
 
 ## Patterns
-Mobile 390 × 844px. Thanh điều hướng tối ở dưới, nội dung nền sáng và định hướng ảnh. Explore có ba mode (Near Me, Country, Map) dùng chung một hệ thống filter.
+Mobile 390 × 844px. A dark bottom navigation bar, a light content background and a photo-led direction. Explore has three modes (Near Me, Country, Map) that share one filter system.
 
 ## Do and do not
-- Do: để người xem duyệt tip mà không cần tài khoản; chỉ đòi đăng ký khi Save hoặc Connect
-- Do not: dùng huy hiệu độ phổ biến; thay vào đó dùng crowd signal
+- Do: let viewers browse tips without an account; ask for sign-up only on Save or Connect
+- Do not: use a popularity badge; use the crowd signal instead
 
 ## Accessibility rules
-Xem `accessibility-rules.md`. Dự án này chưa kiểm tra riêng cho từng component ngoài yêu cầu tương phản trên ảnh phủ.
+See `accessibility-rules.md`. This project was not checked per component beyond the contrast requirement on photo overlays.

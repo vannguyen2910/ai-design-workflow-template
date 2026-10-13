@@ -11,20 +11,20 @@ supports: []
 ## Alignment table
 *Paste or link the alignment table from the Insights section of the report (the Alignment table mode). Record every decision with no user need behind it, every opportunity with no decision, every hypothesis with no test.*
 
-Xem mục Insights (chế độ Bảng đối chiếu) trong `index.html`. Với bảy decision và sáu hypothesis hiện có, mọi decision đều nối được về một hypothesis và một nhu cầu. Hai chỗ còn thiếu:
+See the Insights section (Alignment table mode) in `index.html`. With the seven decisions and six hypotheses we have, every decision traces back to a hypothesis and a need. Two gaps remain:
 
-- **Hai hypothesis chưa có test với người thật.** Vòng test duy nhất là mô phỏng (E1); vòng không điều phối (E2) mới ở dạng kế hoạch.
-- **Mười principle chưa có câu hỏi có/không**, nên cột "Theo principle" của mọi decision trống.
+- **Two hypotheses have no test with real people.** The only test round is simulated (E1); the unmoderated round (E2) exists only as a plan.
+- **The ten principles have no yes/no questions**, so the "Follows principle" column of every decision is empty.
 
 ## Principle audit (top three decisions)
 *The AI argues where each decision violates a principle; you decide.*
 
 | Decision | Principle | Passes? | Reason |
 |---|---|---|---|
-| | | | Chưa làm: cần viết `standards/principle-checks.md` trước |
+| | | | Not done: `standards/principle-checks.md` needs to be written first |
 
 ## Verdicts
 | Finding | Fix / accept as a recorded trade-off / cut | Reason |
 |---|---|---|
-| Mười principle chưa có câu hỏi có/không | Fix | Viết principle checks cho Travel Buddy rồi chấm lại ba decision quan trọng nhất (D2, D6, D7) |
-| Một số hypothesis chưa có test với người thật | Accept for now | Đã có kế hoạch test không điều phối (E2); chạy trước khi bàn giao |
+| The ten principles have no yes/no questions | Fix | Write the principle checks for Travel Buddy, then rate the three most important decisions again (D2, D6, D7) |
+| Some hypotheses have no test with real people | Accept for now | An unmoderated test plan exists (E2); run it before handoff |

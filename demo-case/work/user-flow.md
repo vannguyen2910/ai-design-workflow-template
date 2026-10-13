@@ -1,12 +1,12 @@
 ---
 type: "user-flow"
-title: "E2E user flow: bốn giai đoạn của chuyến đi"
+title: "E2E user flow: the four stages of the trip"
 stage: "Develop"
 status: "draft"
-summary: "Hành trình đầu cuối từ onboarding tới sau chuyến đi, với 26 giải pháp được đặt vào bốn giai đoạn."
+summary: "The end-to-end journey from onboarding to after the trip, with 26 solutions placed in four stages."
 takeaways:
-  - "Bốn giai đoạn: Onboarding, Pre-trip, In-destination, Post-trip."
-  - "Flow làm lộ các căng thẳng thiết kế, ví dụ ghi tự động và quyền riêng tư vị trí."
+  - "Four stages: Onboarding, Pre-trip, In-destination, Post-trip."
+  - "The flow exposes design tensions, for example automatic recording and location privacy."
 supports:
   - "[[D1]]"
   - "[[D4]]"

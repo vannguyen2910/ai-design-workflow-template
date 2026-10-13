@@ -1,12 +1,12 @@
 ---
 type: "test-plan"
-title: "Kế hoạch usability test không điều phối"
+title: "Unmoderated usability test plan"
 stage: "Deliver"
 status: "planned"
-summary: "Kế hoạch cho 8 đến 12 người, năm task theo hành trình, đo bằng task success, SEQ và SUS. Chưa chạy."
+summary: "A plan for 8 to 12 people, five tasks along the journey, measured by task success, SEQ and SUS. Not run yet."
 takeaways:
-  - "Task không dùng nhãn giao diện, để không dẫn đường."
-  - "Ngưỡng: từ 80% là tốt; dưới 60% là ưu tiên thiết kế lại."
+  - "Tasks do not use interface labels, so they do not lead the way."
+  - "Thresholds: 80% or more is good; below 60% is a redesign priority."
 supports:
   - "[[E2]]"
   - "[[M1]]"
@@ -18,30 +18,30 @@ source: "original-docs/12_Unmoderated_Usability_Test_Plan.md"
 
 *Deliver stage, before the test.*
 
-> Kế hoạch đầy đủ: `work/original-docs/12_Unmoderated_Usability_Test_Plan.md`. Bản dưới đây là phần cốt lõi. Trạng thái: **chưa chạy**.
+> The full plan: `work/original-docs/12_Unmoderated_Usability_Test_Plan.md`. What follows is the core. Status: **not run yet**.
 
 ## What we are testing
-Hypothesis: H1 đến H6 (xem `insights/hypotheses/`). Điều sẽ làm tôi đổi ý: nếu tỷ lệ hoàn thành task dưới 60%, hypothesis tương ứng bị coi là chưa đứng vững và flow đó được ưu tiên thiết kế lại.
+Hypotheses: H1 to H6 (see `insights/hypotheses/`). What would change my mind: if the task completion rate is below 60%, the matching hypothesis is treated as not yet holding and that flow becomes a redesign priority.
 
 ## Tasks
 *Each task is something the user tries to do, without being told how.*
-1. "Bạn đang lên kế hoạch cho một chuyến tới Chiang Mai. Tìm một tip về đồ ăn từ một du khách khác và lưu vào một chuyến đi." (H2, H3)
-2. "Bạn đã có một lịch trình thô do một chatbot viết. Đưa nó vào kế hoạch chuyến đi." (H1)
-3. "Bạn muốn một gợi ý quán ăn thật từ người sống ở thành phố. Tìm một người địa phương tên Niran và liên hệ." (H4)
-4. "Chuyến đi đã kết thúc. Tìm lại bản ghi những gì bạn đã làm." (H5)
-5. "Chia sẻ nhật ký chuyến đi với bạn của bạn, chỉ riêng cô ấy, không công khai." (H6)
+1. "You are planning a trip to Chiang Mai. Find a food tip from another traveler and save it into a trip." (H2, H3)
+2. "You already have a rough itinerary written by a chatbot. Bring it into the trip plan." (H1)
+3. "You want a real restaurant suggestion from someone who lives in the city. Find a local named Niran and get in touch." (H4)
+4. "The trip is over. Find the record of what you did." (H5)
+5. "Share the trip journal with your friend, only her, not publicly." (H6)
 
 ## Participants
-8 đến 12 người, tuyển 12 đến 15 để bù tỷ lệ bỏ dở của test không điều phối. Tiêu chí: đã đi chơi trong 12 tháng, dùng điện thoại, tự hoàn thành một task trực tuyến không cần ai giúp; 18 đến 45 tuổi ưu tiên. Ghi lại sự đồng ý của người tham gia trước phiên.
+8 to 12 people, recruiting 12 to 15 to make up for the drop-out rate of an unmoderated test. Criteria: travelled in the last 12 months, uses a phone, can complete an online task on their own without anyone helping; ages 18 to 45 preferred. Record participants' consent before the session.
 
 ## Script
-Phần giới thiệu bằng văn bản, câu hỏi khởi động, năm task theo thứ tự cố định (theo hành trình: khám phá, lập kế hoạch, kết nối, nhớ lại), một câu hỏi SEQ sau mỗi task, bộ SUS sau task cuối. Câu hỏi hỏi về điều đã xảy ra, không hỏi ý kiến về ý tưởng. Chi tiết: `work/original-docs/12_...`, mục 5 đến 7.
+A written introduction, warm-up questions, five tasks in a fixed order (following the journey: discover, plan, connect, remember), one SEQ question after each task, the SUS after the last task. Ask about what happened, not for opinions about ideas. Details: `work/original-docs/12_...`, sections 5 to 7.
 
 ## What we measure
 | Metric | Baseline | Target |
 |---|---|---|
-| Task success (hoàn thành không cần trợ giúp) | chưa có | từ 80% mỗi task; dưới 60% là ưu tiên thiết kế lại |
-| Time on task | chưa có | không đặt mục tiêu; so sánh tương đối, đánh dấu giá trị trên 2 lần trung vị |
-| Errors (số lần chạm sai) | chưa có | không đặt mục tiêu |
-| Satisfaction (System Usability Scale, SUS) | chưa có | từ 68 (trên trung bình); dùng như kiểm tra sức khoẻ chung, không phải ngưỡng đạt |
-| First-click accuracy | chưa có | kiểm tra câu hỏi về nhãn điều hướng |
+| Task success (completed without help) | none yet | 80% or more per task; below 60% is a redesign priority |
+| Time on task | none yet | no target; compare relatively, flag values above 2 times the median |
+| Errors (number of wrong taps) | none yet | no target |
+| Satisfaction (System Usability Scale, SUS) | none yet | 68 or more (above average); used as a general health check, not a pass threshold |
+| First-click accuracy | none yet | checks the question about navigation labels |

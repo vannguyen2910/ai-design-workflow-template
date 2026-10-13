@@ -8,17 +8,17 @@ supports: []
 ---
 *Deliver stage, at handoff. What to track after launch, and who is responsible. Give it to the PO even if you cannot see the data yourself.*
 
-> **Trạng thái:** kế hoạch đo từ PRD của tab Explore và kế hoạch test. Chưa có chủ sở hữu thật (không có PO thật) và chưa đặt ngày xem lại. Gate 4d còn `open`.
+> **Status:** a measurement plan from the PRD of the Explore tab and the test plan. There is no real owner yet (there is no real PO) and no review date has been set. Gate 4d is still `open`.
 
 | Metric | Where to track it | Who owns it | Review date |
 |---|---|---|---|
-| M4: thời gian tới tương tác đầu tiên với một tip (mục tiêu dưới 30 giây) | Analytics của app (sự kiện mở app, chạm tip, lưu tip) | Chưa có (cần PO) | Chưa đặt |
-| M5: khách chuyển thành người dùng đã đăng ký khi bấm Save (từ 25%) | Analytics của app (funnel Save → đăng ký) | Chưa có (cần PO) | Chưa đặt |
-| Số tip lưu mỗi phiên, người dùng đã đăng ký (từ 2) | Analytics của app | Chưa có (cần PO) | Chưa đặt |
-| Tỷ lệ dùng filter hằng tuần (từ 40% người dùng hoạt động) | Analytics của app | Chưa có (cần PO) | Chưa đặt |
-| M1, M2, M3: task success, SEQ, SUS | Vòng test không điều phối (E2) | Người nghiên cứu | Trước khi bàn giao |
+| M4: time to first interaction with a tip (target under 30 seconds) | App analytics (events for app open, tip tap, tip save) | None yet (needs a PO) | Not set |
+| M5: visitors who convert to registered users when they press Save (25% or more) | App analytics (the Save → sign-up funnel) | None yet (needs a PO) | Not set |
+| Tips saved per session, registered users (2 or more) | App analytics | None yet (needs a PO) | Not set |
+| Weekly filter usage (40% or more of active users) | App analytics | None yet (needs a PO) | Not set |
+| M1, M2, M3: task success, SEQ, SUS | The unmoderated test round (E2) | The researcher | Before handoff |
 
 ## How the AI-assisted workflow performed
 *Counts, not impressions: time per step, the error rate caught at the gates, the number of redos.*
 
-Không áp dụng cho bản demo này: dự án gốc được làm trước khi có quy trình AI-assisted, nên không có số đếm nào. Một vòng test dùng AI đóng vai người dùng (E1) được ghi nhận như một **hạn chế**, không phải kết quả của quy trình.
+Not applicable to this demo: the original project was made before the AI-assisted way of working existed, so there are no counts. A test round where an AI played the users (E1) is recorded as a **limitation**, not as a result of the process.

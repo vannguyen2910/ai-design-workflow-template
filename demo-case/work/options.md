@@ -8,30 +8,30 @@ supports: []
 ---
 *Develop stage.*
 
-> **Lưu ý trung thực:** dự án gốc **không** đặt ba hướng dưới đây cạnh nhau một cách chính thức. Chúng được rút ra từ các "open tension" trong `work/original-docs/07_Solution_Pool.md` và `sources/anonymised/05_Research_Synthesis.md`, để minh hoạ bước chọn hướng.
+> **An honest note:** the original project did **not** formally put the three directions below side by side. They were drawn from the "open tensions" in `work/original-docs/07_Solution_Pool.md` and `sources/anonymised/05_Research_Synthesis.md`, to illustrate the step of choosing a direction.
 
 ## Three directions
 *At least three directions that are really different. If two directions are only variants of one idea, they count as one.*
 
 | Direction | The idea in one line | Serves | Pulls against | Why not |
 |---|---|---|---|---|
-| A. Lập kế hoạch dẫn đầu | "Một app thay cho 8 đến 10 app": hook là gom kế hoạch, mọi thứ khác phục vụ nó | O1 | Nhu cầu bản địa và nhật ký bị xem là phụ | Đối thủ như Google Maps và AI chat tool cùng đang tiến vào đây |
-| B. Khám phá bản địa dẫn đầu | Hook là tip thật từ người thật, không quảng cáo | O2 | Khó giữ chất lượng khi nội dung tăng; dễ bị thương mại hoá | Cần khối lượng nội dung trước khi có giá trị |
-| C. Nhật ký dẫn đầu | Hook là ký ức tự được sắp xếp, riêng tư | O3 | Khảo sát xếp nhật ký hạng 3 (3,62/5); nhu cầu có thể chỉ là mong muốn | Nhu cầu hành vi chưa được kiểm chứng |
+| A. Planning leads | "One app instead of 8 to 10 apps": the hook is gathering the plan, everything else serves it | O1 | The local-discovery need and the journal are treated as secondary | Competitors such as Google Maps and AI chat tools are moving in here too |
+| B. Local discovery leads | The hook is real tips from real people, no ads | O2 | Hard to keep quality as content grows; easy to commercialise | Needs content volume before it has value |
+| C. The journal leads | The hook is memories that organise themselves, privately | O3 | The survey ranks the journal 3rd (3.62/5); the need may be only a wish | The behavioural need has not been validated |
 
 ## Chosen direction and why
 *Check against the opportunities and the principle checks. Record why the other directions were parked.*
 
-**Khám phá là cửa vào, lập kế hoạch là hook định vị.** Tab Explore là điểm vào đầu tiên (kể cả với khách chưa đăng ký) và mọi tip lưu được bằng một chạm vào kế hoạch chuyến đi (SP-P3). Lập kế hoạch được ưu tiên trong định vị vì nó có điểm quan trọng cao nhất và là nơi phân mảnh gây đau nhất (P1). Nhật ký và kết nối là trụ hỗ trợ. Phần này căn cứ vào `05_Research_Synthesis.md`, Part 4, mục "Open tensions".
+**Discovery is the door, planning is the positioning hook.** The Explore tab is the first entry point (even for visitors who have not signed up) and every tip can be saved into the trip plan with one tap (SP-P3). Planning is prioritised in positioning because it has the highest importance score and is where fragmentation hurts most (P1). The journal and connection are supporting pillars. This part rests on `05_Research_Synthesis.md`, Part 4, the "Open tensions" section.
 
 ## Flow
-Hành trình đầu cuối chia thành bốn giai đoạn của chuyến đi: Onboarding, Pre-trip, In-destination, Post-trip. Sơ đồ: `work/original-docs/08_E2E_User_Flow.md` và `.html`. Information architecture (hypothesis trước card sort): `work/ia-sitemap/IA_Sitemap.png`.
+The end-to-end journey is divided into four stages of the trip: Onboarding, Pre-trip, In-destination, Post-trip. Diagram: `work/original-docs/08_E2E_User_Flow.md` and `.html`. Information architecture (a hypothesis before the card sort): `work/ia-sitemap/IA_Sitemap.png`.
 
 ## Content notes
 *The part the AI drafted and the part you rewrote. No final copy written by the AI goes out without you reviewing it.*
-Không áp dụng cho bản demo này (nội dung prototype là placeholder; xem `work/original-docs/10_Prototype_Plan.md` mục 6).
+Not applicable to this demo (the prototype content is placeholder; see `work/original-docs/10_Prototype_Plan.md` section 6).
 
 ## Design decisions
 *Each design decision is a file in `insights/decisions/` (D1, D2 ...) and that file is the single source. Record the hypothesis it tests (`Tests`), the principle it follows (`Follows`) or pulls against (`Pulls against`). Do not keep a duplicate table here.*
 
-Bảy decision của bản demo lấy từ PRD của tab Explore (`work/original-docs/11_Explore_Requirements.md`) và Solution Pool.
+The seven decisions of this demo come from the PRD of the Explore tab (`work/original-docs/11_Explore_Requirements.md`) and the Solution Pool.

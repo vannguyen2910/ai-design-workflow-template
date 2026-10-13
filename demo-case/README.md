@@ -43,7 +43,7 @@ The original project was made before this workspace's AI-assisted way of working
 - `RH1`..`RH10`: the research hypotheses of the original project (`H1`..`H10` in `01_Research_Hypotheses.md`).
 - `SP-D1`, `SP-P3`...: IDs in the original Solution Pool (`work/original-docs/07_Solution_Pool.md`).
 - `O`, `H`, `D`, `E`, `M` in `insights/`: workspace items (Opportunity, Hypothesis, Decision, Evidence, Metric).
-- The original documents are written in English and kept as they are; the synthesis in the working files is written in Vietnamese.
+- The original documents are kept as they are; the working files, items and standards are written in English too.
 - AI tool names, the owner's name, the interviewees' cities and private prototype links were removed from the copies in `work/original-docs/` and `sources/`.
 
 ## Rules

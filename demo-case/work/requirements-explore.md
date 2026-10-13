@@ -3,10 +3,10 @@ type: "requirements"
 title: "PRD tab Explore"
 stage: "Develop"
 status: "draft"
-summary: "Yêu cầu cho tab khám phá: ba mode (Near Me, Country, Map), crowd signal, lưu một chạm, khách duyệt không cần tài khoản."
+summary: "Requirements for the discovery tab: three modes (Near Me, Country, Map), the crowd signal, one-tap save, visitors browse without an account."
 takeaways:
-  - "Mục tiêu: dưới 30 giây tới tương tác đầu tiên; từ 25% khách bấm Save đăng ký."
-  - "Năm câu hỏi mở chưa có chủ, ví dụ nguồn dữ liệu của crowd signal."
+  - "Goals: under 30 seconds to the first interaction; 25% or more of visitors who press Save sign up."
+  - "Five open questions with no owner yet, for example the data source of the crowd signal."
 supports:
   - "[[D1]]"
   - "[[D2]]"

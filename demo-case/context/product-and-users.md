@@ -2,32 +2,32 @@
 
 *Half a page, anonymised. This file goes into the AI steps first, so write it for a reader who knows nothing about the project.*
 
-> **Về bản demo này:** nội dung được rút gọn từ các tài liệu gốc của dự án Travel Buddy (xem `work/original-docs/` và `work/sources/anonymised/`). Mã `RH1`..`RH10` là các research hypothesis (`H1`..`H10` trong tài liệu gốc); mã `SP-D1`, `SP-P3`... là ID trong Solution Pool gốc. Mã `O`, `H`, `D`, `T`, `M` trong `hub/` là item của workspace.
+> **About this demo:** the content is condensed from the original documents of the Travel Buddy project (see `work/original-docs/` and `work/sources/anonymised/`). The codes `RH1`..`RH10` are research hypotheses (`H1`..`H10` in the original documents); the codes `SP-D1`, `SP-P3`... are IDs in the original Solution Pool. The codes `O`, `H`, `D`, `T`, `M` in `insights/` are workspace items.
 
 ## The product
-Travel Buddy là ý tưởng một app đồng hành du lịch ở giai đoạn đầu. App gom ba việc mà du khách hiện làm bằng 8 đến 10 app khác nhau: tìm gợi ý đáng tin và phi thương mại (Discover), kết nối với người địa phương mà không phải trả tiền (Connect), và lập kế hoạch linh hoạt rồi lưu lại chuyến đi (Plan & Journal).
+Travel Buddy is an early-stage idea for a travel companion app. The app brings together three things that travellers currently do with 8 to 10 different apps: finding trustworthy, non-commercial suggestions (Discover), connecting with locals without paying (Connect), and planning flexibly and saving the trip (Plan & Journal).
 
 ## The users
-Du khách đã đi chơi ít nhất một chuyến trong 12 tháng gần nhất, dùng điện thoại và ít nhất một công cụ số khi đi. Ba persona chính:
+Travellers who have taken at least one trip in the last 12 months, use a phone, and use at least one digital tool when travelling. Three main personas:
 
-- **Aisha, Explorer / Pragmatic Planner:** lập kế hoạch kỹ trước chuyến đi nhưng thay đổi 30 đến 40% khi tới nơi; dùng 8 đến 10 công cụ và tự chép thông tin giữa chúng.
-- **Marco, Connector:** muốn gặp người địa phương nhưng cần tín hiệu an toàn và không muốn trả tiền cho sự kết nối.
-- **Ji-yeon, Documenter:** chụp nhiều nhưng không có hệ thống; muốn ký ức tự được sắp xếp và chia sẻ riêng tư.
+- **Aisha, Explorer / Pragmatic Planner:** plans carefully before the trip but changes 30 to 40% once she arrives; uses 8 to 10 tools and copies information between them by hand.
+- **Marco, Connector:** wants to meet locals but needs safety signals and does not want to pay for the connection.
+- **Ji-yeon, Documenter:** takes many photos but has no system; wants memories to organise themselves and to share them privately.
 
-Phía cung là người địa phương làm guide không chính thức; nhóm này chưa được nghiên cứu.
+The supply side is locals who act as informal guides; this group has not been researched.
 
 ## Where it stands now
-Dự án đã có: survey (13 phản hồi hợp lệ), một cuộc phỏng vấn (P1), phân tích 5 đối thủ, personas, Solution Pool 26 giải pháp, E2E flow, information architecture hypothesis, PRD cho tab Explore, prototype high-fidelity 32 màn hình, kế hoạch test không điều phối, và một vòng usability test **mô phỏng** (không phải người thật).
+The project already has: a survey (13 valid responses), one interview (P1), an analysis of 5 competitors, personas, a Solution Pool of 26 solutions, an E2E flow, an information architecture hypothesis, a PRD for the Explore tab, a 32-screen high-fidelity prototype, an unmoderated test plan, and one **simulated** usability test round (not real people).
 
 ## What success might look like
-Các mục tiêu sau lấy từ PRD của tab Explore. Chúng là mục tiêu do chính nhóm đặt và chưa được ai xác nhận, nên đều là **assumed**:
+The goals below come from the PRD of the Explore tab. They are targets the team set itself and nobody has confirmed them, so all are **assumed**:
 
-- Thời gian tới tương tác đầu tiên với một tip: dưới 30 giây từ lúc mở app
-- Khách chưa đăng ký chuyển thành người dùng đã đăng ký khi bấm Save: từ 25%
-- Số tip được lưu mỗi phiên (người dùng đã đăng ký): từ 2
+- Time to first interaction with a tip: under 30 seconds from opening the app
+- Visitors who convert to registered users when they press Save: from 25%
+- Tips saved per session (registered users): from 2
 
 ## What I do not know
-- Người địa phương có sẵn lòng làm guide cho du khách không (RH6): chưa phỏng vấn ai
-- Người dùng thật phản ứng ra sao với prototype: vòng test duy nhất là mô phỏng
-- Cái gì nằm sau paywall khi mô hình là free-first
-- Crowd signal là dữ liệu người dùng báo, điểm do thuật toán tính, hay cả hai
+- Whether locals are willing to be guides for travellers (RH6): nobody has been interviewed
+- How real users react to the prototype: the only test round is simulated
+- What sits behind the paywall when the model is free-first
+- Whether the crowd signal is user-reported data, an algorithmic score, or both

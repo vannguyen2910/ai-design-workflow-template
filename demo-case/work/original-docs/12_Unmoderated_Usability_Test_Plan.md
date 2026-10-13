@@ -1,7 +1,7 @@
 # Unmoderated Usability Test Plan — Travel Buddy
 **Project:** Travel Buddy | **Phase:** Discovery → Test
 **Linked to:** `10_Prototype_Plan.md` · `11_Explore_Requirements.md` · `06_User_Personas.md` · `01_Research_Hypotheses.md` · `09_Card_Sorting_IA.md`
-**Prototype under test:** [Travel Buddy — Interactive Prototype]([link prototype tương tác: đã gỡ khỏi bản demo]) · High-fidelity, 32 screens, 4 flows (see `10_Prototype_Plan.md` §3–4)
+**Prototype under test:** [Travel Buddy — Interactive Prototype]([link to the interactive prototype: removed from this demo]) · High-fidelity, 32 screens, 4 flows (see `10_Prototype_Plan.md` §3–4)
 **Status:** 🟡 Ready to configure | **Method:** Unmoderated remote usability testing | **Target:** 8–12 participants
 
 ---

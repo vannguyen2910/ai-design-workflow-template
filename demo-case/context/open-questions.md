@@ -4,10 +4,10 @@
 
 | Question | Why it matters | Who can answer | Status |
 |---|---|---|---|
-| Crowd signal là dữ liệu người dùng báo, điểm do thuật toán, hay cả hai? | Decision mô hình dữ liệu và cách chống thao túng | Chưa có người phụ trách | open |
-| Video trong tip do du khách tải lên, do Travel Buddy tuyển chọn, hay cả hai ở v1? | Ảnh hưởng lớn đến chiến lược nội dung và chi phí | Chưa có người phụ trách | open |
-| Map mode nên mặc định ở vị trí hiện tại hay ở điểm đến của chuyến đã lưu? | Decision cách người dùng vào Map | Chủ dự án; kiểm tra bằng usability test | open |
-| Cần tối thiểu bao nhiêu tip để một điểm đến hiện trong Country mode? | Tránh hiện điểm đến chỉ có 1 đến 2 tip | Chưa có người phụ trách | open |
-| Người địa phương có muốn làm guide không, và họ cần gì để thấy công bằng và an toàn? | Connect chỉ hoạt động khi phía cung tham gia (RH6) | Phỏng vấn 5 đến 8 người địa phương (chưa làm) | open |
-| Du khách dùng AI chat tool trong quy trình lập kế hoạch như thế nào, và kết quả đó đi về đâu? | Decision có nên tích hợp hay thay thế (SP-P6) | Phỏng vấn thêm | open |
-| Khi một review gây thất vọng, du khách đổ lỗi cho nền tảng, người viết hay chính mình? | Ảnh hưởng cách trình bày nội dung do người dùng đóng góp | Phỏng vấn thêm | open |
+| Is the crowd signal user-reported data, an algorithmic score, or both? | Decides the data model and how to prevent manipulation | No owner yet | open |
+| Is the video in a tip uploaded by travellers, curated by Travel Buddy, or both at v1? | Greatly affects content strategy and cost | No owner yet | open |
+| Should Map mode default to the current location or to the destination of a saved trip? | Decides how users enter Map | Project owner; check with a usability test | open |
+| What is the minimum number of tips for a destination to show in Country mode? | Avoids showing a destination with only 1 or 2 tips | No owner yet | open |
+| Do locals want to be guides, and what do they need to feel it is fair and safe? | Connect only works when the supply side takes part (RH6) | Interview 5 to 8 locals (not done yet) | open |
+| How do travellers use AI chat tools in their planning, and where does that output go next? | Decides whether to integrate or replace (SP-P6) | More interviews | open |
+| When a review is disappointing, do travellers blame the platform, the writer or themselves? | Affects how user-contributed content is presented | More interviews | open |

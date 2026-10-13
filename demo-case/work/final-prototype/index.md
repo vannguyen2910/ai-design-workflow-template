@@ -3,10 +3,10 @@ type: "prototype"
 title: "Final prototype Travel Buddy"
 stage: "Deliver"
 status: "draft"
-summary: "Bản prototype tương tác cuối cùng của Travel Buddy, một file HTML chạy ngay trong trình duyệt. Mở ngay trong trang hoặc ở tab mới."
+summary: "The final interactive prototype of Travel Buddy, a single HTML file that runs right in the browser. Open it right on the page or in a new tab."
 takeaways:
-  - "Một file HTML duy nhất (khoảng 2,6 MB sau khi nén ảnh), không cần cài đặt hay mạng riêng cho dữ liệu; dùng React và font tải từ CDN nên cần internet khi mở."
-  - "Là bản tham chiếu cho developer và cho vòng test, không phải production code."
+  - "A single HTML file (about 2.6 MB after the images were compressed), nothing to install and no separate network needed for data; it uses React and fonts loaded from a CDN, so it needs the internet to open."
+  - "It is a reference for developers and for the test round, not production code."
 supports:
   - "[[D1]]"
   - "[[D2]]"
@@ -19,12 +19,12 @@ embed: true
 ---
 # Final prototype: Travel Buddy
 
-Bản prototype tương tác cuối cùng của dự án, thay cho wireframe ở giai đoạn Develop. Kế hoạch dựng và danh sách màn hình nằm ở [`10_Prototype_Plan.md`](../original-docs/10_Prototype_Plan.md); wireframe lo-fi và wireframe các màn hình chính nằm ở tài liệu [Wireframe](../wireframes/index.md).
+The final interactive prototype of the project, replacing the wireframes in the Develop stage. The build plan and the list of screens are in [`10_Prototype_Plan.md`](../original-docs/10_Prototype_Plan.md); the lo-fi wireframes and the wireframes of the main screens are in the [Wireframe](../wireframes/index.md) document.
 
-| File | Là gì |
+| File | What it is |
 |---|---|
-| `travel-buddy-final-prototype.html` | Prototype tương tác, mở bằng trình duyệt (bấm đúp hoặc xem ngay trong trang) |
+| `travel-buddy-final-prototype.html` | The interactive prototype, opened in a browser (double-click or view right on the page) |
 
-**Lưu ý:** đây là bản đã nén lại ảnh (ảnh rộng tối đa 480 px, chất lượng JPEG 50) để nhẹ hơn hơn một nửa so với bản gốc 6,8 MB; bản gốc vẫn ở folder dự án của bạn. Báo cáo tải file này khi bạn mở trang, không tải sẵn. Khi gửi báo cáo cho người khác, dùng `python3 ../toolkit/skills/export-hub.py --bundle <folder>` để file đi kèm.
+**Note:** this is the version with compressed images (images at most 480 px wide, JPEG quality 50) so it is more than half lighter than the 6.8 MB original; the original stays in your project folder. The report loads this file when you open the page, not ahead of time. When you send the report to someone, use `python3 ../toolkit/skills/export-hub.py --bundle <folder>` so the file goes along.
 
-**Giới hạn:** đây là prototype, chưa phải kết quả test. Kết luận về việc người dùng có hiểu hay dùng được các màn này cần evidence (xem E1 và E2).
+**Limits:** this is a prototype, not a test result. Any conclusion about whether users understand or can use these screens needs evidence (see E1 and E2).

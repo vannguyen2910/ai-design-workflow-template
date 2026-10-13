@@ -9,40 +9,40 @@ supports: []
 *Discover stage. Define it together with the PO and business, or write it as assumptions if you cannot reach them.*
 
 ## Business question (in their words)
-Du khách đang dùng 8 đến 10 app cho một chuyến đi và không tin các nền tảng review thương mại. Một app đồng hành du lịch gom việc tìm gợi ý đáng tin, kết nối với người địa phương và lập kế hoạch rồi lưu chuyến đi vào một nơi có thể thay thế chuỗi công cụ đó không?
+Travellers use 8 to 10 apps for one trip and do not trust commercial review platforms. Could a travel companion app that brings together finding trustworthy suggestions, connecting with locals, and planning and saving the trip in one place replace that chain of tools?
 
-*(Câu hỏi được tóm tắt từ tài liệu dự án; stakeholder trong dự án gốc là mô phỏng, xem `sources/anonymised/02_Stakeholder_Ecosystem.md`.)*
+*(The question is summarised from the project documents; the stakeholders in the original project were simulated, see `sources/anonymised/02_Stakeholder_Ecosystem.md`.)*
 
 ## Outcome and success metric
-- Outcome: người dùng mới thấy giá trị ngay trong phiên đầu tiên, rồi coi Travel Buddy là nơi duy nhất họ dùng cho khám phá và lập kế hoạch
-- Metric và baseline: thời gian tới tương tác đầu tiên với một tip dưới 30 giây; khách chuyển thành người dùng đã đăng ký từ 25% khi bấm Save. Baseline: chưa có (chưa có sản phẩm thật)
-- Xác nhận bởi / ngày: không có (stakeholder được mô phỏng)
+- Outcome: new users see value in the very first session, then treat Travel Buddy as the only place they use for discovery and planning
+- Metric and baseline: time to first interaction with a tip under 30 seconds; visitors converting to registered users at 25% or more when they press Save. Baseline: none yet (there is no real product)
+- Confirmed by / date: none (the stakeholders were simulated)
 - Status: assumed
 
 ## Users and constraints
-- Người dùng chính: du khách 18 đến 45 tuổi (không loại 45 đến 55), dùng điện thoại, đã đi chơi trong 12 tháng gần nhất. Bốn archetype: Explorer, Cultural Connector, Documenter, Pragmatic Planner
-- Người dùng phía cung: người địa phương sống từ 2 năm, từng giúp hoặc đón du khách
-- Ràng buộc: mô hình free-first (giá là rào cản số 1); cần dùng được khi không có mạng; dữ liệu vị trí nhạy cảm; startup giai đoạn đầu, nguồn lực nghiên cứu nhỏ
+- Main users: travellers aged 18 to 45 (45 to 55 not excluded), who use a phone and have travelled in the last 12 months. Four archetypes: Explorer, Cultural Connector, Documenter, Pragmatic Planner
+- Supply-side users: locals who have lived there for 2 years or more and have helped or hosted travellers
+- Constraints: a free-first model (price is the number 1 barrier); must work without a network; location data is sensitive; an early-stage startup with small research resources
 
 ## What I already believe
-*Ba đến năm nhận định. Bạn sẽ kiểm tra chúng trong Discover.* Dự án viết mười research hypothesis (`RH1`..`RH10`, là `H1`..`H10` trong tài liệu gốc):
+*Three to five statements. You will test them in Discover.* The project wrote ten research hypotheses (`RH1`..`RH10`, which are `H1`..`H10` in the original documents):
 
-1. RH1: du khách không tin review thương mại
-2. RH2: du khách muốn trải nghiệm bản địa, ngoài lối mòn
-3. RH3: du khách phải xoay sở nhiều app
-4. RH4: du khách muốn kết nối với người địa phương mà không phải giao dịch
-5. RH5: niềm tin là rào cản lớn nhất khi kết nối với người lạ
-6. RH6: du khách sẵn lòng làm guide cho người khác
-7. RH7: du khách bỏ ghi nhật ký khi nó tốn công
-8. RH8: du khách muốn chia sẻ riêng tư, không công khai
-9. RH9: du khách lập kế hoạch lỏng và linh hoạt khi tới nơi
-10. RH10: chi phí chuyển đổi là rào cản chính khi thử app mới
+1. RH1: travellers do not trust commercial reviews
+2. RH2: travellers want local experiences, off the beaten track
+3. RH3: travellers have to juggle many apps
+4. RH4: travellers want to connect with locals without a transaction
+5. RH5: trust is the biggest barrier to connecting with strangers
+6. RH6: travellers are willing to be guides for others
+7. RH7: travellers give up journaling when it takes effort
+8. RH8: travellers want to share privately, not publicly
+9. RH9: travellers plan loosely and stay flexible once they arrive
+10. RH10: switching cost is the main barrier when trying a new app
 
 ## Agreement status
 **not available**
-Dự án là bài thực hành học thuật: không có PO hay business thật để hỏi. Các stakeholder (founder, UX lead, tech lead, marketing, partnerships) được mô phỏng để thực hành.
+The project is an academic practice: there is no real PO or business to ask. The stakeholders (founder, UX lead, tech lead, marketing, partnerships) were simulated for practice.
 
 ## Open questions for the next conversation
-- Phỏng vấn thêm 4 đến 7 du khách (hiện mới có một người, P1)
-- Phỏng vấn 5 đến 8 người địa phương trước khi thiết kế Local Match (RH6)
-- Nhật ký nghiên cứu (diary study) 3 đến 5 người để kiểm tra nhu cầu ghi nhật ký có thật hay chỉ là mong muốn
+- Interview 4 to 7 more travellers (there is only one so far, P1)
+- Interview 5 to 8 locals before designing Local Match (RH6)
+- A diary study with 3 to 5 people to check whether the need to keep a journal is real or only a wish

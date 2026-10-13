@@ -1,12 +1,12 @@
 ---
 type: "solution-pool"
-title: "Solution pool: 26 giải pháp theo năm trụ"
+title: "Solution pool: 26 solutions across five pillars"
 stage: "Define"
 status: "verified"
-summary: "Danh sách giải pháp tiềm năng (ID SP-*) trước khi ưu tiên, theo năm trụ: Discover, Connect, Plan, Journal, Adoption."
+summary: "A list of potential solutions (IDs SP-*) before prioritisation, across five pillars: Discover, Connect, Plan, Journal, Adoption."
 takeaways:
-  - "Giải pháp phục vụ cả ba loại người dùng: peer tips, safety context, offline, free-first, onboarding giá trị trước."
-  - "Căng thẳng chưa giải: ghi tự động và quyền riêng tư vị trí."
+  - "Solutions that serve all three kinds of user: peer tips, safety context, offline, free-first, value-first onboarding."
+  - "Unresolved tension: automatic recording versus location privacy."
 supports:
   - "[[O1]]"
   - "[[O2]]"

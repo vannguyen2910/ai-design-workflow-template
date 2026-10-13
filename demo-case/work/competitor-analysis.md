@@ -1,13 +1,13 @@
 ---
 type: "competitor-analysis"
-title: "Phân tích đối thủ và SWOT"
+title: "Competitor analysis and SWOT"
 stage: "Discover"
 status: "verified"
-summary: "Năm đối thủ cùng AI chat tool, so sánh trên mười tiêu chí: không ai phủ cả ba trụ khám phá, kết nối và nhật ký, miễn phí."
+summary: "Five competitors plus AI chat tools, compared on ten criteria: nobody covers all three pillars of discovery, connection and journal, for free."
 takeaways:
-  - "Không có đối thủ nào phủ cả ba trụ cùng lúc và miễn phí."
-  - "TripAdvisor và Google Maps sở hữu khám phá nhưng không có kết nối hay nhật ký; Polarsteps làm tốt nhật ký nhưng không có khám phá."
-  - "AI chat tool vừa là đối thủ vừa là cơ hội: lịch trình chúng sinh ra không có nơi để đi tiếp."
+  - "No competitor covers all three pillars at once and for free."
+  - "TripAdvisor and Google Maps own discovery but have no connection or journal; Polarsteps does the journal well but has no discovery."
+  - "AI chat tools are both a competitor and an opportunity: the itineraries they produce have nowhere to go."
 supports:
   - "[[O1]]"
   - "[[O2]]"
@@ -22,53 +22,53 @@ media:
 *Working file for the competitor flow. The sources you saved are in `sources/anonymised/`.*
 
 ## Scope
-- Decision mà phân tích này phục vụ: Travel Buddy nên đứng ở đâu so với các nền tảng đang có, và không nên cạnh tranh trực tiếp ở đâu
-- Các tiêu chí quan trọng (tối đa 6): bao phủ ba trụ (khám phá, kết nối, lập kế hoạch và nhật ký); miễn phí; riêng tư; nội dung có đáng tin không; hoạt động offline; đầu ra có cấu trúc và lưu lại được
-- Điều tôi đã tin: không nền tảng nào phủ cả ba trụ (RH1, RH3)
+- The decision this analysis serves: where Travel Buddy should stand against the existing platforms, and where it should not compete head-on
+- The criteria that matter (at most 6): coverage of the three pillars (discovery, connection, planning and journal); free; private; whether the content is trustworthy; works offline; structured, saved output
+- What I already believe: no platform covers all three pillars (RH1, RH3)
 
 ## Competitors
-Năm đối thủ, theo vai trò trong hành trình của du khách:
+Five competitors, by role in the traveller's journey:
 
-| Đối thủ | Vai trò | Trụ bị chạm |
+| Competitor | Role | Pillar touched |
 |---|---|---|
-| TripAdvisor | Khám phá bằng review của người lạ | Discover |
-| Google Maps | Khám phá và điều hướng | Discover |
-| Foursquare | Tip theo ngữ cảnh | Discover |
-| Polarsteps | Nhật ký chuyến đi, chia sẻ | Journal, Share |
-| Airbnb Experiences | Kết nối với người địa phương (có phí) | Connect |
-| *AI chat tool* (thêm sau phỏng vấn P1) | Soạn lịch trình; kết quả không lưu có cấu trúc | Plan |
+| TripAdvisor | Discovery through reviews from strangers | Discover |
+| Google Maps | Discovery and navigation | Discover |
+| Foursquare | Contextual tips | Discover |
+| Polarsteps | Trip journal, sharing | Journal, Share |
+| Airbnb Experiences | Connecting with locals (paid) | Connect |
+| *AI chat tools* (added after interview P1) | Drafting itineraries; the output is not stored in a structured way | Plan |
 
 ## Evidence (AI draft)
-*Không có.* Dự án gốc được làm trước khi có quy trình AI-assisted này, nên không có bản nháp của AI để so sánh với bản đã kiểm tra, và không tính được tỷ lệ lỗi.
+*None.* The original project was made before this AI-assisted way of working existed, so there is no AI draft to compare with the checked version, and an error rate cannot be calculated.
 
 ## Evidence (verified)
-Nguồn: `sources/anonymised/03_Competitor_Research_SWOT.md`, mục 3.4. Ký hiệu: có = bao phủ tốt, một phần, không.
+Source: `sources/anonymised/03_Competitor_Research_SWOT.md`, section 3.4. Key: yes = well covered, partial, no.
 
-| Tiêu chí | TripAdvisor | Google Maps | Foursquare | Polarsteps | Airbnb Exp. | AI chat tool |
+| Criterion | TripAdvisor | Google Maps | Foursquare | Polarsteps | Airbnb Exp. | AI chat tools |
 |---|---|---|---|---|---|---|
-| Khám phá địa phương | có | có | có | không | một phần | một phần |
-| Tip chọn lọc, cá nhân | không | không | có | không | một phần | không |
-| Kết nối với người địa phương | không | không | một phần | không | có | không |
-| Lập kế hoạch chuyến đi | một phần | một phần | không | không | không | một phần |
-| Nhật ký chuyến đi | không | không | một phần | có | không | không |
-| Chia sẻ | không | không | một phần | có | không | không |
-| Dùng được offline | không | có | không | có | không | không |
-| Miễn phí | có | có | có | có | không | có |
-| Thiết kế ưu tiên riêng tư | không | không | không | có | một phần | không |
-| Đầu ra có cấu trúc, lưu lại | một phần | một phần | không | có | không | không |
+| Local discovery | yes | yes | yes | no | partial | partial |
+| Curated, personal tips | no | no | yes | no | partial | no |
+| Connecting with locals | no | no | partial | no | yes | no |
+| Trip planning | partial | partial | no | no | no | partial |
+| Trip journal | no | no | partial | yes | no | no |
+| Sharing | no | no | partial | yes | no | no |
+| Works offline | no | yes | no | yes | no | no |
+| Free | yes | yes | yes | yes | no | yes |
+| Privacy-first design | no | no | no | yes | partial | no |
+| Structured, saved output | partial | partial | no | yes | no | no |
 
 ## Patterns
-- Không có đối thủ nào phủ cả ba trụ (khám phá, kết nối, nhật ký) cùng lúc, và miễn phí.
-- TripAdvisor và Google Maps sở hữu khám phá nhưng không có kết nối hay nhật ký. Polarsteps làm tốt nhật ký nhưng không có khám phá. Airbnb Experiences có kết nối nhưng qua paywall. Foursquare chứng minh tip theo ngữ cảnh tốt hơn điểm sao, rồi rời thị trường người dùng cuối.
-- Khoảng trống: một nền tảng phục vụ du khách theo thời gian thực, trên cả ba trụ, miễn phí.
-- Phản biện: Google có hạ tầng để sao chép bất kỳ tính năng nào ở quy mô lớn.
+- No competitor covers all three pillars (discovery, connection, journal) at once, and for free.
+- TripAdvisor and Google Maps own discovery but have no connection or journal. Polarsteps does the journal well but has no discovery. Airbnb Experiences has connection but behind a paywall. Foursquare proved that contextual tips beat star ratings, then left the end-user market.
+- The gap: a platform that serves travellers in real time, across all three pillars, for free.
+- Counter-argument: Google has the infrastructure to copy any feature at scale.
 
 ## Insights + decision
-1. **Khám phá bằng người thật, không bằng điểm sao.** Hỗ trợ: TripAdvisor bị mất lòng tin vì review giả; Foursquare cho thấy tip theo ngữ cảnh hiệu quả hơn.
-2. **Kết nối phải phi giao dịch.** Hỗ trợ: sự chân thực là động lực chính của trải nghiệm tốt trên Airbnb Experiences, nhưng nó nằm sau paywall.
-3. **Nhật ký phải tự động, riêng tư mặc định.** Hỗ trợ: Polarsteps tăng trưởng nhờ nhật ký ít công sức và thiết kế ưu tiên riêng tư.
-4. **AI chat tool vừa là đối thủ, vừa là cơ hội.** Chúng sinh ra lịch trình dạng chữ không có nơi để đi tiếp; nhập lịch trình AI vào Travel Buddy biến nó thành điểm vào (SP-P6).
+1. **Discovery through real people, not star ratings.** Support: TripAdvisor lost trust because of fake reviews; Foursquare showed contextual tips work better.
+2. **Connection must be non-transactional.** Support: authenticity is the main driver of a good experience on Airbnb Experiences, but it sits behind a paywall.
+3. **The journal must be automatic and private by default.** Support: Polarsteps grew thanks to a low-effort journal and a privacy-first design.
+4. **AI chat tools are both a competitor and an opportunity.** They produce text itineraries that have nowhere to go; importing an AI itinerary into Travel Buddy makes it an entry point (SP-P6).
 
-**Decision cho câu hỏi ở Scope:** Travel Buddy không nên cạnh tranh trực tiếp về dữ liệu bản đồ hay khối lượng review; nên đứng ở chỗ không ai phủ: tip từ người thật có danh tính, kết nối phi giao dịch, và lập kế hoạch cùng nhật ký trong một nơi, miễn phí.
+**Decision for the question in Scope:** Travel Buddy should not compete head-on on map data or review volume; it should stand where nobody covers: tips from real people with an identity, non-transactional connection, and planning plus journal in one place, for free.
 
-**Giới hạn của phân tích này:** phân tích dựa trên nguồn công khai, chưa kiểm tra bằng người dùng thật; chỉ cho thấy đối thủ **làm gì**, không cho thấy vì sao người dùng chọn họ.
+**Limits of this analysis:** it rests on public sources and has not been checked with real users; it only shows what competitors **do**, not why users choose them.

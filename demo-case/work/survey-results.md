@@ -1,13 +1,13 @@
 ---
 type: "survey-results"
-title: "Kết quả khảo sát và tổng hợp nghiên cứu"
+title: "Survey results and research synthesis"
 stage: "Discover"
 status: "verified"
-summary: "13 phản hồi hợp lệ (17 gửi, 4 trống). Mẹo của người địa phương được tin hơn review của người lạ; lập kế hoạch là tính năng quan trọng nhất."
+summary: "13 valid responses (17 submitted, 4 empty). Tips from locals are trusted more than reviews from strangers; planning is the most important feature."
 takeaways:
-  - "Mẹo của người địa phương 4,46/5; review người lạ 3,31/5; 10/13 từng thất vọng vì nơi được đánh giá cao."
-  - "Lập kế hoạch linh hoạt là tính năng quan trọng nhất (4,38/5), vượt nhật ký (3,62/5)."
-  - "Giá là rào cản dùng thử số 1 (7/13); quyền riêng tư vị trí đang tăng (4/13)."
+  - "Tips from locals 4.46/5; reviews from strangers 3.31/5; 10/13 were once disappointed by a highly rated place."
+  - "Flexible planning is the most important feature (4.38/5), ahead of the journal (3.62/5)."
+  - "Price is the number 1 barrier to trying it (7/13); location privacy is rising (4/13)."
 supports:
   - "[[O1]]"
   - "[[O2]]"
@@ -18,4 +18,4 @@ source: "sources/anonymised/05_Research_Synthesis.md"
 media:
   - "sources/anonymised/04_User_Survey.md"
 ---
-> **Giới hạn:** mẫu nhỏ và lệch về châu Á và người trẻ. Mọi tỷ lệ chỉ mang tính định hướng.
+> **Limits:** a small sample, skewed to Asia and young people. Every percentage is directional only.

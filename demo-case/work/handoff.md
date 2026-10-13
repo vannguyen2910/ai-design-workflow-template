@@ -8,33 +8,33 @@ supports: []
 ---
 *Deliver stage, at handoff. What a developer needs to build it without coming back with questions.*
 
-> **Trạng thái:** chưa sẵn sàng bàn giao. Mới có PRD cho một tab (Explore); các tab Plan, Connect, Journal chưa có PRD. Gate 4c còn `open`.
+> **Status:** not ready for handoff. There is a PRD for only one tab (Explore); the Plan, Connect and Journal tabs have no PRD yet. Gate 4c is still `open`.
 
 ## The prototype
 A link or a folder. This is a reference, not production code.
 
 - Wireframe: `work/wireframes/Travel_Buddy_Wireframe.html`
-- Prototype cuối: `work/final-prototype/travel-buddy-final-prototype.html`
-- Kế hoạch dựng, danh sách 32 màn hình, 4 flow: `work/original-docs/10_Prototype_Plan.md`
+- The final prototype: `work/final-prototype/travel-buddy-final-prototype.html`
+- The build plan, the list of 32 screens, 4 flows: `work/original-docs/10_Prototype_Plan.md`
 - E2E flow: `work/original-docs/08_E2E_User_Flow.md`
 
 ## Decisions and reasons
 (Point to the decision log in `insights/case-log.md`)
 
-Bảy decision và lý do nằm ở `insights/decisions/`; nhật ký thời gian nằm ở `insights/case-log.md`.
+The seven decisions and their reasons are in `insights/decisions/`; the timeline log is in `insights/case-log.md`.
 
 ## Acceptance notes
-*Điều gì phải đúng khi sản phẩm được dựng xong. Từ PRD của tab Explore (mục 8).*
-- Cả ba mode (Near Me, Country, Map) điều hướng được qua mode toggle
-- Panel filter mở được từ cả ba mode và áp dụng đúng
-- Crowd signal badge hiện trên mọi tip card ở mọi mode
-- Bấm Save ở trạng thái khách mở sign-up bottom sheet
-- Video player và safety panel mở được từ tip card và màn Tip Detail
-- Khách duyệt được mọi mode mà không bị bắt đăng ký
-- Prototype được test với ít nhất hai người tham gia theo các task của kế hoạch
+*What must be true when the product has been built. From the PRD of the Explore tab (section 8).*
+- All three modes (Near Me, Country, Map) can be navigated through the mode toggle
+- The filter panel opens from all three modes and applies correctly
+- The crowd signal badge shows on every tip card in every mode
+- Pressing Save as a visitor opens the sign-up bottom sheet
+- The video player and the safety panel open from a tip card and from the Tip Detail screen
+- Visitors can browse every mode without being forced to sign up
+- The prototype is tested with at least two participants using the tasks of the plan
 
 ## Open questions
-- Crowd signal là dữ liệu người dùng báo, điểm do thuật toán, hay cả hai?
-- Video do du khách tải lên, Travel Buddy tuyển chọn, hay cả hai ở v1?
-- Map mode mặc định ở vị trí hiện tại hay ở điểm đến của chuyến đã lưu?
-- Cần tối thiểu bao nhiêu tip để một điểm đến hiện trong Country mode?
+- Is the crowd signal user-reported data, an algorithmic score, or both?
+- Is video uploaded by travellers, curated by Travel Buddy, or both at v1?
+- Should Map mode default to the current location or to the destination of a saved trip?
+- What is the minimum number of tips for a destination to show in Country mode?

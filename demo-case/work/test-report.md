@@ -1,13 +1,13 @@
 ---
 type: "test-report"
-title: "Báo cáo usability test (mô phỏng)"
+title: "Usability test report (simulated)"
 stage: "Deliver"
 status: "simulated"
-summary: "Vòng test điều phối với ba persona do người nghiên cứu đóng vai. Hai phát hiện Critical có chung một nguyên nhân: thiếu mẫu tìm người và mời."
+summary: "A moderated test round with three personas played by the researcher. The two Critical findings share one cause: the missing find-a-person-and-invite pattern."
 takeaways:
-  - "SEQ trung bình 4,6/7 và SUS trung bình 69,2/100, nhưng đây là mô phỏng."
-  - "Thiếu mẫu 'tìm một người cụ thể và mời' làm hỏng cả Connect và chia sẻ nhật ký."
-  - "Phải chạy lại với người thật trước khi dùng kết quả để quyết định."
+  - "Mean SEQ 4.6/7 and mean SUS 69.2/100, but this is a simulation."
+  - "The missing 'find a specific person and invite them' pattern breaks both Connect and journal sharing."
+  - "It must be run again with real people before the results are used to decide."
 supports:
   - "[[E1]]"
   - "[[M2]]"
