@@ -11,18 +11,18 @@ affects:
   - "[[D1]]"
 resolution: "open"
 ---
-*Cách dùng: copy file này vào folder `insights/findings/`, đặt tên theo mã tiếp theo (ví dụ `F1.md`), điền title (một câu mô tả vấn đề từ góc nhìn người dùng), rồi xoá dòng này.*
+*How to use: copy this file into `insights/findings/`, name it after the next code (for example `F1.md`), fill in the title (one sentence describing the problem from the user's point of view), then delete this line.*
 
-- `severity`: số từ 0 đến 4, xem [Severity levels](../../standards/severity-levels.md). Với mức 3 và 4, ghi lý do ngắn ở phần mô tả.
-- `principle`: principle bị vi phạm (P1 đến P10). Bỏ trống nếu chưa gắn được.
-- `found_in`: evidence mà finding được phát hiện.
-- `affects`: decision bị ảnh hưởng (có thể để `[]`).
-- `resolution`: `open` (chưa xử lý), `fixed`, `accepted` (chấp nhận như trade-off) hoặc `deferred`.
+- `severity`: a number from 0 to 4, see [Severity levels](../../standards/severity-levels.md). For levels 3 and 4, add a short reason in the description.
+- `principle`: the principle that was violated (P1 to P10). Leave empty if it cannot be tied to one yet.
+- `found_in`: the evidence in which the finding was discovered.
+- `affects`: the decision that is affected (may be `[]`).
+- `resolution`: `open` (not handled), `fixed`, `accepted` (accepted as a trade-off) or `deferred`.
 
 ## What happened
-Người dùng đã làm gì, ở đâu, và vấn đề gì xảy ra.
+What the user did, where, and what went wrong.
 
 ## Why it matters
-Tần suất, tác động và độ dai dẳng (xem Severity levels).
+Frequency, impact and persistence (see Severity levels).
 
-*Ảnh minh hoạ vấn đề: thả vào `work/<tên>/` rồi chèn bằng `![mô tả](../../work/<tên>/<ảnh>.png)`.*
+*Images that illustrate the problem: drop them into `work/<name>/` and insert them with `![description](../../work/<name>/<image>.png)`.*

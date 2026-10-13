@@ -1,35 +1,35 @@
 # Workflow: Competitor Analysis
 
-Cho thấy **đối thủ làm gì**, không cho thấy vì sao người dùng chọn họ. Coi kết quả là hypothesis để kiểm tra với người dùng thật.
+Shows **what competitors do**, not why users choose them. Treat the result as hypotheses to test with real users.
 
-*Trạng thái: bản nháp. Hãy thử các instruction trên một case thật và chỉnh theo cách bạn làm trước khi dựa vào chúng.*
+*Status: draft. Try the instructions on a real case and adjust them to how you work before you rely on them.*
 
 | | |
 |---|---|
-| Working file | `work/competitor-analysis.md` (mỗi step điền một section) |
-| Nguồn | `work/sources/anonymised/` |
-| Output cuối | `work/competitor-analysis.md` (trang Evidence trong Stages tự dựng từ file này) |
+| Working file | `work/competitor-analysis.md` (each step fills one section) |
+| Sources | `work/sources/anonymised/` |
+| Final output | `work/competitor-analysis.md` (the Evidence page in Stages is built from this file) |
 
-## Sections của working file
+## Sections of the working file
 
-| Section | Điền ở step | Bởi |
+| Section | Filled in step | By |
 |---|---|---|
 | `## Scope` | 1 | YOU |
-| `## Competitors` | 2 và 3 | Step 2: gợi ý của AI, có gắn nhãn. Step 3: danh sách cuối của bạn |
-| `## Evidence (AI draft)` | 5 | AI. **Không sửa** |
-| `## Evidence (verified)` | 6 | YOU: bản sao bạn đã sửa |
+| `## Competitors` | 2 and 3 | Step 2: the AI's suggestions, labelled. Step 3: your final list |
+| `## Evidence (AI draft)` | 5 | AI. **Do not edit** |
+| `## Evidence (verified)` | 6 | YOU: your corrected copy |
 | `## Patterns` | 7 | AI |
 | `## Insights + decision` | 8 | YOU |
 
-Hai quy tắc: AI chỉ trả về section của nó, và bản nháp của AI luôn tách khỏi bản đã kiểm tra.
+Two rules: the AI returns only its own section, and the AI draft is always kept apart from the checked version.
 
-## Nếu một gate không đạt
+## If a gate is not met
 
-| Gate | Sau step | Nếu câu trả lời là không |
+| Gate | After step | If the answer is no |
 |---|---|---|
-| A: đúng đối thủ? | 3 | Quay lại step 2 và sửa danh sách |
-| B: truy vết được? | 6 | Chạy lại step 5 với instruction chặt hơn, rồi kiểm tra lại |
-| C: là evidence, không phải ý kiến của AI? | 8 | Quay lại step 7 và làm lại phần so sánh |
+| A: the right competitors? | 3 | Go back to step 2 and fix the list |
+| B: traceable? | 6 | Run step 5 again with a tighter instruction, then check again |
+| C: evidence, not the AI's opinion? | 8 | Go back to step 7 and redo the comparison |
 
 ---
 
@@ -39,93 +39,93 @@ Hai quy tắc: AI chỉ trả về section của nó, và bản nháp của AI l
 **Input:** `work/scope.md`
 **Output:** `## Scope`
 
-Điền: decision mà phân tích này phục vụ (ví dụ "Có nên thêm flow onboarding tự phục vụ không?"), các tiêu chí quan trọng (tối đa 6, bạn tự đặt), và 3 đến 5 điều bạn đã tin để step 7 kiểm tra.
+Fill in: the decision this analysis serves (for example "Should we add a self-service onboarding flow?"), the criteria that matter (at most 6, set by you), and 3 to 5 things you already believe, for step 7 to test.
 
-**Check:** Một người lạ đọc có biết câu trả lời tốt trông như thế nào không?
-**Failure sign:** Tiêu chí kiểu "features", "UI" không gắn với decision; chưa viết điều đã tin.
+**Check:** Would a stranger reading it know what a good answer looks like?
+**Failure sign:** Criteria like "features", "UI" that are not tied to the decision; no beliefs written down.
 
 ## Step 2: Suggest
 
 **Who:** AI
-**Input:** `## Scope` của working file (chỉ section này)
-**Output:** `## Competitors`, gắn nhãn "AI suggestions"
+**Input:** The `## Scope` of the working file (only this section)
+**Output:** `## Competitors`, labelled "AI suggestions"
 
 **Instruction:**
-> Chỉ dùng phần scope bên dưới. Gợi ý đối thủ theo ba nhóm: trực tiếp, gián tiếp và giải pháp thay thế (gồm cả "không làm gì" và cách làm thủ công). Mỗi đối thủ một dòng nói vì sao nó cạnh tranh cho cùng job của người dùng. Nói mức độ chắc chắn và điều bạn không chắc. Không bịa sản phẩm; nếu không chắc một sản phẩm có tồn tại, hãy nói. Sau đó chỉ gợi ý các tiêu chí đang **thiếu** trong danh sách của tôi và vì sao mỗi tiêu chí quan trọng với decision. Không thay tiêu chí của tôi.
+> Use only the scope below. Suggest competitors in three groups: direct, indirect and alternatives (including "doing nothing" and doing it by hand). One line per competitor saying why it competes for the same job of the user. Say how sure you are and what you are not sure about. Do not invent products; if you are not sure a product exists, say so. Then suggest only the criteria that are **missing** from my list and why each one matters for the decision. Do not replace my criteria.
 
-**Check:** Có tên nào nghe hợp lý nhưng bạn không tìm thấy trên mạng không? Đánh dấu để loại.
-**Failure sign:** Chỉ có thương hiệu nổi tiếng; tên nghe như bịa; tiêu chí của bạn bị đổi ngầm.
+**Check:** Is there a name that sounds plausible but you cannot find on the web? Mark it to drop.
+**Failure sign:** Only famous brands; names that sound made up; your criteria were silently changed.
 
 ## Step 3: Review the list · Gate A
 
 **Who:** YOU
-**Input:** `## Competitors` (gợi ý của AI)
-**Output:** `## Competitors` (danh sách cuối)
+**Input:** `## Competitors` (the AI's suggestions)
+**Output:** `## Competitors` (the final list)
 
-Sửa gợi ý thành danh sách cuối, kèm lý do cho từng đối thủ được chọn và bị loại. Thêm người còn thiếu. Hỏi một người ở bộ phận sales, support hoặc customer team.
+Edit the suggestions into a final list, with a reason for each competitor chosen and each one dropped. Add the people who are missing. Ask someone in sales, support or the customer team.
 
-**Gate A:** Đây là lựa chọn thay thế thật của **người dùng của mình**, hay chỉ là tên nổi tiếng? Ai còn thiếu? Vì sao cắt những cái kia?
-**Failure sign:** Mọi thứ trong danh sách của AI đều được giữ.
+**Gate A:** Are these real alternatives of **our own users**, or just famous names? Who is missing? Why were those others cut?
+**Failure sign:** Everything in the AI's list was kept.
 
 ## Step 4: Collect sources
 
 **Who:** YOU
-**Input:** danh sách cuối ở `## Competitors`
-**Output:** file trong `work/sources/anonymised/`
+**Input:** The final list in `## Competitors`
+**Output:** Files in `work/sources/anonymised/`
 
-Lưu trang giá, trang tính năng, màn hình onboarding, review trên app store, trang help của các đối thủ bạn đã giữ, và chỉ các đối thủ đó. Đặt tên rõ (ví dụ `competitor-a-pricing-2026-10.png`) và ghi ngày. Bạn tự mở và lưu mọi nguồn. Không để AI cung cấp thông tin từ trí nhớ của nó.
+Save the pricing page, the features page, the onboarding screens, the app store reviews and the help pages of the competitors you kept, and only those competitors. Name them clearly (for example `competitor-a-pricing-2026-10.png`) and write the date. You open and save every source yourself. Do not let the AI supply information from its memory.
 
-**Failure sign:** Nguồn của đối thủ đã bị cắt; không có ngày; chỉ lưu link thay vì bản sao.
+**Failure sign:** A competitor's source was cut off; no date; only a link saved instead of a copy.
 
 ## Step 5: Extract
 
 **Who:** AI
-**Input:** `## Scope`, `## Competitors`, và các file trong `sources/anonymised/` (một đối thủ mỗi lần)
+**Input:** `## Scope`, `## Competitors`, and the files in `sources/anonymised/` (one competitor at a time)
 **Output:** `## Evidence (AI draft)`
 
 **Instruction:**
-> Điền bảng chỉ bằng các nguồn được cung cấp. Với mỗi ô, ghi tên file nguồn và đúng cụm từ hoặc màn hình làm căn cứ. Nếu nguồn không nói, ghi "unknown", không đoán và không dùng kiến thức nền. Mọi thứ là suy luận thì ghi "inferred". Chỉ trả về bảng markdown, không gì khác, để tôi dán thành một section riêng.
+> Fill the table using only the sources provided. For each cell, write the source file name and the exact phrase or screen it rests on. If the source does not say, write "unknown"; do not guess and do not use background knowledge. Anything that is an inference is marked "inferred". Return only the markdown table, nothing else, so I can paste it as a section of its own.
 
-Các cột: Competitor, Criterion, Finding, Source file, Quote hoặc screen, Status (stated / inferred / unknown).
+Columns: Competitor, Criterion, Finding, Source file, Quote or screen, Status (stated / inferred / unknown).
 
-**Failure sign:** Không có ô "unknown" nào; trích nguồn không có trong folder.
+**Failure sign:** No "unknown" cell at all; citations to sources that are not in the folder.
 
 ## Step 6: Spot-check · Gate B
 
 **Who:** YOU
-**Input:** `## Evidence (AI draft)` và các file nguồn
-**Output:** `## Evidence (verified)`, kèm tỷ lệ lỗi ở đầu section
+**Input:** `## Evidence (AI draft)` and the source files
+**Output:** `## Evidence (verified)`, with the error rate at the top of the section
 
-Copy bảng nháp sang `## Evidence (verified)`. Kiểm tra **mọi ô của 2 đến 3 tiêu chí hàng đầu**, cộng khoảng 20% ngẫu nhiên của phần còn lại, cộng mọi dòng "inferred" và mọi điều gây bất ngờ. Mở nguồn và so sánh. Sửa lỗi.
+Copy the draft table into `## Evidence (verified)`. Check **every cell of the top 2 to 3 criteria**, plus about 20% at random of the rest, plus every "inferred" row and everything surprising. Open the source and compare. Fix the errors.
 
-**Gate B:** Mọi ô lần ngược được về một nguồn bạn mở ra? "Unknown" vẫn là unknown? Tỷ lệ lỗi chấp nhận được không? Nếu nhiều ô sai, quay lại step 5.
-**Failure sign:** Chỉ kiểm tra các ô dễ; không ghi tỷ lệ lỗi.
+**Gate B:** Does every cell trace back to a source you opened? Is "unknown" still unknown? Is the error rate acceptable? If many cells are wrong, go back to step 5.
+**Failure sign:** Only the easy cells were checked; no error rate recorded.
 
 ## Step 7: Compare + challenge
 
 **Who:** AI
-**Input:** `## Scope` (gồm điều bạn đã tin) và `## Evidence (verified)`. **Không** đưa bản nháp của AI
+**Input:** `## Scope` (including what you already believed) and `## Evidence (verified)`. **Do not** give it the AI's draft
 **Output:** `## Patterns`
 
 **Instruction:**
-> Từ bảng đã kiểm tra, liệt kê các pattern, khoảng trống và khác biệt quan trọng với decision trong scope. Trích các dòng làm căn cứ cho từng cái. Sau đó đi qua từng điều tôi đã tin và nói bằng chứng ủng hộ, mâu thuẫn hay không đề cập. Sau đó với mỗi pattern, viết lập luận mạnh nhất rằng nó sai hoặc gây hiểu lầm, và nói bằng chứng nào sẽ làm bạn đổi ý. Chưa đề xuất hành động. Nói bảng này không cho biết điều gì. Chỉ trả về section này.
+> From the checked table, list the patterns, the gaps and the differences that matter for the decision in the scope. Cite the rows each rests on. Then go through each belief I wrote down and say whether the evidence supports it, contradicts it or does not mention it. Then for each pattern, write the strongest argument that it is wrong or misleading, and say what evidence would change your mind. Do not propose actions yet. Say what this table cannot tell us. Return only this section.
 
-**Check:** Mỗi pattern có trích dòng không? Phản biện có thật hay chỉ một câu cho đủ? Có điều bạn đã tin bị mâu thuẫn không (đó là phần giá trị nhất)?
-**Failure sign:** Phát hiện chung chung ("đối thủ tập trung vào sự đơn giản"); phản biện đồng ý với phát hiện; mọi điều đã tin đều "supported".
+**Check:** Does every pattern cite rows? Is the counter-argument real or one sentence to fill the space? Is any belief of yours contradicted (that is the most valuable part)?
+**Failure sign:** Generic findings ("competitors focus on simplicity"); the counter-argument agrees with the finding; every belief is "supported".
 
 ## Step 8: Interpret + decide · Gate C
 
 **Who:** YOU
 **Input:** `## Patterns`, `## Scope`, `standards/principle-checks.md`
-**Output:** `## Insights + decision`, rồi trang Evidence trong Stages (tự dựng từ working file)
+**Output:** `## Insights + decision`, then the Evidence page in Stages (built from the working file)
 
-Cân từng pattern theo người dùng của mình và các principle. Pattern xuất hiện ở nhiều đối thủ chưa chắc đã quan trọng. Viết 3 đến 5 insight kèm link evidence, **câu trả lời cho decision ở step 1** trong một câu ("Nên / không nên X, vì Y", hoặc "chưa đủ evidence" kèm điều còn thiếu), và các câu hỏi mở cần hỏi người dùng thật. Đưa bản đã kiểm tra lên trang Evidence của hub.
+Weigh each pattern against your own users and the principles. A pattern that appears across many competitors is not necessarily important. Write 3 to 5 insights with links to the evidence, **the answer to the decision in step 1** in one sentence ("Should / should not do X, because Y", or "not enough evidence" with what is missing), and the open questions to ask real users. Put the checked version on the hub's Evidence page.
 
-**Gate C:** Mỗi insight gắn với vấn đề và principle của mình? Là evidence hay ý kiến AI bạn chưa kiểm tra? Bạn bảo vệ được bằng cách mở nguồn không?
-**Failure sign:** Insight chép nguyên từ `## Patterns`; không có decision; không có câu hỏi mở.
+**Gate C:** Is each insight tied to our problem and our principles? Is it evidence, or an AI opinion you have not checked? Can you defend it by opening the source?
+**Failure sign:** An insight copied straight from `## Patterns`; no decision; no open questions.
 
 ---
 
-## Giới hạn cần nói thẳng
+## The limit to state plainly
 
-Phân tích này cho thấy đối thủ **làm gì**, không cho thấy người dùng **vì sao chọn** hoặc nó có hiệu quả không. Dùng các phát hiện làm hypothesis cho các buổi phỏng vấn ở bước sau.
+This analysis shows what competitors **do**, not **why** users choose them or whether it works. Use the findings as hypotheses for the interviews in the later weeks.

@@ -1,45 +1,45 @@
 # Gates
 
-Bốn gate (cổng kiểm tra) mà dự án đi qua. Mỗi check có một trạng thái: `open` (chưa xong), `passed` (đạt) hoặc `failed` (chưa đạt). **Không đổi tên check, chỉ đổi trạng thái.** Một gate đạt khi mọi check của nó đạt.
+The four gates (checkpoints) a project goes through. Each check has a status: `open` (not done), `passed` or `failed`. **Do not rename a check, only change its status.** A gate passes when all of its checks pass.
 
 ## Gate 1: Discover (Question + evidence)
 
-| Check | Nội dung | Status |
+| Check | What | Status |
 |---|---|---|
 | 1a | Business question và outcome đã được thống nhất với product owner, hoặc ghi **assumed** kèm agreement status | passed |
 | 1b | Mọi insight lần ngược được về một nguồn gốc bạn mở ra được | passed |
-| 1c | Không có gì được đoán: unknown và counterexample được ghi lại; bản nháp của AI để cạnh bản đã kiểm tra, kèm tỷ lệ lỗi | open |
+| 1c | Nothing is guessed: unknowns and counterexamples are recorded; the AI draft sits next to the checked version, with the error rate | open |
 
 ## Gate 2: Define (Evidence + agreement)
 
-| Check | Nội dung | Status |
+| Check | What | Status |
 |---|---|---|
 | 2a | Mỗi opportunity dẫn evidence phía sau nó | passed |
 | 2b | Problem brief được product và business đồng ký, hoặc ghi lại agreement status | passed |
 | 2c | Mỗi hypothesis có một test và một metric (metric chưa xác nhận thì ghi **assumed**) | passed |
-| 2d | Principle checks được viết thành câu hỏi có/không | open |
+| 2d | The principle checks are written as yes/no questions | open |
 
 ## Gate 3: Develop (Alignment)
 
-| Check | Nội dung | Status |
+| Check | What | Status |
 |---|---|---|
-| 3a | Đã khám phá ít nhất ba hướng khác nhau; lựa chọn và lý do được ghi lại | open |
+| 3a | At least three different directions were explored; the choice and its reason are recorded | open |
 | 3b | Mỗi decision lần ngược về một opportunity có evidence và một hypothesis (không decision nào thiếu user need, không opportunity nào bị bỏ sót) | passed |
-| 3c | Mỗi decision đạt principle checks, hoặc xung đột được ghi lại thành trade-off | open |
-| 3d | Prototype dùng design system và các accessibility rules đã được kiểm tra | open |
+| 3c | Every decision passes the principle checks, or the conflict is recorded as a trade-off | open |
+| 3d | The prototype uses the design system and the accessibility rules that were checked | open |
 
 ## Gate 4: Deliver (Real users + buildability)
 
-| Check | Nội dung | Status |
+| Check | What | Status |
 |---|---|---|
 | 4a | Người dùng thật đã test các hypothesis; kết quả được đặt cạnh baseline | failed |
-| 4b | Các finding lần ngược về ghi chú hoặc bản ghi gốc và được xếp theo mức độ quan trọng | open |
-| 4c | Developer có thể dựng mà không phải hỏi lại (handoff pack và decision log đầy đủ) | open |
-| 4d | Measurement plan đã được đưa cho product owner | open |
+| 4b | Findings trace back to the original notes or recordings and are ranked by importance | open |
+| 4c | A developer can build without coming back with questions (handoff pack and decision log are complete) | open |
+| 4d | The measurement plan was given to the product owner | open |
 
-Cột **Kiểm tra tự động** (ở báo cáo) cho biết dữ liệu hiện có đã đạt check đó chưa. Nó không thay đổi trạng thái bạn đặt; nếu bạn đặt `passed` mà dữ liệu chưa đạt, báo cáo hiện một warning.
+The **Automatic check** column (in the report) shows whether the current data meets that check. It does not change the status you set; if you set `passed` and the data does not support it, the report shows a warning.
 
-Sau khi đổi trạng thái ở đây, nhờ AI tool cập nhật bảng Gates ở trang Overview ([`README.md`](../README.md)).
+After you change a status here, ask the AI tool to update the Gates table on the Overview page ([`README.md`](../README.md)).
 
 ## Ghi chú về trạng thái (bản demo)
 

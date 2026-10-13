@@ -13,19 +13,19 @@ supports: []
 # embed: false
 ---
 ## Who
-Tên, bối cảnh, một câu mô tả. Persona là đại diện dựng từ dữ liệu, không phải một người thật.
+Name, background, a one-sentence description. A persona is a representation built from data, not a real person.
 
 ## Goals and motivations
 
 ## Frustrations and behaviours
 
 ## Evidence
-Dữ liệu và nguồn đứng sau persona này (khảo sát, phỏng vấn). Ghi cỡ mẫu.
+The data and sources behind this persona (survey, interviews). Write the sample size.
 
 ## Quote
-> Một câu nói điển hình, kèm nguồn.
+> A typical sentence, with its source.
 
 ## Design implications
-Persona này đòi hỏi gì ở sản phẩm.
+What this persona demands of the product.
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

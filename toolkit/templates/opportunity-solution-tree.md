@@ -1,6 +1,6 @@
 ---
 type: "opportunity-solution-tree"
-title: "Cây cơ hội và giải pháp"
+title: "Opportunity solution tree"
 stage: "Define"
 status: "draft"
 summary: ""
@@ -13,37 +13,37 @@ supports: []
 # embed: false
 ---
 ## Desired outcome
-Một kết quả mong muốn, đo được, thuộc quyền tác động của nhóm (ví dụ: "tăng tỷ lệ khách đăng ký sau khi bấm Save từ X% lên Y%"). Liên kết metric (M#) nếu đã có.
+One desired outcome, measurable, within the team's reach (for example: "raise the share of visitors who sign up after pressing Save from X% to Y%"). Link the metric (M#) if there is one.
 
 ## Tree
-Đi từ trên xuống: outcome → opportunity (nhu cầu, điểm đau của người dùng) → giải pháp → giả định cần kiểm tra. Mỗi opportunity phải có **bằng chứng** (E# hoặc nguồn). Mỗi nhánh nên có từ 2 giải pháp trở lên để so sánh.
+Top to bottom: outcome → opportunity (user need, pain point) → solution → assumption to test. Every opportunity must have **evidence** (E# or a source). Every branch should have 2 or more solutions to compare.
 
 ```
 Outcome: ...
-├── O1 Opportunity: ...            (bằng chứng: E?)
-│   ├── Giải pháp A: ...
-│   │   └── Giả định cần kiểm tra: ...   → H?
-│   └── Giải pháp B: ...
-│       └── Giả định cần kiểm tra: ...   → H?
-└── O2 Opportunity: ...            (bằng chứng: E?)
-    ├── Giải pháp C: ...
-    └── Giải pháp D: ...
+├── O1 Opportunity: ...            (evidence: E?)
+│   ├── Solution A: ...
+│   │   └── Assumption to test: ...   → H?
+│   └── Solution B: ...
+│       └── Assumption to test: ...   → H?
+└── O2 Opportunity: ...            (evidence: E?)
+    ├── Solution C: ...
+    └── Solution D: ...
 ```
 
 ## Opportunities
-| # | Opportunity | Người dùng bị ảnh hưởng | Bằng chứng | Tác động | Độ chắc chắn |
+| # | Opportunity | Affected users | Evidence | Impact | Confidence |
 |---|---|---|---|---|---|
-| O1 | | | | cao / vừa / thấp | cao / vừa / thấp |
+| O1 | | | | high / medium / low | high / medium / low |
 
 ## Solutions
-| Giải pháp | Phục vụ O# | Giả định lớn nhất | Cách kiểm tra rẻ nhất |
+| Solution | Serves O# | Biggest assumption | Cheapest way to test |
 |---|---|---|---|
 | A | O1 | | |
 
 ## Where to test first
-Chọn **một** opportunity và 2 đến 3 giải pháp để test trước, kèm lý do. Ghi kết quả vào `insights/` khi đã có decision.
+Pick **one** opportunity and 2 to 3 solutions to test first, with the reason. Record the result in `insights/` once there is a decision.
 
 ## What this cannot tell us
-Điều cây này không cho biết. Cây phản ánh hiểu biết tại thời điểm vẽ và cần cập nhật khi có bằng chứng mới.
+What this tree does not tell us. The tree reflects what is known when it is drawn and needs updating as new evidence arrives.
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

@@ -6,24 +6,24 @@ status: "planned"
 summary: "What users said in interviews, grouped into insights with the source of each claim."
 supports: []
 ---
-*Working file cho user-voice flow. AI chỉ trả về section của nó, và bạn tự dán vào. Quote đã ẩn danh nằm trong `sources/anonymised/` kèm ID (R01, I01-01 ...).*
+*Working file for the user-voice flow. The AI returns only its own section, and you paste it in. Anonymised quotes live in `sources/anonymised/` with IDs (R01, I01-01 ...).*
 
 ## Scope
-- Câu hỏi:
-- Cần nghe từ ai:
-- Điều tôi đã tin:
+- The question:
+- Who we need to hear from:
+- What I already believe:
 
 ## Sources and guide
-*Step 2: gợi ý của AI đặt ở đây, có gắn nhãn. Step 3: thay bằng danh sách nguồn cuối và interview guide của bạn.*
+*Step 2: the AI's suggestions go here, labelled. Step 3: replace them with your final list of sources and your interview guide.*
 
 ## Coding (AI draft)
-*Step 5. Không sửa section này.*
+*Step 5. Do not edit this section.*
 
 ## Coding (verified)
-*Step 6. Bản sao của bản nháp mà bạn đã sửa. Ghi các quote bị trích sai, quote đặt sai chỗ và tỷ lệ lỗi ở đầu.*
+*Step 6. A copy of the draft that you corrected. Write the misquoted quotes, the misplaced quotes and the error rate at the top.*
 
 ## Themes
-*Step 7. Các theme của AI kèm số đếm (số quote và số người), một ID quote làm ví dụ, một counter-quote, và bước kiểm tra niềm tin của tôi.*
+*Step 7. The AI's themes with counts (number of quotes and number of people), one quote ID as an example, one counter-quote, and the check of my own belief.*
 
 ## Opportunities + limits
-*Step 8. Ba đến năm nhu cầu (không phải feature), mỗi nhu cầu kèm ID quote. Rồi những gì mẫu này không cho biết.*
+*Step 8. Three to five needs (not features), each with its quote IDs. Then what this sample cannot tell you.*

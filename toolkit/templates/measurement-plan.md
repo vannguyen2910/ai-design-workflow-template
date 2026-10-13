@@ -1,6 +1,6 @@
 ---
 type: "measurement-plan"
-title: "Kế hoạch đo lường"
+title: "Measurement plan"
 stage: "Deliver"
 status: "draft"
 summary: ""
@@ -12,44 +12,44 @@ supports: []
 # links: []
 # embed: false
 ---
-*Trả lời câu hỏi: sau khi phát hành, ta biết nó có hiệu quả hay không bằng cách nào. Mỗi metric là một file trong `insights/metrics/` (M#) và file đó là nguồn duy nhất về `target`, `result` và `verdict`. Bảng ở đây ghi **cách đo**, không chép lại các số đó.*
+*Answers the question: after release, how do we know whether it worked. Each metric is a file in `insights/metrics/` (M#) and that file is the single source for `target`, `result` and `verdict`. The table here records **how to measure**, it does not copy those numbers.*
 
 ## Goal
-Outcome mong muốn (từ Problem brief) và câu hỏi cần trả lời sau khi phát hành.
+The desired outcome (from the Problem brief) and the question to answer after release.
 
 ## Metrics
-| Metric (M#) | Định nghĩa chính xác | Công thức | Mục tiêu | Loại (kết quả / dẫn dắt / phụ) |
+| Metric (M#) | Exact definition | Formula | Target | Type (outcome / leading / guardrail) |
 |---|---|---|---|---|
 | M? | | | | |
 
-*Mỗi plan nên có một metric kết quả chính, một đến hai metric dẫn dắt, và một metric "an toàn" để biết ta không làm hỏng điều khác.*
+*Each plan should have one main outcome metric, one or two leading metrics, and one "guardrail" metric to know we did not break something else.*
 
 ## Data and tracking
-| Metric | Nguồn dữ liệu | Sự kiện / truy vấn cần có | Đã có sẵn? | Ai dựng |
+| Metric | Data source | Events / queries needed | Already available? | Who builds it |
 |---|---|---|---|---|
-| M? | | | có / chưa | |
+| M? | | | yes / not yet | |
 
 ## Segments and baseline
-Chia theo nhóm nào (người dùng mới / cũ, thiết bị...), mốc hiện tại lấy ở đâu, hoặc ghi `assumed` nếu chưa có.
+Which groups to split by (new / returning users, device...), where the current baseline comes from, or write `assumed` if there is none yet.
 
 ## Cadence and owners
-| Metric | Ai chịu trách nhiệm | Khi nào xem | Ngưỡng cần hành động |
+| Metric | Who is responsible | When to look | Threshold to act |
 |---|---|---|---|
 | M? | | | |
 
 ## Decision rules
-Quyết định trước khi có số: kết quả thế nào thì **tiếp tục**, **chỉnh**, **dừng**. Viết trước để khỏi diễn giải theo ý muốn.
+Decide before the numbers are in: what result means **continue**, **adjust**, **stop**. Write it first so it is not interpreted to taste.
 
-| Nếu | Thì |
+| If | Then |
 |---|---|
-| Đạt hoặc vượt mục tiêu | |
-| Gần mục tiêu | |
-| Không đạt | |
+| Meets or beats the target | |
+| Close to the target | |
+| Misses the target | |
 
 ## Qualitative signals
-Tín hiệu định tính cùng theo dõi (phản hồi, ticket hỗ trợ, buổi gặp người dùng), để giải thích *vì sao* số thay đổi.
+The qualitative signals to follow too (feedback, support tickets, sessions with users), to explain *why* the numbers moved.
 
 ## Limits
-Điều làm số liệu kém tin cậy (mẫu nhỏ, mùa vụ, thay đổi khác cùng lúc). Điền `result` và `verdict` vào từng file M# khi đã đo; chỉ chủ dự án đặt `verdict`.
+What makes the numbers less reliable (small sample, seasonality, another change at the same time). Fill in `result` and `verdict` in each M# file once measured; only the project owner sets `verdict`.
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

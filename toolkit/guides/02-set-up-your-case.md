@@ -1,113 +1,113 @@
 # Set Up Your Case
 
-Guide này giúp bạn đặt tên dự án, hiểu từng folder dùng để làm gì, và biết cách làm việc với AI tool trong folder này.
+This guide helps you name your project, understand what each folder is for, and know how to work with an AI tool in this folder.
 
 ## Step 1: Name your case
 
-1. Mở Terminal tại folder gốc của workspace và chạy:
+1. Open Terminal at the workspace root folder and run:
 
    ```
    python3 toolkit/tools/new-case.py onboarding-redesign
    ```
 
-   Thêm `--title "Onboarding redesign"` nếu muốn tên hiển thị khác với tên folder.
-2. Tên folder dùng chữ thường, nối bằng dấu gạch ngang, không có dấu cách. Ví dụ: `onboarding-redesign`, `checkout-flow`. Chọn tên mà nhìn vào là biết case nói về gì, vì bạn sẽ thấy nó ở đầu mọi đường dẫn.
-3. Lệnh tạo một folder mới cạnh `my-case`, sạch và sẵn để điền. `my-case` được giữ nguyên làm template.
+   Add `--title "Onboarding redesign"` if you want a display name that differs from the folder name.
+2. A folder name uses lowercase letters joined with hyphens, no spaces. For example: `onboarding-redesign`, `checkout-flow`. Pick a name that tells you what the case is about, because you will see it at the start of every path. A plain name such as "Trip Planner" also works: the command turns it into a folder name.
+3. The command creates a new folder next to `my-case`, clean and ready to fill in. `my-case` is kept as the template.
 
-Có hai case thì chạy lệnh hai lần với hai tên khác nhau.
+If you have two cases, run the command twice with two different names.
 
-**Không dùng được Terminal?** Đổi tên folder `my-case` theo case của bạn rồi điền vào đó. Cách này làm mất template gốc, nên hãy giữ một bản ZIP sạch để lấy lại khi cần.
+**Cannot use Terminal?** Rename the `my-case` folder to your case and fill it in. This loses the original template, so keep a clean ZIP to get it back when you need it.
 
 ## Step 2: Understand the folders
 
-Folder được đặt tên theo **việc bạn làm** ở đó:
+Folders are named after **what you do** there:
 
-| Folder | Dùng để | Khi nào dùng |
+| Folder | Use it for | When |
 |---|---|---|
-| `context/` | **Thông tin nền:** sản phẩm, người dùng, quy tắc dữ liệu, design system. Bạn đưa nó cho AI đọc trước tiên ở mọi bước | Khi khởi động dự án, bổ sung dần |
-| `work/` | **File làm việc của từng giai đoạn:** `scope.md`, `user-voice-synthesis.md`, `competitor-analysis.md` (Discover), `problem-brief.md` (Define), `options.md`, `alignment.md` (Develop), `test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md` (Deliver). Trang giai đoạn ở `stages/` tự ghép từ các file này | Suốt dự án |
-| `work/sources/` | `anonymised/` chứa dữ liệu đã ẩn danh, `_raw-private/` chứa dữ liệu gốc | Discover |
-| `work/prototype/` | Code prototype | Giai đoạn Develop |
-| `stages/` | **Mỗi giai đoạn một trang**, tự dựng từ `work/` và `insights/` theo bảng Pages ở `stages/README.md`; bạn không viết ở đây | Chỉ sửa bảng khi đổi thứ tự hoặc thêm giai đoạn |
-| `insights/` | **Các item nối với nhau:** nhu cầu, hypothesis, decision, evidence, finding, metric; mỗi item một file trong folder loại của nó | Cập nhật khi có thay đổi |
-| `standards/` | **Tra cứu:** gates, principle checks, severity levels, case log. Thả file `.md` mới vào đây là tự hiện ở báo cáo | Khi cần xem lại |
-| `../toolkit/skills/` và `../toolkit/templates/` | (trong `toolkit/`, ngoài case) Step card, script tạo báo cáo `index.html`, và mẫu tài liệu. Dùng chung cho mọi case | Khi chạy một bước; hiếm khi mở tay |
-| `_personal/` | Ghi chú riêng, không đưa cho AI | Khi bạn muốn |
+| `context/` | **Background:** product, users, data rules, design system. You give it to the AI to read first in every step | When you start the project, add to it over time |
+| `work/` | **The working files of each stage:** `scope.md`, `user-voice-synthesis.md`, `competitor-analysis.md` (Discover), `problem-brief.md` (Define), `options.md`, `alignment.md` (Develop), `test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md` (Deliver). The stage pages in `stages/` are built from these files | Throughout the project |
+| `work/sources/` | `anonymised/` holds anonymised data, `_raw-private/` holds original data | Discover |
+| `work/prototype/` | Prototype code | The Develop stage |
+| `stages/` | **One page per stage**, built from `work/` and `insights/` by the Pages table in `stages/README.md`; you do not write here | Edit the table only to change the order or add a stage |
+| `insights/` | **The linked items:** needs, hypotheses, decisions, evidence, findings, metrics; one file per item, in the folder of its type | Update when something changes |
+| `standards/` | **Reference:** gates, principle checks, severity levels, case log. Drop a new `.md` file here and it shows in the report by itself | When you need to look something up |
+| `../toolkit/skills/` and `../toolkit/templates/` | (in `toolkit/`, outside the case) Step cards, the script that builds the `index.html` report, and document templates. Shared by every case | When you run a step; rarely opened by hand |
+| `_personal/` | Private notes, not given to the AI | Whenever you want |
 
-Trang `README.md` ở gốc folder dự án có bảng "Bạn muốn làm gì?" với câu nói mẫu cho từng việc, nên khi chưa biết bắt đầu từ đâu, hãy đọc nó.
+The `README.md` at the root of the project folder has a "What do you want to do?" table with sample sentences for each job, so when you do not know where to start, read it.
 
 ## Step 3: Fill in the first files
 
-Khi khởi động dự án, bạn điền bốn file trong `context/` và một file riêng:
+When you start the project, fill in the files in `context/` and one separate file:
 
-1. `context/product-and-users.md`: sản phẩm là gì, người dùng là ai, bạn biết gì và chưa biết gì.
-2. `context/accessibility-rules.md`: các yêu cầu về accessibility mà thiết kế phải đạt.
-3. `context/data-rules.md`: ba dòng bằng lời của bạn: được đưa gì cho AI, sẽ không đưa gì, dùng công cụ nào cho việc gì.
-4. `context/open-questions.md`: các câu hỏi AI cho là nó cần biết thêm.
-5. `_personal/my-direction.md`: hai đến ba dòng về hướng nghề bạn đang nghiêng về. File này là ghi chú riêng nên nằm ngoài các folder làm việc, và không đưa cho AI.
+1. `context/product-and-users.md`: what the product is, who the users are, what you know and what you do not.
+2. `context/accessibility-rules.md`: the accessibility requirements the design must meet.
+3. `context/data-rules.md`: three lines in your own words: what you may give the AI, what you will not, which tool you use for what.
+4. `context/open-questions.md`: the questions the AI says it needs answered.
+5. `_personal/my-direction.md`: two or three lines about the career direction you lean toward. This is a private note, so it sits outside the working folders and is not given to the AI.
 
-Mỗi file có sẵn các dòng gợi ý. Bạn thay phần gợi ý bằng nội dung của mình, và giữ nguyên các tiêu đề.
+Each file comes with hint lines. Replace the hints with your own content, and keep the headings as they are.
 
 ## Step 4: Work with an AI tool
 
-Folder này được dựng để AI tool tự biết phải làm gì, nhờ bốn thứ:
+This folder is built so an AI tool knows what to do by itself, thanks to four things:
 
-| Thứ | Là gì |
+| Thing | What it is |
 |---|---|
-| `AGENTS.md` | Một file ghi sẵn "luật chơi". AI tool tự đọc nó khi bạn mở folder, nên bạn không phải nhắc lại luật mỗi lần. Nếu tool của bạn đọc file luật dưới tên khác, copy nội dung sang tên đó |
-| `../toolkit/skills/*.md` | Các **step card**: mỗi bước ghi rõ ai làm (AI hay bạn), đọc file nào, ghi vào đâu |
-| `work/sources/` | `anonymised/` AI được đọc. `_raw-private/` không bao giờ đưa cho AI và không lên GitHub |
-| `insights/` | Mỗi decision, hypothesis, evidence là một file. Các bảng tổng hợp do AI dựng lại |
+| `AGENTS.md` | A file with the "rules of the game" already written. The AI tool reads it by itself when you open the folder, so you do not have to repeat the rules every time. If your tool reads its rules file under another name, copy the content to that name |
+| `../toolkit/skills/*.md` | The **step cards**: each step says who does it (the AI or you), which files to read, where to write |
+| `work/sources/` | The AI may read `anonymised/`. `_raw-private/` is never given to the AI and never goes to GitHub |
+| `insights/` | Each decision, hypothesis and evidence is one file. The summary tables are rebuilt by the AI |
 
-Một lần làm việc với AI trông như sau:
+A session with the AI looks like this:
 
-1. **Mở đúng một case folder** làm project trong AI tool. Đừng mở folder gốc, và đừng mở cả `my-case` lẫn `demo-case` cùng lúc, vì dữ liệu của hai case sẽ lẫn vào nhau.
-2. **Lưu một mốc trước khi AI ghi file.** Nếu bạn dùng GitHub Desktop, bấm Commit (xem [`03-github-basics.md`](03-github-basics.md)). Nếu không, copy folder case thành một bản `...-backup`. Nhờ vậy AI làm hỏng thì bạn quay lại được.
-3. **Nói với tool một câu**, ví dụ: *"Chạy step 5 của `../toolkit/skills/user-voice-synthesis.md`."* Tool chỉ đọc đúng các file mà step card liệt kê.
-4. **Đọc kết quả và tự kiểm tra** ở step tiếp theo. Bản nháp của AI và bản bạn đã sửa nằm ở hai chỗ riêng.
-5. **Ghi một dòng vào `insights/case-log.md`:** bạn quyết định gì, vì sao, và AI đã giúp ở đâu.
+1. **Open exactly one case folder** as the project in the AI tool. Do not open the root folder, and do not open `my-case` and `demo-case` at the same time, or the data of the two cases will mix.
+2. **Save a checkpoint before the AI writes files.** If you use GitHub Desktop, click Commit (see [`03-github-basics.md`](03-github-basics.md)). If not, copy the case folder into a `...-backup` copy. That way, if the AI breaks something, you can go back.
+3. **Say one sentence to the tool**, for example: *"Run step 5 of `../toolkit/skills/user-voice-synthesis.md`."* The tool reads only the files the step card lists.
+4. **Read the result and check it yourself** in the next step. The AI draft and the version you corrected sit in two separate places.
+5. **Write a line in `insights/case-log.md`:** what you decided, why, and where the AI helped.
 
 ## Step 5: Use the hub
 
-Hub là nơi bạn trả lời câu hỏi: "Decision này dựa trên nhu cầu nào của người dùng?"
+The hub is where you answer the question: "Which user need is this decision based on?"
 
-- **Mỗi design decision là một file riêng.** Ví dụ decision `D2` nằm ở `insights/decisions/D2.md`.
-- **Bạn chỉ viết mỗi điều một chỗ.** Decision `D2` nói nó kiểm chứng hypothesis nào; hub tự suy ra chiều ngược lại.
-- **Sau mỗi lần cập nhật,** chạy `python3 ../toolkit/skills/export-hub.py` (hoặc nhờ AI tool chạy) để báo cáo dựng lại bảng tổng hợp và warnings.
+- **Each design decision is its own file.** For example decision `D2` lives at `insights/decisions/D2.md`.
+- **You write each fact in one place only.** Decision `D2` says which hypothesis it tests; the hub works out the reverse direction.
+- **After each update,** run `python3 ../toolkit/skills/export-hub.py` (or ask the AI tool to) so the report rebuilds the summary tables and warnings.
 
-Cách hub vận hành nằm ở `toolkit/skills/how-the-hub-works.md`.
+How the hub works is in `toolkit/skills/how-the-hub-works.md`.
 
 ## View markdown files
 
-File `.md` là text thuần, nên **công cụ nào mở được folder đều dùng được**. Chọn theo việc bạn cần:
+An `.md` file is plain text, so **any tool that can open a folder will do**. Pick by what you need:
 
-| Công cụ | Làm gì |
+| Tool | What it does |
 |---|---|
-| **AI coding tool** | Mở cả folder case làm project. Tool đọc `AGENTS.md`, đọc và sửa file trực tiếp, và chạy các step card. Đây là cách bạn làm việc với AI |
-| **Obsidian** (miễn phí) | Mở cả folder case làm vault. Thêm Graph view, Backlinks và bảng theo loại item. Xem [`05-obsidian.md`](05-obsidian.md) |
-| **VS Code** (miễn phí) | Cài từ [code.visualstudio.com](https://code.visualstudio.com), mở cả folder case, bấm vào file `.md`, rồi nhấn `Cmd+Shift+V` (Mac) hoặc `Ctrl+Shift+V` (Windows) để xem bản hiển thị |
-| **GitHub** | Nếu bạn đã lưu folder lên repo Private, mở repo trên github.com; Markdown được hiển thị sẵn |
-| **Trình duyệt** (không cài gì) | Bấm đúp file `index.html` ở gốc case folder: đó là trang chủ của hub. Sau khi sửa hub, nhờ AI tool chạy `python3 ../toolkit/skills/export-hub.py` để tạo lại. Xem [`04-share-your-hub.md`](04-share-your-hub.md) |
+| **AI coding tool** | Open the whole case folder as the project. The tool reads `AGENTS.md`, reads and edits files directly, and runs the step cards. This is how you work with the AI |
+| **Obsidian** (free) | Open the whole case folder as a vault. Adds Graph view, Backlinks and tables by item type. See [`05-obsidian.md`](05-obsidian.md) |
+| **VS Code** (free) | Install it from [code.visualstudio.com](https://code.visualstudio.com), open the whole case folder, click an `.md` file, then press `Cmd+Shift+V` (Mac) or `Ctrl+Shift+V` (Windows) to see the rendered version |
+| **GitHub** | If you saved the folder to a Private repo, open the repo on github.com; Markdown is already rendered |
+| **Browser** (nothing to install) | Double-click the `index.html` at the root of the case folder: that is the home page of the hub. After you edit the hub, ask the AI tool to run `python3 ../toolkit/skills/export-hub.py` to rebuild it. See [`04-share-your-hub.md`](04-share-your-hub.md) |
 
-Hãy mở **cả folder**, không mở từng file lẻ: các link giữa các trang chỉ bấm được khi cả folder đang mở.
+Open the **whole folder**, not single files: the links between pages only work when the whole folder is open.
 
-**Lưu ý về liên kết:** các item nối với nhau bằng dấu `[[ ]]` trong khối properties ở đầu file. Chỉ Obsidian biến chúng thành link bấm được. Các công cụ khác vẫn đọc và sửa được vì đó chỉ là text, và AI coding tool hiểu chúng bình thường.
+**A note on links:** items link to each other with `[[ ]]` in the properties block at the top of a file. Only Obsidian turns them into clickable links. Other tools can still read and edit them because they are just text, and an AI coding tool understands them normally.
 
 ## Make it your own
 
-| Bạn muốn | Cách làm |
+| You want to | How |
 |---|---|
-| Thêm folder riêng (ghi chú, ảnh, bản ghi âm) | Tạo folder mới cùng cấp với `work/`, ví dụ `notes/` |
-| Bỏ một file không dùng | Xoá file đó. Nếu file đó được một trang ở `stages/` dùng, xoá nó khỏi cột Từ work trong bảng Pages ở `stages/README.md`. Nếu là item, chạy lại `python3 ../toolkit/skills/export-hub.py` |
-| Thêm một trang giai đoạn | Thêm một dòng vào bảng Pages ở `stages/README.md`: đặt Id, chọn file ở cột Từ work và bảng item muốn hiện. Không cần viết file mới |
-| Thêm một item (nhu cầu, hypothesis, decision...) | Chạy `python3 ../toolkit/skills/new-item.py` trong folder dự án: lệnh hỏi từng câu, chọn mã tiếp theo và nối quan hệ giúp bạn |
-| Thêm một tài liệu (phân tích đối thủ, persona, flow, prototype...) | Copy một template trong `toolkit/templates/` vào `work/`, hoặc tạo folder và thả ảnh, PDF, HTML vào. Xem `work/README.md` |
-| Thêm một decision hoặc test | Chạy `python3 ../toolkit/skills/new-item.py D` (hoặc `E`): lệnh chọn mã mới và nối quan hệ giúp bạn |
-| Dùng design system của công ty | Viết `context/design-system-notes.md` của bạn và dùng `work/prototype/` làm mẫu |
-| Viết file bằng tiếng Việt | Được. Chỉ giữ tên file và tên folder bằng tiếng Anh |
+| Add your own folder (notes, images, recordings) | Create a new folder at the same level as `work/`, for example `notes/` |
+| Remove a file you do not use | Delete it. If a page in `stages/` uses that file, remove it from the From work column in the Pages table in `stages/README.md`. If it is an item, run `python3 ../toolkit/skills/export-hub.py` again |
+| Add a stage page | Add a row to the Pages table in `stages/README.md`: set an Id, pick the file in the From work column and the item tables you want to show. No new file needed |
+| Add an item (need, hypothesis, decision...) | Run `python3 ../toolkit/skills/new-item.py` in the project folder: the command asks one question at a time, picks the next code and links the relationships for you |
+| Add a document (competitor analysis, persona, flow, prototype...) | Copy a template from `toolkit/templates/` into `work/`, or create a folder and drop images, PDFs, HTML into it. See `work/README.md` |
+| Add a decision or a test | Run `python3 ../toolkit/skills/new-item.py D` (or `E`): the command picks the new code and links the relationships for you |
+| Use your company's design system | Write your `context/design-system-notes.md` and use `work/prototype/` as the model |
+| Write the files in Vietnamese | You can. Only keep file names and folder names in English |
 
 ## Keep it safe
 
-- **Ẩn danh trước khi đưa cho AI tool hoặc chia sẻ ra ngoài.**
-- **Không để mật khẩu, dữ liệu cá nhân của người dùng hay số liệu tài chính chưa công bố trong folder này**, kể cả khi repo ở chế độ Private.
-- Hub mặc định là riêng tư. Cách cho người khác xem nằm ở [`04-share-your-hub.md`](04-share-your-hub.md).
+- **Anonymise before giving anything to an AI tool or sharing it outside.**
+- **Do not keep passwords, users' personal data or unpublished financial figures in this folder**, even when the repo is Private.
+- The hub is private by default. How to let others see it is in [`04-share-your-hub.md`](04-share-your-hub.md).

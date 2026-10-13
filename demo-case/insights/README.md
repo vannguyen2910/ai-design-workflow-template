@@ -1,22 +1,22 @@
 # Insights
 
-Folder này giữ **các item nối với nhau**: nhu cầu của người dùng, điều nhóm tin, quyết định thiết kế, bằng chứng, vấn đề tìm thấy, và con số đo. Mỗi item là một file, mỗi loại một folder:
+This folder holds the **linked items**: user needs, what the team believes, design decisions, evidence, problems found, and the measured numbers. Each item is one file, each type has one folder:
 
-| Folder | Loại | Mã | Là gì |
+| Folder | Type | Code | What it is |
 |---|---|---|---|
-| `opportunities/` | Opportunity | O1, O2... | Một nhu cầu hoặc khó khăn của người dùng, có bằng chứng |
-| `hypotheses/` | Hypothesis | H1... | Điều nhóm tin là đúng, kèm cách biết đúng hay sai |
-| `decisions/` | Decision | D1... | Một lựa chọn thiết kế, kèm lý do |
-| `evidence/` | Evidence | E1... | Một test hoặc nghiên cứu kiểm chứng hypothesis |
-| `findings/` | Finding | F1... | Một vấn đề usability, kèm severity 0 đến 4 |
-| `metrics/` | Metric | M1... | Con số cho biết hypothesis đúng hay sai |
+| `opportunities/` | Opportunity | O1, O2... | A user need or difficulty, backed by evidence |
+| `hypotheses/` | Hypothesis | H1... | Something the team believes, with a way to know if it is right |
+| `decisions/` | Decision | D1... | A design choice, with its reason |
+| `evidence/` | Evidence | E1... | A test or a study that checks a hypothesis |
+| `findings/` | Finding | F1... | A usability problem, with a severity from 0 to 4 |
+| `metrics/` | Metric | M1... | The number that tells you whether a hypothesis is right |
 
-## Thêm một item
+## Add an item
 
-1. Copy một file trong `_templates/` vào folder loại tương ứng.
-2. Đặt tên file theo mã tiếp theo (ví dụ `D4.md`). Mã là duy nhất trong cả dự án.
-3. Điền phần thông tin ở đầu file, nhất là các dòng nối về item khác (`tests`, `serves`, `found_in`...).
+1. Copy a file from `_templates/` into the folder of its type.
+2. Name the file after the next code (for example `D4.md`). A code is unique across the whole project.
+3. Fill in the information at the top of the file, especially the lines that link to other items (`tests`, `serves`, `found_in`...).
 
-Báo cáo hiện các item này ở mục **Insights**, nối chúng thành cây từ nhu cầu tới decision, và tự cảnh báo chỗ thiếu liên kết. Cách nối chi tiết nằm ở `../toolkit/skills/how-the-hub-works.md`.
+The report shows these items in the **Insights** section, links them into a tree from need to decision, and warns by itself about missing links. How linking works in detail is in `../toolkit/skills/how-the-hub-works.md`.
 
-File `README.md` này không hiện trong báo cáo.
+This `README.md` does not show in the report.

@@ -1,6 +1,6 @@
 ---
 type: "journey-map"
-title: "Bản đồ hành trình"
+title: "Journey map"
 stage: "Define"
 status: "draft"
 summary: ""
@@ -13,38 +13,38 @@ supports: []
 # embed: false
 ---
 ## Scope
-Một persona, một mục tiêu, một hoàn cảnh. Điểm bắt đầu (điều kích hoạt) và điểm kết thúc (khi họ coi là xong). Decision mà bản đồ này phục vụ.
+One persona, one goal, one situation. The starting point (the trigger) and the end point (when they consider it done). The decision this map serves.
 
-| Mục | Nội dung |
+| Item | Content |
 |---|---|
 | Persona | |
-| Mục tiêu của họ | |
-| Hoàn cảnh | |
-| Điều kích hoạt | |
-| Kết quả mong muốn | |
+| Their goal | |
+| Situation | |
+| Trigger | |
+| Desired outcome | |
 
 ## Journey
-Mỗi bước một cột. Ghi điều **đã quan sát hoặc nghe được**, không ghi điều bạn đoán. Bước nào đoán thì đánh dấu `assumed`.
+One column per step. Write what was **observed or heard**, not what you guess. Mark a guessed step as `assumed`.
 
-| | Bước 1: | Bước 2: | Bước 3: | Bước 4: |
+| | Step 1: | Step 2: | Step 3: | Step 4: |
 |---|---|---|---|---|
-| **Họ làm gì** | | | | |
-| **Họ nghĩ gì** (quote) | | | | |
-| **Họ cảm thấy gì** (tốt / trung tính / tệ) | | | | |
-| **Điểm chạm** (màn hình, kênh, người) | | | | |
-| **Điểm đau** | | | | |
-| **Cơ hội** (O#) | | | | |
-| **Nguồn** (E# / file) | | | | |
+| **What they do** | | | | |
+| **What they think** (quote) | | | | |
+| **How they feel** (good / neutral / bad) | | | | |
+| **Touchpoints** (screens, channels, people) | | | | |
+| **Pain points** | | | | |
+| **Opportunities** (O#) | | | | |
+| **Source** (E# / file) | | | | |
 
 ## Moments that matter
-Một đến ba khoảnh khắc quyết định trải nghiệm tốt hay tệ, kèm lý do. Đây là nơi nên can thiệp trước.
+One to three moments that decide whether the experience is good or bad, with the reason. This is where to intervene first.
 
 ## Opportunities
-Từ các điểm đau ở trên, nhu cầu nào nên thành opportunity. Dẫn mã O# trong `insights/opportunities/`, không chép nội dung.
+From the pain points above, which needs should become opportunities. Point to the O# codes in `insights/opportunities/`, do not copy their content.
 
 - O? :
 
 ## What this cannot tell us
-Điều bản đồ không cho biết: bước nào còn là suy đoán, nhóm người dùng nào chưa được phản ánh.
+What the map does not tell us: which steps are still guesses, which groups of users are not reflected.
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

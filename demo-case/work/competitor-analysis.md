@@ -19,7 +19,7 @@ media:
 ---
 # Competitor analysis
 
-*Working file cho competitor flow. Các nguồn bạn đã lưu nằm trong `sources/anonymised/`.*
+*Working file for the competitor flow. The sources you saved are in `sources/anonymised/`.*
 
 ## Scope
 - Decision mà phân tích này phục vụ: Travel Buddy nên đứng ở đâu so với các nền tảng đang có, và không nên cạnh tranh trực tiếp ở đâu

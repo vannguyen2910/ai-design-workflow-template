@@ -1,48 +1,48 @@
 # Workflow: User-Voice Synthesis
 
-Biến những gì người dùng thật nói (review, forum, phỏng vấn ngắn) thành theme và opportunity, mà AI không được bịa quote và mọi theme lần ngược về lời gốc.
+Turn what real users say (reviews, forums, short interviews) into themes and opportunities, without the AI inventing quotes and with every theme traceable to the original words.
 
-*Trạng thái: bản nháp. Hãy thử các instruction trên một case thật và chỉnh theo cách bạn làm trước khi dựa vào chúng.*
+*Status: draft. Try the instructions on a real case and adjust them to how you work before you rely on them.*
 
 | | |
 |---|---|
-| Working file | `work/user-voice-synthesis.md` (mỗi step điền một section) |
-| Nguồn | `work/sources/anonymised/` (quote có ID: R01..., I01-01...) |
-| Dữ liệu gốc | `work/sources/_raw-private/` (AI không đọc) |
-| Output cuối | `work/user-voice-synthesis.md` (trang Evidence trong Stages tự dựng từ file này) và các file `insights/opportunities/O*.md` |
+| Working file | `work/user-voice-synthesis.md` (each step fills one section) |
+| Sources | `work/sources/anonymised/` (quotes with IDs: R01..., I01-01...) |
+| Original data | `work/sources/_raw-private/` (the AI does not read it) |
+| Final output | `work/user-voice-synthesis.md` (the Evidence page in Stages is built from this file) and the `insights/opportunities/O*.md` files |
 
-## Cái gì được tính là user voice
+## What counts as user voice
 
-| Nguồn | Loại | Tốt cho | Cần cẩn thận |
+| Source | Kind | Good for | Be careful of |
 |---|---|---|---|
-| Review công khai, forum, community | Thứ cấp, lời thật | Pain, kỳ vọng, từ ngữ, ở quy mô lớn | Lệch về cực đoan; review giả; không biết gì về người viết |
-| Phỏng vấn ngắn (3 đến 5 người đang dùng, 15 đến 20 phút) | Sơ cấp | Lý do đằng sau hành vi, sự kiện đã xảy ra | Mẫu nhỏ; bạn bè thường nể; câu hỏi dẫn dắt; **dữ liệu cá nhân**: cần consent và ẩn danh |
-| Support ticket, feedback (nếu có quyền) | Thứ cấp, nội bộ | Vấn đề thật ngoài thực tế | Thường là dữ liệu cá nhân hoặc nội bộ: ẩn danh và chỉ dùng tool được duyệt |
-| Câu trả lời mở của survey (nếu có) | Sơ cấp | Nhiều câu trả lời ngắn | Nông; người tự chọn trả lời |
+| Public reviews, forums, communities | Secondary, real words | Pain, expectations, wording, at scale | Skewed to extremes; fake reviews; you know nothing about the writer |
+| Short interviews (3 to 5 current users, 15 to 20 minutes) | Primary | The reasons behind behaviour, events that happened | Small sample; friends are polite; leading questions; **personal data**: needs consent and anonymising |
+| Support tickets, feedback (if you have access) | Secondary, internal | Real problems in the wild | Often personal or internal data: anonymise and use only approved tools |
+| Open answers in a survey (if there is one) | Primary | Many short answers | Shallow; people choose themselves to answer |
 
-Mục tiêu: ít nhất 30 quote từ ít nhất 3 nguồn hoặc 3 người, để một theme có thể được đánh giá.
+The goal: at least 30 quotes from at least 3 sources or 3 people, so that a theme can be judged.
 
-## Sections của working file
+## Sections of the working file
 
-| Section | Điền ở step | Bởi |
+| Section | Filled in step | By |
 |---|---|---|
-| `## Scope` (câu hỏi, ai, điều đã tin) | 1 | YOU |
-| `## Sources and guide` | 2 và 3 | Step 2: gợi ý của AI, có gắn nhãn. Step 3: danh sách nguồn cuối và interview guide của bạn |
+| `## Scope` (question, who, beliefs) | 1 | YOU |
+| `## Sources and guide` | 2 and 3 | Step 2: the AI's suggestions, labelled. Step 3: your final list of sources and your interview guide |
 | `sources/anonymised/` | 4 | YOU |
-| `## Coding (AI draft)` | 5 | AI. **Không sửa** |
-| `## Coding (verified)` | 6 | YOU: bản sao bạn đã sửa |
+| `## Coding (AI draft)` | 5 | AI. **Do not edit** |
+| `## Coding (verified)` | 6 | YOU: your corrected copy |
 | `## Themes` | 7 | AI |
 | `## Opportunities + limits` | 8 | YOU |
 
-Hai quy tắc: AI chỉ trả về section của nó, và bản nháp của AI luôn tách khỏi bản đã kiểm tra.
+Two rules: the AI returns only its own section, and the AI draft is always kept apart from the checked version.
 
-## Nếu một gate không đạt
+## If a gate is not met
 
-| Gate | Sau step | Nếu câu trả lời là không |
+| Gate | After step | If the answer is no |
 |---|---|---|
-| A: đúng người nói? | 3 | Quay lại step 2 và mở rộng nguồn |
-| B: nguyên văn và truy vết được? | 6 | Chạy lại step 5 với instruction chặt hơn (nhiều lỗi), rồi kiểm tra lại |
-| C: cân theo mức độ quan trọng, không chỉ đếm? | 8 | Quay lại step 7 và làm lại phần tổng hợp |
+| A: the right speakers? | 3 | Go back to step 2 and widen the sources |
+| B: verbatim and traceable? | 6 | Run step 5 again with a tighter instruction (many errors), then check again |
+| C: weighed by importance, not only counted? | 8 | Go back to step 7 and redo the synthesis |
 
 ---
 
@@ -52,92 +52,92 @@ Hai quy tắc: AI chỉ trả về section của nó, và bản nháp của AI l
 **Input:** `work/scope.md`
 **Output:** `## Scope`
 
-Điền: câu hỏi (lấy từ scope); cần nghe từ ai (người dùng nào, tình huống nào); muốn học điều gì (một hành vi hoặc pain, không phải một feature); 3 đến 5 điều bạn đã tin để kiểm tra ở step 7.
+Fill in: the question (taken from the scope); who we need to hear from (which users, which situation); what you want to learn (a behaviour or a pain, not a feature); 3 to 5 beliefs to test in step 7.
 
-**Check:** Câu hỏi hỏi về hành vi và vấn đề đã xảy ra, không hỏi người ta có thích ý tưởng của mình không?
-**Failure sign:** "Người dùng nghĩ gì về feature X?" mà không có tình huống hay hành vi.
+**Check:** Does the question ask about behaviour and problems that happened, and not whether people like your idea?
+**Failure sign:** "What do users think about feature X?" with no situation or behaviour.
 
 ## Step 2: Suggest
 
 **Who:** AI
-**Input:** `## Scope` (chỉ section này)
-**Output:** `## Sources and guide`, gắn nhãn "AI suggestions"
+**Input:** `## Scope` (only this section)
+**Output:** `## Sources and guide`, labelled "AI suggestions"
 
 **Instruction:**
-> Chỉ dùng phần scope bên dưới. Gợi ý những nơi người dùng thật của sản phẩm này nói về nó công khai (loại nguồn, không bịa trang cụ thể), và soạn tám câu hỏi phỏng vấn. Câu hỏi phải hỏi về hành vi trong quá khứ và tình huống thật ("kể cho tôi nghe lần gần nhất bạn..."), không hỏi ý kiến về ý tưởng, và không dẫn dắt. Không bịa nguồn và không trích lời ai. Nói điều bạn không chắc. Chỉ trả về hai danh sách.
+> Use only the scope below. Suggest the places where real users of this product talk about it in public (the kinds of source, do not invent specific pages), and draft eight interview questions. The questions must ask about past behaviour and real situations ("tell me about the last time you..."), not ask for opinions about ideas, and must not lead. Do not invent sources and do not quote anyone. Say what you are not sure about. Return only the two lists.
 
-**Check:** Có nguồn nào bạn không tìm thấy thật không? Có câu hỏi nào gợi sẵn câu trả lời không?
-**Failure sign:** Tên forum bịa; câu hỏi kiểu "bạn có dùng... không".
+**Check:** Is there a source you cannot really find? Is there a question that suggests its answer?
+**Failure sign:** Made-up forum names; questions like "do you use...".
 
 ## Step 3: Review the voices · Gate A
 
 **Who:** YOU
 **Input:** `## Sources and guide`
-**Output:** `## Sources and guide` (bản cuối)
+**Output:** `## Sources and guide` (final)
 
-Sửa thành danh sách nguồn cuối và interview guide, kèm lý do. Thêm những tiếng nói AI bỏ sót. Thống nhất consent cho phỏng vấn: người tham gia biết đây là dự án học, và bạn sẽ xoá tên.
+Edit it into the final list of sources and the interview guide, with reasons. Add the voices the AI missed. Agree on consent for the interviews: participants know this is a learning project, and you will remove their names.
 
-**Gate A:** Ai còn thiếu (người dùng ít, người đã bỏ, người chưa từng đăng ký)? Mẫu có lệch không (chỉ review giận dữ, chỉ bạn bè, chỉ một nhóm)? Consent có rõ và được ghi lại không?
-**Failure sign:** Mọi người bạn chọn đều giống bạn; không có ghi chú consent.
+**Gate A:** Who is missing (light users, people who left, people who never signed up)? Is the sample skewed (only angry reviews, only friends, only one group)? Is consent clear and recorded?
+**Failure sign:** Everyone you picked is like you; no consent note.
 
 ## Step 4: Collect and anonymise
 
 **Who:** YOU
-**Input:** nguồn công khai và các buổi phỏng vấn của bạn
-**Output:** file trong `work/sources/anonymised/`
+**Input:** Public sources and your interviews
+**Output:** Files in `work/sources/anonymised/`
 
-Thu ít nhất 30 quote từ nguồn công khai và làm 3 đến 5 buổi phỏng vấn ngắn (ghi âm khi được phép). Để dữ liệu gốc trong `_raw-private/`. **Ẩn danh trước khi AI thấy bất cứ thứ gì:** xoá tên, username, email, tên công ty (find and replace trên máy bạn, không nhờ AI). Gán ID cho mỗi quote (R01... cho review, I01-01... cho phỏng vấn 1 quote 1) và giữ nguyên văn.
+Collect at least 30 quotes from public sources and run 3 to 5 short interviews (recorded when allowed). Keep the original data in `_raw-private/`. **Anonymise before the AI sees anything:** remove names, usernames, emails, company names (find and replace on your machine, do not ask the AI). Give each quote an ID (R01... for reviews, I01-01... for interview 1 quote 1) and keep it verbatim.
 
-**Failure sign:** Quote bị viết lại "cho gọn"; không có ID; còn sót tên.
+**Failure sign:** A quote was rewritten "to make it shorter"; no IDs; a name was left behind.
 
 ## Step 5: Code
 
 **Who:** AI
-**Input:** `## Scope` và các quote trong `sources/anonymised/`
+**Input:** `## Scope` and the quotes in `sources/anonymised/`
 **Output:** `## Coding (AI draft)`
 
 **Instruction:**
-> Chỉ dùng các quote bên dưới, nhóm chúng thành theme. Với mỗi theme, đặt một tên ngắn, rồi liệt kê ID và đúng nguyên văn của mọi quote trong đó. Không bao giờ viết lại, rút gọn hay bịa một quote. Quote không khớp theme nào thì đưa vào "unclassified". Theme có dưới ba quote, hoặc quote từ dưới hai nguồn hoặc hai người, thì gắn nhãn "weak". Nếu không chắc thì ghi "unknown". Chỉ trả về bảng.
+> Use only the quotes below and group them into themes. For each theme, give a short name, then list the ID and the exact verbatim text of every quote in it. Never rewrite, shorten or invent a quote. A quote that fits no theme goes into "unclassified". A theme with fewer than three quotes, or quotes from fewer than two sources or two people, gets the label "weak". If you are not sure, write "unknown". Return only the table.
 
-**Failure sign:** Quote không có trong nguồn; không có "unclassified"; mọi theme đều "strong".
+**Failure sign:** A quote that is not in the sources; no "unclassified"; every theme is "strong".
 
 ## Step 6: Verify · Gate B
 
 **Who:** YOU
-**Input:** `## Coding (AI draft)` và `sources/anonymised/`
-**Output:** `## Coding (verified)`, kèm số quote sai, số quote đặt sai chỗ và tỷ lệ lỗi ở đầu
+**Input:** `## Coding (AI draft)` and `sources/anonymised/`
+**Output:** `## Coding (verified)`, with the number of wrong quotes, the number of misplaced quotes and the error rate at the top
 
-Copy bản nháp sang `## Coding (verified)`. (1) Kiểm tra **mọi quote được trích cho ba theme hàng đầu** có đúng nguyên văn không: tìm đoạn đó trong `sources/anonymised/`. (2) Kiểm tra ngẫu nhiên 20% phần còn lại. (3) Đọc mười quote từ "unclassified" và mười từ các theme khác: AI có bỏ sót hay đặt sai chỗ điều quan trọng không? (4) Sửa lỗi.
+Copy the draft into `## Coding (verified)`. (1) Check **every quote cited for the top three themes** is verbatim: find the passage in `sources/anonymised/`. (2) Spot-check 20% of the rest at random. (3) Read ten quotes from "unclassified" and ten from other themes: did the AI miss or misplace something important? (4) Fix the errors.
 
-Tốt hơn, làm một lần: tự code 20 quote trước, rồi so với cách AI nhóm.
+Better, do it once: code 20 quotes yourself first, then compare with how the AI grouped them.
 
-**Gate B:** Mọi quote nguyên văn và có ID? Các theme có đứng vững trước mẫu bạn tự đọc không? Tỷ lệ lỗi chấp nhận được không?
-**Failure sign:** Chỉ kiểm tra vài quote đầu; không ghi tỷ lệ lỗi.
+**Gate B:** Is every quote verbatim and with an ID? Do the themes stand up against the sample you read yourself? Is the error rate acceptable?
+**Failure sign:** Only the first few quotes were checked; no error rate recorded.
 
 ## Step 7: Synthesise and test
 
 **Who:** AI
-**Input:** `## Scope` (gồm điều bạn đã tin) và `## Coding (verified)`. **Không** đưa bản nháp của AI
+**Input:** `## Scope` (including what you already believed) and `## Coding (verified)`. **Do not** give it the AI's draft
 **Output:** `## Themes`
 
 **Instruction:**
-> Từ coding đã kiểm tra, liệt kê các need và pain quan trọng với câu hỏi trong scope. Với mỗi cái: bao nhiêu quote và từ bao nhiêu nguồn hoặc người, một quote ví dụ kèm ID, và một counter-quote nếu có. Sau đó với mỗi cái, đưa lập luận mạnh nhất rằng nó sai hoặc gây hiểu lầm, và nói bằng chứng nào sẽ làm bạn đổi ý. Đi qua từng điều tôi đã tin và nói các quote ủng hộ, mâu thuẫn hay không đề cập. Chưa đề xuất hành động. Nói mẫu này không cho biết điều gì. Chỉ trả về section này.
+> From the checked coding, list the needs and pains that matter for the question in the scope. For each one: how many quotes and from how many sources or people, one example quote with its ID, and a counter-quote if there is one. Then for each, give the strongest argument that it is wrong or misleading, and say what evidence would change your mind. Go through each belief I wrote down and say which quotes support it, contradict it or do not mention it. Do not propose actions yet. Say what this sample cannot tell us. Return only this section.
 
-**Failure sign:** Need chung chung ("người dùng muốn sự đơn giản"); không có counter-quote; mọi điều đã tin đều "supported".
+**Failure sign:** Generic needs ("users want simplicity"); no counter-quote; every belief is "supported".
 
 ## Step 8: Interpret and decide · Gate C
 
 **Who:** YOU
 **Input:** `## Themes`, `## Scope`
-**Output:** `## Opportunities + limits`, các file `insights/opportunities/O*.md`, và trang Evidence trong Stages (tự dựng từ working file)
+**Output:** `## Opportunities + limits`, the `insights/opportunities/O*.md` files, and the Evidence page in Stages (built from the working file)
 
-Cân từng theme theo **mức độ nghiêm trọng** (tệ đến đâu khi xảy ra), **bối cảnh** (ai, khi nào) và **phạm vi** (bao nhiêu người khác nhau), không chỉ theo số quote nhắc đến. Viết 3 đến 5 opportunity thành user need, không phải feature, mỗi cái kèm ID quote. Mỗi opportunity là một file riêng trong `hub/`. Nêu giới hạn của mẫu.
+Weigh each theme by **severity** (how bad when it happens), **context** (who, when) and **breadth** (how many different people), not only by how many quotes mention it. Write 3 to 5 opportunities as user needs, not features, each with its quote IDs. Each opportunity is its own file in `insights/opportunities/`. State the limits of the sample.
 
-**Gate C:** Mỗi opportunity dựa trên mức độ nghiêm trọng và bối cảnh, không metric lượng? Bạn bảo vệ được bằng cách chỉ ra các quote không? Bạn đã nói mẫu này không cho biết điều gì chưa?
-**Failure sign:** Theme nhiều quote nhất mặc nhiên thành opportunity hàng đầu; thiếu ID quote.
+**Gate C:** Is each opportunity based on severity and context, not a quantity metric? Can you defend it by pointing at the quotes? Have you said what this sample cannot tell us?
+**Failure sign:** The theme with the most quotes automatically becomes the top opportunity; missing quote IDs.
 
 ---
 
-## Giới hạn cần nói thẳng
+## The limit to state plainly
 
-Phân tích này cho thấy người dùng **nói** gì, không phải họ **làm** gì. Review lệch về cực đoan, bạn bè thì nể, mẫu thì nhỏ. Coi theme là hypothesis và kiểm tra với người dùng thật ở các tuần sau.
+This analysis shows what users **say**, not what they **do**. Reviews skew to extremes, friends are polite, the sample is small. Treat the themes as hypotheses and test them with real users in the later weeks.

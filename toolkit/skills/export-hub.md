@@ -1,98 +1,100 @@
 # Workflow: Export the Hub
 
-Xuất hub thành **một file HTML tự chứa** để xem trong trình duyệt và gửi cho stakeholder, không cần AI tool hay công cụ nào để đọc.
+Export the hub as **one self-contained HTML file** to view in a browser and send to stakeholders, with no AI tool or any other tool needed to read it.
 
-*Trạng thái: bản nháp.*
+*Status: draft.*
 
 | | |
 |---|---|
-| Khi nào | Khi bạn cần xem hub trong trình duyệt, hoặc gửi cho người khác |
-| Làm trước | Lưu các file bạn vừa sửa. Các bảng tự dựng lại mỗi lần chạy, không cần bước nào khác |
-| Lệnh | `python3 ../toolkit/skills/export-hub.py` |
-| Output | `index.html` ở gốc case folder |
+| When | When you need to see the hub in a browser, or send it to someone |
+| Before | Save the files you just edited. The tables rebuild every run, no other step is needed |
+| Command | `python3 ../toolkit/skills/export-hub.py` |
+| Output | `index.html` at the root of the case folder |
 
-## Vì sao là một script, không phải AI
+## Why a script, not the AI
 
-Biến Markdown thành HTML là phép biến đổi xác định. Script cho cùng một kết quả mỗi lần, không bịa nội dung, không gửi dữ liệu đi đâu, và không tốn lượt dùng AI. AI tool chỉ có thể **chạy lệnh** giúp bạn.
+Turning Markdown into HTML is a deterministic transformation. The script gives the same result every time, does not invent content, sends no data anywhere, and uses no AI quota. The AI tool can only **run the command** for you.
 
-## Cái gì vào báo cáo, cái gì không
+## What goes in the report and what does not
 
-| Có | Không |
+| In | Not in |
 |---|---|
-| `README.md`, `context/`, `stages/`, `work/`, `insights/`, `standards/` | Các phần có chữ "(AI draft)" ở tiêu đề, `work/sources/` |
-| Mọi file item (O, H, M, D, E) | `_personal/`, `work/sources/`, `AGENTS.md`, `../toolkit/skills/*.md` |
-| `insights/case-log.md`, `standards/principle-checks.md` | `../toolkit/skills/how-the-hub-works.md` (hướng dẫn cho người viết) |
+| `README.md`, `context/`, `stages/`, `work/`, `insights/`, `standards/` | Sections with "(AI draft)" in the heading, `work/sources/` |
+| Every item file (O, H, M, D, E) | `_personal/`, `work/sources/`, `AGENTS.md`, `../toolkit/skills/*.md` |
+| `insights/case-log.md`, `standards/principle-checks.md` | `../toolkit/skills/how-the-hub-works.md` (a guide for the writer) |
 
-Các khối "Cách điền" bị bỏ khỏi báo cáo. Link tới file ngoài báo cáo hiện thành chữ có gạch chấm, không bấm được.
+The "How to fill" blocks are left out of the report. Links to files outside the report show as dotted-underlined text and cannot be clicked.
 
-## Cách báo cáo được tổ chức
+## How the report is organised
 
-| Mục trong menu | Chứa |
+| Menu section | Holds |
 |---|---|
-| **Tổng quan** | Số item theo loại, trạng thái bốn gate, bảng alignment, danh sách warning |
-| **Hành trình** | Các trang theo giai đoạn (phần narrative); bấm một thẻ để mở trang |
-| **Tài liệu** | Mỗi artifact một thẻ, bấm để mở trang: tóm tắt, điểm chính, hình, prototype chạy được, link ngoài, và các item nó hỗ trợ. Lọc theo giai đoạn và loại |
-| **Insights** | Mỗi item (O, H, M, D, E) một thẻ, có tìm kiếm và lọc theo loại; nút **Cây** chuyển sang dạng **Opportunity > Hypothesis > Decision / Test / Metric** |
+| **Overview** | Item counts by type, the status of the four gates, the alignment table, the warning list |
+| **Context** | The background pages: product and users, data rules, design system, open questions |
+| **Stages** | The pages per stage (the narrative part); click a card to open a page |
+| **Work** | One card per document, click to open its page: summary, key points, images, a runnable prototype, external links, and the items it supports. Filter by stage and type |
+| **Insights** | One card per item (O, H, M, D, E), with search and a filter by type; the **Tree** button switches to the **Opportunity > Hypothesis > Decision / Test / Metric** view |
 | **Standards** | Gates, principle checks, severity levels |
+| **Guide** | How to use the workspace, with sample sentences for the AI tool |
 
-Item không nằm trong menu bên trái mà nằm trong mục Insights, nên báo cáo vẫn dùng được khi có hàng chục item. Item chưa nối vào opportunity nào được gom riêng ở cuối cây.
+Items are not in the left menu but in the Insights section, so the report still works with dozens of items. An item not linked to any opportunity is gathered separately at the end of the tree.
 
-**Bảng alignment và warning trong báo cáo do script tính** từ các dòng quan hệ trong file item (properties `serves`, `metric`, `tests`, `measures`, `follows`, `pulls_against`), không lấy từ nơi nào khác, nên luôn khớp với các file item.
+**The alignment table and the warnings in the report are computed by the script** from the relationship lines in the item files (the properties `serves`, `metric`, `tests`, `measures`, `follows`, `pulls_against`), from nowhere else, so they always match the item files.
 
-Mỗi item tự có đường truy vết (ví dụ O1 › H1 › D2) và phần **"Được tham chiếu bởi"**, vì các file item chỉ khai báo quan hệ một chiều.
+Each item has its own trace (for example O1 › H1 › D2) and a **"Referenced by"** section, because item files declare relationships in one direction only.
 
-## Gửi cho người khác: bundle gọn
+## Send to others: a compact bundle
 
-Báo cáo là một folder: `index.html` cùng các tệp nó dùng (ảnh, prototype HTML...). Để gửi, tạo bản gọn:
+A report is a folder: `index.html` plus the files it uses (images, HTML prototypes...). To send it, make a compact version:
 
 ```
-python3 ../toolkit/skills/export-hub.py --bundle gui-stakeholder --zip
+python3 ../toolkit/skills/export-hub.py --bundle send-to-stakeholders --zip
 ```
 
-Bundle chỉ chứa `index.html` và **đúng các tệp mà các tài liệu khai báo** (`media:` hoặc thả trong folder artifact). Nó không chứa working file thô, `_raw-private/` hay `_personal/`. Ảnh được tham chiếu, không nhúng vào HTML, nên `index.html` nhẹ.
+The bundle holds only `index.html` and **exactly the files the documents declare** (`media:` or dropped in the document's folder). It does not hold raw working files, `_raw-private/` or `_personal/`. Images are referenced, not embedded in the HTML, so `index.html` stays light.
 
-## Bản team: xem cả bản nháp AI
+## Team version: see the AI drafts too
 
-Working file giữ hai section: `(AI draft)` và `(verified)`. Báo cáo mặc định **ẩn** mọi section có `AI draft` ở tiêu đề. Khi cần xem lại chúng (ví dụ để đo tỷ lệ lỗi của AI):
+A working file keeps two sections: `(AI draft)` and `(verified)`. By default the report **hides** every section with `AI draft` in the heading. When you need to see them again (for example to measure the AI's error rate):
 
 ```
 python3 ../toolkit/skills/export-hub.py --team
 ```
 
-Bản này gấp bản nháp lại và ghi "chưa kiểm tra". **Không gửi bản `--team` ra ngoài.**
+This version folds the drafts and labels them "not checked". **Do not send the `--team` version outside.**
 
 ## Step 1: Export
 
-**Who:** YOU (hoặc AI tool, chỉ để chạy lệnh)
+**Who:** YOU (or the AI tool, only to run the command)
 **Input:** `README.md`, `context/`, `stages/`, `work/`, `insights/`, `standards/`
-**Output:** `index.html` ở gốc case folder
+**Output:** `index.html` at the root of the case folder
 
 ```
 python3 ../toolkit/skills/export-hub.py
 ```
 
-Script in ra số trang, số item, và các vấn đề (link hỏng, ID không khớp tên file, số chỗ còn dữ liệu mẫu).
+The script prints the number of pages, the number of items, and the problems (broken links, IDs that do not match the file name, the number of places that still have sample data).
 
-**Failure sign:** Có dòng `!` về link hỏng hoặc ID không khớp.
+**Failure sign:** A `!` line about a broken link or an ID that does not match.
 
 ## Step 2: Check before sending
 
 **Who:** YOU
-**Input:** file HTML vừa xuất
-**Output:** không có
+**Input:** The HTML file just exported
+**Output:** None
 
-Mở file bằng trình duyệt và kiểm tra:
+Open the file in a browser and check:
 
-- [ ] Không còn thanh đen "dữ liệu mẫu hoặc chỗ chưa điền" ở đầu Tổng quan
-- [ ] Không còn nội dung mẫu hoặc chỗ trống
-- [ ] Agreement status đúng
-- [ ] Không có thông tin confidential hay dữ liệu cá nhân (đọc từng trang; báo cáo chỉ gồm hub, nhưng bạn là người viết hub)
-- [ ] Mở thử trên một thiết bị khác
+- [ ] The black bar "sample data or blanks remain" at the top of the Overview is gone
+- [ ] There is no sample content or empty place left
+- [ ] The agreement status is correct
+- [ ] There is no confidential information or personal data (read every page; the report holds only the hub, but you are the one who wrote the hub)
+- [ ] Try opening it on another device
 
-**Failure sign:** Bạn gửi báo cáo khi còn thanh đen ở đầu trang.
+**Failure sign:** You send the report while the black bar is still at the top of the page.
 
 ## Naming
 
-File luôn tên `index.html` và nằm ở gốc case folder, là **trang chủ của hub**: bấm đúp là mở. Template đã có sẵn một bản tạo từ dữ liệu mẫu, nên bạn xem được hub ngay từ ngày đầu. Mỗi lần bạn sửa hub, tạo lại để trang chủ khớp với nội dung mới.
+The file is always called `index.html` and sits at the root of the case folder, as the **home page of the hub**: double-click to open. The template already has a version built from sample data, so you can see the hub from day one. Each time you edit the hub, rebuild it so the home page matches the new content.
 
-**Khi gửi cho người khác,** copy file ra ngoài và đổi tên cho dễ nhận ra, ví dụ `onboarding-redesign-report-2026-10-11.html`. Tên `index.html` đứng một mình trong hộp thư của người nhận không nói gì về nội dung. Bạn cũng có thể tạo thẳng bản gửi đi bằng `python3 ../toolkit/skills/export-hub.py --out ten-file.html`.
+**When you send it to others,** copy the file out and rename it so it is easy to recognise, for example `onboarding-redesign-report-2026-10-11.html`. A file called `index.html` sitting alone in the recipient's inbox says nothing about its content. You can also build the file to send directly with `python3 ../toolkit/skills/export-hub.py --out file-name.html`.

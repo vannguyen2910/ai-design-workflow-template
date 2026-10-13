@@ -1,6 +1,6 @@
 ---
 type: "test-report"
-title: "Báo cáo test"
+title: "Test report"
 stage: "Deliver"
 status: "draft"
 summary: ""
@@ -13,21 +13,21 @@ supports: []
 # embed: false
 ---
 ## Method
-Loại test, số người tham gia, **người thật hay mô phỏng**, công cụ.
+Type of test, number of participants, **real people or simulated**, tools.
 
 ## Results against the baseline
-| Metric | Baseline | Kết quả | Đạt? |
+| Metric | Baseline | Result | Met? |
 |---|---|---|---|
 | | | | |
 
 ## Findings
-Mức độ chấm theo thang 0 đến 4 trong Severity levels (`standards/severity-levels.md` của case). Mức 3 và 4 cần xử lý trước khi bàn giao.
+Severity is rated on the 0 to 4 scale in Severity levels (the case's `standards/severity-levels.md`). Levels 3 and 4 need handling before handoff.
 
-| Phát hiện | Mức độ (0-4) | Bằng chứng | Đề xuất |
+| Finding | Severity (0-4) | Evidence | Recommendation |
 |---|---|---|---|
 | | | | |
 
 ## Limits
-Điều làm kết quả kém tin cậy.
+What makes the results less reliable.
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

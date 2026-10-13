@@ -1,6 +1,6 @@
 ---
 type: "heuristic-evaluation"
-title: "Đánh giá heuristic"
+title: "Heuristic evaluation"
 stage: "Discover"
 status: "draft"
 summary: ""
@@ -13,32 +13,32 @@ supports: []
 # embed: false
 ---
 ## Scope
-Sản phẩm hoặc bản thiết kế được đánh giá, phiên bản, các task chính (3 đến 5), người đánh giá và ngày. Khi có thể, nên có từ 2 người đánh giá độc lập.
+The product or design being evaluated, the version, the main tasks (3 to 5), the evaluators and the date. When possible, have at least 2 independent evaluators.
 
 ## Method
-Đi qua từng task, kiểm từng màn hình với 10 heuristic của Nielsen. Dùng mã **P1 đến P10** trong Principle checks (`standards/principle-checks.md` của case) (không dùng `H#`, đó là mã hypothesis). Mức độ nghiêm trọng chấm theo Severity levels (`standards/severity-levels.md` của case).
+Go through each task and check every screen against Nielsen's 10 heuristics. Use the codes **P1 to P10** in Principle checks (the case's `standards/principle-checks.md`); do not use `H#`, that is the hypothesis code. Rate severity with Severity levels (the case's `standards/severity-levels.md`).
 
-| Mức | Tên | Nghĩa ngắn |
+| Level | Name | Short meaning |
 |---|---|---|
-| 0 | Không phải vấn đề | Bạn không đồng ý đây là vấn đề usability |
-| 1 | Cosmetic | Chỉ là hình thức, không cản trở |
-| 2 | Minor | Gây khó chịu, người dùng vẫn hoàn thành |
-| 3 | Major | Nhiều người bị chặn hoặc phải đi đường vòng |
-| 4 | Catastrophe | Không hoàn thành được việc chính, hoặc mất dữ liệu, mất tiền |
+| 0 | Not a problem | You do not agree this is a usability problem |
+| 1 | Cosmetic | Appearance only, no obstruction |
+| 2 | Minor | Annoying, the user still completes the task |
+| 3 | Major | Many users are blocked or take a detour |
+| 4 | Catastrophe | The main task cannot be completed, or data or money is lost |
 
-Chấm bằng ba yếu tố nhìn chung (tần suất, tác động, độ khó để vượt qua); chi tiết ở trang Severity levels.
+Rate with three factors together (frequency, impact, persistence); the details are on the Severity levels page.
 
 ## Problems
-Mỗi vấn đề một dòng. Ghi điều quan sát được, không ghi giải pháp.
+One problem per row. Write what was observed, not the solution.
 
-| # | Task | Màn hình / bước | Vấn đề | Principle (P#) | Mức độ (0-4) | Bằng chứng |
+| # | Task | Screen / step | Problem | Principle (P#) | Severity (0-4) | Evidence |
 |---|---|---|---|---|---|---|
-| 1 | | | | P? | | ảnh / link |
+| 1 | | | | P? | | image / link |
 
-## Heuristic coverage
-Principle nào xuất hiện nhiều nhất, và principle nào chưa có vấn đề nào (để biết đã kiểm hay chưa).
+## Principle coverage
+Which principles appear most, and which principles have no problem at all (so you know whether they were checked).
 
-| Principle | Số vấn đề | Mức cao nhất |
+| Principle | Number of problems | Highest level |
 |---|---|---|
 | P1 Visibility of system status | | |
 | P2 Match between system and real world | | |
@@ -52,9 +52,9 @@ Principle nào xuất hiện nhiều nhất, và principle nào chưa có vấn 
 | P10 Help and documentation | | |
 
 ## Top problems
-Ba đến năm vấn đề nghiêm trọng nhất (mức 3 và 4 trước), kèm lý do ưu tiên.
+The three to five most serious problems (levels 3 and 4 first), with the reason for the priority.
 
 ## What this cannot tell us
-Đánh giá heuristic là ý kiến của chuyên gia, không thay thế test với người dùng. Ghi những vấn đề cần xác nhận bằng test.
+A heuristic evaluation is an expert opinion, it does not replace testing with users. Note the problems that need to be confirmed by a test.
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

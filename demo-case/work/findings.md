@@ -6,7 +6,7 @@ status: "draft"
 summary: ""
 supports: []
 ---
-*Giai đoạn Deliver, sau khi test. Người dùng thật đã làm gì. AI có thể giúp phân tích; kiểm tra từng finding với ghi chú hoặc bản ghi.*
+*Deliver stage, after the test. What real users did. The AI can help analyse; check every finding against the notes or the recording.*
 
 > **Đọc kỹ trước khi dùng:** vòng test này là **mô phỏng**. Người nghiên cứu (qua một AI tool) đóng vai từng persona trên prototype thật, thay vì dùng người tham gia độc lập. Theo principle của workspace (AI không đóng vai người dùng), kết quả dưới đây chỉ là **hypothesis cần xác nhận** và **không** thoả gate 4a. Nguyên văn phần giới hạn: `work/original-docs/13_Simulated_Usability_Findings.md`, mục 6.
 
@@ -18,7 +18,7 @@ supports: []
 | SUS trung bình | chưa có | 69,2/100 (Aisha 80; Marco 62,5; Ji-yeon 65) | có, nhưng bị kéo lên bởi một lượt chạy tốt và chỉ là mô phỏng |
 
 ## Findings, weighted by importance
-*Xếp theo mức độ quan trọng, không theo số lần được nhắc. Dẫn mỗi finding về một bản ghi hoặc ghi chú.*
+*Ranked by importance, not by how many times it was mentioned. Link each finding to a recording or a note.*
 
 | Finding | Severity | Evidence | What changes |
 |---|---|---|---|

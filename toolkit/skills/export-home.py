@@ -262,7 +262,7 @@ def main():
     a = ap.parse_args()
     ws = os.path.abspath(a.workspace) if a.workspace else find_workspace(os.getcwd())
     if not ws or not os.path.isdir(ws):
-        sys.exit("Không tìm thấy workspace. Chạy trong workspace, hoặc dùng --workspace <đường dẫn>.")
+        sys.exit("Workspace not found. Run inside the workspace, or pass --workspace <path>.")
     dirs = sorted(d for d in os.listdir(ws) if not d.startswith((".", "_")) and is_case(os.path.join(ws, d)))
     dirs = [d for d in dirs if d not in EXAMPLES] + [d for d in EXAMPLES if d in dirs]
     cards = [case_card(ws, d) for d in dirs]

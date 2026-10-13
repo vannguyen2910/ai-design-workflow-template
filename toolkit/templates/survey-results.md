@@ -1,6 +1,6 @@
 ---
 type: "survey-results"
-title: "Kết quả khảo sát"
+title: "Survey results"
 stage: "Discover"
 status: "draft"
 summary: ""
@@ -13,16 +13,16 @@ supports: []
 # embed: false
 ---
 ## Method and sample
-Công cụ, thời gian, số phản hồi hợp lệ, cách tuyển. Ghi rõ độ lệch của mẫu.
+Tool, dates, number of valid responses, how people were recruited. Say clearly how the sample is skewed.
 
 ## Key results
-| Câu hỏi | Kết quả | n |
+| Question | Result | n |
 |---|---|---|
 | | | |
 
 ## What surprised us
 
 ## Limits
-Mẫu nhỏ, độ lệch, câu hỏi nhiều lựa chọn có thể đánh giá thấp điều gì.
+The small sample, the skew, and what a multiple-choice question may under-report.
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

@@ -6,16 +6,16 @@ status: "planned"
 summary: "Everything a developer needs to build it without asking again."
 supports: []
 ---
-*Giai đoạn Deliver, khi bàn giao. Những gì developer cần để dựng được mà không phải hỏi lại.*
+*Deliver stage, at handoff. What a developer needs to build it without coming back with questions.*
 
 ## The prototype
-Link hoặc folder. Đây là tài liệu tham chiếu, không phải production code.
+A link or a folder. This is a reference, not production code.
 
 ## Decisions and reasons
-(Dẫn tới decision log trong `insights/case-log.md`)
+(Point to the decision log in `insights/case-log.md`)
 
 ## Acceptance notes
-*Điều gì phải đúng khi sản phẩm được dựng xong.*
+*What must be true when the product has been built.*
 -
 
 ## Open questions

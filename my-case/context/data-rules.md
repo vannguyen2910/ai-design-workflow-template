@@ -1,7 +1,7 @@
 # Data rules
 
-*Ba dòng, bằng lời của chính bạn. Đọc chính sách AI của công ty trước.*
+*Three lines, in your own words. Read your company's AI policy first.*
 
-1. Những gì tôi được dán vào AI tool:
-2. Những gì tôi sẽ không dán (hoặc chỉ dán sau khi ẩn danh):
-3. Tool nào tôi dùng cho việc gì:
+1. What I am allowed to paste into an AI tool:
+2. What I will not paste (or only paste after anonymising):
+3. Which tool I use for what:

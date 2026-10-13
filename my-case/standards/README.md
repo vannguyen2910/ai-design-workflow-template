@@ -1,13 +1,13 @@
 # Standards
 
-Folder này chứa các **thước đo** để kiểm tra công việc: tiêu chí mà decision, design và kết quả test được đối chiếu với. Đây không phải thông tin về sản phẩm (thông tin đó ở `context/`) và không phải file làm việc.
+This folder holds the **yardsticks** for checking the work: the criteria that decisions, designs and test results are measured against. It is not information about the product (that lives in `context/`) and it is not a working file.
 
-Mọi file `.md` trong folder này tự hiện ở mục **Standards** của báo cáo `index.html`, kèm một dòng mô tả lấy từ dòng đầu tiên dưới tiêu đề. Muốn thêm một thước đo riêng (ví dụ checklist thương hiệu, tiêu chí accessibility của công ty), thả một file `.md` vào đây.
+Every `.md` file in this folder shows up by itself in the **Standards** section of the `index.html` report, with a one-line description taken from the first line under the title. To add your own yardstick (for example a brand checklist, or your company's accessibility criteria), drop an `.md` file here.
 
-| File | Nội dung |
+| File | What it holds |
 |---|---|
-| `gates.md` | Bốn gate và các check 1a đến 4d |
-| `principle-checks.md` | 10 usability heuristics của Nielsen, dùng cho Heuristic Evaluation |
-| `severity-levels.md` | Thang mức độ nghiêm trọng của vấn đề usability, từ 0 đến 4 |
+| `gates.md` | The four gates and checks 1a to 4d |
+| `principle-checks.md` | Nielsen's 10 usability heuristics, used for Heuristic Evaluation |
+| `severity-levels.md` | The severity scale for usability problems, from 0 to 4 |
 
-Nhật ký quyết định (`case-log.md`) nằm ở `insights/`, cạnh các decision. File `README.md` này không hiện trong báo cáo.
+The decision log (`case-log.md`) lives in `insights/`, next to the decisions. This `README.md` does not show in the report.

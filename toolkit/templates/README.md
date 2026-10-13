@@ -1,38 +1,38 @@
 # Templates
 
-Mẫu rỗng cho tài liệu làm việc, dùng chung cho mọi case trong workspace này. **Không điền trực tiếp ở đây.**
+Empty templates for working documents, shared by every case in this workspace. **Do not fill them in here.**
 
-## Cách dùng
+## How to use
 
-1. Copy một file vào `work/` của case của bạn, đổi tên cho dễ nhận ra (ví dụ `work/pestel-analysis.md`).
-2. Điền nội dung. Đổi `status` thành `verified` khi bạn đã kiểm tra.
-3. Chạy lại báo cáo; tài liệu hiện ở mục **Work**.
+1. Copy a file into the `work/` of your case and rename it so it is easy to recognise (for example `work/pestel-analysis.md`).
+2. Fill in the content. Change `status` to `verified` once you have checked it.
+3. Rebuild the report; the document shows in the **Work** section.
 
-Hoặc nhờ AI tool: *"Tạo tài liệu research plan trong `work/` từ mẫu `toolkit/templates/research-plan.md`."*
+Or ask the AI tool: *"Create a research plan document in `work/` from the template `toolkit/templates/research-plan.md`."*
 
-> Mẫu cho **item** (nhu cầu, hypothesis, decision, evidence, finding, metric) nằm riêng ở `insights/_templates/` trong từng case, vì `new-item.py` dùng chúng để tạo item.
+> Templates for **items** (need, hypothesis, decision, evidence, finding, metric) live separately in `insights/_templates/` in each case, because `new-item.py` uses them to create items.
 
-## Danh sách
+## The list
 
-| Giai đoạn | Template | Dùng để |
+| Stage | Template | Use it to |
 |---|---|---|
-| Discover | `research-plan.md` | Lên kế hoạch nghiên cứu: câu hỏi, phương pháp, người tham gia, timeline |
-| Discover | `interview-guide.md` | Bộ câu hỏi và kịch bản một buổi phỏng vấn |
-| Discover | `interview-synthesis.md` | Tổng hợp nhiều cuộc phỏng vấn thành chủ đề |
-| Discover | `survey-results.md` | Kết quả khảo sát |
-| Discover | `competitor-analysis.md` | So sánh đối thủ |
-| Discover | `pestel-analysis.md` | Bối cảnh bên ngoài: chính trị, kinh tế, xã hội, công nghệ, môi trường, pháp lý |
-| Discover | `assumptions-map.md` | Liệt kê và xếp hạng giả định cần kiểm tra |
-| Discover | `heuristic-evaluation.md` | Đánh giá sản phẩm với 10 heuristic và thang severity |
-| Discover | `stakeholder-map.md` | Ai quyết định, ai bị ảnh hưởng, họ cần gì |
-| Discover | `persona.md` | Persona dựa trên bằng chứng |
-| Define | `problem-brief.md` | Một trang: vấn đề, bằng chứng, outcome, phạm vi |
-| Define | `journey-map.md` | Hành trình hiện tại, điểm đau, khoảnh khắc quan trọng |
-| Define | `opportunity-solution-tree.md` | Nối outcome với opportunity, giải pháp và giả định |
-| Define | `prioritization.md` | Xếp hạng opportunity theo impact, confidence, effort |
-| Develop | `options.md` | So sánh ít nhất ba hướng giải pháp |
-| Develop | `user-flow.md`, `ia-sitemap.md`, `prototype.md` | Flow, sơ đồ trang, prototype |
-| Deliver | `usability-test-script.md` | Kịch bản chạy buổi usability test |
-| Deliver | `test-report.md` | Báo cáo kết quả test |
-| Deliver | `measurement-plan.md` | Cách đo kết quả sau phát hành |
-| Mọi giai đoạn | `generic.md` | Loại tài liệu khác |
+| Discover | `research-plan.md` | Plan the research: questions, method, participants, timeline |
+| Discover | `interview-guide.md` | The questions and script of one interview |
+| Discover | `interview-synthesis.md` | Synthesise several interviews into themes |
+| Discover | `survey-results.md` | Survey results |
+| Discover | `competitor-analysis.md` | Compare competitors |
+| Discover | `pestel-analysis.md` | The outside context: political, economic, social, technological, environmental, legal |
+| Discover | `assumptions-map.md` | List and rank the assumptions to test |
+| Discover | `heuristic-evaluation.md` | Evaluate a product against the 10 heuristics and the severity scale |
+| Discover | `stakeholder-map.md` | Who decides, who is affected, what they need |
+| Discover | `persona.md` | An evidence-based persona |
+| Define | `problem-brief.md` | One page: problem, evidence, outcome, scope |
+| Define | `journey-map.md` | The current journey, pain points, moments that matter |
+| Define | `opportunity-solution-tree.md` | Link outcome to opportunities, solutions and assumptions |
+| Define | `prioritization.md` | Rank opportunities by impact, confidence, effort |
+| Develop | `options.md` | Compare at least three solution directions |
+| Develop | `user-flow.md`, `ia-sitemap.md`, `prototype.md` | Flow, sitemap, prototype |
+| Deliver | `usability-test-script.md` | The script to run a usability test session |
+| Deliver | `test-report.md` | The report of the test results |
+| Deliver | `measurement-plan.md` | How to measure the results after release |
+| All stages | `generic.md` | Any other kind of document |

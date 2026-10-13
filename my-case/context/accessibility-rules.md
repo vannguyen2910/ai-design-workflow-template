@@ -1,12 +1,12 @@
 # Accessibility rules
 
-*Các yêu cầu mà thiết kế phải đạt. Sửa cho khớp tiêu chuẩn của công ty bạn. Nếu công ty chưa có, dùng danh sách này làm mức nền (WCAG 2.2 AA).*
+*The requirements the design must meet. Edit them to match your company's standard. If your company has none, use this list as a baseline (WCAG 2.2 AA).*
 
-- Độ tương phản của chữ tối thiểu 4.5:1 (3:1 với chữ lớn và các thành phần giao diện như viền ô nhập)
-- Mọi thứ dùng được bằng bàn phím, theo thứ tự hợp lý, và focus luôn nhìn thấy được
-- Mỗi ô nhập có label hiển thị, và thông báo lỗi nói rõ lỗi gì và cách sửa
-- Touch target tối thiểu 44 x 44 px khi có thể (không bao giờ dưới 24 x 24)
-- Ý nghĩa không bao giờ chỉ được truyền đạt bằng màu
-- Hình ảnh mang ý nghĩa có text alternative
+- Text contrast of at least 4.5:1 (3:1 for large text and interface components such as input borders)
+- Everything works with a keyboard, in a sensible order, and focus is always visible
+- Every input has a visible label, and error messages say what went wrong and how to fix it
+- Touch targets of at least 44 x 44 px when possible (never below 24 x 24)
+- Meaning is never conveyed by colour alone
+- Images that carry meaning have a text alternative
 
-**Quy tắc riêng của công ty tôi (nếu có):**
+**Rules specific to my company (if any):**

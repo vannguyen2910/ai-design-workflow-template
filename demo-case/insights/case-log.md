@@ -1,8 +1,8 @@
 # Case log
 
-*Mỗi decision một dòng, kèm lý do. Ghi cả những thứ đã cắt và các trade-off đã chấp nhận. Ghi rõ chỗ nào AI được dùng.*
+*One line per decision, with the reason. Record what was cut and the trade-offs accepted too. Say where the AI was used.*
 
-*Báo cáo kiểm tra cột Items: mã phải tồn tại (ví dụ D2, E1), và mỗi decision nên có ít nhất một dòng ở đây. Mã trong cột Items trở thành link.*
+*The report checks the Items column: the codes must exist (for example D2, E1), and every decision should have at least one line here. A code in the Items column becomes a link.*
 
 > Các dòng dưới đây được dựng lại từ tài liệu gốc của dự án (ngày ở mức tháng, theo các ghi chú trong tài liệu). Dự án gốc không có case log.
 

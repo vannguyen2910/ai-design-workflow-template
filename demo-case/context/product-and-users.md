@@ -1,6 +1,6 @@
 # Product and users
 
-*Nửa trang, đã ẩn danh. File này được đưa vào các bước AI trước tiên, nên hãy viết cho người đọc chưa biết gì về dự án.*
+*Half a page, anonymised. This file goes into the AI steps first, so write it for a reader who knows nothing about the project.*
 
 > **Về bản demo này:** nội dung được rút gọn từ các tài liệu gốc của dự án Travel Buddy (xem `work/original-docs/` và `work/sources/anonymised/`). Mã `RH1`..`RH10` là các research hypothesis (`H1`..`H10` trong tài liệu gốc); mã `SP-D1`, `SP-P3`... là ID trong Solution Pool gốc. Mã `O`, `H`, `D`, `T`, `M` trong `hub/` là item của workspace.
 

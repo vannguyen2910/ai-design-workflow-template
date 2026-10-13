@@ -2,52 +2,52 @@
 
 | | |
 |---|---|
-| Tên dự án | Travel Buddy |
+| Project name | Travel Buddy |
 | Agreement status | not available |
 
-Đây là một dự án thật, đã chạy qua các giai đoạn từ Discover tới Test: **Travel Buddy**, một app đồng hành du lịch. Nó được dùng làm dự án mẫu để bạn thấy một workspace đầy đủ trông như thế nào, và thấy **chỗ nào còn khoảng trống**.
+This is a real project that went through the stages from Discover to Test: **Travel Buddy**, a travel companion app. It is used as the sample project so you can see what a full workspace looks like, and see **where the gaps are**.
 
-Dự án gốc được làm trước khi có quy trình AI-assisted của workspace này. Vì vậy một số file ghi rõ "không áp dụng", và một số gate ở trạng thái `open` hoặc `failed`. Đó là chủ ý: một dự án mẫu trung thực hữu ích hơn một dự án được dọn cho đẹp.
+The original project was made before this workspace's AI-assisted way of working existed. That is why some files say "not applicable", and some gates are `open` or `failed`. That is on purpose: an honest sample project is more useful than one that has been tidied up to look good.
 
 ## Start here
 
-1. Bấm đúp `index.html` để xem hub trong trình duyệt. Bắt đầu ở mục **Overview**, rồi mở **Insights** (chế độ Cây) để đi từ một decision ngược về nhu cầu của người dùng.
-2. Đọc `context/product-and-users.md` để biết dự án là gì.
-3. Mở `standards/gates.md` để thấy gate nào đạt, gate nào chưa, và vì sao.
+1. Double-click `index.html` to see the hub in the browser. Start at the **Overview** section, then open **Insights** (Tree mode) to walk from a decision back to the user's need.
+2. Read `context/product-and-users.md` to learn what the project is.
+3. Open `standards/gates.md` to see which gates pass, which do not, and why.
 
 ## What is in here
 
-| Phần | Nội dung | Dùng cho giai đoạn |
+| Part | What it holds | Used in stage |
 |---|---|---|
-| `context/*.md` | Tổng quan dự án, người dùng, design system, câu hỏi mở | Setup |
-| `work/scope.md`, `user-voice-synthesis.md`, `competitor-analysis.md` | Scope, tổng hợp tiếng nói người dùng, phân tích đối thủ | Discover |
-| `work/sources/anonymised/` | Tài liệu nghiên cứu gốc: hypothesis, khảo sát, hướng dẫn phỏng vấn, tổng hợp, đối thủ | Discover |
+| `context/*.md` | Project overview, users, design system, open questions | Setup |
+| `work/scope.md`, `user-voice-synthesis.md`, `competitor-analysis.md` | Scope, user voice synthesis, competitor analysis | Discover |
+| `work/sources/anonymised/` | The original research documents: hypotheses, survey, interview guide, synthesis, competitors | Discover |
 | `work/problem-brief.md` | Problem brief | Define |
-| `work/options.md`, `alignment.md`, `work/wireframes/` | Các hướng, alignment, wireframe | Develop |
-| `work/test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md` | Kế hoạch test, findings, handoff, kế hoạch đo | Deliver |
-| `insights/` | 5 nhu cầu, 6 hypothesis, 7 decision, 2 evidence, 7 finding, 5 metric | Mọi giai đoạn |
-| `stages/README.md` | Bảng bảy trang giai đoạn (scope, evidence, problem brief, develop, alignment, findings, handoff); mỗi trang tự dựng từ `work/` và `insights/` | Mọi giai đoạn |
-| `standards/` | Gates, principle checks, severity levels, case log | Mọi giai đoạn |
-| `../toolkit/skills/`, `../toolkit/templates/` | (ngoài folder này, trong `toolkit/`) Các bước làm việc với AI và mẫu tài liệu, dùng chung | Mọi giai đoạn |
-| `work/original-docs/` | Tài liệu gốc của giai đoạn Define đến Test (personas, solution pool, flow, IA, PRD, test plan, findings) | Tham khảo |
+| `work/options.md`, `alignment.md`, `work/wireframes/` | Directions, alignment, wireframes | Develop |
+| `work/test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md` | Test plan, findings, handoff, measurement plan | Deliver |
+| `insights/` | 5 needs, 6 hypotheses, 7 decisions, 2 evidence, 7 findings, 5 metrics | All stages |
+| `stages/README.md` | The table of seven stage pages (scope, evidence, problem brief, develop, alignment, findings, handoff); each page is built from `work/` and `insights/` | All stages |
+| `standards/` | Gates, principle checks, severity levels, case log | All stages |
+| `../toolkit/skills/`, `../toolkit/templates/` | (outside this folder, in `toolkit/`) The steps for working with the AI and the document templates, shared | All stages |
+| `work/original-docs/` | The original documents of the Define to Test stages (personas, solution pool, flow, IA, PRD, test plan, findings) | Reference |
 
 ## What this project teaches (including by example of what is missing)
 
-- **Truy vết đầy đủ.** Mọi decision nối được về một hypothesis và một nhu cầu có bằng chứng.
-- **Bằng chứng yếu.** Nghiên cứu mới có 13 phản hồi khảo sát và một cuộc phỏng vấn; vòng usability test duy nhất là **mô phỏng** (AI đóng vai người dùng). Hub đánh dấu điều này ở mọi hypothesis, và gate 4a ở trạng thái `failed`.
-- **Thiếu design principle.** Chưa có principle checks, nên mọi decision thiếu cột "Theo principle".
-- **Không có người đồng ký.** Stakeholder được mô phỏng, nên agreement status là `not available`.
+- **Full traceability.** Every decision links back to a hypothesis and to a need with evidence.
+- **Weak evidence.** The research so far has 13 survey responses and one interview; the only usability test round is **simulated** (an AI played the users). The hub marks this on every hypothesis, and gate 4a is `failed`.
+- **Missing design principles.** There are no principle checks yet, so every decision lacks the "Follows principle" column.
+- **No one signed off.** The stakeholders were simulated, so the agreement status is `not available`.
 
 ## Conventions in this demo
 
-- `RH1`..`RH10`: research hypothesis của dự án gốc (`H1`..`H10` trong `01_Research_Hypotheses.md`).
-- `SP-D1`, `SP-P3`...: ID trong Solution Pool gốc (`work/original-docs/07_Solution_Pool.md`).
-- `O`, `H`, `D`, `E`, `M` trong `insights/`: item của workspace (Opportunity, Hypothesis, Decision, Evidence, Metric).
-- Tài liệu gốc viết bằng tiếng Anh và giữ nguyên; phần tổng hợp trong working file viết bằng tiếng Việt.
-- Tên công cụ AI, tên chủ dự án, thành phố của người phỏng vấn và liên kết prototype riêng tư đã được gỡ khỏi bản sao trong `work/original-docs/` và `sources/`.
+- `RH1`..`RH10`: the research hypotheses of the original project (`H1`..`H10` in `01_Research_Hypotheses.md`).
+- `SP-D1`, `SP-P3`...: IDs in the original Solution Pool (`work/original-docs/07_Solution_Pool.md`).
+- `O`, `H`, `D`, `E`, `M` in `insights/`: workspace items (Opportunity, Hypothesis, Decision, Evidence, Metric).
+- The original documents are written in English and kept as they are; the synthesis in the working files is written in Vietnamese.
+- AI tool names, the owner's name, the interviewees' cities and private prototype links were removed from the copies in `work/original-docs/` and `sources/`.
 
 ## Rules
 
-1. **Đừng chép nội dung của dự án mẫu vào dự án thật của bạn.**
-2. **Chỉ coi số liệu khảo sát là định hướng:** mẫu nhỏ (13), lệch về châu Á và người trẻ.
-3. **Đừng coi kết quả test mô phỏng là bằng chứng.** Xem `work/findings.md`.
+1. **Do not copy the sample project's content into your real project.**
+2. **Treat the survey figures as directional only:** a small sample (13), skewed toward Asia and young people.
+3. **Do not treat the simulated test results as evidence.** See `work/findings.md`.

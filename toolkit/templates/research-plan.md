@@ -1,6 +1,6 @@
 ---
 type: "research-plan"
-title: "Kế hoạch nghiên cứu"
+title: "Research plan"
 stage: "Discover"
 status: "draft"
 summary: ""
@@ -13,41 +13,41 @@ supports: []
 # embed: false
 ---
 ## Background and decision
-Bối cảnh ngắn (2 đến 3 câu) và **decision** mà nghiên cứu này sẽ giúp đưa ra. Nếu không nêu được decision, chưa nên làm nghiên cứu.
+A short background (2 to 3 sentences) and the **decision** this research will help make. If you cannot name the decision, do not run the research yet.
 
 ## Research questions
-Tối đa 3 câu hỏi. Mỗi câu trả lời được bằng dữ liệu, không phải câu hỏi cho người tham gia.
+At most 3 questions. Each can be answered with data; they are not questions to ask the participants.
 
-| # | Câu hỏi nghiên cứu | Vì sao cần biết |
+| # | Research question | Why we need to know |
 |---|---|---|
 | RQ1 | | |
 
 ## What we already believe
-Điều nhóm đang tin (giả định). Ghi ra để sau nghiên cứu kiểm tra lại, không phải để chứng minh.
+What the team currently believes (assumptions). Write it down so it can be checked after the research, not to be proven.
 
 ## Method
-| Phương pháp | Trả lời câu hỏi | Vì sao chọn | Số người / mẫu |
+| Method | Answers question | Why this method | Number of people / sample |
 |---|---|---|---|
 | | RQ1 | | |
 
 ## Participants
-Tiêu chí người tham gia (bao gồm và loại trừ), cách tìm, cách ẩn danh (mã P1, P2...). Không ghi tên thật.
+Criteria for participants (include and exclude), how to find them, how to anonymise (codes P1, P2...). Do not write real names.
 
 ## Timeline
-| Việc | Ai | Hạn |
+| Task | Who | By when |
 |---|---|---|
-| Chuẩn bị (guide, screener, consent) | | |
-| Thu thập dữ liệu | | |
-| Tổng hợp | | |
-| Chia sẻ kết quả | | |
+| Prepare (guide, screener, consent) | | |
+| Collect data | | |
+| Synthesise | | |
+| Share the results | | |
 
 ## Ethics and data
-Cách xin đồng ý, nơi lưu dữ liệu gốc (`work/sources/_raw-private/`), ai được xem. Xem `context/data-rules.md`.
+How consent is asked, where the original data is kept (`work/sources/_raw-private/`), who may see it. See `context/data-rules.md`.
 
 ## Success and output
-Đầu ra là gì (tổng hợp, persona, danh sách opportunity...) và ai dùng nó để quyết định điều gì.
+What the output is (a synthesis, personas, a list of opportunities...) and who uses it to decide what.
 
 ## Risks and limits
-Điều có thể làm lệch kết quả (mẫu nhỏ, người tham gia thiên lệch, câu hỏi dẫn dắt) và cách giảm.
+What could skew the results (small sample, biased participants, leading questions) and how to reduce it.
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

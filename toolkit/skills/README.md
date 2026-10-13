@@ -1,44 +1,44 @@
-# _skills: step card và script cho AI
+# _skills: step cards and scripts for the AI
 
-> **Dùng chung.** Folder này nằm trong `toolkit/` ở gốc workspace và dùng chung cho mọi case. Nó là bản sao của skill `product-workspace` (bản chuẩn). Đừng sửa ở đây: sửa ở skill rồi chạy `sync-workspace.py`.
+> **Shared.** This folder sits in `toolkit/` at the workspace root and is shared by every case. It is a copy of the `product-workspace` skill (the master). Do not edit it here: edit the skill, then run `sync-workspace.py`.
 
-Folder này chứa hai thứ. **Step card** (file `.md`): định nghĩa quy trình AI-assisted dưới dạng file, để AI tool đọc được và quy trình được lưu cùng case. Mỗi file là một workflow, gồm các step có thứ tự, và mỗi step ghi rõ ai làm (AI hay bạn), đọc file nào và ghi vào đâu.
+This folder holds two things. **Step cards** (`.md` files): they define AI-assisted procedures as files, so the AI tool can read them and the procedure is stored with the case. Each file is one workflow made of ordered steps, and each step says who does it (the AI or you), which files to read and where to write.
 
 ## Cards
 
-| Workflow | Giai đoạn | Khi nào dùng | Trạng thái |
+| Workflow | Stage | When to use | Status |
 |---|---|---|---|
-| [`competitor-analysis.md`](competitor-analysis.md) | Discover | Khi cần biết đối thủ đang làm gì | Bản nháp, chưa được thử nhiều |
-| [`user-voice-synthesis.md`](user-voice-synthesis.md) | Discover | Khi có quote hoặc phỏng vấn người dùng để tổng hợp | Bản nháp, chưa được thử nhiều |
-| [`add-insights.md`](add-insights.md) | Discover, Test | Khi có tài liệu nghiên cứu mới (phỏng vấn, khảo sát, kết quả test) cần biến thành item | Bản nháp |
-| [`refresh-hub.md`](refresh-hub.md) | Mọi giai đoạn | Khi muốn AI rà soát những chỗ item chưa nối hoặc còn thiếu | Bản nháp |
-| [`add-media.md`](add-media.md) | Mọi giai đoạn | Khi có ảnh, video, PDF hoặc tài liệu cần đưa vào báo cáo | Bản nháp |
-| [`export-hub.md`](export-hub.md) | Mọi stage | Khi cần xem hub trong trình duyệt hoặc gửi cho người khác | Bản nháp |
+| [`competitor-analysis.md`](competitor-analysis.md) | Discover | When you need to know what competitors are doing | Draft, not tried much |
+| [`user-voice-synthesis.md`](user-voice-synthesis.md) | Discover | When you have quotes or user interviews to synthesise | Draft, not tried much |
+| [`add-insights.md`](add-insights.md) | Discover, Test | When there is new research (interview, survey, test results) to turn into items | Draft |
+| [`refresh-hub.md`](refresh-hub.md) | All stages | When you want the AI to review where items are not linked or are missing | Draft |
+| [`add-media.md`](add-media.md) | All stages | When there are images, video, PDFs or documents to put into the report | Draft |
+| [`export-hub.md`](export-hub.md) | All stages | When you need to see the hub in a browser or send it to someone | Draft |
 
-**Script** (file `.py`): `export-hub.py` tạo báo cáo `index.html`, `serve-hub.py` xem báo cáo ngay khi bạn lưu file. Bạn thường nhờ AI chạy chúng thay vì mở tay.
+**Scripts** (`.py` files): `export-hub.py` builds the `index.html` report, `serve-hub.py` shows the report as you save files. You usually ask the AI to run them rather than opening them by hand.
 
-Các card cho Frame, Explore, Prototype và Test sẽ được bổ sung. Bạn tự thêm card riêng theo hướng dẫn bên dưới.
+The cards for Frame, Explore, Prototype and Test will be added. You can add your own cards following the guide below.
 
 ## How to run a step
 
-1. Mở cả folder case trong AI tool. Tool tự đọc `AGENTS.md` ở gốc.
-2. Commit trước (nếu bạn dùng Git), để quay lại được.
-3. Nói với tool: *"Chạy step 5 của `../toolkit/skills/user-voice-synthesis.md`."*
-4. Đọc kết quả, rồi tự kiểm tra ở step tiếp theo. Step có nhãn **(YOU)** là phần bạn vẫn tự làm.
+1. Open the whole case folder in the AI tool. The tool reads `AGENTS.md` at the root by itself.
+2. Commit first (if you use Git), so you can go back.
+3. Tell the tool: *"Run step 5 of `../toolkit/skills/user-voice-synthesis.md`."*
+4. Read the result, then check it yourself in the next step. A step labelled **(YOU)** is the part you still do yourself.
 
 ## Card format
 
-Mỗi step có các dòng cố định:
+Each step has fixed lines:
 
-| Dòng | Ý nghĩa |
+| Line | Meaning |
 |---|---|
-| **Who** | `YOU` hoặc `AI` |
-| **Input** | Các file mà bước này được đọc, và chỉ các file đó |
-| **Instruction** | Câu lệnh đưa cho AI (chỉ có ở step của AI) |
-| **Output** | Section hoặc file được ghi |
-| **Check** | Bạn kiểm tra điều gì trước khi sang step sau |
-| **Failure sign** | Dấu hiệu bước này đã hỏng |
+| **Who** | `YOU` or `AI` |
+| **Input** | The files this step may read, and only those files |
+| **Instruction** | The prompt given to the AI (only on AI steps) |
+| **Output** | The section or file that is written |
+| **Check** | What you check before moving to the next step |
+| **Failure sign** | The signal that this step has gone wrong |
 
 ## Add your own workflow
 
-Copy một card, đổi tên, giữ các dòng cố định ở trên. Mỗi workflow nên có tối đa 8 step, một working file duy nhất, và hai quy tắc: AI chỉ trả về section của nó, và bản nháp của AI luôn tách khỏi bản bạn đã kiểm tra.
+Copy a card, rename it, keep the fixed lines above. Each workflow should have at most 8 steps, one working file, and two rules: the AI returns only its own section, and the AI draft is always kept apart from the version you checked.

@@ -1,73 +1,73 @@
 # Get the Folder
 
-Guide này giúp bạn đưa workspace về máy. Có hai cách, và bạn chỉ cần chọn một.
+This guide helps you get the workspace onto your machine. There are two ways, and you only need to pick one.
 
-**Chưa dùng GitHub bao giờ? Chọn cách A.** Bạn dùng được workspace này mà không cần tài khoản.
+**Never used GitHub? Pick option A.** You can use this workspace without an account.
 
-| | Cách | Cần tài khoản GitHub | Có bản sao lưu | Hợp khi |
+| | Way | GitHub account needed | Backed up | Good when |
 |---|---|---|---|---|
-| A | Download ZIP | Không | Không, bạn tự sao lưu | Bạn muốn bắt đầu ngay |
-| B | Use this template, rồi GitHub Desktop | Có (miễn phí) | Có, kèm lịch sử thay đổi | Bạn muốn một bản sao lưu tự động |
+| A | Download ZIP | No | No, you back it up yourself | You want to start right away |
+| B | Use this template, then GitHub Desktop | Yes (free) | Yes, with change history | You want an automatic backup |
 
 ## Where to keep it
 
-Đặt folder ở một nơi bình thường trên máy, ví dụ `Documents`.
+Put the folder somewhere ordinary on your machine, for example `Documents`.
 
-**Đừng đặt trong Google Drive, iCloud, OneDrive hay Dropbox.** AI coding tool ghi nhiều file cùng lúc, và folder đồng bộ lên cloud có thể bị lỗi giữa chừng. Muốn có bản sao lưu thì dùng cách B.
+**Do not put it in Google Drive, iCloud, OneDrive or Dropbox.** An AI coding tool writes many files at once, and a folder that syncs to the cloud can break halfway. If you want a backup, use option B.
 
 ## Option A: Download ZIP
 
-1. Mở trang GitHub của repo (đường dẫn do người chia sẻ template gửi).
-2. Bấm nút xanh **Code**, rồi chọn **Download ZIP**.
-3. Giải nén file ZIP vừa tải:
-   - Mac: bấm đúp vào file.
-   - Windows: bấm chuột phải, chọn **Extract All**.
-4. Kéo folder vừa giải nén vào `Documents`.
-5. Mở folder. Bạn sẽ thấy `README.md`, `guides`, `my-case` và `demo-case`.
+1. Open the GitHub page of the repo (the link comes from whoever shared the template).
+2. Click the green **Code** button, then choose **Download ZIP**.
+3. Unzip the file you just downloaded:
+   - Mac: double-click the file.
+   - Windows: right-click, choose **Extract All**.
+4. Drag the unzipped folder into `Documents`.
+5. Open the folder. You will see `README.md`, `toolkit`, `my-case` and `demo-case`.
 
-**Sao lưu:** thỉnh thoảng nén `my-case` thành một file ZIP và cất đi, hoặc chép sang ổ khác. Cuối mỗi đợt làm việc là thời điểm tốt.
+**Backup:** from time to time, compress `my-case` into a ZIP file and put it away, or copy it to another drive. The end of each work session is a good moment.
 
-## Option B: Use this template, rồi GitHub Desktop
+## Option B: Use this template, then GitHub Desktop
 
-Cách này tạo cho bạn một **repo** riêng (repo là một folder được lưu trên GitHub). Bạn để nó ở chế độ **Private**, nên chỉ mình bạn thấy.
+This creates your own **repo** (a repo is a folder stored on GitHub). You keep it **Private**, so only you can see it.
 
-### Part 1: Tạo repo của bạn
+### Part 1: Create your repo
 
-1. Vào [github.com](https://github.com) và đăng nhập. Chưa có tài khoản thì bấm **Sign up** (miễn phí).
-2. Mở trang GitHub của repo mà người chia sẻ template gửi.
-3. Bấm nút xanh **Use this template**, rồi chọn **Create a new repository**.
-4. Ở ô **Repository name**, đặt một cái tên, ví dụ `my-design-workflow`.
-5. Chọn **Private**.
-6. Bấm **Create repository**.
+1. Go to [github.com](https://github.com) and sign in. No account yet? Click **Sign up** (free).
+2. Open the GitHub page of the repo that the template's sharer sent.
+3. Click the green **Use this template** button, then choose **Create a new repository**.
+4. In the **Repository name** box, enter a name, for example `my-design-workflow`.
+5. Choose **Private**.
+6. Click **Create repository**.
 
-Không thấy nút **Use this template**? Dùng cách A, hoặc nhắn người chia sẻ template.
+Cannot see the **Use this template** button? Use option A, or message the person who shared the template.
 
-> **Đừng tải thẳng repo gốc về để lưu công việc.** Bạn không có quyền ghi vào repo đó, nên các thay đổi của bạn không lưu lên được. Hãy tạo repo riêng bằng **Use this template** trước.
+> **Do not download the original repo directly to save your work.** You have no write access to it, so your changes cannot be saved there. Create your own repo with **Use this template** first.
 
-### Part 2: Đưa repo về máy
+### Part 2: Bring the repo to your machine
 
-1. Cài **GitHub Desktop** từ [desktop.github.com](https://desktop.github.com) và đăng nhập bằng tài khoản GitHub.
-2. Chọn **File**, rồi **Clone repository**. (Clone nghĩa là tải một repo về máy.)
-3. Ở tab **GitHub.com**, chọn repo bạn vừa tạo.
-4. Ở ô **Local path**, chọn `Documents`.
-5. Bấm **Clone**.
-6. Chọn **Repository**, rồi **Show in Finder** (Mac) hoặc **Show in Explorer** (Windows) để mở folder.
+1. Install **GitHub Desktop** from [desktop.github.com](https://desktop.github.com) and sign in with your GitHub account.
+2. Choose **File**, then **Clone repository**. (Clone means download a repo to your machine.)
+3. On the **GitHub.com** tab, choose the repo you just created.
+4. In the **Local path** box, choose `Documents`.
+5. Click **Clone**.
+6. Choose **Repository**, then **Show in Finder** (Mac) or **Show in Explorer** (Windows) to open the folder.
 
-### Part 3: Lưu bản làm việc
+### Part 3: Save your work
 
-Làm sau mỗi lần làm việc xong một phần:
+Do this after each time you finish a piece of work:
 
-1. Mở GitHub Desktop. Cột bên trái liệt kê các file bạn đã sửa.
-2. Ở góc dưới bên trái, gõ một dòng tóm tắt, ví dụ `Discover: scope và user-voice synthesis`.
-3. Bấm **Commit to main**. (Commit là lưu một mốc thay đổi, kèm lời nhắn. `main` là nhánh chính, bạn cứ để nguyên.)
-4. Bấm **Push origin** ở thanh trên. (Push là gửi các mốc đó lên GitHub.)
+1. Open GitHub Desktop. The left column lists the files you changed.
+2. At the bottom left, type a one-line summary, for example `Discover: scope and user-voice synthesis`.
+3. Click **Commit to main**. (A commit saves a point of change, with a message. `main` is the main branch, just leave it as it is.)
+4. Click **Push origin** in the top bar. (Push sends those points to GitHub.)
 
-Bốn thao tác này là toàn bộ những gì bạn cần biết về Git. Các từ vừa gặp được giải thích thêm ở [`03-github-basics.md`](03-github-basics.md).
+These four actions are everything you need to know about Git. The words you just met are explained further in [`03-github-basics.md`](03-github-basics.md).
 
 ## Check before you start
 
-- [ ] Folder nằm trong `Documents`, không nằm trong folder đồng bộ cloud.
-- [ ] Bạn thấy `my-case` và `demo-case` trong folder.
-- [ ] Bạn mở được file `my-case/README.md` và đọc được nội dung.
+- [ ] The folder is in `Documents`, not in a folder that syncs to the cloud.
+- [ ] You can see `my-case` and `demo-case` in the folder.
+- [ ] You can open `my-case/README.md` and read it.
 
-Mở được nhưng bảng và link hiển thị thô? Bình thường: file Markdown cần một trình xem. Xem phần "View markdown files" trong [`02-set-up-your-case.md`](02-set-up-your-case.md).
+Opens, but tables and links look raw? That is normal: Markdown files need a viewer. See "View markdown files" in [`02-set-up-your-case.md`](02-set-up-your-case.md).

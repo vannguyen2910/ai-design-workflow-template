@@ -1,16 +1,16 @@
 # Context
 
-Folder này giữ **thông tin nền của dự án**: sản phẩm là gì, người dùng là ai, quy tắc dữ liệu, design system, câu hỏi còn mở. Đây là thứ AI tool đọc trước tiên ở mọi bước, nên hãy viết cho một người chưa biết gì về dự án.
+This folder holds the **background of the project**: what the product is, who the users are, the data rules, the design system, the open questions. It is the first thing the AI tool reads in every step, so write it for someone who knows nothing about the project.
 
-| File | Nội dung |
+| File | What it holds |
 |---|---|
-| `product-and-users.md` | Sản phẩm, người dùng, hiện đang ở đâu, và điều bạn chưa biết |
-| `accessibility-rules.md` | Yêu cầu accessibility mà thiết kế phải đạt |
-| `data-rules.md` | Được đưa gì cho AI, không đưa gì, dùng công cụ nào cho việc gì |
-| `design-system-notes.md` | Ghi chú design system dành cho AI coding tool |
-| `glossary.md` | Thuật ngữ của dự án (tuỳ chọn) |
-| `open-questions.md` | Những câu AI cho là nó cần biết thêm |
+| `product-and-users.md` | The product, the users, where it stands today, and what you do not know |
+| `accessibility-rules.md` | The accessibility requirements the design must meet |
+| `data-rules.md` | What may be given to the AI, what may not, which tool is used for what |
+| `design-system-notes.md` | Design system notes for an AI coding tool |
+| `glossary.md` | Project terms (optional) |
+| `open-questions.md` | What the AI says it needs to know |
 
-Muốn thêm một trang nền mới (ví dụ brand voice), thả một file `.md` vào đây: nó tự hiện ở mục **Context** của báo cáo.
+To add a new background page (for example brand voice), drop an `.md` file here: it shows up by itself in the **Context** section of the report.
 
-File `README.md` này không hiện trong báo cáo.
+This `README.md` does not show in the report.

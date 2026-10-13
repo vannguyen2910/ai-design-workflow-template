@@ -1,6 +1,6 @@
 ---
 type: "pestel-analysis"
-title: "Phân tích PESTEL"
+title: "PESTEL analysis"
 stage: "Discover"
 status: "draft"
 summary: ""
@@ -13,24 +13,24 @@ supports: []
 # embed: false
 ---
 ## Scope
-Sản phẩm hoặc thị trường đang phân tích, khu vực, mốc thời gian (ví dụ 12 đến 24 tháng tới), và decision mà phân tích này phục vụ.
+The product or market being analysed, the region, the time frame (for example the next 12 to 24 months), and the decision this analysis serves.
 
 ## Prompts
-Gợi ý để bạn nghĩ. **Không cần điền hết**: chỉ giữ nhóm nào thật sự ảnh hưởng tới decision ở Scope, bỏ phần còn lại.
+Prompts to get you thinking. **You do not need to fill them all in**: keep only the groups that really affect the decision in Scope and drop the rest.
 
-| Nhóm | Gợi ý cần cân nhắc |
+| Group | Things to consider |
 |---|---|
-| **P**olitical (chính trị) | Chính sách và luật (thuế, lao động, thương mại), mức ổn định, tham nhũng |
-| **E**conomic (kinh tế) | Tăng trưởng, lạm phát, lãi suất, việc làm, thu nhập hộ gia đình |
-| **S**ocial (xã hội) | Dân số, già hoá, quan điểm nghề nghiệp, lối sống, rào cản văn hoá |
-| **T**echnological (công nghệ) | Ưu đãi công nghệ, đổi mới sáng tạo, tự động hoá, hoạt động R&D |
-| **E**nvironmental (môi trường) | Biến đổi khí hậu, đạo đức, tái chế và xử lý rác, bền vững |
-| **L**egal (pháp lý) | Chống độc quyền, lao động, bản quyền, bảo vệ dữ liệu, sức khoẻ và an toàn |
+| **P**olitical | Policies and laws (tax, labour, trade), stability, corruption |
+| **E**conomic | Growth, inflation, interest rates, employment, household income |
+| **S**ocial | Population, ageing, career views, lifestyle, cultural barriers |
+| **T**echnological | Technology incentives, innovation, automation, R&D activity |
+| **E**nvironmental | Climate change, ethics, recycling and disposal, sustainability |
+| **L**egal | Antitrust, labour, copyright, data protection, health and safety |
 
 ## Factors
-Mỗi yếu tố một dòng, viết cụ thể cho sản phẩm của bạn. Chỉ ghi điều có nguồn. Điều chưa kiểm tra thì ghi `assumed` ở cột Nguồn.
+One factor per row, written specifically for your product. Write only what has a source. Mark what is not verified as `assumed` in the Source column.
 
-| Nhóm | Yếu tố | Tác động tới sản phẩm | Mức độ (cao / vừa / thấp) | Nguồn |
+| Group | Factor | Effect on the product | Level (high / medium / low) | Source |
 |---|---|---|---|---|
 | P | | | | |
 | E | | | | |
@@ -40,12 +40,12 @@ Mỗi yếu tố một dòng, viết cụ thể cho sản phẩm của bạn. Ch
 | L | | | | |
 
 ## Opportunities and threats
-Từ bảng trên, yếu tố nào mở ra cơ hội và yếu tố nào là rủi ro cho sản phẩm. Chỉ chọn những yếu tố mức độ cao.
+From the table above: which factors open an opportunity and which are a risk for the product. Pick only the high-level factors.
 
 ## Implications
-Ba đến năm hệ quả cho sản phẩm hoặc cho decision ở Scope, mỗi hệ quả dẫn về một dòng trong bảng Factors.
+Three to five implications for the product or for the decision in Scope, each pointing back to a row in the Factors table.
 
 ## What this cannot tell us
-Điều phân tích này không cho biết. PESTEL nói về bối cảnh bên ngoài, không nói người dùng cần gì.
+What this analysis does not tell us. PESTEL describes the outside context, it does not say what users need.
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

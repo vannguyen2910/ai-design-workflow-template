@@ -6,12 +6,12 @@ status: "draft"
 summary: ""
 supports: []
 ---
-*Giai đoạn Develop.*
+*Develop stage.*
 
 > **Lưu ý trung thực:** dự án gốc **không** đặt ba hướng dưới đây cạnh nhau một cách chính thức. Chúng được rút ra từ các "open tension" trong `work/original-docs/07_Solution_Pool.md` và `sources/anonymised/05_Research_Synthesis.md`, để minh hoạ bước chọn hướng.
 
 ## Three directions
-*Ít nhất ba hướng thực sự khác nhau. Nếu hai hướng chỉ là biến thể của một ý tưởng thì chỉ tính là một.*
+*At least three directions that are really different. If two directions are only variants of one idea, they count as one.*
 
 | Direction | The idea in one line | Serves | Pulls against | Why not |
 |---|---|---|---|---|
@@ -20,7 +20,7 @@ supports: []
 | C. Nhật ký dẫn đầu | Hook là ký ức tự được sắp xếp, riêng tư | O3 | Khảo sát xếp nhật ký hạng 3 (3,62/5); nhu cầu có thể chỉ là mong muốn | Nhu cầu hành vi chưa được kiểm chứng |
 
 ## Chosen direction and why
-*Đối chiếu với các opportunity và principle checks. Ghi lại vì sao các hướng còn lại được gác lại.*
+*Check against the opportunities and the principle checks. Record why the other directions were parked.*
 
 **Khám phá là cửa vào, lập kế hoạch là hook định vị.** Tab Explore là điểm vào đầu tiên (kể cả với khách chưa đăng ký) và mọi tip lưu được bằng một chạm vào kế hoạch chuyến đi (SP-P3). Lập kế hoạch được ưu tiên trong định vị vì nó có điểm quan trọng cao nhất và là nơi phân mảnh gây đau nhất (P1). Nhật ký và kết nối là trụ hỗ trợ. Phần này căn cứ vào `05_Research_Synthesis.md`, Part 4, mục "Open tensions".
 
@@ -28,10 +28,10 @@ supports: []
 Hành trình đầu cuối chia thành bốn giai đoạn của chuyến đi: Onboarding, Pre-trip, In-destination, Post-trip. Sơ đồ: `work/original-docs/08_E2E_User_Flow.md` và `.html`. Information architecture (hypothesis trước card sort): `work/ia-sitemap/IA_Sitemap.png`.
 
 ## Content notes
-*Phần AI soạn nháp và phần bạn viết lại. Không có copy cuối nào do AI viết mà chưa được bạn xem lại.*
+*The part the AI drafted and the part you rewrote. No final copy written by the AI goes out without you reviewing it.*
 Không áp dụng cho bản demo này (nội dung prototype là placeholder; xem `work/original-docs/10_Prototype_Plan.md` mục 6).
 
 ## Design decisions
-*Mỗi design decision là một file trong `insights/decisions/` (D1, D2 ...) và file đó là nguồn duy nhất. Ghi hypothesis nó kiểm tra (`Tests`), principle nó theo (`Follows`) hoặc kéo ngược (`Pulls against`). Không giữ bảng trùng ở đây.*
+*Each design decision is a file in `insights/decisions/` (D1, D2 ...) and that file is the single source. Record the hypothesis it tests (`Tests`), the principle it follows (`Follows`) or pulls against (`Pulls against`). Do not keep a duplicate table here.*
 
 Bảy decision của bản demo lấy từ PRD của tab Explore (`work/original-docs/11_Explore_Requirements.md`) và Solution Pool.

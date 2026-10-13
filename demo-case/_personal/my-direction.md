@@ -1,14 +1,14 @@
 # My direction
 
-*File riêng của bạn. Không đưa vào AI tool và không thuộc context pack của case.*
+*Your own private file. It is not given to the AI tool and is not part of the case's context pack.*
 
-*Tuỳ chọn. Hai đến ba dòng, viết khi bắt đầu dự án và đọc lại khi dự án kết thúc. Không có đáp án đúng: file này ghi lại hướng bạn nghiêng về hôm nay, để bạn thấy nó thay đổi thế nào.*
+*Optional. Two or three lines, written when the project starts and read again when it ends. There is no right answer: this file records which way you lean today, so you can see how it changes.*
 
 | | |
 |---|---|
-| **Hướng tôi nghiêng về** (ví dụ: chuyên sâu một mảng, thiên về chiến lược, thiên về xây dựng sản phẩm, hoặc cách gọi của bạn) | |
-| **Vì sao** | |
-| **Một kỹ năng tôi muốn xây** | |
+| **The direction I lean toward** (for example: going deep in one area, leaning toward strategy, leaning toward building products, or your own words) | |
+| **Why** | |
+| **One skill I want to build** | |
 
 ## Revisited at the end of the project
-*Điều gì đã thay đổi, và case này cho bạn thấy gì về hướng của mình?*
+*What changed, and what did this case show you about your direction?*

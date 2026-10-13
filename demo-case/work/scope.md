@@ -6,7 +6,7 @@ status: "draft"
 summary: ""
 supports: []
 ---
-*Giai đoạn Discover. Cùng xác định với PO và business, hoặc viết thành assumptions nếu bạn không liên hệ được họ.*
+*Discover stage. Define it together with the PO and business, or write it as assumptions if you cannot reach them.*
 
 ## Business question (in their words)
 Du khách đang dùng 8 đến 10 app cho một chuyến đi và không tin các nền tảng review thương mại. Một app đồng hành du lịch gom việc tìm gợi ý đáng tin, kết nối với người địa phương và lập kế hoạch rồi lưu chuyến đi vào một nơi có thể thay thế chuỗi công cụ đó không?

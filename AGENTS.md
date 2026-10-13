@@ -1,46 +1,47 @@
 # AGENTS.md: workspace
 
-Đây là **gốc workspace**: nơi chứa nhiều dự án (mỗi dự án là một case folder) và `toolkit/` dùng chung. Luật làm việc *bên trong* một dự án nằm ở `AGENTS.md` của dự án đó (ví dụ `my-case/AGENTS.md`). Khi đang làm việc trong một dự án, đọc file đó, không đọc file này.
+This is the **workspace root**: the place that holds several projects (each project is a case folder) and the shared `toolkit/`. The rules for working *inside* a project are in that project's `AGENTS.md` (for example `my-case/AGENTS.md`). When you are working inside a project, read that file, not this one.
 
-## Folder nào là gì
+## What each folder is
 
-| Folder | Là gì | Bạn làm gì |
+| Folder | What it is | What you do |
 |---|---|---|
-| `my-case/` | Template trống | **Không điền vào đây.** Chỉ để `new-case.py` sao chép |
-| `demo-case/` | Dự án mẫu (Travel Buddy) | Đọc để tham khảo, không sửa trừ khi được yêu cầu |
-| `<tên-dự-án>/` | Dự án của chủ workspace | Làm việc theo `AGENTS.md` của dự án đó |
-| `toolkit/` | Hướng dẫn, mẫu tài liệu, step card, script | Đọc, không sửa trừ khi được yêu cầu |
-| `index.html` | Trang chủ: mỗi dự án một thẻ | Không sửa tay. Tạo bằng `toolkit/skills/export-home.py` |
+| `my-case/` | The blank template | **Do not fill it in.** It is only there for `new-case.py` to copy |
+| `demo-case/` | The sample project (Travel Buddy) | Read for reference, do not edit unless asked |
+| `<project-name>/` | The workspace owner's project | Work following that project's `AGENTS.md` |
+| `toolkit/` | Guides, document templates, step cards, scripts | Read, do not edit unless asked |
+| `index.html` | The home page: one card per project | Do not edit by hand. Build it with `toolkit/skills/export-home.py` |
 
-## Khi được yêu cầu tạo một dự án mới
+## When asked to create a new project
 
-Ví dụ: "Tạo một dự án mới tên …", "Create a new project called …", "Bắt đầu dự án …".
+For example: "Create a new project called …", "Tạo một dự án mới tên …", "Start the project …".
 
-1. **Hỏi tên dự án** nếu chưa có. Một câu là đủ.
-2. **Chạy lệnh, không tự sao chép `my-case`:**
+1. **Ask for the project name** if it is not given. One question is enough.
+2. **Run the command, do not copy `my-case` yourself:**
 
    ```
-   python3 toolkit/tools/new-case.py "<Tên dự án>"
+   python3 toolkit/tools/new-case.py "<Project name>"
    ```
 
-   Lệnh tự đổi tên có dấu hoặc có khoảng trắng thành tên folder, xoá item `[EXAMPLE]`, điền tên dự án, dựng `index.html` của dự án và thêm thẻ vào trang chủ. Thêm `--title "…"` nếu muốn tên hiển thị khác tên folder.
-3. **Nói lại cho chủ workspace:** đường dẫn folder mới, rằng trang chủ đã có thẻ cho dự án, và việc đầu tiên cần làm: điền Project card trong `README.md` của dự án, rồi `context/product-and-users.md` và `context/data-rules.md`.
-4. **Đừng điền thay.** Không bịa tên sản phẩm, người dùng hay số liệu. Chỗ nào chưa biết thì để trống để chủ dự án điền.
+   The command turns a name with accents or spaces into a folder name, removes the `[EXAMPLE]` items, fills in the project name, builds the project's `index.html` and adds a card to the home page. Add `--title "…"` if the display name should differ from the folder name.
+3. **Tell the workspace owner:** the path of the new folder, that the home page now has a card for the project, and the first thing to do: fill in the Project card in the project's `README.md`, then `context/product-and-users.md` and `context/data-rules.md`.
+4. **Do not fill it in for them.** Do not invent the product name, the users or any figures. Leave what you do not know empty for the project owner to fill in.
 
-Nếu folder cùng tên đã tồn tại, lệnh sẽ dừng. Đừng xoá hay ghi đè: hỏi lại chủ workspace chọn tên khác.
+If a folder with the same name already exists, the command stops. Do not delete or overwrite it: ask the workspace owner to choose another name.
 
-## Các yêu cầu khác ở cấp workspace
+## Other requests at the workspace level
 
-| Yêu cầu | Làm gì |
+| Request | What to do |
 |---|---|
-| Xem hoặc cập nhật trang chủ | `python3 toolkit/skills/export-home.py` |
-| Xem báo cáo một dự án | Mở `<dự án>/index.html`. Muốn tạo lại: chạy `python3 ../toolkit/skills/export-hub.py` **trong** folder dự án |
-| Thêm tài liệu mới vào một dự án | Mở mẫu trong `toolkit/templates/`, copy vào `work/` của dự án đó, và làm theo `AGENTS.md` của dự án |
-| Không rõ thuộc dự án nào | Hỏi lại một câu. Đừng đoán |
+| See or update the home page | `python3 toolkit/skills/export-home.py` |
+| See the report of a project | Open `<project>/index.html`. To rebuild it: run `python3 ../toolkit/skills/export-hub.py` **inside** the project folder |
+| Add a new document to a project | Open a template in `toolkit/templates/`, copy it into that project's `work/`, and follow that project's `AGENTS.md` |
+| Unclear which project it belongs to | Ask one question. Do not guess |
 
-## Luật cứng
+## Hard rules
 
-1. **Không đọc** `_personal/` và `work/sources/_raw-private/` của bất kỳ dự án nào.
-2. **Không sửa `my-case/`** khi tạo hay làm việc với một dự án. Nó phải giữ nguyên để làm template.
-3. **Đề xuất trước** với mọi việc tạo hoặc đổi nhiều file. Chờ chủ workspace duyệt.
-4. **Ẩn danh trước khi dùng dữ liệu thật.** Tên người, tên công ty và số liệu thật không đưa cho AI tool khi chưa ẩn danh.
+1. **Do not read** `_personal/` and `work/sources/_raw-private/` of any project.
+2. **Do not edit `my-case/`** when creating or working on a project. It must stay as it is to serve as the template.
+3. **Propose first** for anything that creates or changes many files. Wait for the workspace owner to approve.
+4. **Anonymise before using real data.** Names of people, company names and real figures do not go to an AI tool before they are anonymised.
+5. **Answer in the language the workspace owner writes in.**

@@ -1,6 +1,6 @@
 ---
 type: "stakeholder-map"
-title: "Bản đồ các bên liên quan"
+title: "Stakeholder map"
 stage: "Discover"
 status: "draft"
 summary: ""
@@ -12,40 +12,40 @@ supports: []
 # links: []
 # embed: false
 ---
-*Dùng ở đầu dự án, hoặc khi một quyết định cứ bị kẹt. Không ghi chú cá nhân hay nhận xét về tính cách; chỉ ghi vai trò, nhu cầu và mối lo liên quan tới dự án.*
+*Use it at the start of a project, or when a decision keeps stalling. Do not write personal notes or comments about character; write only the role, needs and worries that relate to the project.*
 
 ## Scope
-Dự án hoặc decision đang xét, và vì sao cần bản đồ này lúc này.
+The project or decision being considered, and why this map is needed now.
 
 ## Stakeholders
-| Bên liên quan | Vai trò | Ảnh hưởng (cao / thấp) | Quan tâm (cao / thấp) | Họ cần gì | Họ lo gì | Đã nói chuyện? |
+| Stakeholder | Role | Influence (high / low) | Interest (high / low) | What they need | What they worry about | Spoken to? |
 |---|---|---|---|---|---|---|
 | | | | | | | |
 
 ## Influence and interest
-Xếp từng bên vào ô tương ứng.
+Place each stakeholder in the matching cell.
 
-| | Quan tâm thấp | Quan tâm cao |
+| | Low interest | High interest |
 |---|---|---|
-| **Ảnh hưởng cao** | **Giữ hài lòng:** | **Cộng tác chặt:** |
-| **Ảnh hưởng thấp** | **Theo dõi:** | **Cập nhật thường xuyên:** |
+| **High influence** | **Keep satisfied:** | **Collaborate closely:** |
+| **Low influence** | **Monitor:** | **Keep informed:** |
 
 ## Decision rights
-Ai **quyết định**, ai **được hỏi ý kiến**, ai **được báo**, ai **có quyền chặn**. Ghi rõ để khỏi hiểu nhầm.
+Who **decides**, who is **consulted**, who is **informed**, who can **block**. Write it down to avoid misunderstanding.
 
-| Quyết định | Quyết | Tham vấn | Được báo | Có thể chặn |
+| Decision | Decides | Consulted | Informed | Can block |
 |---|---|---|---|---|
 | | | | | |
 
 ## Conflicts and risks
-Chỗ các bên muốn điều khác nhau, và rủi ro nếu không giải quyết sớm.
+Where stakeholders want different things, and the risk if it is not resolved early.
 
 ## Engagement plan
-| Bên liên quan | Cần gì từ họ | Cách làm việc (họp, báo cáo, review) | Tần suất | Ai phụ trách |
+| Stakeholder | What we need from them | How we work with them (meeting, report, review) | Frequency | Who is responsible |
 |---|---|---|---|---|
 | | | | | |
 
 ## What this cannot tell us
-Điều ta chưa biết về các bên (chưa gặp ai, thông tin nghe lại). Ghi `assumed` cho điều chưa kiểm chứng.
+What we do not yet know about the stakeholders (nobody met yet, second-hand information). Mark anything not verified as `assumed`.
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

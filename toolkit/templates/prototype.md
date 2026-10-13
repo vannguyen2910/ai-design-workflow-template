@@ -13,13 +13,13 @@ supports: []
 # embed: false
 ---
 ## What it is
-Fidelity, nền tảng, số màn hình, số flow.
+Fidelity, platform, number of screens, number of flows.
 
 ## How to try it
-Thêm prototype vào `media:` (file HTML trong dự án, thêm `embed: true` để chạy ngay trong trang) hoặc vào `links:` (Figma).
+Add the prototype to `media:` (an HTML file in the project; add `embed: true` to run it right on the page) or to `links:` (Figma).
 
 ## What is in scope and what is not
 
 ## Known gaps
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

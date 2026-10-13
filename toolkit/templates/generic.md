@@ -1,6 +1,6 @@
 ---
 type: "generic"
-title: "Tên tài liệu"
+title: "Document name"
 stage: "Setup"
 status: "draft"
 summary: ""
@@ -13,10 +13,10 @@ supports: []
 # embed: false
 ---
 ## Purpose
-Tài liệu này để làm gì, ai cần đọc.
+What this document is for, and who needs to read it.
 
 ## Content
 
 ## Source and limits
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

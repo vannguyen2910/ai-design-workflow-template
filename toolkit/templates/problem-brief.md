@@ -12,53 +12,53 @@ supports: []
 # links: []
 # embed: false
 ---
-*Một trang, đọc trong 3 phút. Không chép lại nội dung của item: **dẫn bằng mã** (O1, H1, M1, E1...) để mỗi điều chỉ có một nguồn.*
+*One page, a 3-minute read. Do not copy the content of items: **point to them by code** (O1, H1, M1, E1...) so each fact has only one source.*
 
 ## Problem statement
-Một đến hai câu: **ai** gặp **vấn đề gì**, trong **hoàn cảnh nào**, và hậu quả là gì. Viết vấn đề, không viết giải pháp.
+One or two sentences: **who** has **what problem**, in **what situation**, and what the consequence is. Write the problem, not the solution.
 
-> [Người dùng] đang [khó khăn gì] khi [hoàn cảnh], dẫn tới [hậu quả].
+> [Users] struggle with [what] when [situation], which leads to [consequence].
 
 ## Evidence
-Điều khiến ta tin vấn đề này có thật. Mỗi dòng một bằng chứng, kèm mã hoặc nguồn.
+What makes us believe this problem is real. One piece of evidence per row, with a code or source.
 
-| Điều đã biết | Nguồn (E# / file) | Độ tin cậy |
+| What is known | Source (E# / file) | Reliability |
 |---|---|---|
 | | | verified / assumed |
 
 ## Why now
-Vì sao đáng làm bây giờ chứ không phải quý sau. Chi phí của việc không làm.
+Why it is worth doing now and not next quarter. The cost of not doing it.
 
 ## Opportunities
-Các nhu cầu người dùng đứng sau vấn đề này. Danh sách đầy đủ và thứ hạng nằm ở `insights/opportunities/`.
+The user needs behind this problem. The full list and the ranking live in `insights/opportunities/`.
 
 - O? :
 - O? :
 
 ## Outcome and metrics
-Thành công trông như thế nào, đo bằng gì, mốc hiện tại và mục tiêu. Ghi `assumed` cho điều chủ dự án chưa xác nhận.
+What success looks like, how it is measured, the current baseline and the target. Write `assumed` for anything the owner has not confirmed.
 
-| Metric (M#) | Hiện tại (baseline) | Mục tiêu | Khi nào đo |
+| Metric (M#) | Today (baseline) | Target | When to measure |
 |---|---|---|---|
 | M? | | | |
 
 ## Hypotheses
-Điều ta sẽ kiểm tra. Nội dung đầy đủ ở `insights/hypotheses/`.
+What we will test. The full content lives in `insights/hypotheses/`.
 
 - H? :
 
 ## Scope
-| Trong phạm vi | Ngoài phạm vi (non-goals) |
+| In scope | Out of scope (non-goals) |
 |---|---|
 | | |
 
 ## Constraints and risks
-Giới hạn về kỹ thuật, pháp lý, ngân sách, thời gian, dữ liệu. Rủi ro lớn nhất và cách giảm.
+Technical, legal, budget, time and data limits. The biggest risk and how to reduce it.
 
 ## Open questions
-Điều chưa biết mà có thể làm đổi hướng. Ai trả lời, khi nào. Xem `context/open-questions.md`.
+What we do not know that could change direction. Who answers, and by when. See `context/open-questions.md`.
 
 ## Agreement
-Status: agreed / pending / not available. Ai, khi nào, và họ nói gì:
+Status: agreed / pending / not available. Who, when, and what they said:
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

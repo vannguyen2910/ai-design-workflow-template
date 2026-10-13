@@ -81,12 +81,12 @@ def main():
     global CASE, INDEX
     CASE = os.path.abspath(a.case) if a.case else find_case()
     if not CASE:
-        sys.exit("Không tìm thấy case folder. Chạy trong một case (có AGENTS.md và insights/), hoặc dùng --case <đường dẫn>.")
+        sys.exit("Case folder not found. Run inside a case (a folder with AGENTS.md and insights/), or pass --case <path>.")
     INDEX = os.path.join(CASE, "index.html")
     rebuild_if_needed()
     handler = functools.partial(Handler, directory=CASE)
     srv = http.server.ThreadingHTTPServer(("127.0.0.1", a.port), handler)
-    print("Hub: http://127.0.0.1:%d   (Ctrl+C để dừng)" % a.port)
+    print("Hub: http://127.0.0.1:%d   (Ctrl+C to stop)" % a.port)
     try:
         srv.serve_forever()
     except KeyboardInterrupt:

@@ -6,7 +6,7 @@ status: "planned"
 summary: "What real users did in the test: results against the baseline and the problems found."
 supports: []
 ---
-*Giai đoạn Deliver, sau khi test. Người dùng thật đã làm gì. AI có thể giúp phân tích; kiểm tra từng finding với ghi chú hoặc bản ghi.*
+*Deliver stage, after the test. What real users did. The AI can help analyse; check every finding against the notes or the recording.*
 
 ## Results against the baseline
 | Metric | Baseline | Result | Met? |
@@ -14,7 +14,7 @@ supports: []
 | | | | |
 
 ## Findings, weighted by importance
-*Xếp theo mức độ quan trọng, không theo số lần được nhắc. Dẫn mỗi finding về một bản ghi hoặc ghi chú.*
+*Ranked by importance, not by how many times it was mentioned. Link each finding to a recording or a note.*
 
 | Finding | Severity | Evidence | What changes |
 |---|---|---|---|

@@ -1,113 +1,113 @@
 # AI Product Workspace
 
-Ba tháng sau, có người hỏi: "Sao mình lại chọn cách này?" Bạn mở ra và trả lời được, kèm bằng chứng.
+Three months from now someone asks: "Why did we choose this?" You open it and can answer, with the evidence.
 
-**Mỗi quyết định thiết kế lần ngược được về nhu cầu người dùng đứng sau nó.**
-AI soạn nháp, bạn quyết định. Không cần biết lập trình hay GitHub.
+**Every design decision traces back to the user need behind it.**
+The AI drafts, you decide. No coding or GitHub knowledge needed.
 
 ---
 
-## Giới thiệu
+## Introduction
 
 | | |
 |---|---|
-| **Hub này là gì** | Một folder kèm một báo cáo xem bằng trình duyệt. Nghiên cứu, nhu cầu người dùng, quyết định và kết quả test nằm chung một chỗ, nối với nhau. AI giúp bạn soạn nháp |
-| **Vấn đề hiện nay** | Công việc rải rác ở tài liệu, ghi chú, slide, file thiết kế. Vài tháng sau không ai nhớ **vì sao** chọn cách này. AI viết rất nhanh, nhưng bạn không biết nó dựa vào đâu, nên dễ tin một câu chỉ vì nghe hợp lý |
-| **Hub giúp bạn** | Mỗi quyết định có **lý do và bằng chứng**. AI chỉ **đề xuất kèm nguồn**, còn bạn là người quyết. Báo cáo chỉ ra **chỗ còn thiếu** và bạn gửi được cho stakeholder |
-| **Vì sao quan trọng** | Khi bị hỏi "sao lại làm vậy?", bạn trả lời bằng bằng chứng, không bằng cảm tính. AI làm nhanh thì sai cũng lan nhanh, nên truy vết được là cách giữ quyền kiểm soát. Kiến thức về dự án ở lại trong folder, kể cả khi người rời đi |
+| **What this hub is** | A folder with a report you view in a browser. Research, user needs, decisions and test results sit in one place, linked to each other. The AI helps you draft |
+| **The problem today** | Work is scattered across documents, notes, slides and design files. A few months later nobody remembers **why** something was chosen. The AI writes very fast, but you do not know what it relied on, so it is easy to believe a sentence only because it sounds reasonable |
+| **The hub helps you** | Every decision has a **reason and evidence**. The AI only **proposes, with sources**, and you are the one who decides. The report shows **what is missing**, and you can send it to stakeholders |
+| **Why it matters** | When asked "why did you do that?", you answer with evidence, not gut feeling. When the AI is fast, mistakes spread fast too, so traceability is how you keep control. Knowledge about the project stays in the folder, even when people leave |
 
 ---
 
-## Cách làm: 6 bước
+## How it works: 6 steps
 
-| Bước | Bạn làm | Bạn nhận được |
+| Step | You do | You get |
 |---|---|---|
-| **1. Tạo dự án mới** | Nói với AI tool: *"Tạo một dự án mới tên …"* | Một folder dự án sạch, và một thẻ mới trên trang chủ |
-| **2. Đặt context** | Ghi ngắn: sản phẩm là gì, ai dùng, dữ liệu nào đưa cho AI. Ẩn danh tên người và số liệu thật | AI biết bối cảnh trước khi giúp |
-| **3. Đưa tài liệu theo giai đoạn** | Thêm phỏng vấn, khảo sát, phân tích đối thủ, wireframe | Mọi thứ nằm đúng chỗ, không còn rải rác |
-| **4. Để AI đề xuất, bạn quyết định** | AI đề xuất nhu cầu, giả thuyết, quyết định theo **template có sẵn**, kèm nguồn. Bạn giữ, sửa hoặc cắt | Chỉ những gì bạn đã duyệt mới được ghi |
-| **5. Xem bức tranh tổng thể** | Mở báo cáo: mỗi quyết định dẫn về lý do và bằng chứng. Chỗ trống được chỉ ra | Biết còn thiếu gì trước khi bàn giao hay họp |
-| **6. Đo và học** | Sau phát hành, ghi kết quả so với mục tiêu. Chưa đạt thì quay lại nhu cầu | Quyết định tiếp theo có căn cứ từ kết quả thật |
+| **1. Create a new project** | Tell the AI tool: *"Create a new project called …"* | A clean project folder, and a new card on the home page |
+| **2. Set the context** | Write briefly: what the product is, who uses it, what data goes to the AI. Anonymise real names and figures | The AI knows the background before it helps |
+| **3. Add documents by stage** | Add interviews, surveys, competitor analysis, wireframes | Everything is in the right place, no longer scattered |
+| **4. Let the AI propose, you decide** | The AI proposes needs, hypotheses, decisions from the **ready-made templates**, with sources. You keep, edit or cut | Only what you approved gets recorded |
+| **5. Review the whole picture** | Open the report: every decision leads back to its reason and evidence. Gaps are shown | You know what is missing before handoff or a meeting |
+| **6. Measure and learn** | After release, record the result against the goal. If it is not met, go back to the need | The next decision is grounded in real results |
 
 ---
 
-## Ví dụ: một app đồng hành du lịch
+## Example: a travel companion app
 
-| Bước | Chuyện gì xảy ra |
+| Step | What happens |
 |---|---|
-| **1. Tạo dự án mới** | Bạn nói: *"Tạo một dự án mới tên Travel Buddy."* Trang chủ có thêm một thẻ Travel Buddy |
-| **2. Đặt context** | Bạn ghi: app giúp du khách lập kế hoạch ở một nơi, người dùng 18 đến 45 tuổi |
-| **3. Đưa tài liệu theo giai đoạn** | Bạn đưa vào kết quả khảo sát 13 người và ghi chú một buổi phỏng vấn |
-| **4. Để AI đề xuất, bạn quyết định** | Bạn nói: *"Rút insight từ file khảo sát. Đề xuất trước, đừng tạo."* AI trả về nhu cầu **"vượt rào cản dùng thử"**, kèm nguồn: giá là rào cản số 1, 7 trên 13 người. Bạn giữ |
-| **5. Xem bức tranh tổng thể** | Báo cáo nối quyết định về bằng chứng, như bên dưới |
-| **6. Đo và học** | Mục tiêu là 25% khách bấm Save sẽ đăng ký. Sau phát hành chỉ đạt 18% *(số giả định)*. Báo cáo đánh dấu chưa đạt và nhu cầu "rào cản dùng thử" cần xem lại |
+| **1. Create a new project** | You say: *"Create a new project called Travel Buddy."* The home page gets a new Travel Buddy card |
+| **2. Set the context** | You write: the app helps travellers plan in one place, users are aged 18 to 45 |
+| **3. Add documents by stage** | You add the results of a survey of 13 people and the notes of one interview |
+| **4. Let the AI propose, you decide** | You say: *"Extract insights from the survey file. Propose first, do not create."* The AI returns the need **"get past the barrier to trying it"**, with its source: price is barrier number 1, 7 of 13 people. You keep it |
+| **5. Review the whole picture** | The report links the decision back to the evidence, as below |
+| **6. Measure and learn** | The goal is that 25% of visitors who press Save sign up. After release only 18% do *(a made-up figure)*. The report marks it as not met and the need "barrier to trying it" for review |
 
-Ở bước 5, bấm vào một quyết định là thấy chuỗi lý do đứng sau nó:
+At step 5, clicking a decision shows the chain of reasons behind it:
 
 ```
-Quyết định: "Khách duyệt không cần tài khoản"
-  ← giả thuyết: đủ người sẽ đăng ký khi bấm Save
-    ← nhu cầu: vượt rào cản dùng thử
-      ← bằng chứng: khảo sát 13 người, giá là rào cản số 1 (7/13)
+Decision: "Visitors can browse without an account"
+  ← hypothesis: enough people will sign up when they press Save
+    ← need: get past the barrier to trying it
+      ← evidence: survey of 13 people, price is barrier number 1 (7/13)
 ```
 
-Các bước 2 đến 5 lấy từ dự án mẫu `demo-case`. Bạn mở dự án đó để xem đủ.
+Steps 2 to 5 come from the sample project `demo-case`. Open that project to see it in full.
 
 ---
 
-## Thử ngay trong 1 phút
+## Try it in 1 minute
 
-Bấm **Code → Download ZIP**, giải nén, rồi bấm đúp **`index.html`** ở gốc. Đó là trang chủ: mỗi dự án là một thẻ, bấm vào thẻ để mở báo cáo của dự án.
+Click **Code → Download ZIP**, unzip, then double-click **`index.html`** at the root. That is the home page: each project is a card, click a card to open the project's report.
 
-| Muốn xem | Bấm thẻ |
+| To see | Click the card |
 |---|---|
-| Dự án mẫu đã làm xong | **Travel Buddy** (`demo-case`) |
-| Workspace trống | **Product Name** (`my-case`) |
+| The finished sample project | **Travel Buddy** (`demo-case`) |
+| The blank workspace | **Product Name** (`my-case`) |
 
 ---
 
-## Bắt đầu dự án của bạn
+## Start your own project
 
-1. **Tải về và giải nén.**
-2. **Mở folder bằng AI tool** và nói: *"Tạo một dự án mới tên … ."*
-3. **Bấm đúp `index.html`** ở gốc workspace: dự án của bạn hiện thành một thẻ mới.
+1. **Download and unzip.**
+2. **Open the folder with an AI tool** and say: *"Create a new project called … ."*
+3. **Double-click `index.html`** at the workspace root: your project shows as a new card.
 
-Không có AI tool? Đổi tên folder `my-case`, rồi điền vào đó.
-
----
-
-## Bốn quy tắc
-
-1. **Ẩn danh** tên người, tên công ty và số liệu thật trước khi đưa cho AI.
-2. **AI đề xuất trước.** Bạn duyệt rồi mới cho tạo.
-3. **Bản nháp của AI** và bản bạn đã kiểm tra nằm ở hai chỗ riêng.
-4. **Con số chưa ai xác nhận** thì ghi `assumed`.
+No AI tool? Rename the `my-case` folder, then fill it in.
 
 ---
 
-## Cần giúp?
+## Four rules
 
-Folder [`toolkit/guides/`](toolkit/guides/) có hướng dẫn từng bước: lấy folder về máy, làm việc với AI tool, chia sẻ báo cáo. Trong báo cáo, tab **Guide** có câu nói mẫu cho từng việc.
+1. **Anonymise** names, company names and real figures before giving anything to the AI.
+2. **The AI proposes first.** You approve, then it creates.
+3. **The AI's drafts** and what you have checked live in two separate places.
+4. **A number nobody has confirmed** is marked `assumed`.
+
+---
+
+## Need help?
+
+The folder [`toolkit/guides/`](toolkit/guides/) has step-by-step guides: getting the folder onto your machine, working with an AI tool, sharing the report. In the report, the **Guide** tab has sample sentences for each job.
 
 <details>
-<summary>Dành cho người muốn tuỳ biến</summary>
+<summary>For people who want to customise</summary>
 
 ```
 workspace/
-├── toolkit/         hướng dẫn, mẫu tài liệu, các bước cho AI, công cụ tạo dự án
-│   ├── guides/      hướng dẫn từng bước
-│   ├── templates/   mẫu tài liệu, dùng chung cho mọi dự án
-│   ├── skills/      các bước và script cho AI, dùng chung cho mọi dự án
-│   └── tools/       tạo dự án mới bằng lệnh
-├── my-case/         workspace trống (tạo bản sao, đừng điền trực tiếp)
-├── demo-case/       dự án mẫu
-└── <tên-dự-án>/     dự án của bạn
+├── toolkit/         guides, document templates, steps for the AI, the tool to create projects
+│   ├── guides/      step-by-step guides
+│   ├── templates/   document templates, shared by every project
+│   ├── skills/      steps and scripts for the AI, shared by every project
+│   └── tools/       create a new project with one command
+├── my-case/         the blank workspace (make a copy, do not fill it in directly)
+├── demo-case/       the sample project
+└── <project-name>/  your project
 ```
 
-Trong mỗi dự án: `context/` (thông tin nền), `work/` (mọi thứ làm ra), `insights/` (nhu cầu, quyết định, bằng chứng), `stages/`, `standards/`, `AGENTS.md` (luật cho AI tool).
+In each project: `context/` (background), `work/` (everything made), `insights/` (needs, decisions, evidence), `stages/`, `standards/`, `AGENTS.md` (rules for the AI tool).
 
-- **Giữ nguyên** tên các folder trên và mã item (`O1`, `H1`, `D1`…).
-- **Tạo dự án bằng lệnh:** `python3 toolkit/tools/new-case.py ten-du-an`
-- **Dự án thật:** đọc chính sách AI của công ty, để dữ liệu gốc ở `work/sources/_raw-private/`, và để repo **Private** nếu chưa được chia sẻ.
+- **Keep** the folder names above and the item codes (`O1`, `H1`, `D1`...) as they are.
+- **Create a project with a command:** `python3 toolkit/tools/new-case.py project-name`
+- **Real projects:** read your company's AI policy, keep the original data in `work/sources/_raw-private/`, and keep the repo **Private** if it is not cleared for sharing.
 
 </details>

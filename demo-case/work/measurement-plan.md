@@ -6,7 +6,7 @@ status: "draft"
 summary: ""
 supports: []
 ---
-*Giai đoạn Deliver, khi bàn giao. Theo dõi gì sau khi launch, và ai chịu trách nhiệm. Đưa nó cho PO ngay cả khi bạn không xem được data.*
+*Deliver stage, at handoff. What to track after launch, and who is responsible. Give it to the PO even if you cannot see the data yourself.*
 
 > **Trạng thái:** kế hoạch đo từ PRD của tab Explore và kế hoạch test. Chưa có chủ sở hữu thật (không có PO thật) và chưa đặt ngày xem lại. Gate 4d còn `open`.
 
@@ -19,6 +19,6 @@ supports: []
 | M1, M2, M3: task success, SEQ, SUS | Vòng test không điều phối (E2) | Người nghiên cứu | Trước khi bàn giao |
 
 ## How the AI-assisted workflow performed
-*Số đếm, không phải cảm nhận: thời gian mỗi step, tỷ lệ lỗi bắt được ở các gate, số lần làm lại.*
+*Counts, not impressions: time per step, the error rate caught at the gates, the number of redos.*
 
 Không áp dụng cho bản demo này: dự án gốc được làm trước khi có quy trình AI-assisted, nên không có số đếm nào. Một vòng test dùng AI đóng vai người dùng (E1) được ghi nhận như một **hạn chế**, không phải kết quả của quy trình.

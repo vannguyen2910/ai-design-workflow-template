@@ -7,7 +7,7 @@ serves:
 metric:
   - "[[M1]]"
 ---
-*Cách dùng: copy file này vào folder `insights/hypotheses/`, đặt tên theo mã tiếp theo (ví dụ `H1.md`), điền title, sửa `serves` và `metric` về item có thật (hoặc để `[]`), rồi xoá dòng này.*
+*How to use: copy this file into `insights/hypotheses/`, name it after the next code (for example `H1.md`), fill in the title, point `serves` and `metric` at items that really exist (or leave `[]`), then delete this line.*
 
 ## Statement
-Chúng tôi tin rằng [decision] dành cho [users] sẽ [thay đổi gì], và chúng tôi sẽ biết nhờ [test và metric].
+We believe that [decision] for [users] will [change what], and we will know by [test and metric].

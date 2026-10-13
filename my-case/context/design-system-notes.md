@@ -1,14 +1,14 @@
 # Design system notes
 
-*Viết khi bắt đầu dựng prototype, theo dạng AI coding tool đọc được. Ngắn, cụ thể, không có đoạn văn nào cần suy diễn.*
+*Write this when you start building the prototype, in a form an AI coding tool can read. Short, concrete, no paragraph that needs interpreting.*
 
 ## Where the source of truth lives
-(file, link hoặc folder)
+(file, link or folder)
 
 ## Tokens
-- Colour: (tên = giá trị, và dùng cho việc gì)
+- Colour: (name = value, and what it is used for)
 - Type: (font family, size, weight, line height)
-- Spacing và radius:
+- Spacing and radius:
 
 ## Components
 | Component | States | Rules |
@@ -16,11 +16,11 @@
 | | | |
 
 ## Patterns
-(Cách ghép các màn hình: layout grid, navigation, form, empty state và error state)
+(How screens are put together: layout grid, navigation, forms, empty states and error states)
 
 ## Do and do not
 - Do:
 - Do not:
 
 ## Accessibility rules
-(Dẫn tới `accessibility-rules.md`, và liệt kê những gì riêng cho từng component)
+(Point to `accessibility-rules.md`, and list what is specific to each component)

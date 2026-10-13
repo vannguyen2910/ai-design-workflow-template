@@ -16,7 +16,7 @@ source: "original-docs/12_Unmoderated_Usability_Test_Plan.md"
 ---
 # Test plan
 
-*Giai đoạn Deliver, trước khi test.*
+*Deliver stage, before the test.*
 
 > Kế hoạch đầy đủ: `work/original-docs/12_Unmoderated_Usability_Test_Plan.md`. Bản dưới đây là phần cốt lõi. Trạng thái: **chưa chạy**.
 
@@ -24,7 +24,7 @@ source: "original-docs/12_Unmoderated_Usability_Test_Plan.md"
 Hypothesis: H1 đến H6 (xem `insights/hypotheses/`). Điều sẽ làm tôi đổi ý: nếu tỷ lệ hoàn thành task dưới 60%, hypothesis tương ứng bị coi là chưa đứng vững và flow đó được ưu tiên thiết kế lại.
 
 ## Tasks
-*Mỗi task là một việc người dùng thử làm, không nói trước cách làm.*
+*Each task is something the user tries to do, without being told how.*
 1. "Bạn đang lên kế hoạch cho một chuyến tới Chiang Mai. Tìm một tip về đồ ăn từ một du khách khác và lưu vào một chuyến đi." (H2, H3)
 2. "Bạn đã có một lịch trình thô do một chatbot viết. Đưa nó vào kế hoạch chuyến đi." (H1)
 3. "Bạn muốn một gợi ý quán ăn thật từ người sống ở thành phố. Tìm một người địa phương tên Niran và liên hệ." (H4)

@@ -1,17 +1,17 @@
 # Product and users
 
-*Nửa trang, đã ẩn danh. File này được đưa vào các bước AI trước tiên, nên hãy viết cho người đọc chưa biết gì về dự án.*
+*Half a page, anonymised. This file goes into the AI steps first, so write it for a reader who knows nothing about the project.*
 
 ## The product
-Nó là gì, trong hai câu:
+What it is, in two sentences:
 
 ## The users
-Họ là ai, job to be done chính của họ, và hoàn cảnh họ dùng sản phẩm:
+Who they are, their main job to be done, and the situation in which they use the product:
 
 ## Where it stands now
-Hiện có gì (màn hình, flow, những con số bạn được phép chia sẻ):
+What exists today (screens, flows, figures you are allowed to share):
 
 ## What success might look like
-*Đoán cũng được. Ghi **assumed** cho đến khi PO xác nhận.*
+*A guess is fine. Mark it **assumed** until the PO confirms.*
 
 ## What I do not know

@@ -1,6 +1,6 @@
 # Design system notes
 
-*Viết khi bắt đầu dựng prototype, theo dạng AI coding tool đọc được. Ngắn, cụ thể, không có đoạn văn nào cần suy diễn.*
+*Write this when you start building the prototype, in a form an AI coding tool can read. Short, concrete, no paragraph that needs interpreting.*
 
 ## Where the source of truth lives
 `work/original-docs/10_Prototype_Plan.md`, mục 2 (Design Direction & Design System). Prototype: `work/prototype/`.

@@ -1,58 +1,58 @@
-# Project: [tên dự án]
+# Project: [project name]
 
-Trang đầu của dự án. Điền **Project card** trước, rồi chọn việc tiếp theo ở bảng bên dưới.
+The front page of the project. Fill in the **Project card** first, then pick your next move from the table below.
 
 ## Project card
 
 | | |
 |---|---|
-| Tên dự án | |
-| Câu hỏi của business (một câu) | |
-| Giai đoạn hiện tại | Setup / Discover / Define / Develop / Deliver |
-| Chủ dự án | |
-| Người liên quan (product, business, engineering) | |
-| Bắt đầu | |
-| Cập nhật lần cuối | |
-| Công cụ AI được phép dùng cho dự án này | |
+| Project name | |
+| Business question (one sentence) | |
+| Current stage | Setup / Discover / Define / Develop / Deliver |
+| Owner | |
+| Stakeholders (product, business, engineering) | |
+| Started | |
+| Last updated | |
+| AI tools allowed for this project | |
 | Agreement status | pending *(agreed / pending / not available)* |
-| Quy tắc dữ liệu | Xem `context/data-rules.md` |
+| Data rules | See `context/data-rules.md` |
 
 <!-- template-only -->
-> **Đây là `my-case`, workspace trống.** Đừng điền thẳng vào đây: hãy mở folder workspace bằng AI tool và nói "Tạo một dự án mới tên *tên-dự-án*". Muốn xem một dự án đã làm xong, mở `demo-case`.
+> **This is `my-case`, the blank workspace.** Do not fill it in directly: open the workspace folder with an AI tool and say "Create a new project called *project-name*". To see a finished project, open `demo-case`.
 <!-- /template-only -->
 
-## Bạn muốn làm gì?
+## What do you want to do?
 
-Mở folder này bằng AI tool và nói một câu bình thường.
+Open this folder with an AI tool and say it in plain words.
 
-| Tôi muốn | Nói với AI |
+| I want to | Say to the AI |
 |---|---|
-| Ghi sản phẩm và người dùng | "Giúp tôi điền thông tin nền về sản phẩm và người dùng. Hỏi tôi từng câu một." |
-| Rút điều học được từ phỏng vấn hoặc khảo sát | "Rút insight từ file *tên-file*. Đề xuất trước, đừng tạo." |
-| Ghi một quyết định | "Ghi một quyết định: *một câu*. Lý do: *…*. Chưa chấp nhận." |
-| Thêm ảnh, wireframe, prototype | "Thêm các file trong folder *tên-folder* vào báo cáo." |
-| Xem tiến độ | Bấm đúp `index.html`, mở tab **Overview** |
-| Gửi báo cáo cho người khác | "Đóng gói báo cáo thành một file zip để gửi đi." |
+| Record the product and the users | "Help me fill in the background about the product and users. Ask me one question at a time." |
+| Pull what I learned from an interview or survey | "Extract insights from the file *file-name*. Propose first, do not create." |
+| Record a decision | "Record a decision: *one sentence*. Reason: *…*. Not accepted yet." |
+| Add images, wireframes, a prototype | "Add the files in the folder *folder-name* to the report." |
+| See progress | Double-click `index.html` and open the **Overview** tab |
+| Send the report to someone | "Pack the report into a zip file to send." |
 
-Danh sách đầy đủ nằm ở tab **Guide** trong `index.html`.
+The full list is in the **Guide** tab of `index.html`.
 
-## Bốn quy tắc
+## Four rules
 
-1. **Ẩn danh trước khi đưa cho AI.** Dữ liệu gốc để ở `work/sources/_raw-private/`.
-2. **Để AI đề xuất trước,** bạn duyệt rồi mới cho tạo.
-3. **Bản nháp của AI và bản bạn đã kiểm tra ở hai chỗ riêng.**
-4. **Con số chưa ai xác nhận thì ghi `assumed`.**
+1. **Anonymise before you give anything to the AI.** Keep the original data in `work/sources/_raw-private/`.
+2. **Let the AI propose first;** you approve, then it creates.
+3. **AI drafts and what you have checked live in two separate places.**
+4. **A number nobody has confirmed is marked `assumed`.**
 
-## Folder nào là gì
+## What each folder is
 
-| Folder | Có gì |
+| Folder | What is in it |
 |---|---|
-| `context/` | Sản phẩm là gì, người dùng là ai |
-| `work/` | Mọi thứ bạn làm: phân tích, wireframe, prototype |
-| `insights/` | Điều đã học và các quyết định |
-| `stages/` | Câu chuyện từng giai đoạn (tự dựng, bạn không viết ở đây) |
-| `standards/` | Thước đo để kiểm tra công việc |
-| `AGENTS.md` | Luật cho AI tool, hiếm khi cần mở tay |
-| `_personal/` | Ghi chú riêng, không đưa cho AI |
+| `context/` | What the product is, who the users are |
+| `work/` | Everything you make: analysis, wireframes, prototype |
+| `insights/` | What you learned and the decisions you made |
+| `stages/` | The story of each stage (built automatically, you do not write here) |
+| `standards/` | Yardsticks to check the work |
+| `AGENTS.md` | Rules for the AI tool, rarely needs opening by hand |
+| `_personal/` | Your private notes, never given to the AI |
 
-*Các bước cho AI (`toolkit/skills/`) và mẫu tài liệu (`toolkit/templates/`) nằm **ngoài** folder này, trong `toolkit/` ở gốc workspace, dùng chung cho mọi dự án.*
+*The steps for the AI (`toolkit/skills/`) and the document templates (`toolkit/templates/`) sit **outside** this folder, in `toolkit/` at the workspace root, shared by every project.*

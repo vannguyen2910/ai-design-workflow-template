@@ -1,74 +1,74 @@
 # Workflow: Add insights from new research
 
-Biến một tài liệu nghiên cứu mới (phỏng vấn, khảo sát, kết quả test) thành các item trong `insights/`, để insight mới hiện ở trang Insights và nối được về nhu cầu, hypothesis, decision phía sau.
+Turn a new piece of research (interview, survey, test results) into items in `insights/`, so the new insight shows on the Insights page and links to the need, hypothesis and decision behind it.
 
-*Trạng thái: bản nháp. Hãy thử trên một tài liệu thật và chỉnh theo cách bạn làm trước khi dựa vào nó.*
+*Status: draft. Try it on a real document and adjust it to how you work before you rely on it.*
 
 | | |
 |---|---|
-| Khi nào | Sau khi bạn thêm một file nghiên cứu vào `work/` (hoặc `work/<tên>/index.md`) và muốn đưa điều học được vào hub |
-| Làm trước | Ẩn danh dữ liệu, lưu một mốc (commit hoặc copy folder) |
-| Working file | Không có. Kết quả ghi vào `insights/` và property `supports` của tài liệu |
-| Liên quan | `../toolkit/skills/new-item.py` (tạo item), `../toolkit/skills/refresh-hub.md` (kiểm tra warnings sau đó) |
+| When | After you add a research file to `work/` (or `work/<name>/index.md`) and want to bring what was learned into the hub |
+| Before | Anonymise the data, save a checkpoint (commit or copy the folder) |
+| Working file | None. The result is written into `insights/` and the document's `supports` property |
+| Related | `../toolkit/skills/new-item.py` (creates items), `../toolkit/skills/refresh-hub.md` (checks the warnings afterwards) |
 
-Hub **không tự rút insight** từ file ở `work/`. Workflow này là bước làm việc đó, và bạn là người duyệt trước khi bất cứ file nào được tạo.
+The hub does **not extract insights by itself** from files in `work/`. This workflow is the step that does that, and you approve before any file is created.
 
 ## Step 1: Propose (AI)
 
 **Who:** AI
-**Input:** Tài liệu mới (một file duy nhất), danh sách item hiện có trong `insights/` (mã và title), `standards/principle-checks.md`
-**Output:** Một bảng đề xuất ngay trong chat. **Chưa tạo file nào.**
+**Input:** The new document (a single file), the list of existing items in `insights/` (codes and titles), `standards/principle-checks.md`
+**Output:** A proposal table right in the chat. **No file is created yet.**
 
 **Instruction:**
-> Đọc tài liệu mới. Đề xuất các insight có trong chính tài liệu đó, mỗi insight một dòng của bảng gồm: (1) trích ngắn hoặc mã quote làm nguồn, (2) loại item đề xuất (evidence, opportunity, finding, hypothesis), (3) title một câu, (4) quan hệ với item đã có (`tests`, `serves`, `found_in`...) bằng mã có thật, (5) nó **củng cố**, **mâu thuẫn** hay **mới** so với item hiện có, (6) độ chắc chắn: một nguồn hay nhiều nguồn.
+> Read the new document. Propose the insights that are in that document itself, one table row per insight with: (1) a short excerpt or quote code as the source, (2) the proposed item type (evidence, opportunity, finding, hypothesis), (3) a one-sentence title, (4) its relationships to existing items (`tests`, `serves`, `found_in`...) using codes that really exist, (5) whether it **reinforces**, **contradicts** or is **new** compared with the existing items, (6) how sure it is: one source or several.
 >
-> Quy tắc: chỉ dùng điều có trong tài liệu, không suy diễn thêm. Một buổi phỏng vấn hay một cuộc test luôn là một evidence; chỉ đề xuất opportunity mới khi nhu cầu chưa có trong danh sách. Nếu insight mâu thuẫn một item đã có, nói rõ và đừng gộp. Đừng đặt decision nào thành `accepted`, và đừng tự chọn thứ hạng hay impact: để trống để tôi quyết.
+> Rules: use only what is in the document, do not infer more. An interview or a test is always one evidence; propose a new opportunity only when the need is not in the list yet. If an insight contradicts an existing item, say so clearly and do not merge them. Do not set any decision to `accepted`, and do not pick a rank or an impact yourself: leave it empty for me to decide.
 
-**Check:** Mở tài liệu và đối chiếu ba dòng bất kỳ: nguồn có đúng ở đó không?
-**Failure sign:** Có insight không có nguồn trong tài liệu; mã item trong cột quan hệ không tồn tại; AI gộp một insight mâu thuẫn vào item cũ mà không nói.
+**Check:** Open the document and cross-check any three rows: is the source really there?
+**Failure sign:** An insight with no source in the document; an item code in the relationship column that does not exist; the AI merged a contradicting insight into an old item without saying so.
 
 ## Step 2: Decide (YOU)
 
 **Who:** YOU
-**Input:** Bảng đề xuất ở step 1
-**Output:** Danh sách dòng được duyệt, kèm chỉnh sửa của bạn
+**Input:** The proposal table from step 1
+**Output:** The list of approved rows, with your edits
 
-Với mỗi dòng chọn một: giữ, sửa title hoặc quan hệ, hoặc cắt. Với opportunity mới, tự nói `impact`, `confidence` và lý do xếp hạng (hoặc để trống và bổ sung sau).
+For each row pick one: keep it, edit the title or the relationships, or cut it. For a new opportunity, say the `impact`, the `confidence` and the reason for the rank yourself (or leave it empty and fill it in later).
 
-**Check:** Bạn bảo vệ được từng dòng được giữ bằng cách chỉ vào đoạn trong tài liệu không?
-**Failure sign:** Giữ một dòng chỉ vì AI viết nghe hợp lý.
+**Check:** Can you defend each kept row by pointing to a passage in the document?
+**Failure sign:** Keeping a row only because the AI wrote it in a way that sounds reasonable.
 
 ## Step 3: Create the items (AI)
 
 **Who:** AI
-**Input:** Các dòng đã duyệt ở step 2
-**Output:** Các file mới trong `insights/<loại>/`
+**Input:** The rows approved in step 2
+**Output:** New files in `insights/<type>/`
 
 **Instruction:**
-> Với từng dòng đã duyệt, chạy `python3 ../toolkit/skills/new-item.py <loại> --title "..." <các quan hệ> --no-build`. Evidence của một buổi phỏng vấn hoặc test đã diễn ra: `--status run --participants <số người>`. Không ghi đè file. Sau khi tạo xong, điền phần nội dung của từng file bằng điều có trong tài liệu, kèm nguồn. Nếu lệnh báo mã không tồn tại, dừng và hỏi tôi, đừng đoán.
+> For each approved row, run `python3 ../toolkit/skills/new-item.py <type> --title "..." <relationships> --no-build`. For the evidence of an interview or a test that has taken place: `--status run --participants <number of people>`. Do not overwrite files. After creating them, fill in the content of each file with what is in the document, with its source. If the command says a code does not exist, stop and ask me, do not guess.
 
-**Check:** Mở hai file vừa tạo: title, quan hệ và nguồn khớp với dòng bạn đã duyệt?
-**Failure sign:** Số file tạo ra nhiều hơn số dòng được duyệt; item có `status: run` nhưng buổi test chưa từng chạy.
+**Check:** Open two of the new files: do the title, the relationships and the source match the row you approved?
+**Failure sign:** More files were created than rows approved; an item has `status: run` but the test never ran.
 
 ## Step 4: Link the document (AI)
 
 **Who:** AI
-**Input:** Tài liệu mới và mã các item vừa tạo hoặc bị ảnh hưởng
-**Output:** Property `supports` trong phần đầu của tài liệu
+**Input:** The new document and the codes of the items just created or affected
+**Output:** The `supports` property in the head of the document
 
 **Instruction:**
-> Điền `supports` của tài liệu bằng mã các item vừa tạo và các item đã có mà tài liệu củng cố hoặc mâu thuẫn. Chỉ sửa property này; không sửa nội dung tài liệu.
+> Fill the document's `supports` with the codes of the items just created and of the existing items that the document reinforces or contradicts. Edit only this property; do not edit the content of the document.
 
-**Check:** Mở tài liệu trong báo cáo: dòng "Hỗ trợ cho" liệt kê đúng các item?
-**Failure sign:** `supports` trỏ tới item không liên quan.
+**Check:** Open the document in the report: does the "Supports" line list exactly the right items?
+**Failure sign:** `supports` points at an unrelated item.
 
 ## Step 5: Rebuild and read the warnings (YOU)
 
 **Who:** YOU
-**Input:** Toàn bộ hub
-**Output:** `index.html` mới
+**Input:** The whole hub
+**Output:** A new `index.html`
 
-Chạy `python3 ../toolkit/skills/export-hub.py`, mở trang **Insights** để xem item mới, rồi đọc mục warnings ở Overview: opportunity mới chưa có decision, hypothesis chưa có test, metric chưa có target là việc cần làm tiếp. Nếu muốn buổi nghiên cứu này hiện ở trang Evidence trong Stages, thêm tên file vào cột **Từ work** của dòng `evidence` trong `stages/README.md`.
+Run `python3 ../toolkit/skills/export-hub.py`, open the **Insights** page to see the new items, then read the warnings on the Overview: a new opportunity with no decision, a hypothesis with no test, a metric with no target are the things to do next. If you want this piece of research to show on the Evidence page in Stages, add the file name to the **From work** column of the `evidence` row in `stages/README.md`.
 
-**Check:** Mỗi insight bạn đã duyệt có thể tìm thấy ở Insights, và đi ngược được về tài liệu?
-**Failure sign:** Item mới không nối với gì (nằm trong nhóm "Chưa nối vào opportunity nào").
+**Check:** Can each insight you approved be found in Insights, and traced back to the document?
+**Failure sign:** A new item is linked to nothing (it sits in the group "Not linked to any opportunity").

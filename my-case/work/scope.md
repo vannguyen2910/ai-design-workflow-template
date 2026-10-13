@@ -6,26 +6,26 @@ status: "planned"
 summary: "The business question, the outcome it should move, who you build for, and what you assume."
 supports: []
 ---
-*Giai đoạn Discover. Cùng xác định với PO và business, hoặc viết thành assumptions nếu bạn không liên hệ được họ.*
+*Discover stage. Define it together with the PO and business, or write it as assumptions if you cannot reach them.*
 
 ## Business question (in their words)
 
 ## Outcome and success metric
 - Outcome:
-- Metric và baseline:
-- Xác nhận bởi / ngày:
+- Metric and baseline:
+- Confirmed by / date:
 - Status: confirmed / assumed
 
 ## Users and constraints
 
 ## What I already believe
-*Ba đến năm nhận định. Bạn sẽ kiểm tra chúng trong Discover.*
+*Three to five statements. You will test them in Discover.*
 1.
 2.
 3.
 
 ## Agreement status
 **agreed / pending / not available**
-Ai đã được hỏi, khi nào, và họ nói gì:
+Who was asked, when, and what they said:
 
 ## Open questions for the next conversation

@@ -588,11 +588,12 @@ def auto_checks(G, principles):
     """Checks of the gates that the data can answer by itself: check id -> (ok or None, detail).
     They are shown next to the status a person set; they never change it."""
     out = {}
-    PLACEHOLDER = "quote ID hoặc nguồn"
+    PLACEHOLDERS = ("quote ID hoặc nguồn", "quote ID or source")  # the template text, in either language
+    NO_SOURCE = ("chưa có", "none yet")
 
     def has_src(o):
         v = str(G.items[o].meta.get("evidence", "")).strip()
-        return bool(v) and PLACEHOLDER not in v
+        return bool(v) and v.lower() not in NO_SOURCE and not any(ph in v for ph in PLACEHOLDERS)
 
     O = [o for o in G.O if o not in G.closed]
     H = [h for h in G.H if h not in G.closed]
@@ -2635,7 +2636,7 @@ def main():
     a = ap.parse_args()
     case = os.path.abspath(a.case) if a.case else find_case()
     if not case:
-        sys.exit("Không tìm thấy case folder. Chạy trong một case (có AGENTS.md và insights/), hoặc dùng --case <đường dẫn>.")
+        sys.exit("Case folder not found. Run inside a case (a folder with AGENTS.md and insights/), or pass --case <path>.")
     bundle_dir = os.path.abspath(a.bundle) if a.bundle else None
     if bundle_dir:
         os.makedirs(bundle_dir, exist_ok=True)

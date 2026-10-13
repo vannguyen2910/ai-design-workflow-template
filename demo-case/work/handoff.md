@@ -6,12 +6,12 @@ status: "draft"
 summary: ""
 supports: []
 ---
-*Giai đoạn Deliver, khi bàn giao. Những gì developer cần để dựng được mà không phải hỏi lại.*
+*Deliver stage, at handoff. What a developer needs to build it without coming back with questions.*
 
 > **Trạng thái:** chưa sẵn sàng bàn giao. Mới có PRD cho một tab (Explore); các tab Plan, Connect, Journal chưa có PRD. Gate 4c còn `open`.
 
 ## The prototype
-Link hoặc folder. Đây là tài liệu tham chiếu, không phải production code.
+A link or a folder. This is a reference, not production code.
 
 - Wireframe: `work/wireframes/Travel_Buddy_Wireframe.html`
 - Prototype cuối: `work/final-prototype/travel-buddy-final-prototype.html`
@@ -19,7 +19,7 @@ Link hoặc folder. Đây là tài liệu tham chiếu, không phải production
 - E2E flow: `work/original-docs/08_E2E_User_Flow.md`
 
 ## Decisions and reasons
-(Dẫn tới decision log trong `insights/case-log.md`)
+(Point to the decision log in `insights/case-log.md`)
 
 Bảy decision và lý do nằm ở `insights/decisions/`; nhật ký thời gian nằm ở `insights/case-log.md`.
 

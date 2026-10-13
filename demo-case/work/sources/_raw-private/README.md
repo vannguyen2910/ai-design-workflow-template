@@ -1,15 +1,15 @@
 # _raw-private
 
-**Dữ liệu gốc chưa ẩn danh nằm ở đây, và không bao giờ rời khỏi máy bạn.**
+**Original data that is not anonymised lives here, and it never leaves your machine.**
 
-- Folder này **không được đẩy lên GitHub** (đã nằm trong `.gitignore`).
-- Folder này **không được đưa cho AI tool**: không mở, không đính kèm, không dán nội dung. Nếu AI tool của bạn có file ignore, thêm `_raw-private/` vào đó.
-- Bản ghi phỏng vấn, export từ analytics, support ticket, ảnh chụp có tên người: để ở đây.
+- This folder is **not pushed to GitHub** (it is already in `.gitignore`).
+- This folder is **not given to the AI tool**: do not open it, attach it or paste its contents. If your AI tool has an ignore file, add `_raw-private/` to it.
+- Interview recordings, analytics exports, support tickets, screenshots with people's names: keep them here.
 
-## Từ raw sang anonymised
+## From raw to anonymised
 
-1. Mở file gốc ở đây.
-2. Tự ẩn danh trên máy bạn (find and replace tên, email, username, tên công ty). Không nhờ AI làm bước này, vì lúc đó AI đã thấy dữ liệu gốc.
-3. Gán ID cho mỗi quote (R01 cho review, I01-01 cho phỏng vấn 1 quote 1), giữ nguyên văn.
-4. Lưu bản đã ẩn danh vào `../anonymised/`.
-5. Tìm thử một cái tên trong `anonymised/` để chắc không còn sót.
+1. Open the original file here.
+2. Anonymise it yourself on your machine (find and replace names, emails, usernames, company names). Do not ask the AI to do this step, because by then the AI has already seen the original data.
+3. Give each quote an ID (R01 for a review, I01-01 for interview 1 quote 1), and keep it verbatim.
+4. Save the anonymised version into `../anonymised/`.
+5. Search for a name in `anonymised/` to make sure none is left.

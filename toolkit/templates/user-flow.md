@@ -13,16 +13,16 @@ supports: []
 # embed: false
 ---
 ## Scenario
-Ai làm gì, ở bối cảnh nào, để đạt điều gì.
+Who does what, in which situation, to reach what.
 
 ## Flow
-Chèn sơ đồ: thả file `.png` hoặc `.svg` vào folder này, hoặc thêm link Figma vào `links:`.
+Insert the diagram: drop a `.png` or `.svg` file into this folder, or add a Figma link to `links:`.
 
 ## Steps and decisions
-| Bước | Người dùng làm gì | Hệ thống phản hồi | Ghi chú |
+| Step | What the user does | How the system responds | Notes |
 |---|---|---|---|
 | | | | |
 
 ## Pain points and open questions
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

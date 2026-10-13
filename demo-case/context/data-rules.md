@@ -1,6 +1,6 @@
 # Data rules
 
-*Ba dòng, bằng lời của chính bạn. Đọc chính sách AI của công ty trước.*
+*Three lines, in your own words. Read your company's AI policy first.*
 
 > **Ví dụ do người dựng demo viết:** dự án gốc không có file này. Ba dòng dưới đây phản ánh cách dự án xử lý dữ liệu (khảo sát ghi `anonymous`, người phỏng vấn mã hoá `P1`), chứ không phải một chính sách đã được duyệt.
 

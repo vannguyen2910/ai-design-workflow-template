@@ -6,22 +6,22 @@ status: "planned"
 summary: "After launch: results against targets, what you learned, and what to revisit."
 supports: []
 ---
-*Sau launch. Metric đã đo gì so với target, điều đã học, và opportunity nào cần mở lại. Bảng kết quả bên dưới do báo cáo tự dựng từ các file metric; phần này bạn viết.*
+*After launch. What the metrics measured against their targets, what was learned, and which opportunities to reopen. The results table below is built by the report from the metric files; you write this part.*
 
 ## What we shipped
-[Đã phát hành gì, khi nào, cho ai.]
+[What was shipped, when, and to whom.]
 
 ## What the numbers said
-[Một đoạn: metric nào đạt, metric nào không, và bạn tin con số đến đâu (mẫu, thời gian đo). Bảng chi tiết nằm ở dưới.]
+[One paragraph: which metrics were met, which were not, and how far you trust the numbers (sample, measuring period). The detailed table is below.]
 
 ## What we learned
-- [Điều học được 1]
-- [Điều học được 2]
+- [Lesson 1]
+- [Lesson 2]
 
 ## Opportunities to revisit
-*Opportunity nào cần xếp hạng lại, tách ra hoặc đóng, và vì sao. Ghi mã (O1, O2...) để dẫn ngược về nhu cầu.*
+*Which opportunities need re-ranking, splitting or closing, and why. Write the codes (O1, O2...) to link back to the need.*
 
-- [O?]: [vì sao mở lại]
+- [O?]: [why reopen it]
 
 ## What changes next
-[Thay đổi cho vòng tiếp theo: decision mới, hypothesis mới. Thêm chúng vào `insights/case-log.md`.]
+[Changes for the next round: new decisions, new hypotheses. Add them to `insights/case-log.md`.]

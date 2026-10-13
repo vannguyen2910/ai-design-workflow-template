@@ -1,47 +1,47 @@
 # Workflow: Add media to the Hub
 
-Đưa ảnh, video, PDF hoặc một tài liệu vào hub để nó hiện trong báo cáo, đúng chỗ và có nối về item nó làm bằng chứng cho.
+Put images, video, PDFs or a document into the hub so it shows in the report, in the right place and linked to the items it is evidence for.
 
-*Trạng thái: bản nháp.*
+*Status: draft.*
 
 | | |
 |---|---|
-| Khi nào | Khi bạn có ảnh (wireframe, screenshot, ảnh phiên test), video, PDF hoặc prototype HTML cần cho báo cáo |
-| Làm trước | Lưu một mốc (commit hoặc copy folder) |
-| Working file | Không có. Kết quả ghi vào `work/` |
-| Hướng dẫn đầy đủ | `work/README.md`, mục "Thêm ảnh, video, PDF" |
+| When | When you have images (wireframes, screenshots, photos of a test session), video, PDFs or an HTML prototype that the report needs |
+| Before | Save a checkpoint (commit or copy the folder) |
+| Working file | None. The result is written into `work/` |
+| Full guide | `work/README.md`, the "Add images, video, PDFs" section |
 
 ## Step 1: Place the files (AI)
 
 **Who:** AI
-**Input:** Các tệp bạn đưa, và danh sách folder trong `work/`
-**Output:** Một folder `work/<tên-ngắn>/` chứa các tệp, hoặc các tệp lẻ vào đúng folder đã có
+**Input:** The files you gave, and the list of folders in `work/`
+**Output:** A folder `work/<short-name>/` holding the files, or single files placed in an existing folder
 
 **Instruction:**
-> Đặt các tệp được đưa vào `work/<tên-ngắn>/`. Đặt tên folder và tên tệp bằng chữ thường, nối bằng dấu gạch ngang, và thêm số đầu tên (`1-`, `2-`...) cho ảnh theo thứ tự muốn hiện, vì tên tệp thành chú thích. Đổi `.heic`, `.tiff`, `.psd` hoặc `.mov` sang `.png`, `.jpg`, `.pdf` hoặc `.mp4` nếu có thể, nếu không thì nói rõ. Không ghi đè tệp đã có và không đặt tệp vào `_personal/` hay `work/sources/`. Nếu tệp có vẻ chứa tên người hoặc dữ liệu cá nhân thật, dừng và hỏi.
+> Put the files you were given into `work/<short-name>/`. Name folders and files in lowercase joined with hyphens, and add a number at the start (`1-`, `2-`...) to images in the order they should show, because the file name becomes the caption. Convert `.heic`, `.tiff`, `.psd` or `.mov` to `.png`, `.jpg`, `.pdf` or `.mp4` if you can, otherwise say so clearly. Do not overwrite existing files and do not place files in `_personal/` or `work/sources/`. If a file looks like it contains real names or personal data, stop and ask.
 
-**Check:** Mở folder và đối chiếu tên tệp với danh sách bạn đưa.
-**Failure sign:** Tệp bị ghi đè hoặc đặt ở ngoài `work/`.
+**Check:** Open the folder and compare the file names with the list you gave.
+**Failure sign:** A file was overwritten or placed outside `work/`.
 
 ## Step 2: Describe it (AI)
 
 **Who:** AI
-**Input:** Các tệp ở step 1, mẫu trong `toolkit/templates/`, và danh sách item trong `insights/`
-**Output:** `work/<tên-ngắn>/index.md`
+**Input:** The files from step 1, a template in `toolkit/templates/`, and the list of items in `insights/`
+**Output:** `work/<short-name>/index.md`
 
 **Instruction:**
-> Tạo `index.md` từ mẫu gần nhất. Điền `type` (tự do), `title`, `stage`, `status` (`draft` nếu chưa kiểm tra) và `summary` một câu. Chỉ điền `takeaways` bằng điều nhìn thấy được trong chính tệp. Điền `supports` bằng mã item mà tài liệu này rõ ràng làm bằng chứng cho; nếu không chắc thì để `[]` và liệt kê các item có thể liên quan ở cuối câu trả lời. Không bịa nội dung không có trong tệp.
+> Create `index.md` from the closest template. Fill `type` (free), `title`, `stage`, `status` (`draft` if not checked yet) and a one-sentence `summary`. Fill `takeaways` only with what can be seen in the files themselves. Fill `supports` with the item codes that this document is clearly evidence for; if you are not sure, leave `[]` and list the items that may be related at the end of the answer. Do not invent content that is not in the files.
 
-**Check:** Mở `index.md`: mọi mã trong `supports` có file item tương ứng không?
-**Failure sign:** `takeaways` nói điều không có trong ảnh; `supports` trỏ tới item không tồn tại.
+**Check:** Open `index.md`: does every code in `supports` have a matching item file?
+**Failure sign:** `takeaways` says something that is not in the images; `supports` points at an item that does not exist.
 
 ## Step 3: Rebuild and look (YOU)
 
 **Who:** YOU
-**Input:** `work/<tên-ngắn>/`
-**Output:** `index.html` mới
+**Input:** `work/<short-name>/`
+**Output:** A new `index.html`
 
-Nhờ AI tool chạy `python3 ../toolkit/skills/export-hub.py`, mở `index.html`, vào mục **Work** và bấm thẻ mới.
+Ask the AI tool to run `python3 ../toolkit/skills/export-hub.py`, open `index.html`, go to the **Work** section and click the new card.
 
-**Check:** Ảnh hiện đủ và đúng thứ tự, chú thích dễ hiểu, và không có cảnh báo vàng (tệp nặng, định dạng không hiển thị, tệp không tìm thấy).
-**Failure sign:** Còn cảnh báo ở trang tài liệu: làm theo nội dung cảnh báo rồi tạo lại báo cáo.
+**Check:** The images all show in the right order, the captions are easy to understand, and there is no yellow warning (heavy file, format that cannot be displayed, file not found).
+**Failure sign:** A warning is still on the document page: do what the warning says, then rebuild the report.

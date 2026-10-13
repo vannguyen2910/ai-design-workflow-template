@@ -51,8 +51,8 @@ def clean_hub_page(text, is_readme):
     text = re.sub(r"\[O1\]\([^)]*O1\.md\)", "[opportunity ID]", text)
     if is_readme:
         empty = {
-            "alignment": "_Chưa có decision nào. Bảng này được dựng khi bạn thêm item._",
-            "warnings": "- Chưa có item nào, nên chưa có warning.",
+            "alignment": "_No decisions yet. This table is built when you add items._",
+            "warnings": "- No items yet, so no warnings yet.",
         }
 
         def block(m):
@@ -62,7 +62,9 @@ def clean_hub_page(text, is_readme):
             return m.group(0)
 
         text = re.sub(r"<!-- generated:(\w+)[^\n]*-->\n.*?<!-- /generated -->", block, text, flags=re.S)
-        text = text.replace(" Dữ liệu `[EXAMPLE]` ở đây để bạn thấy hub chạy ra sao. Xoá và thay bằng dữ liệu của bạn.", "")
+        for sample_note in (" Dữ liệu `[EXAMPLE]` ở đây để bạn thấy hub chạy ra sao. Xoá và thay bằng dữ liệu của bạn.",
+                        " The `[EXAMPLE]` data here shows how the hub works. Delete it and replace it with your own data."):
+            text = text.replace(sample_note, "")
     return text
 
 
@@ -76,22 +78,22 @@ def main():
 
     given = a.name.strip()
     if not re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", given):
-        # a human name such as "Trip Planner" or "Lập kế hoạch chuyến đi": make the folder name from it
+        # a human name such as "Trip Planner" or "Lập kế hoạch chuyến đi" (accents allowed): make the folder name from it
         slug = unicodedata.normalize("NFKD", given.replace("đ", "d").replace("Đ", "D"))
         slug = "".join(ch for ch in slug if not unicodedata.combining(ch)).lower()
         slug = re.sub(r"[^a-z0-9]+", "-", slug).strip("-")
         if not slug:
-            sys.exit("Không tạo được tên folder từ \"%s\". Hãy đặt tên có chữ hoặc số, ví dụ: onboarding-redesign" % given)
+            sys.exit("Cannot make a folder name from \"%s\". Use a name with letters or digits, for example: onboarding-redesign" % given)
         if not a.title:
             a.title = given
         a.name = slug
     if a.name in RESERVED:
-        sys.exit("Tên \"%s\" đã dùng cho folder của workspace. Chọn một tên khác." % a.name)
+        sys.exit("The name \"%s\" is already used by a workspace folder. Choose another name." % a.name)
     if not os.path.isdir(TEMPLATE):
-        sys.exit("Không tìm thấy folder template: %s" % TEMPLATE)
+        sys.exit("Template folder not found: %s" % TEMPLATE)
     dest = os.path.join(os.path.abspath(a.dest), a.name)
     if os.path.exists(dest):
-        sys.exit("Folder đã tồn tại: %s\nChọn một tên khác, hoặc xoá folder đó nếu bạn muốn làm lại." % dest)
+        sys.exit("Folder already exists: %s\nChoose another name, or delete that folder if you want to start over." % dest)
     title = a.title or a.name.replace("-", " ").capitalize()
 
     shutil.copytree(TEMPLATE, dest, ignore=IGNORE)
@@ -121,28 +123,28 @@ def main():
         if not os.listdir(d):
             write(os.path.join(d, ".gitkeep"), "")  # keeps the empty folder in Git
     p = os.path.join(dest, "README.md")
-    t = read(p).replace("# Project: [tên dự án]", "# Project: %s" % title)
-    t = re.sub(r"^\| Tên dự án \| \|$", "| Tên dự án | %s |" % title, t, flags=re.M)
+    t = read(p).replace("# Project: [tên dự án]", "# Project: %s" % title).replace("# Project: [project name]", "# Project: %s" % title)
+    t = re.sub(r"^\| (Tên dự án|Project name) \| \|$", lambda m_: "| %s | %s |" % (m_.group(1), title), t, flags=re.M)
     t = re.sub(r"<!-- template-only -->.*?<!-- /template-only -->\n\n?", "", t, flags=re.S)  # note that only makes sense in my-case
     t = t.replace("# my-case", "# %s" % a.name).replace("my-case/\n", "%s/\n" % a.name)
     write(p, t)
 
-    print("Đã tạo: %s" % dest)
-    print("  - Đã xoá %d item [EXAMPLE] và dọn các dòng mẫu trong standards/" % removed)
+    print("Created: %s" % dest)
+    print("  - Removed %d [EXAMPLE] items and cleaned the sample rows in standards/" % removed)
     tool = os.path.join(ROOT, "toolkit", "skills", "export-hub.py")
     if os.path.isfile(tool):
         r = subprocess.run([sys.executable, tool, "--case", dest], cwd=dest, capture_output=True, text=True)
-        print("  - index.html: %s" % ("đã tạo" if r.returncode == 0 else "lỗi, chạy lại trong folder dự án: python3 ../toolkit/skills/export-hub.py"))
+        print("  - index.html: %s" % ("built" if r.returncode == 0 else "error, run it again in the project folder: python3 ../toolkit/skills/export-hub.py"))
         if r.returncode != 0:
             print(r.stderr.strip()[-400:])
     home = os.path.join(ROOT, "toolkit", "skills", "export-home.py")
     if os.path.isfile(home):
         subprocess.run([sys.executable, home, "--workspace", ROOT], capture_output=True, text=True)
-        print("  - Trang chủ workspace (index.html ở gốc): đã thêm thẻ cho dự án này")
-    print("\nViệc đầu tiên:")
-    print("  1. Mở folder %s bằng công cụ bạn quen (AI coding tool, VS Code hoặc Obsidian)." % a.name)
-    print("  2. Mở README.md trong folder, điền Project card, rồi điền context/product-and-users.md và context/data-rules.md.")
-    print("  3. Khi có item đầu tiên, copy một file trong insights/_templates/ vào folder loại tương ứng, ví dụ insights/decisions/.")
+        print("  - Workspace home page (index.html at the root): a card was added for this project")
+    print("\nFirst steps:")
+    print("  1. Open the folder %s with a tool you know (an AI coding tool, VS Code or Obsidian)." % a.name)
+    print("  2. Open README.md in the folder, fill in the Project card, then fill in context/product-and-users.md and context/data-rules.md.")
+    print("  3. When you have the first item, copy a file from insights/_templates/ into the folder of its type, for example insights/decisions/.")
 
 
 if __name__ == "__main__":

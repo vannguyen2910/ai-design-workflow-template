@@ -13,12 +13,12 @@ supports: []
 # embed: false
 ---
 ## Structure
-Chèn sitemap: thả ảnh vào folder này.
+Insert the sitemap: drop the image into this folder.
 
 ## Labels and grouping
-Cách đặt tên và nhóm, và vì sao.
+How things are named and grouped, and why.
 
 ## Evidence
-Card sort, tree test hoặc nghiên cứu nào đứng sau cấu trúc này. Ghi nếu đây vẫn là hypothesis.
+The card sort, tree test or research behind this structure. Say so if this is still a hypothesis.
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

@@ -1,10 +1,10 @@
 # Sources
 
-Dữ liệu gốc của stage Discover. Folder này chia hai phần để dữ liệu thật không lẫn vào những gì AI đọc:
+The original data of the Discover stage. This folder is split in two so that real data never mixes with what the AI reads:
 
-| Folder | Chứa | AI tool đọc? | Lên GitHub? |
+| Folder | Holds | Does the AI tool read it? | Goes to GitHub? |
 |---|---|---|---|
-| `_raw-private/` | Dữ liệu gốc, chưa ẩn danh | **Không** | **Không** |
-| `anonymised/` | Bản đã ẩn danh, có ID | Có | Có (repo Private) |
+| `_raw-private/` | Original data, not anonymised | **No** | **No** |
+| `anonymised/` | The anonymised version, with IDs | Yes | Yes (private repo) |
 
-Quy trình: raw, bạn tự ẩn danh, rồi lưu vào `anonymised/`. Chi tiết nằm trong README của từng folder.
+The flow: raw, you anonymise it yourself, then save it into `anonymised/`. Details are in the README of each folder.

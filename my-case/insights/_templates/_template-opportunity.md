@@ -6,11 +6,11 @@ rank: 1
 impact: "high"
 confidence: "medium"
 rank_reason: ""
-evidence: "quote ID hoặc nguồn (xem trang Evidence)"
+evidence: "quote ID or source (see the Evidence page)"
 ---
-*Cách dùng: copy file này vào folder `insights/opportunities/`, đặt tên theo mã tiếp theo (ví dụ `O1.md`), điền title và nội dung, rồi xoá dòng này.*
+*How to use: copy this file into `insights/opportunities/`, name it after the next code (for example `O1.md`), fill in the title and the content, then delete this line.*
 
-*Cách dùng thêm: `impact` và `confidence`: `high`, `medium` hoặc `low`. `rank_reason`: một hai câu vì sao nó đứng ở thứ hạng này (tác động lên người dùng, và mức chắc chắn của evidence).*
+*How to use, continued: `impact` and `confidence` are `high`, `medium` or `low`. `rank_reason`: one or two sentences on why it has this rank (the impact on users, and how sure the evidence is).*
 
 ## Why it ranks first
-[Vì sao nó đứng đầu, và ai bị ảnh hưởng.]
+[Why it comes first, and who is affected.]

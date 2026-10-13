@@ -1,6 +1,6 @@
 ---
 type: "competitor-analysis"
-title: "Phân tích đối thủ"
+title: "Competitor analysis"
 stage: "Discover"
 status: "draft"
 summary: ""
@@ -13,25 +13,25 @@ supports: []
 # embed: false
 ---
 ## Scope
-Decision mà phân tích này phục vụ, và các tiêu chí so sánh (tối đa 6).
+The decision this analysis serves, and the criteria to compare on (at most 6).
 
 ## Competitors
-| Đối thủ | Vai trò trong hành trình | Vì sao đưa vào |
+| Competitor | Role in the journey | Why it is included |
 |---|---|---|
 | | | |
 
 ## Comparison
-| Tiêu chí | Đối thủ A | Đối thủ B | Đối thủ C |
+| Criterion | Competitor A | Competitor B | Competitor C |
 |---|---|---|---|
 | | | | |
 
 ## Patterns
-Các pattern, khoảng trống và khác biệt quan trọng với decision ở Scope.
+The patterns, the gaps and the differences that matter for the decision in Scope.
 
 ## Insights + decision
-Ba đến năm insight kèm bằng chứng, và câu trả lời cho decision ở Scope.
+Three to five insights with evidence, and the answer to the decision in Scope.
 
 ## What this cannot tell us
-Điều phân tích này không cho biết.
+What this analysis does not tell us.
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

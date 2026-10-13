@@ -11,11 +11,11 @@ follows: []
 solutions: []
 pulls_against: []
 ---
-*Cách dùng: copy file này vào folder `insights/decisions/`, đặt tên theo mã tiếp theo (ví dụ `D1.md`), điền title, sửa `tests` về hypothesis có thật, rồi xoá dòng này. `follows` và `pulls_against` trỏ tới principle, ví dụ `"[[principle-checks|P1]]"`.*
+*How to use: copy this file into `insights/decisions/`, name it after the next code (for example `D1.md`), fill in the title, point `tests` at a hypothesis that really exists, then delete this line. `follows` and `pulls_against` point at principles, for example `"[[principle-checks|P1]]"`.*
 
-*Cách dùng thêm: `solutions`: mã giải pháp (ví dụ A4, P3) mà decision này thực hiện; sơ đồ flow dùng nó để gắn mã decision lên node. `owner`: người chịu trách nhiệm về decision này. `decided_on`: ngày (YYYY-MM-DD). `state`: `proposed` (đề xuất), `accepted` (đã chấp nhận), `shipped`, `superseded` hoặc `dropped`.*
+*How to use, continued: `solutions`: the solution codes (for example A4, P3) this decision implements; flow diagrams use them to put the decision code on a node. `owner`: the person responsible for this decision. `decided_on`: the date (YYYY-MM-DD). `state`: `proposed`, `accepted`, `shipped`, `superseded` or `dropped`.*
 
 ## Why
-[Lý do thiết kế, và nó trả lời nhu cầu nào.]
+[The design reason, and which need it answers.]
 
-*Ảnh wireframe hoặc screenshot cho decision này: thả vào `work/<tên>/` rồi chèn bằng `![mô tả](../../work/<tên>/<ảnh>.png)`.*
+*Wireframe images or screenshots for this decision: drop them into `work/<name>/` and insert them with `![description](../../work/<name>/<image>.png)`.*

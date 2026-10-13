@@ -17,7 +17,7 @@ media:
 ---
 # User-voice synthesis
 
-*Working file cho user-voice flow. AI chỉ trả về section của nó, và bạn tự dán vào. Quote đã ẩn danh nằm trong `sources/anonymised/` kèm ID (R01, I01-01 ...).*
+*Working file for the user-voice flow. The AI returns only its own section, and you paste it in. Anonymised quotes live in `sources/anonymised/` with IDs (R01, I01-01 ...).*
 
 ## Scope
 - Câu hỏi: du khách tìm, lập kế hoạch và lưu giữ chuyến đi như thế nào, và đau ở đâu?

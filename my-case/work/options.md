@@ -6,10 +6,10 @@ status: "planned"
 summary: "The solution directions explored, the one chosen, and why the others were parked."
 supports: []
 ---
-*Giai đoạn Develop.*
+*Develop stage.*
 
 ## Three directions
-*Ít nhất ba hướng thực sự khác nhau. Nếu hai hướng chỉ là biến thể của một ý tưởng thì chỉ tính là một.*
+*At least three directions that are really different. If two directions are only variants of one idea, they count as one.*
 
 | Direction | The idea in one line | Serves | Pulls against | Why not |
 |---|---|---|---|---|
@@ -18,13 +18,13 @@ supports: []
 | C | | | | |
 
 ## Chosen direction and why
-*Đối chiếu với các opportunity và principle checks. Ghi lại vì sao các hướng còn lại được gác lại.*
+*Check against the opportunities and the principle checks. Record why the other directions were parked.*
 
 ## Flow
-(Link hoặc mô tả flow chính, từng bước)
+(A link, or a description of the main flow, step by step)
 
 ## Content notes
-*Phần AI soạn nháp và phần bạn viết lại. Không có copy cuối nào do AI viết mà chưa được bạn xem lại.*
+*The part the AI drafted and the part you rewrote. No final copy written by the AI goes out without you reviewing it.*
 
 ## Design decisions
-*Mỗi design decision là một file trong `insights/decisions/` (D1, D2 ...) và file đó là nguồn duy nhất. Ghi hypothesis nó kiểm tra (`Tests`), principle nó theo (`Follows`) hoặc kéo ngược (`Pulls against`). Không giữ bảng trùng ở đây.*
+*Each design decision is a file in `insights/decisions/` (D1, D2 ...) and that file is the single source. Record the hypothesis it tests (`Tests`), the principle it follows (`Follows`) or pulls against (`Pulls against`). Do not keep a duplicate table here.*

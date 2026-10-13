@@ -1,6 +1,6 @@
 ---
 type: "options"
-title: "Các hướng giải pháp"
+title: "Solution options"
 stage: "Develop"
 status: "draft"
 summary: ""
@@ -12,47 +12,47 @@ supports: []
 # links: []
 # embed: false
 ---
-*Mục đích: nhìn nhiều hướng thật sự khác nhau trước khi chọn, và ghi lại vì sao các hướng còn lại bị gác. Quyết định cuối là của chủ dự án; mỗi decision là một file riêng trong `insights/decisions/`.*
+*Purpose: look at several really different directions before choosing, and record why the others were parked. The final decision is the project owner's; each decision is its own file in `insights/decisions/`.*
 
 ## Problem and criteria
-Opportunity (O#) mà các hướng này phục vụ, và 3 đến 5 tiêu chí để so sánh. Tiêu chí lấy từ outcome, principle (P#) và ràng buộc, không phải sở thích cá nhân.
+The opportunity (O#) these directions serve, and 3 to 5 criteria to compare on. Criteria come from the outcome, the principles (P#) and the constraints, not from personal taste.
 
-| Tiêu chí | Vì sao quan trọng | Nguồn (O# / P# / M#) |
+| Criterion | Why it matters | Source (O# / P# / M#) |
 |---|---|---|
 | | | |
 
 ## Directions
-**Ít nhất ba hướng thực sự khác nhau.** Hai hướng chỉ khác chi tiết thì tính là một.
+**At least three directions that are really different.** Two directions that differ only in detail count as one.
 
-| Hướng | Ý tưởng trong một câu | Phục vụ (O#) | Giả định lớn nhất | Kéo ngược (P#) | Rủi ro |
+| Direction | The idea in one sentence | Serves (O#) | Biggest assumption | Pulls against (P#) | Risk |
 |---|---|---|---|---|---|
 | A | | O? | | | |
 | B | | O? | | | |
 | C | | O? | | | |
 
 ## Comparison
-Chấm theo tiêu chí ở trên: tốt / vừa / yếu, kèm lý do ngắn. Không cộng thành một con số.
+Rate against the criteria above: good / fair / weak, with a short reason. Do not add it up into one number.
 
-| Tiêu chí | A | B | C |
+| Criterion | A | B | C |
 |---|---|---|---|
 | | | | |
 
 ## Recommendation
-Hướng đề xuất và vì sao, kèm điều cần kiểm tra trước khi cam kết (H#). Phần này là **đề xuất**; ghi `accepted` thuộc về chủ dự án.
+The recommended direction and why, with what needs checking before committing (H#). This part is a **proposal**; marking `accepted` belongs to the project owner.
 
 ## Parked directions
-Hướng bị gác, lý do, và điều kiện nào làm ta xem lại.
+The parked directions, the reason, and what would make us look again.
 
-| Hướng | Vì sao gác | Xem lại khi |
+| Direction | Why parked | Revisit when |
 |---|---|---|
 | | | |
 
 ## Decisions
-Dẫn bằng mã, không chép lại nội dung. Chi tiết ở `insights/decisions/`.
+Point to them by code, do not copy the content. Details are in `insights/decisions/`.
 
 - D? :
 
 ## What this cannot tell us
-Điều so sánh này không cho biết. Cần test với người dùng để xác nhận điều nào.
+What this comparison does not tell us. Which parts need confirming by testing with users.
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

@@ -1,32 +1,32 @@
 # Stages
 
-Mỗi giai đoạn của dự án có một trang trong báo cáo, ở mục **Stages**. **Bạn không viết trang giai đoạn.** Mỗi trang được báo cáo tự ghép từ hai nguồn:
+Each stage of the project has a page in the report, in the **Stages** section. **You do not write stage pages.** The report assembles each page by itself from two sources:
 
-- các file làm việc trong `work/` (cột **Từ work**), kèm trạng thái `status` của file đó (verified, draft...);
-- các bảng item lấy từ `insights/` (cột **Bảng item**): opportunities, hypotheses, metrics, decisions, evidence, findings.
+- the working files in `work/` (the **From work** column), together with the `status` of each file (verified, draft...);
+- the item tables from `insights/` (the **Item tables** column): opportunities, hypotheses, metrics, decisions, evidence, findings.
 
-Muốn đổi nội dung: sửa file ở `work/` hoặc item ở `insights/`, rồi tạo lại `index.html`. Muốn đổi thứ tự hay thêm một giai đoạn: sửa bảng dưới đây (thứ tự các dòng là thứ tự trong báo cáo).
+To change the content: edit the file in `work/` or the item in `insights/`, then rebuild `index.html`. To change the order or add a stage: edit the table below (the order of the rows is the order in the report).
 
 ## Pages
 
-| Id | Page | Giai đoạn | Nội dung | Từ work | Bảng item |
+| Id | Page | Stage | Content | From work | Item tables |
 |---|---|---|---|---|---|
 | `scope` | Scope | Discover | Business question, outcome, agreement | `scope.md` | |
-| `evidence` | Evidence | Discover | Điều đã học từ nguồn, mỗi claim một nguồn | `user-voice-synthesis.md`, `competitor-analysis.md` | |
+| `evidence` | Evidence | Discover | What was learned from the sources, one source per claim | `user-voice-synthesis.md`, `competitor-analysis.md` | |
 | `problem-brief` | Problem brief | Define | Opportunity, hypothesis, metric, principle | `problem-brief.md` | opportunities, hypotheses, metrics |
-| `develop` | Options, flows, prototype | Develop | Các hướng đã khám phá, decision | `options.md`, `wireframes/`, `final-prototype/` | decisions |
+| `develop` | Options, flows, prototype | Develop | The directions explored, decisions | `options.md`, `wireframes/`, `final-prototype/` | decisions |
 | `alignment` | Alignment check | Develop | Principle audit, verdict | `alignment.md` | |
-| `findings` | Findings | Deliver | Kết quả test với người dùng | `findings.md` | evidence, findings |
+| `findings` | Findings | Deliver | Results of testing with users | `findings.md` | evidence, findings |
 | `handoff` | Handoff and measurement | Deliver | Handoff pack, measurement plan | `handoff.md`, `measurement-plan.md` | |
-| `learning` | Learning | Learn | Điều đã học sau launch: metric so với target, dẫn ngược về opportunity | `learning.md` | outcomes |
-| `decision-log` | Decision log | Mọi giai đoạn | Mỗi quyết định một dòng, kèm lý do | `insights/case-log.md` | |
+| `learning` | Learning | Learn | What was learned after launch: metric against target, traced back to the opportunity | `learning.md` | outcomes |
+| `decision-log` | Decision log | All stages | One line per decision, with its reason | `insights/case-log.md` | |
 
-## Cách đọc bảng
+## How to read the table
 
-| Cột | Ý nghĩa |
+| Column | Meaning |
 |---|---|
-| **Id** | Tên ngắn, chữ thường, không dấu. Dùng làm địa chỉ trang. |
-| **Từ work** | File trong `work/` (viết tên file, ví dụ `scope.md`) hoặc folder có `index.md` (ví dụ `wireframes/`). File ở `insights/` ghi đủ đường dẫn (ví dụ `insights/case-log.md`). Có thể nhiều file, ngăn bằng dấu phẩy. |
-| **Bảng item** | Bảng nào hiện ở trang này: `opportunities`, `hypotheses`, `metrics`, `decisions`, `evidence`, `findings`, hoặc `outcomes` (metric, kết quả đo và opportunity phía sau). Để trống nếu không cần. |
+| **Id** | A short name, lowercase, no accents. Used as the address of the page. |
+| **From work** | A file in `work/` (write the file name, for example `scope.md`) or a folder with an `index.md` (for example `wireframes/`). A file in `insights/` is written with its full path (for example `insights/case-log.md`). May list several, separated by commas. |
+| **Item tables** | Which tables show on this page: `opportunities`, `hypotheses`, `metrics`, `decisions`, `evidence`, `findings`, or `outcomes` (metric, measured result and the opportunity behind it). Leave empty if not needed. |
 
-Mỗi file nguồn hiện kèm trạng thái của nó. Một file còn `draft` vẫn hiện, nhưng được gắn nhãn "Bản nháp, chưa kiểm tra" để người đọc biết đó chưa phải điều đã kiểm tra: đổi `status` thành `verified` khi bạn đã kiểm tra xong.
+Each source file shows its status. A file that is still `draft` is shown, but labelled "Draft, not checked" so the reader knows it is not something that has been checked: change `status` to `verified` when you have checked it.

@@ -1,18 +1,18 @@
 # Toolkit
 
-Mọi thứ dùng chung cho các dự án trong workspace. Trang chủ liệt kê mọi dự án là `index.html` ở gốc workspace. **Bạn không điền gì vào đây.** Mỗi dự án (`my-case`, `demo-case`, dự án của bạn) nằm ngoài folder này.
+Everything shared by the projects in this workspace. The home page that lists every project is the `index.html` at the workspace root. **You do not fill anything in here.** Each project (`my-case`, `demo-case`, your own) sits outside this folder.
 
-| Folder | Có gì | Khi nào mở |
+| Folder | What it holds | When to open it |
 |---|---|---|
-| `guides/` | Hướng dẫn từng bước: lấy folder về máy, thiết lập dự án, GitHub, chia sẻ báo cáo, Obsidian | Lần đầu làm quen, hoặc khi bí |
-| `templates/` | Mẫu rỗng cho tài liệu làm việc (research plan, interview guide, PESTEL, journey map...) | Khi bắt đầu một tài liệu mới |
-| `skills/` | Các bước cho AI tool (step card) và script tạo báo cáo `index.html` | Hiếm khi: AI tool tự đọc |
-| `tools/` | `new-case.py`: tạo một dự án mới bằng lệnh | Khi muốn tạo dự án mới |
+| `guides/` | Step-by-step guides: get the folder onto your machine, set up a project, GitHub, share the report, Obsidian | The first time, or when you are stuck |
+| `templates/` | Empty templates for working documents (research plan, interview guide, PESTEL, journey map...) | When you start a new document |
+| `skills/` | The steps for the AI tool (step cards) and the script that builds the `index.html` report | Rarely: the AI tool reads them itself |
+| `tools/` | `new-case.py`: create a new project with one command | When you want a new project |
 
-Tạo dự án mới (từ gốc workspace):
+Create a new project (from the workspace root):
 
 ```
-python3 toolkit/tools/new-case.py ten-du-an
+python3 toolkit/tools/new-case.py project-name
 ```
 
-Chi tiết: [`guides/02-set-up-your-case.md`](guides/02-set-up-your-case.md).
+Details: [`guides/02-set-up-your-case.md`](guides/02-set-up-your-case.md).

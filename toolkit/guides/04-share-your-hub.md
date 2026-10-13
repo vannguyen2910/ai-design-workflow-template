@@ -1,71 +1,71 @@
 # Share Your Hub
 
-Hub của bạn mặc định là riêng tư: nó nằm trong folder case trên máy bạn, và không ai thấy nếu bạn không gửi. Guide này nói cách cho người khác xem, từ cách ít rủi ro nhất đến cách nhiều rủi ro nhất.
+Your hub is private by default: it lives in the case folder on your machine, and nobody sees it unless you send it. This guide explains how to let others see it, from the least risky way to the most risky.
 
 ## Choose how to share
 
-| Bạn muốn | Cách | Người nhận cần |
+| You want | Way | The recipient needs |
 |---|---|---|
-| Stakeholder đọc, không phải cài gì | **Báo cáo HTML** (Option 1) hoặc **PDF** (Option 2) | Một trình duyệt |
-| Gửi cả folder cho đồng nghiệp | **File ZIP** (Option 3) | Obsidian hoặc VS Code để xem đẹp |
-| Một người xem trực tiếp trên GitHub | **Mời vào repo Private** (Option 4) | Tài khoản GitHub miễn phí |
-| Ai có link cũng xem được | **Repo Public** (Option 5), chỉ khi case được phép chia sẻ | Không cần gì |
+| A stakeholder to read it, with nothing to install | **HTML report** (Option 1) or **PDF** (Option 2) | A browser |
+| To send the whole folder to a colleague | **ZIP file** (Option 3) | Obsidian or VS Code to view it nicely |
+| One person to view it directly on GitHub | **Invite to a Private repo** (Option 4) | A free GitHub account |
+| Anyone with the link to view it | **Public repo** (Option 5), only when the case may be shared | Nothing |
 
-**Với công việc thật của công ty, hãy dùng Option 1 hoặc 2.**
+**For real company work, use Option 1 or 2.**
 
-## Option 1: Báo cáo HTML
+## Option 1: HTML report
 
-Một file HTML tự chứa, có menu, bấm đúp là mở bằng trình duyệt, gửi email được.
+One self-contained HTML file with a menu, opened by double-clicking in a browser, and sendable by email.
 
-1. **Tạo báo cáo.** Cách dễ nhất: nhờ AI tool đang mở folder case chạy lệnh `python3 ../toolkit/skills/export-hub.py`.
-   - Tự chạy trên Mac: bấm chuột phải vào folder case, chọn **New Terminal at Folder**, rồi gõ lệnh trên.
-   - Tự chạy trên Windows: mở folder case, bấm vào thanh địa chỉ, gõ `cmd`, nhấn Enter, rồi gõ lệnh trên.
-   - Máy cần có Python 3. Mac có thể hỏi bạn cài một bộ công cụ ở lần chạy đầu; Windows cần cài Python từ [python.org](https://www.python.org).
-2. **Mở file** `index.html` ở gốc case folder bằng trình duyệt (bấm đúp).
-3. **Kiểm tra trước khi gửi.** Nếu đầu trang có thanh đen "còn nội dung mẫu hoặc chỗ chưa điền", hub vẫn còn nội dung mẫu hoặc chỗ trống. Điền hoặc xoá chúng rồi tạo lại.
-4. **Gửi file.** Copy `index.html` ra ngoài và đổi tên cho dễ nhận ra, ví dụ `onboarding-redesign-report.html`. Người nhận chỉ cần trình duyệt.
+1. **Build the report.** The easiest way: ask the AI tool that has the case folder open to run `python3 ../toolkit/skills/export-hub.py`.
+   - Running it yourself on Mac: right-click the case folder, choose **New Terminal at Folder**, then type the command above.
+   - Running it yourself on Windows: open the case folder, click the address bar, type `cmd`, press Enter, then type the command above.
+   - The machine needs Python 3. A Mac may ask you to install a set of tools the first time; Windows needs Python installed from [python.org](https://www.python.org).
+2. **Open the file** `index.html` at the root of the case folder in a browser (double-click).
+3. **Check before sending.** If there is a black bar at the top saying "sample content or blanks remain", the hub still has sample content or empty places. Fill them in or delete them, then rebuild.
+4. **Send the file.** Copy `index.html` out and rename it so it is easy to recognise, for example `onboarding-redesign-report.html`. The recipient only needs a browser.
 
-Nếu bạn dùng GitHub, file `index.html` còn được **tự tạo lại** sau mỗi lần push (workflow `Update index.html`). Bạn chỉ cần tải repo về hoặc chọn **Fetch origin** rồi **Pull** trong GitHub Desktop để có bản mới nhất, không cần chạy lệnh nào.
+If you use GitHub, `index.html` is also **rebuilt automatically** after each push (the `Update index.html` workflow). You only need to download the repo, or choose **Fetch origin** and then **Pull** in GitHub Desktop, to get the latest copy, with no command to run.
 
-Báo cáo chỉ gồm hub, nhật ký decision và các principle. Nó không có file làm việc hay bản nháp của AI.
+The report contains only the hub, the decision log and the principles. It has no working files or AI drafts.
 
-Muốn gửi gọn (ảnh, prototype đi kèm, không lộ working file thô): chạy `python3 ../toolkit/skills/export-hub.py --bundle ten-folder --zip` rồi gửi file ZIP. Người nhận giải nén và bấm đúp `index.html`.
+To send a compact package (images and prototype included, without exposing raw working files): run `python3 ../toolkit/skills/export-hub.py --bundle folder-name --zip` and send the ZIP file. The recipient unzips it and double-clicks `index.html`.
 
 ## Option 2: PDF
 
-1. Mở trang hub bạn muốn gửi: trong báo cáo HTML ở Option 1, hoặc trong Obsidian hay VS Code.
-2. In trang đó (`Cmd+P` trên Mac, `Ctrl+P` trên Windows) và chọn **Save as PDF**.
-3. Lặp lại cho các trang chính: Tổng quan, Problem brief, Findings.
-4. Gửi các file PDF, hoặc đính kèm vào wiki của công ty.
+1. Open the hub page you want to send: in the HTML report from Option 1, or in Obsidian or VS Code.
+2. Print that page (`Cmd+P` on Mac, `Ctrl+P` on Windows) and choose **Save as PDF**.
+3. Repeat for the main pages: Overview, Problem brief, Findings.
+4. Send the PDF files, or attach them to the company wiki.
 
-## Option 3: File ZIP
+## Option 3: ZIP file
 
-1. Nén **cả folder case**, không chỉ `insights/`, vì các trang trong báo cáo nối tới `work/`, `standards/` và các file làm việc.
-2. Gửi file ZIP. Người nhận giải nén và mở cả folder bằng Obsidian hoặc VS Code.
-3. Thử mở trên một máy khác trước khi gửi.
+1. Compress the **whole case folder**, not only `insights/`, because the pages in the report link to `work/`, `standards/` and the working files.
+2. Send the ZIP file. The recipient unzips it and opens the whole folder in Obsidian or VS Code.
+3. Try opening it on another machine before you send it.
 
-## Option 4: Mời một người vào repo Private
+## Option 4: Invite one person to a Private repo
 
-1. Mở repo của bạn trên GitHub, chọn **Settings**, rồi **Collaborators**.
-2. Bấm **Add people** và nhập tên tài khoản hoặc email của người đó.
-3. Họ nhận email mời. Sau khi chấp nhận, họ đọc hub ngay trên GitHub.
+1. Open your repo on GitHub, choose **Settings**, then **Collaborators**.
+2. Click **Add people** and enter that person's account name or email.
+3. They get an invitation email. After they accept, they read the hub right on GitHub.
 
-Bạn thu hồi quyền bất cứ lúc nào ở cùng màn hình.
+You can revoke access at any time on the same screen.
 
-## Option 5: Repo Public
+## Option 5: Public repo
 
-GitHub hiển thị Markdown trực tiếp, nên không cần dựng website: link tới repo chính là hub.
+GitHub shows Markdown directly, so no website needs building: the link to the repo is the hub.
 
-Chỉ làm khi **toàn bộ case folder** được phép chia sẻ, ví dụ dự án mẫu, hoặc một bản đã làm sạch từ công việc thật. Hub nối tới các file ngoài `hub/`, nên công khai riêng `hub/` sẽ làm các liên kết đó hỏng.
+Only do this when the **whole case folder** may be shared, for example the sample project, or a cleaned copy of real work. The report links to files across the case folder, so publishing only part of it would break those links.
 
-1. Tạo một repo **mới** trên GitHub và chọn **Public**. Đừng đổi repo Private đang dùng thành Public, vì lịch sử cũ vẫn còn trong đó.
-2. Copy folder case đã làm sạch vào repo mới.
-3. Mở link repo trong **cửa sổ ẩn danh** để thấy đúng những gì người khác thấy.
+1. Create a **new** repo on GitHub and choose **Public**. Do not switch the Private repo you are using to Public, because the old history stays in it.
+2. Copy the cleaned case folder into the new repo.
+3. Open the repo link in a **private window** to see exactly what others see.
 
 ## Before you share anything
 
-- **Không đưa lên số liệu mật của công ty,** chi tiết sản phẩm chưa phát hành, dữ liệu cá nhân của người dùng, hay mật khẩu. Kiểm tra chính sách của công ty trước.
-- **Link công khai có thể bị chuyển tiếp** cho bất kỳ ai.
-- **Tên tài khoản GitHub nằm trong địa chỉ repo.** Chọn một tên bạn thấy thoải mái khi nó hiện ra.
-- **Bạn là người chia sẻ và chịu trách nhiệm** về link và nội dung. Không ai đăng thay bạn.
-- **Dùng dữ liệu đã ẩn danh hoặc dữ liệu giả** cho mọi thứ công khai.
+- **Do not put up confidential company figures,** details of an unreleased product, users' personal data, or passwords. Check your company's policy first.
+- **A public link can be forwarded** to anyone.
+- **Your GitHub account name is part of the repo address.** Pick a name you are comfortable seeing there.
+- **You are the one sharing and you are responsible** for the link and the content. Nobody posts for you.
+- **Use anonymised or fake data** for anything public.

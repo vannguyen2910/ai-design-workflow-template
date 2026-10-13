@@ -1,6 +1,6 @@
 ---
 type: "prioritization"
-title: "Xếp hạng ưu tiên"
+title: "Prioritization"
 stage: "Define"
 status: "draft"
 summary: ""
@@ -12,50 +12,50 @@ supports: []
 # links: []
 # embed: false
 ---
-*Công cụ giúp **bàn luận**, không phải máy ra đáp án. Thứ hạng cuối do chủ dự án quyết, và được ghi vào từng file `insights/opportunities/O#.md` (các trường `rank`, `impact`, `confidence`, `rank_reason`). Bảng ở đây là nơi cân nhắc.*
+*A tool to help the **discussion**, not a machine that produces the answer. The final ranking is decided by the project owner and written into each `insights/opportunities/O#.md` file (the fields `rank`, `impact`, `confidence`, `rank_reason`). The table here is where you weigh things.*
 
 ## Decision this serves
-Quyết định cần đưa ra (ví dụ: chọn một opportunity để thiết kế trong quý này) và ràng buộc về nguồn lực.
+The decision to make (for example: choose one opportunity to design this quarter) and the resource constraint.
 
 ## Criteria
-Chỉ giữ 3 đến 4 tiêu chí, mỗi tiêu chí có định nghĩa một câu để cả nhóm hiểu giống nhau.
+Keep only 3 or 4 criteria, each with a one-sentence definition so the whole team understands them the same way.
 
-| Tiêu chí | Định nghĩa | Thang |
+| Criterion | Definition | Scale |
 |---|---|---|
-| Impact | Tác động lên người dùng và metric ở Problem brief | cao / vừa / thấp |
-| Confidence | Mức chắc chắn của bằng chứng (đã kiểm chứng hay mới là giả định) | cao / vừa / thấp |
-| Effort | Công sức ước lượng cùng engineering | S / M / L |
-| Reach (tuỳ chọn) | Số người bị ảnh hưởng trong một kỳ | số hoặc ước lượng |
+| Impact | The effect on users and on the metric in the Problem brief | high / medium / low |
+| Confidence | How sure the evidence is (verified or only an assumption) | high / medium / low |
+| Effort | Estimated work, together with engineering | S / M / L |
+| Reach (optional) | The number of people affected in a period | a number or an estimate |
 
 ## Scoring
-Một dòng một opportunity (hoặc giải pháp). Ghi lý do ngắn cho từng điểm, không chỉ chữ cao hay thấp.
+One row per opportunity (or solution). Write a short reason for each score, not only high or low.
 
-| Mã | Opportunity | Impact | Confidence | Effort | Ghi chú (vì sao) | Nguồn bằng chứng |
+| Code | Opportunity | Impact | Confidence | Effort | Note (why) | Evidence source |
 |---|---|---|---|---|---|---|
 | O? | | | | | | |
 
 ## Impact and effort
-Xếp các dòng ở trên vào ô tương ứng.
+Place the rows above in the matching cell.
 
-| | Effort thấp | Effort cao |
+| | Low effort | High effort |
 |---|---|---|
-| **Impact cao** | **Làm trước:** | **Cân nhắc kỹ:** |
-| **Impact thấp** | **Làm khi rảnh:** | **Bỏ qua:** |
+| **High impact** | **Do first:** | **Consider carefully:** |
+| **Low impact** | **Do when there is spare time:** | **Skip:** |
 
 ## Ranking
-Thứ tự đề xuất, mỗi dòng một câu lý do. Nơi chủ dự án chốt.
+The proposed order, one sentence of reason per row. This is where the project owner decides.
 
-| Hạng | Mã | Lý do |
+| Rank | Code | Reason |
 |---|---|---|
 | 1 | O? | |
 | 2 | O? | |
 
 ## What we are not doing
-Những opportunity bị gác lại và lý do, để sau này không bị hỏi lại.
+The opportunities that were parked and why, so nobody asks again later.
 
 ## Check before you decide
-- Hạng nhất có bằng chứng `verified` hay mới là `assumed`?
-- Có opportunity nào bị đẩy xuống chỉ vì effort lớn, trong khi impact rất cao?
-- Ai bị ảnh hưởng nếu chọn hạng nhất, và ai chưa có tiếng nói trong bảng này?
+- Does the first-ranked item have `verified` evidence or only `assumed`?
+- Was any opportunity pushed down only because of large effort, while its impact is very high?
+- Who is affected if the first-ranked item is chosen, and who has no voice in this table yet?
 
-*Ảnh, video và PDF của tài liệu này: thả vào cùng folder với file này, báo cáo tự hiện. Xem `work/README.md` của case.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*

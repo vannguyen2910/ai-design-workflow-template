@@ -6,11 +6,11 @@ status: "planned"
 summary: "How you will know it worked: metrics, targets, where the data comes from."
 supports: []
 ---
-*Giai đoạn Deliver, khi bàn giao. Theo dõi gì sau khi launch, và ai chịu trách nhiệm. Đưa nó cho PO ngay cả khi bạn không xem được data.*
+*Deliver stage, at handoff. What to track after launch, and who is responsible. Give it to the PO even if you cannot see the data yourself.*
 
 | Metric | Where to track it | Who owns it | Review date |
 |---|---|---|---|
 | | | | |
 
 ## How the AI-assisted workflow performed
-*Số đếm, không phải cảm nhận: thời gian mỗi step, tỷ lệ lỗi bắt được ở các gate, số lần làm lại.*
+*Counts, not impressions: time per step, the error rate caught at the gates, the number of redos.*

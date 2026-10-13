@@ -10,6 +10,6 @@ participants: 0
 result: ""
 status: "planned"
 ---
-*Cách dùng: copy file này vào folder `insights/evidence/`, đặt tên theo mã tiếp theo (ví dụ `E1.md`), điền title, sửa `tests` và `measures` về item có thật, rồi xoá dòng này. Bỏ dòng `status` khi đã chạy với người dùng thật. Evidence đang `planned` hoặc `participants_type: "simulated"` chưa được tính là bằng chứng từ người dùng thật.*
+*How to use: copy this file into `insights/evidence/`, name it after the next code (for example `E1.md`), fill in the title, point `tests` and `measures` at items that really exist, then delete this line. Remove the `status` line once it has run with real users. Evidence that is `planned`, or has `participants_type: "simulated"`, does not count as evidence from real users.*
 
-*Ảnh chụp phiên test hoặc kết quả: thả vào `work/<tên>/` rồi chèn bằng `![mô tả](../../work/<tên>/<ảnh>.png)`.*
+*Screenshots of the test session or of the results: drop them into `work/<name>/` and insert them with `![description](../../work/<name>/<image>.png)`.*

@@ -1,6 +1,6 @@
 # Glossary (optional)
 
-*Bằng lời của bạn, kèm một ví dụ từ case. Bắt đầu với ba thuật ngữ bạn hay gặp nhất trong dự án.*
+*In your own words, with an example from your case. Start with the three terms you meet most often in the project.*
 
 | Term | In my words | Example from my case | What I will do differently |
 |---|---|---|---|

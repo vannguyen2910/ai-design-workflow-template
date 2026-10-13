@@ -1,6 +1,6 @@
 # Open questions
 
-*Những điều AI nói nó cần biết thêm mà `product-and-users.md` chưa có. Giữ lại những câu hữu ích.*
+*What the AI says it needs to know that `product-and-users.md` does not say yet. Keep the useful ones.*
 
 | Question | Why it matters | Who can answer | Status |
 |---|---|---|---|
