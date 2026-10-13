@@ -16,7 +16,7 @@ desktop.ini
 **/_raw-private/*
 !**/_raw-private/README.md
 
-# Exported report is an output: regenerate it with tools/export-hub.py
+# Exported report is an output: regenerate it with toolkit/skills/export-hub.py
 **/hub/_export/*
 
 # Obsidian: keep personal workspace state out of the repo

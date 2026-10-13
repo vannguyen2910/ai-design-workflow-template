@@ -52,5 +52,7 @@ Danh sách đầy đủ nằm ở tab **Guide** trong `index.html`.
 | `insights/` | Điều đã học và các quyết định |
 | `stages/` | Câu chuyện từng giai đoạn (tự dựng, bạn không viết ở đây) |
 | `standards/` | Thước đo để kiểm tra công việc |
-| `_skills/`, `AGENTS.md` | Các bước và luật cho AI tool, hiếm khi cần mở tay |
+| `AGENTS.md` | Luật cho AI tool, hiếm khi cần mở tay |
 | `_personal/` | Ghi chú riêng, không đưa cho AI |
+
+*Các bước cho AI (`toolkit/skills/`) và mẫu tài liệu (`toolkit/templates/`) nằm **ngoài** folder này, trong `toolkit/` ở gốc workspace, dùng chung cho mọi dự án.*

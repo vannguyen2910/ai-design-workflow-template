@@ -55,12 +55,12 @@ Các bước 1 đến 4 lấy từ dự án mẫu `demo-case`. Bạn mở file �
 
 ## Thử ngay trong 1 phút
 
-Bấm **Code → Download ZIP**, giải nén, rồi bấm đúp một file:
+Bấm **Code → Download ZIP**, giải nén, rồi bấm đúp **`index.html`** ở gốc. Đó là trang chủ: mỗi dự án là một thẻ, bấm vào thẻ để mở báo cáo của dự án.
 
-| Muốn xem | Mở |
+| Muốn xem | Bấm thẻ |
 |---|---|
-| Dự án mẫu đã làm xong | `demo-case/index.html` |
-| Workspace trống | `my-case/index.html` |
+| Dự án mẫu đã làm xong | **Travel Buddy** (`demo-case`) |
+| Workspace trống | **Product Name** (`my-case`) |
 
 ---
 
@@ -68,7 +68,7 @@ Bấm **Code → Download ZIP**, giải nén, rồi bấm đúp một file:
 
 1. **Tải về và giải nén.**
 2. **Mở folder bằng AI tool** và nói: *"Tạo một dự án mới tên … ."*
-3. **Bấm đúp `index.html`** trong folder dự án.
+3. **Bấm đúp `index.html`** ở gốc workspace: dự án của bạn hiện thành một thẻ mới.
 
 Không có AI tool? Đổi tên folder `my-case`, rồi điền vào đó.
 
@@ -85,24 +85,27 @@ Không có AI tool? Đổi tên folder `my-case`, rồi điền vào đó.
 
 ## Cần giúp?
 
-Folder [`guides/`](guides/) có hướng dẫn từng bước: lấy folder về máy, làm việc với AI tool, chia sẻ báo cáo. Trong báo cáo, tab **Guide** có câu nói mẫu cho từng việc.
+Folder [`toolkit/guides/`](toolkit/guides/) có hướng dẫn từng bước: lấy folder về máy, làm việc với AI tool, chia sẻ báo cáo. Trong báo cáo, tab **Guide** có câu nói mẫu cho từng việc.
 
 <details>
 <summary>Dành cho người muốn tuỳ biến</summary>
 
 ```
 workspace/
-├── guides/          hướng dẫn từng bước
-├── tools/           tạo dự án mới bằng lệnh
+├── toolkit/         hướng dẫn, mẫu tài liệu, các bước cho AI, công cụ tạo dự án
+│   ├── guides/      hướng dẫn từng bước
+│   ├── templates/   mẫu tài liệu, dùng chung cho mọi dự án
+│   ├── skills/      các bước và script cho AI, dùng chung cho mọi dự án
+│   └── tools/       tạo dự án mới bằng lệnh
 ├── my-case/         workspace trống (tạo bản sao, đừng điền trực tiếp)
 ├── demo-case/       dự án mẫu
 └── <tên-dự-án>/     dự án của bạn
 ```
 
-Trong mỗi dự án: `context/` (thông tin nền), `work/` (mọi thứ làm ra), `insights/` (nhu cầu, quyết định, bằng chứng), `stages/`, `standards/`, `_skills/` (các bước cho AI), `AGENTS.md` (luật cho AI tool).
+Trong mỗi dự án: `context/` (thông tin nền), `work/` (mọi thứ làm ra), `insights/` (nhu cầu, quyết định, bằng chứng), `stages/`, `standards/`, `AGENTS.md` (luật cho AI tool).
 
 - **Giữ nguyên** tên các folder trên và mã item (`O1`, `H1`, `D1`…).
-- **Tạo dự án bằng lệnh:** `python3 tools/new-case.py ten-du-an`
+- **Tạo dự án bằng lệnh:** `python3 toolkit/tools/new-case.py ten-du-an`
 - **Dự án thật:** đọc chính sách AI của công ty, để dữ liệu gốc ở `work/sources/_raw-private/`, và để repo **Private** nếu chưa được chia sẻ.
 
 </details>

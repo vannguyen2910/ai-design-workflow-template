@@ -17,7 +17,7 @@ Chọn tình huống của bạn:
 | Nội dung nằm sẵn ở nơi khác trong dự án (ví dụ `work/sources/`) | Tạo file `.md` ở đây và dùng `source:` trỏ về file đó, để nội dung không bị chép hai lần |
 | Một link Figma, Miro, Notion... | Ghi link vào tài liệu (xem "Link ngoài" bên dưới) |
 
-Cách dễ nhất: **bắt đầu từ một mẫu trong folder `_templates/`** (copy ra ngoài, đổi tên). Hoặc nhờ AI tool: *"Tạo tài liệu persona từ mẫu trong `work/_templates/`."*
+Cách dễ nhất: **bắt đầu từ một mẫu trong folder `toolkit/templates/`** ở gốc workspace, ngang hàng với các case (copy vào `work/`, đổi tên). Hoặc nhờ AI tool: *"Tạo tài liệu persona từ mẫu `toolkit/templates/persona.md`."*
 
 Loại tài liệu là **tự do**: bạn có thể đặt loại `journey-map` hay `brand-guidelines`, báo cáo vẫn hiện bình thường.
 
@@ -29,7 +29,7 @@ Báo cáo tự nhận ra định dạng theo đuôi tệp, **bạn không cần 
 
 1. Tạo folder `work/<tên-ngắn>/`, ví dụ `work/wireframes/`.
 2. Thả ảnh, video, PDF vào đó.
-3. Thêm một file `index.md` (copy từ mẫu trong `_templates/`) có `title` và `type`.
+3. Thêm một file `index.md` (copy từ mẫu trong `toolkit/templates/` ở gốc workspace) có `title` và `type`.
 
 Xong. Báo cáo dựng một trang tài liệu có **thẻ ở mục Work**, ảnh đầu tiên làm ảnh bìa, và mọi tệp trong folder hiện trên trang. Bạn có thể nhờ AI tool làm cả ba bước: *"Thêm các ảnh này vào dự án như một tài liệu wireframe."*
 
@@ -108,7 +108,7 @@ Chỉ `title` và `type` là cần có. Các dòng còn lại làm trang đầy 
 ## Lệnh xuất gói
 
 ```
-python3 _skills/export-hub.py --bundle gui-stakeholder --zip
+python3 ../toolkit/skills/export-hub.py --bundle gui-stakeholder --zip
 ```
 
 Lệnh này tạo folder gọn và file zip như mô tả ở trên. Chạy với `--team` thì các phần nháp của AI hiện ra (gấp lại).

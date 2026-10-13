@@ -25,6 +25,6 @@ Bản prototype tương tác cuối cùng của dự án, thay cho wireframe ở
 |---|---|
 | `travel-buddy-final-prototype.html` | Prototype tương tác, mở bằng trình duyệt (bấm đúp hoặc xem ngay trong trang) |
 
-**Lưu ý:** đây là bản đã nén lại ảnh (ảnh rộng tối đa 480 px, chất lượng JPEG 50) để nhẹ hơn hơn một nửa so với bản gốc 6,8 MB; bản gốc vẫn ở folder dự án của bạn. Báo cáo tải file này khi bạn mở trang, không tải sẵn. Khi gửi báo cáo cho người khác, dùng `python3 _skills/export-hub.py --bundle <folder>` để file đi kèm.
+**Lưu ý:** đây là bản đã nén lại ảnh (ảnh rộng tối đa 480 px, chất lượng JPEG 50) để nhẹ hơn hơn một nửa so với bản gốc 6,8 MB; bản gốc vẫn ở folder dự án của bạn. Báo cáo tải file này khi bạn mở trang, không tải sẵn. Khi gửi báo cáo cho người khác, dùng `python3 ../toolkit/skills/export-hub.py --bundle <folder>` để file đi kèm.
 
 **Giới hạn:** đây là prototype, chưa phải kết quả test. Kết luận về việc người dùng có hiểu hay dùng được các màn này cần evidence (xem E1 và E2).
