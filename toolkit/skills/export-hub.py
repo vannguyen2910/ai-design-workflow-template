@@ -1646,7 +1646,7 @@ PLACEHOLDER_RE = re.compile(r"\[(?:EXAMPLE\]|[A-Z][A-Z0-9 ]{2,}[^\]]*\])")
 # --------------------------------------------------------------------------- artifacts
 ART_TYPES = {
     "competitor-analysis": "Competitor analysis", "persona": "Persona", "survey-results": "Survey results",
-    "interview-synthesis": "Interview synthesis", "user-flow": "User flow", "ia-sitemap": "Information architecture",
+    "interview-synthesis": "Interview synthesis", "user-flow": "User flow", "process-map": "Process map", "ia-sitemap": "Information architecture",
     "prototype": "Prototype", "test-plan": "Test plan", "test-report": "Test report",
     "requirements": "Requirements (PRD)", "solution-pool": "Solution pool", "generic": "Document",
     "pestel-analysis": "PESTEL analysis", "research-plan": "Research plan", "interview-guide": "Interview guide",
@@ -2254,7 +2254,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     for k, p in enumerate(weekly):
         wk, desc, label = winfo.get(p.slug, ("", "", p.heading))
         jcards += '<a class="jcard" href="#/%s"><span class="wk">%s</span><h3>%s</h3><p>%s</p></a>' % (
-            p.id, "%02d · %s" % (k + 1, esc(wk if wk else "Trang")), esc(p.heading), esc(desc))
+            p.id, "%02d · %s" % (k + 1, esc(wk if wk else "Page")), esc(p.heading), esc(desc))
         prev = '<a href="#/%s">← %s</a>' % (weekly[k - 1].id, esc(weekly[k - 1].heading)) if k else "<span></span>"
         nxt = '<a href="#/%s">%s →</a>' % (weekly[k + 1].id, esc(weekly[k + 1].heading)) if k + 1 < len(weekly) else "<span></span>"
         jdocs += '<section class="doc" id="%s" data-title="%s"><a class="back" href="#/journey">← Stages</a><div class="reading"><h1>%s</h1>%s</div>%s<nav class="pn" aria-label="Previous and next page">%s%s</nav></section>' % (
@@ -2324,7 +2324,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
                 figs.append('<figure class="fig"><a href="%s" target="_blank" rel="noopener"><img loading="lazy" src="%s" alt="%s"></a><figcaption>%s</figcaption></figure>' % (href, href, cap, cap))
             elif kind == "html":
                 emb = ('<iframe loading="lazy" src="%s" title="%s"></iframe>' % (href, label)) if a.embed else ""
-                parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><span class="mtag">Prototype / trang HTML</span>'
+                parts.append('<div class="mcard"><div class="mhead"><strong>%s</strong><span class="mtag">Prototype / HTML page</span>'
                              '<a class="btn" href="%s" target="_blank" rel="noopener">Open in new tab ↗</a></div>%s</div>' % (label, href, emb))
             elif kind == "video":
                 parts.append('<div class="mcard"><video controls preload="metadata" src="%s"></video><p class="cap">%s</p></div>' % (href, label))

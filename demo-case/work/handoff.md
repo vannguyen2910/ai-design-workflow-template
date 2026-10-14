@@ -16,7 +16,7 @@ A link or a folder. This is a reference, not production code.
 - Wireframe: `work/wireframes/Travel_Buddy_Wireframe.html`
 - The final prototype: `work/final-prototype/travel-buddy-final-prototype.html`
 - The build plan, the list of 32 screens, 4 flows: `work/original-docs/10_Prototype_Plan.md`
-- E2E flow: `work/original-docs/08_E2E_User_Flow.md`
+- E2E process map: `work/process-map.md` (source: `work/original-docs/08_E2E_Process_Map.html`)
 
 ## Decisions and reasons
 (Point to the decision log in `insights/case-log.md`)

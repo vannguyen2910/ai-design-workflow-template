@@ -25,7 +25,7 @@ supports: []
 **Discovery is the door, planning is the positioning hook.** The Explore tab is the first entry point (even for visitors who have not signed up) and every tip can be saved into the trip plan with one tap (SP-P3). Planning is prioritised in positioning because it has the highest importance score and is where fragmentation hurts most (P1). The journal and connection are supporting pillars. This part rests on `05_Research_Synthesis.md`, Part 4, the "Open tensions" section.
 
 ## Flow
-The end-to-end journey is divided into four stages of the trip: Onboarding, Pre-trip, In-destination, Post-trip. Diagram: `work/original-docs/08_E2E_User_Flow.md` and `.html`. Information architecture (a hypothesis before the card sort): `work/ia-sitemap/IA_Sitemap.png`.
+The end-to-end journey is divided into four stages of the trip: Onboarding, Pre-trip, In-destination, Post-trip. Diagram: `work/process-map.md` (source: `work/original-docs/08_E2E_Process_Map.html`); the written flow is in `work/original-docs/08_E2E_User_Flow.md`. Information architecture (a hypothesis before the card sort): `work/ia-sitemap/IA_Sitemap.png`.
 
 ## Content notes
 *The part the AI drafted and the part you rewrote. No final copy written by the AI goes out without you reviewing it.*

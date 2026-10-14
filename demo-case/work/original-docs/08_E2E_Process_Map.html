@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Travel Buddy user flow</title>
+<style>
+  body { margin: 0; background: #fff; color: #1d1f2a; font-family: Helvetica, Arial, sans-serif; line-height: 1.5; }
+  main { max-width: 920px; margin: 0 auto; padding: 32px 20px 56px; }
+  h1 { font-size: 28px; margin: 0 0 8px; }
+  h2 { font-size: 19px; margin: 40px 0 4px; }
+  p { margin: 0 0 12px; max-width: 70ch; }
+  .note { color: #5b6070; font-size: 14px; }
+  figure { margin: 12px 0 0; }
+  figure svg { width: 100%; height: auto; display: block; }
+  figcaption { color: #5b6070; font-size: 14px; margin-top: 6px; }
+</style>
+</head>
+<body>
+<main>
+
+<h1>How a trip moves through Travel Buddy</h1>
+<p>Each column is one actor: the traveler, Travel Buddy itself, a local, and a companion or contact. A line that crosses into another column is a handover. The pink lines are the ones between traveler and local.</p>
+
+<h2>1. How the parts of the app hand over to each other</h2>
+<p class="note">Read the numbers on the arrows together with the list below the boxes.</p>
+<figure>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 492" width="870" height="492" font-family="Helvetica, Arial, sans-serif" role="img" aria-label="How the parts of Travel Buddy hand over to each other">
+<defs><marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#4b5060"/></marker></defs>
+<rect width="870" height="520" fill="#fff"/>
+<rect x="30" y="20" width="200" height="86" rx="10" fill="#e8f0fe" stroke="#3b5bdb" stroke-width="2.4"/>
+<text x="130.0" y="70.0" text-anchor="middle" font-size="20" font-weight="700" fill="#1d1f2a">Getting started</text>
+<rect x="335" y="20" width="200" height="86" rx="10" fill="#fff6d6" stroke="#a07800" stroke-width="2.4"/>
+<text x="435.0" y="70.0" text-anchor="middle" font-size="20" font-weight="700" fill="#1d1f2a">Discover</text>
+<rect x="640" y="20" width="200" height="86" rx="10" fill="#e6f7f1" stroke="#0b7a5a" stroke-width="2.4"/>
+<text x="740.0" y="70.0" text-anchor="middle" font-size="20" font-weight="700" fill="#1d1f2a">Plan</text>
+<rect x="30" y="190" width="200" height="86" rx="10" fill="#f1ebfd" stroke="#6d28d9" stroke-width="2.4"/>
+<text x="130.0" y="240.0" text-anchor="middle" font-size="20" font-weight="700" fill="#1d1f2a">Journal</text>
+<rect x="335" y="190" width="200" height="86" rx="10" fill="#fde8ec" stroke="#c2255c" stroke-width="2.4"/>
+<text x="435.0" y="240.0" text-anchor="middle" font-size="20" font-weight="700" fill="#1d1f2a">Connect</text>
+<path d="M230,63 L335,63" fill="none" stroke="#4b5060" stroke-width="2.2" marker-end="url(#ao)"/>
+<circle cx="283" cy="63" r="12" fill="#2b2f42"/><text x="283" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">1</text>
+<path d="M535,63 L640,63" fill="none" stroke="#4b5060" stroke-width="2.2" marker-end="url(#ao)"/>
+<circle cx="588" cy="63" r="12" fill="#2b2f42"/><text x="588" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">2</text>
+<path d="M435,106 L435,190" fill="none" stroke="#4b5060" stroke-width="2.2" marker-end="url(#ao)"/>
+<circle cx="435" cy="148" r="12" fill="#2b2f42"/><text x="435" y="153" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">3</text>
+<path d="M335,233 L230,233" fill="none" stroke="#4b5060" stroke-width="2.2" marker-end="url(#ao)"/>
+<circle cx="283" cy="233" r="12" fill="#2b2f42"/><text x="283" y="238" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">4</text>
+<path d="M130,190 C130,140 250,110 345,100" fill="none" stroke="#4b5060" stroke-width="2.2" marker-end="url(#ao)"/>
+<circle cx="205" cy="128" r="12" fill="#2b2f42"/><text x="205" y="133" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">5</text>
+<circle cx="42" cy="313" r="11" fill="#2b2f42"/><text x="42" y="318" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">1</text>
+<text x="64" y="318" font-size="14" fill="#1d1f2a">The three questions at the start set up the feed by travel style and the matching with locals by interest.</text>
+<circle cx="42" cy="347" r="11" fill="#2b2f42"/><text x="42" y="352" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">2</text>
+<text x="64" y="352" font-size="14" fill="#1d1f2a">One tap saves a tip from the feed to the shortlist.</text>
+<circle cx="42" cy="381" r="11" fill="#2b2f42"/><text x="42" y="386" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">3</text>
+<text x="64" y="386" font-size="14" fill="#1d1f2a">Every tip shows who wrote it. Tapping a verified local opens their profile and the chat.</text>
+<circle cx="42" cy="415" r="11" fill="#2b2f42"/><text x="42" y="420" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">4</text>
+<text x="64" y="420" font-size="14" fill="#1d1f2a">Places visited and people met are written into the journal.</text>
+<circle cx="42" cy="449" r="11" fill="#2b2f42"/><text x="42" y="454" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">5</text>
+<text x="64" y="454" font-size="14" fill="#1d1f2a">After the trip, the next trip starts in the feed again.</text>
+</svg>
+<figcaption>Overview of the handovers between getting started, Discover, Plan, Connect and Journal.</figcaption>
+</figure>
+
+<h2>2. Before the trip: getting started, Discover and Plan</h2>
+<p class="note">A visitor can browse without an account. Locals and other travelers supply the tips that fill the feed.</p>
+<figure>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 890 1194" width="890" height="1194" font-family="Helvetica, Arial, sans-serif" role="img" aria-label="Before the trip: getting started, Discover and Plan">
+<defs><marker id="an" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6b7185"/></marker><marker id="ay" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0b7a5a"/></marker><marker id="ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9480f"/></marker><marker id="au" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c2255c"/></marker></defs>
+<rect width="890" height="1194" fill="#ffffff"/>
+<rect x="10" y="44" width="232" height="1146" fill="#e8f0fe" opacity="0.38"/>
+<rect x="10" y="4" width="232" height="36" fill="#e8f0fe" stroke="#3b5bdb" stroke-width="1.5"/>
+<text x="126.0" y="27.0" text-anchor="middle" font-size="15" font-weight="700" fill="#3b5bdb">Traveler</text>
+<rect x="242" y="44" width="224" height="1146" fill="#fff6d6" opacity="0.38"/>
+<rect x="242" y="4" width="224" height="36" fill="#fff6d6" stroke="#a07800" stroke-width="1.5"/>
+<text x="354.0" y="27.0" text-anchor="middle" font-size="15" font-weight="700" fill="#a07800">Travel Buddy</text>
+<line x1="242" y1="44" x2="242" y2="1190" stroke="#c9ced9" stroke-width="1"/>
+<rect x="466" y="44" width="224" height="1146" fill="#fde8ec" opacity="0.38"/>
+<rect x="466" y="4" width="224" height="36" fill="#fde8ec" stroke="#c2255c" stroke-width="1.5"/>
+<text x="578.0" y="27.0" text-anchor="middle" font-size="15" font-weight="700" fill="#c2255c">Local</text>
+<line x1="466" y1="44" x2="466" y2="1190" stroke="#c9ced9" stroke-width="1"/>
+<rect x="690" y="44" width="190" height="1146" fill="#e6f7f1" opacity="0.38"/>
+<rect x="690" y="4" width="190" height="36" fill="#e6f7f1" stroke="#0b7a5a" stroke-width="1.5"/>
+<text x="785.0" y="27.0" text-anchor="middle" font-size="15" font-weight="700" fill="#0b7a5a">Companion / contact</text>
+<line x1="690" y1="44" x2="690" y2="1190" stroke="#c9ced9" stroke-width="1"/>
+<path d="M220.0,156.0 L264.0,156.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M354.0,180.0 L354.0,206.5 L126.0,206.5 L126.0,222.5" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M220.0,260.0 L264.0,260.0" fill="none" stroke="#d9480f" stroke-width="2" marker-end="url(#ax)"/>
+<rect x="227.0" y="233.0" width="30.0" height="19" rx="9.5" fill="#fff" stroke="#d9480f" stroke-width="1.5"/>
+<text x="242.0" y="247.0" text-anchor="middle" font-size="12" font-weight="700" fill="#d9480f">No</text>
+<path d="M126.0,297.5 L126.0,340.0" fill="none" stroke="#0b7a5a" stroke-width="2" marker-end="url(#ay)"/>
+<rect x="84.0" y="302.5" width="36.0" height="19" rx="9.5" fill="#fff" stroke="#0b7a5a" stroke-width="1.5"/>
+<text x="102.0" y="316.5" text-anchor="middle" font-size="12" font-weight="700" fill="#0b7a5a">Yes</text>
+<path d="M220.0,364.0 L264.0,364.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M354.0,396.5 L354.0,512.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M488.0,536.0 L444.0,536.0" fill="none" stroke="#c2255c" stroke-width="3.2" marker-end="url(#au)"/>
+<path d="M354.0,560.0 L354.0,600.0 L126.0,600.0 L126.0,616.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M126.0,664.0 L126.0,789.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M220.0,812.0 L264.0,812.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M354.0,836.0 L354.0,870.0 L126.0,870.0 L126.0,886.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M220.0,916.0 L264.0,916.0" fill="none" stroke="#0b7a5a" stroke-width="2" marker-end="url(#ay)"/>
+<rect x="224.0" y="889.0" width="36.0" height="19" rx="9.5" fill="#fff" stroke="#0b7a5a" stroke-width="1.5"/>
+<text x="242.0" y="903.0" text-anchor="middle" font-size="12" font-weight="700" fill="#0b7a5a">Yes</text>
+<path d="M126.0,946.0 L126.0,996.0" fill="none" stroke="#d9480f" stroke-width="2" marker-end="url(#ax)"/>
+<rect x="87.0" y="951.0" width="30.0" height="19" rx="9.5" fill="#fff" stroke="#d9480f" stroke-width="1.5"/>
+<text x="102.0" y="965.0" text-anchor="middle" font-size="12" font-weight="700" fill="#d9480f">No</text>
+<path d="M354.0,940.0 L354.0,980.0 L126.0,980.0 L126.0,996.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M220.0,1020.0 L712.0,1020.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M785.0,1044.0 L785.0,1084.0 L126.0,1084.0 L126.0,1100.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M220.0,1124.0 L264.0,1124.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<rect x="10" y="58" width="870" height="32" fill="#2b2f42"/>
+<text x="22" y="79.0" font-size="15" font-weight="700" fill="#ffffff">Getting started</text>
+<rect x="10" y="438" width="870" height="32" fill="#2b2f42"/>
+<text x="22" y="459.0" font-size="15" font-weight="700" fill="#ffffff">Discover</text>
+<rect x="10" y="714" width="870" height="32" fill="#2b2f42"/>
+<text x="22" y="735.0" font-size="15" font-weight="700" fill="#ffffff">Plan</text>
+<rect x="32.0" y="133.0" width="188" height="46" rx="23.0" fill="#f1f3f5" stroke="#4b5060" stroke-width="2"/>
+<text x="126.0" y="160.5" text-anchor="middle" font-size="14" fill="#1d1f2a">Opens the app</text>
+<rect x="264.0" y="132.0" width="180" height="48" rx="8" fill="#fff6d6" stroke="#a07800" stroke-width="2"/>
+<text x="354.0" y="152.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Shows tips right away,</text>
+<text x="354.0" y="169.0" text-anchor="middle" font-size="14" fill="#1d1f2a">no account needed</text>
+<polygon points="50.0,222.5 202.0,222.5 220.0,260.0 202.0,297.5 50.0,297.5 32.0,260.0" fill="#ffffff" stroke="#6d28d9" stroke-width="2.2"/>
+<text x="126.0" y="247.5" text-anchor="middle" font-size="14" fill="#1d1f2a">Wants to save a tip</text>
+<text x="126.0" y="264.5" text-anchor="middle" font-size="14" fill="#1d1f2a">or message</text>
+<text x="126.0" y="281.5" text-anchor="middle" font-size="14" fill="#1d1f2a">someone?</text>
+<rect x="264.0" y="236.0" width="180" height="48" rx="24.0" fill="#f1f3f5" stroke="#4b5060" stroke-width="2"/>
+<text x="354.0" y="256.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Keeps browsing, signs</text>
+<text x="354.0" y="273.0" text-anchor="middle" font-size="14" fill="#1d1f2a">up later</text>
+<rect x="32.0" y="340.0" width="188" height="48" rx="8" fill="#e8f0fe" stroke="#3b5bdb" stroke-width="2"/>
+<text x="126.0" y="360.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Answers three questions</text>
+<text x="126.0" y="377.0" text-anchor="middle" font-size="14" fill="#1d1f2a">and sets location controls</text>
+<rect x="264.0" y="331.5" width="180" height="65" rx="8" fill="#fff6d6" stroke="#a07800" stroke-width="2"/>
+<text x="354.0" y="351.5" text-anchor="middle" font-size="14" fill="#1d1f2a">Opens free access and a</text>
+<text x="354.0" y="368.5" text-anchor="middle" font-size="14" fill="#1d1f2a">feed matched to their</text>
+<text x="354.0" y="385.5" text-anchor="middle" font-size="14" fill="#1d1f2a">style</text>
+<rect x="488.0" y="512.0" width="180" height="48" rx="8" fill="#fde8ec" stroke="#c2255c" stroke-width="2"/>
+<text x="578.0" y="532.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Locals and other</text>
+<text x="578.0" y="549.0" text-anchor="middle" font-size="14" fill="#1d1f2a">travelers write tips</text>
+<rect x="264.0" y="512.0" width="180" height="48" rx="8" fill="#fff6d6" stroke="#a07800" stroke-width="2"/>
+<text x="354.0" y="532.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Shows tips with crowd</text>
+<text x="354.0" y="549.0" text-anchor="middle" font-size="14" fill="#1d1f2a">signal and safety notes</text>
+<rect x="32.0" y="616.0" width="188" height="48" rx="8" fill="#e8f0fe" stroke="#3b5bdb" stroke-width="2"/>
+<text x="126.0" y="636.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Filters by travel style and</text>
+<text x="126.0" y="653.0" text-anchor="middle" font-size="14" fill="#1d1f2a">watches short videos</text>
+<rect x="32.0" y="789.0" width="188" height="46" rx="8" fill="#e8f0fe" stroke="#3b5bdb" stroke-width="2"/>
+<text x="126.0" y="816.5" text-anchor="middle" font-size="14" fill="#1d1f2a">Saves a tip with one tap</text>
+<rect x="264.0" y="788.0" width="180" height="48" rx="8" fill="#fff6d6" stroke="#a07800" stroke-width="2"/>
+<text x="354.0" y="808.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Adds it to the living</text>
+<text x="354.0" y="825.0" text-anchor="middle" font-size="14" fill="#1d1f2a">shortlist</text>
+<polygon points="50.0,886.0 202.0,886.0 220.0,916.0 202.0,946.0 50.0,946.0 32.0,916.0" fill="#ffffff" stroke="#6d28d9" stroke-width="2.2"/>
+<text x="126.0" y="912.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Has an AI-made</text>
+<text x="126.0" y="929.0" text-anchor="middle" font-size="14" fill="#1d1f2a">itinerary?</text>
+<rect x="264.0" y="892.0" width="180" height="48" rx="8" fill="#fff6d6" stroke="#a07800" stroke-width="2"/>
+<text x="354.0" y="912.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Turns the pasted text</text>
+<text x="354.0" y="929.0" text-anchor="middle" font-size="14" fill="#1d1f2a">into shortlist items</text>
+<rect x="32.0" y="996.0" width="188" height="48" rx="8" fill="#e8f0fe" stroke="#3b5bdb" stroke-width="2"/>
+<text x="126.0" y="1016.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Invites a companion to</text>
+<text x="126.0" y="1033.0" text-anchor="middle" font-size="14" fill="#1d1f2a">plan together</text>
+<rect x="712.0" y="996.0" width="146" height="48" rx="8" fill="#e6f7f1" stroke="#0b7a5a" stroke-width="2"/>
+<text x="785.0" y="1016.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Edits the same</text>
+<text x="785.0" y="1033.0" text-anchor="middle" font-size="14" fill="#1d1f2a">shortlist</text>
+<rect x="32.0" y="1100.0" width="188" height="48" rx="8" fill="#e8f0fe" stroke="#3b5bdb" stroke-width="2"/>
+<text x="126.0" y="1120.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Reorders places and</text>
+<text x="126.0" y="1137.0" text-anchor="middle" font-size="14" fill="#1d1f2a">checks the map</text>
+<rect x="264.0" y="1101.0" width="180" height="46" rx="23.0" fill="#f1f3f5" stroke="#4b5060" stroke-width="2"/>
+<text x="354.0" y="1128.5" text-anchor="middle" font-size="14" fill="#1d1f2a">Leaves for the trip</text>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 36" width="870" height="36" font-family="Helvetica, Arial, sans-serif"><rect width="870" height="36" fill="#fff"/><rect x="10" y="8" width="38" height="20" rx="6" fill="#e8f0fe" stroke="#3b5bdb" stroke-width="2"/><text x="56" y="23" font-size="13" fill="#1d1f2a">Step</text><polygon points="118,18 126,8 156,8 164,18 156,28 126,28" fill="#fff" stroke="#6d28d9" stroke-width="2"/><text x="172" y="23" font-size="13" fill="#1d1f2a">Decision</text><rect x="252" y="8" width="38" height="20" rx="10" fill="#f1f3f5" stroke="#4b5060" stroke-width="2"/><text x="298" y="23" font-size="13" fill="#1d1f2a">Start or end</text><line x1="380" y1="18" x2="414" y2="18" stroke="#6b7185" stroke-width="2"/><text x="422" y="23" font-size="13" fill="#1d1f2a">Flow</text><line x1="480" y1="18" x2="514" y2="18" stroke="#c2255c" stroke-width="3.2"/><text x="522" y="23" font-size="13" fill="#1d1f2a">Passed between traveler and local</text></svg>
+<figcaption>User flow from the first screen to the day of departure.</figcaption>
+</figure>
+
+<h2>3. On the trip: arrival and Connect with a local</h2>
+<p class="note">The traveler and the local are drawn side by side. The chat opens only when both sides have shown interest.</p>
+<figure>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 890 1022" width="890" height="1022" font-family="Helvetica, Arial, sans-serif" role="img" aria-label="On the trip: arrival and Connect with a local">
+<defs><marker id="an" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6b7185"/></marker><marker id="ay" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0b7a5a"/></marker><marker id="ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9480f"/></marker><marker id="au" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c2255c"/></marker></defs>
+<rect width="890" height="1022" fill="#ffffff"/>
+<rect x="10" y="44" width="232" height="974" fill="#e8f0fe" opacity="0.38"/>
+<rect x="10" y="4" width="232" height="36" fill="#e8f0fe" stroke="#3b5bdb" stroke-width="1.5"/>
+<text x="126.0" y="27.0" text-anchor="middle" font-size="15" font-weight="700" fill="#3b5bdb">Traveler</text>
+<rect x="242" y="44" width="224" height="974" fill="#fff6d6" opacity="0.38"/>
+<rect x="242" y="4" width="224" height="36" fill="#fff6d6" stroke="#a07800" stroke-width="1.5"/>
+<text x="354.0" y="27.0" text-anchor="middle" font-size="15" font-weight="700" fill="#a07800">Travel Buddy</text>
+<line x1="242" y1="44" x2="242" y2="1018" stroke="#c9ced9" stroke-width="1"/>
+<rect x="466" y="44" width="224" height="974" fill="#fde8ec" opacity="0.38"/>
+<rect x="466" y="4" width="224" height="36" fill="#fde8ec" stroke="#c2255c" stroke-width="1.5"/>
+<text x="578.0" y="27.0" text-anchor="middle" font-size="15" font-weight="700" fill="#c2255c">Local</text>
+<line x1="466" y1="44" x2="466" y2="1018" stroke="#c9ced9" stroke-width="1"/>
+<rect x="690" y="44" width="190" height="974" fill="#e6f7f1" opacity="0.38"/>
+<rect x="690" y="4" width="190" height="36" fill="#e6f7f1" stroke="#0b7a5a" stroke-width="1.5"/>
+<text x="785.0" y="27.0" text-anchor="middle" font-size="15" font-weight="700" fill="#0b7a5a">Companion / contact</text>
+<line x1="690" y1="44" x2="690" y2="1018" stroke="#c9ced9" stroke-width="1"/>
+<path d="M220.0,156.0 L264.0,156.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M354.0,188.5 L354.0,279.5 L126.0,279.5 L126.0,295.5" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M220.0,328.0 L264.0,328.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M488.0,328.0 L444.0,328.0" fill="none" stroke="#c2255c" stroke-width="3.2" marker-end="url(#au)"/>
+<path d="M126.0,360.5 L126.0,409.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M220.0,432.0 L264.0,432.0" fill="none" stroke="#c2255c" stroke-width="3.2" marker-end="url(#au)"/>
+<path d="M444.0,432.0 L488.0,432.0" fill="none" stroke="#c2255c" stroke-width="3.2" marker-end="url(#au)"/>
+<path d="M578.0,456.0 L578.0,506.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M488.0,536.0 L444.0,536.0" fill="none" stroke="#d9480f" stroke-width="2" marker-end="url(#ax)"/>
+<rect x="451.0" y="509.0" width="30.0" height="19" rx="9.5" fill="#fff" stroke="#d9480f" stroke-width="1.5"/>
+<text x="466.0" y="523.0" text-anchor="middle" font-size="12" font-weight="700" fill="#d9480f">No</text>
+<path d="M578.0,566.0 L578.0,616.0" fill="none" stroke="#0b7a5a" stroke-width="2" marker-end="url(#ay)"/>
+<rect x="536.0" y="571.0" width="36.0" height="19" rx="9.5" fill="#fff" stroke="#0b7a5a" stroke-width="1.5"/>
+<text x="554.0" y="585.0" text-anchor="middle" font-size="12" font-weight="700" fill="#0b7a5a">Yes</text>
+<path d="M578.0,664.0 L578.0,705.0 L126.0,705.0 L126.0,721.0" fill="none" stroke="#c2255c" stroke-width="3.2" marker-end="url(#au)"/>
+<path d="M126.0,767.0 L126.0,818.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M220.0,848.0 L264.0,848.0" fill="none" stroke="#d9480f" stroke-width="2" marker-end="url(#ax)"/>
+<rect x="227.0" y="821.0" width="30.0" height="19" rx="9.5" fill="#fff" stroke="#d9480f" stroke-width="1.5"/>
+<text x="242.0" y="835.0" text-anchor="middle" font-size="12" font-weight="700" fill="#d9480f">No</text>
+<path d="M444.0,848.0 L488.0,848.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M126.0,878.0 L126.0,928.0" fill="none" stroke="#0b7a5a" stroke-width="2" marker-end="url(#ay)"/>
+<rect x="84.0" y="883.0" width="36.0" height="19" rx="9.5" fill="#fff" stroke="#0b7a5a" stroke-width="1.5"/>
+<text x="102.0" y="897.0" text-anchor="middle" font-size="12" font-weight="700" fill="#0b7a5a">Yes</text>
+<rect x="10" y="58" width="870" height="32" fill="#2b2f42"/>
+<text x="22" y="79.0" font-size="15" font-weight="700" fill="#ffffff">On the trip</text>
+<rect x="10" y="230" width="870" height="32" fill="#2b2f42"/>
+<text x="22" y="251.0" font-size="15" font-weight="700" fill="#ffffff">Connect: traveler and local</text>
+<rect x="32.0" y="133.0" width="188" height="46" rx="23.0" fill="#f1f3f5" stroke="#4b5060" stroke-width="2"/>
+<text x="126.0" y="160.5" text-anchor="middle" font-size="14" fill="#1d1f2a">Arrives at the destination</text>
+<rect x="264.0" y="123.5" width="180" height="65" rx="8" fill="#fff6d6" stroke="#a07800" stroke-width="2"/>
+<text x="354.0" y="143.5" text-anchor="middle" font-size="14" fill="#1d1f2a">Keeps the plan offline</text>
+<text x="354.0" y="160.5" text-anchor="middle" font-size="14" fill="#1d1f2a">and logs places in the</text>
+<text x="354.0" y="177.5" text-anchor="middle" font-size="14" fill="#1d1f2a">background</text>
+<rect x="32.0" y="295.5" width="188" height="65" rx="8" fill="#e8f0fe" stroke="#3b5bdb" stroke-width="2"/>
+<text x="126.0" y="315.5" text-anchor="middle" font-size="14" fill="#1d1f2a">Opens a local&#x27;s profile</text>
+<text x="126.0" y="332.5" text-anchor="middle" font-size="14" fill="#1d1f2a">from a tip or the Locals</text>
+<text x="126.0" y="349.5" text-anchor="middle" font-size="14" fill="#1d1f2a">tab</text>
+<rect x="264.0" y="304.0" width="180" height="48" rx="8" fill="#fff6d6" stroke="#a07800" stroke-width="2"/>
+<text x="354.0" y="324.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Shows verified identity,</text>
+<text x="354.0" y="341.0" text-anchor="middle" font-size="14" fill="#1d1f2a">interests and languages</text>
+<rect x="488.0" y="295.5" width="180" height="65" rx="8" fill="#fde8ec" stroke="#c2255c" stroke-width="2"/>
+<text x="578.0" y="315.5" text-anchor="middle" font-size="14" fill="#1d1f2a">Keeps a verified profile</text>
+<text x="578.0" y="332.5" text-anchor="middle" font-size="14" fill="#1d1f2a">and availability up to</text>
+<text x="578.0" y="349.5" text-anchor="middle" font-size="14" fill="#1d1f2a">date</text>
+<rect x="32.0" y="409.0" width="188" height="46" rx="8" fill="#e8f0fe" stroke="#3b5bdb" stroke-width="2"/>
+<text x="126.0" y="436.5" text-anchor="middle" font-size="14" fill="#1d1f2a">Sends a first message</text>
+<rect x="264.0" y="399.5" width="180" height="65" rx="8" fill="#fff6d6" stroke="#a07800" stroke-width="2"/>
+<text x="354.0" y="419.5" text-anchor="middle" font-size="14" fill="#1d1f2a">Opens the chat only</text>
+<text x="354.0" y="436.5" text-anchor="middle" font-size="14" fill="#1d1f2a">when both sides show</text>
+<text x="354.0" y="453.5" text-anchor="middle" font-size="14" fill="#1d1f2a">interest</text>
+<rect x="488.0" y="408.0" width="180" height="48" rx="8" fill="#fde8ec" stroke="#c2255c" stroke-width="2"/>
+<text x="578.0" y="428.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Reads the message and</text>
+<text x="578.0" y="445.0" text-anchor="middle" font-size="14" fill="#1d1f2a">sees shared interests</text>
+<polygon points="506.0,506.0 650.0,506.0 668.0,536.0 650.0,566.0 506.0,566.0 488.0,536.0" fill="#ffffff" stroke="#6d28d9" stroke-width="2.2"/>
+<text x="578.0" y="540.5" text-anchor="middle" font-size="14" fill="#1d1f2a">Happy to meet?</text>
+<rect x="264.0" y="512.0" width="180" height="48" rx="24.0" fill="#f1f3f5" stroke="#4b5060" stroke-width="2"/>
+<text x="354.0" y="532.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Chat ends, traveler</text>
+<text x="354.0" y="549.0" text-anchor="middle" font-size="14" fill="#1d1f2a">keeps exploring</text>
+<rect x="488.0" y="616.0" width="180" height="48" rx="8" fill="#fde8ec" stroke="#c2255c" stroke-width="2"/>
+<text x="578.0" y="636.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Replies with a time and</text>
+<text x="578.0" y="653.0" text-anchor="middle" font-size="14" fill="#1d1f2a">place, free of charge</text>
+<rect x="32.0" y="721.0" width="188" height="46" rx="8" fill="#e8f0fe" stroke="#3b5bdb" stroke-width="2"/>
+<text x="126.0" y="748.5" text-anchor="middle" font-size="14" fill="#1d1f2a">Meets the local in person</text>
+<polygon points="50.0,818.0 202.0,818.0 220.0,848.0 202.0,878.0 50.0,878.0 32.0,848.0" fill="#ffffff" stroke="#6d28d9" stroke-width="2.2"/>
+<text x="126.0" y="852.5" text-anchor="middle" font-size="14" fill="#1d1f2a">Feels safe?</text>
+<rect x="264.0" y="824.0" width="180" height="48" rx="8" fill="#fff6d6" stroke="#a07800" stroke-width="2"/>
+<text x="354.0" y="844.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Report or block, on every</text>
+<text x="354.0" y="861.0" text-anchor="middle" font-size="14" fill="#1d1f2a">profile</text>
+<rect x="488.0" y="825.0" width="180" height="46" rx="23.0" fill="#f1f3f5" stroke="#4b5060" stroke-width="2"/>
+<text x="578.0" y="852.5" text-anchor="middle" font-size="14" fill="#1d1f2a">Connection closed</text>
+<rect x="32.0" y="928.0" width="188" height="48" rx="24.0" fill="#f1f3f5" stroke="#4b5060" stroke-width="2"/>
+<text x="126.0" y="948.0" text-anchor="middle" font-size="14" fill="#1d1f2a">The trip goes on and the</text>
+<text x="126.0" y="965.0" text-anchor="middle" font-size="14" fill="#1d1f2a">journal keeps filling</text>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 36" width="870" height="36" font-family="Helvetica, Arial, sans-serif"><rect width="870" height="36" fill="#fff"/><rect x="10" y="8" width="38" height="20" rx="6" fill="#e8f0fe" stroke="#3b5bdb" stroke-width="2"/><text x="56" y="23" font-size="13" fill="#1d1f2a">Step</text><polygon points="118,18 126,8 156,8 164,18 156,28 126,28" fill="#fff" stroke="#6d28d9" stroke-width="2"/><text x="172" y="23" font-size="13" fill="#1d1f2a">Decision</text><rect x="252" y="8" width="38" height="20" rx="10" fill="#f1f3f5" stroke="#4b5060" stroke-width="2"/><text x="298" y="23" font-size="13" fill="#1d1f2a">Start or end</text><line x1="380" y1="18" x2="414" y2="18" stroke="#6b7185" stroke-width="2"/><text x="422" y="23" font-size="13" fill="#1d1f2a">Flow</text><line x1="480" y1="18" x2="514" y2="18" stroke="#c2255c" stroke-width="3.2"/><text x="522" y="23" font-size="13" fill="#1d1f2a">Passed between traveler and local</text></svg>
+<figcaption>User flow from arrival to a meeting with a local, including the local's side.</figcaption>
+</figure>
+
+<h2>4. After the trip: Journal and the next trip</h2>
+<p class="note">The journal stays private unless the traveler chooses contacts to share it with.</p>
+<figure>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 890 434" width="890" height="434" font-family="Helvetica, Arial, sans-serif" role="img" aria-label="After the trip: Journal and the next trip">
+<defs><marker id="an" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6b7185"/></marker><marker id="ay" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0b7a5a"/></marker><marker id="ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9480f"/></marker><marker id="au" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c2255c"/></marker></defs>
+<rect width="890" height="434" fill="#ffffff"/>
+<rect x="10" y="44" width="232" height="386" fill="#e8f0fe" opacity="0.38"/>
+<rect x="10" y="4" width="232" height="36" fill="#e8f0fe" stroke="#3b5bdb" stroke-width="1.5"/>
+<text x="126.0" y="27.0" text-anchor="middle" font-size="15" font-weight="700" fill="#3b5bdb">Traveler</text>
+<rect x="242" y="44" width="224" height="386" fill="#fff6d6" opacity="0.38"/>
+<rect x="242" y="4" width="224" height="36" fill="#fff6d6" stroke="#a07800" stroke-width="1.5"/>
+<text x="354.0" y="27.0" text-anchor="middle" font-size="15" font-weight="700" fill="#a07800">Travel Buddy</text>
+<line x1="242" y1="44" x2="242" y2="430" stroke="#c9ced9" stroke-width="1"/>
+<rect x="466" y="44" width="224" height="386" fill="#fde8ec" opacity="0.38"/>
+<rect x="466" y="4" width="224" height="36" fill="#fde8ec" stroke="#c2255c" stroke-width="1.5"/>
+<text x="578.0" y="27.0" text-anchor="middle" font-size="15" font-weight="700" fill="#c2255c">Local</text>
+<line x1="466" y1="44" x2="466" y2="430" stroke="#c9ced9" stroke-width="1"/>
+<rect x="690" y="44" width="190" height="386" fill="#e6f7f1" opacity="0.38"/>
+<rect x="690" y="4" width="190" height="36" fill="#e6f7f1" stroke="#0b7a5a" stroke-width="1.5"/>
+<text x="785.0" y="27.0" text-anchor="middle" font-size="15" font-weight="700" fill="#0b7a5a">Companion / contact</text>
+<line x1="690" y1="44" x2="690" y2="430" stroke="#c9ced9" stroke-width="1"/>
+<path d="M220.0,156.0 L264.0,156.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M354.0,180.0 L354.0,214.0 L126.0,214.0 L126.0,230.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<path d="M220.0,260.0 L712.0,260.0" fill="none" stroke="#0b7a5a" stroke-width="2" marker-end="url(#ay)"/>
+<rect x="448.0" y="233.0" width="36.0" height="19" rx="9.5" fill="#fff" stroke="#0b7a5a" stroke-width="1.5"/>
+<text x="466.0" y="247.0" text-anchor="middle" font-size="12" font-weight="700" fill="#0b7a5a">Yes</text>
+<path d="M126.0,290.0 L126.0,340.0" fill="none" stroke="#d9480f" stroke-width="2" marker-end="url(#ax)"/>
+<rect x="43.0" y="295.0" width="118.0" height="19" rx="9.5" fill="#fff" stroke="#d9480f" stroke-width="1.5"/>
+<text x="102.0" y="309.0" text-anchor="middle" font-size="12" font-weight="700" fill="#d9480f">No, stays private</text>
+<path d="M785.0,284.0 L785.0,364.0 L220.0,364.0" fill="none" stroke="#6b7185" stroke-width="2" marker-end="url(#an)"/>
+<rect x="10" y="58" width="870" height="32" fill="#2b2f42"/>
+<text x="22" y="79.0" font-size="15" font-weight="700" fill="#ffffff">Journal</text>
+<rect x="32.0" y="133.0" width="188" height="46" rx="23.0" fill="#f1f3f5" stroke="#4b5060" stroke-width="2"/>
+<text x="126.0" y="160.5" text-anchor="middle" font-size="14" fill="#1d1f2a">The trip ends</text>
+<rect x="264.0" y="132.0" width="180" height="48" rx="8" fill="#fff6d6" stroke="#a07800" stroke-width="2"/>
+<text x="354.0" y="152.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Builds the journal from</text>
+<text x="354.0" y="169.0" text-anchor="middle" font-size="14" fill="#1d1f2a">places and people met</text>
+<polygon points="50.0,230.0 202.0,230.0 220.0,260.0 202.0,290.0 50.0,290.0 32.0,260.0" fill="#ffffff" stroke="#6d28d9" stroke-width="2.2"/>
+<text x="126.0" y="256.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Shares the journal</text>
+<text x="126.0" y="273.0" text-anchor="middle" font-size="14" fill="#1d1f2a">with contacts?</text>
+<rect x="712.0" y="236.0" width="146" height="48" rx="8" fill="#e6f7f1" stroke="#0b7a5a" stroke-width="2"/>
+<text x="785.0" y="256.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Chosen contacts</text>
+<text x="785.0" y="273.0" text-anchor="middle" font-size="14" fill="#1d1f2a">view it</text>
+<rect x="32.0" y="340.0" width="188" height="48" rx="24.0" fill="#f1f3f5" stroke="#4b5060" stroke-width="2"/>
+<text x="126.0" y="360.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Next trip starts in</text>
+<text x="126.0" y="377.0" text-anchor="middle" font-size="14" fill="#1d1f2a">Discover</text>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 36" width="870" height="36" font-family="Helvetica, Arial, sans-serif"><rect width="870" height="36" fill="#fff"/><rect x="10" y="8" width="38" height="20" rx="6" fill="#e8f0fe" stroke="#3b5bdb" stroke-width="2"/><text x="56" y="23" font-size="13" fill="#1d1f2a">Step</text><polygon points="118,18 126,8 156,8 164,18 156,28 126,28" fill="#fff" stroke="#6d28d9" stroke-width="2"/><text x="172" y="23" font-size="13" fill="#1d1f2a">Decision</text><rect x="252" y="8" width="38" height="20" rx="10" fill="#f1f3f5" stroke="#4b5060" stroke-width="2"/><text x="298" y="23" font-size="13" fill="#1d1f2a">Start or end</text><line x1="380" y1="18" x2="414" y2="18" stroke="#6b7185" stroke-width="2"/><text x="422" y="23" font-size="13" fill="#1d1f2a">Flow</text><line x1="480" y1="18" x2="514" y2="18" stroke="#c2255c" stroke-width="3.2"/><text x="522" y="23" font-size="13" fill="#1d1f2a">Passed between traveler and local</text></svg>
+<figcaption>User flow from the end of the trip to the next one.</figcaption>
+</figure>
+
+<p class="note" style="margin-top:28px">The map shows the main path. Error states and edge cases are not drawn.</p>
+</main>
+</body>
+</html>
