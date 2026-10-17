@@ -36,6 +36,7 @@ If a folder with the same name already exists, the command stops. Do not delete 
 | See or update the home page | `python3 toolkit/skills/export-home.py` |
 | See the report of a project | Open `<project>/index.html`. To rebuild it: run `python3 ../toolkit/skills/export-hub.py` **inside** the project folder |
 | Add a new document to a project | Open a template in `toolkit/templates/`, copy it into that project's `work/`, and follow that project's `AGENTS.md` |
+| Draw a process map, swimlane or user flow | Follow `toolkit/skills/build-process-map.md` (uses `toolkit/diagram-design/`); template: `toolkit/templates/process-map.md` |
 | Unclear which project it belongs to | Ask one question. Do not guess |
 
 ## Hard rules
