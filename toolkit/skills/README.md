@@ -14,6 +14,7 @@ This folder holds two things. **Step cards** (`.md` files): they define AI-assis
 | [`refresh-hub.md`](refresh-hub.md) | All stages | When you want the AI to review where items are not linked or are missing | Draft |
 | [`add-media.md`](add-media.md) | All stages | When there are images, video, PDFs or documents to put into the report | Draft |
 | [`export-hub.md`](export-hub.md) | All stages | When you need to see the hub in a browser or send it to someone | Draft |
+| [`build-process-map.md`](build-process-map.md) | Develop | When you need a process map, swimlane or user flow drawn as a diagram (uses `../diagram-design/`) | Draft |
 
 **Scripts** (`.py` files): `export-hub.py` builds the `index.html` report, `serve-hub.py` shows the report as you save files. You usually ask the AI to run them rather than opening them by hand.
 

@@ -1,14 +1,18 @@
 # Gates
 
-The four gates (checkpoints) a project goes through. Each check has a status: `open` (not done), `passed` or `failed`. **Do not rename a check, only change its status.** A gate passes when all of its checks pass.
+The four gates (checkpoints) a project goes through. Each check has a status: `open` (not done), `passed` or `failed`. **Do not rename a check, only change its status.** A gate passes when all of its checks pass. A check marked **hard stop** cannot be passed with a reason: it must really be met.
 
 ## Gate 1: Discover (Question + evidence)
 
 | Check | What | Status |
 |---|---|---|
 | 1a | The business question and outcome are agreed with the product owner, or marked **assumed** with the agreement status | passed |
-| 1b | Every insight traces back to a source you can open | passed |
-| 1c | Nothing is guessed: unknowns and counterexamples are recorded; the AI draft sits next to the checked version, with the error rate | open |
+| 1b | Every insight traces back to a source you can open (quote, participant ID, timestamp). **Hard stop** | passed |
+| 1c | Nothing is guessed: unknowns and counterexamples are recorded; the AI draft sits next to the checked version, with the error rate and a list of what the AI left out. **Hard stop** | open |
+| 1d | The evidence comes from at least two kinds of source, the sample size is stated, and what the sample cannot tell you is written down | open |
+| 1e | At least one counterexample was sought and recorded ("searched, none found" counts), and the synthesis prompt does not state your own hypothesis | open |
+| 1f | Participants consented, the transcript was anonymised before it was pasted, and the raw data is kept outside what the AI reads. **Hard stop** | open |
+| 1g | The tool, version, key prompts and your changes to the AI output are logged | open |
 
 ## Gate 2: Define (Evidence + agreement)
 
@@ -47,6 +51,7 @@ The statuses were set by the person who built the demo, based on the original do
 
 - **1a, 2b `passed`:** there is no real product owner, but the agreement status (`not available`) and the figures are recorded as `assumed`.
 - **1c `open`:** there is no AI draft to compare with, so an error rate cannot be calculated.
+- **1d to 1g `open`:** added on 2026-10-15 when Gate 1 was extended; they have not been assessed for the demo case yet.
 - **2d, 3c `open`:** the yes/no questions for the 10 principles have not been written.
 - **3a `open`:** the project has 26 solutions in the Solution Pool but no step of choosing between three directions yet.
 - **4a `failed`:** the only test round used simulated people, which does not meet "real users tested the hypotheses". Run E2 with real people to change this status.

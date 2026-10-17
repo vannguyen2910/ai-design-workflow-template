@@ -7,7 +7,7 @@ The original documents of the Travel Buddy project from the Define stage to Test
 | `06_User_Personas.md` | Three personas (Aisha, Marco, Ji-yeon) and what the research changed |
 | `07_Solution_Pool.md` | 26 solutions across five pillars (IDs `SP-*` in this demo) |
 | `08_E2E_Process_Map.html` | The swimlane process map: four actors and the handovers between them |
-| `08_E2E_User_Flow.md`, `.html` | The end-to-end journey and the sitemap (the `.html` file needs the internet to draw the diagram) |
+| `08_E2E_User_Flow.md` | The end-to-end journey and the sitemap |
 | `09_Card_Sorting_IA.md` | The card sort plan. The two images `IA_Sitemap.png` and `Card_Sort_Board.png` are in `work/ia-sitemap/` |
 | `10_Prototype_Plan.md` | The design system, the list of screens, the flows |
 | `11_Explore_Requirements.md` | The PRD for the Explore tab |
