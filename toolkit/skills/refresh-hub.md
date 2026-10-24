@@ -1,13 +1,13 @@
 # Workflow: Review the Hub
 
-Ask the AI to read the item files and list what is not linked, does not match or is missing, then you decide how to handle each one. **This workflow writes to no file**: the tables and warnings in the report are computed by `python3 ../toolkit/skills/export-hub.py`.
+Ask the AI to read the item files and list what is not linked, does not match or is missing, then you decide how to handle each one. **This workflow writes to no file**: the tables and warnings in the report are computed by `python3 ../toolkit/skills/build-report.py`.
 
 *Status: draft.*
 
 | | |
 |---|---|
 | When | After you add or edit many items, or before handoff |
-| Before | Run `python3 ../toolkit/skills/export-hub.py` so the report is up to date |
+| Before | Run `python3 ../toolkit/skills/build-report.py` so the report is up to date |
 | Working file | None. The result is answered right in the chat |
 
 ## Step 1: Review (AI)

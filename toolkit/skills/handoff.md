@@ -10,7 +10,7 @@ Hand the design to the people who will build it, and agree how you will know aft
 | Sources | The accepted decisions in `insights/decisions/`, `work/findings.md` and `insights/findings/`, the prototype in `work/prototype/`, `context/design-system-notes.md`, `insights/metrics/`, `insights/hypotheses/` |
 | Original data | `work/sources/_raw-private/` (the AI does not read it) |
 | Final output | `work/handoff.md`, `work/measurement-plan.md`, the report `index.html` (or the bundle) to send, and the metric items updated |
-| Related | `test.md` is the step before; `refresh-hub.md` (warnings before handoff); `export-hub.md` (the bundle); `../toolkit/templates/measurement-plan.md` for the shape |
+| Related | `test.md` is the step before; `refresh-hub.md` (warnings before handoff); `build-report.md` (the bundle); `../toolkit/templates/measurement-plan.md` for the shape |
 
 A handoff is not a file drop. It is the point where a developer can build without coming back to you for every question, and where everyone has agreed in advance what "it worked" means.
 
@@ -111,7 +111,7 @@ Check each definition with the person who owns the data (analytics, engineering)
 **Input:** `## Developer's questions (AI)`
 **Output:** `## Answers` and `## Agreement` in `work/handoff.md`
 
-Answer each question in the pack itself, or move it to the open questions with who answers and by when. Then go through the pack with a real developer and the product owner, and record who agreed, when and what they changed. Ask the AI to rebuild the report, read the warnings, and, if you send it out, make the bundle (`export-hub.md`). Record how the AI-assisted workflow performed in counts, not impressions (time per step, errors caught at the gates, redos) in `work/measurement-plan.md`.
+Answer each question in the pack itself, or move it to the open questions with who answers and by when. Then go through the pack with a real developer and the product owner, and record who agreed, when and what they changed. Ask the AI to rebuild the report, read the warnings, and, if you send it out, make the bundle (`build-report.md`). Record how the AI-assisted workflow performed in counts, not impressions (time per step, errors caught at the gates, redos) in `work/measurement-plan.md`.
 
 **Gate D:** Do the questions that block the build have an answer? Has a real developer read the pack? Is the agreement status one of agreed, pending or not available, with a name and a date?
 **Failure sign:** The pack sent by message with no walk-through; "agreed" with no name.

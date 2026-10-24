@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-export-home.py - build the workspace home page (index.html at the workspace root).
+build-home.py - build the workspace home page (index.html at the workspace root).
 
 One card per project folder (a folder with AGENTS.md next to insights/ or work/). Each card opens that
 project's report. The page is a pure function of the files: no timestamp, so a rebuild with nothing
 changed produces no diff.
 
-    python3 export-home.py                        # the workspace you are in
-    python3 export-home.py --workspace PATH
-    python3 export-home.py --title "My workspace"
+    python3 build-home.py                        # the workspace you are in
+    python3 build-home.py --workspace PATH
+    python3 build-home.py --title "My workspace"
 """
 import argparse
 import html
@@ -151,7 +151,7 @@ def case_card(ws, d):
 
 
 CSS = """
-/* Minimal theme, same as the reports (tokens are read from export-hub.py at build time) */
+/* Minimal theme, same as the reports (tokens are read from build-report.py at build time) */
 :root{--ink:#1c252e;--bg:#fff;--surface:#f4f6f8;--muted:#637381;--line:rgba(145,158,171,.28);--purple:#00a76f;--link:#007867;--tint:rgba(0,167,111,.08);--tint2:rgba(0,167,111,.16);--on-purple:#fff;--r:8px;color-scheme:light}
 *{box-sizing:border-box}
 html{overflow-y:scroll}
@@ -186,7 +186,7 @@ footer{padding:24px 0 48px;border-top:1px dashed var(--line);color:var(--muted);
 def minimal_tokens():
     """The colour tokens of the report's Minimal theme, as a :root rule (None if not found)."""
     here = os.path.dirname(os.path.abspath(__file__))
-    m = re.search(r"\[data-theme=minimal\]\{(--ink:[^}]*)\}", read(os.path.join(here, "export-hub.py")))
+    m = re.search(r"\[data-theme=minimal\]\{(--ink:[^}]*)\}", read(os.path.join(here, "build-report.py")))
     return ":root{%s;color-scheme:light}" % m.group(1) if m else None
 
 
@@ -241,7 +241,7 @@ def render(cards, title, logo):
 <p class="lede">Every project in this workspace, in one place. Open a card to see that project&rsquo;s report.</p>
 %(body)s
 </main>
-<footer><div class="wrap">This page is generated from the project folders. To refresh it, rebuild any report or run <code>export-home.py</code>.</div></footer>
+<footer><div class="wrap">This page is generated from the project folders. To refresh it, rebuild any report or run <code>build-home.py</code>.</div></footer>
 </body>
 </html>
 """ % {"title": html.escape(title), "css": CSS + (minimal_tokens() or ""), "logo": logo, "body": "\n".join(body)}
@@ -249,7 +249,7 @@ def render(cards, title, logo):
 
 def load_logo():
     here = os.path.dirname(os.path.abspath(__file__))
-    src = read(os.path.join(here, "export-hub.py"))
+    src = read(os.path.join(here, "build-report.py"))
     m = re.search(r'<svg class="logo".*?</svg>', src, flags=re.S)
     return m.group(0) if m else ""
 

@@ -17,7 +17,7 @@ Your hub is private by default: it lives in the project folder on your machine, 
 
 One self-contained HTML file with a menu, opened by double-clicking in a browser, and sendable by email.
 
-1. **Build the report.** The easiest way: ask the AI tool that has the project folder open to run `python3 ../toolkit/skills/export-hub.py`.
+1. **Build the report.** The easiest way: ask the AI tool that has the project folder open to run `python3 ../toolkit/skills/build-report.py`.
    - Running it yourself on Mac: right-click the project folder, choose **New Terminal at Folder**, then type the command above.
    - Running it yourself on Windows: open the project folder, click the address bar, type `cmd`, press Enter, then type the command above.
    - The machine needs Python 3. A Mac may ask you to install a set of tools the first time; Windows needs Python installed from [python.org](https://www.python.org).
@@ -29,7 +29,7 @@ If you use GitHub, `index.html` is also **rebuilt automatically** after each pus
 
 The report contains only the hub, the decision log and the principles. It has no working files or AI drafts.
 
-To send a compact package (images and prototype included, without exposing raw working files): run `python3 ../toolkit/skills/export-hub.py --bundle folder-name --zip` and send the ZIP file. The recipient unzips it and double-clicks `index.html`.
+To send a compact package (images and prototype included, without exposing raw working files): run `python3 ../toolkit/skills/build-report.py --bundle folder-name --zip` and send the ZIP file. The recipient unzips it and double-clicks `index.html`.
 
 ## Option 2: PDF
 

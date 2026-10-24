@@ -68,7 +68,7 @@ For each row pick one: keep it, edit the title or the relationships, or cut it. 
 **Input:** The whole hub
 **Output:** A new `index.html`
 
-Run `python3 ../toolkit/skills/export-hub.py`, open the **Insights** page to see the new items, then read the warnings on the Overview: a new opportunity with no decision, a hypothesis with no test, a metric with no target are the things to do next. If you want this piece of research to show on the Evidence page in Stages, add the file name to the **From work** column of the `evidence` row in `stages/README.md`.
+Run `python3 ../toolkit/skills/build-report.py`, open the **Insights** page to see the new items, then read the warnings on the Overview: a new opportunity with no decision, a hypothesis with no test, a metric with no target are the things to do next. If you want this piece of research to show on the Evidence page in Stages, add the file name to the **From work** column of the `evidence` row in `stages/README.md`.
 
 **Check:** Can each insight you approved be found in Insights, and traced back to the document?
 **Failure sign:** A new item is linked to nothing (it sits in the group "Not linked to any opportunity").

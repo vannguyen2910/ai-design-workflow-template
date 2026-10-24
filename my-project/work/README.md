@@ -108,7 +108,7 @@ Only `title` and `type` are required. The other lines make the page fuller.
 ## The export command
 
 ```
-python3 ../toolkit/skills/export-hub.py --bundle send-to-stakeholders --zip
+python3 ../toolkit/skills/build-report.py --bundle send-to-stakeholders --zip
 ```
 
 This creates the compact folder and the zip file described above. Run with `--team` and the AI draft sections show up (folded).

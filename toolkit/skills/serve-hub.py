@@ -35,7 +35,7 @@ def find_case(start=None):
 
 
 CASE = None
-EXPORTER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "export-hub.py")
+EXPORTER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "build-report.py")
 INDEX = None
 SKIP = {".git", "node_modules", "_raw-private", "_personal"}
 

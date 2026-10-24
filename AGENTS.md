@@ -10,7 +10,7 @@ This is the **workspace root**: the place that holds several projects (each proj
 | `demo-project/` | The sample project (Travel Buddy) | Read for reference, do not edit unless asked |
 | `<project-name>/` | The workspace owner's project | Work following that project's `AGENTS.md` |
 | `toolkit/` | Guides, document templates, step cards, scripts | Read, do not edit unless asked |
-| `index.html` | The home page: one card per project | Do not edit by hand. Build it with `toolkit/skills/export-home.py` |
+| `index.html` | The home page: one card per project | Do not edit by hand. Build it with `toolkit/skills/build-home.py` |
 
 ## When asked to create a new project
 
@@ -33,8 +33,8 @@ If a folder with the same name already exists, the command stops. Do not delete 
 
 | Request | What to do |
 |---|---|
-| See or update the home page | `python3 toolkit/skills/export-home.py` |
-| See the report of a project | Open `<project>/index.html`. To rebuild it: run `python3 ../toolkit/skills/export-hub.py` **inside** the project folder |
+| See or update the home page | `python3 toolkit/skills/build-home.py` |
+| See the report of a project | Open `<project>/index.html`. To rebuild it: run `python3 ../toolkit/skills/build-report.py` **inside** the project folder |
 | Add a new document to a project | Open a template in `toolkit/templates/`, copy it into that project's `work/`, and follow that project's `AGENTS.md` |
 | Draw a process map, swimlane or user flow | Follow `toolkit/skills/build-process-map.md` (uses `toolkit/diagram-design/`); template: `toolkit/templates/process-map.md` |
 | "Lưu lại", "Lưu và đăng lên", "Save and publish" | Ask which project, then follow **Save and publish** in that project's `AGENTS.md`. Saving changes to the workspace itself (for example `toolkit/`) follows the same steps, staging only the files that changed |

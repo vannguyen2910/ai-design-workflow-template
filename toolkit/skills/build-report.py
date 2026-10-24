@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Export the markdown hub of a project folder to ONE self-contained HTML file.
 
-    python3 export-hub.py                 # case = the project folder you are in -> <case>/index.html
-    python3 export-hub.py --project PATH     # another project folder
-    python3 export-hub.py --out FILE.html # custom output path (e.g. a copy to send)
+    python3 build-report.py                 # case = the project folder you are in -> <case>/index.html
+    python3 build-report.py --project PATH     # another project folder
+    python3 build-report.py --out FILE.html # custom output path (e.g. a copy to send)
 
 Why a script and not an AI tool: turning markdown into HTML and tracing links between items is
 deterministic. A script gives the same output every time, invents nothing and sends no data anywhere.
@@ -2680,7 +2680,7 @@ def main():
     # is the workspace's shared copy (toolkit/skills/)
     try:
         here = os.path.dirname(os.path.abspath(__file__))
-        home = os.path.join(here, "export-home.py")
+        home = os.path.join(here, "build-home.py")
         ws = os.path.dirname(os.path.abspath(case))
         if not bundle_dir and os.path.isfile(home) and os.path.join(ws, "toolkit", "skills") == here:
             import subprocess

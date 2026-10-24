@@ -73,7 +73,7 @@ The hub is where you answer the question: "Which user need is this decision base
 
 - **Each design decision is its own file.** For example decision `D2` lives at `insights/decisions/D2.md`.
 - **You write each fact in one place only.** Decision `D2` says which hypothesis it tests; the hub works out the reverse direction.
-- **After each update,** run `python3 ../toolkit/skills/export-hub.py` (or ask the AI tool to) so the report rebuilds the summary tables and warnings.
+- **After each update,** run `python3 ../toolkit/skills/build-report.py` (or ask the AI tool to) so the report rebuilds the summary tables and warnings.
 
 How the hub works is in `toolkit/skills/how-the-hub-works.md`.
 
@@ -87,7 +87,7 @@ An `.md` file is plain text, so **any tool that can open a folder will do**. Pic
 | **Obsidian** (free) | Open the whole project folder as a vault. Adds Graph view, Backlinks and tables by item type. See [`05-obsidian.md`](05-obsidian.md) |
 | **VS Code** (free) | Install it from [code.visualstudio.com](https://code.visualstudio.com), open the whole project folder, click an `.md` file, then press `Cmd+Shift+V` (Mac) or `Ctrl+Shift+V` (Windows) to see the rendered version |
 | **GitHub** | If you saved the folder to a Private repo, open the repo on github.com; Markdown is already rendered |
-| **Browser** (nothing to install) | Double-click the `index.html` at the root of the project folder: that is the home page of the hub. After you edit the hub, ask the AI tool to run `python3 ../toolkit/skills/export-hub.py` to rebuild it. See [`04-share-your-hub.md`](04-share-your-hub.md) |
+| **Browser** (nothing to install) | Double-click the `index.html` at the root of the project folder: that is the home page of the hub. After you edit the hub, ask the AI tool to run `python3 ../toolkit/skills/build-report.py` to rebuild it. See [`04-share-your-hub.md`](04-share-your-hub.md) |
 
 Open the **whole folder**, not single files: the links between pages only work when the whole folder is open.
 
@@ -98,7 +98,7 @@ Open the **whole folder**, not single files: the links between pages only work w
 | You want to | How |
 |---|---|
 | Add your own folder (notes, images, recordings) | Create a new folder at the same level as `work/`, for example `notes/` |
-| Remove a file you do not use | Delete it. If a page in `stages/` uses that file, remove it from the From work column in the Pages table in `stages/README.md`. If it is an item, run `python3 ../toolkit/skills/export-hub.py` again |
+| Remove a file you do not use | Delete it. If a page in `stages/` uses that file, remove it from the From work column in the Pages table in `stages/README.md`. If it is an item, run `python3 ../toolkit/skills/build-report.py` again |
 | Add a stage page | Add a row to the Pages table in `stages/README.md`: set an Id, pick the file in the From work column and the item tables you want to show. No new file needed |
 | Add an item (need, hypothesis, decision...) | Run `python3 ../toolkit/skills/new-item.py` in the project folder: the command asks one question at a time, picks the next code and links the relationships for you |
 | Add a document (competitor analysis, persona, flow, prototype...) | Copy a template from `toolkit/templates/` into `work/`, or create a folder and drop images, PDFs, HTML into it. See `work/README.md` |

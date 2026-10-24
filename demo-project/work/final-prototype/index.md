@@ -25,6 +25,6 @@ The final interactive prototype of the project, replacing the wireframes in the 
 |---|---|
 | `travel-buddy-final-prototype.html` | The interactive prototype, opened in a browser (double-click or view right on the page) |
 
-**Note:** this is the version with compressed images (images at most 480 px wide, JPEG quality 50) so it is more than half lighter than the 6.8 MB original; the original stays in your project folder. The report loads this file when you open the page, not ahead of time. When you send the report to someone, use `python3 ../toolkit/skills/export-hub.py --bundle <folder>` so the file goes along.
+**Note:** this is the version with compressed images (images at most 480 px wide, JPEG quality 50) so it is more than half lighter than the 6.8 MB original; the original stays in your project folder. The report loads this file when you open the page, not ahead of time. When you send the report to someone, use `python3 ../toolkit/skills/build-report.py --bundle <folder>` so the file goes along.
 
 **Limits:** this is a prototype, not a test result. Any conclusion about whether users understand or can use these screens needs evidence (see E1 and E2).

@@ -75,7 +75,7 @@ The decision log is at `insights/project-log.md`, and the principles (P1 to P10)
 
 ## The principle: each fact is written in one place
 
-**Each item is its own file, and that file is the single source.** Every summary table in the hub (alignment, warnings, the item lists, the gate status, the tables on the stage pages) is built by `export-hub.py` from the item files, `gates.md` and the files in `work/`. You do not fill them in by hand and you do not copy an item to another place. To change a decision, edit that decision's file, then ask the AI to update the tables.
+**Each item is its own file, and that file is the single source.** Every summary table in the hub (alignment, warnings, the item lists, the gate status, the tables on the stage pages) is built by `build-report.py` from the item files, `gates.md` and the files in `work/`. You do not fill them in by hand and you do not copy an item to another place. To change a decision, edit that decision's file, then ask the AI to update the tables.
 
 | You write | The report builds (do not edit by hand) |
 |---|---|
@@ -163,7 +163,7 @@ Save a checkpoint first (commit in GitHub Desktop, or copy the folder into a `-b
 
 This step only returns the list of problems found; it writes to no file. After it runs, check a few lines of the table against the item files to be sure the AI did not infer a wrong relationship.
 
-To rebuild `index.html`, ask the AI tool to run `python3 ../toolkit/skills/export-hub.py`. To see changes as soon as you save a file, run `python3 ../toolkit/skills/serve-hub.py` (details in `../toolkit/skills/export-hub.md`).
+To rebuild `index.html`, ask the AI tool to run `python3 ../toolkit/skills/build-report.py`. To see changes as soon as you save a file, run `python3 ../toolkit/skills/serve-hub.py` (details in `../toolkit/skills/build-report.md`).
 
 ## Decisions, ranking and the outcome loop
 

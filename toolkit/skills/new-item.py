@@ -78,7 +78,7 @@ FLAG = {"serves": "serves", "metric": "metric", "tests": "tests", "follows": "fo
 
 
 def load_hub():
-    spec = importlib.util.spec_from_file_location("export_hub", os.path.join(HERE, "export-hub.py"))
+    spec = importlib.util.spec_from_file_location("export_hub", os.path.join(HERE, "build-report.py"))
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
@@ -333,8 +333,8 @@ def main():
 
     # 8. rebuild
     if not a.no_build:
-        r = subprocess.run([sys.executable, os.path.join(HERE, "export-hub.py"), "--project", CASE], cwd=CASE, capture_output=True, text=True)
-        print("index.html: %s" % ("rebuilt" if r.returncode == 0 else "error, rebuild the report with export-hub.py"))
+        r = subprocess.run([sys.executable, os.path.join(HERE, "build-report.py"), "--project", CASE], cwd=CASE, capture_output=True, text=True)
+        print("index.html: %s" % ("rebuilt" if r.returncode == 0 else "error, rebuild the report with build-report.py"))
         if r.returncode != 0:
             print(r.stderr.strip()[-400:])
 

@@ -1,4 +1,4 @@
-# Workflow: Export the Hub
+# Workflow: Build the report
 
 Export the hub as **one self-contained HTML file** to view in a browser and send to stakeholders, with no AI tool or any other tool needed to read it.
 
@@ -8,7 +8,7 @@ Export the hub as **one self-contained HTML file** to view in a browser and send
 |---|---|
 | When | When you need to see the hub in a browser, or send it to someone |
 | Before | Save the files you just edited. The tables rebuild every run, no other step is needed |
-| Command | `python3 ../toolkit/skills/export-hub.py` |
+| Command | `python3 ../toolkit/skills/build-report.py` |
 | Output | `index.html` at the root of the project folder |
 
 ## Why a script, not the AI
@@ -40,7 +40,7 @@ Each item has its own trace (for example O1 › H1 › D2) and a **"Referenced b
 A report is a folder: `index.html` plus the files it uses (images, HTML prototypes...). To send it, make a compact version:
 
 ```
-python3 ../toolkit/skills/export-hub.py --bundle send-to-stakeholders --zip
+python3 ../toolkit/skills/build-report.py --bundle send-to-stakeholders --zip
 ```
 
 The bundle holds only `index.html` and **exactly the files the documents declare** (`media:` or dropped in the document's folder). It does not hold raw working files, `_raw-private/` or `_personal/`. Images are referenced, not embedded in the HTML, so `index.html` stays light.
@@ -50,7 +50,7 @@ The bundle holds only `index.html` and **exactly the files the documents declare
 A working file keeps two sections: `(AI draft)` and `(verified)`. By default the report **hides** every section with `AI draft` in the heading. When you need to see them again (for example to measure the AI's error rate):
 
 ```
-python3 ../toolkit/skills/export-hub.py --team
+python3 ../toolkit/skills/build-report.py --team
 ```
 
 This version folds the drafts and labels them "not checked". **Do not send the `--team` version outside.**
@@ -62,7 +62,7 @@ This version folds the drafts and labels them "not checked". **Do not send the `
 **Output:** `index.html` at the root of the project folder
 
 ```
-python3 ../toolkit/skills/export-hub.py
+python3 ../toolkit/skills/build-report.py
 ```
 
 The script prints the number of pages, the number of items, and the problems (broken links, IDs that do not match the file name, the number of places that still have sample data).
@@ -89,4 +89,4 @@ Open the file in a browser and check:
 
 The file is always called `index.html` and sits at the root of the project folder, as the **home page of the hub**: double-click to open. The template already has a version built from sample data, so you can see the hub from day one. Each time you edit the hub, rebuild it so the home page matches the new content.
 
-**When you send it to others,** copy the file out and rename it so it is easy to recognise, for example `onboarding-redesign-report-2026-10-11.html`. A file called `index.html` sitting alone in the recipient's inbox says nothing about its content. You can also build the file to send directly with `python3 ../toolkit/skills/export-hub.py --out file-name.html`.
+**When you send it to others,** copy the file out and rename it so it is easy to recognise, for example `onboarding-redesign-report-2026-10-11.html`. A file called `index.html` sitting alone in the recipient's inbox says nothing about its content. You can also build the file to send directly with `python3 ../toolkit/skills/build-report.py --out file-name.html`.

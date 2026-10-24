@@ -25,8 +25,8 @@ Every folder at the root without a leading `_` is a section of the `index.html` 
 | `insights/_templates/` | Empty templates for each item type | Read. Copy into the right type folder (for example `insights/decisions/`) when asked to create an item; never edit the template file |
 | `standards/*.md` | Yardsticks to check the work: gates, principle checks, severity levels, and any criteria the owner adds | Read. Edit only when asked for that exact page. `insights/project-log.md`: add a line when asked |
 | `../toolkit/skills/new-item.py` | The command that creates an item and links it | Run when asked to create an item (see Where things go). Do not edit |
-| `../toolkit/skills/export-hub.py` | The script that exports the report to one HTML file | Run after you change files in the project, and when asked (`python3 ../toolkit/skills/export-hub.py`). Do not edit, and do not write the HTML yourself instead of the script |
-| `index.html` | The report, exported from Markdown to view in a browser | Do not read, do not edit by hand. To update it run `../toolkit/skills/export-hub.py` (run it yourself after every change to the files) |
+| `../toolkit/skills/build-report.py` | The script that exports the report to one HTML file | Run after you change files in the project, and when asked (`python3 ../toolkit/skills/build-report.py`). Do not edit, and do not write the HTML yourself instead of the script |
+| `index.html` | The report, exported from Markdown to view in a browser | Do not read, do not edit by hand. To update it run `../toolkit/skills/build-report.py` (run it yourself after every change to the files) |
 | `_personal/` | The owner's private notes | **Do not read, do not write** |
 | `work/sources/_raw-private/` | Raw data that is not anonymised | **Do not read, do not write** |
 | `work/original-docs/` | The original documents of the sample project (only in demo-project) | Read to cross-check. Do not edit |
@@ -56,7 +56,7 @@ When you place a file:
 1. **Next code:** list the type folder and use the largest number plus one. Never overwrite an existing file.
 2. **Short, lowercase file names joined by hyphens** for documents; the item code for items.
 3. **Say where you put it:** give the full path, and anything you are unsure about (for example `supports` left empty).
-4. **Rebuild the report yourself** after you add or edit files in the project: run `python3 ../toolkit/skills/export-hub.py`, then say the result (the number of warnings and what needs fixing before handoff). For a deeper review use `../toolkit/skills/refresh-hub.md`.
+4. **Rebuild the report yourself** after you add or edit files in the project: run `python3 ../toolkit/skills/build-report.py`, then say the result (the number of warnings and what needs fixing before handoff). For a deeper review use `../toolkit/skills/refresh-hub.md`.
 
 ## Hard rules
 
@@ -100,11 +100,11 @@ The owner does not use Git commands. When they say one of these phrases, you do 
 | "Lưu và đăng lên", "Save and publish", "Đăng lên" | Steps 1 to 6: a commit, then a push to GitHub |
 
 1. **Check it is a Git repo:** `git rev-parse --show-toplevel`. If it is not (the owner downloaded a ZIP), say so in one sentence, point to `../toolkit/guides/00-setup-checklist.md` steps 4 and 5, and offer to compress the project folder into a ZIP as a backup instead. Do not create a repo or a remote yourself.
-2. **Rebuild the report** with `python3 ../toolkit/skills/export-hub.py`, so the saved `index.html` matches the files.
+2. **Rebuild the report** with `python3 ../toolkit/skills/build-report.py`, so the saved `index.html` matches the files.
 3. **Stage only this project and the home page:** from the repo root, `git add -- <this project folder> index.html`. Then list the staged files (`git diff --cached --name-status`) and show the owner a short summary (how many files, which folders). Stop and ask before going on if the list has a file under `_raw-private/` other than its `README.md`, a file that looks like a secret (`.env`, `*.pem`, `*.key`, a name with `credential`, `token` or `password`), or a file over 50 MB.
 4. **Commit** with a one-line message in the owner's language that says what changed, for example `Discover: thêm user-voice synthesis và 3 insight`. Nothing staged? Say there is nothing new to save and stop.
 5. **Get GitHub's latest first:** `git pull --no-rebase --no-edit`. After each push GitHub rebuilds `index.html` by itself (the `Update index.html` workflow), so GitHub is often one commit ahead; this is normal. If the pull stops on a conflict:
-   - only in `index.html` files: run `git checkout --theirs -- <those files>`, rebuild with `export-hub.py`, `git add` them and `git commit --no-edit`;
+   - only in `index.html` files: run `git checkout --theirs -- <those files>`, rebuild with `build-report.py`, `git add` them and `git commit --no-edit`;
    - in any other file: run `git merge --abort`, stop, and tell the owner which files clash. Do not choose for them.
 6. **Push:** `git push`. Then report in two lines: the commit message, and the repo link (`git remote get-url origin`). If the push fails because of sign-in, tell the owner to open GitHub Desktop and check they are signed in, then say the phrase again.
 
