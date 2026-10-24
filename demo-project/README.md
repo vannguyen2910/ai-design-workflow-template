@@ -3,6 +3,8 @@
 | | |
 |---|---|
 | Project name | Travel Buddy |
+| Business question (one sentence) | Could a travel companion app that brings trustworthy suggestions, local connections and trip planning into one place replace the 8 to 10 apps travellers use for one trip? |
+| Current stage | Deliver |
 | Agreement status | not available |
 
 This is a real project that went through the stages from Discover to Test: **Travel Buddy**, a travel companion app. It is used as the sample project so you can see what a full workspace looks like, and see **where the gaps are**.

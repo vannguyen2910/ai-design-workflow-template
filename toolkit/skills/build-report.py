@@ -876,6 +876,10 @@ header.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em;margin-right:auto}
 .brand .logo{height:22px;width:auto;flex:none;color:var(--ink)}
 .brand small{display:block;font-weight:500;color:var(--muted);font-size:.74rem;letter-spacing:0}
+.homelink{display:flex;align-items:center;margin-right:-6px;color:var(--muted)}
+.homelink:hover{color:var(--ink)}
+.homelink svg{width:20px;height:20px}
+.homelink[hidden]{display:none}
 .tabs{display:flex;gap:4px;overflow-x:auto}
 .tabs a{padding:8px 14px;border-radius:999px;text-decoration:none;color:var(--ink);font-weight:600;font-size:.92rem;white-space:nowrap}
 .tabs a:hover{background:var(--tint)}
@@ -1130,6 +1134,52 @@ header.top{border-bottom:1px solid var(--line)}
 h1{font-size:1.75rem;font-weight:700}
 h2{font-size:.8rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:44px 0 12px}
 .lede{margin:0 0 26px}
+.smeta{color:var(--muted);margin:-10px 0 0;font-size:.92rem}
+.sgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0 0 8px}
+a.stcard{display:flex;flex-direction:column;gap:4px;padding:20px;border-radius:16px;background:var(--bg);color:inherit;text-decoration:none;box-shadow:0 0 2px 0 rgba(145,158,171,.2),0 12px 24px -4px rgba(145,158,171,.12);transition:transform .2s,box-shadow .2s}
+a.stcard:hover,a.stcard:focus-visible{transform:translateY(-2px);box-shadow:0 0 2px 0 rgba(145,158,171,.24),0 20px 40px -4px rgba(145,158,171,.24);outline:0}
+a.stcard:focus-visible{box-shadow:0 0 0 2px var(--purple)}
+.sti{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--tint2);color:var(--link);margin-bottom:8px}
+.sti svg{width:22px;height:22px}
+.stn{font-size:.85rem;font-weight:600;color:var(--muted)}
+.stnum{font-size:1.9rem;line-height:1.1;font-weight:800;letter-spacing:-.01em}
+.stnum small{font-size:1rem;font-weight:600;color:var(--muted)}
+.stl{font-size:.8rem;color:var(--muted)}
+.stbar{display:flex;height:6px;border-radius:99px;background:rgba(145,158,171,.2);overflow:hidden;margin:8px 0 0}
+.stbar b{background:var(--purple)}
+.stbar u{background:rgba(0,167,111,.34);text-decoration:none}
+.ovgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:24px 0 8px}
+.ovcard{display:flex;flex-direction:column;padding:24px;border-radius:16px;background:var(--bg);box-shadow:0 0 2px 0 rgba(145,158,171,.2),0 12px 24px -4px rgba(145,158,171,.12);min-width:0}
+.ovcard.wide{grid-column:1/-1}
+.ctitle{margin:0 0 14px;font-size:.8rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.ovcard .slist li:first-child{border-top:0;padding-top:0}
+.ovcard .slist li:last-child{border-bottom:0;padding-bottom:0}
+.ovcard .snext li:first-child{border-top:0;padding-top:0}
+.ovcard .snext li:first-child::before{top:0}
+.ovcard .snext li:last-child{border-bottom:0;padding-bottom:0}
+@keyframes ovgrow{from{transform:scaleX(0)}}
+@media(prefers-reduced-motion:no-preference){.stbar b,.stbar u{transform-origin:left;animation:ovgrow .7s ease-out}}
+@media(max-width:900px){.sgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.ovgrid{grid-template-columns:minmax(0,1fr)}}
+.slist{list-style:none;margin:0;padding:0}
+.slist li{padding:12px 0;border-top:1px solid var(--line)}
+.slist li:last-child{border-bottom:1px solid var(--line)}
+.st-t{font-size:1rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.st-m,.st-w{font-size:.85rem;color:var(--muted);margin-top:2px}
+.sline{margin:0 0 10px}
+.sline.ok{color:var(--link)}
+.sline.bad{color:#b42318;font-weight:600}
+.sempty{color:var(--muted);margin:0}
+.smore{margin:auto 0 0;padding-top:14px;font-size:.85rem;text-align:right}
+.smore a{font-weight:700;text-decoration:none;color:var(--link)}
+.smore a:hover{text-decoration:underline}
+.snext{margin:0;padding:0;list-style:none;counter-reset:n}
+.snext li{counter-increment:n;padding:12px 0 12px 32px;border-top:1px solid var(--line);position:relative;display:flex;flex-direction:column;gap:2px}
+.snext li:last-child{border-bottom:1px solid var(--line)}
+.snext li::before{content:counter(n);position:absolute;left:0;top:12px;font-weight:700;color:var(--link)}
+.snext li span{font-size:.88rem;color:var(--muted)}
+.snext li code{align-self:flex-start;margin-top:4px}
+.ovmore{margin-top:20px;border-top:1px solid var(--line);padding-top:10px}
+.ovmore>summary{cursor:pointer;font-weight:600;padding:6px 0}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));row-gap:18px;margin:14px 0 6px;padding:0}
 .stats span{display:flex;flex-direction:column;gap:2px;padding:2px 18px;border-left:1px solid var(--line);color:var(--muted);font-size:.8rem;text-transform:capitalize}
 .stats span:nth-child(4n+1){border-left:0;padding-left:0}
@@ -2185,16 +2235,161 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         '<dt>Principle</dt><dd>A design rule every decision should meet, for example the 10 usability heuristics by Nielsen (P1 to P10).</dd>'
         '<dt>Gate</dt><dd>A check before moving to the next stage.</dd>'
         '<dt>Alignment</dt><dd>How well each decision traces to a user need and meets the principles.</dd></dl></details>')
+    # --- overview as a story: where you are, the problem, what you chose, what testing showed, what to do next
+    card_ = {}
+    for m_ in re.finditer(r"^\|\s*([^|\n]+?)\s*\|\s*([^|\n]*?)\s*\|\s*$", overview.md, flags=re.M):
+        k_ = m_.group(1).strip().lower()
+        if k_ and not set(k_) <= set("-: "):
+            card_[k_] = m_.group(2).strip()
+
+    def card_val(prefix):
+        for k_, v_ in card_.items():
+            if k_.startswith(prefix):
+                return v_
+        return ""
+
+    STAGES_ = ["Discover", "Define", "Develop", "Deliver"]
+    cur_stage = card_val("current stage")
+    cur_stage = cur_stage if cur_stage.title() in STAGES_ + ["Setup"] else ""
+    biz_q = card_val("business question")
+    owner_ = card_val("owner")
+
+    def n_word(n, one, many=None):
+        return "%d %s" % (n, one if n == 1 else (many or one + "s"))
+
+    ST_ICON = {  # simple line icons (24px grid), drawn with currentColor
+        "Discover": '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>',
+        "Define": '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/>',
+        "Develop": '<path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/>',
+        "Deliver": '<path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/>',
+        "Learn": '<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z"/><path d="M19 19v2H6a2 2 0 0 1-2-2"/>',
+    }
+    strip = ""
+    for st_ in STAGES_:
+        docs_ = [a_ for a_ in arts if a_.stage.title() == st_]
+        by_ = {}
+        for a_ in docs_:
+            by_[a_.status or "draft"] = by_.get(a_.status or "draft", 0) + 1
+        tot_, ver_, dr_ = len(docs_), by_.get("verified", 0), by_.get("draft", 0)
+        icon_ = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">%s</svg>' % ST_ICON[st_]
+        strip += (
+            '<a class="stcard%s" href="#/journey"><span class="sti">%s</span><span class="stn">%s</span>'
+            '<strong class="stnum">%s</strong><span class="stl">%s</span>'
+            '<i class="stbar"><b style="width:%d%%"></b><u style="width:%d%%"></u></i></a>' % (
+                " now" if cur_stage.title() == st_ else "", icon_, st_,
+                ('%d<small>/%d</small>' % (ver_, tot_)) if tot_ else "&ndash;", "verified" if tot_ else "no documents",
+                int(100 * ver_ / tot_) if tot_ else 0, int(100 * dr_ / tot_) if tot_ else 0))
+    strip = '<div class="sgrid">%s</div>' % strip
+
+    open_O = [o_ for o_ in G.O if o_ not in G.closed]
+    def o_card(o_):
+        m_ = G.items[o_].meta
+        bits_ = []
+        for k_, lab_ in (("impact", "Impact"), ("confidence", "Confidence")):
+            v_ = str(m_.get(k_) or "").strip().lower()
+            if v_:
+                bits_.append("%s %s" % (lab_, LEVEL_LABEL.get(v_, v_).lower()))
+        return ('<li><div class="st-t"><strong>%s</strong></div><div class="st-m">%s</div></li>'
+                % (esc(G.items[o_].title), " · ".join([chip(o_)] + [esc(b_) for b_ in bits_])))
+    if open_O:
+        s_problem = '<ul class="slist">%s</ul>%s' % (
+            "".join(o_card(o_) for o_ in open_O[:3]),
+            ('<p class="smore"><a href="#/trace">View all %d &rarr;</a></p>' % len(open_O)) if len(open_O) > 3 else "")
+    else:
+        s_problem = '<p class="sempty">No opportunity yet. It comes from what users said: run <code>interview.md</code> or <code>user-voice-synthesis.md</code>, then <code>framing.md</code>.</p>'
+
+    def d_card(d_):
+        return ('<li><div class="st-t"><strong>%s</strong></div><div class="st-m">%s · %s</div></li>' % (
+            esc(G.items[d_].title), chip(d_), esc(STATE_LABEL.get(G.state.get(d_), "Proposed"))))
+    open_D = [d_ for d_ in G.D if d_ not in G.closed]
+    n_acc = sum(1 for d_ in open_D if G.state.get(d_) in ("accepted", "active", "shipped"))
+    if open_D:
+        s_choice = '<p class="sline">%s, %s accepted.</p><ul class="slist">%s</ul>%s' % (
+            n_word(len(open_D), "decision"), n_acc, "".join(d_card(d_) for d_ in open_D[:3]),
+            ('<p class="smore"><a href="#/trace">View all %d &rarr;</a></p>' % len(open_D)) if len(open_D) > 3 else "")
+    else:
+        s_choice = '<p class="sempty">No decision yet. Compare directions first: run <code>ideation.md</code>.</p>'
+
+    def real_e(e_):
+        m_ = G.items[e_].meta
+        return str(m_.get("status", "")).lower() != "planned" and str(m_.get("participants_type", "")).lower() != "simulated"
+    open_E = [e_ for e_ in G.E if e_ not in G.closed]
+    n_real = sum(1 for e_ in open_E if real_e(e_))
+    bad_F = [f_ for f_ in G.F if G.is_open_finding(f_) and (G.severity[f_] or 0) >= 3]
+    s_test_bits = []
+    if open_E:
+        s_test_bits.append('<p class="sline">%s, %s with real users.</p>' % (n_word(len(open_E), "piece of evidence", "pieces of evidence"), n_real))
+    if bad_F:
+        s_test_bits.append('<p class="sline">%s to handle:</p><ul class="slist">%s</ul>%s' % (n_word(len(bad_F), "serious finding"), "".join(
+            '<li><div class="st-t"><strong>%s</strong></div><div class="st-m">%s · Severity %d</div></li>' % (esc(G.items[f_].title), chip(f_), G.severity[f_])
+            for f_ in bad_F[:3]), ""))
+    elif G.F:
+        s_test_bits.append('<p class="sline ok">No serious finding is waiting.</p>')
+    if len(bad_F) > 3:
+        s_test_bits.append('<p class="smore"><a href="#/trace">View all %d &rarr;</a></p>' % len(bad_F))
+    s_test = "".join(s_test_bits) or '<p class="sempty">Nothing tested yet. Build a prototype with <code>prototype.md</code>, then test it with <code>test.md</code>.</p>'
+
+    # next steps: first matching rules, at most three
+    nxt = []
+    def step(title, why, say):
+        nxt.append('<li><strong>%s</strong><code>%s</code></li>' % (esc(title), esc(say)))
+    has_proto = any(a_.type == "prototype" or "prototype" in a_.id for a_ in arts)
+    if not biz_q:
+        step("Fill in the Project card", "The business question and the owner are still empty.", "Open README.md and fill in the Project card")
+    if not open_O:
+        step("Learn what users need", "Without it there is no problem to frame.", "Run ../toolkit/skills/interview.md")
+        step("Then frame the problem", "Turns what you learned into opportunities.", "Run ../toolkit/skills/framing.md")
+    elif not G.H:
+        step("Write hypotheses", "Each opportunity needs something you can test.", "Run step 5 of ../toolkit/skills/framing.md")
+    elif not open_D:
+        step("Compare directions", "Choose a direction and record why you parked the others.", "Run ../toolkit/skills/ideation.md")
+    elif not has_proto and not open_E:
+        step("Build a prototype", "So the chosen direction can be tested.", "Run ../toolkit/skills/prototype.md")
+    elif not n_real:
+        step("Test with real users", "No evidence from real users yet.", "Run ../toolkit/skills/test.md")
+    if any((G.severity[f_] or 0) == 4 for f_ in bad_F):
+        step("Handle the severity 4 findings", "They block handoff.", "Fix, accept with a reason, or defer each one")
+    elif bad_F:
+        step("Decide on the severity 3 findings", "Fix them or accept them as a trade-off.", "Say which you fix and which you accept")
+    if open_D and n_acc < len(open_D) and not nxt:
+        step("Get the decisions accepted", "%d still proposed." % (len(open_D) - n_acc), "Agree with the owner, then set state to accepted")
+    if not nxt and n_real and not bad_F:
+        step("Hand off", "Evidence is in and nothing serious is open.", "Run ../toolkit/skills/handoff.md")
+    s_next = '<ol class="snext">%s</ol>' % "".join(nxt[:3]) if nxt else '<p class="sempty">Nothing suggested.</p>'
+
+    if not (open_D or G.F):
+        s_block = '<p class="sempty">Nothing to check yet.</p>'
+    elif n_block:
+        s_block = '<p class="sline bad">%s to fix before handoff.</p>' % n_word(n_block, "item")
+    elif n_review:
+        s_block = '<p class="sline">Nothing blocks handoff. %s to review.</p>' % n_word(n_review, "item")
+    else:
+        s_block = '<p class="sline ok">Nothing blocks handoff.</p>'
+
+    ov_meta = " · ".join(x_ for x_ in (
+        ("Stage: " + cur_stage.title()) if cur_stage else "", ("Owner: " + esc(owner_)) if owner_ else "",
+        "Agreement: <strong>%s</strong>" % esc(AGREE_VI.get((agreement or "").lower(), agreement or "not recorded"))) if x_)
+
     docs_section = ""
+    def ovc(title, body, cls=""):
+        return '<section class="ovcard%s"><h3 class="ctitle">%s</h3>%s</section>' % ((" " + cls) if cls else "", title, body)
+
     v_overview = (
-        '<section class="view" id="v-overview"><div class="wrap">%s<h1>%s</h1><p class="lede">Agreement with product and business: <strong>%s</strong></p>'
-        '<p class="where"><span class="wl">Source</span> <code>README.md</code> (project card), the items in <code>insights/</code> and <code>standards/gates.md</code>. To change content, edit the source file and rebuild the report.</p>'
-        '<div class="stats">%s</div>'
-        '<h2>Gates</h2><div class="glist">%s</div>'
-        '<h2>Warnings</h2>%s'
-        '<h2>Decision alignment</h2>%s'
+        '<section class="view" id="v-overview"><div class="wrap">%s<h1>%s</h1>'
+        '%s<p class="smeta">%s</p>'
+        '<h2>Where you are</h2>%s'
+        '<div class="ovgrid">%s%s%s%s%s</div>'
+        '<details class="ovmore"%s><summary>Warnings <span class="wcount">%d</span></summary>%s</details>'
+        '<details class="ovmore"><summary>Gates</summary><div class="glist">%s</div></details>'
+        '<details class="ovmore"><summary>Decision alignment</summary>%s</details>'
         '%s</div></section>'
-    ) % (banner, esc(name), esc(AGREE_VI.get((agreement or "").lower(), agreement or "not recorded")), stats, gate_html, warn_html, align, howto)
+    ) % (banner, esc(name),
+         ('<p class="lede">%s</p>' % esc(biz_q)) if biz_q else '<p class="lede">The business question is not filled in yet (Project card in <code>README.md</code>).</p>',
+         ov_meta, strip,
+         ovc("The problem", s_problem), ovc("What you chose", s_choice),
+         ovc("What testing showed", s_test), ovc("Before handoff", s_block),
+         ovc("Next", s_next, "wide"),
+         " open" if n_block else "", n_block + n_review, warn_html, gate_html, align, howto)
 
     # --- journey
     def doc_html(p, extra_pre="", extra_post="", reading=True):
@@ -2583,6 +2778,12 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     if switcher:
         theme_select = '<label class="themepick">Theme <select id="themeselect" aria-label="Choose a theme">%s</select></label>' % "".join(
             '<option value="%s"%s>%s</option>' % (k, " selected" if k == theme else "", esc(v)) for k, v in THEMES)
+    homelink = ""
+    if not bundle and os.path.isdir(os.path.join(os.path.dirname(case_abs), "toolkit")):
+        homelink = ('<a class="homelink" id="homelink" href="../index.html" hidden data-folder="%s" aria-label="All projects" title="All projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a>'
+                    '<script>(function(){var a=document.getElementById("homelink"),p=location.pathname.split("/");'
+                    'var f=p.pop();if((f==="index.html"||f==="")&&decodeURIComponent(p.pop())===a.dataset.folder)a.hidden=false})()</script>\n'
+                    % esc(os.path.basename(case_abs)))
     doc = ("""<!doctype html>
 <html lang="en" data-theme="{{THEME}}">
 <head>
@@ -2595,7 +2796,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
 <body data-case="{{NAME}}">
 <a class="skip" href="#main">Skip the menu</a>
 <header class="top"><div class="top-in">
-<div class="brand"><svg class="logo" viewBox="18 50 214 150" fill="currentColor" aria-hidden="true"><path d="M80.5165 60.4055C76.2827 67.7288 75.4817 70.1317 74.9096 77.2261C74.5663 81.8032 74.7952 87.5244 75.4817 90.0418C76.8548 94.7332 76.0921 95.8546 74.4519 95.191C72.8194 94.5455 67.7008 93.4746 47.4474 93.0169C33.1442 92.6736 21.244 92.5592 21.0151 92.5592C20.7862 92.6736 23.1892 96.1064 26.1643 100.226C29.1393 104.345 45.8455 127.573 63.1238 151.832L94.4764 196L96.4216 192.338C97.4515 190.279 101.228 183.184 104.889 176.548C108.436 169.911 112.899 161.215 114.844 157.21C117.705 151.26 118.62 150.23 119.65 151.603C120.337 152.518 128.575 162.931 138.073 174.602L155.236 196L157.296 193.483C158.44 191.995 161.415 186.732 163.933 181.811C169.311 170.941 169.769 163.732 165.992 154.807L163.59 149.2L188.077 112.24C201.579 91.8726 215.081 71.3904 218.171 66.699C221.26 62.0075 224.693 56.9728 225.837 55.7141L228.126 53.1967H207.071C180.296 53.0823 173.316 54.4554 163.475 62.0075C155.122 68.1865 150.888 74.3655 140.247 94.9621L132.351 110.295L130.292 107.663C129.033 106.176 126.63 103.201 124.914 101.027C108.78 81.0022 87.9541 54.4554 87.4964 53.1967C86.4666 50.6794 85.5512 51.7092 80.5165 60.4055ZM213.365 62.0075C212.22 62.8085 184.758 103.544 169.54 127.116C160.958 140.389 157.91 142.982 156.953 141.076C156.601 140.364 155.292 138.4 154.092 136.727C152.49 135.011 149.286 131.006 146.883 127.688C142.65 121.738 141.547 122.036 140.933 122.996C140.292 124 139.583 125.309 138.988 126.429C137.845 128.582 137.272 128.718 140.59 132.265C147.456 139.588 156.953 152.289 158.669 156.294C161.072 162.244 160.843 171.055 157.983 177.806C156.61 180.896 155.236 183.413 154.779 183.299C154.435 183.299 148.485 175.976 141.505 167.165C134.64 158.24 127.431 149.314 125.715 147.255L122.396 143.364L125.829 137.414C127.66 134.096 131.894 126.2 135.212 119.907C158.669 75.2809 162.445 69.7885 171.599 65.5547C174.574 64.1816 178.007 62.5796 179.266 62.0075C181.44 60.9777 211.419 59.9478 213.479 60.8633C213.937 61.0921 213.937 61.5498 213.365 62.0075ZM98.7102 79.8579C104.66 87.41 113.7 98.8526 118.849 105.26L128.346 117.046L123.541 126.658C120.794 132.036 118.277 136.384 117.819 136.384C117.133 136.499 110.954 128.832 90.9292 103.315C83.0338 93.2457 80.9742 87.5244 81.6607 78.7137C82.3473 72.077 85.6656 63.495 87.0387 65.097C87.4964 65.6691 92.76 72.3058 98.7102 79.8579ZM77.3125 103.315C83.4915 106.405 88.5263 111.668 100.999 127.917C105.69 133.981 110.382 140.046 111.64 141.533C113.7 144.165 113.7 144.28 108.78 153.205C106.148 158.24 101.571 166.821 98.7102 172.428C94.362 180.896 93.3322 182.269 92.3023 180.553C91.7302 179.408 89.3273 176.09 87.1532 173C84.9791 169.911 80.6309 163.732 77.427 159.269C74.3375 154.692 67.2431 144.852 61.7507 137.185C56.2582 129.519 50.0792 121.051 48.0196 118.191C46.0743 115.33 42.4127 110.41 40.0098 107.206C37.6068 104.002 35.6616 101.027 35.6616 100.569C35.6616 99.9968 43.7858 99.8824 53.7409 100.111C70.1037 100.455 72.1634 100.798 77.3125 103.315Z"/></svg><span>{{NAME}}</span></div>
+{{HOMELINK}}<div class="brand"><svg class="logo" viewBox="18 50 214 150" fill="currentColor" aria-hidden="true"><path d="M80.5165 60.4055C76.2827 67.7288 75.4817 70.1317 74.9096 77.2261C74.5663 81.8032 74.7952 87.5244 75.4817 90.0418C76.8548 94.7332 76.0921 95.8546 74.4519 95.191C72.8194 94.5455 67.7008 93.4746 47.4474 93.0169C33.1442 92.6736 21.244 92.5592 21.0151 92.5592C20.7862 92.6736 23.1892 96.1064 26.1643 100.226C29.1393 104.345 45.8455 127.573 63.1238 151.832L94.4764 196L96.4216 192.338C97.4515 190.279 101.228 183.184 104.889 176.548C108.436 169.911 112.899 161.215 114.844 157.21C117.705 151.26 118.62 150.23 119.65 151.603C120.337 152.518 128.575 162.931 138.073 174.602L155.236 196L157.296 193.483C158.44 191.995 161.415 186.732 163.933 181.811C169.311 170.941 169.769 163.732 165.992 154.807L163.59 149.2L188.077 112.24C201.579 91.8726 215.081 71.3904 218.171 66.699C221.26 62.0075 224.693 56.9728 225.837 55.7141L228.126 53.1967H207.071C180.296 53.0823 173.316 54.4554 163.475 62.0075C155.122 68.1865 150.888 74.3655 140.247 94.9621L132.351 110.295L130.292 107.663C129.033 106.176 126.63 103.201 124.914 101.027C108.78 81.0022 87.9541 54.4554 87.4964 53.1967C86.4666 50.6794 85.5512 51.7092 80.5165 60.4055ZM213.365 62.0075C212.22 62.8085 184.758 103.544 169.54 127.116C160.958 140.389 157.91 142.982 156.953 141.076C156.601 140.364 155.292 138.4 154.092 136.727C152.49 135.011 149.286 131.006 146.883 127.688C142.65 121.738 141.547 122.036 140.933 122.996C140.292 124 139.583 125.309 138.988 126.429C137.845 128.582 137.272 128.718 140.59 132.265C147.456 139.588 156.953 152.289 158.669 156.294C161.072 162.244 160.843 171.055 157.983 177.806C156.61 180.896 155.236 183.413 154.779 183.299C154.435 183.299 148.485 175.976 141.505 167.165C134.64 158.24 127.431 149.314 125.715 147.255L122.396 143.364L125.829 137.414C127.66 134.096 131.894 126.2 135.212 119.907C158.669 75.2809 162.445 69.7885 171.599 65.5547C174.574 64.1816 178.007 62.5796 179.266 62.0075C181.44 60.9777 211.419 59.9478 213.479 60.8633C213.937 61.0921 213.937 61.5498 213.365 62.0075ZM98.7102 79.8579C104.66 87.41 113.7 98.8526 118.849 105.26L128.346 117.046L123.541 126.658C120.794 132.036 118.277 136.384 117.819 136.384C117.133 136.499 110.954 128.832 90.9292 103.315C83.0338 93.2457 80.9742 87.5244 81.6607 78.7137C82.3473 72.077 85.6656 63.495 87.0387 65.097C87.4964 65.6691 92.76 72.3058 98.7102 79.8579ZM77.3125 103.315C83.4915 106.405 88.5263 111.668 100.999 127.917C105.69 133.981 110.382 140.046 111.64 141.533C113.7 144.165 113.7 144.28 108.78 153.205C106.148 158.24 101.571 166.821 98.7102 172.428C94.362 180.896 93.3322 182.269 92.3023 180.553C91.7302 179.408 89.3273 176.09 87.1532 173C84.9791 169.911 80.6309 163.732 77.427 159.269C74.3375 154.692 67.2431 144.852 61.7507 137.185C56.2582 129.519 50.0792 121.051 48.0196 118.191C46.0743 115.33 42.4127 110.41 40.0098 107.206C37.6068 104.002 35.6616 101.027 35.6616 100.569C35.6616 99.9968 43.7858 99.8824 53.7409 100.111C70.1037 100.455 72.1634 100.798 77.3125 103.315Z"/></svg><span>{{NAME}}</span></div>
 {{THEME_SELECT}}
 </div></header>
 <div class="shell">
@@ -2614,7 +2815,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
 <script>{{JS}}</script>
 </body>
 </html>
-""").replace("{{NAME}}", esc(name)).replace("{{NOW}}", now).replace("{{MODE}}", " · team version (includes AI drafts)" if team else "").replace("{{V_OVERVIEW}}", v_overview).replace("{{V_CONTEXT}}", v_context) \
+""").replace("{{HOMELINK}}", homelink).replace("{{NAME}}", esc(name)).replace("{{NOW}}", now).replace("{{MODE}}", " · team version (includes AI drafts)" if team else "").replace("{{V_OVERVIEW}}", v_overview).replace("{{V_CONTEXT}}", v_context) \
         .replace("{{V_JOURNEY}}", v_journey).replace("{{V_DOCS}}", v_docs).replace("{{V_TRACE}}", v_trace).replace("{{V_REFERENCE}}", v_reference).replace("{{V_GUIDE}}", v_guide) \
         .replace("{{CSS}}", CSS + theme_rules(theme, switcher)).replace("{{JS}}", JS).replace("{{THEME}}", theme).replace("{{THEME_SELECT}}", theme_select).replace("{{SIDEBAR}}", sidebar)
 

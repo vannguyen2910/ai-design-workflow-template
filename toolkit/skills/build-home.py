@@ -162,6 +162,8 @@ header.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.86);bac
 .logo{width:34px;height:auto;color:var(--ink)}
 h1{font-size:1.9rem;line-height:1.2;margin:40px 0 8px;font-weight:800;letter-spacing:-.01em}
 .lede{color:var(--muted);margin:0 0 28px;max-width:60ch}
+.start{color:var(--muted);margin:-12px 0 56px;max-width:60ch;padding-left:20px}
+.start li{margin:0 0 6px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;margin:0 0 56px}
 a.card,div.card{display:flex;flex-direction:column;gap:10px;padding:24px;border:0;border-radius:16px;background:#fff;color:inherit;text-decoration:none;box-shadow:0 0 2px 0 rgba(145,158,171,.2),0 12px 24px -4px rgba(145,158,171,.12);transition:box-shadow .2s,transform .2s}
 a.card:hover,a.card:focus-visible{box-shadow:0 0 2px 0 rgba(145,158,171,.24),0 20px 40px -4px rgba(145,158,171,.24);transform:translateY(-2px);outline:0}
@@ -221,9 +223,16 @@ def render(cards, title, logo):
     if real:
         body.append('<section><h3>Your projects</h3><div class="grid">%s</div></section>' % "".join(card(c) for c in real))
     else:
-        body.append('<section><h3>Your projects</h3><p class="lede">No project yet. Create one with '
-                    '<code>python3 toolkit/tools/new-project.py project-name</code>, or ask your AI tool: '
-                    '&ldquo;Create a new project called &hellip;&rdquo;.</p></section>')
+        body.append('<section><h3>Your projects</h3><p class="lede">No project yet. Ask your AI tool: '
+                    '&ldquo;Create a new project called &hellip;&rdquo;.</p>'
+                    '<ul class="start">'
+                    '<li>Open this whole workspace folder in your AI tool, not a single project folder.</li>'
+                    '<li>When the project is created, its card appears here. Open it to see the report.</li>'
+                    '<li>Fill in the Project card in the project&rsquo;s <code>README.md</code> first, then '
+                    '<code>context/product-and-users.md</code> and <code>context/data-rules.md</code>.</li>'
+                    '<li>Say &ldquo;Save&rdquo; to keep a checkpoint, or &ldquo;Save and publish&rdquo; to also send it to GitHub.</li>'
+                    '<li>First time? Follow <code>toolkit/guides/00-setup-checklist.md</code>.</li>'
+                    '</ul></section>')
     if other:
         body.append('<section><h3>Examples and template</h3><div class="grid">%s</div></section>' % "".join(card(c) for c in other))
     return """<!doctype html>
