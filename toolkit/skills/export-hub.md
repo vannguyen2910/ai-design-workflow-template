@@ -27,15 +27,7 @@ The "How to fill" blocks are left out of the report. Links to files outside the 
 
 ## How the report is organised
 
-| Menu section | Holds |
-|---|---|
-| **Overview** | Item counts by type, the status of the four gates, the alignment table, the warning list |
-| **Context** | The background pages: product and users, data rules, design system, open questions |
-| **Stages** | The pages per stage (the narrative part); click a card to open a page |
-| **Work** | One card per document, click to open its page: summary, key points, images, a runnable prototype, external links, and the items it supports. Filter by stage and type |
-| **Insights** | One card per item (O, H, M, D, E), with search and a filter by type; the **Tree** button switches to the **Opportunity > Hypothesis > Decision / Test / Metric** view |
-| **Standards** | Gates, principle checks, severity levels |
-| **Guide** | How to use the workspace, with sample sentences for the AI tool |
+The menu sections (Overview, Context, Stages, Work, Insights, Standards) are described in `how-the-hub-works.md`, "Where to see the hub".
 
 Items are not in the left menu but in the Insights section, so the report still works with dozens of items. An item not linked to any opportunity is gathered separately at the end of the tree.
 

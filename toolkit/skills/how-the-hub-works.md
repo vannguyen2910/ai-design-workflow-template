@@ -143,7 +143,7 @@ How to add a document is in `work/README.md`. A document points back at the orig
 
 ## Add images, video, PDFs
 
-Drop images, videos or PDFs into a folder in `work/`, or insert an image in the middle of a page with `![description](path)`. The report recognises the format by itself; details and warnings are in `work/README.md`.
+Drop images, videos or PDFs into a folder in `work/`, or insert an image in the middle of a page with `![description](path)`. The report recognises the format by itself; details and warnings are in `work/README.md`, and the AI steps are in `../toolkit/skills/add-media.md`.
 
 ## Each time you update
 
