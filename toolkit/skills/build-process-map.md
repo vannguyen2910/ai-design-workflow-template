@@ -2,7 +2,7 @@
 
 Use this when a project needs an end-to-end process map, a swimlane, a user flow or any other diagram (journey, sequence, state machine…). The diagram is one self-contained HTML file with inline SVG, drawn with the `diagram-design` skill that lives in this workspace: [`../diagram-design/SKILL.md`](../diagram-design/SKILL.md).
 
-The demo project shows the result: `demo-case/work/original-docs/08_E2E_Process_Map.html` (opened by `demo-case/work/process-map.md`).
+The demo project shows the result: `demo-project/work/original-docs/08_E2E_Process_Map.html` (opened by `demo-project/work/process-map.md`).
 
 ## Before you start
 
@@ -20,7 +20,7 @@ The demo project shows the result: `demo-case/work/original-docs/08_E2E_Process_
 | 4 | AI | Draws the diagram as `work/<name>/process-map.html` (or into `work/original-docs/`) and runs `python3 toolkit/diagram-design/scripts/self_check.py <file>`. |
 | 5 | You | Open the HTML in a browser. Check: every step in its actor's column, no line crossing a box, each decision has Yes and No, the key moment is the only orange box. |
 | 6 | AI | Copies `toolkit/templates/process-map.md` to `work/process-map.md`, fills `summary`, `takeaways`, `supports`, and sets `source:` and `media:` to the HTML file with `embed: true`. |
-| 7 | AI | Runs `python3 toolkit/skills/export-hub.py` **from inside the project folder** (no `--out`), so the media path stays correct. Open `index.html` → Work → the new card. |
+| 7 | AI | Runs `python3 toolkit/skills/build-report.py` **from inside the project folder** (no `--out`), so the media path stays correct. Open `index.html` → Work → the new card. |
 
 ## Rules that make the diagram readable
 

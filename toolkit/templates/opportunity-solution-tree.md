@@ -46,4 +46,4 @@ Pick **one** opportunity and 2 to 3 solutions to test first, with the reason. Re
 ## What this cannot tell us
 What this tree does not tell us. The tree reflects what is known when it is drawn and needs updating as new evidence arrives.
 
-*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the project's `work/README.md`.*

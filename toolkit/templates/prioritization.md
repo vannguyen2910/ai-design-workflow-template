@@ -58,4 +58,4 @@ The opportunities that were parked and why, so nobody asks again later.
 - Was any opportunity pushed down only because of large effort, while its impact is very high?
 - Who is affected if the first-ranked item is chosen, and who has no voice in this table yet?
 
-*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the project's `work/README.md`.*

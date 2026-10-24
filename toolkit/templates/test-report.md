@@ -21,7 +21,7 @@ Type of test, number of participants, **real people or simulated**, tools.
 | | | | |
 
 ## Findings
-Severity is rated on the 0 to 4 scale in Severity levels (the case's `standards/severity-levels.md`). Levels 3 and 4 need handling before handoff.
+Severity is rated on the 0 to 4 scale in Severity levels (the project's `standards/severity-levels.md`). Levels 3 and 4 need handling before handoff.
 
 | Finding | Severity (0-4) | Evidence | Recommendation |
 |---|---|---|---|
@@ -30,4 +30,4 @@ Severity is rated on the 0 to 4 scale in Severity levels (the case's `standards/
 ## Limits
 What makes the results less reliable.
 
-*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the project's `work/README.md`.*

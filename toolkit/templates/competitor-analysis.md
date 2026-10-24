@@ -34,4 +34,4 @@ Three to five insights with evidence, and the answer to the decision in Scope.
 ## What this cannot tell us
 What this analysis does not tell us.
 
-*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the project's `work/README.md`.*

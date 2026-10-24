@@ -40,4 +40,4 @@ For each high-priority assumption: how to test it, the pass criteria, and the hy
 ## What this cannot tell us
 What this map does not tell us. The scores are the team's judgement, not data.
 
-*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the project's `work/README.md`.*

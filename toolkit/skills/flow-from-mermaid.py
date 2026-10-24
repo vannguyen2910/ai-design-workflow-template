@@ -34,7 +34,7 @@ COLS = 6
 PILLAR_TYPES = ["frontend", "backend", "database", "cloud", "security"]
 
 def find_case(start=None):
-    """The case folder: the nearest folder, from `start` (default: the current folder) upwards,
+    """The project folder: the nearest folder, from `start` (default: the current folder) upwards,
     that has AGENTS.md next to insights/ or work/. Falls back to the folder above this script
     (a copy of this script in the workspace's toolkit/skills/ folder)."""
     p = os.path.abspath(start or os.getcwd())
@@ -812,7 +812,7 @@ def main():
                     "to the current look; no Mermaid source needed")
     ap.add_argument("--title", default="", help="product name used in diagram titles")
     ap.add_argument("--legend", default="", help='names for solution-code letters, e.g. "A=Onboarding,D=Discover,P=Plan"')
-    ap.add_argument("--case", default="", help="case folder holding insights/decisions (default: the case you are standing in)")
+    ap.add_argument("--project", "--case", dest="case", default="", help="project folder holding insights/decisions (default: the project you are standing in)")
     ap.add_argument("--layout", choices=["scroll", "archify"], default="scroll",
                     help="scroll: one horizontal row per phase with a sideways scroll bar (default); "
                          "archify: checked archify diagrams, long chains wrap into rows of 6")

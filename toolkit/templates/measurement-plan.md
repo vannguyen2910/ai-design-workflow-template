@@ -52,4 +52,4 @@ The qualitative signals to follow too (feedback, support tickets, sessions with 
 ## Limits
 What makes the numbers less reliable (small sample, seasonality, another change at the same time). Fill in `result` and `verdict` in each M# file once measured; only the project owner sets `verdict`.
 
-*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the project's `work/README.md`.*

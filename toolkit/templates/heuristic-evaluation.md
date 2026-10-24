@@ -16,7 +16,7 @@ supports: []
 The product or design being evaluated, the version, the main tasks (3 to 5), the evaluators and the date. When possible, have at least 2 independent evaluators.
 
 ## Method
-Go through each task and check every screen against Nielsen's 10 heuristics. Use the codes **P1 to P10** in Principle checks (the case's `standards/principle-checks.md`); do not use `H#`, that is the hypothesis code. Rate severity with Severity levels (the case's `standards/severity-levels.md`).
+Go through each task and check every screen against Nielsen's 10 heuristics. Use the codes **P1 to P10** in Principle checks (the project's `standards/principle-checks.md`); do not use `H#`, that is the hypothesis code. Rate severity with Severity levels (the project's `standards/severity-levels.md`).
 
 | Level | Name | Short meaning |
 |---|---|---|
@@ -57,4 +57,4 @@ The three to five most serious problems (levels 3 and 4 first), with the reason 
 ## What this cannot tell us
 A heuristic evaluation is an expert opinion, it does not replace testing with users. Note the problems that need to be confirmed by a test.
 
-*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the project's `work/README.md`.*

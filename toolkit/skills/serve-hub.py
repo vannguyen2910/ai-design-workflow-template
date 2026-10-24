@@ -4,7 +4,7 @@
     python3 serve-hub.py            # http://127.0.0.1:8000
     python3 serve-hub.py --port 9000
 
-Edit any Markdown file in the case, then reload the page: index.html is rebuilt first when a file changed.
+Edit any Markdown file in the project, then reload the page: index.html is rebuilt first when a file changed.
 Only your computer can reach this address. Stop with Ctrl+C.
 Python 3.8+ standard library only.
 """
@@ -16,7 +16,7 @@ import sys
 import functools
 
 def find_case(start=None):
-    """The case folder: the nearest folder, from `start` (default: the current folder) upwards,
+    """The project folder: the nearest folder, from `start` (default: the current folder) upwards,
     that has AGENTS.md next to insights/ or work/. Falls back to the folder above this script
     (a copy of this script in the workspace's toolkit/skills/ folder)."""
     p = os.path.abspath(start or os.getcwd())
@@ -35,7 +35,7 @@ def find_case(start=None):
 
 
 CASE = None
-EXPORTER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "export-hub.py")
+EXPORTER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "build-report.py")
 INDEX = None
 SKIP = {".git", "node_modules", "_raw-private", "_personal"}
 
@@ -55,7 +55,7 @@ def newest_source():
 
 def rebuild_if_needed():
     if not os.path.isfile(INDEX) or newest_source() > os.path.getmtime(INDEX):
-        r = subprocess.run([sys.executable, EXPORTER, "--case", CASE], capture_output=True, text=True)
+        r = subprocess.run([sys.executable, EXPORTER, "--project", CASE], capture_output=True, text=True)
         print("  rebuilt index.html" + ("" if r.returncode == 0 else " (error)\n" + r.stdout + r.stderr))
 
 
@@ -76,12 +76,12 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--port", type=int, default=8000)
-    ap.add_argument("--case", default="", help="case folder (default: the case you are standing in)")
+    ap.add_argument("--project", "--case", dest="case", default="", help="project folder (default: the project you are standing in)")
     a = ap.parse_args()
     global CASE, INDEX
     CASE = os.path.abspath(a.case) if a.case else find_case()
     if not CASE:
-        sys.exit("Case folder not found. Run inside a case (a folder with AGENTS.md and insights/), or pass --case <path>.")
+        sys.exit("Project folder not found. Run inside a project (a folder with AGENTS.md and insights/), or pass --project <path>.")
     INDEX = os.path.join(CASE, "index.html")
     rebuild_if_needed()
     handler = functools.partial(Handler, directory=CASE)

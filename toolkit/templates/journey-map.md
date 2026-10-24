@@ -47,4 +47,4 @@ From the pain points above, which needs should become opportunities. Point to th
 ## What this cannot tell us
 What the map does not tell us: which steps are still guesses, which groups of users are not reflected.
 
-*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the project's `work/README.md`.*

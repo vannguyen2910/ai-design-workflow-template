@@ -1,8 +1,8 @@
 # _skills: step cards and scripts for the AI
 
-> **Shared.** This folder sits in `toolkit/` at the workspace root and is shared by every case. It is a copy of the `product-workspace` skill (the master). Do not edit it here: edit the skill, then run `sync-workspace.py`.
+> **Shared.** This folder sits in `toolkit/` at the workspace root and is shared by every project. It is a copy of the `product-workspace` skill (the master). Do not edit it here: edit the skill, then run `sync-workspace.py`.
 
-This folder holds two things. **Step cards** (`.md` files): they define AI-assisted procedures as files, so the AI tool can read them and the procedure is stored with the case. Each file is one workflow made of ordered steps, and each step says who does it (the AI or you), which files to read and where to write.
+This folder holds two things. **Step cards** (`.md` files): they define AI-assisted procedures as files, so the AI tool can read them and the procedure is stored with the project. Each file is one workflow made of ordered steps, and each step says who does it (the AI or you), which files to read and where to write.
 
 ## Cards
 
@@ -10,19 +10,25 @@ This folder holds two things. **Step cards** (`.md` files): they define AI-assis
 |---|---|---|---|
 | [`competitor-analysis.md`](competitor-analysis.md) | Discover | When you need to know what competitors are doing | Draft, not tried much |
 | [`user-voice-synthesis.md`](user-voice-synthesis.md) | Discover | When you have quotes or user interviews to synthesise | Draft, not tried much |
+| [`interview.md`](interview.md) | Discover | When you plan interviews or need to summarise anonymised interview notes | Draft |
+| [`framing.md`](framing.md) | Define | When you have checked evidence and need to choose the problem, the opportunities and the hypotheses | Draft |
+| [`ideation.md`](ideation.md) | Develop | When you have a chosen opportunity and need to explore and compare solution directions | Draft |
+| [`prototype.md`](prototype.md) | Develop | When you have a chosen direction and want a clickable prototype built with your design system | Draft |
+| [`test.md`](test.md) | Deliver | When you have a prototype and want to test it with real users and rate the findings | Draft |
+| [`handoff.md`](handoff.md) | Deliver | When the design is ready for developers and you need a handoff pack and a measurement plan | Draft |
 | [`add-insights.md`](add-insights.md) | Discover, Test | When there is new research (interview, survey, test results) to turn into items | Draft |
 | [`refresh-hub.md`](refresh-hub.md) | All stages | When you want the AI to review where items are not linked or are missing | Draft |
 | [`add-media.md`](add-media.md) | All stages | When there are images, video, PDFs or documents to put into the report | Draft |
-| [`export-hub.md`](export-hub.md) | All stages | When you need to see the hub in a browser or send it to someone | Draft |
+| [`build-report.md`](build-report.md) | All stages | When you need to see the hub in a browser or send it to someone | Draft |
 | [`build-process-map.md`](build-process-map.md) | Develop | When you need a process map, swimlane or user flow drawn as a diagram (uses `../diagram-design/`) | Draft |
 
-**Scripts** (`.py` files): `export-hub.py` builds the `index.html` report, `serve-hub.py` shows the report as you save files. You usually ask the AI to run them rather than opening them by hand.
+**Scripts** (`.py` files): `build-report.py` builds the `index.html` report, `serve-hub.py` shows the report as you save files. You usually ask the AI to run them rather than opening them by hand.
 
-The cards for Frame, Explore, Prototype and Test will be added. You can add your own cards following the guide below.
+You can add your own cards following the guide below.
 
 ## How to run a step
 
-1. Open the whole case folder in the AI tool. The tool reads `AGENTS.md` at the root by itself.
+1. Open the whole project folder in the AI tool. The tool reads `AGENTS.md` at the root by itself.
 2. Commit first (if you use Git), so you can go back.
 3. Tell the tool: *"Run step 5 of `../toolkit/skills/user-voice-synthesis.md`."*
 4. Read the result, then check it yourself in the next step. A step labelled **(YOU)** is the part you still do yourself.

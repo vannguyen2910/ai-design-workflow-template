@@ -1,13 +1,13 @@
 # Workflow: Review the Hub
 
-Ask the AI to read the item files and list what is not linked, does not match or is missing, then you decide how to handle each one. **This workflow writes to no file**: the tables and warnings in the report are computed by `python3 ../toolkit/skills/export-hub.py`.
+Ask the AI to read the item files and list what is not linked, does not match or is missing, then you decide how to handle each one. **This workflow writes to no file**: the tables and warnings in the report are computed by `python3 ../toolkit/skills/build-report.py`.
 
 *Status: draft.*
 
 | | |
 |---|---|
 | When | After you add or edit many items, or before handoff |
-| Before | Run `python3 ../toolkit/skills/export-hub.py` so the report is up to date |
+| Before | Run `python3 ../toolkit/skills/build-report.py` so the report is up to date |
 | Working file | None. The result is answered right in the chat |
 
 ## Step 1: Review (AI)
@@ -33,7 +33,7 @@ Ask the AI to read the item files and list what is not linked, does not match or
 
 **Who:** YOU
 **Input:** The warnings just built, and the AI's answer from step 1
-**Output:** `work/alignment.md` (a verdict for each warning), `insights/case-log.md`
+**Output:** `work/alignment.md` (a verdict for each warning), `insights/project-log.md`
 
 For each warning pick one: fix the item file, accept it as a trade-off with a reason, or cut it. For a cut item, delete the file and run this workflow again.
 

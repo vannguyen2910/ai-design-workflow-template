@@ -2,7 +2,7 @@
 
 Turn what real users say (reviews, forums, short interviews) into themes and opportunities, without the AI inventing quotes and with every theme traceable to the original words.
 
-*Status: draft. Try the instructions on a real case and adjust them to how you work before you rely on them.*
+*Status: draft. Try the instructions on a real project and adjust them to how you work before you rely on them.*
 
 | | |
 |---|---|
@@ -62,6 +62,8 @@ Fill in: the question (taken from the scope); who we need to hear from (which us
 **Who:** AI
 **Input:** `## Scope` (only this section)
 **Output:** `## Sources and guide`, labelled "AI suggestions"
+
+*Running real interviews yourself? Plan and run them with `interview.md` (guide, pilot, consent, anonymising, verified summaries) and bring the checked quotes back here at step 5.*
 
 **Instruction:**
 > Use only the scope below. Suggest the places where real users of this product talk about it in public (the kinds of source, do not invent specific pages), and draft eight interview questions. The questions must ask about past behaviour and real situations ("tell me about the last time you..."), not ask for opinions about ideas, and must not lead. Do not invent sources and do not quote anyone. Say what you are not sure about. Return only the two lists.

@@ -30,7 +30,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 def find_case(start=None):
-    """The case folder: the nearest folder, from `start` (default: the current folder) upwards,
+    """The project folder: the nearest folder, from `start` (default: the current folder) upwards,
     that has AGENTS.md next to insights/ or work/. Falls back to the folder above this script
     (a copy of this script in the workspace's toolkit/skills/ folder)."""
     p = os.path.abspath(start or os.getcwd())
@@ -47,7 +47,7 @@ def find_case(start=None):
         return legacy
     return None
 
-CASE = None  # set in main() from --case or the current folder
+CASE = None  # set in main() from --project or the current folder
 
 KINDS = {
     "O": ("opportunity", "opportunities", "Opportunity: a user need backed by evidence"),
@@ -78,7 +78,7 @@ FLAG = {"serves": "serves", "metric": "metric", "tests": "tests", "follows": "fo
 
 
 def load_hub():
-    spec = importlib.util.spec_from_file_location("export_hub", os.path.join(HERE, "export-hub.py"))
+    spec = importlib.util.spec_from_file_location("export_hub", os.path.join(HERE, "build-report.py"))
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
@@ -166,7 +166,7 @@ def main():
     ap.add_argument("--participants", type=int, default=0, help="evidence: number of participants")
     ap.add_argument("--status", help="evidence: planned or run; metric: assumed or confirmed")
     ap.add_argument("--baseline", help="metric: current baseline (or unknown)")
-    ap.add_argument("--reason", help="decision: one-sentence reason, also written to the case log")
+    ap.add_argument("--reason", help="decision: one-sentence reason, also written to the project log")
     ap.add_argument("--solutions", help="decision: solution codes it implements, for example A4,P3 (flow diagrams use them to tag the decision)")
     ap.add_argument("--owner", help="decision: who is responsible")
     ap.add_argument("--decided-on", dest="decided_on", help="decision: date YYYY-MM-DD (default: today when state is accepted)")
@@ -178,14 +178,14 @@ def main():
     ap.add_argument("--result", help="metric: the measured result")
     ap.add_argument("--verdict", choices=["pending", "met", "missed", "inconclusive"], help="metric: verdict against the target")
     ap.add_argument("--measured-on", dest="measured_on", help="metric: date measured YYYY-MM-DD")
-    ap.add_argument("--no-log", action="store_true", help="decision: do not add a line to the case log")
+    ap.add_argument("--no-log", action="store_true", help="decision: do not add a line to the project log")
     ap.add_argument("--no-build", action="store_true", help="do not rebuild index.html")
-    ap.add_argument("--case", default="", help="case folder (default: the case you are standing in)")
+    ap.add_argument("--project", "--case", dest="case", default="", help="project folder (default: the project you are standing in)")
     a = ap.parse_args()
     global CASE
     CASE = os.path.abspath(a.case) if a.case else find_case()
     if not CASE:
-        sys.exit("Case folder not found. Run inside a case (a folder with AGENTS.md and insights/), or pass --case <path>.")
+        sys.exit("Project folder not found. Run inside a project (a folder with AGENTS.md and insights/), or pass --project <path>.")
     interactive = a.kind is None
 
     hub = load_hub()
@@ -291,12 +291,12 @@ def main():
     rel_path = os.path.relpath(path, CASE)
     print("\nCreated %s  (%s)" % (new_id, rel_path))
 
-    # 6. case log for decisions
+    # 6. project log for decisions
     if kind == "D" and not a.no_log:
-        reason = a.reason if a.reason is not None else (ask("\nOne-sentence reason for the case log (Enter to skip)") if interactive else "")
-        log = os.path.join(CASE, "insights", "case-log.md")
+        reason = a.reason if a.reason is not None else (ask("\nOne-sentence reason for the project log (Enter to skip)") if interactive else "")
+        log = os.path.join(CASE, "insights", "project-log.md")
         if not os.path.isfile(log):
-            log = os.path.join(CASE, "reference", "case-log.md")
+            log = os.path.join(CASE, "reference", "project-log.md")
         if reason and os.path.isfile(log):
             row = "| %s | %s | %s | %s |\n" % (datetime.date.today().isoformat(), title.replace("|", "/"), reason.replace("|", "/"),
                                               ", ".join([new_id] + rel.get("tests", [])))
@@ -305,9 +305,9 @@ def main():
             if len(lines) > 1 and re.fullmatch(r"\|(\s*\|)+", lines[-2].strip()):  # the empty placeholder row
                 lines.pop(-2)
             open(log, "w", encoding="utf-8").write("\n".join(lines).rstrip("\n") + "\n" + row)
-            print("Added a line to insights/case-log.md")
+            print("Added a line to insights/project-log.md")
         elif not reason:
-            print("  Still missing: no line in insights/case-log.md yet (add --reason \"...\" or write it by hand)")
+            print("  Still missing: no line in insights/project-log.md yet (add --reason \"...\" or write it by hand)")
 
     # 7. what is still missing
     missing = []
@@ -333,8 +333,8 @@ def main():
 
     # 8. rebuild
     if not a.no_build:
-        r = subprocess.run([sys.executable, os.path.join(HERE, "export-hub.py"), "--case", CASE], cwd=CASE, capture_output=True, text=True)
-        print("index.html: %s" % ("rebuilt" if r.returncode == 0 else "error, rebuild the report with export-hub.py"))
+        r = subprocess.run([sys.executable, os.path.join(HERE, "build-report.py"), "--project", CASE], cwd=CASE, capture_output=True, text=True)
+        print("index.html: %s" % ("rebuilt" if r.returncode == 0 else "error, rebuild the report with build-report.py"))
         if r.returncode != 0:
             print(r.stderr.strip()[-400:])
 

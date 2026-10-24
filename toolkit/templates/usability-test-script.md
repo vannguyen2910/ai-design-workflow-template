@@ -56,7 +56,7 @@ Each task is a **situation**, without saying beforehand how to do it, without us
 - Thank them, and say clearly how the data is used.
 
 ## Observation sheet
-Record behaviour, not interpretation. Rate severity with Severity levels (the case's `standards/severity-levels.md`), 0 to 4.
+Record behaviour, not interpretation. Rate severity with Severity levels (the project's `standards/severity-levels.md`), 0 to 4.
 
 | P# | Task | Completed? (yes / with help / no) | Time | Error / notable behaviour | Verbatim quote | Severity (0-4) |
 |---|---|---|---|---|---|---|
@@ -68,4 +68,4 @@ Record behaviour, not interpretation. Rate severity with Severity levels (the ca
 - [ ] The prototype has no blocking bug other than the intended ones.
 - [ ] Decided how to take notes and where to save the files (`work/sources/_raw-private/`).
 
-*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the project's `work/README.md`.*

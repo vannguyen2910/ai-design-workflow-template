@@ -41,7 +41,7 @@ Put images, video, PDFs or a document into the hub so it shows in the report, in
 **Input:** `work/<short-name>/`
 **Output:** A new `index.html`
 
-Ask the AI tool to run `python3 ../toolkit/skills/export-hub.py`, open `index.html`, go to the **Work** section and click the new card.
+Ask the AI tool to run `python3 ../toolkit/skills/build-report.py`, open `index.html`, go to the **Work** section and click the new card.
 
 **Check:** The images all show in the right order, the captions are easy to understand, and there is no yellow warning (heavy file, format that cannot be displayed, file not found).
 **Failure sign:** A warning is still on the document page: do what the warning says, then rebuild the report.

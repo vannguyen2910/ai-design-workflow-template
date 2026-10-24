@@ -22,4 +22,4 @@ Add the prototype to `media:` (an HTML file in the project; add `embed: true` to
 
 ## Known gaps
 
-*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the project's `work/README.md`.*

@@ -51,7 +51,7 @@ Decision: "Visitors can browse without an account"
       ← evidence: survey of 13 people, price is barrier number 1 (7/13)
 ```
 
-Steps 2 to 5 come from the sample project `demo-case`. Open that project to see it in full.
+Steps 2 to 5 come from the sample project `demo-project`. Open that project to see it in full.
 
 ---
 
@@ -61,18 +61,20 @@ Click **Code → Download ZIP**, unzip, then double-click **`index.html`** at th
 
 | To see | Click the card |
 |---|---|
-| The finished sample project | **Travel Buddy** (`demo-case`) |
-| The blank workspace | **Product Name** (`my-case`) |
+| The finished sample project | **Travel Buddy** (`demo-project`) |
+| The blank workspace | **Product Name** (`my-project`) |
 
 ---
 
 ## Start your own project
 
+First time? Follow the [setup checklist](toolkit/guides/00-setup-checklist.md): nine steps, about 45 minutes, each with a check that tells you it worked.
+
 1. **Download and unzip.**
 2. **Open the folder with an AI tool** and say: *"Create a new project called … ."*
 3. **Double-click `index.html`** at the workspace root: your project shows as a new card.
 
-No AI tool? Rename the `my-case` folder, then fill it in.
+No AI tool? Rename the `my-project` folder, then fill it in.
 
 ---
 
@@ -99,15 +101,15 @@ workspace/
 │   ├── templates/   document templates, shared by every project
 │   ├── skills/      steps and scripts for the AI, shared by every project
 │   └── tools/       create a new project with one command
-├── my-case/         the blank workspace (make a copy, do not fill it in directly)
-├── demo-case/       the sample project
+├── my-project/         the blank workspace (make a copy, do not fill it in directly)
+├── demo-project/       the sample project
 └── <project-name>/  your project
 ```
 
 In each project: `context/` (background), `work/` (everything made), `insights/` (needs, decisions, evidence), `stages/`, `standards/`, `AGENTS.md` (rules for the AI tool).
 
 - **Keep** the folder names above and the item codes (`O1`, `H1`, `D1`...) as they are.
-- **Create a project with a command:** `python3 toolkit/tools/new-case.py project-name`
+- **Create a project with a command:** `python3 toolkit/tools/new-project.py project-name`
 - **Real projects:** read your company's AI policy, keep the original data in `work/sources/_raw-private/`, and keep the repo **Private** if it is not cleared for sharing.
 
 </details>
