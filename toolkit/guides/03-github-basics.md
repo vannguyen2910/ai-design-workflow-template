@@ -30,10 +30,10 @@ The detailed clicks are in the "Option B" part of [`01-get-the-folder.md`](01-ge
 | | Private | Public |
 |---|---|---|
 | Who sees it | Only you, and the people you invite | Anyone with the link, including search engines |
-| Use it for | A full case: context, data sources, working files | Only a case you are allowed to share in full |
+| Use it for | A full project: context, data sources, working files | Only a project you are allowed to share in full |
 | Markdown shown on GitHub | Yes, for invited people | Yes, for everyone |
 
-A simple rule: **the repo that holds your case stays Private.** Only create a separate Public repo, from a cleaned copy, when the whole case may be shared. See [`04-share-your-hub.md`](04-share-your-hub.md).
+A simple rule: **the repo that holds your project stays Private.** Only create a separate Public repo, from a cleaned copy, when the whole project may be shared. See [`04-share-your-hub.md`](04-share-your-hub.md).
 
 ## Common worries
 

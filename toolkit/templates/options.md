@@ -55,4 +55,4 @@ Point to them by code, do not copy the content. Details are in `insights/decisio
 ## What this cannot tell us
 What this comparison does not tell us. Which parts need confirming by testing with users.
 
-*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the project's `work/README.md`.*

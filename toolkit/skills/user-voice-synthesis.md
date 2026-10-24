@@ -2,7 +2,7 @@
 
 Turn what real users say (reviews, forums, short interviews) into themes and opportunities, without the AI inventing quotes and with every theme traceable to the original words.
 
-*Status: draft. Try the instructions on a real case and adjust them to how you work before you rely on them.*
+*Status: draft. Try the instructions on a real project and adjust them to how you work before you rely on them.*
 
 | | |
 |---|---|

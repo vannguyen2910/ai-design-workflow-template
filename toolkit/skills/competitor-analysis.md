@@ -2,7 +2,7 @@
 
 Shows **what competitors do**, not why users choose them. Treat the result as hypotheses to test with real users.
 
-*Status: draft. Try the instructions on a real case and adjust them to how you work before you rely on them.*
+*Status: draft. Try the instructions on a real project and adjust them to how you work before you rely on them.*
 
 | | |
 |---|---|

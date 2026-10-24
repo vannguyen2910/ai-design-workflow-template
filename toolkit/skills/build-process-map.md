@@ -2,7 +2,7 @@
 
 Use this when a project needs an end-to-end process map, a swimlane, a user flow or any other diagram (journey, sequence, state machine…). The diagram is one self-contained HTML file with inline SVG, drawn with the `diagram-design` skill that lives in this workspace: [`../diagram-design/SKILL.md`](../diagram-design/SKILL.md).
 
-The demo project shows the result: `demo-case/work/original-docs/08_E2E_Process_Map.html` (opened by `demo-case/work/process-map.md`).
+The demo project shows the result: `demo-project/work/original-docs/08_E2E_Process_Map.html` (opened by `demo-project/work/process-map.md`).
 
 ## Before you start
 

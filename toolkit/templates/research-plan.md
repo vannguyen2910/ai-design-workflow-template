@@ -50,4 +50,4 @@ What the output is (a synthesis, personas, a list of opportunities...) and who u
 ## Risks and limits
 What could skew the results (small sample, biased participants, leading questions) and how to reduce it.
 
-*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the project's `work/README.md`.*

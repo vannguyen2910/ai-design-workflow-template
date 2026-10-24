@@ -1,16 +1,16 @@
 # Templates
 
-Empty templates for working documents, shared by every case in this workspace. **Do not fill them in here.**
+Empty templates for working documents, shared by every project in this workspace. **Do not fill them in here.**
 
 ## How to use
 
-1. Copy a file into the `work/` of your case and rename it so it is easy to recognise (for example `work/pestel-analysis.md`).
+1. Copy a file into the `work/` of your project and rename it so it is easy to recognise (for example `work/pestel-analysis.md`).
 2. Fill in the content. Change `status` to `verified` once you have checked it.
 3. Rebuild the report; the document shows in the **Work** section.
 
 Or ask the AI tool: *"Create a research plan document in `work/` from the template `toolkit/templates/research-plan.md`."*
 
-> Templates for **items** (need, hypothesis, decision, evidence, finding, metric) live separately in `insights/_templates/` in each case, because `new-item.py` uses them to create items.
+> Templates for **items** (need, hypothesis, decision, evidence, finding, metric) live separately in `insights/_templates/` in each project, because `new-item.py` uses them to create items.
 
 ## The list
 

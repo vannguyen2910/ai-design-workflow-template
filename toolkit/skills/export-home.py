@@ -2,8 +2,8 @@
 """
 export-home.py - build the workspace home page (index.html at the workspace root).
 
-One card per case folder (a folder with AGENTS.md next to insights/ or work/). Each card opens that
-case's report. The page is a pure function of the files: no timestamp, so a rebuild with nothing
+One card per project folder (a folder with AGENTS.md next to insights/ or work/). Each card opens that
+project's report. The page is a pure function of the files: no timestamp, so a rebuild with nothing
 changed produces no diff.
 
     python3 export-home.py                        # the workspace you are in
@@ -17,7 +17,7 @@ import re
 import sys
 
 STAGES = ["Setup", "Discover", "Define", "Develop", "Deliver", "Learn"]
-EXAMPLES = ("demo-case", "my-case")  # listed after the real projects
+EXAMPLES = ("demo-project", "my-project")  # listed after the real projects
 
 
 def is_case(p):
@@ -133,16 +133,16 @@ def case_card(ws, d):
     case = os.path.join(ws, d)
     md = read(os.path.join(case, "README.md"))
     name = card_value(md, "Tên dự án", "Project name", "Project")
-    template = d == "my-case" and not name
+    template = d == "my-project" and not name
     if not name:
-        name = "Product Name" if d == "my-case" else d
+        name = "Product Name" if d == "my-project" else d
     stage = card_value(md, "Giai đoạn hiện tại", "Stage", "Current stage")
     owner = card_value(md, "Chủ dự án", "Owner")
     question = card_value(md, "Câu hỏi của business", "Business question")
     desc = description(md)
     items = count_items(case)
     docs, planned = count_documents(case)
-    kind = "Template" if template else ("Example" if d == "demo-case" else "Project")
+    kind = "Template" if template else ("Example" if d == "demo-project" else "Project")
     return {
         "dir": d, "name": name, "stage": stage if stage in STAGES else "", "owner": owner, "question": question,
         "desc": desc, "items": items, "docs": docs, "planned": planned, "kind": kind,
@@ -222,7 +222,7 @@ def render(cards, title, logo):
         body.append('<section><h3>Your projects</h3><div class="grid">%s</div></section>' % "".join(card(c) for c in real))
     else:
         body.append('<section><h3>Your projects</h3><p class="lede">No project yet. Create one with '
-                    '<code>python3 toolkit/tools/new-case.py project-name</code>, or ask your AI tool: '
+                    '<code>python3 toolkit/tools/new-project.py project-name</code>, or ask your AI tool: '
                     '&ldquo;Create a new project called &hellip;&rdquo;.</p></section>')
     if other:
         body.append('<section><h3>Examples and template</h3><div class="grid">%s</div></section>' % "".join(card(c) for c in other))

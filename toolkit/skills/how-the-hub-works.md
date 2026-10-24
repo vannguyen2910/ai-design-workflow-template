@@ -65,13 +65,13 @@ This part is for the person who keeps the hub.
 │   ├── hypotheses/  metrics/  decisions/  evidence/  findings/
 │   ├── _templates/        empty templates for each item type (copy into the type folder)
 │   └── traceability.base  tables by item type, used when opened in Obsidian
-├── standards/             gates, principle checks, severity levels, and the case log
+├── standards/             gates, principle checks, severity levels, and the project log
 └── _personal/             private notes
 ```
 
-The shared step cards and scripts live in `toolkit/skills/`, the document templates in `toolkit/templates/`, the guides in `toolkit/guides/`. All three sit **outside the case**, in `toolkit/` at the workspace root, not inside each case.
+The shared step cards and scripts live in `toolkit/skills/`, the document templates in `toolkit/templates/`, the guides in `toolkit/guides/`. All three sit **outside the project**, in `toolkit/` at the workspace root, not inside each project.
 
-The decision log is at `insights/case-log.md`, and the principles (P1 to P10) are at `standards/principle-checks.md`.
+The decision log is at `insights/project-log.md`, and the principles (P1 to P10) are at `standards/principle-checks.md`.
 
 ## The principle: each fact is written in one place
 
@@ -152,7 +152,7 @@ Drop images, videos or PDFs into a folder in `work/`, or insert an image in the 
 3. Update the status in `gates.md`.
 4. Ask the AI tool to update the hub (see below) to rebuild the tables and warnings.
 5. Read the warnings, decide each one, and write the verdict in `alignment.md`.
-6. Add a line to `insights/case-log.md`.
+6. Add a line to `insights/project-log.md`.
 7. Rebuild `index.html` so others see the new version.
 
 ## Ask the AI to review the hub
@@ -183,7 +183,7 @@ The report does not only display, it also cross-checks the parts against each ot
 
 - **Gates:** for the checks the data can answer (1b, 2a, 2c, 2d, 3b, 3c, 4a, 4b), the "Automatic check" column on the Gates page shows whether the current data meets them. The status you set stays yours; if you set `passed` and the data does not support it, the report shows a warning.
 - **Findings:** an unhandled level 4 blocks handoff, an unhandled level 3 needs a decision, and the affected decision is flagged too.
-- **Case log:** the codes mentioned in the Items column must exist, and each decision should have at least one line in the log. Codes become links.
+- **Project log:** the codes mentioned in the Items column must exist, and each decision should have at least one line in the log. Codes become links.
 
 ## Gates
 

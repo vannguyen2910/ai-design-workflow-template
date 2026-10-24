@@ -48,4 +48,4 @@ Three to five implications for the product or for the decision in Scope, each po
 ## What this cannot tell us
 What this analysis does not tell us. PESTEL describes the outside context, it does not say what users need.
 
-*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the project's `work/README.md`.*

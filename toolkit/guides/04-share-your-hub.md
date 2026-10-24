@@ -1,6 +1,6 @@
 # Share Your Hub
 
-Your hub is private by default: it lives in the case folder on your machine, and nobody sees it unless you send it. This guide explains how to let others see it, from the least risky way to the most risky.
+Your hub is private by default: it lives in the project folder on your machine, and nobody sees it unless you send it. This guide explains how to let others see it, from the least risky way to the most risky.
 
 ## Choose how to share
 
@@ -9,7 +9,7 @@ Your hub is private by default: it lives in the case folder on your machine, and
 | A stakeholder to read it, with nothing to install | **HTML report** (Option 1) or **PDF** (Option 2) | A browser |
 | To send the whole folder to a colleague | **ZIP file** (Option 3) | Obsidian or VS Code to view it nicely |
 | One person to view it directly on GitHub | **Invite to a Private repo** (Option 4) | A free GitHub account |
-| Anyone with the link to view it | **Public repo** (Option 5), only when the case may be shared | Nothing |
+| Anyone with the link to view it | **Public repo** (Option 5), only when the project may be shared | Nothing |
 
 **For real company work, use Option 1 or 2.**
 
@@ -17,11 +17,11 @@ Your hub is private by default: it lives in the case folder on your machine, and
 
 One self-contained HTML file with a menu, opened by double-clicking in a browser, and sendable by email.
 
-1. **Build the report.** The easiest way: ask the AI tool that has the case folder open to run `python3 ../toolkit/skills/export-hub.py`.
-   - Running it yourself on Mac: right-click the case folder, choose **New Terminal at Folder**, then type the command above.
-   - Running it yourself on Windows: open the case folder, click the address bar, type `cmd`, press Enter, then type the command above.
+1. **Build the report.** The easiest way: ask the AI tool that has the project folder open to run `python3 ../toolkit/skills/export-hub.py`.
+   - Running it yourself on Mac: right-click the project folder, choose **New Terminal at Folder**, then type the command above.
+   - Running it yourself on Windows: open the project folder, click the address bar, type `cmd`, press Enter, then type the command above.
    - The machine needs Python 3. A Mac may ask you to install a set of tools the first time; Windows needs Python installed from [python.org](https://www.python.org).
-2. **Open the file** `index.html` at the root of the case folder in a browser (double-click).
+2. **Open the file** `index.html` at the root of the project folder in a browser (double-click).
 3. **Check before sending.** If there is a black bar at the top saying "sample content or blanks remain", the hub still has sample content or empty places. Fill them in or delete them, then rebuild.
 4. **Send the file.** Copy `index.html` out and rename it so it is easy to recognise, for example `onboarding-redesign-report.html`. The recipient only needs a browser.
 
@@ -40,7 +40,7 @@ To send a compact package (images and prototype included, without exposing raw w
 
 ## Option 3: ZIP file
 
-1. Compress the **whole case folder**, not only `insights/`, because the pages in the report link to `work/`, `standards/` and the working files.
+1. Compress the **whole project folder**, not only `insights/`, because the pages in the report link to `work/`, `standards/` and the working files.
 2. Send the ZIP file. The recipient unzips it and opens the whole folder in Obsidian or VS Code.
 3. Try opening it on another machine before you send it.
 
@@ -56,10 +56,10 @@ You can revoke access at any time on the same screen.
 
 GitHub shows Markdown directly, so no website needs building: the link to the repo is the hub.
 
-Only do this when the **whole case folder** may be shared, for example the sample project, or a cleaned copy of real work. The report links to files across the case folder, so publishing only part of it would break those links.
+Only do this when the **whole project folder** may be shared, for example the sample project, or a cleaned copy of real work. The report links to files across the project folder, so publishing only part of it would break those links.
 
 1. Create a **new** repo on GitHub and choose **Public**. Do not switch the Private repo you are using to Public, because the old history stays in it.
-2. Copy the cleaned case folder into the new repo.
+2. Copy the cleaned project folder into the new repo.
 3. Open the repo link in a **private window** to see exactly what others see.
 
 ## Before you share anything

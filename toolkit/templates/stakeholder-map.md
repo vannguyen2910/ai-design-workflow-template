@@ -48,4 +48,4 @@ Where stakeholders want different things, and the risk if it is not resolved ear
 ## What this cannot tell us
 What we do not yet know about the stakeholders (nobody met yet, second-hand information). Mark anything not verified as `assumed`.
 
-*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the project's `work/README.md`.*

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Export the markdown hub of a case folder to ONE self-contained HTML file.
+"""Export the markdown hub of a project folder to ONE self-contained HTML file.
 
-    python3 export-hub.py                 # case = the case folder you are in -> <case>/index.html
-    python3 export-hub.py --case PATH     # another case folder
+    python3 export-hub.py                 # case = the project folder you are in -> <case>/index.html
+    python3 export-hub.py --project PATH     # another project folder
     python3 export-hub.py --out FILE.html # custom output path (e.g. a copy to send)
 
 Why a script and not an AI tool: turning markdown into HTML and tracing links between items is
@@ -28,7 +28,7 @@ import re
 import sys
 
 def find_case(start=None):
-    """The case folder: the nearest folder, from `start` (default: the current folder) upwards,
+    """The project folder: the nearest folder, from `start` (default: the current folder) upwards,
     that has AGENTS.md next to insights/ or work/. Falls back to the folder above this script
     (a copy of this script in the workspace's toolkit/skills/ folder)."""
     p = os.path.abspath(start or os.getcwd())
@@ -425,7 +425,7 @@ def _natkey(s):
 
 
 def collect(case):
-    """Everything the report shows. A folder at the top of the case is a menu item of the report:
+    """Everything the report shows. A folder at the top of the project is a menu item of the report:
     stages/, work/ (see collect_artifacts), insights/, standards/ and context/; README.md is the Overview."""
     ov = os.path.join(case, "README.md")
     if not os.path.isfile(ov):
@@ -438,7 +438,7 @@ def collect(case):
     for spec in stage_specs(open(idx_, encoding="utf-8").read() if os.path.isfile(idx_) else ""):
         weekly.append(StagePage(spec, case))
     # Reference pages: every .md file in reference/ (README.md excluded). Drop a new file there and it appears.
-    # Known pages keep their ids and come first; the rest follow alphabetically, and the case log goes last.
+    # Known pages keep their ids and come first; the rest follow alphabetically, and the project log goes last.
     ref_dir = os.path.join(case, "standards")
     if not os.path.isdir(ref_dir) and os.path.isdir(os.path.join(case, "reference")):  # cases made before the rename
         ref_dir = os.path.join(case, "reference")
@@ -446,7 +446,7 @@ def collect(case):
              "severity-levels": ("severity", "Severity levels")}
     first = ["gates", "principle-checks", "severity-levels"]
     stems = sorted(f[:-3] for f in os.listdir(ref_dir) if f.endswith(".md") and f.lower() != "readme.md") if os.path.isdir(ref_dir) else []
-    for st in [x for x in first if x in stems] + [x for x in stems if x not in first and x not in ("case-log", "how-the-hub-works")]:
+    for st in [x for x in first if x in stems] + [x for x in stems if x not in first and x not in ("project-log", "how-the-hub-works")]:
         pid, lab = known.get(st, (st, None))
         ref.append(Page(pid, os.path.join(ref_dir, st + ".md"), "ref", lab))
     # Context pages: every .md in context/ (README.md excluded), the usual ones first.
@@ -478,7 +478,7 @@ def collect(case):
 
 def case_info(overview_md, case):
     name = os.path.basename(os.path.abspath(case))
-    if name == "my-case":  # the blank template has no project yet
+    if name == "my-project":  # the blank template has no project yet
         name = "Product Name"
     m = re.search(r"^\|\s*(?:Tên (?:dự án|case)|Project name|Project)\s*\|\s*([^|\s][^|]*?)\s*\|\s*$", overview_md, flags=re.M)
     if m and not m.group(1).startswith("["):
@@ -570,7 +570,7 @@ def parse_principles(md):
 
 
 def parse_case_log(md):
-    """rows of the case log table: (date, decision, reason, [ids])"""
+    """rows of the project log table: (date, decision, reason, [ids])"""
     rows = []
     for line in md.split("\n"):
         if not line.strip().startswith("|"):
@@ -687,7 +687,7 @@ def _gen_tables(G, page_dir):
     return T
 
 
-# How much a warning matters. "block": the case's conclusions are not safe to hand off yet.
+# How much a warning matters. "block": the project's conclusions are not safe to hand off yet.
 # "review": worth a look, the owner decides. "info": housekeeping; listed, never counted, no badge on items.
 WARN_TIER = {
     "no-need": "block", "d-no-owner": "review", "o-no-reason": "review", "m-no-target": "review", "m-no-result": "review", "m-missed": "review", "f-sev4": "block", "d-open-finding": "block", "gate-mismatch": "block", "log-unknown-id": "block",
@@ -1805,15 +1805,15 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     gates = parse_gates(gates_md)
     G = Graph(items, principles)
 
-    # Case log: every ID it mentions must exist, and every decision should have a line.
-    _clp = next((q for q in (os.path.join(case, "insights", "case-log.md"), os.path.join(case, "standards", "case-log.md"),
-                             os.path.join(case, "reference", "case-log.md")) if os.path.isfile(q)), None)
+    # Project log: every ID it mentions must exist, and every decision should have a line.
+    _clp = next((q for q in (os.path.join(case, "insights", "project-log.md"), os.path.join(case, "standards", "project-log.md"),
+                             os.path.join(case, "reference", "project-log.md")) if os.path.isfile(q)), None)
     log_rows = parse_case_log(open(_clp, encoding="utf-8").read()) if _clp else []
     logged = {i for r in log_rows for i in r[3]}
     unknown_ids = sorted({i for i in logged if i not in G.items and i not in principles}, key=_natkey)
     if unknown_ids:
-        G.warnings.append(("log-unknown-id", unknown_ids, "The case log mentions IDs that have no file"))
-    G.flag("no-log", [d for d in G.D if d not in logged], "This decision has no line in the case log")
+        G.warnings.append(("log-unknown-id", unknown_ids, "The project log mentions IDs that have no file"))
+    G.flag("no-log", [d for d in G.D if d not in logged], "This decision has no line in the project log")
 
     # Gates: what the data says, next to what a person set. A gate marked passed while the data disagrees is a warning.
     auto = auto_checks(G, principles)
@@ -1844,7 +1844,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     out_dir = os.path.dirname(os.path.abspath(out_path))
     for a in arts:
         by_path[os.path.normcase(os.path.abspath(a.path))] = a.id
-    for p_ in weekly:  # a file only a stage page shows (e.g. insights/case-log.md) links to that stage page
+    for p_ in weekly:  # a file only a stage page shows (e.g. insights/project-log.md) links to that stage page
         for path_, _m, _b in p_.parts:
             by_path.setdefault(os.path.normcase(os.path.abspath(path_)), p_.id)
     for a in arts:  # a link to a working file that backs an artifact opens that artifact
@@ -2108,8 +2108,8 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             ("planned", "Evidence only planned", "Run the test or study, then record the result."),
             ("simulated", "Evidence uses simulated people", "Does not count as real evidence. Run it again with real users."),
             ("no-real-evidence", "Hypothesis without real-user evidence", "Needs at least one test with real users."),
-            ("f-sev4", "Severity 4 finding unresolved", "Blocks handoff. Fix it, or accept it and record why in the case log."),
-            ("f-sev3", "Severity 3 finding unresolved", "Needs a decision: fix it, or accept it as a trade-off and record it in the case log."),
+            ("f-sev4", "Severity 4 finding unresolved", "Blocks handoff. Fix it, or accept it and record why in the project log."),
+            ("f-sev3", "Severity 3 finding unresolved", "Needs a decision: fix it, or accept it as a trade-off and record it in the project log."),
             ("d-open-finding", "Decision has serious unresolved findings", "See the findings on the decision page, then fix or record why you accept them."),
             ("f-nosev", "Finding without a valid severity", "Set severity from 0 to 4 (see Severity levels)."),
             ("f-noevidence", "Finding not linked to evidence", "Set found_in to the evidence where it was found."),
@@ -2118,8 +2118,8 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             ("m-no-target", "Metric without a target", "Fill in target: the threshold that shows the hypothesis is right."),
             ("d-no-owner", "Accepted decision without an owner", "Fill in owner (who is responsible) and decided_on."),
             ("o-no-reason", "Opportunity without a rank reason", "Fill in impact, confidence and rank_reason so others understand the rank."),
-            ("no-log", "Decision not in the case log", "Add a line to insights/case-log.md and put the decision ID in the Items column."),
-            ("log-unknown-id", "Case log mentions an ID that does not exist", "Fix the ID in the Items column or create the missing item file."),
+            ("no-log", "Decision not in the project log", "Add a line to insights/project-log.md and put the decision ID in the Items column."),
+            ("log-unknown-id", "Project log mentions an ID that does not exist", "Fix the ID in the Items column or create the missing item file."),
             ("gate-mismatch", "Gate set by hand differs from the data", "See the Auto check column on the Gates page; fix the data or change the check status."),
             ("art-orphan", "Document not linked to any item", "Fill in the supports property in the document."),
             ("principles", "Principle without a check question", "Write a yes/no question for each principle."),
@@ -2232,7 +2232,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             if wid:
                 head += '<a href="#/%s">Open in Work →</a>' % esc(wid)
             body_html = render_md(body, path, resolver, problems, team)
-            if os.path.basename(path) == "case-log.md":
+            if os.path.basename(path) == "project-log.md":
                 body_html = link_log_ids(body_html)
             out += '<section class="stsrc"><div class="sthead">%s</div>%s</section>' % (head, body_html)
         for key in p.spec["tables"]:
@@ -2265,7 +2265,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         jcards, jdocs)
 
     # --- reference
-    ref_desc = {"gates": "The four gates and the checks in each", "principles": "10 usability heuristics (Heuristic Evaluation): principles every decision should meet", "severity": "Severity scale for usability problems, 0 to 4", "case-log": "One line per decision, with the reason"}
+    ref_desc = {"gates": "The four gates and the checks in each", "principles": "10 usability heuristics (Heuristic Evaluation): principles every decision should meet", "severity": "Severity scale for usability problems, 0 to 4", "project-log": "One line per decision, with the reason"}
     def ref_blurb(p):
         # pages that are not built in: use the first plain or italic line under the title
         for ln in p.md.split("\n")[1:]:
@@ -2279,7 +2279,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         h = doc_html(p)
         # status words become quiet coloured labels; empty cells show a dash instead of a hole
         h = re.sub(r"<td>\s*(passed|open|failed)\s*</td>", lambda m: '<td><span class="gst gst-%s">%s</span></td>' % (m.group(1), STATUS_VI[m.group(1)]), h)
-        if p.id == "case-log":
+        if p.id == "project-log":
             def link_ids(m):
                 inner = re.sub(r"\b([OHMDEFP]\d+)\b", lambda t: chip(t.group(1)) if (t.group(1) in G.items or t.group(1) in principles) else t.group(1), m.group(2))
                 return m.group(1) + inner + m.group(3)
@@ -2560,7 +2560,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         '</div></div></section>'
     ) % (where(["insights/"], "copy a template from <code>insights/_templates/</code> into the matching type folder (one file per card)."), ttabs, tbar, icards or '<div class="empty"><p><strong>Nothing here yet.</strong></p></div>', align_table, top or '<li class="n"><span class="nt">Nothing here yet.</span></li>', idocs)
 
-    # --- guide: how to use this report (guide.md at the case root; optional)
+    # --- guide: how to use this report (guide.md at the project root; optional)
     v_guide = ""
     _gp = os.path.join(case_abs, "guide.md")
     if os.path.isfile(_gp):
@@ -2589,7 +2589,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>{{NAME}} · Case report</title>
+<title>{{NAME}} · Project report</title>
 <style>{{CSS}}</style>
 </head>
 <body data-case="{{NAME}}">
@@ -2626,7 +2626,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
 
 def main():
     ap = argparse.ArgumentParser(description="Export the markdown hub to one self-contained HTML file.")
-    ap.add_argument("--case", default="", help="case folder (default: the case you are standing in)")
+    ap.add_argument("--project", "--case", dest="case", default="", help="project folder (default: the project you are standing in)")
     ap.add_argument("--out", default=None)
     ap.add_argument("--theme", default="minimal", choices=[k for k, _ in THEMES], help="visual theme of the report")
     ap.add_argument("--preview-themes", action="store_true", help="add a theme switcher to the report (for choosing a theme)")
@@ -2636,7 +2636,7 @@ def main():
     a = ap.parse_args()
     case = os.path.abspath(a.case) if a.case else find_case()
     if not case:
-        sys.exit("Case folder not found. Run inside a case (a folder with AGENTS.md and insights/), or pass --case <path>.")
+        sys.exit("Project folder not found. Run inside a project (a folder with AGENTS.md and insights/), or pass --project <path>.")
     bundle_dir = os.path.abspath(a.bundle) if a.bundle else None
     if bundle_dir:
         os.makedirs(bundle_dir, exist_ok=True)
@@ -2657,7 +2657,7 @@ def main():
         if a.zip:
             z = shutil.make_archive(bundle_dir, "zip", bundle_dir)
             print("Zip: %s (%.1f MB)" % (z, os.path.getsize(z) / 1048576.0))
-    print("Case: %s" % name)
+    print("Project: %s" % name)
     print("Included in the report: %d stage pages, %d standards, %d documents (artifacts), %d items (O %d, H %d, M %d, D %d, E %d)" % (
         len(weekly), len(ref), len(arts), len(G.items), len(G.O), len(G.H), len(G.M), len(G.D), len(G.E)))
     if a.team:
@@ -2676,7 +2676,7 @@ def main():
         print("  ! At least %d places still have sample or blank data" % placeholders)
     print("Written: %s" % out)
     print("Open index.html in a browser (double-click) to view the hub.")
-    # keep the workspace home page (one card per case) in step with this report, when this script
+    # keep the workspace home page (one card per project) in step with this report, when this script
     # is the workspace's shared copy (toolkit/skills/)
     try:
         here = os.path.dirname(os.path.abspath(__file__))

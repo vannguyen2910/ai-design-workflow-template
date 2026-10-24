@@ -61,4 +61,4 @@ What we do not know that could change direction. Who answers, and by when. See `
 ## Agreement
 Status: agreed / pending / not available. Who, when, and what they said:
 
-*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the case's `work/README.md`.*
+*Images, videos and PDFs of this document: drop them into the same folder as this file and the report shows them by itself. See the project's `work/README.md`.*

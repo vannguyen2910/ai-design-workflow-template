@@ -33,7 +33,7 @@ Ask the AI to read the item files and list what is not linked, does not match or
 
 **Who:** YOU
 **Input:** The warnings just built, and the AI's answer from step 1
-**Output:** `work/alignment.md` (a verdict for each warning), `insights/case-log.md`
+**Output:** `work/alignment.md` (a verdict for each warning), `insights/project-log.md`
 
 For each warning pick one: fix the item file, accept it as a trade-off with a reason, or cut it. For a cut item, delete the file and run this workflow again.
 

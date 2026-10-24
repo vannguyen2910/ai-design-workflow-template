@@ -9,7 +9,7 @@ Export the hub as **one self-contained HTML file** to view in a browser and send
 | When | When you need to see the hub in a browser, or send it to someone |
 | Before | Save the files you just edited. The tables rebuild every run, no other step is needed |
 | Command | `python3 ../toolkit/skills/export-hub.py` |
-| Output | `index.html` at the root of the case folder |
+| Output | `index.html` at the root of the project folder |
 
 ## Why a script, not the AI
 
@@ -21,7 +21,7 @@ Turning Markdown into HTML is a deterministic transformation. The script gives t
 |---|---|
 | `README.md`, `context/`, `stages/`, `work/`, `insights/`, `standards/` | Sections with "(AI draft)" in the heading, `work/sources/` |
 | Every item file (O, H, M, D, E) | `_personal/`, `work/sources/`, `AGENTS.md`, `../toolkit/skills/*.md` |
-| `insights/case-log.md`, `standards/principle-checks.md` | `../toolkit/skills/how-the-hub-works.md` (a guide for the writer) |
+| `insights/project-log.md`, `standards/principle-checks.md` | `../toolkit/skills/how-the-hub-works.md` (a guide for the writer) |
 
 The "How to fill" blocks are left out of the report. Links to files outside the report show as dotted-underlined text and cannot be clicked.
 
@@ -67,7 +67,7 @@ This version folds the drafts and labels them "not checked". **Do not send the `
 
 **Who:** YOU (or the AI tool, only to run the command)
 **Input:** `README.md`, `context/`, `stages/`, `work/`, `insights/`, `standards/`
-**Output:** `index.html` at the root of the case folder
+**Output:** `index.html` at the root of the project folder
 
 ```
 python3 ../toolkit/skills/export-hub.py
@@ -95,6 +95,6 @@ Open the file in a browser and check:
 
 ## Naming
 
-The file is always called `index.html` and sits at the root of the case folder, as the **home page of the hub**: double-click to open. The template already has a version built from sample data, so you can see the hub from day one. Each time you edit the hub, rebuild it so the home page matches the new content.
+The file is always called `index.html` and sits at the root of the project folder, as the **home page of the hub**: double-click to open. The template already has a version built from sample data, so you can see the hub from day one. Each time you edit the hub, rebuild it so the home page matches the new content.
 
 **When you send it to others,** copy the file out and rename it so it is easy to recognise, for example `onboarding-redesign-report-2026-10-11.html`. A file called `index.html` sitting alone in the recipient's inbox says nothing about its content. You can also build the file to send directly with `python3 ../toolkit/skills/export-hub.py --out file-name.html`.

@@ -1,13 +1,13 @@
 # Obsidian
 
-This guide is **optional**. The hub works in any tool that can open a folder (see [`02-set-up-your-case.md`](02-set-up-your-case.md)). Obsidian is an extra choice for when you want to see the relationships between decisions, hypotheses and tests as a picture, and to have tables by type without running a script.
+This guide is **optional**. The hub works in any tool that can open a folder (see [`02-set-up-your-project.md`](02-set-up-your-project.md)). Obsidian is an extra choice for when you want to see the relationships between decisions, hypotheses and tests as a picture, and to have tables by type without running a script.
 
 ## Setup
 
 1. Install Obsidian from [obsidian.md](https://obsidian.md) (free for personal use). You need version **1.9 or later** to use Bases.
 2. Open Obsidian and choose **Open folder as vault**. (A vault is what Obsidian calls a folder that it manages.)
-3. Choose **your case folder** (for example `onboarding-redesign`). Do not choose the workspace root folder.
-4. Obsidian will create an extra `.obsidian/` folder in the case folder to store settings. You do not need to touch it.
+3. Choose **your project folder** (for example `onboarding-redesign`). Do not choose the workspace root folder.
+4. Obsidian will create an extra `.obsidian/` folder in the project folder to store settings. You do not need to touch it.
 5. Open **Settings**, choose **Core plugins**, and turn on **Bases** if it is not already on.
 
 Obsidian may ask whether you want to turn on "community plugins". You do not need them.
