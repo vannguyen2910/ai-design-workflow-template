@@ -5,10 +5,9 @@ Everything shared by the projects in this workspace. The home page that lists ev
 | Folder | What it holds | When to open it |
 |---|---|---|
 | `guides/` | Step-by-step guides: the setup checklist (start here), get the folder onto your machine, set up a project, GitHub, share the report, Obsidian | The first time, or when you are stuck |
-| `templates/` | Empty templates for working documents (research plan, interview guide, PESTEL, journey map...) | When you start a new document |
-| `skills/` | The steps for the AI tool (step cards) and the script that builds the `index.html` report | Rarely: the AI tool reads them itself |
-| `diagram-design/` | The `diagram-design` skill (templates, rules, check script) the AI tool uses to draw process maps, user flows and other diagrams | Read `skills/build-process-map.md` first |
-| `tools/` | `new-project.py`: create a new project with one command | When you want a new project |
+| `templates/` | The one template no skill uses (`generic.md`). The other templates sit inside each skill | When you start a new document |
+| `skills/` | One folder per skill: the steps for the AI tool (`SKILL.md`), its templates and examples. Includes the `diagram-design` skill the AI tool uses to draw process maps, user flows and other diagrams | Rarely: the AI tool reads them itself |
+| `tools/` | The scripts: `new-project.py` (create a project with one command), `build-report.py` and `build-home.py` (build the `index.html` pages), `new-item.py`, `serve-hub.py`, `flow-from-mermaid.py` | When you want a new project; the AI tool runs the others |
 
 Create a new project (from the workspace root):
 

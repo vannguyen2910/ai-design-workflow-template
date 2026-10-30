@@ -16,7 +16,7 @@ Every folder at the root without a leading `_` is a section of the `index.html` 
 | `README.md` | Overview: the project card and the "What do you want to do?" table | Read. Edit only when asked |
 | `guide.md` | The Guide page of the report (the "Guide" tab in the left menu): what the workspace is, starting a project, adding a task, preview, AI vocabulary. Written for non-technical readers | Read. Edit only when asked; keep the simple voice and the sample prompts that can be pasted into an AI tool |
 | `context/*.md` | Context pack: background (product, users, data rules, design system) | Read first, in every step. Do not edit unless asked |
-| `../toolkit/skills/*.md` | The definition of each way of working with the AI (step cards) | Read the card of the step that is running |
+| `../toolkit/skills/*/SKILL.md` | The definition of each way of working with the AI (step cards) | Read the card of the step that is running |
 | `stages/README.md` | The Pages table: each row is a stage page, assembled from the files in `work/` and the item tables in `insights/` | Edit the table only when asked. Do not create other `.md` files here: a stage page has no content of its own |
 | `work/*.md`, `work/<name>/index.md` | Everything that gets made: working files per stage (`scope`, `problem-brief`, `findings`...) and documents (wireframe, persona, flow). May include images, PDFs, HTML in the folder | Write only into the section you were asked for. Do not copy content into `stages/`: that page links back to the working file |
 | `work/sources/anonymised/` | Anonymised data, with IDs | Read. The only source for quotes and figures |
@@ -24,9 +24,9 @@ Every folder at the root without a leading `_` is a section of the `index.html` 
 | `insights/opportunities/O1.md`, `hypotheses/H1.md`, `metrics/M1.md`, `decisions/D1.md`, `evidence/E1.md`, `findings/F1.md`... | The **single source** of each item (O, H, M, D, E, F). One folder per type; the file name is the item code | Read. Edit only when asked to edit that exact item. Never set `resolution: fixed` or `accepted` on a finding yourself |
 | `insights/_templates/` | Empty templates for each item type | Read. Copy into the right type folder (for example `insights/decisions/`) when asked to create an item; never edit the template file |
 | `standards/*.md` | Yardsticks to check the work: gates, principle checks, severity levels, and any criteria the owner adds | Read. Edit only when asked for that exact page. `insights/project-log.md`: add a line when asked |
-| `../toolkit/skills/new-item.py` | The command that creates an item and links it | Run when asked to create an item (see Where things go). Do not edit |
-| `../toolkit/skills/build-report.py` | The script that exports the report to one HTML file | Run after you change files in the project, and when asked (`python3 ../toolkit/skills/build-report.py`). Do not edit, and do not write the HTML yourself instead of the script |
-| `index.html` | The report, exported from Markdown to view in a browser | Do not read, do not edit by hand. To update it run `../toolkit/skills/build-report.py` (run it yourself after every change to the files) |
+| `../toolkit/tools/new-item.py` | The command that creates an item and links it | Run when asked to create an item (see Where things go). Do not edit |
+| `../toolkit/tools/build-report.py` | The script that exports the report to one HTML file | Run after you change files in the project, and when asked (`python3 ../toolkit/tools/build-report.py`). Do not edit, and do not write the HTML yourself instead of the script |
+| `index.html` | The report, exported from Markdown to view in a browser | Do not read, do not edit by hand. To update it run `../toolkit/tools/build-report.py` (run it yourself after every change to the files) |
 | `_personal/` | The owner's private notes | **Do not read, do not write** |
 | `work/sources/_raw-private/` | Raw data that is not anonymised | **Do not read, do not write** |
 | `work/original-docs/` | The original documents of the sample project (only in demo-project) | Read to cross-check. Do not edit |
@@ -37,14 +37,14 @@ When the owner asks you to make or add something without saying where it goes, c
 
 | The owner gives or asks for | Put it in | Notes |
 |---|---|---|
-| Images, PDFs, video, an HTML prototype, a flow, or a document for others to view | `work/<short-name>/` with an `index.md` (start from a template in `../toolkit/templates/`); a single file goes to `work/<name>.md`. Follow `../toolkit/skills/add-media.md` | Fill `supports` with the item codes it is evidence for, if known. If not known, leave `[]`; do not guess |
-| A flow diagram from Mermaid (user flow, E2E) | `python3 ../toolkit/skills/flow-from-mermaid.py <file.md> --out work/<name> --title "..."`: one picture per subgraph; solution codes (A4, P3) get the decision code from the decision's `solutions` property | Needs the archify skill. If a decision implements a solution, put its code in `solutions` |
+| Images, PDFs, video, an HTML prototype, a flow, or a document for others to view | `work/<short-name>/` with an `index.md` (start from a template in `../toolkit/skills/<skill>/templates/`, or `../toolkit/templates/`); a single file goes to `work/<name>.md`. Follow `../toolkit/skills/add-media/SKILL.md` | Fill `supports` with the item codes it is evidence for, if known. If not known, leave `[]`; do not guess |
+| A flow diagram from Mermaid (user flow, E2E) | `python3 ../toolkit/tools/flow-from-mermaid.py <file.md> --out work/<name> --title "..."`: one picture per subgraph; solution codes (A4, P3) get the decision code from the decision's `solutions` property | Needs the archify skill. If a decision implements a solution, put its code in `solutions` |
 | Running a method (assumptions map, journey map, ideation...) | Fill the method card that already exists in `work/` (see the stage tabs of Work); do not create a new file if one exists | Change `status` from `planned` when you start |
 | A draft or summary of a stage | `work/<name>.md`, the file of that stage (`scope`, `user-voice-synthesis`, `competitor-analysis`, `problem-brief`, `options`, `alignment`, `test-plan`, `findings`, `handoff`, `measurement-plan`) | Write only into the section you were asked for |
-| A design decision | `python3 ../toolkit/skills/new-item.py D ...` with `--owner`, `--state`, `--reason` (also writes the project log). Never set `accepted` before the owner says so | `proposed` is the default |
-| New research material (interview, survey, test) to extract insights from | Follow `../toolkit/skills/add-insights.md`: propose first, wait for the owner to approve, only then create the items with `new-item.py` | Do not create items before approval |
+| A design decision | `python3 ../toolkit/tools/new-item.py D ...` with `--owner`, `--state`, `--reason` (also writes the project log). Never set `accepted` before the owner says so | `proposed` is the default |
+| New research material (interview, survey, test) to extract insights from | Follow `../toolkit/skills/add-insights/SKILL.md`: propose first, wait for the owner to approve, only then create the items with `new-item.py` | Do not create items before approval |
 | The measured result of a metric after launch | Fill `result`, `measured_on`, `verdict` in `insights/metrics/M<number>.md`; write what was learned in `work/learning.md` | Record only the numbers the owner gives; do not guess a `verdict` |
-| A need, hypothesis, metric, decision, evidence or finding | `python3 ../toolkit/skills/new-item.py <O/H/M/D/E/F> --title "..."` with the relationships (`--tests H1`, `--serves O1`, `--found-in E1`...). The command picks the next code, creates the file in the right folder and checks that every code you link exists | Fill the relationships from what the owner gave you; if you are unsure about a relationship, ask, do not guess. See `python3 ../toolkit/skills/new-item.py --help` |
+| A need, hypothesis, metric, decision, evidence or finding | `python3 ../toolkit/tools/new-item.py <O/H/M/D/E/F> --title "..."` with the relationships (`--tests H1`, `--serves O1`, `--found-in E1`...). The command picks the next code, creates the file in the right folder and checks that every code you link exists | Fill the relationships from what the owner gave you; if you are unsure about a relationship, ask, do not guess. See `python3 ../toolkit/tools/new-item.py --help` |
 | New background about the product (glossary, brand voice, rules...) | `context/<name>.md` | The AI reads it first; it shows up in the Context section by itself |
 | A new criterion or checklist to check the work | `standards/<name>.md` | Shows up in the Standards section by itself |
 | Raw research data (interviews, surveys) | **Never** put it into `work/sources/anonymised/` yourself. Ask the owner to anonymise it first; the original goes to `work/sources/_raw-private/`, which you do not read | |
@@ -56,7 +56,7 @@ When you place a file:
 1. **Next code:** list the type folder and use the largest number plus one. Never overwrite an existing file.
 2. **Short, lowercase file names joined by hyphens** for documents; the item code for items.
 3. **Say where you put it:** give the full path, and anything you are unsure about (for example `supports` left empty).
-4. **Rebuild the report yourself** after you add or edit files in the project: run `python3 ../toolkit/skills/build-report.py`, then say the result (the number of warnings and what needs fixing before handoff). For a deeper review use `../toolkit/skills/refresh-hub.md`.
+4. **Rebuild the report yourself** after you add or edit files in the project: run `python3 ../toolkit/tools/build-report.py`, then say the result (the number of warnings and what needs fixing before handoff). For a deeper review use `../toolkit/skills/refresh-hub/SKILL.md`.
 
 ## Hard rules
 
@@ -81,7 +81,7 @@ Do not read the whole folder "to get more context": unrelated files make the res
 
 ## Running a step
 
-When the owner says "run step N of `../toolkit/skills/<name>.md`":
+When the owner says "run step N of `../toolkit/skills/<name>/SKILL.md`":
 
 1. Read the card and find step N.
 2. Read only the files on that step's `Input` line.
@@ -100,7 +100,7 @@ The owner does not use Git commands. When they say one of these phrases, you do 
 | "Lưu và đăng lên", "Save and publish", "Đăng lên" | Steps 1 to 6: a commit, then a push to GitHub |
 
 1. **Check it is a Git repo:** `git rev-parse --show-toplevel`. If it is not (the owner downloaded a ZIP), say so in one sentence, point to `../toolkit/guides/00-setup-checklist.md` steps 4 and 5, and offer to compress the project folder into a ZIP as a backup instead. Do not create a repo or a remote yourself.
-2. **Rebuild the report** with `python3 ../toolkit/skills/build-report.py`, so the saved `index.html` matches the files.
+2. **Rebuild the report** with `python3 ../toolkit/tools/build-report.py`, so the saved `index.html` matches the files.
 3. **Stage only this project and the home page:** from the repo root, `git add -- <this project folder> index.html`. Then list the staged files (`git diff --cached --name-status`) and show the owner a short summary (how many files, which folders). Stop and ask before going on if the list has a file under `_raw-private/` other than its `README.md`, a file that looks like a secret (`.env`, `*.pem`, `*.key`, a name with `credential`, `token` or `password`), or a file over 50 MB.
 4. **Commit** with a one-line message in the owner's language that says what changed, for example `Discover: thêm user-voice synthesis và 3 insight`. Nothing staged? Say there is nothing new to save and stop.
 5. **Get GitHub's latest first:** `git pull --no-rebase --no-edit`. After each push GitHub rebuilds `index.html` by itself (the `Update index.html` workflow), so GitHub is often one commit ahead; this is normal. If the pull stops on a conflict:
@@ -114,3 +114,4 @@ Never, even if a command suggests it: `push --force`, `reset --hard`, `rebase`, 
 
 - Answer in the language the owner writes in. Write document content in the language of the source material and the owner (Vietnamese if that is what they use), and keep trade terms in English (insight, hypothesis, opportunity, handoff...).
 - Keep section headings in English: the step cards and the hub refer to them by those names.
+- Write content to be read by people, not by a database. In the body of a document, do not show item codes (O1, H2, D3, E1, RH6), counts like `(n=13)` or `9/13`, file paths, step-card or skill names, or labels like `assumed` and `unknown`. Say it in plain words instead: "most travellers we surveyed", "not known yet", "a target nobody has confirmed". The codes stay in the properties at the top of the file (`supports`, `tests`...), where the report uses them to link pages. Keep a source by naming it in words ("the interview", "the survey"). Keep quotes word for word.

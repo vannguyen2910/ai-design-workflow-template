@@ -100,7 +100,7 @@ def main():
     shutil.copytree(TEMPLATE, dest, ignore=IGNORE)
     insights = os.path.join(dest, "insights")
 
-    # work/ starts empty: the documents come from toolkit/templates/ when the project needs them.
+    # work/ starts empty: the documents come from the templates in toolkit/skills/ and toolkit/templates/ when the project needs them.
     # Keep work/README.md (how to add files) and the work/sources/ skeleton (_raw-private rule).
     work = os.path.join(dest, "work")
     for name in os.listdir(work):
@@ -141,13 +141,13 @@ def main():
 
     print("Created: %s" % dest)
     print("  - Removed %d [EXAMPLE] items and cleaned the sample rows in standards/" % removed)
-    tool = os.path.join(ROOT, "toolkit", "skills", "build-report.py")
+    tool = os.path.join(ROOT, "toolkit", "tools", "build-report.py")
     if os.path.isfile(tool):
         r = subprocess.run([sys.executable, tool, "--project", dest], cwd=dest, capture_output=True, text=True)
-        print("  - index.html: %s" % ("built" if r.returncode == 0 else "error, run it again in the project folder: python3 ../toolkit/skills/build-report.py"))
+        print("  - index.html: %s" % ("built" if r.returncode == 0 else "error, run it again in the project folder: python3 ../toolkit/tools/build-report.py"))
         if r.returncode != 0:
             print(r.stderr.strip()[-400:])
-    home = os.path.join(ROOT, "toolkit", "skills", "build-home.py")
+    home = os.path.join(ROOT, "toolkit", "tools", "build-home.py")
     if os.path.isfile(home):
         subprocess.run([sys.executable, home, "--workspace", ROOT], capture_output=True, text=True)
         print("  - Workspace home page (index.html at the root): a card was added for this project")
