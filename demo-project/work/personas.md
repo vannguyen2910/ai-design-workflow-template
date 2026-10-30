@@ -3,7 +3,7 @@ type: "persona"
 title: "Ba persona: Aisha, Marco, Ji-yeon"
 stage: "Define"
 status: "verified"
-summary: "Three personas built from the survey (n=13) and one interview; Aisha was reframed to include the traits of a Pragmatic Planner."
+summary: "Three personas built from the survey and one interview; Aisha was reframed to include the traits of a Pragmatic Planner."
 takeaways:
   - "Aisha (Explorer / Pragmatic Planner): plans carefully, uses 8 to 10 tools, changes 30 to 40% once she arrives."
   - "Marco (Connector): wants to meet locals but needs verified identity and no money."

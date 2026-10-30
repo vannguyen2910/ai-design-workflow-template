@@ -17,6 +17,6 @@ This folder holds the **linked items**: user needs, what the team believes, desi
 2. Name the file after the next code (for example `D4.md`). A code is unique across the whole project.
 3. Fill in the information at the top of the file, especially the lines that link to other items (`tests`, `serves`, `found_in`...).
 
-The report shows these items in the **Insights** section, links them into a tree from need to decision, and warns by itself about missing links. How linking works in detail is in `../toolkit/skills/how-the-hub-works.md`.
+The report shows these items in the **Insights** section, links them into a tree from need to decision, and warns by itself about missing links. How linking works in detail is in `../toolkit/guides/06-how-the-hub-works.md`.
 
 This `README.md` does not show in the report.

@@ -17,7 +17,7 @@ Pick your situation:
 | Content that already lives elsewhere in the project (for example `work/sources/`) | Create an `.md` file here and use `source:` to point at it, so the content is not copied twice |
 | A Figma, Miro or Notion link | Write the link in the document (see "External links" below) |
 
-The easiest way: **start from a template in the `toolkit/templates/` folder** at the workspace root, next to the projects (copy it into `work/`, rename it). Or ask the AI tool: *"Create a persona document from the template `toolkit/templates/persona.md`."*
+The easiest way: **start from a template in `toolkit/skills/<skill>/templates/`** (or `toolkit/templates/`) at the workspace root, next to the projects (copy it into `work/`, rename it). Or ask the AI tool: *"Create a persona document from the template `toolkit/skills/user-voice-synthesis/templates/persona.md`."*
 
 The document type is **free**: you can use a type like `journey-map` or `brand-guidelines` and the report still shows it normally.
 
@@ -29,7 +29,7 @@ The report recognises the format from the file extension, **you do not configure
 
 1. Create the folder `work/<short-name>/`, for example `work/wireframes/`.
 2. Drop the images, videos, PDFs into it.
-3. Add an `index.md` file (copy it from a template in `toolkit/templates/` at the workspace root) with a `title` and a `type`.
+3. Add an `index.md` file (copy it from a template in `toolkit/skills/<skill>/templates/` or `toolkit/templates/` at the workspace root) with a `title` and a `type`.
 
 Done. The report builds a document page with a **card in the Work section**, the first image as the cover, and every file in the folder shown on the page. You can ask the AI tool to do all three steps: *"Add these images to the project as a wireframe document."*
 
@@ -108,7 +108,7 @@ Only `title` and `type` are required. The other lines make the page fuller.
 ## The export command
 
 ```
-python3 ../toolkit/skills/build-report.py --bundle gui-stakeholder --zip
+python3 ../toolkit/tools/build-report.py --bundle gui-stakeholder --zip
 ```
 
 This creates the compact folder and the zip file described above. Run with `--team` and the AI draft sections show up (folded).

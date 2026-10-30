@@ -8,7 +8,7 @@
 2. **Evaluate the design:** for each decision or screen, go through every question. An answer of "no" is a violation.
 3. **Record each violation with its severity** (0 to 4), using [Severity levels](severity-levels.md).
 4. **Evaluate independently, then merge:** one person usually finds only part of the problems. If you can, ask 3 to 5 people to evaluate separately, then merge the results.
-5. **Link back to the hub:** a decision that passes gets `follows` pointing at the principle; a decision that violates it and that you accept gets `pulls_against` and the reason (see `../toolkit/skills/how-the-hub-works.md`).
+5. **Link back to the hub:** a decision that passes gets `follows` pointing at the principle; a decision that violates it and that you accept gets `pulls_against` and the reason (see `../toolkit/guides/06-how-the-hub-works.md`).
 
 ## Principle table
 

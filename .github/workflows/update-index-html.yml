@@ -29,11 +29,11 @@ jobs:
             case_dir="$(dirname "$agents")"
             if [ -d "$case_dir/insights" ] || [ -d "$case_dir/work" ]; then
               echo "Exporting $case_dir"
-              python3 toolkit/skills/build-report.py --project "$case_dir"
+              python3 toolkit/tools/build-report.py --project "$case_dir"
             fi
           done
       - name: Build the home page (one card per project)
-        run: python3 toolkit/skills/build-home.py
+        run: python3 toolkit/tools/build-home.py
       - name: Commit if changed
         run: |
           git config user.name "github-actions[bot]"

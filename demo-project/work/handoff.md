@@ -13,15 +13,15 @@ supports: []
 ## The prototype
 A link or a folder. This is a reference, not production code.
 
-- Wireframe: `work/wireframes/Travel_Buddy_Wireframe.html`
-- The final prototype: `work/final-prototype/travel-buddy-final-prototype.html`
-- The build plan, the list of 32 screens, 4 flows: `work/original-docs/10_Prototype_Plan.md`
-- E2E process map: `work/process-map.md` (source: `work/original-docs/08_E2E_Process_Map.html`)
+- The wireframe (see the wireframes page)
+- The final prototype (see the final prototype page)
+- The build plan, the list of 32 screens and 4 flows
+- The end-to-end process map (see the process map page)
 
 ## Decisions and reasons
-(Point to the decision log in `insights/project-log.md`)
+(Point to the decision log)
 
-The seven decisions and their reasons are in `insights/decisions/`; the timeline log is in `insights/project-log.md`.
+The seven decisions and their reasons, and the timeline log, are in the decision log.
 
 ## Acceptance notes
 *What must be true when the product has been built. From the PRD of the Explore tab (section 8).*

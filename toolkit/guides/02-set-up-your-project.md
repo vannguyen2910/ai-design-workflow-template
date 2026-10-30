@@ -27,11 +27,11 @@ Folders are named after **what you do** there:
 | `context/` | **Background:** product, users, data rules, design system. You give it to the AI to read first in every step | When you start the project, add to it over time |
 | `work/` | **The working files of each stage:** `scope.md`, `user-voice-synthesis.md`, `competitor-analysis.md` (Discover), `problem-brief.md` (Define), `options.md`, `alignment.md` (Develop), `test-plan.md`, `findings.md`, `handoff.md`, `measurement-plan.md` (Deliver). The stage pages in `stages/` are built from these files | Throughout the project |
 | `work/sources/` | `anonymised/` holds anonymised data, `_raw-private/` holds original data | Discover |
-| `work/prototype/` | Prototype code. Created when you start building, by copying `toolkit/templates/prototype-starter/` | The Develop stage |
+| `work/prototype/` | Prototype code. Created when you start building, by copying `toolkit/skills/prototype/starter/` | The Develop stage |
 | `stages/` | **One page per stage**, built from `work/` and `insights/` by the Pages table in `stages/README.md`; you do not write here | Edit the table only to change the order or add a stage |
 | `insights/` | **The linked items:** needs, hypotheses, decisions, evidence, findings, metrics; one file per item, in the folder of its type | Update when something changes |
 | `standards/` | **Reference:** gates, principle checks, severity levels, project log. Drop a new `.md` file here and it shows in the report by itself | When you need to look something up |
-| `../toolkit/skills/` and `../toolkit/templates/` | (in `toolkit/`, outside the project) Step cards, the script that builds the `index.html` report, and document templates. Shared by every project | When you run a step; rarely opened by hand |
+| `../toolkit/skills/`, `../toolkit/tools/` and `../toolkit/templates/` | (in `toolkit/`, outside the project) The skills (step cards with their templates and examples), the scripts that build the `index.html` report, and the templates no skill uses. Shared by every project | When you run a step; rarely opened by hand |
 | `_personal/` | Private notes, not given to the AI | Whenever you want |
 
 The `README.md` at the root of the project folder has a "What do you want to do?" table with sample sentences for each job, so when you do not know where to start, read it.
@@ -55,7 +55,7 @@ This folder is built so an AI tool knows what to do by itself, thanks to four th
 | Thing | What it is |
 |---|---|
 | `AGENTS.md` | A file with the "rules of the game" already written. The AI tool reads it by itself when you open the folder, so you do not have to repeat the rules every time. If your tool reads its rules file under another name, copy the content to that name |
-| `../toolkit/skills/*.md` | The **step cards**: each step says who does it (the AI or you), which files to read, where to write |
+| `../toolkit/skills/*/SKILL.md` | The **step cards**: each step says who does it (the AI or you), which files to read, where to write |
 | `work/sources/` | The AI may read `anonymised/`. `_raw-private/` is never given to the AI and never goes to GitHub |
 | `insights/` | Each decision, hypothesis and evidence is one file. The summary tables are rebuilt by the AI |
 
@@ -63,7 +63,7 @@ A session with the AI looks like this:
 
 1. **Open exactly one project folder** as the project in the AI tool. Do not open the root folder, and do not open `my-project` and `demo-project` at the same time, or the data of the two projects will mix.
 2. **Save a checkpoint before the AI writes files.** If your folder is on GitHub, say "Lưu lại" (or "Save") to the AI tool, or click Commit in GitHub Desktop (see [`03-github-basics.md`](03-github-basics.md)). If not, copy the project folder into a `...-backup` copy. That way, if the AI breaks something, you can go back.
-3. **Say one sentence to the tool**, for example: *"Run step 5 of `../toolkit/skills/user-voice-synthesis.md`."* The tool reads only the files the step card lists.
+3. **Say one sentence to the tool**, for example: *"Run step 5 of `../toolkit/skills/user-voice-synthesis/SKILL.md`."* The tool reads only the files the step card lists.
 4. **Read the result and check it yourself** in the next step. The AI draft and the version you corrected sit in two separate places.
 5. **Write a line in `insights/project-log.md`:** what you decided, why, and where the AI helped.
 
@@ -73,9 +73,9 @@ The hub is where you answer the question: "Which user need is this decision base
 
 - **Each design decision is its own file.** For example decision `D2` lives at `insights/decisions/D2.md`.
 - **You write each fact in one place only.** Decision `D2` says which hypothesis it tests; the hub works out the reverse direction.
-- **After each update,** run `python3 ../toolkit/skills/build-report.py` (or ask the AI tool to) so the report rebuilds the summary tables and warnings.
+- **After each update,** run `python3 ../toolkit/tools/build-report.py` (or ask the AI tool to) so the report rebuilds the summary tables and warnings.
 
-How the hub works is in `toolkit/skills/how-the-hub-works.md`.
+How the hub works is in `toolkit/guides/06-how-the-hub-works.md`.
 
 ## View markdown files
 
@@ -87,7 +87,7 @@ An `.md` file is plain text, so **any tool that can open a folder will do**. Pic
 | **Obsidian** (free) | Open the whole project folder as a vault. Adds Graph view, Backlinks and tables by item type. See [`05-obsidian.md`](05-obsidian.md) |
 | **VS Code** (free) | Install it from [code.visualstudio.com](https://code.visualstudio.com), open the whole project folder, click an `.md` file, then press `Cmd+Shift+V` (Mac) or `Ctrl+Shift+V` (Windows) to see the rendered version |
 | **GitHub** | If you saved the folder to a Private repo, open the repo on github.com; Markdown is already rendered |
-| **Browser** (nothing to install) | Double-click the `index.html` at the root of the project folder: that is the home page of the hub. After you edit the hub, ask the AI tool to run `python3 ../toolkit/skills/build-report.py` to rebuild it. See [`04-share-your-hub.md`](04-share-your-hub.md) |
+| **Browser** (nothing to install) | Double-click the `index.html` at the root of the project folder: that is the home page of the hub. After you edit the hub, ask the AI tool to run `python3 ../toolkit/tools/build-report.py` to rebuild it. See [`04-share-your-hub.md`](04-share-your-hub.md) |
 
 Open the **whole folder**, not single files: the links between pages only work when the whole folder is open.
 
@@ -98,12 +98,12 @@ Open the **whole folder**, not single files: the links between pages only work w
 | You want to | How |
 |---|---|
 | Add your own folder (notes, images, recordings) | Create a new folder at the same level as `work/`, for example `notes/` |
-| Remove a file you do not use | Delete it. If a page in `stages/` uses that file, remove it from the From work column in the Pages table in `stages/README.md`. If it is an item, run `python3 ../toolkit/skills/build-report.py` again |
+| Remove a file you do not use | Delete it. If a page in `stages/` uses that file, remove it from the From work column in the Pages table in `stages/README.md`. If it is an item, run `python3 ../toolkit/tools/build-report.py` again |
 | Add a stage page | Add a row to the Pages table in `stages/README.md`: set an Id, pick the file in the From work column and the item tables you want to show. No new file needed |
-| Add an item (need, hypothesis, decision...) | Run `python3 ../toolkit/skills/new-item.py` in the project folder: the command asks one question at a time, picks the next code and links the relationships for you |
-| Add a document (competitor analysis, persona, flow, prototype...) | Copy a template from `toolkit/templates/` into `work/`, or create a folder and drop images, PDFs, HTML into it. See `work/README.md` |
-| Add a decision or a test | Run `python3 ../toolkit/skills/new-item.py D` (or `E`): the command picks the new code and links the relationships for you |
-| Use your company's design system | Write your `context/design-system-notes.md` and use `toolkit/templates/prototype-starter/` as the model |
+| Add an item (need, hypothesis, decision...) | Run `python3 ../toolkit/tools/new-item.py` in the project folder: the command asks one question at a time, picks the next code and links the relationships for you |
+| Add a document (competitor analysis, persona, flow, prototype...) | Copy a template from `toolkit/skills/<skill>/templates/` (or `toolkit/templates/`) into `work/`, or create a folder and drop images, PDFs, HTML into it. See `work/README.md` |
+| Add a decision or a test | Run `python3 ../toolkit/tools/new-item.py D` (or `E`): the command picks the new code and links the relationships for you |
+| Use your company's design system | Write your `context/design-system-notes.md` and use `toolkit/skills/prototype/starter/` as the model |
 | Write the files in Vietnamese | You can. Only keep file names and folder names in English |
 
 ## Keep it safe

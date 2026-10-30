@@ -12,13 +12,13 @@ supports: []
 
 | Metric | Where to track it | Who owns it | Review date |
 |---|---|---|---|
-| M4: time to first interaction with a tip (target under 30 seconds) | App analytics (events for app open, tip tap, tip save) | None yet (needs a PO) | Not set |
-| M5: visitors who convert to registered users when they press Save (25% or more) | App analytics (the Save → sign-up funnel) | None yet (needs a PO) | Not set |
+| Time to first interaction with a tip (target under 30 seconds) | App analytics (events for app open, tip tap, tip save) | None yet (needs a PO) | Not set |
+| Visitors who convert to registered users when they press Save (25% or more) | App analytics (the Save → sign-up funnel) | None yet (needs a PO) | Not set |
 | Tips saved per session, registered users (2 or more) | App analytics | None yet (needs a PO) | Not set |
 | Weekly filter usage (40% or more of active users) | App analytics | None yet (needs a PO) | Not set |
-| M1, M2, M3: task success, SEQ, SUS | The unmoderated test round (E2) | The researcher | Before handoff |
+| Task success, ease score, usability score | The unmoderated test round | The researcher | Before handoff |
 
 ## How the AI-assisted workflow performed
 *Counts, not impressions: time per step, the error rate caught at the gates, the number of redos.*
 
-Not applicable to this demo: the original project was made before the AI-assisted way of working existed, so there are no counts. A test round where an AI played the users (E1) is recorded as a **limitation**, not as a result of the process.
+Not applicable to this demo: the original project was made before the AI-assisted way of working existed, so there are no counts. A test round where an AI played the users is recorded as a **limitation**, not as a result of the process.

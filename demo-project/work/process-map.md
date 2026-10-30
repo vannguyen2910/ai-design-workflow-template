@@ -24,7 +24,7 @@ embed: true
 
 The end-to-end journey of Travel Buddy as a swimlane map. It is the **main flow document** of this project. It shows **who does what and where the work is handed over**, so a reader can see every handover between the traveler, the app, a local and a companion.
 
-The original written flow, with the 26 solutions placed in four stages of the trip, is kept as a source document: `work/original-docs/08_E2E_User_Flow.md`.
+The original written flow, with the 26 solutions placed in four stages of the trip, is kept as a source document.
 
 ## What it shows
 
@@ -45,14 +45,14 @@ The original written flow, with the 26 solutions placed in four stages of the tr
 
 | Moment on the map | Decision |
 |---|---|
-| Shows tips right away, no account needed | D2 |
-| Tips come with a crowd signal and safety notes | D3 |
-| Saves a tip with one tap | D4 |
-| Turns a pasted AI itinerary into shortlist items | D5 |
-| Opens the chat only when both sides show interest | D6 |
-| The journal is private unless contacts are chosen | D7 |
+| Shows tips right away, no account needed | Browse without an account |
+| Tips come with a crowd signal and safety notes | Crowd signal and safety notes |
+| Saves a tip with one tap | One-tap save |
+| Turns a pasted AI itinerary into shortlist items | Import an AI itinerary |
+| Opens the chat only when both sides show interest | Chat opens on mutual interest |
+| The journal is private unless contacts are chosen | Private journal by default |
 
 ## What it does not show
 
 - The map shows the **main path**. Error states and edge cases are not drawn.
-- It is a design artifact, not a test result. Whether users follow these paths is not confirmed: the only usability round so far is simulated (see E1).
+- It is a design artifact, not a test result. Whether users follow these paths is not confirmed: the only usability round so far is simulated.

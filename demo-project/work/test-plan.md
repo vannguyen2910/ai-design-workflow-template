@@ -18,24 +18,24 @@ source: "original-docs/12_Unmoderated_Usability_Test_Plan.md"
 
 *Deliver stage, before the test.*
 
-> The full plan: `work/original-docs/12_Unmoderated_Usability_Test_Plan.md`. What follows is the core. Status: **not run yet**.
+> What follows is the core of the plan. Status: **not run yet**.
 
 ## What we are testing
-Hypotheses: H1 to H6 (see `insights/hypotheses/`). What would change my mind: if the task completion rate is below 60%, the matching hypothesis is treated as not yet holding and that flow becomes a redesign priority.
+The six design hypotheses are tested. What would change my mind: if the task completion rate is below 60%, the matching hypothesis is treated as not yet holding and that flow becomes a redesign priority.
 
 ## Tasks
 *Each task is something the user tries to do, without being told how.*
-1. "You are planning a trip to Chiang Mai. Find a food tip from another traveler and save it into a trip." (H2, H3)
-2. "You already have a rough itinerary written by a chatbot. Bring it into the trip plan." (H1)
-3. "You want a real restaurant suggestion from someone who lives in the city. Find a local named Niran and get in touch." (H4)
-4. "The trip is over. Find the record of what you did." (H5)
-5. "Share the trip journal with your friend, only her, not publicly." (H6)
+1. "You are planning a trip to Chiang Mai. Find a food tip from another traveler and save it into a trip."
+2. "You already have a rough itinerary written by a chatbot. Bring it into the trip plan."
+3. "You want a real restaurant suggestion from someone who lives in the city. Find a local named Niran and get in touch."
+4. "The trip is over. Find the record of what you did."
+5. "Share the trip journal with your friend, only her, not publicly."
 
 ## Participants
 8 to 12 people, recruiting 12 to 15 to make up for the drop-out rate of an unmoderated test. Criteria: travelled in the last 12 months, uses a phone, can complete an online task on their own without anyone helping; ages 18 to 45 preferred. Record participants' consent before the session.
 
 ## Script
-A written introduction, warm-up questions, five tasks in a fixed order (following the journey: discover, plan, connect, remember), one SEQ question after each task, the SUS after the last task. Ask about what happened, not for opinions about ideas. Details: `work/original-docs/12_...`, sections 5 to 7.
+A written introduction, warm-up questions, five tasks in a fixed order (following the journey: discover, plan, connect, remember), one SEQ question after each task, the SUS after the last task. Ask about what happened, not for opinions about ideas.
 
 ## What we measure
 | Metric | Baseline | Target |

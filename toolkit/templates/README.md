@@ -1,6 +1,6 @@
 # Templates
 
-Empty templates for working documents, shared by every project in this workspace. **Do not fill them in here.**
+Empty templates for working documents, shared by every project in this workspace. **Do not fill them in here.** Most templates now sit inside the skill that uses them (`../skills/<skill>/templates/`); this folder keeps the one no skill uses.
 
 ## How to use
 
@@ -8,31 +8,30 @@ Empty templates for working documents, shared by every project in this workspace
 2. Fill in the content. Change `status` to `verified` once you have checked it.
 3. Rebuild the report; the document shows in the **Work** section.
 
-Or ask the AI tool: *"Create a research plan document in `work/` from the template `toolkit/templates/research-plan.md`."*
+Or ask the AI tool: *"Create a research plan document in `work/` from the template `toolkit/skills/interview/templates/research-plan.md`."*
 
 > Templates for **items** (need, hypothesis, decision, evidence, finding, metric) live separately in `insights/_templates/` in each project, because `new-item.py` uses them to create items.
 
-## The list
+## Template in this folder (no skill uses it)
 
 | Stage | Template | Use it to |
 |---|---|---|
-| Discover | `research-plan.md` | Plan the research: questions, method, participants, timeline |
-| Discover | `interview-guide.md` | The questions and script of one interview |
-| Discover | `interview-synthesis.md` | Synthesise several interviews into themes |
-| Discover | `survey-results.md` | Survey results |
-| Discover | `competitor-analysis.md` | Compare competitors |
-| Discover | `pestel-analysis.md` | The outside context: political, economic, social, technological, environmental, legal |
-| Discover | `assumptions-map.md` | List and rank the assumptions to test |
-| Discover | `heuristic-evaluation.md` | Evaluate a product against the 10 heuristics and the severity scale |
-| Discover | `stakeholder-map.md` | Who decides, who is affected, what they need |
-| Discover | `persona.md` | An evidence-based persona |
-| Define | `problem-brief.md` | One page: problem, evidence, outcome, scope |
-| Define | `journey-map.md` | The current journey, pain points, moments that matter |
-| Define | `opportunity-solution-tree.md` | Link outcome to opportunities, solutions and assumptions |
-| Define | `prioritization.md` | Rank opportunities by impact, confidence, effort |
-| Develop | `options.md` | Compare at least three solution directions |
-| Develop | `user-flow.md`, `ia-sitemap.md`, `prototype.md` | Flow, sitemap, prototype |
-| Deliver | `usability-test-script.md` | The script to run a usability test session |
-| Deliver | `test-report.md` | The report of the test results |
-| Deliver | `measurement-plan.md` | How to measure the results after release |
 | All stages | `generic.md` | Any other kind of document |
+
+## Templates inside each skill
+
+| Skill | Templates (in `../skills/<skill>/templates/`) |
+|---|---|
+| `interview` | `research-plan.md`, `interview-guide.md`, `interview-synthesis.md` |
+| `competitor-analysis` | `competitor-analysis.md` |
+| `pestel-analysis` | `pestel-analysis.md` |
+| `stakeholder-map` | `stakeholder-map.md` |
+| `survey` | `survey-results.md` |
+| `user-voice-synthesis` | `persona.md` |
+| `framing` | `problem-brief.md`, `assumptions-map.md`, `opportunity-solution-tree.md` |
+| `customer-journey-map` | `journey-map.md` |
+| `ideation` | `options.md`, `prioritization.md` |
+| `build-process-map` | `process-map.md`, `user-flow.md`, `ia-sitemap.md` |
+| `prototype` | `prototype.md`, and the `starter/` folder (a small design system, a rules file and an empty page) |
+| `user-testing` | `usability-test-script.md`, `test-report.md`, `heuristic-evaluation.md` |
+| `handoff` | `measurement-plan.md` |

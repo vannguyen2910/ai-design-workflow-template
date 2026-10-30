@@ -96,11 +96,11 @@ The folder [`toolkit/guides/`](toolkit/guides/) has step-by-step guides: getting
 
 ```
 workspace/
-├── toolkit/         guides, document templates, steps for the AI, the tool to create projects
+├── toolkit/         guides, skills for the AI (with their templates and examples), the scripts
 │   ├── guides/      step-by-step guides
-│   ├── templates/   document templates, shared by every project
-│   ├── skills/      steps and scripts for the AI, shared by every project
-│   └── tools/       create a new project with one command
+│   ├── skills/      one folder per skill: steps for the AI, templates, examples
+│   ├── templates/   templates no skill uses yet
+│   └── tools/       the scripts, including creating a new project with one command
 ├── my-project/         the blank workspace (make a copy, do not fill it in directly)
 ├── demo-project/       the sample project
 └── <project-name>/  your project

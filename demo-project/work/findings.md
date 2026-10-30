@@ -8,7 +8,7 @@ supports: []
 ---
 *Deliver stage, after the test. What real users did. The AI can help analyse; check every finding against the notes or the recording.*
 
-> **Read carefully before using:** this test round is **simulated**. The researcher (through an AI tool) played each persona on the real prototype, instead of using independent participants. Under the workspace principle (the AI does not play the users), the results below are only **hypotheses to be confirmed** and do **not** meet gate 4a. The original wording of the limits: `work/original-docs/13_Simulated_Usability_Findings.md`, section 6.
+> **Read carefully before using:** this test round is **simulated**. The researcher (through an AI tool) played each persona on the real prototype, instead of using independent participants. Under the workspace principle (the AI does not play the users), the results below are only **hypotheses to be confirmed** and do **not** meet gate 4a.
 
 ## Results against the baseline
 | Metric | Baseline | Result | Met? |
@@ -33,7 +33,7 @@ supports: []
 *The two Critical findings share one cause: the missing interaction pattern "find a specific person and invite them". They should be fixed as one piece of work, not two.*
 
 ## What changed because of this
-- Combine the two Critical findings into one piece of work: design one **find a person and invite** pattern shared by Connect and journal sharing. Not done yet (no decision is recorded in `insights/decisions/`).
+- Combine the two Critical findings into one piece of work: design one **find a person and invite** pattern shared by Connect and journal sharing. Not done yet (no decision is recorded yet).
 - The sign-up gate was not validated in this round: the prototype authenticates instantly, with no email or password step, so acceptance is over-rated.
 - The first-click result of T1 may be inflated because the destination screen has "Thailand" pre-selected; treat it as an upper bound.
-- **What to do before treating it as evidence:** run it again with real participants (`insights/evidence/E2.md`).
+- **What to do before treating it as evidence:** run it again with real participants.
