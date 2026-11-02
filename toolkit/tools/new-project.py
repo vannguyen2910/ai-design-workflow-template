@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Create a clean project folder for a new project from the my-project template.
+"""Create a clean project folder for a new project from toolkit/project-template.
 
     python3 toolkit/tools/new-project.py onboarding-redesign
     python3 toolkit/tools/new-project.py onboarding-redesign --title "Onboarding redesign"
 
-The new folder is a copy of my-project with work/ emptied (README.md and sources/ kept),
+The new folder is a copy of toolkit/project-template with work/ emptied (README.md and sources/ kept),
 the [EXAMPLE] items removed, the example
 rows cleared from the hub pages, the project name filled in, and index.html rebuilt.
-my-project itself is not changed, so it stays a clean template for the next project.
+The template itself is not changed, so it stays a clean template for the next project.
 Standard library only.
 """
 import argparse
@@ -19,8 +19,8 @@ import unicodedata
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # the workspace: toolkit/tools/ is two levels down
-TEMPLATE = os.path.join(ROOT, "my-project")
-RESERVED = {"my-project", "demo-project", "toolkit", "guides", "templates", "tools", "skills", "index"}
+TEMPLATE = os.path.join(ROOT, "toolkit", "project-template")
+RESERVED = {"demo-project", "toolkit", "guides", "templates", "tools", "skills", "index"}
 IGNORE = shutil.ignore_patterns(".DS_Store", "__pycache__", "_export", "index.html")
 ITEM_RE = re.compile(r"^[OHMDEF]\d+\.md$")
 ITEM_LINK_RE = re.compile(r"\]\((?:\.\./)?(?:[a-z]+/)?[OHMDEF]\d+\.md\)")
@@ -70,7 +70,7 @@ def clean_hub_page(text, is_readme):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Create a clean project folder from the my-project template.")
+    ap = argparse.ArgumentParser(description="Create a clean project folder from toolkit/project-template.")
     ap.add_argument("name", help="project name or folder name, e.g. onboarding-redesign or \"Onboarding redesign\" "
                                  "(accents and spaces are turned into a folder name)")
     ap.add_argument("--title", help="project name shown in the hub (default: derived from the folder name)")
@@ -100,7 +100,7 @@ def main():
     shutil.copytree(TEMPLATE, dest, ignore=IGNORE)
     insights = os.path.join(dest, "insights")
 
-    # work/ starts empty: the documents come from the templates in toolkit/skills/ and toolkit/templates/ when the project needs them.
+    # work/ starts empty: the documents come from the templates in toolkit/skills/ when the project needs them.
     # Keep work/README.md (how to add files) and the work/sources/ skeleton (_raw-private rule).
     work = os.path.join(dest, "work")
     for name in os.listdir(work):
@@ -135,7 +135,7 @@ def main():
     p = os.path.join(dest, "README.md")
     t = read(p).replace("# Project: [tên dự án]", "# Project: %s" % title).replace("# Project: [project name]", "# Project: %s" % title)
     t = re.sub(r"^\| (Tên dự án|Project name) \| \|$", lambda m_: "| %s | %s |" % (m_.group(1), title), t, flags=re.M)
-    t = re.sub(r"<!-- template-only -->.*?<!-- /template-only -->\n\n?", "", t, flags=re.S)  # note that only makes sense in my-project
+    t = re.sub(r"<!-- template-only -->.*?<!-- /template-only -->\n\n?", "", t, flags=re.S)  # note that only makes sense in the template
     t = t.replace("# my-project", "# %s" % a.name).replace("my-project/\n", "%s/\n" % a.name)
     write(p, t)
 
@@ -152,9 +152,10 @@ def main():
         subprocess.run([sys.executable, home, "--workspace", ROOT], capture_output=True, text=True)
         print("  - Workspace home page (index.html at the root): a card was added for this project")
     print("\nFirst steps:")
-    print("  1. Open the folder %s with a tool you know (an AI coding tool, VS Code or Obsidian)." % a.name)
-    print("  2. Open README.md in the folder, fill in the Project card, then fill in context/product-and-users.md and context/data-rules.md.")
-    print("  3. When you have the first item, copy a file from insights/_templates/ into the folder of its type, for example insights/decisions/.")
+    print("  1. Open the folder %s with an AI coding tool, VS Code or Obsidian." % a.name)
+    print("  2. Open README.md and fill in the Project card.")
+    print("  3. In context/, fill in product-and-users.md, data-rules.md and open-questions.md.")
+    print("  4. Your documents appear in work/ as you follow each step. Open index.html to see the report.")
 
 
 if __name__ == "__main__":

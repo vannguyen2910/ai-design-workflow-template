@@ -12,11 +12,11 @@ This guide helps you name your project, understand what each folder is for, and 
 
    Add `--title "Onboarding redesign"` if you want a display name that differs from the folder name.
 2. A folder name uses lowercase letters joined with hyphens, no spaces. For example: `onboarding-redesign`, `checkout-flow`. Pick a name that tells you what the project is about, because you will see it at the start of every path. A plain name such as "Trip Planner" also works: the command turns it into a folder name.
-3. The command creates a new folder next to `my-project`, clean and ready to fill in. `my-project` is kept as the template.
+3. The command creates a new folder next to `demo-project`, clean and ready to fill in.
 
 If you have two projects, run the command twice with two different names.
 
-**Cannot use Terminal?** Rename the `my-project` folder to your project and fill it in. This loses the original template, so keep a clean ZIP to get it back when you need it.
+**Cannot use Terminal?** Ask the AI tool to run it for you: say *"Create a new project called … ."*
 
 ## Step 2: Understand the folders
 
@@ -31,7 +31,7 @@ Folders are named after **what you do** there:
 | `stages/` | **One page per stage**, built from `work/` and `insights/` by the Pages table in `stages/README.md`; you do not write here | Edit the table only to change the order or add a stage |
 | `insights/` | **The linked items:** needs, hypotheses, decisions, evidence, findings, metrics; one file per item, in the folder of its type | Update when something changes |
 | `standards/` | **Reference:** gates, principle checks, severity levels, project log. Drop a new `.md` file here and it shows in the report by itself | When you need to look something up |
-| `../toolkit/skills/`, `../toolkit/tools/` and `../toolkit/templates/` | (in `toolkit/`, outside the project) The skills (step cards with their templates and examples), the scripts that build the `index.html` report, and the templates no skill uses. Shared by every project | When you run a step; rarely opened by hand |
+| `../toolkit/skills/` and `../toolkit/tools/` | (in `toolkit/`, outside the project) The skills (step cards with their templates and examples), the scripts that build the `index.html` report, and the templates no skill uses. Shared by every project | When you run a step; rarely opened by hand |
 | `_personal/` | Private notes, not given to the AI | Whenever you want |
 
 The `README.md` at the root of the project folder has a "What do you want to do?" table with sample sentences for each job, so when you do not know where to start, read it.
@@ -61,7 +61,7 @@ This folder is built so an AI tool knows what to do by itself, thanks to four th
 
 A session with the AI looks like this:
 
-1. **Open exactly one project folder** as the project in the AI tool. Do not open the root folder, and do not open `my-project` and `demo-project` at the same time, or the data of the two projects will mix.
+1. **Open exactly one project folder** as the project in the AI tool. Do not open the root folder, and do not open two projects at the same time, or the data of the two projects will mix.
 2. **Save a checkpoint before the AI writes files.** If your folder is on GitHub, say "Lưu lại" (or "Save") to the AI tool, or click Commit in GitHub Desktop (see [`03-github-basics.md`](03-github-basics.md)). If not, copy the project folder into a `...-backup` copy. That way, if the AI breaks something, you can go back.
 3. **Say one sentence to the tool**, for example: *"Run step 5 of `../toolkit/skills/user-voice-synthesis/SKILL.md`."* The tool reads only the files the step card lists.
 4. **Read the result and check it yourself** in the next step. The AI draft and the version you corrected sit in two separate places.
@@ -101,7 +101,7 @@ Open the **whole folder**, not single files: the links between pages only work w
 | Remove a file you do not use | Delete it. If a page in `stages/` uses that file, remove it from the From work column in the Pages table in `stages/README.md`. If it is an item, run `python3 ../toolkit/tools/build-report.py` again |
 | Add a stage page | Add a row to the Pages table in `stages/README.md`: set an Id, pick the file in the From work column and the item tables you want to show. No new file needed |
 | Add an item (need, hypothesis, decision...) | Run `python3 ../toolkit/tools/new-item.py` in the project folder: the command asks one question at a time, picks the next code and links the relationships for you |
-| Add a document (competitor analysis, persona, flow, prototype...) | Copy a template from `toolkit/skills/<skill>/templates/` (or `toolkit/templates/`) into `work/`, or create a folder and drop images, PDFs, HTML into it. See `work/README.md` |
+| Add a document (competitor analysis, persona, flow, prototype...) | Copy a template from `toolkit/skills/<skill>/templates/` into `work/`, or create a folder and drop images, PDFs, HTML into it. See `work/README.md` |
 | Add a decision or a test | Run `python3 ../toolkit/tools/new-item.py D` (or `E`): the command picks the new code and links the relationships for you |
 | Use your company's design system | Write your `context/design-system-notes.md` and use `toolkit/skills/prototype/starter/` as the model |
 | Write the files in Vietnamese | You can. Only keep file names and folder names in English |

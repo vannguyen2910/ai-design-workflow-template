@@ -52,3 +52,22 @@ Each step has fixed lines:
 ## Add your own skill
 
 Make a folder with your skill's name. Put a `SKILL.md` in it that starts with a short header (`name`, equal to the folder name, and a one-sentence `description` that says what it does and when to use it), then the card. Add `templates/` for documents it uses and `examples/` for filled-in samples. Keep to at most 8 steps, one working file, and two rules: the AI returns only its own section, and the AI draft is always kept apart from the version you checked.
+
+## Templates by skill
+
+| Skill | Templates (in `<skill>/templates/`) |
+|---|---|
+| `interview` | `research-plan.md`, `interview-guide.md`, `interview-synthesis.md` |
+| `competitor-analysis` | `competitor-analysis.md` |
+| `pestel-analysis` | `pestel-analysis.md` |
+| `stakeholder-map` | `stakeholder-map.md` |
+| `survey` | `survey-results.md` |
+| `user-voice-synthesis` | `persona.md` |
+| `framing` | `problem-brief.md`, `assumptions-map.md`, `opportunity-solution-tree.md` |
+| `customer-journey-map` | `journey-map.md` |
+| `ideation` | `options.md`, `prioritization.md` |
+| `build-process-map` | `process-map.md`, `user-flow.md`, `ia-sitemap.md` |
+| `prototype` | `prototype.md`, and the `starter/` folder (a small design system, a rules file and an empty page) |
+| `user-testing` | `usability-test-script.md`, `test-report.md`, `heuristic-evaluation.md` |
+| `handoff` | `measurement-plan.md` |
+| `add-media` | `generic.md` (any other kind of document) |

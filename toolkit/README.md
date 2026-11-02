@@ -1,6 +1,6 @@
 # Toolkit
 
-Everything shared by the projects in this workspace. The home page that lists every project is the `index.html` at the workspace root. **You do not fill anything in here.** Each project (`my-project`, `demo-project`, your own) sits outside this folder.
+Everything shared by the projects in this workspace. The home page that lists every project is the `index.html` at the workspace root. **You do not fill anything in here.** Each project (`demo-project`, your own) sits outside this folder.
 
 | Folder | What it holds | When to open it |
 |---|---|---|

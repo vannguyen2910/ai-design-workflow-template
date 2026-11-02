@@ -25,9 +25,9 @@ Put the folder somewhere ordinary on your machine, for example `Documents`.
    - Mac: double-click the file.
    - Windows: right-click, choose **Extract All**.
 4. Drag the unzipped folder into `Documents`.
-5. Open the folder. You will see `README.md`, `toolkit`, `my-project` and `demo-project`.
+5. Open the folder. You will see `README.md`, `toolkit` and `demo-project`.
 
-**Backup:** from time to time, compress `my-project` into a ZIP file and put it away, or copy it to another drive. The end of each work session is a good moment.
+**Backup:** from time to time, compress your project folder into a ZIP file and put it away, or copy it to another drive. The end of each work session is a good moment.
 
 ## Option B: Use this template, then GitHub Desktop
 
@@ -69,7 +69,7 @@ These four actions are everything you need to know about Git. The words you just
 ## Check before you start
 
 - [ ] The folder is in `Documents`, not in a folder that syncs to the cloud.
-- [ ] You can see `my-project` and `demo-project` in the folder.
-- [ ] You can open `my-project/README.md` and read it.
+- [ ] You can see `toolkit` and `demo-project` in the folder.
+- [ ] You can open `demo-project/README.md` and read it.
 
 Opens, but tables and links look raw? That is normal: Markdown files need a viewer. See "View markdown files" in [`02-set-up-your-project.md`](02-set-up-your-project.md).

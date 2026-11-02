@@ -18,7 +18,7 @@ The front page of the project. Fill in the **Project card** first, then pick you
 | Data rules | See `context/data-rules.md` |
 
 <!-- template-only -->
-> **This is `my-project`, the blank workspace.** Do not fill it in directly: open the workspace folder with an AI tool and say "Create a new project called *project-name*". To see a finished project, open `demo-project`.
+> **This is the blank project template.** Do not fill it in directly: open the workspace folder with an AI tool and say "Create a new project called *project-name*". To see a finished project, open `demo-project`.
 <!-- /template-only -->
 
 ## What do you want to do?
@@ -57,4 +57,4 @@ The full list is in the **Guide** tab of `index.html`.
 | `AGENTS.md` | Rules for the AI tool, rarely needs opening by hand |
 | `_personal/` | Your private notes, never given to the AI |
 
-*The steps for the AI (`toolkit/skills/`) and the document templates (`toolkit/templates/`) sit **outside** this folder, in `toolkit/` at the workspace root, shared by every project.*
+*The steps for the AI (`toolkit/skills/`) and the document templates (in each skill's `templates/` folder) sit **outside** this folder, in `toolkit/` at the workspace root, shared by every project.*

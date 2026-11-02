@@ -31,7 +31,7 @@ Put images, video, PDFs or a document into the hub so it shows in the report, in
 ## Step 2: Describe it (AI)
 
 **Who:** AI
-**Input:** The files from step 1, a template in `toolkit/templates/`, and the list of items in `insights/`
+**Input:** The files from step 1, the template `templates/generic.md` (or one from another skill), and the list of items in `insights/`
 **Output:** `work/<short-name>/index.md`
 
 **Instruction:**

@@ -17,7 +17,7 @@ import re
 import sys
 
 STAGES = ["Setup", "Discover", "Define", "Develop", "Deliver", "Learn"]
-EXAMPLES = ("demo-project", "my-project")  # listed after the real projects
+EXAMPLES = ("demo-project",)  # listed after the real projects
 
 
 def is_case(p):

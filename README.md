@@ -62,7 +62,6 @@ Click **Code → Download ZIP**, unzip, then double-click **`index.html`** at th
 | To see | Click the card |
 |---|---|
 | The finished sample project | **Travel Buddy** (`demo-project`) |
-| The blank workspace | **Product Name** (`my-project`) |
 
 ---
 
@@ -74,7 +73,7 @@ First time? Follow the [setup checklist](toolkit/guides/00-setup-checklist.md): 
 2. **Open the folder with an AI tool** and say: *"Create a new project called … ."*
 3. **Double-click `index.html`** at the workspace root: your project shows as a new card.
 
-No AI tool? Rename the `my-project` folder, then fill it in.
+No AI tool? Run `python3 toolkit/tools/new-project.py project-name` in Terminal.
 
 ---
 
@@ -100,8 +99,8 @@ workspace/
 │   ├── guides/      step-by-step guides
 │   ├── skills/      one folder per skill: steps for the AI, templates, examples
 │   ├── templates/   templates no skill uses yet
-│   └── tools/       the scripts, including creating a new project with one command
-├── my-project/         the blank workspace (make a copy, do not fill it in directly)
+│   ├── tools/       the scripts, including creating a new project with one command
+│   └── project-template/  the blank project that new-project.py copies (do not edit)
 ├── demo-project/       the sample project
 └── <project-name>/  your project
 ```

@@ -30,7 +30,7 @@ The original project was made before this workspace's AI-assisted way of working
 | `insights/` | 5 needs, 6 hypotheses, 7 decisions, 2 evidence, 7 findings, 5 metrics | All stages |
 | `stages/README.md` | The table of seven stage pages (scope, evidence, problem brief, develop, alignment, findings, handoff); each page is built from `work/` and `insights/` | All stages |
 | `standards/` | Gates, principle checks, severity levels, project log | All stages |
-| `../toolkit/skills/`, `../toolkit/templates/` | (outside this folder, in `toolkit/`) The steps for working with the AI and the document templates, shared | All stages |
+| `../toolkit/skills/` | (outside this folder, in `toolkit/`) The steps for working with the AI and the document templates, shared | All stages |
 | `work/original-docs/` | The original documents of the Define to Test stages (personas, solution pool, flow, IA, PRD, test plan, findings) | Reference |
 
 ## What this project teaches (including by example of what is missing)

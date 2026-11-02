@@ -1,15 +1,14 @@
 # AGENTS.md: workspace
 
-This is the **workspace root**: the place that holds several projects (each project is a project folder) and the shared `toolkit/`. The rules for working *inside* a project are in that project's `AGENTS.md` (for example `my-project/AGENTS.md`). When you are working inside a project, read that file, not this one.
+This is the **workspace root**: the place that holds several projects (each project is a project folder) and the shared `toolkit/`. The rules for working *inside* a project are in that project's `AGENTS.md` (for example `demo-project/AGENTS.md`). When you are working inside a project, read that file, not this one.
 
 ## What each folder is
 
 | Folder | What it is | What you do |
 |---|---|---|
-| `my-project/` | The blank template | **Do not fill it in.** It is only there for `new-project.py` to copy |
 | `demo-project/` | The sample project (Travel Buddy) | Read for reference, do not edit unless asked |
 | `<project-name>/` | The workspace owner's project | Work following that project's `AGENTS.md` |
-| `toolkit/` | Guides, document templates, step cards, scripts | Read, do not edit unless asked |
+| `toolkit/` | Guides, document templates, step cards, scripts. `toolkit/project-template/` is the blank project that `new-project.py` copies | Read, do not edit unless asked |
 | `index.html` | The home page: one card per project | Do not edit by hand. Build it with `toolkit/tools/build-home.py` |
 
 ## When asked to create a new project
@@ -17,7 +16,7 @@ This is the **workspace root**: the place that holds several projects (each proj
 For example: "Create a new project called …", "Tạo một dự án mới tên …", "Start the project …".
 
 1. **Ask for the project name** if it is not given. One question is enough.
-2. **Run the command, do not copy `my-project` yourself:**
+2. **Run the command, do not copy a folder yourself:**
 
    ```
    python3 toolkit/tools/new-project.py "<Project name>"
@@ -35,7 +34,7 @@ If a folder with the same name already exists, the command stops. Do not delete 
 |---|---|
 | See or update the home page | `python3 toolkit/tools/build-home.py` |
 | See the report of a project | Open `<project>/index.html`. To rebuild it: run `python3 ../toolkit/tools/build-report.py` **inside** the project folder |
-| Add a new document to a project | Open a template in `toolkit/skills/<skill>/templates/` (or `toolkit/templates/` for those no skill uses), copy it into that project's `work/`, and follow that project's `AGENTS.md` |
+| Add a new document to a project | Open a template in `toolkit/skills/<skill>/templates/`, copy it into that project's `work/`, and follow that project's `AGENTS.md` |
 | Draw a process map, swimlane or user flow | Follow `toolkit/skills/build-process-map/SKILL.md` (uses `toolkit/skills/diagram-design/`); template: `toolkit/skills/build-process-map/templates/process-map.md` |
 | "Lưu lại", "Lưu và đăng lên", "Save and publish" | Ask which project, then follow **Save and publish** in that project's `AGENTS.md`. Saving changes to the workspace itself (for example `toolkit/`) follows the same steps, staging only the files that changed |
 | Unclear which project it belongs to | Ask one question. Do not guess |
@@ -43,7 +42,7 @@ If a folder with the same name already exists, the command stops. Do not delete 
 ## Hard rules
 
 1. **Do not read** `_personal/` and `work/sources/_raw-private/` of any project.
-2. **Do not edit `my-project/`** when creating or working on a project. It must stay as it is to serve as the template.
+2. **Do not edit `toolkit/project-template/`** when creating or working on a project. It must stay as it is to serve as the template.
 3. **Propose first** for anything that creates or changes many files. Wait for the workspace owner to approve.
 4. **Anonymise before using real data.** Names of people, company names and real figures do not go to an AI tool before they are anonymised.
 5. **Answer in the language the workspace owner writes in.**

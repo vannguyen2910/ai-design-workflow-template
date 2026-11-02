@@ -37,7 +37,7 @@ You do not need to know Git. You click buttons once to set things up, then the A
 3. Name it, for example `my-design-workflow`, and choose **Private**.
 4. Click **Create repository**.
 
-**Done when:** your browser shows `github.com/<your-name>/<repo-name>`, the folders `my-project`, `demo-project` and `toolkit` are listed, and the word **Private** is next to the repo name.
+**Done when:** your browser shows `github.com/<your-name>/<repo-name>`, the folders `demo-project` and `toolkit` are listed, and the word **Private** is next to the repo name.
 
 No **Use this template** button? Message the person who shared the link. Do not download the original repo instead.
 
@@ -48,20 +48,20 @@ No **Use this template** button? Message the person who shared the link. Do not 
 3. In **Local path**, choose `Documents`. **Not** Google Drive, iCloud, OneDrive or Dropbox: a syncing folder can break files while the AI writes them.
 4. Click **Clone**.
 
-**Done when:** `Documents/<repo-name>` exists, and inside it you see `README.md`, `toolkit`, `my-project` and `demo-project`.
+**Done when:** `Documents/<repo-name>` exists, and inside it you see `README.md`, `toolkit` and `demo-project`.
 
 ## 6. Open the workspace in your AI tool
 
-1. In the AI tool: **File → Open Folder**, then choose `Documents/<repo-name>` (the whole workspace, not `my-project`).
+1. In the AI tool: **File → Open Folder**, then choose `Documents/<repo-name>` (the whole workspace, not a project folder).
 
-**Done when:** the file list in the AI tool shows `AGENTS.md`, `toolkit`, `my-project` and `demo-project`.
+**Done when:** the file list in the AI tool shows `AGENTS.md`, `toolkit` and `demo-project`.
 
 ## 7. Create your project
 
 1. In the AI tool's chat, type: *"Tạo một dự án mới tên …"* (or *"Create a new project called …"*), with your project name.
 2. Mac only: if a window asks to install "command line developer tools", click **Install**, wait, then ask again.
 
-**Done when:** a new folder with your project name appears next to `my-project`, and the AI tells you the path of the new folder.
+**Done when:** a new folder with your project name appears next to `demo-project`, and the AI tells you the path of the new folder.
 
 ## 8. Open the report
 
@@ -93,7 +93,7 @@ Two phrases are all you need from now on:
 |---|---|
 | GitHub Desktop is not in the App Store | That is normal: download it from desktop.github.com (step 2) |
 | The repo is in Google Drive or iCloud | In GitHub Desktop: **Repository → Remove**, then clone again into `Documents` (step 5) |
-| The AI cannot find `new-project.py` | You opened `my-project` instead of the workspace. Open the workspace folder (step 6) |
+| The AI cannot find `new-project.py` | You opened a project folder instead of the workspace. Open the workspace folder (step 6) |
 | A page opens but tables and links look raw | You opened a `.md` file. Open `index.html` instead (step 8) |
 | "Push" or "authentication" error | Open GitHub Desktop, check you are signed in (step 2), then say *"Lưu và đăng lên"* again |
 | Anything else | Screenshot + the step number, sent to the person running the programme |
