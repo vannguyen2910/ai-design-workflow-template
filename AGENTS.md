@@ -46,4 +46,4 @@ If a folder with the same name already exists, the command stops. Do not delete 
 3. **Propose first** for anything that creates or changes many files. Wait for the workspace owner to approve.
 4. **Anonymise before using real data.** Names of people, company names and real figures do not go to an AI tool before they are anonymised.
 5. **Answer in the language the workspace owner writes in.**
-6. **Write plain, clean content.** In the body of a document leave out item codes (O1, H2, D3), counts such as `(n=13)`, file paths and skill names; say it in words and keep the codes in the file's properties. The full rule is in the **Writing** section of each project's `AGENTS.md`.
+6. **Write plain, clean content.** In the body of a document leave out item codes (O1, H2, D3), counts such as `(n=13)`, file paths and skill names; say it in words and keep the codes in the file's properties. The full rule is in `toolkit/rules/ai-rules.md`.

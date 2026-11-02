@@ -67,7 +67,7 @@ Click **Code → Download ZIP**, unzip, then double-click **`index.html`** at th
 
 ## Start your own project
 
-First time? Follow the [setup checklist](toolkit/guides/00-setup-checklist.md): nine steps, about 45 minutes, each with a check that tells you it worked.
+First time? Follow the [setup checklist](toolkit/guides/01-getting-started.md#setup-checklist-session-0): nine steps, about 45 minutes, each with a check that tells you it worked.
 
 1. **Download and unzip.**
 2. **Open the folder with an AI tool** and say: *"Create a new project called … ."*
@@ -97,6 +97,7 @@ The folder [`toolkit/guides/`](toolkit/guides/) has step-by-step guides: getting
 workspace/
 ├── toolkit/         guides, skills for the AI (with their templates and examples), the scripts
 │   ├── guides/      step-by-step guides
+│   ├── rules/       the rules every project's AI tool follows
 │   ├── skills/      one folder per skill: steps for the AI, templates, examples
 │   ├── templates/   templates no skill uses yet
 │   ├── tools/       the scripts, including creating a new project with one command

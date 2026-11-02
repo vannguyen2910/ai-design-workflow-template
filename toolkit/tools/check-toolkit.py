@@ -11,7 +11,7 @@ import sys
 
 WS = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # the workspace root
 SKIP = {".git", "node_modules", "diagram-design", "_raw-private", "_personal"}
-PATH_RX = re.compile(r"(?:\.\./)?toolkit/(?:skills|templates|guides|tools|diagram-design)/[\w./-]*[\w]")
+PATH_RX = re.compile(r"(?:\.\./)?toolkit/(?:skills|rules|templates|guides|tools|diagram-design)/[\w./-]*[\w]")
 LINK_RX = re.compile(r"\]\(([^)#\s]*(?:SKILL\.md|guides/[^)#\s]+|templates/[^)#\s]+))(?:#[^)]*)?\)")  # links into the toolkit only
 OLD_RX = re.compile(r"toolkit/skills/[\w-]+\.(?:md|py)\b")  # the layout before skills became folders
 errors = []

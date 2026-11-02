@@ -204,6 +204,6 @@ The four gates and the checks 1a to 4d are in [`gates.md`](../standards/gates.md
 
 ## Notes
 
-- The hub is private by default. How to let others see it is in `toolkit/guides/04-share-your-hub.md` at the workspace root.
+- The hub is private by default. How to let others see it is in `toolkit/guides/02-github-sharing-and-obsidian.md` at the workspace root.
 - P1 to P10 are Nielsen's 10 usability heuristics. Add your organisation's own principles from P11 on in `standards/principle-checks.md`.
-- The hub works with any tool that can open a whole folder: an AI coding tool, VS Code or Obsidian. Obsidian adds Graph view and Backlinks (see `toolkit/guides/05-obsidian.md`).
+- The hub works with any tool that can open a whole folder: an AI coding tool, VS Code or Obsidian. Obsidian adds Graph view and Backlinks (see `toolkit/guides/02-github-sharing-and-obsidian.md`).

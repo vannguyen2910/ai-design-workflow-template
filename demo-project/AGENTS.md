@@ -58,18 +58,9 @@ When you place a file:
 3. **Say where you put it:** give the full path, and anything you are unsure about (for example `supports` left empty).
 4. **Rebuild the report yourself** after you add or edit files in the project: run `python3 ../toolkit/tools/build-report.py`, then say the result (the number of warnings and what needs fixing before handoff). For a deeper review use `../toolkit/skills/refresh-hub/SKILL.md`.
 
-## Hard rules
+## Hard rules and Writing
 
-1. **Return only the section you were asked for.** Do not edit other sections or other files. The owner pastes the result in, or you write exactly into the section you were pointed to.
-2. **Do not edit an "(AI draft)" section after you created it, and do not edit the owner's "(verified)" section** unless you were asked for exactly that section. Drafts and checked versions always sit in two separate sections.
-3. **Use only sources in `work/sources/anonymised/`.** Never invent a quote, a figure, a product name or a source. If it is not in the sources, write `unknown`.
-4. **Quote verbatim, with the ID.** Do not rewrite or shorten.
-5. **Any number that is not confirmed is `assumed`.** An inference that is not in the sources is `inferred`.
-6. **Stop and tell the owner** if you see data that looks not anonymised (names, emails, usernames, company names) in a folder you are allowed to read.
-7. **Say what you are unsure about.** List the items you are unsure of instead of guessing a link or a relationship.
-8. **Never make a copy of an item.** An item exists only in its own file (`insights/decisions/D2.md`...). Relationships live in the properties (the `---` block at the top of the file) as wikilinks in quotes, declared in one direction only. Tables elsewhere are `generated` blocks; do not fill them by hand.
-9. **If the folder is a git repo with uncommitted changes,** suggest the owner says "Lưu lại" before you write files, so there is a point to go back to (see Save and publish).
-
+Read `../toolkit/rules/ai-rules.md` **first, in every session**: the hard rules and the writing rules shared by all projects. In short: return only the section you were asked for, use only anonymised sources, never invent a quote or a figure, and write plain content with no item codes in the body.
 ## Reading order
 
 1. `AGENTS.md`
@@ -99,7 +90,7 @@ The owner does not use Git commands. When they say one of these phrases, you do 
 | "Lưu lại", "Save" | Steps 1 to 4: a commit on their machine |
 | "Lưu và đăng lên", "Save and publish", "Đăng lên" | Steps 1 to 6: a commit, then a push to GitHub |
 
-1. **Check it is a Git repo:** `git rev-parse --show-toplevel`. If it is not (the owner downloaded a ZIP), say so in one sentence, point to `../toolkit/guides/00-setup-checklist.md` steps 4 and 5, and offer to compress the project folder into a ZIP as a backup instead. Do not create a repo or a remote yourself.
+1. **Check it is a Git repo:** `git rev-parse --show-toplevel`. If it is not (the owner downloaded a ZIP), say so in one sentence, point to `../toolkit/guides/01-getting-started.md` steps 4 and 5, and offer to compress the project folder into a ZIP as a backup instead. Do not create a repo or a remote yourself.
 2. **Rebuild the report** with `python3 ../toolkit/tools/build-report.py`, so the saved `index.html` matches the files.
 3. **Stage only this project and the home page:** from the repo root, `git add -- <this project folder> index.html`. Then list the staged files (`git diff --cached --name-status`) and show the owner a short summary (how many files, which folders). Stop and ask before going on if the list has a file under `_raw-private/` other than its `README.md`, a file that looks like a secret (`.env`, `*.pem`, `*.key`, a name with `credential`, `token` or `password`), or a file over 50 MB.
 4. **Commit** with a one-line message in the owner's language that says what changed, for example `Discover: thêm user-voice synthesis và 3 insight`. Nothing staged? Say there is nothing new to save and stop.
@@ -109,9 +100,3 @@ The owner does not use Git commands. When they say one of these phrases, you do 
 6. **Push:** `git push`. Then report in two lines: the commit message, and the repo link (`git remote get-url origin`). If the push fails because of sign-in, tell the owner to open GitHub Desktop and check they are signed in, then say the phrase again.
 
 Never, even if a command suggests it: `push --force`, `reset --hard`, `rebase`, switching or creating branches, changing the remote, turning on GitHub Pages, or making the repo public. Those are the owner's decisions; if one seems needed, explain why and wait.
-
-## Writing
-
-- Answer in the language the owner writes in. Write document content in the language of the source material and the owner (Vietnamese if that is what they use), and keep trade terms in English (insight, hypothesis, opportunity, handoff...).
-- Keep section headings in English: the step cards and the hub refer to them by those names.
-- Write content to be read by people, not by a database. In the body of a document, do not show item codes (O1, H2, D3, E1, RH6), counts like `(n=13)` or `9/13`, file paths, step-card or skill names, or labels like `assumed` and `unknown`. Say it in plain words instead: "most travellers we surveyed", "not known yet", "a target nobody has confirmed". The codes stay in the properties at the top of the file (`supports`, `tests`...), where the report uses them to link pages. Keep a source by naming it in words ("the interview", "the survey"). Keep quotes word for word.

@@ -231,7 +231,7 @@ def render(cards, title, logo):
                     '<li>Fill in the Project card in the project&rsquo;s <code>README.md</code> first, then '
                     '<code>context/product-and-users.md</code> and <code>context/data-rules.md</code>.</li>'
                     '<li>Say &ldquo;Save&rdquo; to keep a checkpoint, or &ldquo;Save and publish&rdquo; to also send it to GitHub.</li>'
-                    '<li>First time? Follow <code>toolkit/guides/00-setup-checklist.md</code>.</li>'
+                    '<li>First time? Follow <code>toolkit/guides/01-getting-started.md</code>.</li>'
                     '</ul></section>')
     if other:
         body.append('<section><h3>Examples and template</h3><div class="grid">%s</div></section>' % "".join(card(c) for c in other))

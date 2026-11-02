@@ -27,7 +27,7 @@ This folder is the source: edit the skills here. The scripts they use live in `.
 | [`customer-journey-map`](customer-journey-map/SKILL.md) | Define | When you need a customer journey map across stages, touchpoints and emotions | Imported |
 | [`diagram-design`](diagram-design/SKILL.md) | All stages | The drawing skill the diagram cards use | Imported |
 
-How the hub works is explained in [`../guides/06-how-the-hub-works.md`](../guides/06-how-the-hub-works.md).
+How the hub works is explained in [`../guides/03-how-the-hub-works.md`](../guides/03-how-the-hub-works.md).
 
 ## How to run a step
 

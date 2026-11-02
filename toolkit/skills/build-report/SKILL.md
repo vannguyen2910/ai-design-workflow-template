@@ -26,13 +26,13 @@ Turning Markdown into HTML is a deterministic transformation. The script gives t
 |---|---|
 | `README.md`, `context/`, `stages/`, `work/`, `insights/`, `standards/` | Sections with "(AI draft)" in the heading, `work/sources/` |
 | Every item file (O, H, M, D, E) | `_personal/`, `work/sources/`, `AGENTS.md`, `../toolkit/skills/*.md` |
-| `insights/project-log.md`, `standards/principle-checks.md` | `../toolkit/guides/06-how-the-hub-works.md` (a guide for the writer) |
+| `insights/project-log.md`, `standards/principle-checks.md` | `../toolkit/guides/03-how-the-hub-works.md` (a guide for the writer) |
 
 The "How to fill" blocks are left out of the report. Links to files outside the report show as dotted-underlined text and cannot be clicked.
 
 ## How the report is organised
 
-The menu sections (Overview, Context, Stages, Work, Insights, Standards) are described in `../toolkit/guides/06-how-the-hub-works.md`, "Where to see the hub".
+The menu sections (Overview, Context, Stages, Work, Insights, Standards) are described in `../toolkit/guides/03-how-the-hub-works.md`, "Where to see the hub".
 
 Items are not in the left menu but in the Insights section, so the report still works with dozens of items. An item not linked to any opportunity is gathered separately at the end of the tree.
 
