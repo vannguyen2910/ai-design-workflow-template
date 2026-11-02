@@ -201,8 +201,6 @@ def render(cards, title, logo):
                  "<h2>%s</h2>" % html.escape(c["name"])]
         if c["question"]:
             parts.append('<p class="q">%s</p>' % html.escape(c["question"]))
-        if c["desc"]:
-            parts.append("<p>%s</p>" % html.escape(c["desc"]))
         meta = []
         if c["stage"]:
             meta.append('<span class="stage">%s</span>' % html.escape(c["stage"]))
