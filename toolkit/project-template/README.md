@@ -7,6 +7,7 @@ The front page of the project. Fill in the **Project card** first, then pick you
 | | |
 |---|---|
 | Project name | |
+| Overview (what the project is about, one or two sentences) | |
 | Business question (one sentence) | |
 | Current stage | Setup / Discover / Define / Develop / Deliver |
 | Owner | |

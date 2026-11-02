@@ -23,7 +23,7 @@ For example: "Create a new project called …", "Tạo một dự án mới tên
    ```
 
    The command turns a name with accents or spaces into a folder name, removes the `[EXAMPLE]` items, fills in the project name, builds the project's `index.html` and adds a card to the home page. Add `--title "…"` if the display name should differ from the folder name.
-3. **Tell the workspace owner:** the path of the new folder, that the home page now has a card for the project, and the first thing to do: fill in the Project card in the project's `README.md`, then `context/product-and-users.md` and `context/data-rules.md`.
+3. **Tell the workspace owner:** the path of the new folder, that the home page now has a card for the project, and the first thing to do: fill in the Project card in the project's `README.md` (the **Overview** line is the introduction shown on the project's home page card), then `context/product-and-users.md` and `context/data-rules.md`.
 4. **Do not fill it in for them.** Do not invent the product name, the users or any figures. Leave what you do not know empty for the project owner to fill in.
 
 If a folder with the same name already exists, the command stops. Do not delete or overwrite it: ask the workspace owner to choose another name.

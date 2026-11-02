@@ -138,7 +138,7 @@ def case_card(ws, d):
         name = "Product Name" if d == "my-project" else d
     stage = card_value(md, "Giai đoạn hiện tại", "Stage", "Current stage")
     owner = card_value(md, "Chủ dự án", "Owner")
-    question = card_value(md, "Câu hỏi của business", "Business question")
+    question = card_value(md, "Tổng quan", "Overview") or card_value(md, "Câu hỏi của business", "Business question")  # what the project is about, else the business question
     desc = description(md)
     items = count_items(case)
     docs, planned = count_documents(case)
@@ -175,6 +175,7 @@ a.card:focus-visible{box-shadow:0 0 0 2px var(--purple)}
 .card h2{margin:0;font-size:1.15rem;line-height:1.35;font-weight:700;color:var(--ink)}
 .card p{margin:0;color:var(--muted);font-size:.93rem}
 .q{color:var(--ink)!important}
+.q.hint{color:var(--muted)!important;font-style:italic}
 .meta{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:auto;padding-top:14px;border-top:1px dashed var(--line);font-size:.84rem;color:var(--muted)}
 .meta b{color:var(--ink);font-weight:800}
 .stage{font-weight:700;color:var(--link)}
@@ -201,6 +202,8 @@ def render(cards, title, logo):
                  "<h2>%s</h2>" % html.escape(c["name"])]
         if c["question"]:
             parts.append('<p class="q">%s</p>' % html.escape(c["question"]))
+        else:  # every card has an introduction line, so a project without an Overview yet shows how to add one
+            parts.append('<p class="q hint">Add an overview in the Project card of README.md.</p>')
         meta = []
         if c["stage"]:
             meta.append('<span class="stage">%s</span>' % html.escape(c["stage"]))

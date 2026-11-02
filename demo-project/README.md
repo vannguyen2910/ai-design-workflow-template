@@ -3,6 +3,7 @@
 | | |
 |---|---|
 | Project name | Travel Buddy |
+| Overview (what the project is about) | A mobile platform that helps travelers discover places, connect with locals, plan and share trips. It combines Discover, Connect and Plan & Share in one seamless experience. |
 | Business question (one sentence) | Could a travel companion app that brings trustworthy suggestions, local connections and trip planning into one place replace the 8 to 10 apps travellers use for one trip? |
 | Current stage | Deliver |
 | Agreement status | not available |
