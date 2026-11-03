@@ -30,14 +30,16 @@ One persona, one goal, one situation.
 ## Journey
 The five stages follow the trip: **Awareness** (inspiration), **Consideration** (cross-checking), **Decision** (committing to a plan), **Service** (on the trip), **Loyalty** (after the trip). Quotes are taken word for word from the interview. Where we have no answer yet, the cell says so.
 
-| | Awareness | Consideration | Decision | Service | Loyalty |
-|---|---|---|---|---|---|
-| **Customer actions** | Sees a place on TikTok, YouTube or a Facebook travel group; asks an AI tool for itinerary ideas | Checks the same place on Google Maps, reads reviews, asks a Facebook group; checks the budget | Types the shortlist into a spreadsheet planner (budget, restaurants, must-see spots, itinerary) and shares it with companions | Follows the plan, but about a third of it changes: detours, tips from a hotel host; posts to Instagram or Facebook Stories | Looks for restaurant names and locations they have forgotten; shares a recommendation only if someone asks |
-| **Touchpoints** | TikTok, YouTube, Facebook groups, AI chat tools | Google Maps, Facebook groups, review sites, people they know | Spreadsheet planner, chat with companions | Phone camera, Google Maps, local people (a hotel host), Instagram and Facebook Stories | Photo gallery, spreadsheet planner, Stories. Travel Buddy: not designed for this stage yet |
-| **Customer experience** | Curious, but wary: most travellers we surveyed have been let down by a highly rated place. *"A lot of recommendations online eventually become tourist spots because everyone keeps recommending the same places. Sometimes I just wanted to know where locals actually go."* | Confident only when a place shows up in several sources. *"If a restaurant shows up on TikTok, Google Maps, travel groups, and is also recommended by someone I know, I feel much more confident about trying it."* | Tired of the manual work. *"The information is spread across multiple platforms, so I have to collect and organize it myself. The whole process feels pretty fragmented."* | Free and confident, because the plan is a foundation for improvising. Unsure how to find a local to ask. *"I don't really know how to find the right local person to ask."* | Regret about lost details. *"I think, 'I'll remember this later,' or 'I'll organize everything when I get home,' but that doesn't always happen."* |
-| **KPIs** | Time to first interaction with a tip: under 30 seconds from opening the app (target, not confirmed) | Visitors who register when they press Save: from 25% (target, not confirmed) | Tips saved per session: from 2 (target, not confirmed) | Not set yet | Not set yet |
-| **Business goals** | Show trustworthy, non-commercial local tips, not another list of highly rated places | Let them save and compare in one place without asking for sign-up first; free to start, because price is the biggest barrier | One planner that works both before the trip (detailed) and during it (flexible), replacing the many apps they use now | Offer a safe, free way to ask a local, which depends on locals being willing to take part (not researched yet) | An automatic trip record that they can edit and delete, with privacy kept |
-| **Teams involved** | Not known yet | Not known yet | Not known yet | Not known yet | Not known yet |
+The journey is drawn as one picture on its own page, **Journey map diagram**, in the Work section. It adds the decisions made, the hypotheses to test and the problems found in the prototype to each stage.
+
+### In their words
+Quotes are word for word from the interview, one per stage.
+
+- **Awareness:** *"A lot of recommendations online eventually become tourist spots because everyone keeps recommending the same places. Sometimes I just wanted to know where locals actually go."*
+- **Consideration:** *"If a restaurant shows up on TikTok, Google Maps, travel groups, and is also recommended by someone I know, I feel much more confident about trying it."*
+- **Decision:** *"The information is spread across multiple platforms, so I have to collect and organize it myself. The whole process feels pretty fragmented."*
+- **Service:** *"I don't really know how to find the right local person to ask."*
+- **Loyalty:** *"I think, 'I'll remember this later,' or 'I'll organize everything when I get home,' but that doesn't always happen."*
 
 ## Moments that matter
 1. **Between Consideration and Decision: copying by hand.** Every place moves from one app to another manually. The interviewee named this as the one thing they would change, and it is where Travel Buddy can help most.
@@ -54,6 +56,6 @@ The five stages follow the trip: **Awareness** (inspiration), **Consideration** 
 ## What this cannot tell us
 - It rests on one interview and a small survey, mostly young travellers in Asia. The other personas have their own journeys; this map covers one persona only.
 - The five stages are applied to a product that does not exist yet. The first two stages describe how travellers plan today, not how they would find Travel Buddy. How they would hear about the app is unknown.
-- The KPI targets are the team's own and nobody has confirmed them. Teams involved is empty because we do not yet know who would own each stage.
+- The KPI targets are the team's own and nobody has confirmed them. Which teams would own each stage is not mapped, because we do not know yet.
 - Feelings are read from the interview, not observed. No real usability test has been run.
 - The experience of locals (the supply side) is not mapped.
