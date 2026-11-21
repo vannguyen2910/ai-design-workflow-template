@@ -60,6 +60,8 @@ When you place a file:
 ## Hard rules and Writing
 
 Read `../toolkit/rules/ai-rules.md` **first, in every session**: the hard rules and the writing rules shared by all projects. In short: return only the section you were asked for, use only anonymised sources, never invent a quote or a figure, and write plain content with no item codes in the body.
+
+Also read `../toolkit/rules/product-rules.md` when you test an assumption, prepare a handoff or handle research data, and `../toolkit/rules/design-rules.md` when you build, review or write copy for a screen.
 ## Reading order
 
 1. `AGENTS.md`

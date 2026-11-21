@@ -2,7 +2,7 @@
 
 Each skill is a folder with a `SKILL.md`, and, when it has them, `templates/` and `examples/`. `SKILL.md` is a **step card**: it defines an AI-assisted procedure as a file, so the AI tool can read it and the procedure is stored with the project. Each card is one workflow made of ordered steps, and each step says who does it (the AI or you), which files to read and where to write.
 
-This folder is the source: edit the skills here. The scripts they use live in `../tools/`.
+This folder is the source for the other skills. These five are synced copies, so edit them in the `winnie-skills` repo (`plugins/product-workspace/skills/`), then run its `scripts/sync-to-toolkit.sh`: `stakeholder-map`, `pestel-analysis`, `survey`, `user-voice-synthesis`, `interview`. The scripts they use live in `../tools/`.
 
 ## Skills
 

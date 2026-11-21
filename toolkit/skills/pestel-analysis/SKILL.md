@@ -11,7 +11,7 @@ Describe the outside context that affects one decision, with every factor tied t
 
 | | |
 |---|---|
-| Working file | `work/pestel-analysis.md` (copy `../toolkit/skills/pestel-analysis/templates/pestel-analysis.md` into `work/`) |
+| Working file | `work/pestel-analysis.md` (copy `templates/pestel-analysis.md` into `work/`) |
 | Sources | `context/product-and-users.md`, and the articles or reports you saved in `work/sources/anonymised/` |
 | Original data | `work/sources/_raw-private/` (the AI does not read it) |
 | Final output | `work/pestel-analysis.md`, status `verified` |

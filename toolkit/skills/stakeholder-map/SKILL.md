@@ -11,7 +11,7 @@ Map the people who decide or are affected by one project or decision. The AI dra
 
 | | |
 |---|---|
-| Working file | `work/stakeholder-map.md` (copy `../toolkit/skills/stakeholder-map/templates/stakeholder-map.md` into `work/`) |
+| Working file | `work/stakeholder-map.md` (copy `templates/stakeholder-map.md` into `work/`) |
 | Sources | The list you write in step 1, and anonymised meeting notes in `work/sources/anonymised/` (use role labels, not names) |
 | Original data | `work/sources/_raw-private/` (the AI does not read it) |
 | Final output | `work/stakeholder-map.md`, status `verified` |

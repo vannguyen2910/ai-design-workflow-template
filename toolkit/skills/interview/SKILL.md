@@ -11,11 +11,11 @@ Plan and run user interviews with the AI as a helper: it drafts the guide and su
 
 | | |
 |---|---|
-| Working file | `work/interview-guide.md` (copy it from `../toolkit/skills/interview/templates/interview-guide.md` if it is not there yet). Each step fills one section |
+| Working file | `work/interview-guide.md` (copy it from `templates/interview-guide.md` if it is not there yet). Each step fills one section |
 | Sources | `work/sources/anonymised/I01.md`, `I02.md`... (one file per interview, quotes with IDs: I01-01, I01-02...) |
 | Original data | `work/sources/_raw-private/` (recordings, raw notes: the AI does not read it) |
-| Final output | Checked interview summaries in the working file, ready for `../toolkit/skills/user-voice-synthesis/SKILL.md` (step 5) or `../toolkit/skills/add-insights/SKILL.md` |
-| Related | `../toolkit/skills/interview/templates/research-plan.md` if the research needs a full plan; `context/data-rules.md` for what may go to the AI |
+| Final output | Checked interview summaries in the working file, ready for `../user-voice-synthesis/SKILL.md` (step 5) or the `add-insights` skill |
+| Related | `templates/research-plan.md` if the research needs a full plan; `context/data-rules.md` for what may go to the AI |
 
 The interview itself is **always yours**: you meet the real person. The AI helps before (the guide) and after (the summary), never instead.
 
@@ -117,7 +117,7 @@ Better, once: summarise the first interview yourself before you read the AI's ve
 **Input:** `## Summaries (verified)`, `## Goal`
 **Output:** `## Next`
 
-Write: which research questions now have an answer and which do not; whether the last two interviews still brought something new (if yes, you need more); who is still missing from the sample. Then choose the next step: code the quotes across interviews with `../toolkit/skills/user-voice-synthesis/SKILL.md` (step 5), or turn what you learned into items with `../toolkit/skills/add-insights/SKILL.md` (one evidence per interview).
+Write: which research questions now have an answer and which do not; whether the last two interviews still brought something new (if yes, you need more); who is still missing from the sample. Then choose the next step: code the quotes across interviews with `../user-voice-synthesis/SKILL.md` (step 5), or turn what you learned into items with the `add-insights` skill (one evidence per interview).
 
 **Gate C:** Can you answer each research question by pointing at quotes from at least two people? Is the missing group named?
 **Failure sign:** Moving on after one or two interviews; the summaries go straight into opportunities without synthesis.

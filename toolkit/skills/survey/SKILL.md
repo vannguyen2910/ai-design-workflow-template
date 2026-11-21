@@ -11,10 +11,10 @@ Summarise a survey so every figure has its `n` and the limits are written down. 
 
 | | |
 |---|---|
-| Working file | `work/survey-results.md` (copy `../toolkit/skills/survey/templates/survey-results.md` into `work/`) |
+| Working file | `work/survey-results.md` (copy `templates/survey-results.md` into `work/`) |
 | Sources | The anonymised export (a CSV or table) and the question list in `work/sources/anonymised/` |
 | Original data | `work/sources/_raw-private/` (raw export with names or emails: the AI does not read it) |
-| Examples | `../toolkit/skills/survey/examples/`: the Travel Buddy sample, to see the shape. Do not copy its content |
+| Examples | `examples/`: the Travel Buddy sample, to see the shape. Do not copy its content |
 | Final output | `work/survey-results.md`, status `verified` |
 
 ## Step 1: Method and sample

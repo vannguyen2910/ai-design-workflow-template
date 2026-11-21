@@ -15,7 +15,7 @@ Turn what real users say (reviews, forums, short interviews) into themes and opp
 | Sources | `work/sources/anonymised/` (quotes with IDs: R01..., I01-01...) |
 | Original data | `work/sources/_raw-private/` (the AI does not read it) |
 | Final output | `work/user-voice-synthesis.md` (the Evidence page in Stages is built from this file) and the `insights/opportunities/O*.md` files |
-| Examples | `../toolkit/skills/user-voice-synthesis/examples/`: the Travel Buddy sample, to see the shape. Do not copy its content |
+| Examples | `examples/`: the Travel Buddy sample, to see the shape. Do not copy its content |
 
 ## What counts as user voice
 
@@ -69,7 +69,7 @@ Fill in: the question (taken from the scope); who we need to hear from (which us
 **Input:** `## Scope` (only this section)
 **Output:** `## Sources and guide`, labelled "AI suggestions"
 
-*Running real interviews yourself? Plan and run them with `../toolkit/skills/interview/SKILL.md` (guide, pilot, consent, anonymising, verified summaries) and bring the checked quotes back here at step 5.*
+*Running real interviews yourself? Plan and run them with `../interview/SKILL.md` (guide, pilot, consent, anonymising, verified summaries) and bring the checked quotes back here at step 5.*
 
 **Instruction:**
 > Use only the scope below. Suggest the places where real users of this product talk about it in public (the kinds of source, do not invent specific pages), and draft eight interview questions. The questions must ask about past behaviour and real situations ("tell me about the last time you..."), not ask for opinions about ideas, and must not lead. Do not invent sources and do not quote anyone. Say what you are not sure about. Return only the two lists.

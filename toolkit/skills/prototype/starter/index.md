@@ -22,7 +22,7 @@ A small design system, a rules file and an empty page, so you can build your fir
 ## Steps
 1. Copy this whole folder into your project as `work/prototype/` (the AI tool can do it: *"Copy `toolkit/skills/prototype/starter` to `work/prototype`"*). Work in the copy, not here.
 2. Open `design-system/components.html` in a browser and look at what exists.
-3. Decide your rules, your shell (the frame around every screen) and 2 or 3 templates, and write them in `project-rules.md` and in `index.md` under `## Shell and templates` (see `toolkit/skills/prototype/SKILL.md`, step 2).
+3. Decide your rules, your shell (the frame around every screen) and 2 or 3 templates, and write them in `project-rules.md` and in `index.md` under `## Shell and templates` (see `toolkit/skills/prototype/SKILL.md`, steps 3 and 4).
 4. Have the AI coding tool build your design system from Figma, then the empty shell, and check each one at a phone and a desktop width (steps 3 and 4). Build patterns only if a group of components repeats (step 5, optional).
 5. Give the tool `project-rules.md`, your flow and your content notes, and have it build the whole journey in one pass. Then review every screen yourself.
 6. Save a working copy after each check you are happy with.

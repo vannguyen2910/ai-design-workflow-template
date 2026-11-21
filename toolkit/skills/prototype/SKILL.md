@@ -1,19 +1,19 @@
 ---
 name: prototype
-description: Build a clickable prototype of the chosen direction from your Figma design system and designed screens. Rules first, then the design system in code, the shell, optional patterns, then the whole journey in one pass, then review. Use when you have a chosen direction, a flow and a design system in Figma.
+description: Build a clickable prototype of the chosen direction from your Figma design system and designed screens. Rules and the design system in code first, then the shell and templates, optional patterns, the whole journey in one pass, then review. Use when you have a chosen direction, a flow and a design system in Figma.
 ---
 
 # Workflow: Prototype
 
-Build a clickable prototype of the direction you chose. Set the rules first, turn your Figma design system into code, build the shell every screen sits in, feed in your flow, let the AI build the whole journey in one pass, then review. The order is: **rules, design system, shell, patterns (optional), flow, build, review.** The AI builds, you check.
+Build a clickable prototype of the direction you chose. Set the rules first, turn your Figma design system into code, build the shell every screen sits in, feed in your flow, let the AI build the whole journey in one pass, then review. The order is: **design system in Figma, scope, rules and design system in code, shell and templates, patterns (optional), flow and journey, review, known gaps.** The AI builds, you check.
 
-*Status: draft. Try it on a real project and adjust it before you rely on it.*
+*Version: draft 0.1, 2026-11-18. Status: draft. Try it on a real project and adjust it before you rely on it. The step numbers match the practice sheet of the AI Prototyping lesson.*
 
 | | |
 |---|---|
 | Working folder | `work/prototype/` (copy `../toolkit/skills/prototype/starter/` if it is not there). `work/prototype/index.md` holds the scope, shell, screen plan and known gaps |
 | Sources | Your design system and designed screens in Figma, `work/options.md`, `work/problem-brief.md`, `work/user-flow.md` (your flow: the AI does not invent it), `context/design-system-notes.md`, `standards/principle-checks.md` |
-| Rules file | `work/prototype/project-rules.md` (give it to the AI coding tool at every build step) |
+| Rules file | `work/prototype/project-rules.md` (give it to the AI coding tool at every build step, or copy it into the rules file your tool reads, for example `AGENTS.md`) |
 | Original data | `work/sources/_raw-private/` (the AI does not read it) |
 | Output | A prototype that runs in a browser, plus `index.md` with the scope and known gaps |
 | Related | `../toolkit/skills/ideation/SKILL.md` before; `../toolkit/skills/add-media/SKILL.md` to show it in the report |
@@ -24,17 +24,25 @@ The prototype is a **reference for developers and a thing to test with users**, 
 
 | Section | Step | By |
 |---|---|---|
-| `## Scope` | 1 | YOU |
-| `## Shell and templates` | 2 | YOU |
+| `## Scope` | 2 | YOU |
+| `## Shell and templates` | 4 | YOU |
 | `## Screen plan` | 6 | YOU |
 | `## Plan check (AI)` | 6 | AI. **Do not edit** |
-| `## Build log` | 3, 4, 5, 7 and 8 | AI lists changed files, YOU write the verdict |
-| `## Rule check (AI)` | 8 | AI. **Do not edit** |
-| `## Known gaps` | 9 | YOU |
+| `## Build log` | 3, 4, 5, 6 and 7 | AI lists changed files, YOU write the verdict |
+| `## Rule check (AI)` | 7 | AI. **Do not edit** |
+| `## Known gaps` | 8 | YOU |
 
 Two rules: the AI changes only the files for the step you asked for, and you never accept "done" until you have opened the page yourself.
 
-## Step 1: Scope
+## Step 1: Have a design system
+
+**Who:** YOU · **Output:** the gaps in `context/design-system-notes.md`
+
+Check your design system in Figma: are the tokens named, and does each component have all its states (default, hover, focus, error, disabled)? Write what is missing in `context/design-system-notes.md` and fix it in Figma before Step 3. Do not let the AI invent it.
+
+**Check:** Can you list every token and component the flow will use? **Failure sign:** A component with no states; colours that are not named.
+
+## Step 2: Scope
 
 **Who:** YOU · **Output:** `## Scope`
 
@@ -42,21 +50,11 @@ Write: the one flow (start, goal, end); 3 to 6 screens that are already designed
 
 **Check:** Can someone finish the flow in one sitting? **Failure sign:** "The whole app"; no real content.
 
-## Step 2: Rules, shell and templates
+## Step 3: Rules and the design system · Check A
 
-**Who:** YOU · **Output:** `## Shell and templates`, and the same rules in `project-rules.md`
+**Who:** YOU, then AI, then YOU · **Output:** `project-rules.md`, `tokens.css`, `components.css`, `components.html`, and a line in `## Build log`
 
-The rules come first, because they decide everything the AI builds. The **shell** is the frame around every screen. A **template** is the layout of one kind of screen. Fix all three now, so the screens do not each invent their own.
-
-- **Rules.** Start from the ten rules in `project-rules.md`: five about the system, five about how you and the tool work. Read each rule: can you check it by opening a file? Rewrite the vague ones. Add your content voice (rule 5): how labels, messages and terms are written, so the same thing always has the same name.
-- **Shell.** Read it off your designed screens. Answer: header or not; side navigation or not; product name; the navigation items; where the main action goes; what happens on a narrow screen.
-- **Templates.** Pick 2 or 3, for example Home, List, Detail, Form. For each: when to use it, its areas (main, side, actions), and which components it holds.
-
-**Check:** Can you say which template each screen of your flow will use? **Failure sign:** "Each screen can look different"; a navigation you have not decided.
-
-## Step 3: Build the design system · Gate A
-
-**Who:** AI, then YOU · **Output:** `tokens.css`, `components.css`, `components.html`, and a line in `## Build log`
+The rules come first, because they decide everything the AI builds. Start from the ten rules in `project-rules.md`: five about the system, five about how you and the tool work. Read each rule: can you check it by opening a file? Rewrite the vague ones. Add your content voice (rule 5): how labels, messages and terms are written, so the same thing always has the same name.
 
 Your design system exists in Figma. Here it becomes code, so every later step can use it and nothing else.
 
@@ -66,20 +64,27 @@ Your design system exists in Figma. Here it becomes code, so every later step ca
 
 Then you check. Open `components.html` and compare each component and state with Figma. Search the files for raw values (`#` colours, `px` sizes outside the tokens). Send fixes back in **one list**. If it is right, say **"Lưu lại"** (the AI saves a checkpoint). Record the notes in `context/design-system-notes.md`.
 
-**Gate A:** Does every component and state match Figma? Is every colour and size a token? Is every missing piece written down?
+**Check A:** Does every component and state match Figma? Is every colour and size a token? Is every missing piece written down?
 **Failure sign:** A component you did not list; a hard-coded colour; a state that Figma has and the page does not.
 
-## Step 4: Build the shell · Gate B
+## Step 4: Shell and templates · Check B
 
-**Who:** AI, then YOU · **Output:** the shell files (header, navigation, empty main area), and a line in `## Build log`
+**Who:** YOU, then AI, then YOU · **Output:** `## Shell and templates`, the shell files (header, navigation, empty main area), and a line in `## Build log`
 
-This is screen 0. The shell is put together from your tokens and components, and it is built only here: later screens never add navigation.
+First you decide, from your designed screens. The **shell** is the frame around every screen; a **template** is the layout of one kind of screen. Fix both now, so the screens do not each invent their own.
+
+- **Shell.** Answer: header or not; side navigation or not; product name; the navigation items; where the main action goes; what happens on a narrow screen.
+- **Templates.** Pick 2 or 3, for example Home, List, Detail, Form. For each: when to use it, its areas (main, side, actions), and which components it holds.
+
+**Check:** Can you say which template each screen of your flow will use? **Failure sign:** "Each screen can look different"; a navigation you have not decided.
+
+Then the AI builds screen 0. The shell is put together from your tokens and components, and it is built only here: later screens never add navigation.
 
 > Read `project-rules.md` first. Build only the shell from my `## Shell and templates`: header, navigation and an empty main area. Use only the variables in `tokens.css` and the components in `components.css`. If a component you need is missing, say so and stop. Make it work with the keyboard, with a visible focus. Do not touch any file I did not name. List every file you changed and everything you were unsure about.
 
 Then you check. Tab through the navigation with the keyboard. Open it at a phone width and a desktop width. Search the files the AI touched for raw values. If it is right, say **"Lưu lại"**. If not, send back the fix and check again.
 
-**Gate B:** Does the shell match your answers in step 2 and the shell in your Figma screens? Does it work with a keyboard and at both widths? Is every colour and size from the design system?
+**Check B:** Does the shell match your answers above and the shell in your Figma screens? Does it work with a keyboard and at both widths? Is every colour and size from the design system?
 **Failure sign:** A new CSS file; a hard-coded colour; navigation items you did not list.
 
 ## Step 5: Build experience patterns (optional)
@@ -92,9 +97,9 @@ Do this only when the same group of components appears on two or more screens, f
 
 **Check:** Is each experience pattern used on at least two screens? Is it made only of existing components? **Failure sign:** A new component hidden inside a pattern; a pattern used once.
 
-## Step 6: Feed the flow · Gate C
+## Step 6: Feed the flow and build the journey · Check C
 
-**Who:** YOU, then AI, then YOU · **Output:** `## Screen plan`, `## Plan check (AI)`
+**Who:** YOU, then AI, then YOU, then AI · **Output:** `## Screen plan`, `## Plan check (AI)`, the screen files, and lines in `## Build log`
 
 First you write the plan from your own flow (`work/user-flow.md`) and your designed screens, one row per screen: name, template, content (real, not "lorem ipsum"), states (empty, loading, error, success), and where the user goes next.
 
@@ -104,20 +109,16 @@ Then the AI checks the plan against your design system. It does not change the p
 
 Then you decide each "MISSING": use an existing component, or add it yourself to the design system, and update `context/design-system-notes.md` and `project-rules.md` in the same go. The AI does not add it for you.
 
-**Gate C:** Can the flow be finished with these screens? Does each screen have a template? Is every component either existing or decided?
+**Check C:** Can the flow be finished with these screens? Does each screen have a template? Is every component either existing or decided?
 **Failure sign:** A plan the AI wrote for you; "MISSING" components left for the AI to improvise.
 
-## Step 7: Build the journey
-
-**Who:** AI · **Output:** the screen files, and lines in `## Build log`
-
-One pass for the whole journey, because the rules, the design system and the shell now constrain the result.
+Then the AI builds the whole journey in one pass, because the rules, the design system and the shell now constrain the result.
 
 > Read `project-rules.md` first. Build the whole journey from my `## Screen plan`: every screen inside the shell, each one following its template. Use only the variables in `tokens.css` and the components in `components.css`. Use my real content; where something is missing, write "unknown" and list it at the end. Do not add navigation. Make everything work with the keyboard, with a visible focus, and move focus to the new heading when the screen changes. Do not touch any file I did not name. List every file you changed and everything you were unsure about.
 
 **Failure sign:** Navigation of its own on a screen; a new CSS file; a hard-coded colour; a component you did not list; a screen not in the plan.
 
-## Step 8: Review · Gate D
+## Step 7: Review · Check D
 
 **Who:** AI, then YOU · **Output:** `## Rule check (AI)`, your verdict in `## Build log`
 
@@ -134,20 +135,20 @@ Then you review. This is the longest step and where your design judgement lives.
 
 When it is right, say **"Lưu lại"** (the AI saves a checkpoint).
 
-**Gate D:** Does it match the plan? Does it work with a keyboard and at both widths? Is every colour and size from the design system? Is every broken rule fixed or written down?
+**Check D:** Does it match the plan? Does it work with a keyboard and at both widths? Is every colour and size from the design system? Is every broken rule fixed or written down?
 **Failure sign:** You read the AI's report instead of opening the page; "no issues found" without saying what was checked.
 
-## Step 9: Known gaps · Gate E
+## Step 8: Known gaps · Check E
 
 **Who:** YOU · **Output:** `## Known gaps`, and decisions
 
 Fix the breaks that matter, or write them down. Write what the prototype does **not** do (states not built, content faked, screens missing), so nobody tests or hands off something that looks finished but is not. Record choices as decisions: `new-item.py D --title "..." --reason "..." --state proposed`. Add the prototype to the report with `../toolkit/skills/add-media/SKILL.md`.
 
-**Gate E:** Can a tester finish the flow? Is every gap written down?
+**Check E:** Can a tester finish the flow? Is every gap written down?
 
-## If a gate is not met
+## If a check is not met
 
-| Gate | If no |
+| Check | If no |
 |---|---|
 | A | Fix the design system before building the shell: every later step uses it |
 | B | Fix the shell before building any screen: a wrong shell spreads to every screen |
