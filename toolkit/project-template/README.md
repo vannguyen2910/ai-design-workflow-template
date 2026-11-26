@@ -19,7 +19,7 @@ The front page of the project. Fill in the **Project card** first, then pick you
 | Data rules | See `context/data-rules.md` |
 
 <!-- template-only -->
-> **This is the blank project template.** Do not fill it in directly: open the workspace folder with an AI tool and say "Create a new project called *project-name*". To see a finished project, open `demo-project`.
+> **This is the blank project template.** Do not fill it in directly: open the workspace folder with an AI tool and say "Create a new project called *project-name*". To see a finished project, open `travel-app`.
 <!-- /template-only -->
 
 ## What do you want to do?

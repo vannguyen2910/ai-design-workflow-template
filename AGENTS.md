@@ -1,12 +1,12 @@
 # AGENTS.md: workspace
 
-This is the **workspace root**: the place that holds several projects (each project is a project folder) and the shared `toolkit/`. The rules for working *inside* a project are in that project's `AGENTS.md` (for example `demo-project/AGENTS.md`). When you are working inside a project, read that file, not this one.
+This is the **workspace root**: the place that holds several projects (each project is a project folder) and the shared `toolkit/`. The rules for working *inside* a project are in that project's `AGENTS.md` (for example `travel-app/AGENTS.md`). When you are working inside a project, read that file, not this one.
 
 ## What each folder is
 
 | Folder | What it is | What you do |
 |---|---|---|
-| `demo-project/` | The sample project (Travel Buddy) | Read for reference, do not edit unless asked |
+| `travel-app/` | The sample project (Travel Buddy) | Read for reference, do not edit unless asked |
 | `<project-name>/` | The workspace owner's project | Work following that project's `AGENTS.md` |
 | `toolkit/` | Guides, document templates, step cards, scripts. `toolkit/project-template/` is the blank project that `new-project.py` copies | Read, do not edit unless asked |
 | `index.html` | The home page: one card per project | Do not edit by hand. Build it with `toolkit/tools/build-home.py` |

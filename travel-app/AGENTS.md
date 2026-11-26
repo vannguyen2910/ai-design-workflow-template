@@ -29,7 +29,7 @@ Every folder at the root without a leading `_` is a section of the `index.html` 
 | `index.html` | The report, exported from Markdown to view in a browser | Do not read, do not edit by hand. To update it run `../toolkit/tools/build-report.py` (run it yourself after every change to the files) |
 | `_personal/` | The owner's private notes | **Do not read, do not write** |
 | `work/sources/_raw-private/` | Raw data that is not anonymised | **Do not read, do not write** |
-| `work/original-docs/` | The original documents of the sample project (only in demo-project) | Read to cross-check. Do not edit |
+| `work/original-docs/` | The original documents of the sample project (only in travel-app) | Read to cross-check. Do not edit |
 
 ## Where things go
 

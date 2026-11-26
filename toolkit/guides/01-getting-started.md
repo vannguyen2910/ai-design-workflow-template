@@ -43,7 +43,7 @@ You do not need to know Git. You click buttons once to set things up, then the A
 3. Name it, for example `my-design-workflow`, and choose **Private**.
 4. Click **Create repository**.
 
-**Done when:** your browser shows `github.com/<your-name>/<repo-name>`, the folders `demo-project` and `toolkit` are listed, and the word **Private** is next to the repo name.
+**Done when:** your browser shows `github.com/<your-name>/<repo-name>`, the folders `travel-app` and `toolkit` are listed, and the word **Private** is next to the repo name.
 
 No **Use this template** button? Message the person who shared the link. Do not download the original repo instead.
 
@@ -54,20 +54,20 @@ No **Use this template** button? Message the person who shared the link. Do not 
 3. In **Local path**, choose `Documents`. **Not** Google Drive, iCloud, OneDrive or Dropbox: a syncing folder can break files while the AI writes them.
 4. Click **Clone**.
 
-**Done when:** `Documents/<repo-name>` exists, and inside it you see `README.md`, `toolkit` and `demo-project`.
+**Done when:** `Documents/<repo-name>` exists, and inside it you see `README.md`, `toolkit` and `travel-app`.
 
 ### 6. Open the workspace in your AI tool
 
 1. In the AI tool: **File → Open Folder**, then choose `Documents/<repo-name>` (the whole workspace, not a project folder).
 
-**Done when:** the file list in the AI tool shows `AGENTS.md`, `toolkit` and `demo-project`.
+**Done when:** the file list in the AI tool shows `AGENTS.md`, `toolkit` and `travel-app`.
 
 ### 7. Create your project
 
 1. In the AI tool's chat, type: *"Tạo một dự án mới tên …"* (or *"Create a new project called …"*), with your project name.
 2. Mac only: if a window asks to install "command line developer tools", click **Install**, wait, then ask again.
 
-**Done when:** a new folder with your project name appears next to `demo-project`, and the AI tells you the path of the new folder.
+**Done when:** a new folder with your project name appears next to `travel-app`, and the AI tells you the path of the new folder.
 
 ### 8. Open the report
 
@@ -137,7 +137,7 @@ Put the folder somewhere ordinary on your machine, for example `Documents`.
    - Mac: double-click the file.
    - Windows: right-click, choose **Extract All**.
 4. Drag the unzipped folder into `Documents`.
-5. Open the folder. You will see `README.md`, `toolkit` and `demo-project`.
+5. Open the folder. You will see `README.md`, `toolkit` and `travel-app`.
 
 **Backup:** from time to time, compress your project folder into a ZIP file and put it away, or copy it to another drive. The end of each work session is a good moment.
 
@@ -181,8 +181,8 @@ These four actions are everything you need to know about Git. The words you just
 ### Check before you start
 
 - [ ] The folder is in `Documents`, not in a folder that syncs to the cloud.
-- [ ] You can see `toolkit` and `demo-project` in the folder.
-- [ ] You can open `demo-project/README.md` and read it.
+- [ ] You can see `toolkit` and `travel-app` in the folder.
+- [ ] You can open `travel-app/README.md` and read it.
 
 Opens, but tables and links look raw? That is normal: Markdown files need a viewer. See "View markdown files" in [`01-getting-started.md`](01-getting-started.md#set-up-your-project).
 
@@ -202,7 +202,7 @@ This guide helps you name your project, understand what each folder is for, and 
 
    Add `--title "Onboarding redesign"` if you want a display name that differs from the folder name.
 2. A folder name uses lowercase letters joined with hyphens, no spaces. For example: `onboarding-redesign`, `checkout-flow`. Pick a name that tells you what the project is about, because you will see it at the start of every path. A plain name such as "Trip Planner" also works: the command turns it into a folder name.
-3. The command creates a new folder next to `demo-project`, clean and ready to fill in.
+3. The command creates a new folder next to `travel-app`, clean and ready to fill in.
 
 If you have two projects, run the command twice with two different names.
 

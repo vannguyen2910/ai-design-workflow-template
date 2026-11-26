@@ -7,7 +7,7 @@ description: Draw a process map, swimlane or user flow as a diagram, using the d
 
 Use this when a project needs an end-to-end process map, a swimlane, a user flow or any other diagram (journey, sequence, state machine…). The diagram is one self-contained HTML file with inline SVG, drawn with the `diagram-design` skill that lives in this workspace: [`../diagram-design/SKILL.md`](../diagram-design/SKILL.md).
 
-The demo project shows the result: `demo-project/work/original-docs/08_E2E_Process_Map.html` (opened by `demo-project/work/process-map.md`). A copy of that document is in `../toolkit/skills/build-process-map/examples/`, to see the shape; do not copy its content.
+The demo project shows the result: `travel-app/work/original-docs/08_E2E_Process_Map.html` (opened by `travel-app/work/process-map.md`). A copy of that document is in `../toolkit/skills/build-process-map/examples/`, to see the shape; do not copy its content.
 
 ## Before you start
 

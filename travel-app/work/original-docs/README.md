@@ -1,6 +1,6 @@
 # Reference
 
-The original documents of the Travel Buddy project from the Define stage to Test. They are the **source** for the working files and the hub of `demo-project`; do not edit them.
+The original documents of the Travel Buddy project from the Define stage to Test. They are the **source** for the working files and the hub of `travel-app`; do not edit them.
 
 | File | What it holds |
 |---|---|

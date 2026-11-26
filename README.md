@@ -51,7 +51,7 @@ Decision: "Visitors can browse without an account"
       ← evidence: survey of 13 people, price is barrier number 1 (7/13)
 ```
 
-Steps 2 to 5 come from the sample project `demo-project`. Open that project to see it in full.
+Steps 2 to 5 come from the sample project `travel-app`. Open that project to see it in full.
 
 ---
 
@@ -61,7 +61,7 @@ Click **Code → Download ZIP**, unzip, then double-click **`index.html`** at th
 
 | To see | Click the card |
 |---|---|
-| The finished sample project | **Travel Buddy** (`demo-project`) |
+| The finished sample project | **Travel Buddy** (`travel-app`) |
 
 ---
 
@@ -102,7 +102,7 @@ workspace/
 │   ├── templates/   templates no skill uses yet
 │   ├── tools/       the scripts, including creating a new project with one command
 │   └── project-template/  the blank project that new-project.py copies (do not edit)
-├── demo-project/       the sample project
+├── travel-app/         the sample project
 └── <project-name>/  your project
 ```
 

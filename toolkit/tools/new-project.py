@@ -20,7 +20,7 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # the workspace: toolkit/tools/ is two levels down
 TEMPLATE = os.path.join(ROOT, "toolkit", "project-template")
-RESERVED = {"demo-project", "toolkit", "guides", "templates", "tools", "skills", "index"}
+RESERVED = {"travel-app", "toolkit", "guides", "templates", "tools", "skills", "index"}
 IGNORE = shutil.ignore_patterns(".DS_Store", "__pycache__", "_export", "index.html")
 ITEM_RE = re.compile(r"^[OHMDEF]\d+\.md$")
 ITEM_LINK_RE = re.compile(r"\]\((?:\.\./)?(?:[a-z]+/)?[OHMDEF]\d+\.md\)")
