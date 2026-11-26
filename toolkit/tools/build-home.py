@@ -17,7 +17,7 @@ import re
 import sys
 
 STAGES = ["Setup", "Discover", "Define", "Develop", "Deliver", "Learn"]
-EXAMPLES = ("travel-app",)  # listed after the real projects
+EXAMPLES = ("travel-app", "food-deliver-app")  # listed under "Examples and template"
 
 
 def is_case(p):
@@ -142,7 +142,7 @@ def case_card(ws, d):
     desc = description(md)
     items = count_items(case)
     docs, planned = count_documents(case)
-    kind = "Template" if template else ("Example" if d == "travel-app" else "Project")
+    kind = "Template" if template else ("Example" if d in EXAMPLES else "Project")
     return {
         "dir": d, "name": name, "stage": stage if stage in STAGES else "", "owner": owner, "question": question,
         "desc": desc, "items": items, "docs": docs, "planned": planned, "kind": kind,
