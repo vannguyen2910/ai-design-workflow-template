@@ -17,7 +17,7 @@ import re
 import sys
 
 STAGES = ["Setup", "Discover", "Define", "Develop", "Deliver", "Learn"]
-EXAMPLES = ("travel-app", "food-deliver-app")  # listed under "Examples and template"
+EXAMPLES = ("travel-app", "food-deliver-app", "food-deliver-app-public")  # listed under "Examples and template"
 
 
 def is_case(p):

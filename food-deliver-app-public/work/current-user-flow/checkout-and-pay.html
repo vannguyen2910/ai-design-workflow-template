@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check out and pay</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  /* neutral black and white skin: change these values to re-skin the diagram */
+  --color-paper: #ffffff;
+  --color-paper-2: #f2f2f2;
+  --color-ink: #111111;
+  --color-muted: #555555;
+  --color-soft: #6b6b6b;
+  --color-rule: #d0d0d0;
+  --font-sans: 'Geist', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', 'Noto Serif', serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+}
+body { font-family: var(--font-sans); background: var(--color-paper); color: var(--color-ink); min-height: 100vh; padding: 3rem 2rem; display: flex; justify-content: center; }
+.frame { max-width: 1280px; width: 100%; min-width: 0; }
+.eyebrow { font-family: var(--font-mono); font-size: .66rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--color-muted); margin-bottom: .5rem; }
+h1 { font-family: var(--font-serif); font-size: clamp(1.5rem, 2.4vw + .75rem, 2rem); font-weight: 400; letter-spacing: -.02em; line-height: 1.15; margin-bottom: .6rem; }
+.meta { font-family: var(--font-mono); font-size: .7rem; color: var(--color-soft); margin-bottom: 1.2rem; }
+/* screen-reference toggle: a CSS-only checkbox, so it needs no script */
+.refs-input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.toggle { display: inline-block; margin-bottom: 1rem; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; padding: .45rem .8rem; border: 1px solid var(--color-ink); background: var(--color-paper); color: var(--color-ink); border-radius: 4px; cursor: pointer; }
+.toggle .t-on { display: none; }
+.refs-input:checked + .toggle { background: var(--color-ink); color: var(--color-paper); }
+.refs-input:checked + .toggle .t-on { display: inline; }
+.refs-input:checked + .toggle .t-off { display: none; }
+.refs-input:focus-visible + .toggle { outline: 2px solid var(--color-ink); outline-offset: 2px; }
+.diagram-container { width: 100%; overflow-x: auto; }
+svg { width: 100%; min-width: 1280px; display: block; }
+svg .nm { font-family: var(--font-sans); font-weight: 600; font-size: 12px; fill: #111111; }
+svg .ref { font-family: var(--font-mono); font-size: 8px; fill: #555555; letter-spacing: .04em; text-transform: uppercase; display: none; }
+.refs-input:checked ~ .diagram-container svg .ref { display: block; }
+svg .zone { font-family: var(--font-mono); font-size: 8px; letter-spacing: .16em; fill: #555555; }
+svg .al { font-family: var(--font-mono); font-size: 8px; fill: #555555; letter-spacing: .06em; }
+svg .lg { font-family: var(--font-mono); font-size: 8px; fill: #555555; letter-spacing: .08em; }
+svg .bd { font-family: var(--font-mono); font-size: 10px; font-weight: 600; fill: #ffffff; }
+.notes { margin-top: 1.6rem; max-width: 70rem; }
+.notes h2 { font-family: var(--font-mono); font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--color-muted); margin-bottom: .3rem; }
+.notes p { font-size: .85rem; color: var(--color-soft); margin-bottom: .8rem; }
+.notes ol { list-style: none; display: grid; gap: .5rem; }
+.notes li { display: flex; gap: .7rem; font-size: .9rem; line-height: 1.45; }
+.notes .num { flex: none; width: 1.3rem; height: 1.3rem; border-radius: 50%; background: var(--color-ink); color: var(--color-paper); font-family: var(--font-mono); font-size: .7rem; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; margin-top: .1rem; }
+@media print { .toggle { display: none; } .diagram-container { overflow-x: visible; } svg { min-width: 0; } }
+</style>
+</head>
+<body>
+<div class="frame">
+  <p class="eyebrow">User flow 2 · Check out and pay</p>
+  <h1>Check out and pay</h1>
+  <p class="meta">Grab food delivery, Vietnam · iPhone · app v33437965 · English interface · walk-through of 23 Nov 2026</p>
+  <input type="checkbox" id="refs" class="refs-input">
+  <label class="toggle" for="refs"><span class="t-off">Show screen references</span><span class="t-on">Hide screen references</span></label>
+  <div class="diagram-container">
+<svg id="diagram" viewBox="0 0 1280 1040" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="checkout-and-pay-title checkout-and-pay-desc">
+<title id="checkout-and-pay-title">Check out and pay</title>
+<desc id="checkout-and-pay-desc">Flow of reviewing the order summary, choosing delivery and payment, applying offers and placing the order in the Grab food delivery app.</desc>
+<defs>
+<marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#555555"/></marker>
+<marker id="arrow-main" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#111111"/></marker>
+</defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<rect x="40" y="40" width="1200" height="176" rx="6" fill="#f2f2f2" stroke="#d0d0d0" stroke-width="1"/>
+<text class="zone" x="52" y="58">REVIEW THE ORDER</text>
+<rect x="40" y="252" width="1200" height="176" rx="6" fill="#f2f2f2" stroke="#d0d0d0" stroke-width="1"/>
+<text class="zone" x="52" y="270">DELIVERY &amp; PAYMENT</text>
+<rect x="40" y="464" width="1200" height="260" rx="6" fill="#f2f2f2" stroke="#d0d0d0" stroke-width="1"/>
+<text class="zone" x="52" y="482">CHANGE THE PAYMENT METHOD</text>
+<rect x="40" y="760" width="1200" height="176" rx="6" fill="#f2f2f2" stroke="#d0d0d0" stroke-width="1"/>
+<text class="zone" x="52" y="778">OFFERS AND ORDER</text>
+<path d="M246,122 L334,122" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M486,122 L574,122" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M726,122 L806,122" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M974,122 L1054,122" fill="none" stroke="#555555" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#arrow)"/>
+<path d="M890,166 L890,226 Q890,234 882,234 L178,234 Q170,234 170,242 L170,304" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M246,334 L334,334" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M486,334 L574,334" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M726,334 L806,334" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M890,378 L890,522" fill="none" stroke="#555555" stroke-width="1" marker-end="url(#arrow)"/>
+<path d="M974,334 L1122,334 Q1130,334 1130,342 L1130,733 Q1130,741 1122,741 L174,741" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M814,552 L734,552" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M566,552 L486,552" fill="none" stroke="#555555" stroke-width="1" marker-end="url(#arrow)"/>
+<path d="M650,596 L650,630" fill="none" stroke="#555555" stroke-width="1" marker-end="url(#arrow)"/>
+<path d="M410,582 L410,656" fill="none" stroke="#555555" stroke-width="1" marker-end="url(#arrow)"/>
+<path d="M574,660 L414,660" fill="none" stroke="#555555" stroke-width="1" marker-end="url(#arrow)"/>
+<path d="M410,664 L410,692 Q410,700 402,700 L178,700 Q170,700 170,708 L170,737" fill="none" stroke="#555555" stroke-width="1" marker-end="url(#arrow)"/>
+<path d="M170,745 L170,816" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M254,860 L334,860" fill="none" stroke="#555555" stroke-width="1" marker-end="url(#arrow)"/>
+<path d="M170,904 L170,914 Q170,922 178,922 L642,922 Q650,922 650,914 L650,890" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M486,860 L574,860" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M726,860 L814,860" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<rect x="1001.65" y="103" width="24.7" height="13" fill="#f2f2f2"/>
+<text class="al" text-anchor="middle" x="1014" y="112.5">YES</text>
+<rect x="898" y="193.5" width="19.8" height="13" fill="#f2f2f2"/>
+<text class="al" text-anchor="start" x="903" y="203">NO</text>
+<rect x="898" y="443.5" width="24.7" height="13" fill="#ffffff"/>
+<text class="al" text-anchor="start" x="903" y="453">YES</text>
+<rect x="1042.1" y="315" width="19.8" height="13" fill="#f2f2f2"/>
+<text class="al" text-anchor="middle" x="1052" y="324.5">NO</text>
+<rect x="506.3" y="533" width="39.4" height="13" fill="#f2f2f2"/>
+<text class="al" text-anchor="middle" x="526" y="542.5">LINKED</text>
+<rect x="658" y="606.5" width="24.7" height="13" fill="#f2f2f2"/>
+<text class="al" text-anchor="start" x="663" y="616">NEW</text>
+<rect x="281.65" y="841" width="24.7" height="13" fill="#f2f2f2"/>
+<text class="al" text-anchor="middle" x="294" y="850.5">YES</text>
+<rect x="400.1" y="903" width="19.8" height="13" fill="#f2f2f2"/>
+<text class="al" text-anchor="middle" x="410" y="912.5">NO</text>
+<rect x="94" y="92" width="152" height="60" rx="28" fill="#f2f2f2" stroke="#111111" stroke-width="1" stroke-dasharray="5,4"/>
+<text class="nm" text-anchor="middle" x="170" y="117"><tspan x="170" dy="0">From flow 1:</tspan><tspan x="170" dy="14">basket ready</tspan></text>
+<rect x="334" y="92" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="410" y="125"><tspan x="410" dy="0">Open order summary</tspan></text>
+<text class="ref" text-anchor="middle" x="410" y="145">J2 · 01 Order summary</text>
+<rect x="574" y="92" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="650" y="125"><tspan x="650" dy="0">Check items and fees</tspan></text>
+<text class="ref" text-anchor="middle" x="650" y="145">J2 · 01 Order summary</text>
+<polygon points="890,78 974,122 890,166 806,122" fill="#f2f2f2" stroke="#111111" stroke-width="1.2"/>
+<text class="nm" text-anchor="middle" x="890" y="119"><tspan x="890" dy="0">Change the</tspan><tspan x="890" dy="14">items?</tspan></text>
+<rect x="1054" y="92" width="152" height="60" rx="28" fill="#f2f2f2" stroke="#111111" stroke-width="1" stroke-dasharray="5,4"/>
+<text class="nm" text-anchor="middle" x="1130" y="117"><tspan x="1130" dy="0">Back to menu</tspan><tspan x="1130" dy="14">(flow 1)</tspan></text>
+<rect x="94" y="304" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="170" y="329"><tspan x="170" dy="0">Check delivery</tspan><tspan x="170" dy="14">details</tspan></text>
+<text class="ref" text-anchor="middle" x="170" y="357">J2 · 03 Delivery details</text>
+<rect x="334" y="304" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="410" y="329"><tspan x="410" dy="0">Choose delivery</tspan><tspan x="410" dy="14">speed</tspan></text>
+<text class="ref" text-anchor="middle" x="410" y="357">J2 · 02 Delivery options</text>
+<rect x="574" y="304" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="650" y="329"><tspan x="650" dy="0">Check payment</tspan><tspan x="650" dy="14">method</tspan></text>
+<text class="ref" text-anchor="middle" x="650" y="357">J2 · 02 Payment details</text>
+<polygon points="890,290 974,334 890,378 806,334" fill="#f2f2f2" stroke="#111111" stroke-width="1.2"/>
+<text class="nm" text-anchor="middle" x="890" y="331"><tspan x="890" dy="0">Change payment</tspan><tspan x="890" dy="14">method?</tspan></text>
+<rect x="814" y="522" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="890" y="547"><tspan x="890" dy="0">Open payment</tspan><tspan x="890" dy="14">methods</tspan></text>
+<text class="ref" text-anchor="middle" x="890" y="575">J2 · 04 Payment methods</text>
+<polygon points="650,508 734,552 650,596 566,552" fill="#f2f2f2" stroke="#111111" stroke-width="1.2"/>
+<text class="nm" text-anchor="middle" x="650" y="556"><tspan x="650" dy="0">Which method?</tspan></text>
+<rect x="334" y="522" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="410" y="547"><tspan x="410" dy="0">Select a linked</tspan><tspan x="410" dy="14">method</tspan></text>
+<text class="ref" text-anchor="middle" x="410" y="575">J2 · 06 Method changed</text>
+<rect x="574" y="630" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="650" y="663"><tspan x="650" dy="0">Add a new card</tspan></text>
+<text class="ref" text-anchor="middle" x="650" y="683">J2 · 05 Add card</text>
+<circle cx="410" cy="660" r="4" fill="#111111"/>
+<circle cx="170" cy="741" r="4" fill="#111111"/>
+<polygon points="170,816 254,860 170,904 86,860" fill="#f2f2f2" stroke="#111111" stroke-width="1.2"/>
+<text class="nm" text-anchor="middle" x="170" y="864"><tspan x="170" dy="0">Add an offer?</tspan></text>
+<rect x="334" y="830" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="410" y="863"><tspan x="410" dy="0">Open offers</tspan></text>
+<text class="ref" text-anchor="middle" x="410" y="883">J2 · 07 Offers</text>
+<rect x="574" y="830" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="650" y="863"><tspan x="650" dy="0">Place order</tspan></text>
+<text class="ref" text-anchor="middle" x="650" y="883">J2 · 01 Order summary</text>
+<rect x="814" y="830" width="152" height="60" rx="28" fill="#f2f2f2" stroke="#111111" stroke-width="1" stroke-dasharray="5,4"/>
+<text class="nm" text-anchor="middle" x="890" y="855"><tspan x="890" dy="0">To flow 3:</tspan><tspan x="890" dy="14">track the order</tspan></text>
+<circle cx="724" cy="94" r="9" fill="#111111"/><text class="bd" text-anchor="middle" x="724" y="97.5">1</text>
+<circle cx="484" cy="306" r="9" fill="#111111"/><text class="bd" text-anchor="middle" x="484" y="309.5">2</text>
+<circle cx="484" cy="524" r="9" fill="#111111"/><text class="bd" text-anchor="middle" x="484" y="527.5">3</text>
+<circle cx="724" cy="632" r="9" fill="#111111"/><text class="bd" text-anchor="middle" x="724" y="635.5">4</text>
+<circle cx="484" cy="832" r="9" fill="#111111"/><text class="bd" text-anchor="middle" x="484" y="835.5">5</text>
+<g class="legend">
+<line x1="40" y1="986" x2="1240" y2="986" stroke="#d0d0d0" stroke-width="1"/>
+<rect x="52" y="997" width="28" height="14" rx="7" fill="#f2f2f2" stroke="#111111"/><text class="lg" x="88" y="1007">START / END</text>
+<rect x="182" y="997" width="28" height="14" rx="7" fill="#f2f2f2" stroke="#111111" stroke-dasharray="3,2"/><text class="lg" x="218" y="1007">HAND-OFF</text>
+<rect x="298" y="997" width="26" height="14" rx="3" fill="#ffffff" stroke="#111111"/><text class="lg" x="332" y="1007">STEP</text>
+<polygon points="395,996 408,1004 395,1012 382,1004" fill="#f2f2f2" stroke="#111111"/><text class="lg" x="416" y="1007">DECISION</text>
+<circle cx="496" cy="1004" r="4" fill="#111111"/><text class="lg" x="508" y="1007">MERGE</text>
+<line x1="578" y1="1004" x2="604" y2="1004" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/><text class="lg" x="612" y="1007">MAIN PATH</text>
+<line x1="690" y1="1004" x2="716" y2="1004" stroke="#555555" stroke-width="1" marker-end="url(#arrow)"/><text class="lg" x="724" y="1007">OTHER PATH</text>
+<line x1="810" y1="1004" x2="836" y2="1004" stroke="#555555" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#arrow)"/><text class="lg" x="844" y="1007">RETURN</text>
+<circle cx="914" cy="1004" r="8" fill="#111111"/><text class="bd" text-anchor="middle" x="914" y="1007.5">1</text><text class="lg" x="930" y="1007">POSSIBLE BREAKDOWN</text>
+</g>
+</svg>
+  </div>
+  <section class="notes">
+    <h2>Possible breakdowns</h2>
+    <p>These are hypotheses from my own walk-through of the app. They are not test findings. Each one is to be checked in the heuristic evaluation and the usability test.</p>
+    <ol>
+<li><span class="num">1</span><span>The order summary puts the items, a promotion banner, fees and savings in one long screen.</span></li>
+<li><span class="num">2</span><span>Priority and Standard delivery have the same price but different times, so the difference may be unclear.</span></li>
+<li><span class="num">3</span><span>An expired card stays in the payment list, greyed out, next to methods that can be used.</span></li>
+<li><span class="num">4</span><span>The add-card form warns that the card may be charged to check it, which may worry users.</span></li>
+<li><span class="num">5</span><span>Many offers are greyed out because of a minimum spend, so it may be hard to see which ones apply.</span></li>
+    </ol>
+  </section>
+</div>
+</body>
+</html>

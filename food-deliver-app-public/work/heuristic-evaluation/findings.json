@@ -1,0 +1,888 @@
+{
+ "title": "Grab - Current Experience",
+ "subtitle": "Grab food delivery, Vietnam · iPhone · app v33437965 · English interface",
+ "assetsBase": "../assets/",
+ "journeys": [
+  {
+   "title": "Journey 1 - Find and order",
+   "dir": "journey-1-find-and-order",
+   "code": "J1",
+   "screens": [
+    [
+     "01-grab-home",
+     "Grab home"
+    ],
+    [
+     "02-food-section",
+     "Food section"
+    ],
+    [
+     "03-choose-delivery-address",
+     "Choose delivery address"
+    ],
+    [
+     "04-browse-by-category",
+     "Browse by category"
+    ],
+    [
+     "05-search-matcha",
+     "Search"
+    ],
+    [
+     "06-search-results",
+     "Search results"
+    ],
+    [
+     "07-restaurant-page",
+     "Restaurant page"
+    ],
+    [
+     "08-restaurant-menu",
+     "Restaurant menu"
+    ],
+    [
+     "09-item-detail",
+     "Item detail"
+    ],
+    [
+     "10-item-options",
+     "Item options"
+    ],
+    [
+     "11-basket-with-item",
+     "Basket"
+    ]
+   ]
+  },
+  {
+   "title": "Journey 2 - Check out and pay",
+   "dir": "journey-2-checkout-and-pay",
+   "code": "J2",
+   "screens": [
+    [
+     "01-order-summary",
+     "Order summary"
+    ],
+    [
+     "02-delivery-options-and-payment",
+     "Delivery options and payment"
+    ],
+    [
+     "03-delivery-details",
+     "Delivery details"
+    ],
+    [
+     "04-payment-methods",
+     "Payment methods"
+    ],
+    [
+     "05-add-card",
+     "Add card"
+    ],
+    [
+     "06-payment-changed-to-cash",
+     "Payment changed to cash"
+    ],
+    [
+     "07-offers",
+     "Offers"
+    ]
+   ]
+  },
+  {
+   "title": "Journey 3 - Track and resolve",
+   "dir": "journey-3-track-and-resolve",
+   "code": "J3",
+   "screens": [
+    [
+     "01-order-confirmed",
+     "Order confirmed"
+    ],
+    [
+     "02-restaurant-preparing",
+     "Restaurant preparing"
+    ],
+    [
+     "03-order-ready-for-delivery",
+     "Order ready"
+    ],
+    [
+     "04-order-details",
+     "Order details"
+    ],
+    [
+     "05-driver-arriving-map",
+     "Driver on map"
+    ],
+    [
+     "06-driver-card-and-tip",
+     "Driver card and tip"
+    ],
+    [
+     "07-rate-delivery",
+     "Rate delivery"
+    ],
+    [
+     "08-rating-feedback-and-tip",
+     "Feedback and tip"
+    ],
+    [
+     "09-activity-history",
+     "Activity"
+    ],
+    [
+     "10-completed-order-details",
+     "Completed order"
+    ],
+    [
+     "11-get-help-and-reorder",
+     "Get help and reorder"
+    ]
+   ]
+  }
+ ],
+ "findings": [
+  {
+   "n": 1,
+   "sev": 2,
+   "at": "J1-01",
+   "pr": [
+    "P8"
+   ],
+   "t": "Home screen is crowded",
+   "where": "Service grid, tab bar badges, floating bus button",
+   "sees": "About ten service icons in two rows (labels cut at the right edge), two ad cards, red dots and a “5” badge on three tabs, and a floating bus button over an ad.",
+   "pins": [
+    [
+     "J1-01",
+     0.5,
+     0.26
+    ],
+    [
+     "J1-01",
+     0.89,
+     0.84
+    ]
+   ]
+  },
+  {
+   "n": 2,
+   "sev": 2,
+   "at": "J1-02",
+   "pr": [
+    "P4"
+   ],
+   "t": "Navigation changes inside the food section",
+   "where": "Top banner, bottom tab bar, section titles",
+   "sees": "A promo banner fills the top third. Tabs change from Home, Moments, Payment, Activity, Messages to Discover, Near Me, Offers, Order Again, Cart (no Home). Near Me is both a tile and a tab. The same carousel is “Order Now” on Home and “Buy Now” here.",
+   "pins": [
+    [
+     "J1-02",
+     0.5,
+     0.26
+    ],
+    [
+     "J1-02",
+     0.5,
+     0.965
+    ]
+   ]
+  },
+  {
+   "n": 3,
+   "sev": 1,
+   "at": "J1-01",
+   "pr": [
+    "P4"
+   ],
+   "t": "Two wordings for search",
+   "where": "Search field",
+   "sees": "The placeholder is “Search food” on Home and “What shall we deliver?” in the food section.",
+   "pins": [
+    [
+     "J1-01",
+     0.43,
+     0.095
+    ],
+    [
+     "J1-02",
+     0.38,
+     0.15
+    ]
+   ]
+  },
+  {
+   "n": 4,
+   "sev": 2,
+   "at": "J1-03",
+   "pr": [
+    "P2",
+    "P1"
+   ],
+   "t": "Delivery address is small and ambiguous",
+   "where": "“Deliver now / Home” label; “Current location / Home” row",
+   "sees": "Address and time sit in the smallest text at the top. In the address screen “Current location” carries the sub-label “Home”, so GPS or saved address is unclear. The ⋮ menu has no label. The keyboard covers most of the list.",
+   "pins": [
+    [
+     "J1-02",
+     0.24,
+     0.08
+    ],
+    [
+     "J1-03",
+     0.29,
+     0.365
+    ]
+   ]
+  },
+  {
+   "n": 5,
+   "sev": 2,
+   "at": "J1-04",
+   "pr": [
+    "P2",
+    "P6"
+   ],
+   "t": "Filter chip is unclear and clipped",
+   "where": "Filter chip row under the search",
+   "sees": "“Under 18.000đ” has a scooter icon but no label saying it is the delivery fee. The row is clipped on the right, so the last chip cannot be read.",
+   "pins": [
+    [
+     "J1-04",
+     0.33,
+     0.36
+    ],
+    [
+     "J1-06",
+     0.33,
+     0.21
+    ]
+   ]
+  },
+  {
+   "n": 6,
+   "sev": 2,
+   "at": "J1-04",
+   "pr": [
+    "P8",
+    "P6"
+   ],
+   "t": "Key text is cut off",
+   "where": "Voucher chip and restaurant names",
+   "sees": "“Min. spend 100.00…” is cut off, so the amount cannot be read. Restaurant names are cut too.",
+   "pins": [
+    [
+     "J1-04",
+     0.57,
+     0.61
+    ],
+    [
+     "J1-04",
+     0.65,
+     0.474
+    ]
+   ]
+  },
+  {
+   "n": 7,
+   "sev": 2,
+   "at": "J1-06",
+   "pr": [
+    "P2",
+    "P8"
+   ],
+   "t": "Ads look like results",
+   "where": "Small “Ad” tag; “Showing results in Delivery” dropdown",
+   "sees": "The first two results for “Matcha” are both ads. The tag is small and grey. The search scope is a plain text dropdown.",
+   "pins": [
+    [
+     "J1-06",
+     0.39,
+     0.37
+    ],
+    [
+     "J1-06",
+     0.43,
+     0.16
+    ]
+   ]
+  },
+  {
+   "n": 8,
+   "sev": 3,
+   "at": "J1-06",
+   "pr": [
+    "P1",
+    "P2"
+   ],
+   "t": "“Free” delivery is charged at checkout",
+   "where": "Fee line “Free 10.000đ” with the orange GrabUnlimited icon",
+   "sees": "Delivery is shown as free. At checkout the same order has “Delivery and applicable fees 17.000”. The page also offers “Join GrabUnlimited”, which suggests free is the member price. To confirm: is the account a member?",
+   "pins": [
+    [
+     "J1-06",
+     0.52,
+     0.42
+    ],
+    [
+     "J1-07",
+     0.52,
+     0.3
+    ]
+   ]
+  },
+  {
+   "n": 9,
+   "sev": 2,
+   "at": "J1-07",
+   "pr": [
+    "P8"
+   ],
+   "t": "Floating GrabMore pill covers content",
+   "where": "Red pill at the bottom of the menu",
+   "sees": "The pill sits over the “For You” title, over a dish name, and over the “+” button of a dish.",
+   "pins": [
+    [
+     "J1-07",
+     0.5,
+     0.96
+    ],
+    [
+     "J1-08",
+     0.5,
+     0.96
+    ],
+    [
+     "J1-11",
+     0.79,
+     0.82
+    ]
+   ]
+  },
+  {
+   "n": 10,
+   "sev": 2,
+   "at": "J1-08",
+   "pr": [
+    "P8",
+    "P6"
+   ],
+   "t": "Menu starts with promos; categories hidden",
+   "where": "Chips and promo cards under the header; “Today’s Offer” dropdown",
+   "sees": "Before any menu item: Group Order, Order for Later, Menu language (cut off), three promo cards, Your Last Order, Today’s Offer, For You. Categories hide in one dropdown instead of tabs.",
+   "pins": [
+    [
+     "J1-07",
+     0.5,
+     0.4
+    ],
+    [
+     "J1-08",
+     0.27,
+     0.16
+    ]
+   ]
+  },
+  {
+   "n": 11,
+   "sev": 2,
+   "at": "J1-09",
+   "pr": [
+    "P4",
+    "P5",
+    "P2"
+   ],
+   "t": "Option groups break conventions",
+   "where": "Option groups, checkboxes and tags",
+   "sees": "“Optional, max 1” uses checkboxes, not radio buttons. Once one is ticked the others turn pale grey, so a change needs an untick first. The size group says “Optional” but “Ly 500ml” is already ticked. Group names are Vietnamese in an English screen.",
+   "pins": [
+    [
+     "J1-09",
+     0.09,
+     0.56
+    ],
+    [
+     "J1-10",
+     0.09,
+     0.506
+    ]
+   ]
+  },
+  {
+   "n": 12,
+   "sev": 1,
+   "at": "J1-09",
+   "pr": [
+    "P2"
+   ],
+   "t": "AI-generated text is easy to miss",
+   "where": "Grey italic line under the description",
+   "sees": "“Thông tin sản phẩm này được tạo bởi AI.” (the product text was made by AI) is small, pale and only in Vietnamese.",
+   "pins": [
+    [
+     "J1-09",
+     0.43,
+     0.414
+    ]
+   ]
+  },
+  {
+   "n": 13,
+   "sev": 3,
+   "at": "J1-11",
+   "pr": [
+    "P1"
+   ],
+   "t": "Fees appear only at checkout",
+   "where": "Basket bar; fee lines on the order summary",
+   "sees": "The basket shows 47.000đ. The next screen adds delivery and applicable fees 17.000 and a small order fee 3.000, so the total is 67.000đ, about 42% more. Neither the reason nor the threshold of the small order fee is shown before.",
+   "pins": [
+    [
+     "J1-11",
+     0.49,
+     0.9075
+    ],
+    [
+     "J2-01",
+     0.5,
+     0.56
+    ]
+   ]
+  },
+  {
+   "n": 14,
+   "sev": 2,
+   "at": "J2-01",
+   "pr": [
+    "P8"
+   ],
+   "t": "Cross-sell competes with Place order",
+   "where": "Red “See more options” button; banner under the fees",
+   "sees": "A large “Two restaurants, one delivery fee” block with a dark red button sits between the fees and the green “Place order”. A GrabUnlimited banner follows. Items, promotions, fees and savings share one long screen.",
+   "pins": [
+    [
+     "J2-01",
+     0.5,
+     0.4585
+    ],
+    [
+     "J2-01",
+     0.5,
+     0.665
+    ]
+   ]
+  },
+  {
+   "n": 15,
+   "sev": 2,
+   "at": "J2-02",
+   "pr": [
+    "P2",
+    "P10"
+   ],
+   "t": "Delivery options are unclear",
+   "where": "Option cards, “VIP upgrade (12 remaining)”, (i) icons",
+   "sees": "Priority (17 mins) and Standard (24 mins) both cost 12.000, and Standard is pre-selected. “12 remaining” does not say 12 of what. “On-Time Promise” is not explained. The (i) icons are small. “Order for later” looks like a speed option but has no time or price.",
+   "pins": [
+    [
+     "J2-02",
+     0.5,
+     0.24
+    ],
+    [
+     "J2-03",
+     0.37,
+     0.4635
+    ]
+   ]
+  },
+  {
+   "n": 16,
+   "sev": 2,
+   "at": "J2-02",
+   "pr": [
+    "P2",
+    "P8"
+   ],
+   "t": "Offers row is labelled “points”",
+   "where": "“Use offers and more” row; GrabCoins toggle",
+   "sees": "The row leading to vouchers and the code field says “Save VND3.000 using points”. The GrabCoins toggle is half hidden behind the sticky total bar.",
+   "pins": [
+    [
+     "J2-02",
+     0.42,
+     0.68
+    ],
+    [
+     "J2-02",
+     0.9,
+     0.75
+    ]
+   ]
+  },
+  {
+   "n": 17,
+   "sev": 3,
+   "at": "J2-04",
+   "pr": [
+    "P9",
+    "P1"
+   ],
+   "t": "Expired card message has no fix",
+   "where": "Grey box at the top; grey radio in the linked list",
+   "sees": "“Your linked card has expired. Visit Help Centre” does not say which card, and the only action leaves the payment step. The expired card shows only as a grey, unselectable radio. To test: can it still be the default?",
+   "pins": [
+    [
+     "J2-04",
+     0.41,
+     0.26
+    ],
+    [
+     "J2-04",
+     0.91,
+     0.68
+    ]
+   ]
+  },
+  {
+   "n": 18,
+   "sev": 2,
+   "at": "J2-04",
+   "pr": [
+    "P6",
+    "P4",
+    "P2"
+   ],
+   "t": "Default payment is a hidden swipe",
+   "where": "“Swipe left to set your default”; Linked Methods list",
+   "sees": "Setting a default is an invisible swipe while the list already has radio buttons. It is unclear what a radio tap does (this order or the default). Cash and MoMo sit under “Linked Methods”.",
+   "pins": [
+    [
+     "J2-04",
+     0.3,
+     0.41
+    ],
+    [
+     "J2-04",
+     0.23,
+     0.606
+    ]
+   ]
+  },
+  {
+   "n": 19,
+   "sev": 2,
+   "at": "J2-05",
+   "pr": [
+    "P5",
+    "P1"
+   ],
+   "t": "Possible card charge is buried",
+   "where": "Grey paragraph under “saved securely”",
+   "sees": "“Your card may be charged to make sure it’s valid” is small grey text and does not say how much. The reassurance comes first, the money line second.",
+   "pins": [
+    [
+     "J2-05",
+     0.48,
+     0.37
+    ]
+   ]
+  },
+  {
+   "n": 20,
+   "sev": 2,
+   "at": "J2-07",
+   "pr": [
+    "P8",
+    "P2"
+   ],
+   "t": "Most offers are greyed out",
+   "where": "Offers list; code field at the top",
+   "sees": "8 of the 10 rows visible are greyed out (“Spend 172.500đ more” on a 46.500đ order). “Enter promo or gift code here” looks like search (magnifier). “Use GrabGifts” repeats it right below.",
+   "pins": [
+    [
+     "J2-07",
+     0.52,
+     0.52
+    ],
+    [
+     "J2-07",
+     0.36,
+     0.2155
+    ]
+   ]
+  },
+  {
+   "n": 21,
+   "sev": 3,
+   "at": "J3-03",
+   "pr": [
+    "P8",
+    "P3"
+   ],
+   "t": "Countdown sheet covers the tracking screen",
+   "where": "Red bottom sheet “GrabMore and save on delivery”",
+   "sees": "It covers the lower part of every tracking screen. The timer runs in real time (19:53 at 15:55, 12:42 at 16:02, 03:20 at 16:11), cuts the order total, and has no visible close button.",
+   "pins": [
+    [
+     "J3-01",
+     0.5,
+     0.905
+    ],
+    [
+     "J3-03",
+     0.5,
+     0.905
+    ],
+    [
+     "J3-05",
+     0.5,
+     0.905
+    ]
+   ]
+  },
+  {
+   "n": 22,
+   "sev": 2,
+   "at": "J3-02",
+   "pr": [
+    "P8"
+   ],
+   "t": "Unrelated hotel ads while waiting",
+   "where": "“Check this out while you wait” card",
+   "sees": "Hotel membership ads (Modern Village, IHG) sit between the status and the order or driver details. They have nothing to do with the food order and hide behind a small ⋮.",
+   "pins": [
+    [
+     "J3-02",
+     0.5,
+     0.7
+    ],
+    [
+     "J3-06",
+     0.5,
+     0.605
+    ]
+   ]
+  },
+  {
+   "n": 23,
+   "sev": 2,
+   "at": "J3-01",
+   "pr": [
+    "P1",
+    "P2"
+   ],
+   "t": "Progress bar has no labels",
+   "where": "Bar under the ETA",
+   "sees": "Four icons (G, pot, scooter, house) and no text. Progress is shown only by green fill, so meaning rests on icon and colour.",
+   "pins": [
+    [
+     "J3-01",
+     0.5,
+     0.245
+    ],
+    [
+     "J3-03",
+     0.5,
+     0.26
+    ]
+   ]
+  },
+  {
+   "n": 24,
+   "sev": 2,
+   "at": "J3-05",
+   "pr": [
+    "P1",
+    "P4"
+   ],
+   "t": "ETA stays a 15-minute window",
+   "where": "ETA “4:12 - 4:27 PM”",
+   "sees": "The window stays unchanged from “We’ve got your order” to “Your order’s ready for delivery”. It becomes a point time (“Arriving by 4:17 PM”) only on the map. The app uses 12-hour time while the phone clock is 24-hour.",
+   "pins": [
+    [
+     "J3-01",
+     0.19,
+     0.17
+    ],
+    [
+     "J3-05",
+     0.3,
+     0.575
+    ]
+   ]
+  },
+  {
+   "n": 25,
+   "sev": 2,
+   "at": "J3-04",
+   "pr": [
+    "P6",
+    "P2"
+   ],
+   "t": "Order content is hidden",
+   "where": "Order card under the status",
+   "sees": "The order shows only as one thumbnail with a “View order summary” link. A Favourites prompt and an “Offers” row sit inside the card of an order already placed. What “Offers” can do now is unclear.",
+   "pins": [
+    [
+     "J3-04",
+     0.15,
+     0.7075
+    ],
+    [
+     "J3-04",
+     0.28,
+     0.4865
+    ]
+   ]
+  },
+  {
+   "n": 26,
+   "sev": 2,
+   "at": "J3-05",
+   "pr": [
+    "P1",
+    "P2"
+   ],
+   "t": "Map does not frame driver and address",
+   "where": "Map edges; “GF-091” tag; address bubble",
+   "sees": "The driver icon is cut by the left edge and the address bubble (“[address hidden]”) by the right edge. “GF-091” has no label. Many shop names clutter the map.",
+   "pins": [
+    [
+     "J3-05",
+     0.054,
+     0.254
+    ],
+    [
+     "J3-05",
+     0.87,
+     0.4415
+    ],
+    [
+     "J3-05",
+     0.81,
+     0.59
+    ]
+   ]
+  },
+  {
+   "n": 27,
+   "sev": 2,
+   "at": "J3-06",
+   "pr": [
+    "P5",
+    "P4"
+   ],
+   "t": "Tip card repeats; tap result unclear",
+   "where": "Tip card",
+   "sees": "The same tip card (5.000đ, 10.000đ, 20.000đ, Custom) shows three times, even before a driver is assigned. “Custom” is cut off. It is not visible whether a tap charges now or asks first. Provisional: test it.",
+   "pins": [
+    [
+     "J3-03",
+     0.5,
+     0.66
+    ],
+    [
+     "J3-06",
+     0.5,
+     0.375
+    ],
+    [
+     "J3-08",
+     0.5,
+     0.7175
+    ]
+   ]
+  },
+  {
+   "n": 28,
+   "sev": 3,
+   "at": "J3-07",
+   "pr": [
+    "P4",
+    "P10",
+    "P9"
+   ],
+   "t": "Help is in many places",
+   "where": "“Get help”; headset icon; “Contact driver” link; “Chat with merchant” and “Contact Grab”",
+   "sees": "Four labels in three places: blue “Get help” (J3 · 01 to 06), a headset icon plus a small “Contact driver” link (J3 · 07), and two buttons (J3 · 11). No screen offers a direct “report a problem” or refund route.",
+   "pins": [
+    [
+     "J3-01",
+     0.73,
+     0.1
+    ],
+    [
+     "J3-07",
+     0.5,
+     0.743
+    ],
+    [
+     "J3-11",
+     0.5,
+     0.83
+    ]
+   ]
+  },
+  {
+   "n": 29,
+   "sev": 2,
+   "at": "J3-08",
+   "pr": [
+    "P8",
+    "P1",
+    "P5"
+   ],
+   "t": "Rating screen is overloaded",
+   "where": "Video block; feedback chips; “Submit”",
+   "sees": "Rating, feedback chips (“Attitu…” cut off), tip and Submit share one long screen, and a large video ad fills the lower half of J3 · 07. “GrabCoins +0” is unexplained. Submit does not show whether a tip is included.",
+   "pins": [
+    [
+     "J3-07",
+     0.5,
+     0.91
+    ],
+    [
+     "J3-08",
+     0.94,
+     0.5
+    ],
+    [
+     "J3-08",
+     0.5,
+     0.9075
+    ]
+   ]
+  },
+  {
+   "n": 30,
+   "sev": 2,
+   "at": "J3-09",
+   "pr": [
+    "P1",
+    "P2",
+    "P6"
+   ],
+   "t": "Small links and internal codes",
+   "where": "Blue links; Booking ID; fee line",
+   "sees": "“Rate order”, “Reorder”, “View details” are small blue links. “Rate order” is still shown at 16:14, the same minute as the rating, with no confirmation seen. “Booking ID” and “GF-091” are internal codes. “Applicable fees 20.000” merges the two checkout fees. “Profile: Personal” is not explained.",
+   "pins": [
+    [
+     "J3-09",
+     0.87,
+     0.57
+    ],
+    [
+     "J3-09",
+     0.67,
+     0.349
+    ],
+    [
+     "J3-11",
+     0.5,
+     0.527
+    ]
+   ]
+  }
+ ]
+}

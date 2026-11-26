@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User journey map</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  /* neutral black and white skin: change these values to re-skin the map */
+  --color-paper: #ffffff;
+  --color-ink: #111111;
+  --color-muted: #555555;
+  --color-soft: #6b6b6b;
+  --font-sans: 'Geist', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', 'Noto Serif', serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+}
+body { font-family: var(--font-sans); background: var(--color-paper); color: var(--color-ink); min-height: 100vh; padding: 3rem 2rem; display: flex; justify-content: center; }
+.frame { max-width: 1280px; width: 100%; min-width: 0; }
+.eyebrow { font-family: var(--font-mono); font-size: .66rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--color-muted); margin-bottom: .5rem; }
+h1 { font-family: var(--font-serif); font-size: clamp(1.5rem, 2.4vw + .75rem, 2rem); font-weight: 400; letter-spacing: -.02em; line-height: 1.15; margin-bottom: .6rem; }
+.meta { font-family: var(--font-mono); font-size: .7rem; color: var(--color-soft); margin-bottom: .4rem; }
+.persona { font-size: .95rem; margin-bottom: 1.2rem; max-width: 60rem; }
+.diagram-container { width: 100%; overflow-x: auto; }
+svg { width: 100%; min-width: 1280px; display: block; }
+svg .eb { font-family: var(--font-mono); font-size: 8px; letter-spacing: .14em; fill: #555555; }
+svg .nm { font-family: var(--font-sans); font-weight: 600; font-size: 12px; fill: #111111; }
+svg .act { font-family: var(--font-sans); font-weight: 600; font-size: 12px; fill: #111111; }
+svg .tp { font-family: var(--font-mono); font-size: 9px; fill: #555555; }
+svg .ex { font-family: var(--font-sans); font-size: 11px; fill: #111111; }
+svg .pl { font-family: var(--font-mono); font-size: 8px; letter-spacing: .06em; fill: #111111; }
+svg .lg { font-family: var(--font-mono); font-size: 8px; letter-spacing: .08em; fill: #555555; }
+.note { margin-top: 1.2rem; max-width: 60rem; font-size: .85rem; color: var(--color-soft); line-height: 1.5; }
+@media print { .diagram-container { overflow-x: visible; } svg { min-width: 0; } }
+</style>
+</head>
+<body>
+<div class="frame">
+  <p class="eyebrow">User journey · Grab food delivery</p>
+  <h1>Ordering food with Grab, from decision to enjoying the meal</h1>
+  <p class="meta">Vietnam · iPhone · app v33437965 · English interface · walk-through of 23 Nov 2026</p>
+  <p class="persona">One generic consumer who orders the food they like, waits for it to be delivered and enjoys it. No single age group or situation.</p>
+  <div class="diagram-container">
+<svg id="diagram" viewBox="0 0 1280 676" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="journey-title journey-desc">
+<title id="journey-title">User journey of ordering food with Grab</title>
+<desc id="journey-desc">One journey map with five stages: decide to order, find and order, check out and pay, track the order, and enjoy and follow up. The assumed feeling is lowest while finding food and highest at the end.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text class="eb" text-anchor="middle" x="212" y="48">STAGE 1</text>
+<text class="nm" text-anchor="middle" x="212" y="68">Decide to order</text>
+<text class="eb" text-anchor="middle" x="436" y="48">STAGE 2</text>
+<text class="nm" text-anchor="middle" x="436" y="68">Find and order</text>
+<text class="eb" text-anchor="middle" x="660" y="48">STAGE 3</text>
+<text class="nm" text-anchor="middle" x="660" y="68">Check out and pay</text>
+<text class="eb" text-anchor="middle" x="884" y="48">STAGE 4</text>
+<text class="nm" text-anchor="middle" x="884" y="68">Track the order</text>
+<text class="eb" text-anchor="middle" x="1108" y="48">STAGE 5</text>
+<text class="nm" text-anchor="middle" x="1108" y="68">Enjoy and follow up</text>
+<line x1="112" y1="120" x2="1208" y2="120" stroke="#d0d0d0" stroke-width="1"/>
+<text class="eb" text-anchor="end" x="100" y="123">HIGH</text>
+<line x1="112" y1="200" x2="1208" y2="200" stroke="#d0d0d0" stroke-width="1"/>
+<text class="eb" text-anchor="end" x="100" y="203">NEUTRAL</text>
+<line x1="112" y1="280" x2="1208" y2="280" stroke="#d0d0d0" stroke-width="1"/>
+<text class="eb" text-anchor="end" x="100" y="283">LOW</text>
+<text class="eb" text-anchor="end" x="100" y="140">ASSUMED</text>
+<text class="eb" text-anchor="end" x="100" y="152">FEELING</text>
+<path d="M212,200 C249.333,206.667 361.333,246.667 436,240" fill="none" stroke="#111111" stroke-width="2.5"/>
+<path d="M436,240 C510.667,233.333 585.333,166.667 660,160" fill="none" stroke="#555555" stroke-width="1.5"/>
+<path d="M660,160 C734.667,153.333 809.333,206.667 884,200" fill="none" stroke="#555555" stroke-width="1.5"/>
+<path d="M884,200 C958.667,193.333 1070.67,133.333 1108,120" fill="none" stroke="#555555" stroke-width="1.5"/>
+<circle cx="212" cy="200" r="5" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<circle cx="436" cy="240" r="7" fill="#111111"/>
+<circle cx="660" cy="160" r="5" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<circle cx="884" cy="200" r="5" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<circle cx="1108" cy="120" r="5" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<line x1="112" y1="312" x2="1208" y2="312" stroke="#d0d0d0" stroke-width="1"/>
+<line x1="112" y1="444" x2="1208" y2="444" stroke="#d0d0d0" stroke-width="1"/>
+<line x1="112" y1="520" x2="1208" y2="520" stroke="#d0d0d0" stroke-width="1"/>
+<line x1="112" y1="600" x2="1208" y2="600" stroke="#d0d0d0" stroke-width="1"/>
+<text class="eb" text-anchor="end" x="100" y="332">ACTIONS</text>
+<text class="eb" text-anchor="end" x="100" y="464">TOUCHPOINTS</text>
+<text class="eb" text-anchor="end" x="100" y="540">EXPECTS</text>
+<text class="eb" text-anchor="end" x="100" y="552">(ASSUMED)</text>
+<text class="act" text-anchor="middle" x="212" y="338">Feels hungry or short of</text>
+<text class="act" text-anchor="middle" x="212" y="354">time and opens the Grab</text>
+<text class="act" text-anchor="middle" x="212" y="370">food section</text>
+<text class="tp" text-anchor="middle" x="212" y="468">Grab home,</text>
+<text class="tp" text-anchor="middle" x="212" y="482">food section</text>
+<text class="ex" text-anchor="middle" x="212" y="546">Quick start, with the</text>
+<text class="ex" text-anchor="middle" x="212" y="561">food entry easy to see</text>
+<text class="act" text-anchor="middle" x="436" y="338">Browses or searches,</text>
+<text class="act" text-anchor="middle" x="436" y="354">compares restaurants,</text>
+<text class="act" text-anchor="middle" x="436" y="370">picks and adds items</text>
+<text class="tp" text-anchor="middle" x="436" y="468">Search, results, restaurant</text>
+<text class="tp" text-anchor="middle" x="436" y="482">page, menu, item options</text>
+<text class="ex" text-anchor="middle" x="436" y="546">Easy to find what they want,</text>
+<text class="ex" text-anchor="middle" x="436" y="561">a clear preview, the restaurant&#x27;s</text>
+<text class="ex" text-anchor="middle" x="436" y="576">reputation and delivery time</text>
+<text class="act" text-anchor="middle" x="660" y="338">Reviews the order, picks</text>
+<text class="act" text-anchor="middle" x="660" y="354">delivery and payment,</text>
+<text class="act" text-anchor="middle" x="660" y="370">applies a promotion</text>
+<text class="tp" text-anchor="middle" x="660" y="468">Order summary, payment</text>
+<text class="tp" text-anchor="middle" x="660" y="482">methods, offers</text>
+<text class="ex" text-anchor="middle" x="660" y="546">A clear total, flexible payment</text>
+<text class="ex" text-anchor="middle" x="660" y="561">(cash, e-wallet, card) and a</text>
+<text class="ex" text-anchor="middle" x="660" y="576">promotion that applies</text>
+<text class="act" text-anchor="middle" x="884" y="338">Waits, follows the driver</text>
+<text class="act" text-anchor="middle" x="884" y="354">on the map and contacts</text>
+<text class="act" text-anchor="middle" x="884" y="370">them if needed</text>
+<text class="tp" text-anchor="middle" x="884" y="468">Order status, map,</text>
+<text class="tp" text-anchor="middle" x="884" y="482">driver card</text>
+<text class="ex" text-anchor="middle" x="884" y="546">An accurate arrival time and</text>
+<text class="ex" text-anchor="middle" x="884" y="561">a clear message if weather or</text>
+<text class="ex" text-anchor="middle" x="884" y="576">traffic delays the order</text>
+<text class="act" text-anchor="middle" x="1108" y="338">Receives and enjoys the</text>
+<text class="act" text-anchor="middle" x="1108" y="354">food, rates it, may reorder</text>
+<text class="act" text-anchor="middle" x="1108" y="370">or ask for help</text>
+<text class="tp" text-anchor="middle" x="1108" y="468">Rating, activity, order</text>
+<text class="tp" text-anchor="middle" x="1108" y="482">details, help</text>
+<text class="ex" text-anchor="middle" x="1108" y="546">Easy rating, a simple</text>
+<text class="ex" text-anchor="middle" x="1108" y="561">reorder and easy help</text>
+<rect x="342" y="392" width="188" height="16" rx="2" fill="#ffffff" stroke="#111111" stroke-width="1" stroke-dasharray="3,3"/>
+<text class="pl" text-anchor="middle" x="436" y="403">SUGGESTIONS REPEAT PAST ORDERS</text>
+<rect x="342" y="414" width="188" height="16" rx="2" fill="#ffffff" stroke="#111111" stroke-width="1" stroke-dasharray="3,3"/>
+<text class="pl" text-anchor="middle" x="436" y="425">MANY LISTINGS TO COMPARE</text>
+<line x1="112" y1="632" x2="1208" y2="632" stroke="#d0d0d0" stroke-width="1"/>
+<line x1="112" y1="652" x2="140" y2="652" stroke="#555555" stroke-width="1.5"/><circle cx="126" cy="652" r="4" fill="#ffffff" stroke="#555555" stroke-width="1.5"/><text class="lg" x="150" y="655">ASSUMED FEELING</text>
+<line x1="292" y1="652" x2="320" y2="652" stroke="#111111" stroke-width="2.5"/><circle cx="320" cy="652" r="6" fill="#111111"/><text class="lg" x="334" y="655">LOWEST POINT</text>
+<rect x="472" y="646" width="28" height="12" rx="2" fill="#ffffff" stroke="#111111" stroke-dasharray="3,3"/><text class="lg" x="510" y="655">POSSIBLE BREAKDOWN</text>
+</svg>
+  </div>
+  <p class="note">The feelings, expectations and breakdowns on this map are assumptions from my own walk-through and understanding of the product. They are not test results. They are to be checked in the usability test and the interviews.</p>
+</div>
+</body>
+</html>

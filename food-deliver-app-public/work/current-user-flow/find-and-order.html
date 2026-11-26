@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find and order food</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  /* neutral black and white skin: change these values to re-skin the diagram */
+  --color-paper: #ffffff;
+  --color-paper-2: #f2f2f2;
+  --color-ink: #111111;
+  --color-muted: #555555;
+  --color-soft: #6b6b6b;
+  --color-rule: #d0d0d0;
+  --font-sans: 'Geist', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', 'Noto Serif', serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+}
+body { font-family: var(--font-sans); background: var(--color-paper); color: var(--color-ink); min-height: 100vh; padding: 3rem 2rem; display: flex; justify-content: center; }
+.frame { max-width: 1280px; width: 100%; min-width: 0; }
+.eyebrow { font-family: var(--font-mono); font-size: .66rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--color-muted); margin-bottom: .5rem; }
+h1 { font-family: var(--font-serif); font-size: clamp(1.5rem, 2.4vw + .75rem, 2rem); font-weight: 400; letter-spacing: -.02em; line-height: 1.15; margin-bottom: .6rem; }
+.meta { font-family: var(--font-mono); font-size: .7rem; color: var(--color-soft); margin-bottom: 1.2rem; }
+/* screen-reference toggle: a CSS-only checkbox, so it needs no script */
+.refs-input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.toggle { display: inline-block; margin-bottom: 1rem; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; padding: .45rem .8rem; border: 1px solid var(--color-ink); background: var(--color-paper); color: var(--color-ink); border-radius: 4px; cursor: pointer; }
+.toggle .t-on { display: none; }
+.refs-input:checked + .toggle { background: var(--color-ink); color: var(--color-paper); }
+.refs-input:checked + .toggle .t-on { display: inline; }
+.refs-input:checked + .toggle .t-off { display: none; }
+.refs-input:focus-visible + .toggle { outline: 2px solid var(--color-ink); outline-offset: 2px; }
+.diagram-container { width: 100%; overflow-x: auto; }
+svg { width: 100%; min-width: 1280px; display: block; }
+svg .nm { font-family: var(--font-sans); font-weight: 600; font-size: 12px; fill: #111111; }
+svg .ref { font-family: var(--font-mono); font-size: 8px; fill: #555555; letter-spacing: .04em; text-transform: uppercase; display: none; }
+.refs-input:checked ~ .diagram-container svg .ref { display: block; }
+svg .zone { font-family: var(--font-mono); font-size: 8px; letter-spacing: .16em; fill: #555555; }
+svg .al { font-family: var(--font-mono); font-size: 8px; fill: #555555; letter-spacing: .06em; }
+svg .lg { font-family: var(--font-mono); font-size: 8px; fill: #555555; letter-spacing: .08em; }
+svg .bd { font-family: var(--font-mono); font-size: 10px; font-weight: 600; fill: #ffffff; }
+.notes { margin-top: 1.6rem; max-width: 70rem; }
+.notes h2 { font-family: var(--font-mono); font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--color-muted); margin-bottom: .3rem; }
+.notes p { font-size: .85rem; color: var(--color-soft); margin-bottom: .8rem; }
+.notes ol { list-style: none; display: grid; gap: .5rem; }
+.notes li { display: flex; gap: .7rem; font-size: .9rem; line-height: 1.45; }
+.notes .num { flex: none; width: 1.3rem; height: 1.3rem; border-radius: 50%; background: var(--color-ink); color: var(--color-paper); font-family: var(--font-mono); font-size: .7rem; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; margin-top: .1rem; }
+@media print { .toggle { display: none; } .diagram-container { overflow-x: visible; } svg { min-width: 0; } }
+</style>
+</head>
+<body>
+<div class="frame">
+  <p class="eyebrow">User flow 1 · Find and order</p>
+  <h1>Find and order food</h1>
+  <p class="meta">Grab food delivery, Vietnam · iPhone · app v33437965 · English interface · walk-through of 23 Nov 2026</p>
+  <input type="checkbox" id="refs" class="refs-input">
+  <label class="toggle" for="refs"><span class="t-off">Show screen references</span><span class="t-on">Hide screen references</span></label>
+  <div class="diagram-container">
+<svg id="diagram" viewBox="0 0 1280 1040" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="find-and-order-title find-and-order-desc">
+<title id="find-and-order-title">Find and order food</title>
+<desc id="find-and-order-desc">Flow of finding a restaurant and adding food to the basket in the Grab food delivery app, from opening the app to going to checkout.</desc>
+<defs>
+<marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#555555"/></marker>
+<marker id="arrow-main" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#111111"/></marker>
+</defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<rect x="40" y="40" width="1200" height="176" rx="6" fill="#f2f2f2" stroke="#d0d0d0" stroke-width="1"/>
+<text class="zone" x="52" y="58">OPEN THE FOOD SECTION</text>
+<rect x="40" y="252" width="1200" height="260" rx="6" fill="#f2f2f2" stroke="#d0d0d0" stroke-width="1"/>
+<text class="zone" x="52" y="270">FIND A RESTAURANT</text>
+<rect x="40" y="548" width="1200" height="176" rx="6" fill="#f2f2f2" stroke="#d0d0d0" stroke-width="1"/>
+<text class="zone" x="52" y="566">CHOOSE THE FOOD</text>
+<rect x="40" y="760" width="1200" height="176" rx="6" fill="#f2f2f2" stroke="#d0d0d0" stroke-width="1"/>
+<text class="zone" x="52" y="778">ADD TO BASKET</text>
+<path d="M246,122 L334,122" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M486,122 L566,122" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M734,122 L814,122" fill="none" stroke="#555555" stroke-width="1" marker-end="url(#arrow)"/>
+<path d="M650,166 L650,230" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M890,152 L890,226 Q890,234 882,234 L654,234" fill="none" stroke="#555555" stroke-width="1" marker-end="url(#arrow)"/>
+<path d="M650,238 L650,286" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M566,330 L486,330" fill="none" stroke="#555555" stroke-width="1" marker-end="url(#arrow)"/>
+<path d="M734,330 L814,330" fill="none" stroke="#555555" stroke-width="1" marker-end="url(#arrow)"/>
+<path d="M650,374 L650,410" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M410,360 L410,406 Q410,414 418,414 L646,414" fill="none" stroke="#555555" stroke-width="1" marker-end="url(#arrow)"/>
+<path d="M890,360 L890,406 Q890,414 882,414 L654,414" fill="none" stroke="#555555" stroke-width="1" marker-end="url(#arrow)"/>
+<path d="M650,418 L650,440" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M650,500 L650,522 Q650,530 642,530 L178,530 Q170,530 170,538 L170,620" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M246,650 L334,650" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M486,650 L574,650" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M726,650 L814,650" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M890,680 L890,830" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M814,860 L734,860" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M650,816 L650,750 Q650,742 642,742 L418,742 Q410,742 410,734 L410,680" fill="none" stroke="#555555" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#arrow)"/>
+<path d="M566,860 L486,860" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<path d="M334,860 L246,860" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/>
+<rect x="764.1" y="103" width="19.8" height="13" fill="#f2f2f2"/>
+<text class="al" text-anchor="middle" x="774" y="112.5">NO</text>
+<rect x="658" y="191.5" width="24.7" height="13" fill="#f2f2f2"/>
+<text class="al" text-anchor="start" x="663" y="201">YES</text>
+<rect x="506.3" y="311" width="39.4" height="13" fill="#f2f2f2"/>
+<text class="al" text-anchor="middle" x="526" y="320.5">BROWSE</text>
+<rect x="754.3" y="311" width="39.4" height="13" fill="#f2f2f2"/>
+<text class="al" text-anchor="middle" x="774" y="320.5">SEARCH</text>
+<rect x="658" y="385.5" width="54.1" height="13" fill="#f2f2f2"/>
+<text class="al" text-anchor="start" x="663" y="395">SUGGESTED</text>
+<rect x="658" y="772.5" width="24.7" height="13" fill="#f2f2f2"/>
+<text class="al" text-anchor="start" x="663" y="782">YES</text>
+<rect x="516.1" y="841" width="19.8" height="13" fill="#f2f2f2"/>
+<text class="al" text-anchor="middle" x="526" y="850.5">NO</text>
+<rect x="94" y="92" width="152" height="60" rx="28" fill="#f2f2f2" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="170" y="125"><tspan x="170" dy="0">Open Grab app</tspan></text>
+<text class="ref" text-anchor="middle" x="170" y="145">J1 · 01 Grab home</text>
+<rect x="334" y="92" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="410" y="125"><tspan x="410" dy="0">Open Food section</tspan></text>
+<text class="ref" text-anchor="middle" x="410" y="145">J1 · 02 Food section</text>
+<polygon points="650,78 734,122 650,166 566,122" fill="#f2f2f2" stroke="#111111" stroke-width="1.2"/>
+<text class="nm" text-anchor="middle" x="650" y="119"><tspan x="650" dy="0">Delivery address</tspan><tspan x="650" dy="14">correct?</tspan></text>
+<rect x="814" y="92" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="890" y="117"><tspan x="890" dy="0">Choose delivery</tspan><tspan x="890" dy="14">address</tspan></text>
+<text class="ref" text-anchor="middle" x="890" y="145">J1 · 03 Delivery address</text>
+<circle cx="650" cy="234" r="4" fill="#111111"/>
+<polygon points="650,286 734,330 650,374 566,330" fill="#f2f2f2" stroke="#111111" stroke-width="1.2"/>
+<text class="nm" text-anchor="middle" x="650" y="327"><tspan x="650" dy="0">How will they</tspan><tspan x="650" dy="14">find food?</tspan></text>
+<rect x="334" y="300" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="410" y="333"><tspan x="410" dy="0">Browse by category</tspan></text>
+<text class="ref" text-anchor="middle" x="410" y="353">J1 · 04 Browse by category</text>
+<rect x="814" y="300" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="890" y="333"><tspan x="890" dy="0">Search by keyword</tspan></text>
+<text class="ref" text-anchor="middle" x="890" y="353">J1 · 05–06 Search</text>
+<circle cx="650" cy="414" r="4" fill="#111111"/>
+<rect x="574" y="440" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="650" y="465"><tspan x="650" dy="0">Compare results and</tspan><tspan x="650" dy="14">pick a restaurant</tspan></text>
+<text class="ref" text-anchor="middle" x="650" y="493">J1 · 06 Results</text>
+<rect x="94" y="620" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="170" y="645"><tspan x="170" dy="0">Open restaurant</tspan><tspan x="170" dy="14">page</tspan></text>
+<text class="ref" text-anchor="middle" x="170" y="673">J1 · 07 Restaurant page</text>
+<rect x="334" y="620" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="410" y="653"><tspan x="410" dy="0">Browse the menu</tspan></text>
+<text class="ref" text-anchor="middle" x="410" y="673">J1 · 08 Menu</text>
+<rect x="574" y="620" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="650" y="653"><tspan x="650" dy="0">Open item detail</tspan></text>
+<text class="ref" text-anchor="middle" x="650" y="673">J1 · 09 Item detail</text>
+<rect x="814" y="620" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="890" y="653"><tspan x="890" dy="0">Choose options</tspan></text>
+<text class="ref" text-anchor="middle" x="890" y="673">J1 · 10 Item options</text>
+<rect x="814" y="830" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="890" y="863"><tspan x="890" dy="0">Add to basket</tspan></text>
+<text class="ref" text-anchor="middle" x="890" y="883">J1 · 11 Basket</text>
+<polygon points="650,816 734,860 650,904 566,860" fill="#f2f2f2" stroke="#111111" stroke-width="1.2"/>
+<text class="nm" text-anchor="middle" x="650" y="857"><tspan x="650" dy="0">Add more</tspan><tspan x="650" dy="14">items?</tspan></text>
+<rect x="334" y="830" width="152" height="60" rx="6" fill="#ffffff" stroke="#111111" stroke-width="1"/>
+<text class="nm" text-anchor="middle" x="410" y="863"><tspan x="410" dy="0">Review the basket</tspan></text>
+<text class="ref" text-anchor="middle" x="410" y="883">J1 · 11 Basket</text>
+<rect x="94" y="830" width="152" height="60" rx="28" fill="#f2f2f2" stroke="#111111" stroke-width="1" stroke-dasharray="5,4"/>
+<text class="nm" text-anchor="middle" x="170" y="855"><tspan x="170" dy="0">To flow 2:</tspan><tspan x="170" dy="14">check out and pay</tspan></text>
+<circle cx="244" cy="94" r="9" fill="#111111"/><text class="bd" text-anchor="middle" x="244" y="97.5">1</text>
+<circle cx="698" cy="94" r="9" fill="#111111"/><text class="bd" text-anchor="middle" x="698" y="97.5">2</text>
+<circle cx="724" cy="442" r="9" fill="#111111"/><text class="bd" text-anchor="middle" x="724" y="445.5">3</text>
+<circle cx="484" cy="622" r="9" fill="#111111"/><text class="bd" text-anchor="middle" x="484" y="625.5">5</text>
+<circle cx="964" cy="622" r="9" fill="#111111"/><text class="bd" text-anchor="middle" x="964" y="625.5">4</text>
+<g class="legend">
+<line x1="40" y1="986" x2="1240" y2="986" stroke="#d0d0d0" stroke-width="1"/>
+<rect x="52" y="997" width="28" height="14" rx="7" fill="#f2f2f2" stroke="#111111"/><text class="lg" x="88" y="1007">START / END</text>
+<rect x="182" y="997" width="28" height="14" rx="7" fill="#f2f2f2" stroke="#111111" stroke-dasharray="3,2"/><text class="lg" x="218" y="1007">HAND-OFF</text>
+<rect x="298" y="997" width="26" height="14" rx="3" fill="#ffffff" stroke="#111111"/><text class="lg" x="332" y="1007">STEP</text>
+<polygon points="395,996 408,1004 395,1012 382,1004" fill="#f2f2f2" stroke="#111111"/><text class="lg" x="416" y="1007">DECISION</text>
+<circle cx="496" cy="1004" r="4" fill="#111111"/><text class="lg" x="508" y="1007">MERGE</text>
+<line x1="578" y1="1004" x2="604" y2="1004" stroke="#111111" stroke-width="1.4" marker-end="url(#arrow-main)"/><text class="lg" x="612" y="1007">MAIN PATH</text>
+<line x1="690" y1="1004" x2="716" y2="1004" stroke="#555555" stroke-width="1" marker-end="url(#arrow)"/><text class="lg" x="724" y="1007">OTHER PATH</text>
+<line x1="810" y1="1004" x2="836" y2="1004" stroke="#555555" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#arrow)"/><text class="lg" x="844" y="1007">RETURN</text>
+<circle cx="914" cy="1004" r="8" fill="#111111"/><text class="bd" text-anchor="middle" x="914" y="1007.5">1</text><text class="lg" x="930" y="1007">POSSIBLE BREAKDOWN</text>
+</g>
+</svg>
+  </div>
+  <section class="notes">
+    <h2>Possible breakdowns</h2>
+    <p>These are hypotheses from my own walk-through of the app. They are not test findings. Each one is to be checked in the heuristic evaluation and the usability test.</p>
+    <ol>
+<li><span class="num">1</span><span>The Grab home screen shows many services and promotions at once, so users may not see the food entry at first.</span></li>
+<li><span class="num">2</span><span>The delivery address is shown only as a small label such as Home near the top, so users may not notice it before ordering.</span></li>
+<li><span class="num">3</span><span>Search results mix sponsored listings marked Ad with regular ones, and users may not tell them apart.</span></li>
+<li><span class="num">4</span><span>Option names written by the restaurant appear in Vietnamese inside an English interface, and required and optional choices look alike.</span></li>
+<li><span class="num">5</span><span>The menu opens with last order, offers and recommendations before the full menu, which may make a specific item harder to find.</span></li>
+    </ol>
+  </section>
+</div>
+</body>
+</html>
