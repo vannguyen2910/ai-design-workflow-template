@@ -1,6 +1,6 @@
 ---
 name: pestel-analysis
-description: Describe the outside context of a product (political, economic, social, technological, environmental, legal) with every factor tied to a source. Use when a decision depends on the market, region or regulation around the product.
+description: "PESTEL analysis of the outside context of a product, every factor tied to a source. Use when market, region or regulation affects a decision, 'phân tích PESTEL', 'bối cảnh thị trường'."
 ---
 
 # Workflow: PESTEL analysis

@@ -1,6 +1,6 @@
 ---
 name: user-voice-synthesis
-description: Synthesise quotes and user interviews into themes. Use when you have quotes or interviews to synthesise.
+description: "Group quotes from several interviews, reviews or forums into themes and opportunities. Use for user voice, affinity coding, 'tổng hợp quote', 'gom theme từ phỏng vấn'."
 ---
 
 # Workflow: User-Voice Synthesis

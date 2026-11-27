@@ -1,6 +1,6 @@
 ---
 name: interview
-description: Plan interviews or summarise anonymised interview notes. Use when you plan interviews or have interview notes to summarise.
+description: "Plan user interviews (goal, guide, consent) and summarise anonymised notes one interview at a time. Use for interview guide, 'phỏng vấn người dùng', 'tóm tắt phỏng vấn'."
 ---
 
 # Workflow: Interview

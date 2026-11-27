@@ -1,6 +1,6 @@
 ---
 name: survey
-description: Turn an anonymised survey export into results with the number of answers beside every figure, then write the limits. Use when you have survey responses to summarise.
+description: "Summarise an anonymised survey export with n beside every figure, plus limits. Use for survey results, 'tổng hợp khảo sát', 'phân tích survey'."
 ---
 
 # Workflow: Survey results

@@ -1,6 +1,6 @@
 ---
 name: stakeholder-map
-description: Map who decides, who is affected and what they need, with decision rights and an engagement plan. Use at the start of a project or when a decision keeps stalling.
+description: "Stakeholder map: who decides, who is affected, decision rights, engagement plan. Use at project start or when a decision stalls, 'stakeholder map', 'bản đồ stakeholder'."
 ---
 
 # Workflow: Stakeholder map
