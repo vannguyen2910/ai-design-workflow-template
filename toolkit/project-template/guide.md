@@ -64,7 +64,7 @@ The report changes only when it is rebuilt. Just added a file and do not see it?
 | **Hub** | The whole project folder and the `index.html` report that shows it |
 | **Item** | A need, hypothesis, metric, decision, evidence or finding. Each item is one file in `insights/` |
 | **Working file** | A file in `work/` (for example `scope.md`) |
-| **Step card** | A ready-made procedure for the AI to run (it lives in `toolkit/skills/`, outside the project and shared). You do not need to name it: say what you want done and the AI picks the right procedure |
+| **Step card** | A ready-made procedure for the AI to run (it lives in `skills/`, outside the project and shared). You do not need to name it: say what you want done and the AI picks the right procedure |
 | **Context** | The files in `context/` that the AI reads first in every step |
 
 **Words you say to the AI**

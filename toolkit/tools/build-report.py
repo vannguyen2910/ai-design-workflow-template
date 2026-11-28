@@ -2296,7 +2296,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             "".join(o_card(o_) for o_ in open_O[:3]),
             ('<p class="smore"><a href="#/trace">View all %d &rarr;</a></p>' % len(open_O)) if len(open_O) > 3 else "")
     else:
-        s_problem = '<p class="sempty">No opportunity yet. It comes from what users said: run <code>../toolkit/skills/interview/SKILL.md</code> or <code>../toolkit/skills/user-voice-synthesis/SKILL.md</code>, then <code>../toolkit/skills/framing/SKILL.md</code>.</p>'
+        s_problem = '<p class="sempty">No opportunity yet. It comes from what users said: run <code>../../skills/interview/SKILL.md</code> or <code>../../skills/user-voice-synthesis/SKILL.md</code>, then <code>../../skills/framing/SKILL.md</code>.</p>'
 
     def d_card(d_):
         return ('<li><div class="st-t"><strong>%s</strong></div><div class="st-m">%s · %s</div></li>' % (
@@ -2308,7 +2308,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
             n_word(len(open_D), "decision"), n_acc, "".join(d_card(d_) for d_ in open_D[:3]),
             ('<p class="smore"><a href="#/trace">View all %d &rarr;</a></p>' % len(open_D)) if len(open_D) > 3 else "")
     else:
-        s_choice = '<p class="sempty">No decision yet. Compare directions first: run <code>../toolkit/skills/ideation/SKILL.md</code>.</p>'
+        s_choice = '<p class="sempty">No decision yet. Compare directions first: run <code>../../skills/ideation/SKILL.md</code>.</p>'
 
     def real_e(e_):
         m_ = G.items[e_].meta
@@ -2327,7 +2327,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         s_test_bits.append('<p class="sline ok">No serious finding is waiting.</p>')
     if len(bad_F) > 3:
         s_test_bits.append('<p class="smore"><a href="#/trace">View all %d &rarr;</a></p>' % len(bad_F))
-    s_test = "".join(s_test_bits) or '<p class="sempty">Nothing tested yet. Build a prototype with <code>../toolkit/skills/prototype/SKILL.md</code>, then test it with <code>../toolkit/skills/user-testing/SKILL.md</code>.</p>'
+    s_test = "".join(s_test_bits) or '<p class="sempty">Nothing tested yet. Build a prototype with <code>../../skills/prototype/SKILL.md</code>, then test it with <code>../../skills/user-testing/SKILL.md</code>.</p>'
 
     # next steps: first matching rules, at most three
     nxt = []
@@ -2337,16 +2337,16 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     if not biz_q:
         step("Fill in the Project card", "The business question and the owner are still empty.", "Open README.md and fill in the Project card")
     if not open_O:
-        step("Learn what users need", "Without it there is no problem to frame.", "Run ../toolkit/skills/interview/SKILL.md")
-        step("Then frame the problem", "Turns what you learned into opportunities.", "Run ../toolkit/skills/framing/SKILL.md")
+        step("Learn what users need", "Without it there is no problem to frame.", "Run ../../skills/interview/SKILL.md")
+        step("Then frame the problem", "Turns what you learned into opportunities.", "Run ../../skills/framing/SKILL.md")
     elif not G.H:
-        step("Write hypotheses", "Each opportunity needs something you can test.", "Run step 5 of ../toolkit/skills/framing/SKILL.md")
+        step("Write hypotheses", "Each opportunity needs something you can test.", "Run step 5 of ../../skills/framing/SKILL.md")
     elif not open_D:
-        step("Compare directions", "Choose a direction and record why you parked the others.", "Run ../toolkit/skills/ideation/SKILL.md")
+        step("Compare directions", "Choose a direction and record why you parked the others.", "Run ../../skills/ideation/SKILL.md")
     elif not has_proto and not open_E:
-        step("Build a prototype", "So the chosen direction can be tested.", "Run ../toolkit/skills/prototype/SKILL.md")
+        step("Build a prototype", "So the chosen direction can be tested.", "Run ../../skills/prototype/SKILL.md")
     elif not n_real:
-        step("Test with real users", "No evidence from real users yet.", "Run ../toolkit/skills/user-testing/SKILL.md")
+        step("Test with real users", "No evidence from real users yet.", "Run ../../skills/user-testing/SKILL.md")
     if any((G.severity[f_] or 0) == 4 for f_ in bad_F):
         step("Handle the severity 4 findings", "They block handoff.", "Fix, accept with a reason, or defer each one")
     elif bad_F:
@@ -2354,7 +2354,7 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
     if open_D and n_acc < len(open_D) and not nxt:
         step("Get the decisions accepted", "%d still proposed." % (len(open_D) - n_acc), "Agree with the owner, then set state to accepted")
     if not nxt and n_real and not bad_F:
-        step("Hand off", "Evidence is in and nothing serious is open.", "Run ../toolkit/skills/handoff/SKILL.md")
+        step("Hand off", "Evidence is in and nothing serious is open.", "Run ../../skills/handoff/SKILL.md")
     s_next = '<ol class="snext">%s</ol>' % "".join(nxt[:3]) if nxt else '<p class="sempty">Nothing suggested.</p>'
 
     if not (open_D or G.F):
@@ -2779,8 +2779,8 @@ def build(case, out_path, theme="minimal", switcher=False, team=False, bundle=Fa
         theme_select = '<label class="themepick">Theme <select id="themeselect" aria-label="Choose a theme">%s</select></label>' % "".join(
             '<option value="%s"%s>%s</option>' % (k, " selected" if k == theme else "", esc(v)) for k, v in THEMES)
     homelink = ""
-    if not bundle and os.path.isdir(os.path.join(os.path.dirname(case_abs), "toolkit")):
-        homelink = ('<a class="homelink" id="homelink" href="../index.html" hidden data-folder="%s" aria-label="All projects" title="All projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a>'
+    if not bundle and os.path.isdir(os.path.join(os.path.dirname(os.path.dirname(case_abs)), "toolkit")):
+        homelink = ('<a class="homelink" id="homelink" href="../../index.html" hidden data-folder="%s" aria-label="All projects" title="All projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a>'
                     '<script>(function(){var a=document.getElementById("homelink"),p=location.pathname.split("/");'
                     'var f=p.pop();if((f==="index.html"||f==="")&&decodeURIComponent(p.pop())===a.dataset.folder)a.hidden=false})()</script>\n'
                     % esc(os.path.basename(case_abs)))
@@ -2882,7 +2882,7 @@ def main():
     try:
         here = os.path.dirname(os.path.abspath(__file__))
         home = os.path.join(here, "build-home.py")
-        ws = os.path.dirname(os.path.abspath(case))
+        ws = os.path.dirname(os.path.dirname(os.path.abspath(case)))  # project/<name> is two levels below the workspace
         if not bundle_dir and os.path.isfile(home) and os.path.join(ws, "toolkit", "tools") == here:
             import subprocess
             subprocess.run([sys.executable, home, "--workspace", ws], capture_output=True, text=True, timeout=60)

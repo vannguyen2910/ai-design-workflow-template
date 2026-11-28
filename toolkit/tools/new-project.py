@@ -20,7 +20,7 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # the workspace: toolkit/tools/ is two levels down
 TEMPLATE = os.path.join(ROOT, "toolkit", "project-template")
-RESERVED = {"travel-app", "toolkit", "guides", "templates", "tools", "skills", "index"}
+RESERVED = {"travel-app", "toolkit", "guides", "templates", "tools", "skills", "agents", "rules", "project", "index"}
 IGNORE = shutil.ignore_patterns(".DS_Store", "__pycache__", "_export", "index.html")
 ITEM_RE = re.compile(r"^[OHMDEF]\d+\.md$")
 ITEM_LINK_RE = re.compile(r"\]\((?:\.\./)?(?:[a-z]+/)?[OHMDEF]\d+\.md\)")
@@ -74,7 +74,7 @@ def main():
     ap.add_argument("name", help="project name or folder name, e.g. onboarding-redesign or \"Onboarding redesign\" "
                                  "(accents and spaces are turned into a folder name)")
     ap.add_argument("--title", help="project name shown in the hub (default: derived from the folder name)")
-    ap.add_argument("--dest", default=ROOT, help="parent folder for the new project (default: the workspace root)")
+    ap.add_argument("--dest", default=os.path.join(ROOT, "project"), help="parent folder for the new project (default: project/ in the workspace)")
     a = ap.parse_args()
 
     given = a.name.strip()
@@ -92,6 +92,7 @@ def main():
         sys.exit("The name \"%s\" is already used by a workspace folder. Choose another name." % a.name)
     if not os.path.isdir(TEMPLATE):
         sys.exit("Template folder not found: %s" % TEMPLATE)
+    os.makedirs(a.dest, exist_ok=True)
     dest = os.path.join(os.path.abspath(a.dest), a.name)
     if os.path.exists(dest):
         sys.exit("Folder already exists: %s\nChoose another name, or delete that folder if you want to start over." % dest)
@@ -100,7 +101,7 @@ def main():
     shutil.copytree(TEMPLATE, dest, ignore=IGNORE)
     insights = os.path.join(dest, "insights")
 
-    # work/ starts empty: the documents come from the templates in toolkit/skills/ when the project needs them.
+    # work/ starts empty: the documents come from the templates in skills/ when the project needs them.
     # Keep work/README.md (how to add files) and the work/sources/ skeleton (_raw-private rule).
     work = os.path.join(dest, "work")
     for name in os.listdir(work):
@@ -144,7 +145,7 @@ def main():
     tool = os.path.join(ROOT, "toolkit", "tools", "build-report.py")
     if os.path.isfile(tool):
         r = subprocess.run([sys.executable, tool, "--project", dest], cwd=dest, capture_output=True, text=True)
-        print("  - index.html: %s" % ("built" if r.returncode == 0 else "error, run it again in the project folder: python3 ../toolkit/tools/build-report.py"))
+        print("  - index.html: %s" % ("built" if r.returncode == 0 else "error, run it again in the project folder: python3 ../../toolkit/tools/build-report.py"))
         if r.returncode != 0:
             print(r.stderr.strip()[-400:])
     home = os.path.join(ROOT, "toolkit", "tools", "build-home.py")

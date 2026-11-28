@@ -69,7 +69,7 @@ This part is for the person who keeps the hub.
 └── _personal/             private notes
 ```
 
-The shared skills (step cards, templates, examples) live in `toolkit/skills/`, the scripts in `toolkit/tools/`, the guides in `toolkit/guides/`. All three sit **outside the project**, in `toolkit/` at the workspace root, not inside each project.
+The shared skills (step cards, templates, examples) live in `skills/`, the scripts in `toolkit/tools/`, the guides in `toolkit/guides/`. All three sit **outside the project**, in `toolkit/` at the workspace root, not inside each project.
 
 The decision log is at `insights/project-log.md`, and the principles (P1 to P10) are at `standards/principle-checks.md`.
 
@@ -143,7 +143,7 @@ How to add a document is in `work/README.md`. A document points back at the orig
 
 ## Add images, video, PDFs
 
-Drop images, videos or PDFs into a folder in `work/`, or insert an image in the middle of a page with `![description](path)`. The report recognises the format by itself; details and warnings are in `work/README.md`, and the AI steps are in `../toolkit/skills/add-media/SKILL.md`.
+Drop images, videos or PDFs into a folder in `work/`, or insert an image in the middle of a page with `![description](path)`. The report recognises the format by itself; details and warnings are in `work/README.md`, and the AI steps are in `../../skills/add-media/SKILL.md`.
 
 ## Each time you update
 
@@ -159,11 +159,11 @@ Drop images, videos or PDFs into a folder in `work/`, or insert an image in the 
 
 Save a checkpoint first (commit in GitHub Desktop, or copy the folder into a `-backup` copy), then tell the AI tool:
 
-> Run `../toolkit/skills/refresh-hub/SKILL.md` (review where items are not linked or are missing).
+> Run `../../skills/refresh-hub/SKILL.md` (review where items are not linked or are missing).
 
 This step only returns the list of problems found; it writes to no file. After it runs, check a few lines of the table against the item files to be sure the AI did not infer a wrong relationship.
 
-To rebuild `index.html`, ask the AI tool to run `python3 ../toolkit/tools/build-report.py`. To see changes as soon as you save a file, run `python3 ../toolkit/tools/serve-hub.py` (details in `../toolkit/skills/build-report/SKILL.md`).
+To rebuild `index.html`, ask the AI tool to run `python3 ../../toolkit/tools/build-report.py`. To see changes as soon as you save a file, run `python3 ../../toolkit/tools/serve-hub.py` (details in `../../skills/build-report/SKILL.md`).
 
 ## Decisions, ranking and the outcome loop
 

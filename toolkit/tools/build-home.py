@@ -20,6 +20,9 @@ STAGES = ["Setup", "Discover", "Define", "Develop", "Deliver", "Learn"]
 EXAMPLES = ("travel-app", "food-deliver-app", "food-deliver-app-public")  # listed under "Examples and template"
 
 
+PROJECTS = "project"  # the folder under the workspace root that holds every project
+
+
 def is_case(p):
     return os.path.isfile(os.path.join(p, "AGENTS.md")) and (
         os.path.isdir(os.path.join(p, "insights")) or os.path.isdir(os.path.join(p, "work")))
@@ -29,12 +32,12 @@ def find_workspace(start):
     p = os.path.abspath(start)
     while True:
         try:
-            if any(is_case(os.path.join(p, d)) for d in os.listdir(p) if os.path.isdir(os.path.join(p, d))):
+            if os.path.isdir(os.path.join(p, PROJECTS)) and os.path.isdir(os.path.join(p, "toolkit")):
                 return p
         except OSError:
             pass
         if is_case(p):
-            return os.path.dirname(p)
+            return os.path.dirname(os.path.dirname(p))
         q = os.path.dirname(p)
         if q == p:
             return None
@@ -130,7 +133,7 @@ def count_documents(case):
 
 
 def case_card(ws, d):
-    case = os.path.join(ws, d)
+    case = os.path.join(ws, PROJECTS, d)
     md = read(os.path.join(case, "README.md"))
     name = card_value(md, "Tên dự án", "Project name", "Project")
     template = d == "my-project" and not name
@@ -144,7 +147,7 @@ def case_card(ws, d):
     docs, planned = count_documents(case)
     kind = "Template" if template else ("Example" if d in EXAMPLES else "Project")
     return {
-        "dir": d, "name": name, "stage": stage if stage in STAGES else "", "owner": owner, "question": question,
+        "dir": PROJECTS + "/" + d, "name": name, "stage": stage if stage in STAGES else "", "owner": owner, "question": question,
         "desc": desc, "items": items, "docs": docs, "planned": planned, "kind": kind,
         "report": os.path.isfile(os.path.join(case, "index.html")),
     }
@@ -273,7 +276,8 @@ def main():
     ws = os.path.abspath(a.workspace) if a.workspace else find_workspace(os.getcwd())
     if not ws or not os.path.isdir(ws):
         sys.exit("Workspace not found. Run inside the workspace, or pass --workspace <path>.")
-    dirs = sorted(d for d in os.listdir(ws) if not d.startswith((".", "_")) and is_case(os.path.join(ws, d)))
+    base = os.path.join(ws, PROJECTS)
+    dirs = sorted(d for d in os.listdir(base) if not d.startswith((".", "_")) and is_case(os.path.join(base, d))) if os.path.isdir(base) else []
     dirs = [d for d in dirs if d not in EXAMPLES] + [d for d in EXAMPLES if d in dirs]
     cards = [case_card(ws, d) for d in dirs]
     out = a.out or os.path.join(ws, "index.html")

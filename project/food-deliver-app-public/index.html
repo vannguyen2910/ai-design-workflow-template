@@ -1,0 +1,1039 @@
+<!doctype html>
+<html lang="en" data-theme="minimal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Food Deliver App · Project report</title>
+<style>
+:root{--ink:#14121c;--bg:#fff;--surface:#faf9ff;--muted:rgba(20,18,28,.66);--line:rgba(20,18,28,.13);--purple:#6B3FEE;--link:#5530d4;--tint:rgba(107,63,238,.10);--tint2:rgba(107,63,238,.18);--on-purple:#fff;--r:12px;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link)}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--purple);outline-offset:2px;border-radius:6px}
+.skip{position:absolute;left:-999px;top:0;background:var(--purple);color:var(--on-purple);padding:8px 14px;z-index:30}
+.skip:focus{left:8px;top:8px}
+header.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.top-in{max-width:1280px;margin:0 auto;padding:10px 24px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em;margin-right:auto}
+.brand .logo{height:22px;width:auto;flex:none;color:var(--ink)}
+.brand small{display:block;font-weight:500;color:var(--muted);font-size:.74rem;letter-spacing:0}
+.homelink{display:flex;align-items:center;margin-right:-6px;color:var(--muted)}
+.homelink:hover{color:var(--ink)}
+.homelink svg{width:20px;height:20px}
+.homelink[hidden]{display:none}
+.tabs{display:flex;gap:4px;overflow-x:auto}
+.tabs a{padding:8px 14px;border-radius:999px;text-decoration:none;color:var(--ink);font-weight:600;font-size:.92rem;white-space:nowrap}
+.tabs a:hover{background:var(--tint)}
+.tabs a[aria-current=page]{background:var(--purple);color:var(--on-purple)}
+.themepick{font-size:.8rem;color:var(--muted);display:flex;gap:6px;align-items:center}
+.themepick select{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.view{display:none}
+.view.on{display:block}
+.wrap{max-width:1280px;margin:0 auto;padding:28px 24px 80px}
+h1{font-size:1.8rem;line-height:1.25;margin:0 0 8px;letter-spacing:-.015em}
+h2{font-size:1.1rem;margin:34px 0 12px;letter-spacing:-.005em}
+h3{font-size:1rem;margin:22px 0 6px}
+.lede{color:var(--muted);margin:0 0 22px}
+.banner{background:var(--ink);color:var(--bg);border-radius:var(--r);padding:12px 16px;margin:0 0 22px;font-size:.92rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:8px 0 8px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.card .num{font-size:1.9rem;font-weight:800;line-height:1.1;letter-spacing:-.02em}
+.card .lbl{color:var(--muted);font-size:.85rem}
+.card.warnc .num::after{content:" ⚠";font-size:1rem}
+.gatecards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.gate{border-radius:var(--r);padding:14px 16px;background:var(--ink);color:var(--bg)}
+.gate small{display:block;opacity:.8}
+.gate .st{margin-top:8px;font-weight:700}
+.gate .bar{height:6px;border-radius:99px;background:rgba(255,255,255,.25);margin-top:8px;overflow:hidden}
+.gate .bar i{display:block;height:100%;background:#fff}
+.table-wrap{overflow-x:auto;margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+table.bal{table-layout:fixed}
+table.bal th,table.bal td{overflow-wrap:break-word;word-break:normal}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--tint);font-weight:700}
+table.props th{background:none;color:var(--muted);font-weight:600;width:11em}
+.missing{font-weight:700;color:var(--muted);font-style:italic}
+.card .lbl small{display:block;font-size:.74rem;opacity:.85}
+details.help{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 18px;margin:0 0 22px}
+details.help summary{cursor:pointer;font-weight:700}
+details.help ul,details.help dl{margin:10px 0 4px}
+details.help dt{font-weight:700;margin-top:10px}
+details.help dd{margin:2px 0 0;color:var(--muted)}
+.chip,.idc,.idtag{display:inline-block;font-weight:800;font-size:.8rem;line-height:1;padding:4px 8px;border-radius:7px;text-decoration:none;letter-spacing:.03em;vertical-align:middle;border:2px solid transparent;white-space:nowrap}
+.t-O{background:var(--purple);color:var(--on-purple)}
+.t-H{border-color:var(--purple);color:var(--link)}
+.t-D{background:var(--ink);color:var(--bg)}
+.t-E{border-color:var(--ink);color:var(--ink)}
+.t-F{background:var(--tint2);color:var(--ink)}
+.t-M{background:var(--tint2);color:var(--ink)}
+.t-P{border:2px dashed var(--muted);color:var(--ink)}
+a.chip:hover{filter:brightness(1.1)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.warnlist{list-style:none;margin:0;padding:0}
+.warnlist li{padding:10px 14px;margin:8px 0;border-radius:var(--r);background:var(--tint);border-left:4px solid var(--purple)}
+.ok{padding:10px 14px;border-radius:var(--r);background:var(--tint)}
+.wgroup{border:1px solid var(--line);border-radius:var(--r);margin:0 0 10px;background:var(--surface)}
+.wgroup>summary{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;list-style:none;font-weight:600}
+.wgroup>summary::-webkit-details-marker{display:none}
+.wgroup>summary::before{content:"▸";color:var(--muted);font-size:.8rem}
+.wgroup[open]>summary::before{content:"▾"}
+.wcount{margin-left:auto;font-size:.8rem;font-weight:700;padding:2px 9px;border-radius:99px;background:var(--tint)}
+.whint{margin:0;padding:0 14px 8px;font-size:.88rem;color:var(--muted)}
+.wgrid{list-style:none;margin:0;padding:0 14px 12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:6px 14px}
+.wgrid li{display:flex;align-items:center;gap:8px;min-width:0;font-size:.9rem}
+.wt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.wn{margin-left:auto;font-size:.8rem;color:var(--muted);white-space:nowrap}
+/* journey */
+.jcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.jcard{display:block;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;text-decoration:none;color:var(--ink)}
+.jcard:hover{border-color:var(--purple);box-shadow:0 2px 0 var(--purple)}
+.jcard .wk{font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--link)}
+.jcard h3{margin:4px 0 6px;font-size:1.05rem}
+.jcard p{margin:0;color:var(--muted);font-size:.9rem}
+.has-doc .jlist{display:none}
+.journey .doc,.reference .doc{display:none}
+.journey .doc.on,.reference .doc.on{display:block}
+.reading{max-width:76ch}
+.pn{display:flex;justify-content:space-between;gap:16px;margin-top:40px;padding-top:16px;border-top:1px solid var(--line);flex-wrap:wrap}
+.back{display:inline-block;margin:0 0 16px;font-size:.9rem}
+.subtabs{display:flex;gap:6px;margin:0 0 18px;flex-wrap:wrap}
+.subtabs a{padding:6px 12px;border-radius:999px;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-size:.9rem;font-weight:600}
+.subtabs a[aria-current=page]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+/* trace */
+.trace{display:grid;grid-template-columns:minmax(300px,380px) minmax(0,1fr);gap:28px;align-items:start}
+.pane-tree{position:sticky;top:76px;max-height:calc(100vh - 96px);overflow:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:12px}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.filters button{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:5px 11px;font:inherit;font-size:.8rem;font-weight:700;cursor:pointer}
+.filters button[aria-pressed=true]{background:var(--purple);border-color:var(--purple);color:var(--on-purple)}
+.tsearch{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:8px 12px;font:inherit;font-size:.9rem;margin:0 0 10px}
+.tcount{font-size:.8rem;color:var(--muted);margin:0 0 8px}
+.tree,.tree ul{list-style:none;margin:0;padding:0}
+.tree ul{margin-left:14px;padding-left:10px;border-left:1px solid var(--line)}
+.tree li[hidden]{display:none}
+.tree summary{cursor:pointer;display:flex;align-items:flex-start;gap:6px;padding:3px 0;list-style:none}
+.tree summary::-webkit-details-marker{display:none}
+.tree summary::before{content:"▸";color:var(--muted);width:1em;flex:none;font-size:.8rem;margin-top:5px}
+.tree details[open]>summary::before{content:"▾"}
+.tree li.leaf{padding-left:1.35em}
+.tree a.node{display:flex;gap:8px;align-items:flex-start;text-decoration:none;color:var(--ink);padding:4px 6px;border-radius:8px;flex:1;min-width:0;font-size:.9rem}
+.tree a.node:hover{background:var(--tint)}
+.tree a.node.sel{background:var(--tint2);font-weight:700}
+.tree .idc{font-size:.72rem;padding:3px 6px;flex:none;margin-top:2px}
+.tree .nt{overflow-wrap:anywhere}
+.tree .wb{margin-left:auto;flex:none}
+.tree .cnt{display:block;color:var(--muted);font-size:.75rem;font-weight:500}
+.tree .gh{font-size:.8rem;font-weight:800;color:var(--muted);padding:8px 0 2px}
+.pane-detail .doc{display:none}
+.pane-detail .doc.on{display:block}
+.empty{color:var(--muted);border:1px dashed var(--line);border-radius:var(--r);padding:28px;text-align:center}
+.pane-detail .doc.on~.empty{display:none}
+.ihead{display:flex;gap:14px;align-items:flex-start;margin:0 0 14px}
+.ihead .idtag{font-size:1rem;padding:7px 12px;flex:none;margin-top:2px}
+.ihead .kind{margin:0;color:var(--muted);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.ihead h1{margin:2px 0 0;font-size:1.5rem}
+.warnbox{margin:0 0 14px;padding:10px 14px;border-radius:var(--r);background:var(--tint);border-left:4px solid var(--purple);font-size:.92rem}
+.path{font-size:.88rem;color:var(--muted);margin:0 0 14px}
+.path .chain{margin:6px 0 0;align-items:center}
+.path .more{display:block;margin-top:6px}
+.backlinks{margin-top:30px;padding:14px 18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.backlinks h2{margin:0 0 8px;font-size:.95rem}
+.backlinks .row{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin:6px 0}
+.backlinks .lbl{font-size:.8rem;color:var(--muted);min-width:7em}
+.dlist{display:flex;flex-direction:column}
+.dlink{display:flex;align-items:center;gap:12px;padding:9px 4px;border-top:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:.92rem}
+.dlink:first-child{border-top:0}
+.dlink:hover{background:var(--tint)}
+.dlink:hover .darr{color:var(--purple);transform:translateX(2px)}
+.dtype{flex:0 0 14em;font-size:.72rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dtitle{flex:1;min-width:0}
+.darr{color:var(--muted);transition:transform .15s}
+@media (max-width:600px){.dtype{flex-basis:6.5em}}
+.back-tree{display:none}
+.acards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:6px}
+.acard{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:0 0 14px;text-decoration:none;color:var(--ink);overflow:hidden}
+.acard[hidden]{display:none}
+.acard:hover{border-color:var(--purple);box-shadow:0 2px 0 var(--purple)}
+.acard .thumb{width:100%;height:150px;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);background:var(--tint)}
+.acard>*:not(.thumb){margin-left:16px;margin-right:16px}
+.acard:not(:has(.thumb))>.atype{margin-top:14px}
+.atype{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--link)}
+.acard h3{margin:0;font-size:1.02rem}
+.acard p{margin:0;color:var(--muted);font-size:.88rem}
+.ameta{font-size:.78rem;color:var(--muted)}
+.st{display:inline-block;padding:1px 8px;border-radius:999px;font-weight:700;font-size:.72rem;background:var(--tint2);color:var(--ink)}
+.st-simulated,.st-planned,.st-draft{background:var(--ink);color:var(--bg)}
+.ahead .sum{font-size:1.05rem;color:var(--muted);margin:6px 0 10px}
+.ahead .kind{margin:0;color:var(--muted);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.supports{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin:6px 0 14px}
+.backlinks .row{align-items:baseline}
+.supports .lbl{font-size:.8rem;color:var(--muted)}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin:8px 0}
+.fig{margin:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff}
+.fig img{display:block;width:100%;height:auto}
+.fig figcaption,.mcard .cap{font-size:.8rem;color:var(--muted);padding:6px 12px}
+.mcard{border:1px solid var(--line);border-radius:var(--r);margin:12px 0;overflow:hidden;background:var(--surface)}
+.mhead{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 14px}
+.mtag{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.btn{margin-left:auto;padding:5px 12px;border-radius:999px;background:var(--purple);color:var(--on-purple);text-decoration:none;font-size:.82rem;font-weight:700}
+.mcard iframe{display:block;width:100%;height:560px;border:0;border-top:1px solid var(--line);background:#fff}
+.mcard video{display:block;width:100%}
+.achip{display:inline-flex;gap:8px;align-items:baseline;padding:6px 12px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--ink);background:var(--surface);font-size:.9rem}
+.achip:hover{border-color:var(--purple)}
+.achip .atype{font-size:.66rem}
+.sgroup{margin:10px 0}
+.sgroup h3{margin:0 0 6px;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.t-A{background:var(--tint2);color:var(--ink);border-color:transparent}
+details.draft{margin:14px 0;border:1px dashed var(--muted);border-radius:var(--r);padding:10px 14px;background:var(--surface)}
+details.draft>summary{cursor:pointer;font-weight:700;color:var(--muted)}
+.srcnote{margin-top:24px;font-size:.82rem;color:var(--muted)}
+.docs .doc{display:none}
+.docs .doc.on{display:block}
+.has-doc .jlist{display:none}
+blockquote{margin:16px 0;padding:10px 16px;background:var(--tint);border-left:4px solid var(--purple);border-radius:0 10px 10px 0}
+blockquote p{margin:6px 0}
+code{font:.88em ui-monospace,Menlo,Consolas,monospace;background:var(--tint);padding:1px 5px;border-radius:5px}
+pre{background:var(--tint);padding:12px 14px;border-radius:10px;overflow-x:auto}
+pre code{background:none;padding:0}
+hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+ul,ol{padding-left:1.4em}
+li{margin:4px 0}
+.box{font-family:ui-monospace,Menlo,Consolas,monospace}
+.ext{color:var(--muted);border-bottom:1px dotted var(--muted);cursor:help}
+.broken{color:#9b1c1c;text-decoration:underline wavy}
+img{max-width:100%}
+footer.foot{margin-top:56px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:14px}
+@media (max-width:900px){
+  .trace{grid-template-columns:1fr}
+  .pane-tree{position:static;max-height:none}
+  .has-item .pane-tree{display:none}
+  .has-item .back-tree{display:inline-block}
+  .wrap{padding:20px 16px 60px}
+}
+@media print{
+  header.top,.skip,.pane-tree,.back,.pn,.subtabs,.back-tree,.themepick,.filters,.tsearch{display:none!important}
+  .view,.journey .doc,.reference .doc,.docs .doc,.pane-detail .doc{display:block!important}
+  .jlist{display:none}
+  .doc{break-before:page}
+  .wrap{padding:0;max-width:none}
+  .trace{display:block}
+  a{color:inherit;text-decoration:none}
+  table{font-size:.8rem}
+  .banner{border:1px solid #000;background:none;color:#000}
+}
+
+/* sidebar layout (mirrors the website structure: one page per document, nested menu on the left) */
+.shell{display:grid;grid-template-columns:300px minmax(0,1fr);max-width:1480px;margin:0 auto;align-items:start}
+.side{position:sticky;top:51px;height:calc(100vh - 51px);overflow:auto;border-right:1px solid var(--line);padding:16px 12px 48px;font-size:.9rem;background:var(--bg)}
+.side nav{display:block}
+.side a{display:block;text-decoration:none;color:var(--ink);padding:5px 10px;border-radius:8px;overflow-wrap:anywhere}
+.side a:hover{background:var(--tint)}
+.side a[aria-current=page]{background:var(--purple);color:var(--on-purple);font-weight:700}
+.side .s-top{font-weight:700}
+.side details{margin:0}
+.side summary{cursor:pointer;list-style:none;font-weight:800;padding:7px 10px;border-radius:8px;display:flex;gap:6px;align-items:baseline}
+.side summary::-webkit-details-marker{display:none}
+.side summary::before{content:"▸";color:var(--muted);font-size:.75rem;width:.9em;flex:none}
+.side details[open]>summary::before{content:"▾"}
+.side summary:hover{background:var(--tint)}
+.side .grp{margin-top:6px}
+.side .grp>.sub{margin-left:12px;border-left:1px solid var(--line);padding-left:6px}
+.side .sub summary{font-weight:700;color:var(--ink);font-size:.88rem}
+.side .sub .cnt{margin-left:auto;font-weight:500;color:var(--muted);font-size:.78rem}
+.side .sub a{font-size:.85rem;color:var(--ink)}
+.side .sub a .idc{font-size:.66rem;padding:2px 5px;margin-right:6px}
+.side .sub a[aria-current=page] .idc{border-color:var(--on-purple);background:transparent;color:var(--on-purple)}
+.side .menu>summary{display:none}
+.shell .wrap{max-width:1000px;padding:28px 40px 80px}
+/* one page at a time: the trace tree is its own page, items are pages of their own */
+.trace{display:block}
+.pane-tree{position:static;max-height:none;overflow:visible;border:0;background:none;padding:0}
+#v-trace.has-item .pane-tree{display:none}
+#v-trace:not(.has-item) .pane-detail{display:none}
+#v-trace .back-tree{display:inline-block}
+#v-reference .wrap>h1,#v-reference .wrap>.lede,#v-reference .subtabs{display:none}
+@media (max-width:900px){
+  .shell{display:block}
+  .side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:8px 12px;max-height:none}
+  .side .menu>summary{display:block;cursor:pointer;font-weight:800;padding:8px 10px;list-style:none}
+  .side .menu[open]>summary{border-bottom:1px solid var(--line);margin-bottom:6px}
+  .shell .wrap{padding:20px 16px 60px}
+}
+@media print{.side{display:none!important}.shell{display:block}.shell .wrap{max-width:none;padding:0}}
+
+/* minimalist layer: fewer boxes, more air, one accent */
+body{font-size:15.5px;line-height:1.7}
+header.top{border-bottom:1px solid var(--line)}
+.top-in{padding:12px 24px}
+.brand{font-weight:700}
+.brand small{display:none}
+h1{font-size:1.75rem;font-weight:700}
+h2{font-size:.8rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:44px 0 12px}
+.lede{margin:0 0 26px}
+.smeta{color:var(--muted);margin:-10px 0 0;font-size:.92rem}
+.sgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0 0 8px}
+a.stcard{display:flex;flex-direction:column;gap:4px;padding:20px;border-radius:16px;background:var(--bg);color:inherit;text-decoration:none;box-shadow:0 0 2px 0 rgba(145,158,171,.2),0 12px 24px -4px rgba(145,158,171,.12);transition:transform .2s,box-shadow .2s}
+a.stcard:hover,a.stcard:focus-visible{transform:translateY(-2px);box-shadow:0 0 2px 0 rgba(145,158,171,.24),0 20px 40px -4px rgba(145,158,171,.24);outline:0}
+a.stcard:focus-visible{box-shadow:0 0 0 2px var(--purple)}
+.sti{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--tint2);color:var(--link);margin-bottom:8px}
+.sti svg{width:22px;height:22px}
+.stn{font-size:.85rem;font-weight:600;color:var(--muted)}
+.stnum{font-size:1.9rem;line-height:1.1;font-weight:800;letter-spacing:-.01em}
+.stnum small{font-size:1rem;font-weight:600;color:var(--muted)}
+.stl{font-size:.8rem;color:var(--muted)}
+.stbar{display:flex;height:6px;border-radius:99px;background:rgba(145,158,171,.2);overflow:hidden;margin:8px 0 0}
+.stbar b{background:var(--purple)}
+.stbar u{background:rgba(0,167,111,.34);text-decoration:none}
+.ovgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:24px 0 8px}
+.ovcard{display:flex;flex-direction:column;padding:24px;border-radius:16px;background:var(--bg);box-shadow:0 0 2px 0 rgba(145,158,171,.2),0 12px 24px -4px rgba(145,158,171,.12);min-width:0}
+.ovcard.wide{grid-column:1/-1}
+.ctitle{margin:0 0 14px;font-size:.8rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.ovcard .slist li:first-child{border-top:0;padding-top:0}
+.ovcard .slist li:last-child{border-bottom:0;padding-bottom:0}
+.ovcard .snext li:first-child{border-top:0;padding-top:0}
+.ovcard .snext li:first-child::before{top:0}
+.ovcard .snext li:last-child{border-bottom:0;padding-bottom:0}
+@keyframes ovgrow{from{transform:scaleX(0)}}
+@media(prefers-reduced-motion:no-preference){.stbar b,.stbar u{transform-origin:left;animation:ovgrow .7s ease-out}}
+@media(max-width:900px){.sgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.ovgrid{grid-template-columns:minmax(0,1fr)}}
+.slist{list-style:none;margin:0;padding:0}
+.slist li{padding:12px 0;border-top:1px solid var(--line)}
+.slist li:last-child{border-bottom:1px solid var(--line)}
+.st-t{font-size:1rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.st-m,.st-w{font-size:.85rem;color:var(--muted);margin-top:2px}
+.sline{margin:0 0 10px}
+.sline.ok{color:var(--link)}
+.sline.bad{color:#b42318;font-weight:600}
+.sempty{color:var(--muted);margin:0}
+.smore{margin:auto 0 0;padding-top:14px;font-size:.85rem;text-align:right}
+.smore a{font-weight:700;text-decoration:none;color:var(--link)}
+.smore a:hover{text-decoration:underline}
+.snext{margin:0;padding:0;list-style:none;counter-reset:n}
+.snext li{counter-increment:n;padding:12px 0 12px 32px;border-top:1px solid var(--line);position:relative;display:flex;flex-direction:column;gap:2px}
+.snext li:last-child{border-bottom:1px solid var(--line)}
+.snext li::before{content:counter(n);position:absolute;left:0;top:12px;font-weight:700;color:var(--link)}
+.snext li span{font-size:.88rem;color:var(--muted)}
+.snext li code{align-self:flex-start;margin-top:4px}
+.ovmore{margin-top:20px;border-top:1px solid var(--line);padding-top:10px}
+.ovmore>summary{cursor:pointer;font-weight:600;padding:6px 0}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));row-gap:18px;margin:14px 0 6px;padding:0}
+.stats span{display:flex;flex-direction:column;gap:2px;padding:2px 18px;border-left:1px solid var(--line);color:var(--muted);font-size:.8rem;text-transform:capitalize}
+.stats span:nth-child(4n+1){border-left:0;padding-left:0}
+.stats span:last-child:nth-child(4n+1){grid-column:span 4}
+.stats .w{text-transform:none}
+.stats b{display:block;margin:0;font-size:1.7rem;line-height:1.15;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+.stats .w b{color:#b76e00}
+.stats .w b::after{content:" ⚠";font-size:.9rem}
+.stats .w.bad b{color:#b71d18}
+.stats .w.ok b{color:#118d57}
+.stats .w.ok b::after{content:" ✓"}
+.wtier{margin:18px 0 8px;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.wtier-block{color:#b71d18}
+.winfo{margin:18px 0 0}
+.winfo>summary{cursor:pointer;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:6px 0}
+@media(max-width:560px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats span:nth-child(4n+1){border-left:1px solid var(--line);padding-left:18px}.stats span:nth-child(2n+1){border-left:0;padding-left:0}.stats span:last-child:nth-child(4n+1){grid-column:auto}}
+.glist{margin:0;border-top:1px solid var(--line)}
+.grow{display:grid;grid-template-columns:minmax(0,1.4fr) 110px minmax(80px,1fr) 70px;gap:16px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.grow .gn small{display:block;color:var(--muted);font-size:.78rem}
+.grow .gn strong{font-weight:600}
+.grow .gs{font-size:.85rem;font-weight:600}
+.grow .gs.ok{color:#1a7f4b}
+.grow .gs.no{color:#a33}
+.grow .gb{height:4px;border-radius:99px;background:var(--line);overflow:hidden}
+.grow .gb i{display:block;height:100%;background:var(--purple)}
+.grow .gc{font-size:.82rem;color:var(--muted);text-align:right}
+.warnlist li{background:none;border-left:0;border-top:1px solid var(--line);border-radius:0;padding:10px 0;margin:0}
+.warnlist li:last-child{border-bottom:1px solid var(--line)}
+.warnlist strong{font-weight:500}
+.ok{background:none;padding:0;color:var(--muted)}
+table{font-size:.9rem}
+th{background:none;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--ink)}
+td{border-bottom:1px solid var(--line)}
+.chip,.idc,.idtag{font-weight:700;font-size:.74rem;padding:3px 7px}
+details.help{background:none;border:0;border-top:1px solid var(--line);border-radius:0;padding:14px 0;margin:44px 0 0}
+details.help summary{font-weight:600;color:var(--muted)}
+.banner{background:var(--tint);color:var(--ink);font-size:.88rem;border-radius:var(--r);padding:10px 14px}
+.side{font-size:.88rem}
+.jcard,.acard{background:none}
+.reading{max-width:70ch}
+footer.foot{margin-top:48px}
+@media (max-width:640px){.grow{grid-template-columns:1fr 1fr;gap:6px 12px}.grow .gb{grid-column:1/-1}}
+/* sidebar: five sections; each opens a page of cards */
+.side{padding:14px 12px}
+.nav2 a{display:flex;align-items:center;gap:8px;padding:9px 12px;font-weight:600;font-size:.95rem}
+.nav2 a .nm{margin-left:auto;font-weight:500;font-size:.78rem;color:var(--muted)}
+.nav2 a[aria-current=page] .nm{color:var(--on-purple);opacity:.85}
+/* item page */
+.ihead{display:block;margin:0 0 6px}
+.ihead .idtag{display:inline-block;font-size:.78rem;padding:3px 8px;margin:0 0 10px}
+.ihead .kind{display:block;margin:0 0 6px;font-size:.74rem;font-weight:600;letter-spacing:.06em;color:var(--muted)}
+.ihead h1{font-size:1.6rem;margin:0;line-height:1.3}
+.ihead>div{display:block}
+.path{margin:14px 0 18px;font-size:.84rem}
+.path>span:first-child{display:block;margin-bottom:4px}
+.warnbox{background:none;border:0;border-left:2px solid var(--purple);border-radius:0;padding:2px 0 2px 12px;margin:0 0 10px;font-size:.88rem}
+table.props{margin:0 0 8px}
+table.props th{width:11em;padding:7px 12px 7px 0;font-size:.82rem;text-transform:none;letter-spacing:0;font-weight:500;color:var(--muted);border-bottom:1px solid var(--line)}
+table.props td{padding:7px 0}
+.backlinks{background:none;border:0;border-top:1px solid var(--line);border-radius:0;padding:14px 0 0;margin-top:36px}
+.backlinks h2{font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.backlinks .lbl{font-weight:500}
+.reading h2{margin-top:30px}
+/* trace tree */
+.pane-tree{margin-top:0}
+.tsearch{background:none;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:8px 0;font-size:.95rem}
+.filters{margin:2px 0 14px;gap:4px}
+.filters button{border:0;background:none;color:var(--muted);padding:4px 10px;font-weight:600}
+.filters button:hover{background:var(--tint)}
+.filters button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.tree ul{margin-left:11px;padding-left:12px;border-left:1px solid var(--line)}
+.tree a.node{padding:4px 6px;font-size:.92rem}
+.tree a.node:hover{background:var(--tint)}
+.tree a.node.sel{background:var(--tint);font-weight:600}
+.tree .cnt{display:inline;margin-left:8px;font-size:.76rem;color:var(--muted)}
+.tree .idc{font-size:.68rem;padding:2px 5px;border-width:1px}
+.tree summary{padding:2px 0}
+.tree .gh{font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+/* cards: documents, journey pages, insights */
+.acards,.jcards,.icards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:6px;border:0}
+.acard,.jcard,.icard{display:flex;flex-direction:column;gap:4px;padding:16px;border:1px solid var(--line);border-radius:var(--r);background:none;text-decoration:none;color:var(--ink);overflow:hidden;min-height:112px}
+.acard:hover,.jcard:hover,.icard:hover{border-color:var(--ink);box-shadow:none;background:none}
+.acard[hidden],.icard[hidden]{display:none}
+.acard>*:not(.thumb),.icard>*{margin:0}
+.acard:not(:has(.thumb))>.atype{margin:0}
+.acard .thumb{display:block;align-self:stretch;width:auto;max-width:none;margin:-16px -16px 10px;height:110px;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);background:var(--tint)}
+.acard .atype,.jcard .wk,.icard .itype{font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.acard h3,.jcard h3,.icard h3{margin:2px 0 0;font-size:1rem;line-height:1.35}
+.acard p,.jcard p,.icard p{margin:0;color:var(--muted);font-size:.86rem;line-height:1.5}
+.acard .ameta{font-size:.76rem;color:var(--muted);margin-top:auto;padding-top:8px}
+.icard .top{display:flex;align-items:center;gap:8px}
+.icard .top .w{margin-left:auto}
+.st{background:none;border:1px solid var(--line);color:var(--muted);font-weight:600;padding:0 7px}
+.st-simulated,.st-planned,.st-draft{background:none;border:1px solid var(--ink);color:var(--ink)}
+.ahead .kind{font-size:.74rem;letter-spacing:.09em}
+.ahead h1{margin:4px 0 6px}
+.ahead .sum{font-size:1rem;margin:0 0 12px}
+.ahead p:has(.st){margin:0 0 10px}
+.supports{margin:10px 0 0}
+.mcard{background:none;margin:14px 0}
+.mhead{padding:10px 14px}
+.btn{background:none;color:var(--link);padding:0;font-weight:600;border-radius:0}
+.btn:hover{text-decoration:underline}
+.mcard iframe{height:520px}
+.fig{border-radius:var(--r)}
+.srcnote{margin-top:32px;font-size:.8rem}
+.trow{display:flex;gap:28px;align-items:center;margin:0 0 10px}
+.trow .tsearch{flex:0 1 320px;min-width:0;width:auto;margin:0}
+#v-trace .tsearch,#v-docs .tsearch{padding-left:38px;background-repeat:no-repeat;background-position:12px center;background-size:16px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23919eab' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E")}
+.trow .vmode{flex:none;margin:0 0 0 auto}
+.vmode{display:inline-flex;gap:2px;margin:0 0 14px;border:1px solid var(--line);border-radius:var(--r);padding:2px}
+.vmode button{border:0;background:none;font:inherit;font-size:.82rem;font-weight:600;color:var(--muted);padding:4px 12px;border-radius:calc(var(--r) - 2px);cursor:pointer}
+.vmode button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+#v-trace .tree{display:none}
+.tabs2{display:flex;gap:2px;border-bottom:1px solid var(--line);margin:0 0 14px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+.tabs2::-webkit-scrollbar{display:none}
+.tabs2 button{border:0;background:none;font:inherit;font-weight:600;font-size:.9rem;color:var(--muted);padding:10px 14px;margin-bottom:-1px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+.tabs2 button:hover{color:var(--ink)}
+.tabs2 button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--purple)}
+.tabs2 .n{margin-left:7px;font-size:.72rem;font-weight:700;padding:1px 7px;border-radius:99px;background:rgba(145,158,171,.16);color:var(--muted)}
+.tabs2 button[aria-selected=true] .n{background:var(--tint2);color:var(--link)}
+#v-trace.mode-tree .tree{display:block}
+#v-trace.mode-tree .icards{display:none}
+.atable{display:none}
+.tbar{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:0 0 12px;font-size:.88rem;color:var(--muted)}
+.tbar select{font:inherit;padding:4px 8px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--ink)}
+.tbar input{margin-right:6px}
+#v-trace.mode-table .atable{display:block}
+#v-trace.mode-table .icards,#v-trace.mode-table .tree{display:none}
+.astats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0 0 10px}
+.astat{padding:12px 14px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.astat b{display:block;font-size:1.5rem;font-weight:600;line-height:1.2}
+.astat span{font-size:.84rem;color:var(--muted)}
+.stgate{margin:0 0 18px;font-size:.88rem;color:var(--muted)}
+.stsrc{margin:0 0 26px}
+.sthead{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 10px;padding:6px 0;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
+.sthead a{margin-left:auto;font-weight:600}
+.ststatus{padding:1px 8px;border-radius:99px;font-size:.72rem;font-weight:700;background:rgba(145,158,171,.16)}
+.ststatus.ok{background:rgba(34,197,94,.16);color:#118d57}
+.ststatus.w{background:rgba(255,171,0,.16);color:#b76e00}
+html{overflow-x:hidden;overflow-y:scroll;scrollbar-gutter:stable}
+.top-in{max-width:1480px;padding-left:24px;padding-right:24px}
+.nav2 a[data-nav=guide]{margin-top:10px;border-top:1px dashed var(--line);border-radius:0 0 var(--r) var(--r);padding-top:12px}
+.guide pre{position:relative;padding-right:84px}
+.guide .copybtn{position:absolute;top:8px;right:8px;font:inherit;font-size:.74rem;font-weight:600;padding:3px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);cursor:pointer}
+.guide .copybtn:hover{border-color:var(--ink)}
+.stale{margin:0 0 18px;padding:10px 14px;border-left:3px solid #ffab00;background:rgba(255,171,0,.1);border-radius:var(--r);font-size:.88rem;color:var(--ink)}
+.where{margin:10px 0 18px;padding:8px 12px;border-left:3px solid var(--line);background:var(--surface);font-size:.86rem;color:var(--muted);line-height:1.7}
+.where .wl{display:inline-block;min-width:5.5em;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.where code{font-size:.84rem}
+.srcfile{margin:28px 0 0;font-size:.82rem;color:var(--muted)}
+.foot-tech{margin-top:6px;font-size:.84rem}
+.foot-tech summary{cursor:pointer}
+.linkbtn{font:inherit;font-size:.9rem;color:var(--link);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+/* reference and journey pages */
+html[data-theme] th{background:none}
+.reference .reading,.journey .reading{max-width:none}
+.reference .reading>p,.journey .reading>p,.journey .reading>ul,.journey .reading>ol{max-width:72ch}
+.reference .reading>p>em:only-child,.journey .reading>p>em:only-child{font-style:normal;color:var(--muted)}
+.reference .reading h2,.journey .reading h2{margin-top:36px}
+.reference table,.journey table{margin:8px 0 0}
+.journey td a{text-decoration:none;font-weight:600}
+.journey td a:hover{text-decoration:underline}
+.journey .reading>blockquote{max-width:72ch}
+.back{display:inline-block;margin:0 0 18px;font-size:.8125rem;font-weight:600;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--ink)}
+.journey .reading>p>em:only-child{font-size:.875rem}
+.journey .reading>p:first-child{font-size:1rem}
+.journey .doc>.reading>h1:first-child{margin-bottom:6px}
+.journey .reading code{font-size:.84em}
+.pn{border-top:1px solid var(--line);margin-top:32px;padding-top:14px}
+.pn a{text-decoration:none;font-weight:600}
+.pn a:hover{text-decoration:underline}
+.reference td:first-child{white-space:nowrap;color:var(--muted);font-weight:600;width:1%}
+.reference table.bal td:first-child{white-space:normal;width:auto}
+.gst{font-size:.82rem;font-weight:600;white-space:nowrap}
+.gst::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;background:var(--muted);vertical-align:middle}
+.gst-passed::before{background:#1a7f4b}
+.gst-failed{color:#a33}
+.gst-failed::before{background:#a33}
+.dash{color:var(--muted)}
+
+body .chip.chip.chip{display:inline;background:none;border:0;border-radius:0;padding:0;font-size:inherit;font-weight:400;letter-spacing:0;color:var(--link);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+a.chip:hover{filter:none;text-decoration-thickness:2px}
+span.chip.chip.chip{color:inherit;text-decoration:none}
+.chips{gap:4px 14px}
+.irefs{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+a.iref{display:inline;color:var(--link);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px;font-size:.92rem;line-height:1.5}
+a.iref:hover{text-decoration-thickness:2px}
+.irefs a.iref{display:block}
+.idn{flex:none;font-size:.72rem;color:var(--muted);margin-right:8px;white-space:nowrap}
+.icard .itype{font-size:.74rem;color:var(--muted);letter-spacing:.02em}
+
+[data-theme=minimal]{--ink:#1c252e;--bg:#fff;--surface:#f4f6f8;--muted:#637381;--line:rgba(145,158,171,.28);--purple:#00a76f;--link:#007867;--tint:rgba(0,167,111,.08);--tint2:rgba(0,167,111,.16);--on-purple:#fff;--r:8px}
+[data-theme=minimal] body{font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+[data-theme=minimal] h1{font-weight:800;letter-spacing:-.01em}
+[data-theme=minimal] h2{font-weight:700;color:#637381}
+[data-theme=minimal] header.top{background:rgba(255,255,255,.86);backdrop-filter:blur(6px);border-bottom:1px dashed var(--line)}
+[data-theme=minimal] .brand{font-weight:800;letter-spacing:-.01em}
+[data-theme=minimal] .tsearch{background:#fff;border:1px solid rgba(145,158,171,.32);border-radius:8px;padding:9px 14px;color:var(--ink)}
+[data-theme=minimal] .tsearch:focus{outline:0;border-color:#1c252e;box-shadow:0 0 0 1px #1c252e}
+[data-theme=minimal] .side{border-right:1px dashed var(--line)}
+[data-theme=minimal] .nav2 a{border-radius:8px;min-height:44px;font-weight:500;font-size:.9rem;color:#637381}
+[data-theme=minimal] .nav2 a:hover{background:rgba(145,158,171,.08)}
+[data-theme=minimal] .nav2 a[aria-current=page]{background:rgba(0,167,111,.08);color:#007867;font-weight:700}
+[data-theme=minimal] .nav2 a[aria-current=page] .nm{color:#007867;opacity:1}
+[data-theme=minimal] .acard,[data-theme=minimal] .jcard,[data-theme=minimal] .icard{border:0;border-radius:16px;background:#fff;box-shadow:0 0 2px 0 rgba(145,158,171,.2),0 12px 24px -4px rgba(145,158,171,.12);transition:box-shadow .2s,transform .2s}
+[data-theme=minimal] .acard:hover,[data-theme=minimal] .jcard:hover,[data-theme=minimal] .icard:hover{border:0;box-shadow:0 0 2px 0 rgba(145,158,171,.24),0 20px 40px -4px rgba(145,158,171,.24);transform:translateY(-2px)}
+[data-theme=minimal] .acard .thumb{border-radius:0}
+[data-theme=minimal] .acard .atype,[data-theme=minimal] .jcard .wk,[data-theme=minimal] .icard .itype{color:#919eab}
+[data-theme=minimal] .acard h3,[data-theme=minimal] .jcard h3,[data-theme=minimal] .icard h3{font-weight:700}
+[data-theme=minimal] .stats b{font-weight:800;color:#1c252e}
+[data-theme=minimal] .glist{border-top:0}
+[data-theme=minimal] .grow{border-bottom:1px dashed var(--line)}
+[data-theme=minimal] .grow .gb{height:6px;background:rgba(0,167,111,.16)}
+[data-theme=minimal] .grow .gb i{background:#00a76f;border-radius:99px}
+[data-theme=minimal] .grow .gs,[data-theme=minimal] .gst{display:inline-block;justify-self:start;font-size:.75rem;font-weight:700;line-height:24px;padding:0 8px;border-radius:6px;background:rgba(255,171,0,.16);color:#b76e00}
+[data-theme=minimal] .grow .gs.ok,[data-theme=minimal] .gst-passed{background:rgba(34,197,94,.16);color:#118d57}
+[data-theme=minimal] .grow .gs.no,[data-theme=minimal] .gst-failed{background:rgba(255,86,48,.16);color:#b71d18}
+[data-theme=minimal] .gst::before{display:none}
+[data-theme=minimal] table th{background:#f4f6f8;color:#637381;font-weight:600;font-size:.8125rem;text-transform:none;letter-spacing:0;border-bottom:0}
+[data-theme=minimal] table th:first-child{border-radius:8px 0 0 8px}
+[data-theme=minimal] table th:last-child{border-radius:0 8px 8px 0}
+[data-theme=minimal] table td{border-bottom:1px dashed var(--line)}
+[data-theme=minimal] table.props th{background:none;color:#637381;font-weight:500;border-radius:0;border-bottom:1px dashed var(--line)}
+[data-theme=minimal] .chip,[data-theme=minimal] .idc,[data-theme=minimal] .idtag{border-radius:6px;font-weight:700;font-size:.75rem;border:1px solid transparent}
+[data-theme=minimal] .t-O{background:#00a76f;color:#fff}
+[data-theme=minimal] .t-H{background:transparent;border-color:rgba(0,167,111,.5);color:#007867}
+[data-theme=minimal] .t-D{background:#1c252e;color:#fff}
+[data-theme=minimal] .t-E{background:transparent;border-color:rgba(28,37,46,.35);color:#1c252e}
+[data-theme=minimal] .t-M{background:rgba(145,158,171,.16);color:#454f5b}
+[data-theme=minimal] .t-P{background:transparent;border:1px dashed rgba(145,158,171,.8);color:#637381}
+[data-theme=minimal] .t-A{background:rgba(0,184,217,.16);color:#006c9c}
+[data-theme=minimal] .filters button{border:1px solid rgba(145,158,171,.32);border-radius:8px;background:#fff;color:#454f5b;font-weight:600;padding:5px 12px}
+[data-theme=minimal] .filters button:hover{background:rgba(145,158,171,.08)}
+[data-theme=minimal] .filters button[aria-pressed=true]{background:#1c252e;border-color:#1c252e;color:#fff}
+[data-theme=minimal] .tabs2 button[aria-selected=true]{color:#007867;border-bottom-color:#00a76f}
+[data-theme=minimal] .vmode{border:1px solid rgba(145,158,171,.32);border-radius:8px;padding:3px}
+[data-theme=minimal] .vmode button{border-radius:6px;font-weight:700}
+[data-theme=minimal] .vmode button[aria-pressed=true]{background:#1c252e;color:#fff}
+[data-theme=minimal] .btn{background:#1c252e;color:#fff;border-radius:8px;padding:6px 14px;font-weight:700;font-size:.8125rem}
+[data-theme=minimal] .btn:hover{text-decoration:none;background:#454f5b}
+[data-theme=minimal] .banner,[data-theme=minimal] .warnbox{background:rgba(255,171,0,.12);color:#7a4100;border:0;border-radius:8px;padding:12px 16px}
+[data-theme=minimal] .warnlist li{border-top:0;border-bottom:1px dashed var(--line)}
+[data-theme=minimal] details.help{border:1px dashed var(--line);border-radius:16px;padding:14px 20px}
+[data-theme=minimal] .backlinks{border-top:1px dashed var(--line)}
+[data-theme=minimal] .mcard{border:0;border-radius:16px;box-shadow:0 0 2px 0 rgba(145,158,171,.2),0 12px 24px -4px rgba(145,158,171,.12);background:#fff;overflow:hidden}
+[data-theme=minimal] .fig{border:0;border-radius:16px;box-shadow:0 0 2px 0 rgba(145,158,171,.2),0 12px 24px -4px rgba(145,158,171,.12)}
+[data-theme=minimal] .st{border:0;border-radius:6px;background:rgba(145,158,171,.16);color:#454f5b;font-weight:700;line-height:22px}
+[data-theme=minimal] .st-verified{background:rgba(34,197,94,.16);color:#118d57}
+[data-theme=minimal] .st-draft{background:rgba(255,171,0,.16);color:#b76e00;border:0}
+[data-theme=minimal] .st-simulated,[data-theme=minimal] .st-planned{background:rgba(0,184,217,.16);color:#006c9c;border:0}
+[data-theme=minimal] .pn{border-top:1px dashed var(--line)}
+[data-theme=minimal] code{background:rgba(145,158,171,.16);border-radius:6px}
+[data-theme=minimal] footer.foot{border-top:1px dashed var(--line)}
+[data-theme=minimal] .tree ul{border-left:1px dashed var(--line)}
+[data-theme=minimal] hr{border-top:1px dashed var(--line)}
+[data-theme=minimal] .dlink,[data-theme=minimal] .sthead{border-top:1px dashed var(--line)}
+[data-theme=minimal] .dlink:first-child{border-top:0}
+[data-theme=minimal] .wgroup,[data-theme=minimal] .astat{border:0;border-radius:16px;background:#fff;box-shadow:0 0 2px 0 rgba(145,158,171,.2),0 12px 24px -4px rgba(145,158,171,.12)}
+[data-theme=minimal] pre{background:rgba(145,158,171,.12);border-radius:8px}
+[data-theme=minimal] pre code{background:none}
+</style>
+</head>
+<body data-case="Food Deliver App">
+<a class="skip" href="#main">Skip the menu</a>
+<header class="top"><div class="top-in">
+<a class="homelink" id="homelink" href="../../index.html" hidden data-folder="food-deliver-app-public" aria-label="All projects" title="All projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a><script>(function(){var a=document.getElementById("homelink"),p=location.pathname.split("/");var f=p.pop();if((f==="index.html"||f==="")&&decodeURIComponent(p.pop())===a.dataset.folder)a.hidden=false})()</script>
+<div class="brand"><svg class="logo" viewBox="18 50 214 150" fill="currentColor" aria-hidden="true"><path d="M80.5165 60.4055C76.2827 67.7288 75.4817 70.1317 74.9096 77.2261C74.5663 81.8032 74.7952 87.5244 75.4817 90.0418C76.8548 94.7332 76.0921 95.8546 74.4519 95.191C72.8194 94.5455 67.7008 93.4746 47.4474 93.0169C33.1442 92.6736 21.244 92.5592 21.0151 92.5592C20.7862 92.6736 23.1892 96.1064 26.1643 100.226C29.1393 104.345 45.8455 127.573 63.1238 151.832L94.4764 196L96.4216 192.338C97.4515 190.279 101.228 183.184 104.889 176.548C108.436 169.911 112.899 161.215 114.844 157.21C117.705 151.26 118.62 150.23 119.65 151.603C120.337 152.518 128.575 162.931 138.073 174.602L155.236 196L157.296 193.483C158.44 191.995 161.415 186.732 163.933 181.811C169.311 170.941 169.769 163.732 165.992 154.807L163.59 149.2L188.077 112.24C201.579 91.8726 215.081 71.3904 218.171 66.699C221.26 62.0075 224.693 56.9728 225.837 55.7141L228.126 53.1967H207.071C180.296 53.0823 173.316 54.4554 163.475 62.0075C155.122 68.1865 150.888 74.3655 140.247 94.9621L132.351 110.295L130.292 107.663C129.033 106.176 126.63 103.201 124.914 101.027C108.78 81.0022 87.9541 54.4554 87.4964 53.1967C86.4666 50.6794 85.5512 51.7092 80.5165 60.4055ZM213.365 62.0075C212.22 62.8085 184.758 103.544 169.54 127.116C160.958 140.389 157.91 142.982 156.953 141.076C156.601 140.364 155.292 138.4 154.092 136.727C152.49 135.011 149.286 131.006 146.883 127.688C142.65 121.738 141.547 122.036 140.933 122.996C140.292 124 139.583 125.309 138.988 126.429C137.845 128.582 137.272 128.718 140.59 132.265C147.456 139.588 156.953 152.289 158.669 156.294C161.072 162.244 160.843 171.055 157.983 177.806C156.61 180.896 155.236 183.413 154.779 183.299C154.435 183.299 148.485 175.976 141.505 167.165C134.64 158.24 127.431 149.314 125.715 147.255L122.396 143.364L125.829 137.414C127.66 134.096 131.894 126.2 135.212 119.907C158.669 75.2809 162.445 69.7885 171.599 65.5547C174.574 64.1816 178.007 62.5796 179.266 62.0075C181.44 60.9777 211.419 59.9478 213.479 60.8633C213.937 61.0921 213.937 61.5498 213.365 62.0075ZM98.7102 79.8579C104.66 87.41 113.7 98.8526 118.849 105.26L128.346 117.046L123.541 126.658C120.794 132.036 118.277 136.384 117.819 136.384C117.133 136.499 110.954 128.832 90.9292 103.315C83.0338 93.2457 80.9742 87.5244 81.6607 78.7137C82.3473 72.077 85.6656 63.495 87.0387 65.097C87.4964 65.6691 92.76 72.3058 98.7102 79.8579ZM77.3125 103.315C83.4915 106.405 88.5263 111.668 100.999 127.917C105.69 133.981 110.382 140.046 111.64 141.533C113.7 144.165 113.7 144.28 108.78 153.205C106.148 158.24 101.571 166.821 98.7102 172.428C94.362 180.896 93.3322 182.269 92.3023 180.553C91.7302 179.408 89.3273 176.09 87.1532 173C84.9791 169.911 80.6309 163.732 77.427 159.269C74.3375 154.692 67.2431 144.852 61.7507 137.185C56.2582 129.519 50.0792 121.051 48.0196 118.191C46.0743 115.33 42.4127 110.41 40.0098 107.206C37.6068 104.002 35.6616 101.027 35.6616 100.569C35.6616 99.9968 43.7858 99.8824 53.7409 100.111C70.1037 100.455 72.1634 100.798 77.3125 103.315Z"/></svg><span>Food Deliver App</span></div>
+
+</div></header>
+<div class="shell">
+<aside class="side"><details class="menu" open><summary>Menu</summary><nav class="nav2" aria-label="Report sections"><a href="#/overview" data-nav="overview">Overview</a><a href="#/context" data-nav="context">Context<span class="nm">8</span></a><a href="#/journey" data-nav="journey">Stages<span class="nm">9</span></a><a href="#/docs" data-nav="docs">Work<span class="nm">6</span></a><a href="#/trace" data-nav="trace">Insights<span class="nm">0</span></a><a href="#/reference" data-nav="reference">Standards<span class="nm">3</span></a><a href="#/guide" data-nav="guide">Guide</a></nav></details></aside>
+<main id="main">
+<section class="view" id="v-overview"><div class="wrap"><div class="banner" role="note"><strong>This report still has sample content or blanks</strong> (about 3, including items labelled [EXAMPLE]). Fill them in or delete them before sharing.</div><h1>Food Deliver App</h1><p class="lede">How well does the app guide users through these three processes, and what would improve it? *(draft: to confirm)*</p><p class="smeta">Stage: Setup · Owner: Individual course assignment · Agreement: <strong>Not available</strong></p><h2>Where you are</h2><div class="sgrid"><a class="stcard" href="#/journey"><span class="sti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><span class="stn">Discover</span><strong class="stnum">0<small>/4</small></strong><span class="stl">verified</span><i class="stbar"><b style="width:0%"></b><u style="width:100%"></u></i></a><a class="stcard" href="#/journey"><span class="sti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></span><span class="stn">Define</span><strong class="stnum">&ndash;</strong><span class="stl">no documents</span><i class="stbar"><b style="width:0%"></b><u style="width:0%"></u></i></a><a class="stcard" href="#/journey"><span class="sti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span><span class="stn">Develop</span><strong class="stnum">&ndash;</strong><span class="stl">no documents</span><i class="stbar"><b style="width:0%"></b><u style="width:0%"></u></i></a><a class="stcard" href="#/journey"><span class="sti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></span><span class="stn">Deliver</span><strong class="stnum">&ndash;</strong><span class="stl">no documents</span><i class="stbar"><b style="width:0%"></b><u style="width:0%"></u></i></a></div><div class="ovgrid"><section class="ovcard"><h3 class="ctitle">The problem</h3><p class="sempty">No opportunity yet. It comes from what users said: run <code>../../skills/interview/SKILL.md</code> or <code>../../skills/user-voice-synthesis/SKILL.md</code>, then <code>../../skills/framing/SKILL.md</code>.</p></section><section class="ovcard"><h3 class="ctitle">What you chose</h3><p class="sempty">No decision yet. Compare directions first: run <code>../../skills/ideation/SKILL.md</code>.</p></section><section class="ovcard"><h3 class="ctitle">What testing showed</h3><p class="sempty">Nothing tested yet. Build a prototype with <code>../../skills/prototype/SKILL.md</code>, then test it with <code>../../skills/user-testing/SKILL.md</code>.</p></section><section class="ovcard"><h3 class="ctitle">Before handoff</h3><p class="sempty">Nothing to check yet.</p></section><section class="ovcard wide"><h3 class="ctitle">Next</h3><ol class="snext"><li><strong>Learn what users need</strong><code>Run ../../skills/interview/SKILL.md</code></li><li><strong>Then frame the problem</strong><code>Run ../../skills/framing/SKILL.md</code></li></ol></section></div><details class="ovmore"><summary>Warnings <span class="wcount">0</span></summary><p class="ok">Nothing to fix: every decision traces back to an opportunity, and serious findings have a way forward.</p><details class="winfo"><summary>Housekeeping <span class="wcount">16</span></summary><div class="wgroups"><details class="wgroup" id="wg-art-orphan"><summary><span class="wtitle">Document not linked to any item</span><span class="wcount">6</span></summary><p class="whint">Fill in the supports property in the document.</p><ul class="wgrid"><li><a class="chip t-A" href="#/ai-use-log" title="AI use log">AI use log</a></li><li><a class="chip t-A" href="#/submission-timeline" title="Submission timeline">Submission timeline</a></li><li><a class="chip t-A" href="#/current-user-flow" title="Current user flow">Current user flow</a></li><li><a class="chip t-A" href="#/heuristic-evaluation" title="Heuristic evaluation of the current experience">Heuristic evaluation of th…</a></li><li><a class="chip t-A" href="#/research-plan" title="Research plan">Research plan</a></li><li><a class="chip t-A" href="#/task-analysis-and-user-journey" title="Task analysis and user journey">Task analysis and user jou…</a></li></ul></details><details class="wgroup" id="wg-principles"><summary><span class="wtitle">Principle without a check question</span><span class="wcount">10</span></summary><p class="whint">Write a yes/no question for each principle.</p><ul class="wgrid"><li><a class="chip t-P" href="#/principles" title="Visibility of system status">Principle 1</a></li><li><a class="chip t-P" href="#/principles" title="Match between system and the real world">Principle 2</a></li><li><a class="chip t-P" href="#/principles" title="User control and freedom">Principle 3</a></li><li><a class="chip t-P" href="#/principles" title="Consistency and standards">Principle 4</a></li><li><a class="chip t-P" href="#/principles" title="Error prevention">Principle 5</a></li><li><a class="chip t-P" href="#/principles" title="Recognition rather than recall">Principle 6</a></li><li><a class="chip t-P" href="#/principles" title="Flexibility and efficiency of use">Principle 7</a></li><li><a class="chip t-P" href="#/principles" title="Aesthetic and minimalist design">Principle 8</a></li><li><a class="chip t-P" href="#/principles" title="Help users recognise, diagnose and recover from errors">Principle 9</a></li><li><a class="chip t-P" href="#/principles" title="Help and documentation">Principle 10</a></li></ul></details></div></details></details><details class="ovmore"><summary>Gates</summary><div class="glist"><div class="grow"><div class="gn"><small>Discover</small><strong>Question + evidence</strong></div><div class="gs ">Open</div><div class="gb"><i style="width:0%"></i></div><div class="gc">0/7 checks</div></div><div class="grow"><div class="gn"><small>Define</small><strong>Evidence + agreement</strong></div><div class="gs ">Open</div><div class="gb"><i style="width:0%"></i></div><div class="gc">0/4 checks</div></div><div class="grow"><div class="gn"><small>Develop</small><strong>Alignment</strong></div><div class="gs ">Open</div><div class="gb"><i style="width:0%"></i></div><div class="gc">0/4 checks</div></div><div class="grow"><div class="gn"><small>Deliver</small><strong>Real users + buildability</strong></div><div class="gs ">Open</div><div class="gb"><i style="width:0%"></i></div><div class="gc">0/4 checks</div></div></div></details><details class="ovmore"><summary>Decision alignment</summary><p class="ok">No decisions yet.</p></details><details class="help"><summary>How to read the report, and key terms</summary><p>Key idea: <strong>every decision traces back to the user need behind it.</strong> Use the left menu to move between pages. Open the items marked ⚠ in Insights to see what needs a look.</p><dl><dt>Opportunity</dt><dd>What users need or struggle with, backed by evidence. Not a feature.</dd><dt>Hypothesis</dt><dd>What the team believes, with how it will know if it is right.</dd><dt>Decision</dt><dd>A specific design choice, with the reason.</dd><dt>Evidence</dt><dd>A test or study that checks a hypothesis, with its result. A <em>planned</em> or <em>simulated</em> label means it is not evidence from real users yet.</dd><dt>Metric</dt><dd>The number that tells if a hypothesis is right. An <em>assumed</em> label means the product owner has not confirmed it.</dd><dt>Principle</dt><dd>A design rule every decision should meet, for example the 10 usability heuristics by Nielsen (P1 to P10).</dd><dt>Gate</dt><dd>A check before moving to the next stage.</dd><dt>Alignment</dt><dd>How well each decision traces to a user need and meets the principles.</dd></dl></details></div></section>
+<section class="view reference" id="v-context"><div class="wrap"><div class="jlist"><h1>Context</h1><p class="lede">Background for the project: product and users, rules, design system, open questions.</p><div class="where"><span class="wl">Folder</span> <code>context/</code><br><span class="wl">Add new</span> drop a <code>.md</code> file into the folder and the page appears here. The AI tool reads this folder first.</div><div class="jcards"><a class="jcard" href="#/product-and-users"><h3>Product and users</h3><p>Half a page, anonymised. This file goes into the AI steps first, so write it for a reader who knows nothing about the project.</p></a><a class="jcard" href="#/accessibility-rules"><h3>Accessibility rules</h3><p>The requirements the design must meet. Edit them to match your company&#x27;s standard. If your company has none, use this list as a ba</p></a><a class="jcard" href="#/data-rules"><h3>Data rules</h3><p>Three lines, in your own words. Drafted from our discussion: to confirm by the owner.</p></a><a class="jcard" href="#/design-system-notes"><h3>Design system notes</h3><p>Write this when you start building the prototype, in a form an AI coding tool can read. Short, concrete, no paragraph that needs i</p></a><a class="jcard" href="#/glossary"><h3>Glossary (optional)</h3><p>In your own words, with an example from your project. Start with the three terms you meet most often in the project.</p></a><a class="jcard" href="#/open-questions"><h3>Open questions</h3><p>What the AI says it needs to know that product-and-users.md does not say yet. Keep the useful ones.</p></a><a class="jcard" href="#/market-vietnam-vs-global"><h3>Market context: Vietnam and the world</h3><p>Leads from a web search on 24 Nov 2026. Every figure below is to confirm: I only saw search summaries, not the original reports. O</p></a><a class="jcard" href="#/source-rules"><h3>Source rules</h3><p>This is an academic paper. Every claim needs a valid, current source or your own data. The AI follows these rules in every step.</p></a></div></div><section class="doc" id="product-and-users" data-title="Product and users"><a class="back" href="#/context">← Context</a><div class="reading"><h1>Product and users</h1>
+<p><em>Half a page, anonymised. This file goes into the AI steps first, so write it for a reader who knows nothing about the project.</em></p>
+<h2>The product</h2>
+<p>Grab's food delivery in Vietnam lets people find food and drinks from restaurants and have them delivered to their door, so they do not need to go out to buy them. It is one part of Grab's larger ecosystem of services, and this project looks only at the food delivery journey.</p>
+<h2>The users</h2>
+<p>Anyone aged about 18 to 50: students, people at work, and retired people. Ordering food is a common, everyday need, so the owner does not limit the group by age. This is the owner's working assumption, not a research finding.</p>
+<p>Their main goal is to reach restaurants that are not near them and to get food without leaving home. It suits people who are busy with work and have no time to cook. Typical situations are dinner at home and food late at night when no one wants to cook.</p>
+<h2>Where it stands now</h2>
+<p>The owner has used the app in Vietnam on an iPhone, with the English interface (app version v33437965), and has taken screenshots of the whole journey from end to end: discovering the app, choosing a restaurant, picking the food, paying, and tracking the delivery. These screens have not been analysed yet.</p>
+<h2>What success might look like</h2>
+<p><em>assumed: the owner's first ideas, to be tested by the research.</em></p>
+<ul><li>Users can explore restaurants, not only the ones they already know.</li><li>New restaurants can reach users more easily, and users find it easy to try a restaurant once or become loyal to it.</li><li>Payment is smooth: little manual input, one-time payment, quick connection to a payment method.</li><li>Tracking the delivery is easy.</li></ul>
+<h2>What I do not know</h2>
+<ul><li>What the best experience for this journey looks like. This is for the research to find out.</li><li>Who the real users are in Vietnam, and how well the age and lifestyle assumptions above hold.</li><li>How the app handles discovering new restaurants and rewarding loyal customers today.</li><li>Which payment methods the app offers in Vietnam and how many steps they need.</li><li>Which problems users actually meet in the three functions: finding and ordering, checking out and paying, and tracking the order.</li></ul></div><p class="srcfile">Source file: <code>context/product-and-users.md</code></p></section><section class="doc" id="accessibility-rules" data-title="Accessibility rules"><a class="back" href="#/context">← Context</a><div class="reading"><h1>Accessibility rules</h1>
+<p><em>The requirements the design must meet. Edit them to match your company's standard. If your company has none, use this list as a baseline (WCAG 2.2 AA).</em></p>
+<ul><li>Text contrast of at least 4.5:1 (3:1 for large text and interface components such as input borders)</li><li>Everything works with a keyboard, in a sensible order, and focus is always visible</li><li>Every input has a visible label, and error messages say what went wrong and how to fix it</li><li>Touch targets of at least 44 x 44 px when possible (never below 24 x 24)</li><li>Meaning is never conveyed by colour alone</li><li>Images that carry meaning have a text alternative</li></ul>
+<p><strong>Rules specific to my company (if any):</strong></p></div><p class="srcfile">Source file: <code>context/accessibility-rules.md</code></p></section><section class="doc" id="data-rules" data-title="Data rules"><a class="back" href="#/context">← Context</a><div class="reading"><h1>Data rules</h1>
+<p><em>Three lines, in your own words. Drafted from our discussion: <strong>to confirm</strong> by the owner.</em></p>
+<ol><li>What I am allowed to paste into an AI tool: my own notes and plans, text I wrote, the assignment brief, anonymised test data, and screenshots of the app with personal data blurred.</li><li>What I will not paste (or only paste after anonymising): participant names, recordings, raw session notes, and any account, address, phone number or payment details. These stay in <code>work/sources/_raw-private/</code>.</li><li>Which tool I use for what: Claude helps with structure, planning, explaining concepts and language editing. It does not collect or analyse my data, write my findings, or choose my sources. Every AI use is logged in <code>work/ai-use-log.md</code>, and the source rules are in <code>context/source-rules.md</code>.</li></ol></div><p class="srcfile">Source file: <code>context/data-rules.md</code></p></section><section class="doc" id="design-system-notes" data-title="Design system notes"><a class="back" href="#/context">← Context</a><div class="reading"><h1>Design system notes</h1>
+<p><em>Write this when you start building the prototype, in a form an AI coding tool can read. Short, concrete, no paragraph that needs interpreting.</em></p>
+<h2>Where the source of truth lives</h2>
+<p>(file, link or folder)</p>
+<h2>Tokens</h2>
+<ul><li>Colour: (name = value, and what it is used for)</li><li>Type: (font family, size, weight, line height)</li><li>Spacing and radius:</li></ul>
+<h2>Components</h2>
+<div class="table-wrap"><table class="bal" style="min-width:242px"><colgroup><col style="width:39.4%"><col style="width:30.5%"><col style="width:30.0%"></colgroup><thead><tr><th scope="col">Component</th><th scope="col">States</th><th scope="col">Rules</th></tr></thead><tbody><tr><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr></tbody></table></div>
+<h2>Patterns</h2>
+<p>(How screens are put together: layout grid, navigation, forms, empty states and error states)</p>
+<h2>Do and do not</h2>
+<ul><li>Do:</li><li>Do not:</li></ul>
+<h2>Accessibility rules</h2>
+<p>(Point to <code>accessibility-rules.md</code>, and list what is specific to each component)</p></div><p class="srcfile">Source file: <code>context/design-system-notes.md</code></p></section><section class="doc" id="glossary" data-title="Glossary (optional)"><a class="back" href="#/context">← Context</a><div class="reading"><h1>Glossary (optional)</h1>
+<p><em>In your own words, with an example from your project. Start with the three terms you meet most often in the project.</em></p>
+<div class="table-wrap"><table class="bal" style="min-width:334px"><colgroup><col style="width:17.0%"><col style="width:20.6%"><col style="width:28.7%"><col style="width:33.8%"></colgroup><thead><tr><th scope="col">Term</th><th scope="col">In my words</th><th scope="col">Example from my project</th><th scope="col">What I will do differently</th></tr></thead><tbody><tr><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr></tbody></table></div></div><p class="srcfile">Source file: <code>context/glossary.md</code></p></section><section class="doc" id="open-questions" data-title="Open questions"><a class="back" href="#/context">← Context</a><div class="reading"><h1>Open questions</h1>
+<p><em>What the AI says it needs to know that <code>product-and-users.md</code> does not say yet. Keep the useful ones.</em></p>
+<div class="table-wrap"><table class="bal" style="min-width:412px"><colgroup><col style="width:33.7%"><col style="width:26.2%"><col style="width:21.5%"><col style="width:18.6%"></colgroup><thead><tr><th scope="col">Question</th><th scope="col">Why it matters</th><th scope="col">Who can answer</th><th scope="col">Status</th></tr></thead><tbody><tr><td>Is a submission around 15 Feb 2027 fine, and is Alternative C still open in the current catalogue?</td><td>The plan depends on both</td><td>Module manager</td><td>Email sent, waiting for a reply <em>(to confirm)</em></td></tr><tr><td>What is the oldest publication year I accept for sources, apart from foundational works?</td><td>Source rules need a clear limit</td><td>Me</td><td>Open</td></tr><tr><td>Which iPhone model and iOS version will I use for all screenshots and tests?</td><td>Keeps screens and results consistent</td><td>Me</td><td>Open</td></tr><tr><td>How many participants, and how will I recruit them?</td><td>Shapes the usability test</td><td>Me</td><td>Open, decide by 6 Dec 2026</td></tr><tr><td>How do I handle the cost of real orders in the test?</td><td>A checkout test may need real payments</td><td>Me</td><td>Open, decide by 6 Dec 2026</td></tr><tr><td>Will a second person help with the heuristic evaluation?</td><td>One evaluator finds fewer problems</td><td>Me</td><td>Open, decide by 6 Dec 2026</td></tr><tr><td>How does the app handle new restaurants and loyalty today?</td><td>Part of my first ideas for a better experience</td><td>Research (my walk-through)</td><td>Open</td></tr><tr><td>Which payment methods does the app offer in Vietnam, and how many steps do they take?</td><td>The payment flow is one of the three functions</td><td>Research (my walk-through)</td><td>Open</td></tr></tbody></table></div></div><p class="srcfile">Source file: <code>context/open-questions.md</code></p></section><section class="doc" id="market-vietnam-vs-global" data-title="Market context: Vietnam and the world"><a class="back" href="#/context">← Context</a><div class="reading"><h1>Market context: Vietnam and the world</h1>
+<p><em>Leads from a web search on 24 Nov 2026. Every figure below is <strong>to confirm</strong>: I only saw search summaries, not the original reports. Open each source, check the number, the year and the definition, and note the page number before it goes into the paper. The oldest-source rule is still open.</em></p>
+<h2>Vietnam</h2>
+<div class="table-wrap"><table class="bal" style="min-width:360px"><colgroup><col style="width:20.5%"><col style="width:30.5%"><col style="width:31.4%"><col style="width:17.6%"></colgroup><thead><tr><th scope="col">What</th><th scope="col">Figure as reported</th><th scope="col">Source</th><th scope="col">Status</th></tr></thead><tbody><tr><td>Size of online food delivery in 2025</td><td>About 2.1 billion US dollars (gross value of orders), up 19% on 2024, from Momentum Works</td><td><a href="https://e.vnexpress.net/news/business/data-speaks/vietnamese-spend-2-1b-on-food-delivery-in-2025-5011109.html" target="_blank" rel="noopener">VnExpress</a></td><td>To confirm</td></tr><tr><td>Market share in 2025</td><td>ShopeeFood and GrabFood each about 48%, beFood about 4%</td><td><a href="https://e.vnexpress.net/news/business/data-speaks/shopeefood-and-grabfood-dominate-vietnam-s-food-delivery-market-with-90-share-4911896.html" target="_blank" rel="noopener">VnExpress</a></td><td>To confirm</td></tr><tr><td>Share of orders in a 2025 survey</td><td>ShopeeFood 56%, GrabFood 36% (a different measure from the gross value above)</td><td><a href="https://news.tuoitre.vn/shopeefood-tops-vietnams-online-food-delivery-orders-in-survey-grab-leads-by-market-share-103250709133722885.htm" target="_blank" rel="noopener">Tuoi Tre News</a></td><td>To confirm</td></tr><tr><td>Cash for online food orders</td><td>About 48% in Ho Chi Minh City and 52% in Hanoi, from a survey of 4,000 people aged 15 to 40. The date was not shown, so this may be old</td><td><a href="https://kisvn.vn/en/cash-payments-for-food-remain-high-in-vietnams-two-largest-cities" target="_blank" rel="noopener">KISVN</a></td><td>To confirm, may be outdated</td></tr><tr><td>Cash on delivery in online shopping in general</td><td>A 2025 survey says 35% prefer it. A 2022 report says about 70% chose it. These measure different things</td><td><a href="https://tgmresearch.com/vietnam-ecommerce-payment-shift-2025.html" target="_blank" rel="noopener">TGM Research</a>, <a href="https://www.statista.com/statistics/1275013/vietnam-share-of-online-shoppers-who-used-cod-shipping/" target="_blank" rel="noopener">Statista</a></td><td>To confirm, not food delivery</td></tr></tbody></table></div>
+<h2>Global</h2>
+<div class="table-wrap"><table class="bal" style="min-width:390px"><colgroup><col style="width:19.4%"><col style="width:30.1%"><col style="width:33.3%"><col style="width:17.3%"></colgroup><thead><tr><th scope="col">What</th><th scope="col">Figure as reported</th><th scope="col">Source</th><th scope="col">Status</th></tr></thead><tbody><tr><td>Size of online food delivery</td><td>Estimates differ widely: about 148 billion US dollars in 2024, about 320 billion in 2025, and 886 billion in 2023. They define the market differently</td><td><a href="https://imarcgroup.com/online-food-delivery-market" target="_blank" rel="noopener">IMARC</a>, <a href="https://fortunebusinessinsights.com/online-food-delivery-market-110672" target="_blank" rel="noopener">Fortune Business Insights</a>, <a href="https://marketresearch.com/GlobalData-v3648/Online-Food-Delivery-Size-Share-34409476" target="_blank" rel="noopener">MarketResearch.com</a></td><td>To confirm, do not compare them</td></tr><tr><td>Number of users worldwide</td><td>No figure found. Statista has forecasts behind a paywall</td><td><a href="https://statista.com/study/110703/statista-dossier-on-online-food-delivery-worldwide" target="_blank" rel="noopener">Statista</a></td><td>Not found</td></tr></tbody></table></div>
+<h2>What this means for the paper</h2>
+<ul><li>Cash is still common in Vietnam, which supports your point about flexible payment, but the food-specific figure may be old and needs a newer source.</li><li>Grab holds about half of the Vietnam market in one report, which is useful when you explain that Grab is a large provider.</li><li>The global figures disagree too much to use without choosing one report and explaining its definition. Market reports and news articles are weak sources for an academic paper. Look for peer-reviewed studies or official statistics to back them up.</li><li>I found nothing on how users in Vietnam receive orders at houses versus apartment buildings. That needs a source or your own test data.</li></ul></div><p class="srcfile">Source file: <code>context/market-vietnam-vs-global.md</code></p></section><section class="doc" id="source-rules" data-title="Source rules"><a class="back" href="#/context">← Context</a><div class="reading"><h1>Source rules</h1>
+<p><em>This is an academic paper. Every claim needs a valid, current source or your own data. The AI follows these rules in every step.</em></p>
+<ol><li><strong>Every claim has a source.</strong> Definitions, method descriptions, theory and statements about users need a citation. Results and findings come only from your own data: your walk-through of the app, your evaluation and your usability tests.</li><li><strong>Citation style.</strong> APA 7 with page numbers, at most two pages per reference, as the brief requires.</li><li><strong>Valid sources.</strong> Use peer-reviewed articles, established textbooks, recognised standards and primary sources. Do not cite AI tools, blog posts of unclear origin or anonymous pages. The university's study materials are supporting material only and are not cited directly.</li><li><strong>Current sources.</strong> Prefer recent work. A foundational work, such as the original source of a method, may be older, but mark it as foundational. <strong>To confirm:</strong> the oldest publication year you accept for other sources.</li><li><strong>No inventing.</strong> The AI never makes up a citation, a page number, a quote, a figure or a participant result. If it does not know, it says so.</li><li><strong>When unsure, ask.</strong> If the AI cannot verify a source, a year, a page number or a claim, it asks you and marks the item <strong>to confirm</strong>. You confirm it against the original before it goes into the paper.</li><li><strong>The AI may suggest sources to look for, not sources to trust.</strong> You open every suggested source, read the relevant pages and check the details yourself.</li></ol></div><p class="srcfile">Source file: <code>context/source-rules.md</code></p></section></div></section>
+<section class="view journey" id="v-journey"><div class="wrap"><div class="jlist"><h1>Stages</h1><p class="lede">Selected and kept up to date automatically from <code>work/</code> and <code>insights/</code>.</p><div class="jcards"><a class="jcard" href="#/stage-scope"><span class="wk">01 · Discover</span><h3>Scope</h3><p>Business question, outcome, agreement</p></a><a class="jcard" href="#/stage-evidence"><span class="wk">02 · Discover</span><h3>Evidence</h3><p>What was learned from the sources, one source per claim</p></a><a class="jcard" href="#/stage-problem-brief"><span class="wk">03 · Define</span><h3>Problem brief</h3><p>Opportunity, hypothesis, metric, principle</p></a><a class="jcard" href="#/stage-develop"><span class="wk">04 · Develop</span><h3>Options, flows, prototype</h3><p>The directions explored, decisions</p></a><a class="jcard" href="#/stage-alignment"><span class="wk">05 · Develop</span><h3>Alignment check</h3><p>Principle audit, verdict</p></a><a class="jcard" href="#/stage-findings"><span class="wk">06 · Deliver</span><h3>Findings</h3><p>Results of testing with users</p></a><a class="jcard" href="#/stage-handoff"><span class="wk">07 · Deliver</span><h3>Handoff and measurement</h3><p>Handoff pack, measurement plan</p></a><a class="jcard" href="#/stage-learning"><span class="wk">08 · Learn</span><h3>Learning</h3><p>What was learned after launch: metric against target, traced back to the opportunity</p></a><a class="jcard" href="#/stage-decision-log"><span class="wk">09 · All stages</span><h3>Decision log</h3><p>One line per decision, with its reason</p></a></div></div><section class="doc" id="stage-scope" data-title="Scope"><a class="back" href="#/journey">← Stages</a><div class="reading"><h1>Scope</h1><p class="lede">Business question, outcome, agreement</p><p class="stgate"><a href="#/gates">Gate Discover (Question + evidence)</a>: 0/7 checks passed · Open</p><p class="empty">This page has no sources yet: add a file to the From work column, or pick a table in the Item tables column, in <code>stages/README.md</code>.</p></div><p class="srcfile">This page is built from: no sources yet</p><nav class="pn" aria-label="Previous and next page"><span></span><a href="#/stage-evidence">Evidence →</a></nav></section><section class="doc" id="stage-evidence" data-title="Evidence"><a class="back" href="#/journey">← Stages</a><div class="reading"><h1>Evidence</h1><p class="lede">What was learned from the sources, one source per claim</p><p class="stgate"><a href="#/gates">Gate Discover (Question + evidence)</a>: 0/7 checks passed · Open</p><p class="empty">This page has no sources yet: add a file to the From work column, or pick a table in the Item tables column, in <code>stages/README.md</code>.</p></div><p class="srcfile">This page is built from: no sources yet</p><nav class="pn" aria-label="Previous and next page"><a href="#/stage-scope">← Scope</a><a href="#/stage-problem-brief">Problem brief →</a></nav></section><section class="doc" id="stage-problem-brief" data-title="Problem brief"><a class="back" href="#/journey">← Stages</a><div class="reading"><h1>Problem brief</h1><p class="lede">Opportunity, hypothesis, metric, principle</p><p class="stgate"><a href="#/gates">Gate Define (Evidence + agreement)</a>: 0/4 checks passed · Open</p><h2>Opportunities (ranked)</h2><div class="table-wrap"><table class="bal" style="min-width:506px"><colgroup><col style="width:13.8%"><col style="width:13.8%"><col style="width:21.3%"><col style="width:14.3%"><col style="width:20.2%"><col style="width:16.6%"></colgroup><thead><tr><th scope="col">Rank</th><th scope="col">ID</th><th scope="col">Opportunity</th><th scope="col">Impact</th><th scope="col">Confidence</th><th scope="col">Rank reason</th></tr></thead><tbody></tbody></table></div><h2>Hypotheses</h2><div class="table-wrap"><table class="bal" style="min-width:340px"><colgroup><col style="width:21.4%"><col style="width:30.4%"><col style="width:21.9%"><col style="width:26.3%"></colgroup><thead><tr><th scope="col">ID</th><th scope="col">Hypothesis</th><th scope="col">Serves</th><th scope="col">Evidence</th></tr></thead><tbody></tbody></table></div><h2>Success metrics</h2><div class="table-wrap"><table class="bal" style="min-width:464px"><colgroup><col style="width:15.4%"><col style="width:15.9%"><col style="width:19.2%"><col style="width:15.9%"><col style="width:15.9%"><col style="width:17.6%"></colgroup><thead><tr><th scope="col">ID</th><th scope="col">Metric</th><th scope="col">Baseline</th><th scope="col">Target</th><th scope="col">Result</th><th scope="col">Verdict</th></tr></thead><tbody></tbody></table></div></div><p class="srcfile">This page is built from: item tables from <code>insights/</code></p><nav class="pn" aria-label="Previous and next page"><a href="#/stage-evidence">← Evidence</a><a href="#/stage-develop">Options, flows, prototype →</a></nav></section><section class="doc" id="stage-develop" data-title="Options, flows, prototype"><a class="back" href="#/journey">← Stages</a><div class="reading"><h1>Options, flows, prototype</h1><p class="lede">The directions explored, decisions</p><p class="stgate"><a href="#/gates">Gate Develop (Alignment)</a>: 0/4 checks passed · Open</p><h2>Design decisions</h2><div class="table-wrap"><table class="bal" style="min-width:636px"><colgroup><col style="width:10.7%"><col style="width:13.6%"><col style="width:10.7%"><col style="width:16.0%"><col style="width:16.7%"><col style="width:10.7%"><col style="width:10.7%"><col style="width:10.7%"></colgroup><thead><tr><th scope="col">ID</th><th scope="col">Decision</th><th scope="col">Tests</th><th scope="col">Follows principle</th><th scope="col">Pulls against principle</th><th scope="col">Owner</th><th scope="col">Date</th><th scope="col">State</th></tr></thead><tbody></tbody></table></div></div><p class="srcfile">This page is built from: item tables from <code>insights/</code></p><nav class="pn" aria-label="Previous and next page"><a href="#/stage-problem-brief">← Problem brief</a><a href="#/stage-alignment">Alignment check →</a></nav></section><section class="doc" id="stage-alignment" data-title="Alignment check"><a class="back" href="#/journey">← Stages</a><div class="reading"><h1>Alignment check</h1><p class="lede">Principle audit, verdict</p><p class="stgate"><a href="#/gates">Gate Develop (Alignment)</a>: 0/4 checks passed · Open</p><p class="empty">This page has no sources yet: add a file to the From work column, or pick a table in the Item tables column, in <code>stages/README.md</code>.</p></div><p class="srcfile">This page is built from: no sources yet</p><nav class="pn" aria-label="Previous and next page"><a href="#/stage-develop">← Options, flows, prototype</a><a href="#/stage-findings">Findings →</a></nav></section><section class="doc" id="stage-findings" data-title="Findings"><a class="back" href="#/journey">← Stages</a><div class="reading"><h1>Findings</h1><p class="lede">Results of testing with users</p><p class="stgate"><a href="#/gates">Gate Deliver (Real users + buildability)</a>: 0/4 checks passed · Open</p><h2>Evidence</h2><div class="table-wrap"><table class="bal" style="min-width:320px"><colgroup><col style="width:22.5%"><col style="width:27.5%"><col style="width:22.5%"><col style="width:27.5%"></colgroup><thead><tr><th scope="col">ID</th><th scope="col">Evidence</th><th scope="col">Tests</th><th scope="col">Measures</th></tr></thead><tbody></tbody></table></div><h2>Findings (by severity)</h2><div class="table-wrap"><table class="bal" style="min-width:598px"><colgroup><col style="width:11.8%"><col style="width:13.6%"><col style="width:14.9%"><col style="width:16.2%"><col style="width:12.4%"><col style="width:13.6%"><col style="width:17.4%"></colgroup><thead><tr><th scope="col">ID</th><th scope="col">Finding</th><th scope="col">Severity</th><th scope="col">Principle</th><th scope="col">Found in</th><th scope="col">Affects</th><th scope="col">Resolution</th></tr></thead><tbody></tbody></table></div></div><p class="srcfile">This page is built from: item tables from <code>insights/</code></p><nav class="pn" aria-label="Previous and next page"><a href="#/stage-alignment">← Alignment check</a><a href="#/stage-handoff">Handoff and measurement →</a></nav></section><section class="doc" id="stage-handoff" data-title="Handoff and measurement"><a class="back" href="#/journey">← Stages</a><div class="reading"><h1>Handoff and measurement</h1><p class="lede">Handoff pack, measurement plan</p><p class="stgate"><a href="#/gates">Gate Deliver (Real users + buildability)</a>: 0/4 checks passed · Open</p><p class="empty">This page has no sources yet: add a file to the From work column, or pick a table in the Item tables column, in <code>stages/README.md</code>.</p></div><p class="srcfile">This page is built from: no sources yet</p><nav class="pn" aria-label="Previous and next page"><a href="#/stage-findings">← Findings</a><a href="#/stage-learning">Learning →</a></nav></section><section class="doc" id="stage-learning" data-title="Learning"><a class="back" href="#/journey">← Stages</a><div class="reading"><h1>Learning</h1><p class="lede">What was learned after launch: metric against target, traced back to the opportunity</p><h2>Outcomes: metric, result and the need behind it</h2><div class="table-wrap"><table class="bal" style="min-width:682px"><colgroup><col style="width:10.2%"><col style="width:10.7%"><col style="width:10.7%"><col style="width:10.7%"><col style="width:13.4%"><col style="width:11.9%"><col style="width:15.3%"><col style="width:17.1%"></colgroup><thead><tr><th scope="col">ID</th><th scope="col">Metric</th><th scope="col">Target</th><th scope="col">Result</th><th scope="col">Measured on</th><th scope="col">Verdict</th><th scope="col">Hypothesis</th><th scope="col">Opportunity behind it</th></tr></thead><tbody></tbody></table></div></div><p class="srcfile">This page is built from: item tables from <code>insights/</code></p><nav class="pn" aria-label="Previous and next page"><a href="#/stage-handoff">← Handoff and measurement</a><a href="#/stage-decision-log">Decision log →</a></nav></section><section class="doc" id="stage-decision-log" data-title="Decision log"><a class="back" href="#/journey">← Stages</a><div class="reading"><h1>Decision log</h1><p class="lede">One line per decision, with its reason</p><section class="stsrc"><div class="sthead"><code>insights/project-log.md</code><a href="#/stage-decision-log">Open in Work →</a></div><p><em>One line per decision, with the reason. Record what was cut and the trade-offs accepted too. Say where the AI was used.</em></p>
+<p><em>The report checks the Items column: the codes must exist (for example D2, E1), and every decision should have at least one line here. A code in the Items column becomes a link.</em></p>
+<div class="table-wrap"><table class="bal" style="min-width:304px"><colgroup><col style="width:22.1%"><col style="width:27.2%"><col style="width:22.6%"><col style="width:28.0%"></colgroup><thead><tr><th scope="col">Date</th><th scope="col">Decision</th><th scope="col">Reason</th><th scope="col">Items (IDs)</th></tr></thead><tbody><tr><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr></tbody></table></div></section></div><p class="srcfile">This page is built from: <code>work/../insights/project-log.md</code></p><nav class="pn" aria-label="Previous and next page"><a href="#/stage-learning">← Learning</a><span></span></nav></section></div></section>
+<section class="view docs" id="v-docs"><div class="wrap"><div class="jlist"><h1>Work</h1><p class="lede">Everything made in the project: analysis, personas, surveys, flows, wireframes, prototypes. Each document links to the decisions it supports.</p><div class="where"><span class="wl">Folder</span> <code>work/</code><br><span class="wl">Add new</span> drop a single <code>.md</code> file into the folder; for several files (images, PDFs, video) create a subfolder with an <code>index.md</code>. Or ask the AI tool: "add this document to the project".</div><input id="dsearch" class="tsearch" type="search" placeholder="Search documents" aria-label="Search documents"><div class="tabs2" role="tablist" aria-label="Filter by stage"><button type="button" role="tab" aria-selected="true" data-fstage="">All<span class="n">6</span></button><button type="button" role="tab" aria-selected="false" data-fstage="Setup">Setup<span class="n">2</span></button><button type="button" role="tab" aria-selected="false" data-fstage="Discover">Discover<span class="n">4</span></button></div><p class="tcount" id="dcount" aria-live="polite"></p><div class="acards" id="acards"><a class="acard" href="#/ai-use-log" data-type="ai-log" data-stage="Setup" data-text="ai use log a running record of where ai helped in this paper, what it produced, what i kept or changed, and how i checked it. it feeds the ai-use sheet that goes after the cover page. ai-log"><h3>AI use log</h3><p>A running record of where AI helped in this paper, what it produced, what I kept or changed, and how I checked it. It feeds the AI-use sheet that goes after the cover page.</p><span class="ameta">Setup · <span class="st st-draft">Draft</span></span></a><a class="acard" href="#/submission-timeline" data-type="plan" data-stage="Setup" data-text="submission timeline a 13-phase plan from confirming the topic to uploading the case study on e-campus, with a start date, an end date and a clear finish line for each phase, plus a status column to tick off progress. planned submission: 15 feb 2027. plan"><h3>Submission timeline</h3><p>A 13-phase plan from confirming the topic to uploading the case study on E-Campus, with a start date, an end date and a clear finish line for each phase, plus a status column to tick off progress. Planned submission: 15 Feb 2027.</p><span class="ameta">Setup · <span class="st st-draft">Draft</span></span></a><a class="acard" href="#/current-user-flow" data-type="user-flow" data-stage="Discover" data-text="current user flow three user flows of grab food delivery in vietnam, one for each core function: find and order, check out and pay, and track the order. each flow shows the steps, the decisions and five possible breakdowns to test. screen references can be switched on. user-flow"><h3>Current user flow</h3><p>Three user flows of Grab food delivery in Vietnam, one for each core function: find and order, check out and pay, and track the order. Each flow shows the steps, the decisions and five possible breakdowns to test. Screen references can be switched on.</p><span class="ameta">Discover · <span class="st st-draft">Draft</span> · 3 files/links</span></a><a class="acard" href="#/heuristic-evaluation" data-type="heuristic-evaluation" data-stage="Discover" data-text="heuristic evaluation of the current experience screen-by-screen check of the current grab food delivery experience (29 screens, three journeys) against nielsen&#x27;s 10 heuristics, with a 0 to 4 severity for each problem. the findings are an ai draft from the screenshots only and still need the owner&#x27;s check. heuristic-evaluation"><h3>Heuristic evaluation of the current experience</h3><p>Screen-by-screen check of the current Grab food delivery experience (29 screens, three journeys) against Nielsen&#x27;s 10 heuristics, with a 0 to 4 severity for each problem. The findings are an AI draft from the screenshots only and still need the owner&#x27;s check.</p><span class="ameta">Discover · <span class="st st-draft">Draft</span> · 2 files/links</span></a><a class="acard" href="#/research-plan" data-type="research-plan" data-stage="Discover" data-text="research plan how the case study will analyse the user guidance of a food delivery app: three core functions, the methods for each, the usability test set-up, the data rules and the open decisions to confirm. draft for alternative c, process mapping. research-plan"><h3>Research plan</h3><p>How the case study will analyse the user guidance of a food delivery app: three core functions, the methods for each, the usability test set-up, the data rules and the open decisions to confirm. Draft for Alternative C, Process Mapping.</p><span class="ameta">Discover · <span class="st st-draft">Draft</span></span></a><a class="acard" href="#/task-analysis-and-user-journey" data-type="task-analysis" data-stage="Discover" data-text="task analysis and user journey for each of the three core functions: the user&#x27;s goal, the steps and where effort or friction may appear, plus one journey map across all three with assumed feelings and expectations. a draft built from my walk-through, to be tested. task-analysis"><h3>Task analysis and user journey</h3><p>For each of the three core functions: the user&#x27;s goal, the steps and where effort or friction may appear, plus one journey map across all three with assumed feelings and expectations. A draft built from my walk-through, to be tested.</p><span class="ameta">Discover · <span class="st st-draft">Draft</span> · 1 files/links</span></a></div></div><section class="doc" id="ai-use-log" data-title="AI use log"><a class="back" href="#/docs">← Work</a><header class="ahead"><p class="kind">Ai log · Setup</p><h1>AI use log</h1><p class="sum">A running record of where AI helped in this paper, what it produced, what I kept or changed, and how I checked it. It feeds the AI-use sheet that goes after the cover page.</p></header><p class="warnbox">⚠ This document is <strong>Draft</strong>: content has not been verified.</p><div class="reading"><p>The brief requires a separate sheet after the cover that states how and how much AI was used and how the results were checked. Keep this log up to date as you work, so the sheet is written from facts and not from memory.</p>
+<h2>How to log</h2>
+<p>After each time you use AI for the paper, add a row. Write what you asked, what it gave you, what you did with it (kept, edited or rejected), and how you checked it. Use <code>Not yet checked</code> until you have verified it yourself.</p>
+<h2>Log</h2>
+<div class="table-wrap"><table class="bal" style="min-width:586px"><colgroup><col style="width:11.0%"><col style="width:10.8%"><col style="width:20.4%"><col style="width:18.7%"><col style="width:20.0%"><col style="width:19.2%"></colgroup><thead><tr><th scope="col">Date</th><th scope="col">Tool</th><th scope="col">What I asked</th><th scope="col">What the AI produced</th><th scope="col">What I did with it</th><th scope="col">How it was checked</th></tr></thead><tbody><tr><td>23 Nov 2026</td><td>Claude</td><td>Turn the assignment brief from PDF into Markdown</td><td>A Markdown copy of the brief</td><td>Kept as a working copy</td><td>Not yet checked against the original PDF</td></tr><tr><td>23 Nov 2026</td><td>Claude</td><td>Set up the project folder and a submission timeline</td><td>A 13-phase timeline with dates</td><td>Dates based on my planned submission in February 2027</td><td>Not yet reviewed by me in full</td></tr><tr><td>23 Nov 2026</td><td>Claude</td><td>Draft a research plan for Alternative C</td><td>A draft plan with methods, tasks and open decisions</td><td>Decisions on app, country, language, device and functions are mine</td><td>Not yet reviewed by me in full. Method descriptions have no sources yet</td></tr><tr><td>23 Nov 2026</td><td>Claude</td><td>Write the product and users file from my answers</td><td>A structured file based on my words</td><td>Kept my wording, marked guesses as assumed</td><td>Not yet reviewed by me</td></tr><tr><td>23 Nov 2026</td><td>Claude</td><td>Extract screenshots from my recordings, group them by core function, remove duplicates and blur personal details</td><td>29 selected screens in three folders</td><td>Screens come from my own recordings. I decide which stay</td><td>Not yet checked at full size</td></tr><tr><td>23 Nov 2026</td><td>Claude</td><td>Draw one user flow per core function from my screenshots</td><td>Three flow diagrams with five possible breakdowns each</td><td>Steps come from my screens. Breakdowns are hypotheses to test</td><td>Not yet checked step by step against the app</td></tr><tr><td>24 Nov 2026</td><td>Claude</td><td>Write the task analysis and journey map from my answers about users and expectations</td><td>Three task analyses and one journey map, all effort ratings and feelings marked as assumed</td><td>Expectations and confusion points are my own words. Ratings and feelings are assumptions to test</td><td>Not yet reviewed by me in full</td></tr><tr><td>24 Nov 2026</td><td>Claude</td><td>Search the web for Vietnam and global food delivery data</td><td>A list of figures with links, found in search summaries</td><td>Kept as leads only, nothing used in the paper yet</td><td>Not checked against the original sources. Some figures may be old or defined differently</td></tr></tbody></table></div>
+<h2>Draft of the AI-use sheet</h2>
+<p><em>Fill in at the end, from the log. Check that every statement is true.</em></p>
+<p><strong>Tools used:</strong> Claude (Anthropic), ____________</p>
+<p><strong>What AI was used for:</strong> brainstorming, structuring the plan, explaining methods, formatting and language editing: ____________</p>
+<p><strong>What AI was not used for:</strong> collecting or analysing the test data, writing the findings, writing the recommendations, and choosing the sources. These are my own work.</p>
+<p><strong>Extent:</strong> about ____ % of the text was edited with AI help. The analysis, findings and recommendations were written by me.</p>
+<p><strong>How I checked the AI output:</strong> I read every AI-assisted text and rewrote it where needed. I checked each source, quote and page number against the original. I removed anything I could not verify. Results come only from my own walk-through, evaluation and tests.</p>
+<h2>Rules I follow</h2>
+<ul><li>I decide. The AI proposes and I approve.</li><li>The AI does not invent results, quotes, citations or page numbers.</li><li>If the AI is unsure about a fact or source, it asks me and I confirm it against the original.</li><li>AI tools are not cited as sources.</li></ul></div><p class="srcfile">Source file: <code>work/ai-use-log.md</code></p></section><section class="doc" id="submission-timeline" data-title="Submission timeline"><a class="back" href="#/docs">← Work</a><header class="ahead"><p class="kind">Plan · Setup</p><h1>Submission timeline</h1><p class="sum">A 13-phase plan from confirming the topic to uploading the case study on E-Campus, with a start date, an end date and a clear finish line for each phase, plus a status column to tick off progress. Planned submission: 15 Feb 2027.</p></header><p class="warnbox">⚠ This document is <strong>Draft</strong>: content has not been verified.</p><div class="reading"><div class="table-wrap"><table><tbody><tr><td><strong>Planned submission</strong></td><td>15 February 2027 (my own target)</td></tr><tr><td><strong>Official final date</strong></td><td>31 January 2028 (E-Campus). This is the hard limit, not the plan</td></tr><tr><td><strong>Start date</strong></td><td>23 November 2026 (assumed: change it if you start later)</td></tr><tr><td><strong>Case study</strong></td><td>Alternative C, Process Mapping, on the Grab food delivery mobile app, tested in Vietnam in English</td></tr><tr><td><strong>Target length</strong></td><td>55,000–60,000 characters in the body, maximum 20 pages</td></tr></tbody></table></div>
+<p>Submitting about a year before the official date leaves a large safety margin. If a phase runs late, you can move the planned submission before it touches the official date.</p>
+<h2>How to track progress</h2>
+<p>When you finish a phase, set <strong>Status</strong> to <code>Done</code> and write the date in <strong>Completed on</strong>. Use <code>In progress</code> while you work on it and <code>Not started</code> before that. Tell me "phase 4 is done" and I will update this file for you.</p>
+<p><strong>Progress: 2 of 13 phases done (3 and 4), 3 in progress (1, 2 and 5). Last updated 24 Nov 2026.</strong></p>
+<p>Phases 3 and 4 were finished about three weeks before their planned dates.</p>
+<p><strong>Still open in the phases in progress:</strong></p>
+<ul><li>Phase 1: waiting for the module manager about the schedule, and checking that Alternative C is open in the current catalogue.</li><li>Phase 5: the task analysis and the journey map are drafted in the work "Task analysis and user journey". Still to do: review them, and check the assumed ratings and feelings in the tests.</li><li>Phase 2: the research plan is drafted. Still to decide: the number of participants and how to recruit them, how to handle real order costs, whether a second person evaluates, and the iPhone model and iOS version.</li></ul>
+<h2>Phases</h2>
+<div class="table-wrap"><table class="bal" style="min-width:734px"><colgroup><col style="width:9.2%"><col style="width:14.9%"><col style="width:16.8%"><col style="width:15.9%"><col style="width:9.3%"><col style="width:9.3%"><col style="width:11.8%"><col style="width:12.9%"></colgroup><thead><tr><th scope="col">#</th><th scope="col">Phase</th><th scope="col">What you do</th><th scope="col">Finish line (done when)</th><th scope="col">Start</th><th scope="col">End</th><th scope="col">Status</th><th scope="col">Completed on</th></tr></thead><tbody><tr><td>1</td><td>Confirm the topic and app</td><td>Check that Alternative C is open in the current catalogue. Talk to the module manager about the schedule and the planned February 2027 submission. Check that the Grab app in Vietnam offers an English interface and note the app version.</td><td>Alternative C is confirmed, the schedule is discussed with the module manager, and the app language and version are noted</td><td>23 Nov 2026</td><td>29 Nov 2026</td><td>In progress</td><td></td></tr><tr><td>2</td><td>Plan the research</td><td>Write the research plan: the three core functions, the tasks for each, the number of participants, and how you will recruit and anonymise them. Choose the methods: heuristic evaluation, cognitive walkthrough, usability test.</td><td>One research plan file in <code>work/</code> that names the three functions, the methods and the participants</td><td>30 Nov 2026</td><td>6 Dec 2026</td><td>In progress</td><td></td></tr><tr><td>3</td><td>Document the app</td><td>Capture screenshots of every screen involved in the three functions. Record the date and app version. Save the files in <code>assets/</code>.</td><td>Every screen of the three functions is saved with its date and app version</td><td>7 Dec 2026</td><td>13 Dec 2026</td><td>Done</td><td>23 Nov 2026</td></tr><tr><td>4</td><td>Build the user flows</td><td>Draw one user flow for each of the three functions. Mark steps, decision points and possible breakdowns. Done as the work "Current user flow".</td><td>Three user flow diagrams drawn, each with its decision points and breakdowns marked</td><td>14 Dec 2026</td><td>20 Dec 2026</td><td>Done</td><td>24 Nov 2026</td></tr><tr><td>5</td><td>Task analysis and user journey</td><td>Analyse user goals, required actions and cognitive effort for each flow. Build the journey map with emotions, expectations and pain points.</td><td>One task analysis per flow and one journey map covering all three functions</td><td>21 Dec 2026</td><td>3 Jan 2027</td><td>In progress</td><td></td></tr><tr><td>6</td><td>Heuristic evaluation and walkthrough</td><td>Evaluate each flow against usability heuristics and run a cognitive walkthrough. Record each issue with a severity rating.</td><td>A complete issue list where every issue has a flow, a heuristic and a severity</td><td>4 Jan 2027</td><td>10 Jan 2027</td><td>Not started</td><td></td></tr><tr><td>7</td><td>Usability test</td><td>Run the test with participants on representative tasks. Note task success, time and problems. Anonymise all data before it goes into the paper or to any AI tool.</td><td>All sessions run, results recorded and anonymised, raw data stored only in the private folder</td><td>11 Jan 2027</td><td>17 Jan 2027</td><td>Not started</td><td></td></tr><tr><td>8</td><td>Findings and recommendations</td><td>Summarise the key problems. Turn each into a concrete, justified recommendation and link it to the evidence.</td><td>Every key problem has a recommendation and a link to its evidence</td><td>18 Jan 2027</td><td>24 Jan 2027</td><td>Not started</td><td></td></tr><tr><td>9</td><td>Literature and theory</td><td>Find current, citable sources for user flows, task analysis, journey mapping and heuristics. Note the page numbers for each reference. This runs alongside phases 3 to 8.</td><td>Reference list complete in APA 7, with page numbers (maximum two pages per reference)</td><td>30 Nov 2026</td><td>24 Jan 2027</td><td>Not started</td><td></td></tr><tr><td>10</td><td>Write the draft</td><td>Write introduction, methods, documentation, analysis, findings, recommendations and reflection. Start with introduction and methods while testing runs. Keep a running character count.</td><td>Full draft between 55,000 and 60,000 characters, within 20 pages</td><td>4 Jan 2027</td><td>31 Jan 2027</td><td>Not started</td><td></td></tr><tr><td>11</td><td>Appendix and AI note</td><td>Add the flows, journey map, screenshots and test materials to the appendix. Write the separate AI-use sheet after the cover.</td><td>Appendix attached and AI-use sheet written, total file under 100 MB</td><td>25 Jan 2027</td><td>5 Feb 2027</td><td>Not started</td><td></td></tr><tr><td>12</td><td>Review and proofread</td><td>Check structure, citations, page limit and formatting against the grading criteria. Run a grammar and spelling check.</td><td>Every grading criterion checked and the final version approved by you</td><td>6 Feb 2027</td><td>12 Feb 2027</td><td>Not started</td><td></td></tr><tr><td>13</td><td>Final check and submit</td><td>Check the file size, the page limit and the file name. Upload to E-Campus.</td><td>Upload confirmed on E-Campus</td><td>13 Feb 2027</td><td>15 Feb 2027</td><td>Not started</td><td></td></tr></tbody></table></div>
+<h2>Notes</h2>
+<ul><li>The weeks around 24 December to 1 January are likely to be slower. Phase 5 has extra time for that reason.</li><li>Phases 9 and 10 overlap the others on purpose, so you write while you research instead of leaving all the writing to the end.</li><li>Review this timeline every two weeks. If a phase is late, update the dates in this file.</li><li>Keep raw data from testing in <code>work/sources/_raw-private/</code> only. Do not give it to an AI tool before it is anonymised.</li><li>Keep personal notes in <code>_personal/</code>. They stay on your computer.</li></ul></div><p class="srcfile">Source file: <code>work/submission-timeline.md</code></p></section><section class="doc" id="current-user-flow" data-title="Current user flow"><a class="back" href="#/docs">← Work</a><header class="ahead"><p class="kind">User flow · Discover</p><h1>Current user flow</h1><p class="sum">Three user flows of Grab food delivery in Vietnam, one for each core function: find and order, check out and pay, and track the order. Each flow shows the steps, the decisions and five possible breakdowns to test. Screen references can be switched on.</p></header><p class="warnbox">⚠ This document is <strong>Draft</strong>: content has not been verified.</p><h2>Media</h2><div class="mcard"><div class="mhead"><strong>find-and-order.html</strong><span class="mtag">Prototype / HTML page</span><a class="btn" href="work/current-user-flow/find-and-order.html" target="_blank" rel="noopener">Open in new tab ↗</a></div><iframe loading="lazy" src="work/current-user-flow/find-and-order.html" title="find-and-order.html"></iframe></div><div class="mcard"><div class="mhead"><strong>checkout-and-pay.html</strong><span class="mtag">Prototype / HTML page</span><a class="btn" href="work/current-user-flow/checkout-and-pay.html" target="_blank" rel="noopener">Open in new tab ↗</a></div><iframe loading="lazy" src="work/current-user-flow/checkout-and-pay.html" title="checkout-and-pay.html"></iframe></div><div class="mcard"><div class="mhead"><strong>track-and-resolve.html</strong><span class="mtag">Prototype / HTML page</span><a class="btn" href="work/current-user-flow/track-and-resolve.html" target="_blank" rel="noopener">Open in new tab ↗</a></div><iframe loading="lazy" src="work/current-user-flow/track-and-resolve.html" title="track-and-resolve.html"></iframe></div><div class="reading"><p>One flow for each core function, drawn from the walk-through of 23 Nov 2026 (Grab app v33437965, iPhone, Vietnam, English interface).</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">Flow</th><th scope="col">Covers</th></tr></thead><tbody><tr><td>Find and order food</td><td>From opening the app to the basket</td></tr><tr><td>Check out and pay</td><td>From the order summary to placing the order, including changing the payment method</td></tr><tr><td>Track the order and resolve problems</td><td>From the order confirmation to rating the delivery, getting help or reordering</td></tr></tbody></table></div>
+<p>Use the button above each diagram to show or hide the screen references. They point to the screenshots in <code>work/assets/</code>.</p>
+<p>The numbered markers are possible breakdowns. They are hypotheses from the walk-through and must be checked in the heuristic evaluation and the usability test.</p></div><p class="srcfile">Source file: <code>work/current-user-flow/index.md</code></p></section><section class="doc" id="heuristic-evaluation" data-title="Heuristic evaluation of the current experience"><a class="back" href="#/docs">← Work</a><header class="ahead"><p class="kind">Heuristic evaluation · Discover</p><h1>Heuristic evaluation of the current experience</h1><p class="sum">Screen-by-screen check of the current Grab food delivery experience (29 screens, three journeys) against Nielsen&#x27;s 10 heuristics, with a 0 to 4 severity for each problem. The findings are an AI draft from the screenshots only and still need the owner&#x27;s check.</p></header><p class="warnbox">⚠ This document is <strong>Draft</strong>: content has not been verified.</p><h2>Media</h2><div class="mcard"><div class="mhead"><strong>heuristic-whiteboard.html</strong><span class="mtag">Prototype / HTML page</span><a class="btn" href="work/heuristic-evaluation/heuristic-whiteboard.html" target="_blank" rel="noopener">Open in new tab ↗</a></div><iframe loading="lazy" src="work/heuristic-evaluation/heuristic-whiteboard.html" title="heuristic-whiteboard.html"></iframe></div><div class="mcard"><div class="mhead"><strong>findings.json</strong><span class="mtag">Attachment</span><a class="btn" href="work/heuristic-evaluation/findings.json" target="_blank" rel="noopener">Open ↗</a></div></div><div class="reading"><p>Grab food delivery, Vietnam · iPhone · app v33437965 · English interface · walk-through of 23 Nov 2026.</p>
+<h2>1. What this is</h2>
+<p>A first pass at validating the current experience of the app. Every screen of the three journeys is checked against Nielsen's 10 usability heuristics, and every problem is rated from 0 (not a problem) to 4 (catastrophe). Screen references such as J1 · 01 are the same as in the user flows.</p>
+<p><strong>The whiteboard</strong> on this page draws the same findings on the screens, one sticky note and one pin per finding. Use the Journey list to show one journey at a time. Open it in a normal browser for sharp screenshots.</p>
+<p><strong>How it was made:</strong> every screenshot was looked at one by one and checked against the Figma overview board. The result was also compared with the possible breakdowns written in the three flow diagrams.</p>
+<h2>2. Summary</h2>
+<div class="table-wrap"><table class="bal" style="min-width:294px"><colgroup><col style="width:25.6%"><col style="width:17.7%"><col style="width:56.7%"></colgroup><thead><tr><th scope="col">Severity</th><th scope="col">Count</th><th scope="col">What it means here</th></tr></thead><tbody><tr><td>4 Catastrophe</td><td>0</td><td>No screen blocks the main task by itself in the screenshots</td></tr><tr><td>3 Major</td><td>5</td><td>Price shown as free but charged, fees that appear late, an expired-card message with no fix, a countdown sheet that covers the tracking screen, help that is split over four places</td></tr><tr><td>2 Minor</td><td>23</td><td>Crowded screens, hidden or truncated information, unclear labels</td></tr><tr><td>1 Cosmetic</td><td>2</td><td>Small inconsistencies</td></tr></tbody></table></div>
+<h2>3. Findings</h2>
+<h3>Journey 1: Find and order</h3>
+<div class="table-wrap"><table class="bal" style="min-width:670px"><colgroup><col style="width:9.4%"><col style="width:11.6%"><col style="width:16.4%"><col style="width:19.5%"><col style="width:16.5%"><col style="width:9.4%"><col style="width:17.0%"></colgroup><thead><tr><th scope="col">Tag</th><th scope="col">Screen</th><th scope="col">Where on the screen</th><th scope="col">What the user sees</th><th scope="col">Principle</th><th scope="col">Sev</th><th scope="col">Why this level</th></tr></thead><tbody><tr><td>UX-01</td><td>J1 · 01 Home</td><td>Service grid, bottom tab bar, floating bus button</td><td>About ten service icons in two rows plus a carousel (labels cut at the right edge: "Mal", "GrabCo…"), a rating card, two ad cards, red dots and a "5" badge on three tabs, and a floating bus button laid over an ad card</td><td>Aesthetic and minimalist design</td><td>2</td><td>Every user lands here. Food is still easy to see (top left), so it is a slowdown, not a block</td></tr><tr><td>UX-02</td><td>J1 · 02 Food section</td><td>Top banner, bottom tab bar, section titles</td><td>A promo banner fills the top third before any category. The bottom tabs change from Home, Moments, Payment, Activity, Messages to Discover, Near Me, Offers, Order Again, Cart, with no Home tab. "Near Me" is both a tile and a tab. The same kind of carousel is called "Order Now" on Home and "Buy Now" here</td><td>Consistency and standards</td><td>2</td><td>Users must re-learn the navigation inside one app</td></tr><tr><td>UX-03</td><td>J1 · 01 and J1 · 02</td><td>Search field</td><td>The placeholder is "Search food" on Home and "What shall we deliver?" in the food section</td><td>Consistency and standards</td><td>1</td><td>Same job, two wordings</td></tr><tr><td>UX-04</td><td>J1 · 02, J1 · 03, J1 · 04</td><td>"Deliver now / Home ▾" at the top; the "Current location / Home" row</td><td>The delivery address and time sit in the smallest text at the top. In the address screen the row "Current location" carries the sub-label "Home", so it is not clear whether this is the GPS position or a saved address. The ⋮ menu on that row has no label. The keyboard covers most of the list</td><td>Match between system and the real world; Visibility of system status</td><td>2</td><td>A wrong address is costly, and nothing makes the user confirm it (breakdown 2 is confirmed)</td></tr><tr><td>UX-05</td><td>J1 · 04, J1 · 06</td><td>Filter chip row under the search</td><td>The chip "Under 18.000đ" has a scooter icon and no label saying it is the delivery fee. The row is clipped on the right, so the last chip cannot be read</td><td>Match between system and the real world; Recognition rather than recall</td><td>2</td><td>Users may read it as a food price limit</td></tr><tr><td>UX-06</td><td>J1 · 04</td><td>Voucher chip and restaurant names</td><td>"Min. spend 100.00…" is cut off, so the amount cannot be read. Restaurant names are cut ("Tiệm Nước Mát Vị Sâm - 337…")</td><td>Aesthetic and minimalist design; Recognition rather than recall</td><td>2</td><td>The cut part is exactly the information needed to decide</td></tr><tr><td>UX-07</td><td>J1 · 06 Results</td><td>Small "Ad" tag left of the name; "Showing results in Delivery ▾"</td><td>The first two results for "Matcha" are both ads. The tag is small and grey. The search scope (Delivery) is a plain text dropdown</td><td>Match between system and the real world; Aesthetic and minimalist design</td><td>2</td><td>Breakdown 3 is confirmed. Users may take paid listings as the best match</td></tr><tr><td>UX-08</td><td>J1 · 06, J1 · 07</td><td>Fee line "Free ~~10.000đ~~ · From 17 mins" with the orange GrabUnlimited icon</td><td>The restaurant is shown as free delivery. At checkout (J2 · 01) the same order has "Delivery and applicable fees 17.000". The same page also offers "Join GrabUnlimited", which suggests the free price is the member price</td><td>Visibility of system status; Match between system and the real world</td><td>3</td><td>Most users see this, and it moves the price at the decisive moment. <em>To confirm: whether your account is a GrabUnlimited member</em></td></tr><tr><td>UX-09</td><td>J1 · 07, J1 · 08, J1 · 11</td><td>Floating red pill ("GrabMore ⊕", "Two restaurants, one delivery fee")</td><td>The pill sits over the "For You" title (J1 · 07), over a dish name (J1 · 08) and over the "+" button of a dish (J1 · 11)</td><td>Aesthetic and minimalist design</td><td>2</td><td>It hides content and a button the user may want to tap, on every menu screen</td></tr><tr><td>UX-10</td><td>J1 · 07, J1 · 08</td><td>Chips and promo cards under the header; the "Today's Offer ▾" dropdown</td><td>Before any menu item the page shows Group Order, Order for Later, Menu language (cut off), three promo cards, Your Last Order, Today's Offer and For You. Categories are hidden in one dropdown, not shown as tabs</td><td>Aesthetic and minimalist design; Recognition rather than recall</td><td>2</td><td>Breakdown 5 is confirmed. A specific item is harder to find</td></tr><tr><td>UX-11</td><td>J1 · 09, J1 · 10 Item detail and options</td><td>Option groups and their tags</td><td>"Optional, max 1" is shown with checkboxes, not radio buttons. When one option is ticked the others turn pale grey, so a change needs an untick first. The size group is tagged "Optional" but "Ly 500ml" is already ticked. Group names are Vietnamese in an English screen ("Loại Kem", "Chọn thêm 'Trà Đá, Ly đá'")</td><td>Consistency and standards; Error prevention; Match between system and the real world</td><td>2</td><td>Breakdown 4 is partly confirmed: every group captured is tagged Optional, so a required group was not seen</td></tr><tr><td>UX-12</td><td>J1 · 09</td><td>Grey italic line under the description</td><td>"Thông tin sản phẩm này được tạo bởi AI." (the product text was made by AI) is small, pale and only in Vietnamese</td><td>Match between system and the real world</td><td>1</td><td>The disclosure is there but easy to miss</td></tr><tr><td>UX-13</td><td>J1 · 11 Basket → J2 · 01 Summary</td><td>Basket bar "Basket • 1 Item 47.000đ"; the fee lines at checkout</td><td>The basket shows 47.000đ. The next screen adds "Delivery and applicable fees" 17.000 and "Small order fee" 3.000, so the total is 67.000đ, about 42% above the basket. The reason and the threshold of the small order fee are not shown before this step</td><td>Visibility of system status</td><td>3</td><td>Every user meets it, and it is the moment of payment, when a surprise costs the most trust</td></tr></tbody></table></div>
+<h3>Journey 2: Check out and pay</h3>
+<div class="table-wrap"><table class="bal" style="min-width:672px"><colgroup><col style="width:9.4%"><col style="width:12.5%"><col style="width:16.4%"><col style="width:19.4%"><col style="width:16.7%"><col style="width:9.4%"><col style="width:16.2%"></colgroup><thead><tr><th scope="col">Tag</th><th scope="col">Screen</th><th scope="col">Where on the screen</th><th scope="col">What the user sees</th><th scope="col">Principle</th><th scope="col">Sev</th><th scope="col">Why this level</th></tr></thead><tbody><tr><td>UX-14</td><td>J2 · 01 Order summary</td><td>Cross-sell block and its red button; the banner under the fees</td><td>A large "Two restaurants, one delivery fee" block with a dark red "See more options" button sits between the fees and the green "Place order". A GrabUnlimited banner follows. Items, promotions, fees and savings are in one long screen</td><td>Aesthetic and minimalist design</td><td>2</td><td>Breakdown 1 is confirmed. The red button pulls a user who is ready to pay back to browsing</td></tr><tr><td>UX-15</td><td>J2 · 02, J2 · 03 Delivery options</td><td>Option cards, "VIP upgrade (12 remaining)", (i) icons</td><td>Priority (17 mins) and Standard (24 mins) both cost 12.000, and Standard is the pre-selected one. "VIP upgrade (12 remaining)" does not say 12 of what. "With On-Time Promise" is not explained. The (i) icons are small. "Order for later" is styled like a speed option but has no time or price</td><td>Match between system and the real world; Help and documentation</td><td>2</td><td>Breakdown 2 is confirmed. A faster option for the same price is not the default</td></tr><tr><td>UX-16</td><td>J2 · 02, J2 · 06</td><td>"Use offers and more" row; GrabCoins toggle</td><td>The row that leads to vouchers and the code field is labelled "Save VND3.000 using points". The GrabCoins toggle (90 coins) is half hidden behind the sticky total bar</td><td>Match between system and the real world; Aesthetic and minimalist design</td><td>2</td><td>A user looking for a voucher may not tap a row about points</td></tr><tr><td>UX-17</td><td>J2 · 04 Payment methods</td><td>Grey box at the top; the grey radio at the end of the linked list</td><td>"Your linked card has expired. Visit Help Centre" does not say which card, and the only action takes the user out of the flow. The expired card itself shows only as a grey, unselectable radio</td><td>Help users recognise, diagnose and recover from errors; Visibility of system status</td><td>3</td><td>Breakdown 3 is confirmed. The user must leave the payment step to fix a payment problem. <em>To test: can the expired card still be the default?</em></td></tr><tr><td>UX-18</td><td>J2 · 04</td><td>"Swipe left to set your default"; the Linked Methods list</td><td>Setting a default is a hidden swipe, while the same list already has radio buttons. It is not clear what a radio tap does (this order or the default). Cash and MoMo sit under "Linked Methods"</td><td>Recognition rather than recall; Consistency and standards; Match between system and the real world</td><td>2</td><td>Two ways to do one thing, one of them invisible</td></tr><tr><td>UX-19</td><td>J2 · 05 Add card</td><td>Grey paragraph under "Your card details will be saved securely"</td><td>"Your card may be charged to make sure it's valid" is small grey text and does not say how much. The reassurance line comes first and the money line second</td><td>Error prevention; Visibility of system status</td><td>2</td><td>Breakdown 4 is confirmed. It may stop a user before they add a card</td></tr><tr><td>UX-20</td><td>J2 · 07 Offers</td><td>Whole list; the field at the top</td><td>Of the 10 rows visible, 8 are greyed out ("Spend 172.500đ more to enjoy this offer" on an order of 46.500đ). "Enter promo or gift code here" looks like a search field (magnifier icon). "Use GrabGifts: Have a gift code?" repeats it right below</td><td>Aesthetic and minimalist design; Match between system and the real world</td><td>2</td><td>Breakdown 5 is confirmed. It is hard to see what can be used now</td></tr></tbody></table></div>
+<h3>Journey 3: Track and resolve</h3>
+<div class="table-wrap"><table class="bal" style="min-width:648px"><colgroup><col style="width:9.5%"><col style="width:10.7%"><col style="width:14.7%"><col style="width:20.5%"><col style="width:17.2%"><col style="width:9.5%"><col style="width:17.8%"></colgroup><thead><tr><th scope="col">Tag</th><th scope="col">Screen</th><th scope="col">Where on the screen</th><th scope="col">What the user sees</th><th scope="col">Principle</th><th scope="col">Sev</th><th scope="col">Why this level</th></tr></thead><tbody><tr><td>UX-21</td><td>J3 · 01 to J3 · 06</td><td>Red bottom sheet "GrabMore and save on delivery"</td><td>A sheet with a countdown covers the lower part of every tracking screen. The timer runs in real time (19:53 at 15:55, 12:42 at 16:02, 03:20 at 16:11). It cuts the order total ("₫67." in J3 · 01). Only a drag handle is visible, no close button</td><td>Aesthetic and minimalist design; User control and freedom</td><td>3</td><td>Breakdown 2 is confirmed. It is on screen the whole wait, it presses the user with a timer, and the user cannot clearly dismiss it</td></tr><tr><td>UX-22</td><td>J3 · 02, J3 · 06</td><td>"Check this out while you wait" card</td><td>Hotel membership ads (Modern Village, IHG) appear between the status and the order or driver details. They are unrelated to a food order. The way to hide them is a small ⋮</td><td>Aesthetic and minimalist design</td><td>2</td><td>Together with the GrabUnlimited banner and the Favourites prompt, the status competes with four promotions</td></tr><tr><td>UX-23</td><td>J3 · 01, J3 · 02, J3 · 03, J3 · 05</td><td>Progress bar under the ETA</td><td>Four icons (G, pot, scooter, house) with no text. Progress is shown only by green fill. The text above changes, but the bar alone does not name the stage</td><td>Visibility of system status; Match between system and the real world</td><td>2</td><td>Meaning rests on icon and colour only (the accessibility rules say meaning must not rest on colour alone)</td></tr><tr><td>UX-24</td><td>J3 · 01 to J3 · 05</td><td>ETA "4:12 - 4:27 PM"</td><td>A 15-minute window stays unchanged from "We've got your order" to "Your order's ready for delivery" (16:02). It becomes a point ("Arriving by 4:17 PM") only on the map screen. The app shows 12-hour time while the phone clock is 24-hour</td><td>Visibility of system status; Consistency and standards</td><td>2</td><td>Breakdown 1 is confirmed. Hard to plan around, but the user is still informed</td></tr><tr><td>UX-25</td><td>J3 · 04</td><td>Order card under the status</td><td>The order appears only as one thumbnail with a "View order summary" link. A Favourites prompt and an "Offers" row with a chevron sit inside the card of an order that is already placed</td><td>Recognition rather than recall; Match between system and the real world</td><td>2</td><td>The user cannot check the items at a glance. It is unclear what "Offers" can do after paying</td></tr><tr><td>UX-26</td><td>J3 · 05 Map</td><td>Map edges; teal tag "GF-091"; speech bubble on the right</td><td>The driver icon is cut by the left edge and the address bubble ("[address hidden]") by the right edge, so the map does not frame the driver and the destination. "GF-091" has no label. Many shop names clutter the map</td><td>Visibility of system status; Match between system and the real world</td><td>2</td><td>The map is the part users look at most while waiting</td></tr><tr><td>UX-27</td><td>J3 · 03, J3 · 06, J3 · 08</td><td>Tip card</td><td>The same tip card (5.000đ, 10.000đ, 20.000đ, Custom) appears three times, including before a driver is assigned (J3 · 03). The "Custom" chip is cut off. What a tap does (charge now or ask first) is not visible</td><td>Error prevention; Consistency and standards</td><td>2</td><td>Provisional: it is a money action, so test it before keeping this level</td></tr><tr><td>UX-28</td><td>J3 · 01 to J3 · 11</td><td>"Get help"; headset icon; "Haven't received your order? Contact driver"; "Chat with merchant" and "Contact Grab"</td><td>Help has four labels in three places: blue "Get help" (J3 · 01 to 06), headset icon plus a small link "Contact driver" (J3 · 07), two buttons "Chat with merchant" and "Contact Grab" (J3 · 11). No screen offers a direct "report a problem" or refund route</td><td>Consistency and standards; Help and documentation; Help users recognise, diagnose and recover from errors</td><td>3</td><td>Breakdown 3 is confirmed. It matters most when the order failed and the user is already stressed. Needs the test to confirm how often users get lost</td></tr><tr><td>UX-29</td><td>J3 · 07, J3 · 08</td><td>Blue link under "Total paid"; the video block; "Submit"</td><td>Rating, feedback chips ("Attitu…" cut off), tip and "Submit" share one long screen, and a large video ad fills the lower half of J3 · 07. "GrabCoins +0" has no explanation. "Submit" does not show whether a tip is included</td><td>Aesthetic and minimalist design; Visibility of system status; Error prevention</td><td>2</td><td>Breakdown 4 is partly confirmed</td></tr><tr><td>UX-30</td><td>J3 · 09, J3 · 10, J3 · 11</td><td>Blue text links; "Booking ID"; fee line; "Profile"</td><td>"Rate order", "Reorder" and "View details" are small blue text links. "Rate order" is still shown at 16:14, the same minute as the rating, with no confirmation seen. "Booking ID [hidden]" and "GF-091" are internal codes. "Applicable fees 20.000" merges the two fees from checkout. "Profile: Personal" is not explained</td><td>Visibility of system status; Match between system and the real world; Recognition rather than recall</td><td>2</td><td>Small targets and unclear labels on the screen users return to for reorder and help</td></tr></tbody></table></div>
+<h2>4. Cross-check with your possible breakdowns</h2>
+<div class="table-wrap"><table class="bal" style="min-width:368px"><colgroup><col style="width:21.9%"><col style="width:31.0%"><col style="width:31.4%"><col style="width:15.7%"></colgroup><thead><tr><th scope="col">Flow</th><th scope="col">Your breakdown</th><th scope="col">Result from the screens</th><th scope="col">See</th></tr></thead><tbody><tr><td>Find and order</td><td>1 Many services at once, food entry may be missed</td><td>Partly: the screen is crowded, but Food is the first icon</td><td>UX-01</td></tr><tr><td></td><td>2 Address is a small label</td><td>Confirmed, and the "Current location / Home" row adds doubt</td><td>UX-04</td></tr><tr><td></td><td>3 Ads look like results</td><td>Confirmed</td><td>UX-07</td></tr><tr><td></td><td>4 Vietnamese options, required and optional look alike</td><td>Partly: no required group was captured</td><td>UX-11</td></tr><tr><td></td><td>5 Menu opens with last order, offers, recommendations</td><td>Confirmed</td><td>UX-10</td></tr><tr><td>Check out and pay</td><td>1 One long summary</td><td>Confirmed. Note: the item list at the top of the screen is not in the screenshot</td><td>UX-13, UX-14</td></tr><tr><td></td><td>2 Priority and Standard same price</td><td>Confirmed</td><td>UX-15</td></tr><tr><td></td><td>3 Expired card stays in the list</td><td>Confirmed, and the message gives no fix</td><td>UX-17</td></tr><tr><td></td><td>4 Card may be charged</td><td>Confirmed</td><td>UX-19</td></tr><tr><td></td><td>5 Many greyed offers</td><td>Confirmed</td><td>UX-20</td></tr><tr><td>Track and resolve</td><td>1 ETA window too wide</td><td>Confirmed</td><td>UX-24</td></tr><tr><td></td><td>2 GrabMore countdown covers the screen</td><td>Confirmed, rated 3</td><td>UX-21</td></tr><tr><td></td><td>3 Help in several places</td><td>Confirmed, rated 3</td><td>UX-28</td></tr><tr><td></td><td>4 Rating, feedback, tip on one screen</td><td>Partly confirmed</td><td>UX-29</td></tr><tr><td></td><td>5 Empty loading screen in Activity</td><td>Not checkable: no screenshot of that state. J3 · 09 shows a clipped "Let's talk about…" card, which may be a loading state</td><td>not rated</td></tr></tbody></table></div>
+<p><strong>New problems that were not in your list:</strong> UX-08, UX-09, UX-13, UX-16, UX-18, UX-22, UX-23, UX-25, UX-26, UX-27, UX-30.</p>
+<h2>5. Findings (verified)</h2>
+<p><em>Empty. Your checked version goes here after you review section 3: which findings you keep, change or drop, your own severity, and a second evaluator if you have one. Then ask the AI tool to create the finding items.</em></p></div><p class="srcfile">Source file: <code>work/heuristic-evaluation/index.md</code></p></section><section class="doc" id="research-plan" data-title="Research plan"><a class="back" href="#/docs">← Work</a><header class="ahead"><p class="kind">Research plan · Discover</p><h1>Research plan</h1><p class="sum">How the case study will analyse the user guidance of a food delivery app: three core functions, the methods for each, the usability test set-up, the data rules and the open decisions to confirm. Draft for Alternative C, Process Mapping.</p></header><p class="warnbox">⚠ This document is <strong>Draft</strong>: content has not been verified.</p><div class="reading"><p><strong>Status:</strong> draft. The app, country, language, device and three functions are decided. Everything still marked <strong>To confirm</strong> is a proposal you decide before you start phase 3.</p>
+<h2>1. Purpose</h2>
+<p>The module asks for a case study that reconstructs and analyses an existing user experience, evaluates it, and ends in recommendations. For Alternative C, the focus is <strong>user guidance</strong>: how well the app leads people through its key processes.</p>
+<p><strong>Main question:</strong> How well does the food delivery part of the app guide users through finding, paying for and receiving an order, and what would improve it?</p>
+<p><strong>Sub-questions:</strong></p>
+<ol><li>Where do the three core processes have unnecessary steps, unclear decisions or likely breakdowns?</li><li>Which parts of each process cost users the most mental effort?</li><li>How do users feel and what do they expect at each touchpoint across the whole journey?</li><li>Which usability problems do experts find, and which do real users actually hit?</li><li>Which changes would make the guidance clearer, faster and more supportive?</li></ol>
+<h2>2. Case study</h2>
+<div class="table-wrap"><table><tbody><tr><td><strong>App</strong></td><td>Grab, food delivery part only. Decided. Grab is a large provider and the brief prefers a medium-sized one, so justify the choice in the introduction</td></tr><tr><td><strong>Why this app</strong></td><td>It gives access to a real service, it has more than three connected functions (search, ordering, payment, tracking, chat with the driver), and it is widely used in Asia</td></tr><tr><td><strong>Country and language</strong></td><td>Vietnam, with the app and the tests in English. Decided. Vietnam makes it easier to recruit participants and run the tests. State the country, language and app version in the paper. Check that the Vietnam version of the app offers an English interface</td></tr><tr><td><strong>Device</strong></td><td>The mobile app on an iPhone. Decided. App version recorded: v33437965. <strong>To confirm:</strong> the exact iPhone model and iOS version, and use the same phone for all screenshots so the screens match</td></tr><tr><td><strong>Out of scope</strong></td><td>Ride-hailing, parcel delivery, the payments wallet as its own product, and the merchant or driver apps</td></tr></tbody></table></div>
+<h2>3. The three core functions</h2>
+<p>The brief asks for three core functions rebuilt as user flows. Decided:</p>
+<div class="table-wrap"><table class="bal" style="min-width:356px"><colgroup><col style="width:15.0%"><col style="width:25.1%"><col style="width:27.1%"><col style="width:32.8%"></colgroup><thead><tr><th scope="col">#</th><th scope="col">Function</th><th scope="col">Starts when</th><th scope="col">Ends when</th></tr></thead><tbody><tr><td>1</td><td>Find and order food</td><td>The user opens the food section</td><td>Items are in the cart and the user moves to checkout</td></tr><tr><td>2</td><td>Check out and pay</td><td>The user opens the cart</td><td>The order is confirmed</td></tr><tr><td>3</td><td>Track the order and fix problems</td><td>The order is confirmed</td><td>The food arrives, or the user cancels or asks for support</td></tr></tbody></table></div>
+<p>These are connected: the end of one is the start of the next, which also supports the "at least three interconnected functions" requirement.</p>
+<h2>4. Methods</h2>
+<p>Each method answers a different question, so together they cover the process from several sides.</p>
+<div class="table-wrap"><table class="bal" style="min-width:448px"><colgroup><col style="width:20.9%"><col style="width:31.5%"><col style="width:23.3%"><col style="width:24.3%"></colgroup><thead><tr><th scope="col">Method</th><th scope="col">What it gives</th><th scope="col">Used on</th><th scope="col">Output</th></tr></thead><tbody><tr><td><strong>User flows</strong></td><td>A map of steps, decision points and possible breakdowns</td><td>The three functions, from your own walk-through of the app</td><td>Three flow diagrams</td></tr><tr><td><strong>Task analysis</strong></td><td>The user's goals, the actions required, and where effort or friction appears</td><td>Each flow</td><td>A task breakdown per function</td></tr><tr><td><strong>User journey</strong></td><td>The whole experience across touchpoints, with emotions, expectations and pain points</td><td>All three functions together</td><td>One journey map</td></tr><tr><td><strong>Heuristic evaluation</strong></td><td>Usability problems found by an expert against recognised heuristics (for example Nielsen's ten)</td><td>Each flow, screen by screen</td><td>An issue list with severity</td></tr><tr><td><strong>Cognitive walkthrough</strong></td><td>Whether a first-time user would know what to do at each step</td><td>Each flow</td><td>Answers to the walkthrough questions for every step</td></tr><tr><td><strong>Usability test</strong></td><td>Problems real users actually meet while doing realistic tasks</td><td>The three functions</td><td>Task results, observations and quotes</td></tr></tbody></table></div>
+<p>Use only sources that can be cited for the theory behind each method. Verify any rule of thumb in a citable source before it goes into the paper.</p>
+<h3>Heuristic evaluation</h3>
+<ul><li>Evaluator: you. A single evaluator finds fewer problems than several, so state this as a limit in the paper. If you can, ask one more person to do a second pass.</li><li>Rate each issue by severity on a simple scale (for example from 0, not a problem, to 4, usability catastrophe) and write down which heuristic it breaks.</li><li>Record the screen, the step in the flow and a screenshot for every issue.</li></ul>
+<h3>Cognitive walkthrough</h3>
+<p>For each step in each flow, answer the standard questions: will the user try to achieve the right effect, will they notice the right action is available, will they connect the action with their goal, and will they see that progress was made after acting. Mark every step where the answer is no.</p>
+<h2>5. Usability test</h2>
+<div class="table-wrap"><table><tbody><tr><td><strong>Goal</strong></td><td>See where real users struggle in the three functions and how the findings compare with the expert evaluation</td></tr><tr><td><strong>Participants</strong></td><td><strong>To confirm.</strong> Proposal: a small group of regular food delivery users. A group of about five is a common choice for this kind of qualitative test, but verify the claim in a citable source before you rely on it. Include some people who know Grab and some who do not, if you can</td></tr><tr><td><strong>Recruiting</strong></td><td>Friends, classmates or colleagues who order food online. No names in the paper</td></tr><tr><td><strong>Format</strong></td><td>One-to-one session of about 30 minutes, think-aloud, on the participant's own phone or yours (<strong>To confirm</strong>)</td></tr><tr><td><strong>Consent</strong></td><td>Short written or spoken consent: purpose, voluntary, recording, anonymous, can stop any time</td></tr></tbody></table></div>
+<h3>Tasks</h3>
+<p>One scenario per function, in plain words, without telling the user which buttons to press:</p>
+<ol><li><em>You want dinner for two tonight. Find a restaurant that suits you and put your meal in the cart.</em></li><li><em>You are ready to order. Pay in the way you normally would and place the order.</em></li><li><em>Your order is on its way. Find out when it will arrive. Then imagine something is wrong with it and find out how to get help.</em></li></ol>
+<p>Real orders cost money. <strong>To confirm:</strong> stop each session before the final confirmation, or let participants use their own accounts and order for real with a small budget you cover.</p>
+<h3>What to measure</h3>
+<ul><li>Task success: completed, completed with help, or failed.</li><li>Time on task.</li><li>Errors and wrong turns, noted by the observer.</li><li>One easy rating after each task (for example how easy it felt, on a 7-point scale).</li><li>Overall impression and quotes at the end of the session.</li></ul>
+<h3>Procedure</h3>
+<ol><li>Welcome, explain the test, get consent.</li><li>Short questions about their food delivery habits.</li><li>The three tasks, with think-aloud.</li><li>Rating after each task.</li><li>Closing questions: what was easiest, what was most annoying, what would you change.</li></ol>
+<h2>6. Data and privacy</h2>
+<ul><li>Anonymise before anything goes to the paper or to an AI tool: no real names, phone numbers, addresses or account details. Blur personal data in screenshots.</li><li>Store recordings, notes and raw answers in <code>work/sources/_raw-private/</code> only. Never give that folder to an AI tool.</li><li>Put anonymised results in <code>work/sources/anonymised/</code>.</li><li>Record the date, country, device and app version for every screenshot and every session.</li></ul>
+<h2>7. From data to results</h2>
+<ol><li>Flows, task analysis and journey map come from your own walk-through of the app.</li><li>The expert evaluation and the walkthrough give a list of issues.</li><li>The usability test confirms, adds to or contradicts that list.</li><li>Group the issues by function and by cause, and rank them by severity and how many users were affected.</li><li>Write one recommendation for each key problem, and say which evidence supports it.</li></ol>
+<p>This matches the order of the paper: introduction, methodological approach, documentation, analysis, findings, recommendations, reflection.</p>
+<h2>8. Limits to state in the paper</h2>
+<ul><li>One evaluator for the heuristic evaluation.</li><li>A small number of participants, so the results show problems, not statistics.</li><li>One country (Vietnam), one device and one app version.</li><li>Participants in Vietnam use the English interface, which may affect how they understand labels. State this and note which participants speak English as a second language.</li><li>Real order costs may limit how far the checkout test can go.</li></ul>
+<h2>9. Schedule</h2>
+<p>Follows <code>submission-timeline.md</code>: planning in phase 2, documentation in phase 3, flows in phase 4, task analysis and journey in phase 5, the evaluation in phase 6, the test in phase 7 and the findings in phase 8.</p>
+<h2>10. Decisions still open</h2>
+<div class="table-wrap"><table class="bal" style="min-width:268px"><colgroup><col style="width:51.4%"><col style="width:25.1%"><col style="width:23.5%"></colgroup><thead><tr><th scope="col">Decision</th><th scope="col">Who decides</th><th scope="col">Needed by</th></tr></thead><tbody><tr><td>Talk to the module manager about the schedule and the planned February 2027 submission</td><td>You</td><td>29 Nov 2026</td></tr><tr><td>Which iPhone model and iOS version?</td><td>You</td><td>6 Dec 2026</td></tr><tr><td>Number of participants and how to recruit them</td><td>You</td><td>6 Dec 2026</td></tr><tr><td>How to handle real order costs in the test</td><td>You</td><td>6 Dec 2026</td></tr><tr><td>A second evaluator for the heuristic evaluation</td><td>You</td><td>6 Dec 2026</td></tr></tbody></table></div></div><p class="srcfile">Source file: <code>work/research-plan.md</code></p></section><section class="doc" id="task-analysis-and-user-journey" data-title="Task analysis and user journey"><a class="back" href="#/docs">← Work</a><header class="ahead"><p class="kind">Task analysis · Discover</p><h1>Task analysis and user journey</h1><p class="sum">For each of the three core functions: the user&#x27;s goal, the steps and where effort or friction may appear, plus one journey map across all three with assumed feelings and expectations. A draft built from my walk-through, to be tested.</p></header><p class="warnbox">⚠ This document is <strong>Draft</strong>: content has not been verified.</p><h2>Media</h2><div class="mcard"><div class="mhead"><strong>user-journey-map.html</strong><span class="mtag">Prototype / HTML page</span><a class="btn" href="work/task-analysis-and-user-journey/user-journey-map.html" target="_blank" rel="noopener">Open in new tab ↗</a></div><iframe loading="lazy" src="work/task-analysis-and-user-journey/user-journey-map.html" title="user-journey-map.html"></iframe></div><div class="reading"><p><strong>The user:</strong> one generic consumer who orders the food they like, waits for it to be delivered and enjoys it. There is no single age group or situation.</p>
+<p><strong>Important:</strong> the effort ratings, feelings and expectations below are my own assumptions from the walk-through and my understanding of the product. They are not test results. Each one is to be checked in the heuristic evaluation, the usability test and the interviews.</p>
+<p><strong>Effort rating:</strong> low means the step is quick and clear, medium means the user must think or compare, high means the step takes a lot of time or attention. All ratings are assumed.</p>
+<h2>What the user expects from the app</h2>
+<p>These come from my own understanding, in this order of importance:</p>
+<ol><li>Find food easily and order it easily. Finding and ordering is the most important function.</li><li>Clear information and a clear preview of what they will get.</li><li>A visible reputation for each restaurant, and a delivery time.</li><li>Checking out and tracking the order are secondary, but should not get in the way.</li></ol>
+<p>In Vietnam, many people still like to pay in cash on delivery, while others use an e-wallet, a Visa or Mastercard, or a bank account. Many users live in houses or apartment buildings, so the way of receiving the order should be flexible for the user to choose.</p>
+<h2>Task analysis 1: Find and order</h2>
+<p><strong>Goal:</strong> find food I like and put it in my basket.</p>
+<p><strong>Plan:</strong> open the food section, check the address, find a restaurant, choose the food, add it to the basket, and repeat if more items are wanted.</p>
+<div class="table-wrap"><table class="bal" style="min-width:474px"><colgroup><col style="width:11.7%"><col style="width:23.7%"><col style="width:25.6%"><col style="width:12.2%"><col style="width:26.8%"></colgroup><thead><tr><th scope="col">Step</th><th scope="col">What the user does</th><th scope="col">What the user needs</th><th scope="col">Effort</th><th scope="col">Possible friction</th></tr></thead><tbody><tr><td>1</td><td>Open the app and go to the food section</td><td>Know where food delivery sits among the other services</td><td>Low</td><td>The home screen shows many services and promotions at once</td></tr><tr><td>2</td><td>Check the delivery address</td><td>Notice the address and judge if it is right</td><td>Low</td><td>The address is a small label, and changing it opens a separate screen with a keyboard</td></tr><tr><td>3</td><td>Decide how to find food: browse a category, search by keyword or take a suggestion</td><td>Know what they want and judge the suggestions</td><td>Medium</td><td>The suggestions lean towards restaurants already ordered from, with little that is new, so users search by keyword</td></tr><tr><td>4</td><td>Compare results and pick a restaurant</td><td>Read the rating, delivery time, fee and promotions, and tell sponsored listings from regular ones</td><td>High</td><td>A lot is shown at once, and reading reviews takes time</td></tr><tr><td>5</td><td>Browse the menu and open an item</td><td>Find a specific item, read the price and description</td><td>Medium</td><td>The menu opens with last order, offers and recommendations before the full menu</td></tr><tr><td>6</td><td>Choose options such as size, sweetness, toppings and a note</td><td>Understand which choices are required and which are optional</td><td>Medium</td><td>Option names written by the restaurant are in Vietnamese in an English interface</td></tr><tr><td>7</td><td>Add to the basket, decide whether to add more and review the basket</td><td>See a clear preview of what is in the basket and the price</td><td>Low</td><td>None expected</td></tr></tbody></table></div>
+<h2>Task analysis 2: Check out and pay</h2>
+<p><strong>Goal:</strong> pay for the order in the way I prefer and place it.</p>
+<p><strong>Plan:</strong> review the order, check the delivery details, choose delivery speed, keep or change the payment method, apply a promotion if there is one, and place the order.</p>
+<div class="table-wrap"><table class="bal" style="min-width:446px"><colgroup><col style="width:12.3%"><col style="width:23.4%"><col style="width:26.1%"><col style="width:12.8%"><col style="width:25.5%"></colgroup><thead><tr><th scope="col">Step</th><th scope="col">What the user does</th><th scope="col">What the user needs</th><th scope="col">Effort</th><th scope="col">Possible friction</th></tr></thead><tbody><tr><td>1</td><td>Open the order summary and check the items, fees and total</td><td>A clear total with the fees explained</td><td>Low</td><td>The summary mixes items, a promotion banner, fees and savings in one long screen</td></tr><tr><td>2</td><td>Check the delivery details such as address, meeting point and cutlery</td><td>Be able to choose how the food is handed over, for a house or an apartment building</td><td>Low</td><td>None expected</td></tr><tr><td>3</td><td>Choose the delivery speed</td><td>Understand what each speed costs and how long it takes</td><td>Medium</td><td>Priority and standard cost the same but take different times</td></tr><tr><td>4</td><td>Check the payment method</td><td>See which method is selected, such as cash, e-wallet or card</td><td>Low</td><td>None expected</td></tr><tr><td>5</td><td>Change the payment method, pick a linked one or add a new card</td><td>Know which methods work and how to add one</td><td>Medium</td><td>An expired card stays in the list, and the add-card form warns that the card may be charged to check it</td></tr><tr><td>6</td><td>Open offers and apply a promotion</td><td>See quickly which promotions apply to this order</td><td>Medium</td><td>Many offers are greyed out because of a minimum spend, and the user may feel upset when none applies</td></tr><tr><td>7</td><td>Place the order</td><td>Feel sure about the total and the details</td><td>Low</td><td>None expected</td></tr></tbody></table></div>
+<h2>Task analysis 3: Track the order and resolve problems</h2>
+<p><strong>Goal:</strong> know when my food arrives and receive it, or get help if something goes wrong.</p>
+<p><strong>Plan:</strong> see the order confirmed, wait while it is prepared, follow the driver, receive the food, rate the delivery, and get help or reorder if needed.</p>
+<div class="table-wrap"><table class="bal" style="min-width:462px"><colgroup><col style="width:12.4%"><col style="width:25.2%"><col style="width:24.5%"><col style="width:12.9%"><col style="width:25.1%"></colgroup><thead><tr><th scope="col">Step</th><th scope="col">What the user does</th><th scope="col">What the user needs</th><th scope="col">Effort</th><th scope="col">Possible friction</th></tr></thead><tbody><tr><td>1</td><td>See the order confirmed and the estimated time</td><td>A believable arrival time</td><td>Low</td><td>The time is a 15-minute window</td></tr><tr><td>2</td><td>Wait while the restaurant prepares the order</td><td>Know what stage the order is at</td><td>Low</td><td>None expected</td></tr><tr><td>3</td><td>Follow the driver on the map and check the order details</td><td>A clear, accurate arrival time, and a clear message if weather or traffic causes a delay</td><td>Low</td><td>A promotion banner with a countdown covers the bottom of the screen</td></tr><tr><td>4</td><td>Chat with, call or tip the driver if needed</td><td>Reach the driver quickly</td><td>Medium</td><td>None expected</td></tr><tr><td>5</td><td>Receive the food and confirm it arrived</td><td>Be able to say yes or report that it did not come</td><td>Low</td><td>None expected</td></tr><tr><td>6</td><td>Rate the delivery, give feedback and tip</td><td>A short, simple way to say how it went</td><td>Low</td><td>Rating, feedback and tip share one long screen</td></tr><tr><td>7</td><td>If something is wrong, find help</td><td>Know where to go for help</td><td>High</td><td>Help is in several places: contact the driver, Get help, and contact Grab or the restaurant from the order details</td></tr><tr><td>8</td><td>Later, find the order in the activity list and reorder</td><td>Find the past order and reorder easily</td><td>Low</td><td>The activity tab first shows an empty loading screen</td></tr></tbody></table></div>
+<h2>User journey</h2>
+<p>The journey map covers all three functions as the middle stages, with a stage before (deciding to order) and a stage after (enjoying the food and following up). The lowest assumed feeling is while finding food, because there is a lot to look at and the suggestions repeat past orders. Checking out is assumed to feel clear and positive, and finding no promotion that applies is a small disappointment.</p>
+<h2>What to check next</h2>
+<ul><li>Test the effort ratings in the usability test: do real users find steps 4 and 7 in the first task analysis hard?</li><li>Ask in the interviews how users feel at each stage, and replace my assumed feelings with theirs.</li><li>Check how users in Vietnam really pay and receive orders, using sources I can cite.</li></ul></div><p class="srcfile">Source file: <code>work/task-analysis-and-user-journey/index.md</code></p></section></div></section>
+<section class="view" id="v-trace"><div class="wrap"><div class="trace"><div class="pane-tree"><h1>Insights</h1><p class="lede">Opportunities, hypotheses, decisions, evidence, findings and metrics, linked to each other. Filter by type, or switch to Tree to see the chain of reasons from need to decision.</p><div class="where"><span class="wl">Folder</span> <code>insights/</code><br><span class="wl">Add new</span> copy a template from <code>insights/_templates/</code> into the matching type folder (one file per card).</div><div class="trow"><input id="tsearch" class="tsearch" type="search" placeholder="Search by ID or name" aria-label="Search insights"><div class="vmode" role="group" aria-label="View"><button type="button" data-vmode="cards" aria-pressed="true">Cards</button><button type="button" data-vmode="tree" aria-pressed="false">Tree</button><button type="button" data-vmode="table" aria-pressed="false">Matrix</button></div></div><div class="tabs2" role="tablist" aria-label="Filter by type"><button type="button" role="tab" aria-selected="true" data-type="">All<span class="n">0</span></button><button type="button" role="tab" aria-selected="false" data-type="O">Opportunities<span class="n">0</span></button><button type="button" role="tab" aria-selected="false" data-type="H">Hypotheses<span class="n">0</span></button><button type="button" role="tab" aria-selected="false" data-type="M">Metrics<span class="n">0</span></button><button type="button" role="tab" aria-selected="false" data-type="D">Decisions<span class="n">0</span></button><button type="button" role="tab" aria-selected="false" data-type="E">Evidence<span class="n">0</span></button><button type="button" role="tab" aria-selected="false" data-type="F">Findings<span class="n">0</span></button></div><p class="tcount" id="tcount" aria-live="polite"></p><div class="icards"><div class="empty"><p><strong>Nothing here yet.</strong></p></div></div><p class="ok">No decisions yet.</p><ul class="tree" id="tree"><li class="n"><span class="nt">Nothing here yet.</span></li></ul></div><div class="pane-detail"></div></div></div></section>
+<section class="view reference" id="v-reference"><div class="wrap"><div class="jlist"><h1>Standards</h1><p class="lede">Yardsticks to check the work against: gates, principle checks, severity levels.</p><div class="where"><span class="wl">Folder</span> <code>standards/</code><br><span class="wl">Add new</span> drop a <code>.md</code> file into the folder and the page appears here.</div><div class="jcards"><a class="jcard" href="#/gates"><h3>Gates</h3><p>The four gates and the checks in each</p></a><a class="jcard" href="#/principles"><h3>Principle checks</h3><p>10 usability heuristics (Heuristic Evaluation): principles every decision should meet</p></a><a class="jcard" href="#/severity"><h3>Severity levels</h3><p>Severity scale for usability problems, 0 to 4</p></a></div></div><section class="doc" id="gates" data-title="Gates"><a class="back" href="#/reference">← Standards</a><div class="reading"><h1>Gates</h1>
+<p>The four gates (checkpoints) a project goes through. Each check has a status: <code>open</code> (not done), <code>passed</code> or <code>failed</code>. <strong>Do not rename a check, only change its status.</strong> A gate passes when all of its checks pass. A check marked <strong>hard stop</strong> cannot be passed with a reason: it must really be met.</p>
+<h2>Gate 1: Discover (Question + evidence)</h2>
+<div class="table-wrap"><table class="bal" style="min-width:330px"><colgroup><col style="width:14.8%"><col style="width:51.4%"><col style="width:15.3%"><col style="width:18.5%"></colgroup><thead><tr><th scope="col">Check</th><th scope="col">What</th><th scope="col">Status</th><th scope="col">Auto check</th></tr></thead><tbody><tr><td>1a</td><td>The business question and outcome are agreed with the product owner, or marked <strong>assumed</strong> with the agreement status</td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr><tr><td>1b</td><td>Every insight traces back to a source you can open (quote, participant ID, timestamp). <strong>Hard stop</strong></td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr><tr><td>1c</td><td>Nothing is guessed: unknowns and counterexamples are recorded; the AI draft sits next to the checked version, with the error rate and a list of what the AI left out. <strong>Hard stop</strong></td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr><tr><td>1d</td><td>The evidence comes from at least two kinds of source, the sample size is stated, and what the sample cannot tell you is written down</td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr><tr><td>1e</td><td>At least one counterexample was sought and recorded ("searched, none found" counts), and the synthesis prompt does not state your own hypothesis</td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr><tr><td>1f</td><td>Participants consented, the transcript was anonymised before it was pasted, and the raw data is kept outside what the AI reads. <strong>Hard stop</strong></td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr><tr><td>1g</td><td>The tool, version, key prompts and your changes to the AI output are logged</td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr></tbody></table></div>
+<h2>Gate 2: Define (Evidence + agreement)</h2>
+<div class="table-wrap"><table class="bal" style="min-width:362px"><colgroup><col style="width:15.2%"><col style="width:41.8%"><col style="width:15.7%"><col style="width:27.2%"></colgroup><thead><tr><th scope="col">Check</th><th scope="col">What</th><th scope="col">Status</th><th scope="col">Auto check</th></tr></thead><tbody><tr><td>2a</td><td>Every opportunity points to the evidence behind it</td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr><tr><td>2b</td><td>The problem brief is signed by product and business, or the agreement status is recorded</td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr><tr><td>2c</td><td>Every hypothesis has a test and a metric (an unconfirmed metric is marked <strong>assumed</strong>)</td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr><tr><td>2d</td><td>The principle checks are written as yes/no questions</td><td><span class="gst gst-open">Open</span></td><td>Not met: 0 of 10 principles have a yes/no question</td></tr></tbody></table></div>
+<h2>Gate 3: Develop (Alignment)</h2>
+<div class="table-wrap"><table class="bal" style="min-width:330px"><colgroup><col style="width:15.4%"><col style="width:49.4%"><col style="width:15.9%"><col style="width:19.3%"></colgroup><thead><tr><th scope="col">Check</th><th scope="col">What</th><th scope="col">Status</th><th scope="col">Auto check</th></tr></thead><tbody><tr><td>3a</td><td>At least three different directions were explored; the choice and its reason are recorded</td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr><tr><td>3b</td><td>Every decision traces back to an opportunity with evidence and to a hypothesis (no decision without a user need, no opportunity left out)</td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr><tr><td>3c</td><td>Every decision passes the principle checks, or the conflict is recorded as a trade-off</td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr><tr><td>3d</td><td>The prototype uses the design system and the accessibility rules that were checked</td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr></tbody></table></div>
+<h2>Gate 4: Deliver (Real users + buildability)</h2>
+<div class="table-wrap"><table class="bal" style="min-width:330px"><colgroup><col style="width:16.0%"><col style="width:47.3%"><col style="width:16.5%"><col style="width:20.2%"></colgroup><thead><tr><th scope="col">Check</th><th scope="col">What</th><th scope="col">Status</th><th scope="col">Auto check</th></tr></thead><tbody><tr><td>4a</td><td>Real users tested the hypotheses; results are set next to the baseline</td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr><tr><td>4b</td><td>Findings trace back to the original notes or recordings and are ranked by importance</td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr><tr><td>4c</td><td>A developer can build without coming back with questions (handoff pack and decision log are complete)</td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr><tr><td>4d</td><td>The measurement plan was given to the product owner</td><td><span class="gst gst-open">Open</span></td><td>Manual check</td></tr></tbody></table></div>
+<p>The <strong>Automatic check</strong> column (in the report) shows whether the current data meets that check. It does not change the status you set; if you set <code>passed</code> and the data does not support it, the report shows a warning.</p>
+<p>After you change a status here, ask the AI tool to update the Gates table on the Overview page (<a href="#/overview"><code>README.md</code></a>).</p></div><p class="srcfile">Source file: <code>standards/gates.md</code></p></section><section class="doc" id="principles" data-title="Principle checks"><a class="back" href="#/reference">← Standards</a><div class="reading"><h1>Principle checks</h1>
+<p><em>Written when the Define stage starts. This is the set of principles used in <strong>Heuristic Evaluation</strong>: checking a design against Nielsen's 10 usability heuristics. Turn each principle into a yes/no question for your product. Add your organisation's own principles below, numbered from P11.</em></p>
+<h2>How to use</h2>
+<ol><li><strong>Write a yes/no question for your product</strong> in the last column of the table below. Each principle in the "Details" part has suggested questions: pick, adapt them to your product, then write them into the table.</li><li><strong>Evaluate the design:</strong> for each decision or screen, go through every question. An answer of "no" is a violation.</li><li><strong>Record each violation with its severity</strong> (0 to 4), using <a href="#/severity">Severity levels</a>.</li><li><strong>Evaluate independently, then merge:</strong> one person usually finds only part of the problems. If you can, ask 3 to 5 people to evaluate separately, then merge the results.</li><li><strong>Link back to the hub:</strong> a decision that passes gets <code>follows</code> pointing at the principle; a decision that violates it and that you accept gets <code>pulls_against</code> and the reason (see <code>../../toolkit/guides/03-how-the-hub-works.md</code>).</li></ol>
+<h2>Principle table</h2>
+<div class="table-wrap"><table class="bal" style="min-width:264px"><colgroup><col style="width:19.6%"><col style="width:43.2%"><col style="width:37.1%"></colgroup><thead><tr><th scope="col">ID</th><th scope="col">Principle</th><th scope="col">Yes/no check for my product</th></tr></thead><tbody><tr><td>P1</td><td>Visibility of system status</td><td class="dash">—</td></tr><tr><td>P2</td><td>Match between system and the real world</td><td class="dash">—</td></tr><tr><td>P3</td><td>User control and freedom</td><td class="dash">—</td></tr><tr><td>P4</td><td>Consistency and standards</td><td class="dash">—</td></tr><tr><td>P5</td><td>Error prevention</td><td class="dash">—</td></tr><tr><td>P6</td><td>Recognition rather than recall</td><td class="dash">—</td></tr><tr><td>P7</td><td>Flexibility and efficiency of use</td><td class="dash">—</td></tr><tr><td>P8</td><td>Aesthetic and minimalist design</td><td class="dash">—</td></tr><tr><td>P9</td><td>Help users recognise, diagnose and recover from errors</td><td class="dash">—</td></tr><tr><td>P10</td><td>Help and documentation</td><td class="dash">—</td></tr><tr><td>P11</td><td>(your organisation's own principle, if any)</td><td class="dash">—</td></tr></tbody></table></div>
+<hr>
+<h1>Details of the 10 heuristics</h1>
+<p>Each entry has four parts: <strong>It means</strong> (an explanation in plain words), <strong>Ask when evaluating</strong> (yes/no questions to copy into the table above), <strong>Signs of a violation</strong>, and <strong>Example</strong>.</p>
+<h2>P1 · Visibility of system status</h2>
+<p><strong>It means:</strong> the system always tells users what is happening, through timely and visible feedback. Users do not have to guess whether their action took effect.</p>
+<p><strong>Ask when evaluating:</strong></p>
+<ul><li>After each action, does the user see feedback right away (saved, sent, loading)?</li><li>For anything that takes more than a few seconds, is progress or a "working" state shown?</li><li>Does the user know where they are in a multi-step process (which step out of how many)?</li><li>Is the current state of an item (selected, off, confirmed) visible without opening it?</li></ul>
+<p><strong>Signs of a violation:</strong> pressing a button and nothing happens; a blank page while loading; users pressing again and again because they are not sure the first press worked.</p>
+<p><strong>Example:</strong> a progress bar while uploading a file; a "Saved" label after pressing Save; a "Step 2 of 4" indicator at the top of a form.</p>
+<h2>P2 · Match between system and the real world</h2>
+<p><strong>It means:</strong> the system speaks the users' language: words, concepts and an order that are familiar to them, not the system's internal jargon.</p>
+<p><strong>Ask when evaluating:</strong></p>
+<ul><li>Do labels, buttons and messages use words that real users use (no internal terms, error codes, technical names)?</li><li>Does the order of the steps follow the natural order of what the user is doing in real life?</li><li>Do icons and metaphors resemble things the user already knows?</li><li>Does information appear in the user's logic (for example by trip) rather than by the system's data structure?</li></ul>
+<p><strong>Signs of a violation:</strong> users ask "what does this word mean?"; labels taken from database table names; unexplained abbreviations.</p>
+<p><strong>Example:</strong> "Shopping cart" instead of "Selected items list"; saved credit cards laid out like physical cards.</p>
+<h2>P3 · User control and freedom</h2>
+<p><strong>It means:</strong> users often press the wrong thing. They need a clearly marked "emergency exit" to leave an unwanted state without going through a long process.</p>
+<p><strong>Ask when evaluating:</strong></p>
+<ul><li>Can the user cancel or go back at every step of a process?</li><li>Is there undo for actions that are easy to get wrong?</li><li>Can the user leave an open window or mode without losing the work in progress?</li><li>Can a delete or an overwrite be reversed, or is there a confirmation first?</li></ul>
+<p><strong>Signs of a violation:</strong> no Cancel button; the only way out is to close the whole app; one wrong delete is gone for good.</p>
+<p><strong>Example:</strong> a "Deleted. Undo" message that shows for a few seconds; a Back button that keeps the data already entered.</p>
+<h2>P4 · Consistency and standards</h2>
+<p><strong>It means:</strong> the same thing looks and works the same everywhere. Users should not have to wonder whether two different words or actions mean the same thing. Follow the conventions of the platform and the industry.</p>
+<p><strong>Ask when evaluating:</strong></p>
+<ul><li>Does the same action have the same name and the same position on every screen?</li><li>Does the same component (button, input, card) have the same shape and behaviour?</li><li>Does the product follow the platform's conventions (iOS, Android, web) for familiar things?</li><li>Does a word always refer to the same concept?</li></ul>
+<p><strong>Signs of a violation:</strong> "Save" on one screen but "Confirm" on another for the same job; two different kinds of primary button; an icon that means one thing but is used for two jobs.</p>
+<p><strong>Example:</strong> the primary button is always at the bottom right and the same colour; the logo at the top left leads to the home page.</p>
+<h2>P5 · Error prevention</h2>
+<p><strong>It means:</strong> even better than a clear error message is a design that keeps the error from happening. Remove the situations that invite errors, or check and ask for confirmation before the user commits.</p>
+<p><strong>Ask when evaluating:</strong></p>
+<ul><li>For a high-stakes action (delete, pay, send), is there a confirmation step or a way to undo?</li><li>Does the input help the user enter the right thing (a format hint, sensible defaults, limits)?</li><li>Does the system block invalid choices instead of letting the user choose and then reporting an error?</li><li>Are two easily confused actions placed far apart, or clearly different in form?</li></ul>
+<p><strong>Signs of a violation:</strong> letting the user enter a date in the past and only then saying "invalid date"; a Delete button right next to Save, in the same style.</p>
+<p><strong>Example:</strong> a date picker that disables the dates that cannot be chosen; a Delete button in a warning colour that asks for confirmation.</p>
+<h2>P6 · Recognition rather than recall</h2>
+<p><strong>It means:</strong> reduce the load on memory. Put options, information and actions right in front of the user so they can recognise them, instead of forcing them to remember from the previous screen.</p>
+<p><strong>Ask when evaluating:</strong></p>
+<ul><li>Is the information needed for a step shown at that step (the user is not made to remember it from an earlier one)?</li><li>Can the user pick from a list instead of retyping something from memory?</li><li>Are actions and options visible instead of hidden behind invisible gestures?</li><li>If there is history or suggestions (recently used items, autofill), can the user use them?</li></ul>
+<p><strong>Signs of a violation:</strong> being made to retype a code seen on the previous screen; a function reachable only through a hidden gesture with no hint.</p>
+<p><strong>Example:</strong> showing recent searches; an order summary next to the payment step.</p>
+<h2>P7 · Flexibility and efficiency of use</h2>
+<p><strong>It means:</strong> the system serves both newcomers and experienced users. There are shortcuts, customisation and fast ways for frequent users, without confusing newcomers.</p>
+<p><strong>Ask when evaluating:</strong></p>
+<ul><li>Do experienced users have shortcuts (keyboard shortcuts, quick actions, bulk actions)?</li><li>Does the system remember repeated choices, settings or data so they do not have to be redone?</li><li>Can newcomers follow the full, clear path?</li><li>Can users customise the parts they use often?</li></ul>
+<p><strong>Signs of a violation:</strong> long-time users go through the same five steps every time; no way to act on many items at once.</p>
+<p><strong>Example:</strong> keyboard shortcuts for common actions; "buy again" from a previous order; multi-select.</p>
+<h2>P8 · Aesthetic and minimalist design</h2>
+<p><strong>It means:</strong> the interface does not carry extra or barely relevant information. Every additional piece of information competes for attention with the important information and makes it harder to see.</p>
+<p><strong>Ask when evaluating:</strong></p>
+<ul><li>Does each screen have one clear main job, and does it stand out from the rest?</li><li>Does every element on the screen serve what the user is doing?</li><li>Is the text short, and is rarely used information tucked away (expandable when needed)?</li><li>Does decoration slow the user down or make reading harder?</li></ul>
+<p><strong>Signs of a violation:</strong> a screen full of text and buttons of equal weight; banners, popups and icons competing with each other; long explanatory text nobody reads.</p>
+<p><strong>Example:</strong> a checkout screen that keeps only the necessary fields; advanced features behind "More options".</p>
+<h2>P9 · Help users recognise, diagnose and recover from errors</h2>
+<p><strong>It means:</strong> error messages use plain language (no error codes), say precisely what the problem is, and constructively suggest a solution.</p>
+<p><strong>Ask when evaluating:</strong></p>
+<ul><li>Is the error message written in plain words, without error codes or technical terms?</li><li>Does it say what is wrong and where (pointing to the exact field or step)?</li><li>Does it say what the user needs to do next, and is there a button to do it?</li><li>Is the work the user already entered kept so they can fix it without starting over?</li></ul>
+<p><strong>Signs of a violation:</strong> "An error occurred. Code 500."; an error shown in red at the top of the page without saying which field is wrong; clearing the whole form after an error.</p>
+<p><strong>Example:</strong> "This email is already in use. Sign in or use another email." with a Sign in button.</p>
+<h2>P10 · Help and documentation</h2>
+<p><strong>It means:</strong> it is best when the system can be used without explanation. But when help is needed, it must be easy to find, tied to the task at hand, give concrete steps and not be too long.</p>
+<p><strong>Ask when evaluating:</strong></p>
+<ul><li>Can the user find help at the right time and in the right place (in context)?</li><li>Is the help content searchable and organised by what the user wants to do, not by feature structure?</li><li>Does it have short, concrete, easy-to-follow steps?</li><li>For things the user meets for the first time, is there a short hint (onboarding, tip)?</li></ul>
+<p><strong>Signs of a violation:</strong> help is one long PDF; you have to leave the screen you are on to find it; there is no way to search.</p>
+<p><strong>Example:</strong> a "?" icon next to a confusing field that opens a one-line explanation; a help-centre search by task.</p>
+<hr>
+<h1>Sources</h1>
+<ul><li>Nielsen, J. (1994). <em>10 Usability Heuristics for User Interface Design.</em> Nielsen Norman Group. Nielsen refined this set of 10 heuristics in 1994 from an analysis of 249 usability problems; Nielsen Norman Group has updated the explanations since.</li><li>Nielsen, J. (1994). <em>How to Conduct a Heuristic Evaluation.</em> Nielsen Norman Group.</li><li>Nielsen, J., &amp; Molich, R. (1990). <em>Heuristic evaluation of user interfaces.</em> Proceedings of ACM CHI'90.</li></ul>
+<p>The explanations and questions above are rewritten in plain words so you can use them in a project right away. When you need an exact citation, read the original at Nielsen Norman Group.</p></div><p class="srcfile">Source file: <code>standards/principle-checks.md</code></p></section><section class="doc" id="severity" data-title="Severity levels"><a class="back" href="#/reference">← Standards</a><div class="reading"><h1>Severity levels</h1>
+<p><em>The scale for how serious a usability problem is, used when you evaluate a design (Heuristic Evaluation) or record findings from a test with users. Based on Nielsen's 0 to 4 scale. Use the same scale for every finding so the levels can be compared with each other.</em></p>
+<h2>The 0 to 4 scale</h2>
+<div class="table-wrap"><table class="bal" style="min-width:506px"><colgroup><col style="width:11.3%"><col style="width:17.1%"><col style="width:24.6%"><col style="width:25.9%"><col style="width:21.2%"></colgroup><thead><tr><th scope="col">Level</th><th scope="col">Name</th><th scope="col">Meaning</th><th scope="col">Example</th><th scope="col">What to do</th></tr></thead><tbody><tr><td><strong>0</strong></td><td>Not a problem</td><td>You do not agree this is a usability problem</td><td>One evaluator finds a label slightly odd, but real users understand it right away</td><td>Record it and drop it, with the reason</td></tr><tr><td><strong>1</strong></td><td>Cosmetic</td><td>A matter of appearance only, it does not get in the way of the user's work</td><td>Two icons are a few pixels out of line; capitalisation of labels is inconsistent</td><td>Fix only if there is time</td></tr><tr><td><strong>2</strong></td><td>Minor</td><td>A small problem: annoying or a little slow, the user still completes the task</td><td>A button is a bit far away so the user has to scroll; an error message does not say clearly how to fix it</td><td>Low priority; put it in the backlog</td></tr><tr><td><strong>3</strong></td><td>Major</td><td>A big problem: many users get blocked, lose a lot of time or have to take a detour</td><td>Cannot find where to share; has to re-enter data after an error</td><td>Important, high priority; fix before launch, or record clearly why it is accepted</td></tr><tr><td><strong>4</strong></td><td>Catastrophe</td><td>So serious that the user cannot complete the main task, or it causes lost data or lost money</td><td>The pay button does not work; an accidental delete that cannot be undone</td><td><strong>Must be fixed before release</strong></td></tr></tbody></table></div>
+<h2>How to decide a level</h2>
+<p>A problem is rated on three factors, looked at together, not added up:</p>
+<div class="table-wrap"><table class="bal" style="min-width:292px"><colgroup><col style="width:23.4%"><col style="width:37.6%"><col style="width:39.1%"></colgroup><thead><tr><th scope="col">Factor</th><th scope="col">Question</th><th scope="col">Leans toward a higher level when</th></tr></thead><tbody><tr><td><strong>Frequency</strong></td><td>How often does this problem happen? How many people meet it?</td><td>Most users meet it, or meet it in the main task</td></tr><tr><td><strong>Impact</strong></td><td>When they meet it, is it easy or hard to get past?</td><td>They are blocked, lose data, or do not know how to continue</td></tr><tr><td><strong>Persistence</strong></td><td>Is it met once, or again and again?</td><td>Users cannot learn to avoid it and meet it every time</td></tr></tbody></table></div>
+<p>For example: a rare error that wipes out all the data can be level 4. An annoyance that happens on every visit but costs one second can be level 2.</p>
+<h2>How to rate</h2>
+<ol><li><strong>Rate after you have seen the whole design,</strong> not halfway through. You need the overall picture to compare problems with each other.</li><li><strong>Each person rates separately,</strong> then compare. A single rater is often off; the average of 3 or more people is more reliable.</li><li><strong>Rate the problem, not the solution.</strong> Severity is about the impact on users, not about how easy it is to fix.</li><li><strong>Write a short reason</strong> for levels 3 and 4, so others understand why.</li></ol>
+<h2>Using this scale in the hub</h2>
+<ul><li>Each finding is a file in <code>insights/findings/</code> with the properties <code>severity</code> (0 to 4) and <code>principle</code> (see <a href="#/principles">Principle checks</a>). The report ranks findings by level by itself, and the Findings page in Stages shows the list.</li><li>At the Deliver gate, check 4b requires findings to be ranked by importance: use this scale.</li><li>Level <strong>4</strong> blocks handoff: the report warns while a level 4 finding still has <code>resolution: open</code>, and flags the decision that is affected.</li><li>Level <strong>3</strong> needs a clear decision: fix it, or accept it as a trade-off and record it in <code>insights/project-log.md</code>.</li><li>Levels <strong>0 to 2</strong> can go into the backlog after launch.</li></ul>
+<h2>How to record a finding</h2>
+<div class="table-wrap"><table class="bal" style="min-width:466px"><colgroup><col style="width:24.9%"><col style="width:20.1%"><col style="width:20.3%"><col style="width:19.7%"><col style="width:15.0%"></colgroup><thead><tr><th scope="col">Finding</th><th scope="col">Principle violated</th><th scope="col">Severity (0 to 4)</th><th scope="col">Evidence</th><th scope="col">What to do</th></tr></thead><tbody><tr><td>One sentence describing the problem, from the user's point of view</td><td>The principle code, for example P1</td><td>0 to 4, with a short reason if it is 3 or 4</td><td>An evidence code or a recording</td><td>Fix / accept / defer</td></tr></tbody></table></div>
+<h2>Sources</h2>
+<ul><li>Nielsen, J. (1994). <em>Severity Ratings for Usability Problems.</em> Nielsen Norman Group.</li><li>Nielsen, J. (1994). <em>How to Conduct a Heuristic Evaluation.</em> Nielsen Norman Group.</li></ul></div><p class="srcfile">Source file: <code>standards/severity-levels.md</code></p></section></div></section>
+<section class="view journey guide" id="v-guide"><div class="wrap"><div class="jlist"><div class="reading"><h1>Guide</h1>
+<h2>1. What this workspace is, and who it is for</h2>
+<p><strong>What it is.</strong> One folder for one product, where you and your AI tool work together. Documents, research, decisions and measured results sit in the right place and are linked to each other, so the AI always has enough context.</p>
+<p><strong>Who it is for.</strong> PMs, designers, researchers, or anyone building a product on their own. You do not need to know how to code.</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">You work in</th><th scope="col">To do what</th></tr></thead><tbody><tr><td><code>work/</code></td><td>The work you have done: analysis, wireframes, prototype</td></tr><tr><td><code>insights/</code></td><td>What you learned and what you decided, linked back to user needs</td></tr><tr><td><code>context/</code></td><td>Background for the AI to read first</td></tr><tr><td>The left menu</td><td>For <strong>viewing</strong> only: built automatically from the three folders above</td></tr></tbody></table></div>
+<h2>2. I have a new product or project</h2>
+<div class="table-wrap"><table class="bal" style="min-width:288px"><colgroup><col style="width:16.6%"><col style="width:36.2%"><col style="width:47.2%"></colgroup><thead><tr><th scope="col">Step</th><th scope="col">What to do</th><th scope="col">Say to the AI</th></tr></thead><tbody><tr><td>1</td><td>Create the project (open the workspace folder with an AI tool)</td><td><code>Create a new project called &lt;project-name&gt;</code></td></tr><tr><td>2</td><td>Tell the AI about the product and the users</td><td><code>Help me fill in the background about the product and users. Ask me one question at a time.</code></td></tr><tr><td>3</td><td>Write the scope of the project</td><td><code>Help me write the scope: the business question, the desired outcome, the main users.</code></td></tr><tr><td>4</td><td>Add the research data (anonymised)</td><td><code>Extract insights from the file &lt;file-name&gt;. Propose first, do not create.</code></td></tr><tr><td>5</td><td>Look at the hub</td><td>Double-click <code>index.html</code> in the project folder</td></tr></tbody></table></div>
+<p>Then you go through the stages:</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">Stage</th><th scope="col">What you are doing</th></tr></thead><tbody><tr><td><strong>Discover</strong></td><td>Understand the problem and the users</td></tr><tr><td><strong>Define</strong></td><td>Decide which problem is worth solving</td></tr><tr><td><strong>Develop</strong></td><td>Explore solutions, draw wireframes, build a prototype</td></tr><tr><td><strong>Deliver</strong></td><td>Test with users and hand off</td></tr><tr><td><strong>Learn</strong></td><td>Read the results after release</td></tr></tbody></table></div>
+<h2>3. I have a new task or piece of work</h2>
+<div class="table-wrap"><table class="bal" style="min-width:330px"><colgroup><col style="width:28.9%"><col style="width:28.3%"><col style="width:42.9%"></colgroup><thead><tr><th scope="col">I have</th><th scope="col">What to do</th><th scope="col">Say to the AI</th></tr></thead><tbody><tr><td>A new interview or survey</td><td>Save the file (anonymised) in <code>work/</code></td><td><code>Extract insights from the file &lt;file-name&gt;. Propose first, do not create.</code></td></tr><tr><td>Images, wireframes, a prototype</td><td>Drop them into a new folder in <code>work/</code></td><td><code>Add the files in the folder &lt;folder-name&gt; to the report.</code></td></tr><tr><td>A design decision</td><td>No file needed first</td><td><code>Record a decision: &lt;one sentence&gt;. It tests hypothesis H1. Reason: &lt;...&gt;. Not accepted yet.</code></td></tr><tr><td>A new need or hypothesis</td><td>No file needed first</td><td><code>Record a user need: &lt;one sentence&gt;. Impact &lt;high/medium/low&gt;, because &lt;reason&gt;.</code></td></tr><tr><td>A measured result after launch</td><td>No file needed first</td><td><code>Metric M1 measured &lt;number&gt; on &lt;date&gt;, the target was &lt;...&gt;. Verdict: &lt;met / missed&gt;.</code></td></tr></tbody></table></div>
+<p><strong>Where things go:</strong> work you have done lives in <code>work/</code>; what you learned and decided lives in <code>insights/</code>. Each piece of information is written in one place only.</p>
+<h2>4. I want to preview the hub</h2>
+<div class="table-wrap"><table class="bal" style="min-width:306px"><colgroup><col style="width:26.4%"><col style="width:25.1%"><col style="width:48.5%"></colgroup><thead><tr><th scope="col">Way</th><th scope="col">When</th><th scope="col">What to do</th></tr></thead><tbody><tr><td><strong>Quick look</strong></td><td>You only need to look</td><td>Double-click <code>index.html</code> in the project folder: it opens in the browser, nothing to install</td></tr><tr><td><strong>Look and auto-refresh</strong></td><td>You are editing files all the time</td><td>Tell the AI: <em>"Open a preview of the hub that refreshes when I save a file"</em>, then open the address it gives you</td></tr><tr><td><strong>Send to someone</strong></td><td>Sharing</td><td>Tell the AI: <em>"Pack the report into a zip file to send"</em></td></tr></tbody></table></div>
+<p>The report changes only when it is rebuilt. Just added a file and do not see it? Tell the AI: <em>"Rebuild the report"</em>, then reload the page.</p>
+<h2>5. Words for working with the AI</h2>
+<p><strong>Things in the workspace</strong></p>
+<div class="table-wrap"><table><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td><strong>Hub</strong></td><td>The whole project folder and the <code>index.html</code> report that shows it</td></tr><tr><td><strong>Item</strong></td><td>A need, hypothesis, metric, decision, evidence or finding. Each item is one file in <code>insights/</code></td></tr><tr><td><strong>Working file</strong></td><td>A file in <code>work/</code> (for example <code>scope.md</code>)</td></tr><tr><td><strong>Step card</strong></td><td>A ready-made procedure for the AI to run (it lives in <code>skills/</code>, outside the project and shared). You do not need to name it: say what you want done and the AI picks the right procedure</td></tr><tr><td><strong>Context</strong></td><td>The files in <code>context/</code> that the AI reads first in every step</td></tr></tbody></table></div>
+<p><strong>Words you say to the AI</strong></p>
+<div class="table-wrap"><table><thead><tr><th scope="col">You say</th><th scope="col">The AI understands</th></tr></thead><tbody><tr><td>"Propose first, do not create"</td><td>List it for me to approve, do not write any file yet</td></tr><tr><td>"Anonymise"</td><td>Replace real names, company names and figures with made-up ones before giving them to the AI</td></tr><tr><td>"assumed"</td><td>Nobody has confirmed this number</td></tr><tr><td>"Draft" / "verified"</td><td>Not checked yet / I have checked it</td></tr><tr><td>"Proposed" / "accepted"</td><td>A decision just suggested / a decision that has been accepted</td></tr><tr><td>"Link to H1"</td><td>Record the relationship to item H1 (for example the decision tests hypothesis H1)</td></tr><tr><td>"Rebuild the report"</td><td>Refresh the report from the current files so the menu and the tables match the latest changes</td></tr></tbody></table></div>
+<p>To understand more deeply how the workspace works, tell the AI: <em>"Explain to me how this workspace works."</em></p></div></div></div></section>
+<div class="wrap" style="padding-top:0"><footer class="foot">This report is generated automatically from the project files.<details class="foot-tech"><summary>For whoever updates the report</summary><p>Edit the project source files, then ask the AI tool to rebuild the report, or run the export script of the product-workspace skill.</p></details></footer></div>
+</main>
+</div>
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var VIEWS=['overview','context','journey','docs','trace','reference','guide'];
+  function $(s,c){return (c||document).querySelector(s)}
+  function $$(s,c){return [].slice.call((c||document).querySelectorAll(s))}
+  var docs={}; $$('.doc').forEach(function(d){docs[d.id]=d});
+  $$('.nback').forEach(function(b){b.addEventListener('click',function(){showPanel('root')})});
+  var caseName=document.body.getAttribute('data-case');
+  function route(){
+    var id=decodeURIComponent((location.hash||'').replace(/^#\/?/,''))||'overview';
+    var doc=null, view='overview';
+    if(VIEWS.indexOf(id)>-1){view=id}
+    else if(docs[id]){doc=docs[id]; var v=doc.closest('.view'); view=v?v.id.slice(2):'overview'}
+    $$('.view').forEach(function(v){v.classList.toggle('on',v.id==='v-'+view)});
+    $$('.side a[data-nav]').forEach(function(a){
+      if(a.getAttribute('data-nav')===view){a.setAttribute('aria-current','page')}else{a.removeAttribute('aria-current')}
+    });
+    var mn=$('.side details.menu'); if(mn&&window.innerWidth<=900){mn.open=false}
+    $$('.doc').forEach(function(d){d.classList.remove('on')});
+    if(doc){doc.classList.add('on')}
+    var j=$('#v-journey'); if(j){j.classList.toggle('has-doc',view==='journey'&&!!doc)}
+    var t=$('#v-trace'); if(t){t.classList.toggle('has-item',view==='trace'&&!!doc)}
+    var rv=$('#v-reference'); if(rv){rv.classList.toggle('has-doc',view==='reference'&&!!doc)}
+    var cv=$('#v-context'); if(cv){cv.classList.toggle('has-doc',view==='context'&&!!doc)}
+    var dv=$('#v-docs'); if(dv){dv.classList.toggle('has-doc',view==='docs'&&!!doc)}
+    $$('.subtabs a').forEach(function(a){
+      if(doc&&a.getAttribute('href')==='#/'+doc.id){a.setAttribute('aria-current','page')}else{a.removeAttribute('aria-current')}
+    });
+    $$('.tree a.node').forEach(function(a){
+      var on=view==='trace'&&doc&&a.getAttribute('data-id')===doc.id;
+      a.classList.toggle('sel',!!on);
+    });
+    var sel=$('.tree a.node.sel');
+    if(sel){var p=sel.parentElement; while(p&&p.id!=='tree'){if(p.tagName==='DETAILS'){p.open=true} p=p.parentElement}}
+    document.title=(doc?doc.getAttribute('data-title')+' · ':'')+caseName;
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange',route);
+  // guide page: a Copy button on every prompt
+  $$('#v-guide pre').forEach(function(pre){
+    var b=document.createElement('button'); b.type='button'; b.className='copybtn'; b.textContent='Copy';
+    b.addEventListener('click',function(){
+      var txt=pre.innerText.replace(/\s*Copy\s*$/,'');
+      function done(){b.textContent='Copied'; setTimeout(function(){b.textContent='Copy'},1500)}
+      try{ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fallback)}else{fallback()} }catch(e){fallback()}
+      function fallback(){
+        var t=document.createElement('textarea'); t.value=txt; t.style.position='fixed'; t.style.opacity='0'; document.body.appendChild(t); t.select();
+        try{document.execCommand('copy'); done()}catch(e){} document.body.removeChild(t);
+      }
+    });
+    pre.appendChild(b);
+  });
+
+  // tree filtering
+  var tree=$('#tree'), q=$('#tsearch'), types={}, warnOnly=false, area='', showClosed=false;
+  function scoped(el){
+    if(!showClosed&&el.getAttribute('data-closed')==='1') return false;
+    var a=el.getAttribute('data-area'); if(area&&a&&a!==area) return false;
+    return true;
+  }
+  var ta=$('#tarea'), tc=$('#tclosed');
+  if(ta){ta.addEventListener('change',function(){area=ta.value;apply()})}
+  if(tc){tc.addEventListener('change',function(){showClosed=tc.checked;apply()})}
+  function applyCards(){
+    var s=(q&&q.value||'').trim().toLowerCase(), any=!!s||warnOnly||area!==''||Object.keys(types).length>0, n=0;
+    $$('.icard').forEach(function(c){
+      var ok=scoped(c)&&(!s||c.getAttribute('data-text').indexOf(s)>-1)&&(Object.keys(types).length===0||types[c.getAttribute('data-type')])&&(!warnOnly||c.getAttribute('data-warn')==='1');
+      c.hidden=!ok; if(ok){n++}
+    });
+    var tr=0;
+    $$('.atable tbody tr').forEach(function(r){
+      var ok=scoped(r)&&(!s||r.getAttribute('data-text').indexOf(s)>-1)&&(Object.keys(types).length===0||types['D'])&&(!warnOnly||r.getAttribute('data-warn')==='1');
+      r.hidden=!ok; if(ok){tr++}
+    });
+    var t=$('#tcount'); if(t){t.textContent=any?((($('#v-trace')||{classList:{contains:function(){return false}}}).classList.contains('mode-table')?tr:n)+' matches'):''}
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('[data-open-table]'); if(!b) return;
+    var tv=$('#v-trace'); tv.classList.remove('mode-tree'); tv.classList.add('mode-table');
+    $$('.vmode button').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-vmode')==='table'?'true':'false')});
+    location.hash='#/trace';
+  });
+  $$('.vmode button').forEach(function(b){b.addEventListener('click',function(){
+    var tv=$('#v-trace'); tv.classList.toggle('mode-tree',b.getAttribute('data-vmode')==='tree'); tv.classList.toggle('mode-table',b.getAttribute('data-vmode')==='table');
+    $$('.vmode button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+  })});
+  function apply(){
+    applyCards();
+    if(!tree) return;
+    var s=(q.value||'').trim().toLowerCase(), any=!!s||warnOnly||area!==''||Object.keys(types).length>0, shown=0;
+    function walk(ul){
+      var vis=false;
+      [].slice.call(ul.children).forEach(function(li){
+        var own=scoped(li)&&(!s||(li.getAttribute('data-text')||'').indexOf(s)>-1)
+          &&(Object.keys(types).length===0||types[li.getAttribute('data-type')])
+          &&(!warnOnly||li.getAttribute('data-warn')==='1');
+        var sub=li.querySelector(':scope > details > ul')||li.querySelector(':scope > ul');
+        var cv=sub?walk(sub):false;
+        var isItem=!!li.getAttribute('data-type');
+        if(own&&isItem&&any){shown++}
+        var show=(own&&(!sub||!any||true))||cv;
+        if(any&&!own&&!cv){show=false}
+        li.hidden=!show;
+        if(any&&cv){var d=li.querySelector(':scope > details'); if(d){d.open=true}}
+        vis=vis||show;
+      });
+      return vis;
+    }
+    walk(tree);
+    var c=$('#tcount'); if(c&&$('#v-trace').classList.contains('mode-tree')){c.textContent=any?(shown+' matches'):''}
+  }
+  if(q){q.addEventListener('input',function(){apply()})}
+  $$('#v-trace .filters button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var on=b.getAttribute('aria-pressed')!=='true';
+      b.setAttribute('aria-pressed',on?'true':'false');
+      if(b.getAttribute('data-warn')){warnOnly=on}
+      else{var k=b.getAttribute('data-type'); if(on){types[k]=true}else{delete types[k]}}
+      apply();
+    });
+  });
+  apply();
+  var cards=$$('#acards .acard'), fs={}, ft={};
+  function applyDocs(){
+    var q=(($('#dsearch')||{}).value||'').trim().toLowerCase(), n=0;
+    cards.forEach(function(c){
+      var ok=(!q||c.getAttribute('data-text').indexOf(q)>-1)&&(!Object.keys(ft).length||ft[c.getAttribute('data-type')])&&(!Object.keys(fs).length||fs[c.getAttribute('data-stage')]);
+      c.hidden=!ok; if(ok){n++}
+    });
+    var c=$('#dcount'); if(c){c.textContent=(q||Object.keys(ft).length||Object.keys(fs).length)?(n+' documents match'):''}
+  }
+  var ds=$('#dsearch'); if(ds){ds.addEventListener('input',applyDocs)}
+  $$('#v-docs .filters button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var on=b.getAttribute('aria-pressed')!=='true'; b.setAttribute('aria-pressed',on?'true':'false');
+      var k=b.getAttribute('data-ftype');
+      if(k){if(on){ft[k]=true}else{delete ft[k]}}
+      applyDocs();
+    });
+  });
+  function tabGroup(sel,onPick){
+    $$(sel+' button').forEach(function(b){
+      b.addEventListener('click',function(){
+        $$(sel+' button').forEach(function(x){x.setAttribute('aria-selected',x===b?'true':'false')});
+        onPick(b);
+      });
+    });
+  }
+  tabGroup('#v-docs .tabs2',function(b){fs={}; var s=b.getAttribute('data-fstage'); if(s){fs[s]=true} applyDocs()});
+  tabGroup('#v-trace .tabs2',function(b){types={}; var t=b.getAttribute('data-type'); if(t){types[t]=true} apply()});
+  var sel=$('#themeselect');
+  if(sel){
+    try{var saved=localStorage.getItem('hub-theme'); if(saved){sel.value=saved; root.setAttribute('data-theme',saved)}}catch(e){}
+    sel.addEventListener('change',function(){
+      root.setAttribute('data-theme',sel.value);
+      try{localStorage.setItem('hub-theme',sel.value)}catch(e){}
+    });
+  }
+  route();
+})();
+</script>
+</body>
+</html>

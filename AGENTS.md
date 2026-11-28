@@ -1,49 +1,63 @@
-# AGENTS.md: workspace
+# AGENTS.md
 
-This is the **workspace root**: the place that holds several projects (each project is a project folder) and the shared `toolkit/`. The rules for working *inside* a project are in that project's `AGENTS.md` (for example `travel-app/AGENTS.md`). When you are working inside a project, read that file, not this one.
+This is the **workspace root**: it holds several projects (one folder each in `project/`) and the shared `agents/`, `rules/`, `skills/` and `toolkit/`. Rules for working *inside* a project are in that project's own `AGENTS.md` (for example `project/travel-app/AGENTS.md`). When you work inside a project, read that file, not this one.
 
-## What each folder is
+## Structure
 
-| Folder | What it is | What you do |
+| Path | What it is | What you do |
 |---|---|---|
-| `travel-app/` | The sample project (Travel Buddy) | Read for reference, do not edit unless asked |
-| `<project-name>/` | The workspace owner's project | Work following that project's `AGENTS.md` |
-| `toolkit/` | Guides, document templates, step cards, scripts. `toolkit/project-template/` is the blank project that `new-project.py` copies | Read, do not edit unless asked |
-| `index.html` | The home page: one card per project | Do not edit by hand. Build it with `toolkit/tools/build-home.py` |
+| `project/` | Every project, one folder each | Work inside the project the owner names |
+| `project/travel-app/` | The sample project (Travel Buddy) | Read for reference, do not edit unless asked |
+| `project/<name>/` | The owner's project | Follow that project's `AGENTS.md` |
+| `agents/` | Read-only helpers: user researcher, UI designer, handoff reader, design QA reviewer | Read, do not edit unless asked |
+| `rules/` | Rules every project's AI tool follows | Read, do not edit unless asked |
+| `skills/` | Step cards (`SKILL.md`), templates, examples | Read, do not edit unless asked |
+| `toolkit/` | Guides and scripts; `toolkit/project-template/` is the blank project that `new-project.py` copies | Read, do not edit unless asked |
+| `index.html` | Home page, one card per project | Never edit by hand; build it (see Commands) |
 
-## When asked to create a new project
+## Commands
 
-For example: "Create a new project called …", "Tạo một dự án mới tên …", "Start the project …".
+Run from the workspace root unless noted.
 
-1. **Ask for the project name** if it is not given. One question is enough.
-2. **Run the command, do not copy a folder yourself:**
+```bash
+python3 toolkit/tools/new-project.py "<Project name>"   # create a project (add --title "…" for a different display name)
+python3 toolkit/tools/build-home.py                     # rebuild the home page
+python3 toolkit/tools/check-toolkit.py                  # check skills and paths
+cd project/<name> && python3 ../../toolkit/tools/build-report.py   # rebuild one project's report, inside the project folder
+```
 
-   ```
-   python3 toolkit/tools/new-project.py "<Project name>"
-   ```
+## Creating a new project
 
-   The command turns a name with accents or spaces into a folder name, removes the `[EXAMPLE]` items, fills in the project name, builds the project's `index.html` and adds a card to the home page. Add `--title "…"` if the display name should differ from the folder name.
-3. **Tell the workspace owner:** the path of the new folder, that the home page now has a card for the project, and the first thing to do: fill in the Project card in the project's `README.md` (the **Overview** line is the introduction shown on the project's home page card), then `context/product-and-users.md` and `context/data-rules.md`.
-4. **Do not fill it in for them.** Do not invent the product name, the users or any figures. Leave what you do not know empty for the project owner to fill in.
+Triggers: "Create a new project called …", "Tạo một dự án mới tên …", "Start the project …".
 
-If a folder with the same name already exists, the command stops. Do not delete or overwrite it: ask the workspace owner to choose another name.
+1. Ask for the project name if it is not given. One question is enough.
+2. Run `new-project.py`. Do not copy a folder yourself. It turns the name into a folder name, removes the `[EXAMPLE]` items, fills in the project name, builds the project's `index.html` and adds a home page card.
+3. Tell the owner: the path of the new folder, that the home page has a card for it, and the first step: fill in the Project card in the project's `README.md` (the **Overview** line is the card's introduction), then `context/product-and-users.md` and `context/data-rules.md`.
+4. Do not fill it in for them. Do not invent the product name, users or figures; leave unknowns empty.
 
-## Other requests at the workspace level
+If the folder name already exists, the command stops. Do not delete or overwrite it; ask the owner for another name.
+
+## Other requests
 
 | Request | What to do |
 |---|---|
-| See or update the home page | `python3 toolkit/tools/build-home.py` |
-| See the report of a project | Open `<project>/index.html`. To rebuild it: run `python3 ../toolkit/tools/build-report.py` **inside** the project folder |
-| Add a new document to a project | Open a template in `toolkit/skills/<skill>/templates/`, copy it into that project's `work/`, and follow that project's `AGENTS.md` |
-| Draw a process map, swimlane or user flow | Follow `toolkit/skills/build-process-map/SKILL.md` (uses `toolkit/skills/diagram-design/`); template: `toolkit/skills/build-process-map/templates/process-map.md` |
-| "Lưu lại", "Lưu và đăng lên", "Save and publish" | Ask which project, then follow **Save and publish** in that project's `AGENTS.md`. Saving changes to the workspace itself (for example `toolkit/`) follows the same steps, staging only the files that changed |
-| Unclear which project it belongs to | Ask one question. Do not guess |
+| See a project's report | Open `project/<name>/index.html` |
+| Add a document to a project | Copy a template from `skills/<skill>/templates/` into that project's `work/`, then follow that project's `AGENTS.md` |
+| Draw a process map, swimlane or user flow | Follow `skills/build-process-map/SKILL.md` (uses `skills/diagram-design/`); template: `skills/build-process-map/templates/process-map.md` |
+| "Lưu lại", "Lưu và đăng lên", "Save and publish" | Ask which project, then follow **Save and publish** in that project's `AGENTS.md`. Changes to the workspace itself (for example `toolkit/`) follow the same steps, staging only the files that changed |
+| Unclear which project | Ask one question; do not guess |
 
-## Hard rules
+## Boundaries
 
-1. **Do not read** `_personal/` and `work/sources/_raw-private/` of any project.
-2. **Do not edit `toolkit/project-template/`** when creating or working on a project. It must stay as it is to serve as the template.
-3. **Propose first** for anything that creates or changes many files. Wait for the workspace owner to approve.
-4. **Anonymise before using real data.** Names of people, company names and real figures do not go to an AI tool before they are anonymised.
-5. **Answer in the language the workspace owner writes in.**
-6. **Write plain, clean content.** In the body of a document leave out item codes (O1, H2, D3), counts such as `(n=13)`, file paths and skill names; say it in words and keep the codes in the file's properties. The full rule is in `toolkit/rules/ai-rules.md`.
+**Never**
+- Read `_personal/` or `work/sources/_raw-private/` of any project.
+- Edit `toolkit/project-template/`; it must stay as the template.
+- Use real names of people, companies or real figures before they are anonymised.
+
+**Ask first**
+- Anything that creates or changes many files: propose it and wait for the owner's approval.
+
+## Style
+
+- Answer in the language the owner writes in.
+- Write plain, clean content. In the body of a document leave out item codes (O1, H2, D3), counts such as `(n=13)`, file paths and skill names; say it in words and keep the codes in the file's properties. Full rule: `rules/ai-rules.md`.

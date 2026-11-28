@@ -5,9 +5,9 @@ name: Update index.html
 on:
   push:
     branches: [main]
-    # Any project folder: my-project, travel-app and every project made with toolkit/tools/new-project.py.
+    # Any folder in project/: travel-app and every project made with toolkit/tools/new-project.py.
     paths:
-      - '*/**'
+      - 'project/**'
       - '!**/index.html'
   workflow_dispatch:
 
@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Export hub of every project
         run: |
-          for agents in */AGENTS.md; do
+          for agents in project/*/AGENTS.md; do
             case_dir="$(dirname "$agents")"
             if [ -d "$case_dir/insights" ] || [ -d "$case_dir/work" ]; then
               echo "Exporting $case_dir"
@@ -38,7 +38,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- index.html '*/index.html'
+          git add -- index.html 'project/*/index.html'
           if git diff --cached --quiet; then
             echo "index.html is already up to date"
           else

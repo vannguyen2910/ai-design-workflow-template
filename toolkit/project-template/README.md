@@ -58,4 +58,4 @@ The full list is in the **Guide** tab of `index.html`.
 | `AGENTS.md` | Rules for the AI tool, rarely needs opening by hand |
 | `_personal/` | Your private notes, never given to the AI |
 
-*The steps for the AI (`toolkit/skills/`) and the document templates (in each skill's `templates/` folder) sit **outside** this folder, in `toolkit/` at the workspace root, shared by every project.*
+*The steps for the AI (`skills/`) and the document templates (in each skill's `templates/` folder) sit **outside** this folder, in `toolkit/` at the workspace root, shared by every project.*

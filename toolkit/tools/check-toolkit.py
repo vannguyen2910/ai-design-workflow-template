@@ -11,12 +11,12 @@ import sys
 
 WS = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # the workspace root
 SKIP = {".git", "node_modules", "diagram-design", "_raw-private", "_personal"}
-PATH_RX = re.compile(r"(?:\.\./)?toolkit/(?:skills|rules|templates|guides|tools|diagram-design)/[\w./-]*[\w]")
+PATH_RX = re.compile(r"(?:\.\./)+(?:skills|rules|agents)/[\w./-]*[\w]|(?:\.\./)*toolkit/(?:guides|tools|project-template)/[\w./-]*[\w]")
 LINK_RX = re.compile(r"\]\(([^)#\s]*(?:SKILL\.md|guides/[^)#\s]+|templates/[^)#\s]+))(?:#[^)]*)?\)")  # links into the toolkit only
-OLD_RX = re.compile(r"toolkit/skills/[\w-]+\.(?:md|py)\b")  # the layout before skills became folders
+OLD_RX = re.compile(r"skills/[\w-]+\.(?:md|py)\b")  # the layout before skills became folders
 errors = []
 
-skills = os.path.join(WS, "toolkit", "skills")
+skills = os.path.join(WS, "skills")
 for d in sorted(os.listdir(skills)):
     if os.path.isdir(os.path.join(skills, d)):
         card = os.path.join(skills, d, "SKILL.md")
@@ -36,7 +36,7 @@ for root, dirs, files in os.walk(WS):
                 if not m.group(0).endswith("README.md"):
                     errors.append("%s:%d old path %s" % (rel, i, m.group(0)))
             for m in PATH_RX.finditer(line):
-                target = os.path.join(WS, m.group(0).replace("../", "", 1) if m.group(0).startswith("../") else m.group(0))
+                target = os.path.join(WS, re.sub(r"^(?:\.\./)+", "", m.group(0)))
                 if "<" not in m.group(0) and not os.path.exists(target):
                     errors.append("%s:%d missing %s" % (rel, i, m.group(0)))
             if f.endswith(".md"):

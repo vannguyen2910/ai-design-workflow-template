@@ -95,15 +95,16 @@ The folder [`toolkit/guides/`](toolkit/guides/) has step-by-step guides: getting
 
 ```
 workspace/
-├── toolkit/         guides, skills for the AI (with their templates and examples), the scripts
+├── agents/          read-only helpers for the AI tool (user researcher, UI designer...)
+├── rules/           the rules every project's AI tool follows
+├── skills/          one folder per skill: steps for the AI, templates, examples
+├── toolkit/         guides and scripts
 │   ├── guides/      step-by-step guides
-│   ├── rules/       the rules every project's AI tool follows
-│   ├── skills/      one folder per skill: steps for the AI, templates, examples
-│   ├── templates/   templates no skill uses yet
 │   ├── tools/       the scripts, including creating a new project with one command
 │   └── project-template/  the blank project that new-project.py copies (do not edit)
-├── travel-app/         the sample project
-└── <project-name>/  your project
+└── project/         every project, one folder each
+    ├── travel-app/      the sample project
+    └── <project-name>/  your project
 ```
 
 In each project: `context/` (background), `work/` (everything made), `insights/` (needs, decisions, evidence), `stages/`, `standards/`, `AGENTS.md` (rules for the AI tool).
